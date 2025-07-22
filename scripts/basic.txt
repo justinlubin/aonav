@@ -1,7 +1,7 @@
 displaycommand
-lex basic
-p A
-r axiom.C
-p A
-d
-p un A
+loadexample basic
+prove A
+remove axiom.C
+prove A
+dualize
+prove un A
