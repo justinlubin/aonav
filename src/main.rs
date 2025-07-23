@@ -98,7 +98,7 @@ fn unparse_rule(rule: &Rule) -> String {
     format!(
         "  {: ^width$}\n  {} {}\n  {: ^width$}",
         premises.magenta(),
-        "-".repeat(dash_count),
+        "─".repeat(dash_count),
         rule.name.yellow(),
         conclusion.green(),
         width = dash_count,
@@ -191,15 +191,6 @@ fn prove(rules: &Vec<Rule>, prop: &str) -> Vec<Proof> {
             })
         })
         .collect()
-}
-
-fn check(command: &Vec<String>, expected_args: usize) -> bool {
-    if command.len() - 1 != expected_args {
-        let plural = if expected_args == 1 { "" } else { "s" };
-        println!("expected {} argument{}", expected_args, plural);
-        return false;
-    }
-    true
 }
 
 fn load(path: &str) -> Option<Vec<String>> {
@@ -321,6 +312,65 @@ fn main() {
                 .collect();
 
             println!("{}", unparse(&current_prog));
+        } else if cmd == "rp" || cmd == "removepremise" {
+            let rest = match it.next() {
+                Some(x) => x,
+                None => {
+                    println!("syntax: remove <rule name> <premise number>");
+                    continue;
+                }
+            };
+
+            let mut it = rest.splitn(2, " ");
+
+            let rule_name = match it.next() {
+                Some(x) => x,
+                None => {
+                    println!("syntax: remove <rule name> <premise number>");
+                    continue;
+                }
+            };
+
+            let premise_number = match it.next() {
+                Some(x) => match x.parse::<usize>() {
+                    Ok(n) => n,
+                    Err(_) => {
+                        println!("syntax: remove <rule name> <premise number>");
+                        continue;
+                    }
+                },
+                None => {
+                    println!("syntax: remove <rule name> <premise number>");
+                    continue;
+                }
+            };
+
+            current_prog = current_prog
+                .into_iter()
+                .map(|r| {
+                    if r.name == rule_name {
+                        Rule {
+                            premises: r
+                                .premises
+                                .into_iter()
+                                .enumerate()
+                                .filter_map(|(i, p)| {
+                                    if i + 1 == premise_number {
+                                        None
+                                    } else {
+                                        Some(p)
+                                    }
+                                })
+                                .collect(),
+                            ..r
+                        }
+                    } else {
+                        r
+                    }
+                })
+                .collect();
+
+            println!("{}", unparse(&current_prog));
         } else if cmd == "displaycommand" {
             display_command = true;
             println!("displaycommand");
@@ -337,6 +387,7 @@ fn main() {
             println!("\n{}", "proof system modification".green());
             println!("  dualize (d)");
             println!("  remove (r)");
+            println!("  removepremise (rp)");
 
             println!("\n{}", "misc.".green());
             println!("  displaycommand");
