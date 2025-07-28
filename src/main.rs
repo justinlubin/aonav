@@ -38,6 +38,16 @@ struct Rule {
     name: String,
 }
 
+impl Rule {
+    pub fn axiom(prop: &str) -> Self {
+        Self {
+            premises: vec![],
+            conclusion: prop.to_string(),
+            name: format!("axiom.{}", prop),
+        }
+    }
+}
+
 // Parsing
 
 #[derive(Debug, Clone)]
@@ -79,11 +89,7 @@ impl<'a> Parser<'a> {
 
     fn axiom(&mut self) {
         let line = self.next();
-        self.rules.extend(line.split_whitespace().map(|x| Rule {
-            premises: vec![],
-            conclusion: x.to_string(),
-            name: format!("axiom.{}", x),
-        }))
+        self.rules.extend(line.split_whitespace().map(Rule::axiom))
     }
 
     fn idb(&mut self) {
@@ -223,6 +229,7 @@ enum Command {
     Dualize,
     RemoveRule { rule: String },
     RemovePremise { rule: String, premise: usize },
+    AddAxiom { prop: String },
     DisplayCommand,
     Help,
     Nop,
@@ -270,6 +277,9 @@ fn parse_command(line: &str) -> Result<Command, String> {
             .parse::<usize>()
             .map_err(|_| err.to_string())?;
         Command::RemovePremise { rule, premise }
+    } else if name == "addaxiom" || name == "aa" {
+        let prop = rest_arg(it).ok_or("syntax: addaxiom <proposition name>".to_string())?;
+        Command::AddAxiom { prop }
     } else if name == "displaycommand" {
         Command::DisplayCommand
     } else if name == "help" || name == "h" {
@@ -414,6 +424,10 @@ impl Session {
 
                 self.show_program();
             }
+            Command::AddAxiom { prop } => {
+                self.program.push(Rule::axiom(&prop));
+                self.show_program()
+            }
             Command::DisplayCommand => {
                 self.display_command = true;
                 println!("displaycommand");
@@ -432,6 +446,7 @@ impl Session {
                 println!("  dualize (d)");
                 println!("  remove (r)");
                 println!("  removepremise (rp)");
+                println!("  addaxiom (aa)");
 
                 println!("\n{}", "misc.".green());
                 println!("  displaycommand");
