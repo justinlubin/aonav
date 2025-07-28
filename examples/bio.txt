@@ -75,6 +75,11 @@ CheckedRNAseq
 TranscriptQuantification
 
 rule:
+TranscriptQuantification
+- tximport
+GeneQuantification
+
+rule:
 GeneQuantification
 - deseq2
 DifferentialGeneExpression

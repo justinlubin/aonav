@@ -3,7 +3,7 @@
 `cargo run` launches an interactive command line that can load a proof system
 and apply various transformations to it. See `scripts/basic.txt` for an example
 script that loads in the example `example/basic.txt` and does some basic
-operations.
+operations. Use the `help` command to see a list of all commands.
 
 _**Tip:** You can type each command into the command line manually or you can run
 `cat scripts/basic.txt | cargo run`. If you run the commands manually, you can
