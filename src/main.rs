@@ -1,6 +1,5 @@
 use colored::Colorize;
 use indexmap::{IndexMap, IndexSet};
-use std::io::Write;
 
 // Utilities
 
@@ -218,6 +217,40 @@ fn prove(rules: &Vec<Rule>, prop: &str) -> Vec<Proof> {
         .collect()
 }
 
+// Line completion
+
+#[derive(rustyline::Hinter, rustyline::Highlighter, rustyline::Validator)]
+struct SessionLineHelper {
+    props: IndexSet<String>,
+}
+
+impl<'a> rustyline::completion::Completer for SessionLineHelper {
+    type Candidate = String;
+
+    fn complete(
+        &self,
+        line: &str,
+        pos: usize,
+        _: &rustyline::Context,
+    ) -> rustyline::Result<(usize, Vec<Self::Candidate>)> {
+        let s = &line[0..pos];
+        let start = match s.rfind(" ") {
+            None => return Ok((pos, vec![])),
+            Some(x) => x + 1,
+        };
+        let prefix = &s[start..pos];
+        let candidates = self
+            .props
+            .clone()
+            .into_iter()
+            .filter(|p| p.starts_with(prefix))
+            .collect();
+        Ok((start, candidates))
+    }
+}
+
+impl rustyline::Helper for SessionLineHelper {}
+
 // Interactive session
 
 #[derive(Debug, Clone)]
@@ -304,17 +337,21 @@ impl Session {
     }
 
     fn go(&mut self) {
-        while !self.complete {
-            print!("> ");
-            std::io::stdout().flush().unwrap();
+        let mut rl: rustyline::Editor<SessionLineHelper, _> = rustyline::Editor::with_history(
+            rustyline::Config::builder().auto_add_history(true).build(),
+            rustyline::history::MemHistory::new(),
+        )
+        .unwrap();
 
-            let mut input = String::new();
-            match std::io::stdin().read_line(&mut input) {
-                Ok(0) => break,
-                Ok(_) => (),
-                Err(e) => panic!("{}", e),
+        while !self.complete {
+            rl.set_helper(Some(SessionLineHelper {
+                props: get_props(&self.program),
+            }));
+
+            let input = match rl.readline("> ") {
+                Ok(line) => line.trim().to_string(),
+                Err(_) => break,
             };
-            let input = input.trim();
 
             if input.is_empty() {
                 continue;
