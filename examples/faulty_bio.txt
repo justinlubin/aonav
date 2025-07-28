@@ -1,0 +1,69 @@
+rule:
+RNAseq
+- load
+UncheckedRNAseq
+
+rule:
+UncheckedRNAseq
+- fastqc
+CheckedRNAseq
+
+rule:
+UncheckedRNAseq
+- multiqc
+CheckedRNAseq
+
+# rule:
+# CheckedRNAseq
+# - cutadapt_illumina
+# UncheckedRNAseq
+
+# rule:
+# CheckedRNAseq
+# - trimmomatic
+# UncheckedRNAseq
+
+rule:
+CheckedRNAseq
+- STAR
+Alignment
+
+rule:
+CheckedRNAseq
+- bowtie2
+Alignment
+
+rule:
+Alignment
+- featureCountsGene
+GeneQuantification
+
+rule:
+Alignment
+- featureCountsTranscript
+TranscriptQuantification
+
+rule:
+CheckedRNAseq
+- kallisto
+TranscriptQuantification
+
+rule:
+CheckedRNAseq
+- salmon
+TranscriptQuantification
+
+rule:
+GeneQuantification
+- deseq2
+DifferentialGeneExpression
+
+rule:
+Quantification
+- limma
+DifferentialGeneExpression
+
+rule:
+Quantification
+- edgeR
+DifferentialGeneExpression

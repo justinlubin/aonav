@@ -232,7 +232,6 @@ enum Command {
     AddAxiom { prop: String },
     DisplayCommand,
     Help,
-    Nop,
 }
 
 fn next_arg(it: &mut std::str::Split<&str>) -> Option<String> {
@@ -253,22 +252,22 @@ fn parse_command(line: &str) -> Result<Command, String> {
 
     let name = next_arg(&mut it).unwrap();
 
-    Ok(if name == "quit" || name == "q" {
-        Command::Quit
+    if name == "quit" || name == "q" {
+        Ok(Command::Quit)
     } else if name == "load" || name == "l" {
         let path = rest_arg(it).ok_or("syntax: load <path>".to_string())?;
-        Command::Load { path }
+        Ok(Command::Load { path })
     } else if name == "loadexample" || name == "lex" {
         let example = rest_arg(it).ok_or("syntax: loadexample <example name>".to_string())?;
-        Command::LoadExample { example }
+        Ok(Command::LoadExample { example })
     } else if name == "dualize" || name == "d" {
-        Command::Dualize
+        Ok(Command::Dualize)
     } else if name == "prove" || name == "p" {
         let prop = rest_arg(it).ok_or("syntax: prove <proposition name>".to_string())?;
-        Command::Prove { prop }
+        Ok(Command::Prove { prop })
     } else if name == "removerule" || name == "rr" {
         let rule = rest_arg(it).ok_or("syntax: removerule <rule name>".to_string())?;
-        Command::RemoveRule { rule }
+        Ok(Command::RemoveRule { rule })
     } else if name == "removepremise" || name == "rp" {
         let err = "syntax: removepremise <rule name> <premise name>";
         let rule = next_arg(&mut it).ok_or(err.to_string())?;
@@ -276,17 +275,17 @@ fn parse_command(line: &str) -> Result<Command, String> {
             .ok_or(err.to_string())?
             .parse::<usize>()
             .map_err(|_| err.to_string())?;
-        Command::RemovePremise { rule, premise }
+        Ok(Command::RemovePremise { rule, premise })
     } else if name == "addaxiom" || name == "aa" {
         let prop = rest_arg(it).ok_or("syntax: addaxiom <proposition name>".to_string())?;
-        Command::AddAxiom { prop }
+        Ok(Command::AddAxiom { prop })
     } else if name == "displaycommand" {
-        Command::DisplayCommand
+        Ok(Command::DisplayCommand)
     } else if name == "help" || name == "h" {
-        Command::Help
+        Ok(Command::Help)
     } else {
-        Command::Nop
-    })
+        Err("unrecognized command".to_string())
+    }
 }
 
 struct Session {
@@ -317,14 +316,22 @@ impl Session {
             };
             let input = input.trim();
 
+            if input.is_empty() {
+                continue;
+            }
+
             if self.display_command {
                 println!("{}", input);
+            }
+
+            if input.starts_with("#") {
+                continue;
             }
 
             let command = match parse_command(&input) {
                 Ok(c) => c,
                 Err(e) => {
-                    println!("{}", e);
+                    println!("{}", e.red());
                     continue;
                 }
             };
@@ -453,7 +460,6 @@ impl Session {
                 println!("  help (h)");
                 println!("  quit (q)");
             }
-            Command::Nop => (),
         }
     }
 }
