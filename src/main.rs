@@ -238,6 +238,24 @@ impl<'a> rustyline::completion::Completer for SessionLineHelper {
             None => return Ok((pos, vec![])),
             Some(x) => x + 1,
         };
+
+        if line.starts_with("lex") {
+            let mut candidates = vec![];
+            for path in std::fs::read_dir("./examples").unwrap() {
+                candidates.push(
+                    path.unwrap()
+                        .path()
+                        .with_extension("")
+                        .file_name()
+                        .unwrap()
+                        .to_str()
+                        .unwrap()
+                        .to_string(),
+                );
+            }
+            return Ok((start, candidates));
+        }
+
         let prefix = &s[start..pos];
         let candidates = self
             .props
