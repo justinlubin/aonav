@@ -155,8 +155,8 @@ fn dualize(rules: &Vec<Rule>) -> Vec<Rule> {
         .iter()
         .flat_map(|r| {
             r.premises.iter().enumerate().map(|(i, p)| Rule {
-                premises: vec![format!("un {}", p)],
-                conclusion: format!("na {}", r.name),
+                premises: vec![format!("un:{}", p)],
+                conclusion: format!("na:{}", r.name),
                 name: format!("na.{}.{}", r.name, i + 1),
             })
         })
@@ -164,9 +164,9 @@ fn dualize(rules: &Vec<Rule>) -> Vec<Rule> {
             Rule {
                 premises: get(rules, &p)
                     .into_iter()
-                    .map(|r| format!("na {}", r.name))
+                    .map(|r| format!("na:{}", r.name))
                     .collect(),
-                conclusion: format!("un {}", p),
+                conclusion: format!("un:{}", p),
                 name: format!("un.{}", p),
             }
         }))
