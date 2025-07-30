@@ -232,7 +232,7 @@ impl Session {
                     }
                     let title = format!("proof {}:", i + 1).bright_black();
                     print!("{}\n  ", title);
-                    unparse::print_proof(p, 1);
+                    print!("{}", unparse::proof(p, 1));
                     first = false;
                 }
             }

@@ -24,14 +24,11 @@ pub fn proof_system(rules: &ProofSystem) -> String {
         .join("\n\n")
 }
 
-pub fn print_proof(proof: &Proof, indent: usize) {
-    println!(
-        "{} (by {})",
-        proof.conclusion.green(),
-        proof.rule_name.yellow()
-    );
-    for prem in &proof.premises {
-        print!("{} • ", "  ".repeat(indent));
-        print_proof(prem, indent + 1);
+pub fn proof(p: &Proof, indent: usize) -> String {
+    let mut s = format!("{} (by {})\n", p.conclusion.green(), p.rule_name.yellow());
+    for prem in &p.premises {
+        s += &format!("{} • ", "  ".repeat(indent));
+        s += &proof(prem, indent + 1);
     }
+    s
 }
