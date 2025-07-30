@@ -22,7 +22,7 @@ impl<'a> Context<'a> {
         return line;
     }
 
-    fn program(&mut self) {
+    fn proof_system(&mut self) {
         while self.offset < self.lines.len() {
             self.command()
         }
@@ -54,8 +54,8 @@ impl<'a> Context<'a> {
     }
 }
 
-pub fn program(lines: &Vec<String>) -> Vec<Rule> {
+pub fn proof_system(lines: &Vec<String>) -> ProofSystem {
     let mut p = Context::new(lines);
-    p.program();
+    p.proof_system();
     p.rules
 }

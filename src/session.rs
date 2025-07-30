@@ -130,7 +130,7 @@ fn parse_command(line: &str) -> Result<Command, String> {
 // Sessions
 
 pub struct Session {
-    program: Vec<Rule>,
+    proof_system: ProofSystem,
     complete: bool,
     display_command: bool,
 }
@@ -138,7 +138,7 @@ pub struct Session {
 impl Session {
     pub fn new() -> Self {
         Session {
-            program: vec![],
+            proof_system: vec![],
             complete: false,
             display_command: false,
         }
@@ -153,7 +153,7 @@ impl Session {
 
         while !self.complete {
             rl.set_helper(Some(SessionLineHelper {
-                props: transform::props(&self.program),
+                props: transform::props(&self.proof_system),
             }));
 
             let input = match rl.readline("> ") {
@@ -185,8 +185,8 @@ impl Session {
         }
     }
 
-    fn show_program(&self) {
-        println!("{}", unparse::program(&self.program));
+    fn show_proof_system(&self) {
+        println!("{}", unparse::proof_system(&self.proof_system));
     }
 
     fn exec(&mut self, cmd: Command) {
@@ -201,8 +201,8 @@ impl Session {
                     }
                 };
 
-                self.program = parse::program(&lines);
-                self.show_program();
+                self.proof_system = parse::proof_system(&lines);
+                self.show_proof_system();
             }
             Command::LoadExample { example } => {
                 let path = format!("examples/{}.txt", example);
@@ -215,11 +215,11 @@ impl Session {
                     }
                 };
 
-                self.program = parse::program(&lines);
-                self.show_program();
+                self.proof_system = parse::proof_system(&lines);
+                self.show_proof_system();
             }
             Command::Prove { prop } => {
-                let proofs = prove::top_down(&self.program, &prop);
+                let proofs = prove::top_down(&self.proof_system, &prop);
 
                 if proofs.is_empty() {
                     println!("{}", "no proofs".red())
@@ -237,16 +237,16 @@ impl Session {
                 }
             }
             Command::Dualize => {
-                self.program = transform::dualize(&self.program);
-                self.show_program();
+                self.proof_system = transform::dualize(&self.proof_system);
+                self.show_proof_system();
             }
             Command::RemoveRule { rule } => {
-                self.program.retain(|r| r.name != rule);
-                self.show_program();
+                self.proof_system.retain(|r| r.name != rule);
+                self.show_proof_system();
             }
             Command::RemovePremise { rule, premise } => {
-                self.program = self
-                    .program
+                self.proof_system = self
+                    .proof_system
                     .clone()
                     .into_iter()
                     .map(|r| {
@@ -274,11 +274,11 @@ impl Session {
                     })
                     .collect();
 
-                self.show_program();
+                self.show_proof_system();
             }
             Command::AddAxiom { prop } => {
-                self.program.push(Rule::axiom(&prop));
-                self.show_program()
+                self.proof_system.push(Rule::axiom(&prop));
+                self.show_proof_system()
             }
             Command::DisplayCommand => {
                 self.display_command = true;

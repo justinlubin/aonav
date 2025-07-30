@@ -2,14 +2,14 @@ use crate::core::*;
 
 use indexmap::IndexSet;
 
-pub fn props(rules: &Vec<Rule>) -> IndexSet<String> {
+pub fn props(rules: &ProofSystem) -> IndexSet<String> {
     rules
         .iter()
         .flat_map(|r| std::iter::once(r.conclusion.clone()).chain(r.premises.iter().cloned()))
         .collect()
 }
 
-pub fn providing_rules(rules: &Vec<Rule>, prop: &str) -> Vec<Rule> {
+pub fn providing_rules(rules: &ProofSystem, prop: &str) -> ProofSystem {
     rules
         .iter()
         .filter(|r| r.conclusion == prop)
@@ -17,7 +17,7 @@ pub fn providing_rules(rules: &Vec<Rule>, prop: &str) -> Vec<Rule> {
         .collect()
 }
 
-pub fn dualize(rules: &Vec<Rule>) -> Vec<Rule> {
+pub fn dualize(rules: &ProofSystem) -> ProofSystem {
     rules
         .iter()
         .flat_map(|r| {

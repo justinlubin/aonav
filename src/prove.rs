@@ -1,7 +1,7 @@
 use crate::core::*;
 use crate::{transform, util};
 
-pub fn top_down(rules: &Vec<Rule>, prop: &str) -> Vec<Proof> {
+pub fn top_down(rules: &ProofSystem, prop: &str) -> Vec<Proof> {
     transform::providing_rules(rules, prop)
         .into_iter()
         .flat_map(|r| {

@@ -16,7 +16,7 @@ pub fn rule(rule: &Rule) -> String {
     )
 }
 
-pub fn program(rules: &Vec<Rule>) -> String {
+pub fn proof_system(rules: &ProofSystem) -> String {
     rules
         .iter()
         .map(|r| format!("{}\n{}", "rule:".bright_black(), rule(r)))

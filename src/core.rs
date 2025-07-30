@@ -15,6 +15,8 @@ impl Rule {
     }
 }
 
+pub type ProofSystem = Vec<Rule>;
+
 #[derive(Debug, Clone)]
 pub struct Proof {
     pub premises: Vec<Proof>,
