@@ -18,6 +18,14 @@ impl Rule {
 pub type ProofSystem = Vec<Rule>;
 
 #[derive(Debug, Clone)]
+pub enum ProofSystemGraphNode {
+    Prop(String),
+    Rule(String),
+}
+
+pub type ProofSystemGraph = petgraph::graph::Graph<ProofSystemGraphNode, String>;
+
+#[derive(Debug, Clone)]
 pub struct Proof {
     pub premises: Vec<Proof>,
     pub conclusion: String,

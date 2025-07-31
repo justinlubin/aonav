@@ -1,6 +1,7 @@
 use crate::core::*;
 
 use indexmap::IndexSet;
+use petgraph::Graph;
 
 pub fn props(rules: &ProofSystem) -> IndexSet<String> {
     rules
@@ -38,4 +39,8 @@ pub fn dualize(rules: &ProofSystem) -> ProofSystem {
             }
         }))
         .collect()
+}
+
+pub fn make_graph(ps: &ProofSystem) -> ProofSystemGraph {
+    todo!()
 }

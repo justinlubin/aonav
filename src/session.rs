@@ -145,6 +145,10 @@ impl Session {
     }
 
     pub fn go(&mut self) {
+        let g = transform::make_graph(&self.proof_system);
+        let d = petgraph::dot::Dot::new(&g);
+        println!("{:?}", d);
+
         let mut rl: rustyline::Editor<SessionLineHelper, _> = rustyline::Editor::with_history(
             rustyline::Config::builder().auto_add_history(true).build(),
             rustyline::history::MemHistory::new(),
