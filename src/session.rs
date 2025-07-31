@@ -4,6 +4,7 @@ use crate::{parse, prove, transform, unparse};
 
 use colored::Colorize;
 use indexmap::IndexSet;
+use std::io::prelude::*;
 
 // Line completion
 
@@ -97,15 +98,18 @@ fn parse_command(line: &str) -> Result<Command, String> {
         let path = rest_arg(it).ok_or("syntax: load <path>".to_string())?;
         Ok(Command::Load { path })
     } else if name == "loadexample" || name == "lex" {
-        let example = rest_arg(it).ok_or("syntax: loadexample <example name>".to_string())?;
+        let example = rest_arg(it)
+            .ok_or("syntax: loadexample <example name>".to_string())?;
         Ok(Command::LoadExample { example })
     } else if name == "dualize" || name == "d" {
         Ok(Command::Dualize)
     } else if name == "prove" || name == "p" {
-        let prop = rest_arg(it).ok_or("syntax: prove <proposition name>".to_string())?;
+        let prop = rest_arg(it)
+            .ok_or("syntax: prove <proposition name>".to_string())?;
         Ok(Command::Prove { prop })
     } else if name == "removerule" || name == "rr" {
-        let rule = rest_arg(it).ok_or("syntax: removerule <rule name>".to_string())?;
+        let rule =
+            rest_arg(it).ok_or("syntax: removerule <rule name>".to_string())?;
         Ok(Command::RemoveRule { rule })
     } else if name == "removepremise" || name == "rp" {
         let err = "syntax: removepremise <rule name> <premise name>";
@@ -116,7 +120,8 @@ fn parse_command(line: &str) -> Result<Command, String> {
             .map_err(|_| err.to_string())?;
         Ok(Command::RemovePremise { rule, premise })
     } else if name == "addaxiom" || name == "aa" {
-        let prop = rest_arg(it).ok_or("syntax: addaxiom <proposition name>".to_string())?;
+        let prop = rest_arg(it)
+            .ok_or("syntax: addaxiom <proposition name>".to_string())?;
         Ok(Command::AddAxiom { prop })
     } else if name == "displaycommand" {
         Ok(Command::DisplayCommand)
@@ -145,15 +150,12 @@ impl Session {
     }
 
     pub fn go(&mut self) {
-        let g = transform::make_graph(&self.proof_system);
-        let d = petgraph::dot::Dot::new(&g);
-        println!("{:?}", d);
-
-        let mut rl: rustyline::Editor<SessionLineHelper, _> = rustyline::Editor::with_history(
-            rustyline::Config::builder().auto_add_history(true).build(),
-            rustyline::history::MemHistory::new(),
-        )
-        .unwrap();
+        let mut rl: rustyline::Editor<SessionLineHelper, _> =
+            rustyline::Editor::with_history(
+                rustyline::Config::builder().auto_add_history(true).build(),
+                rustyline::history::MemHistory::new(),
+            )
+            .unwrap();
 
         while !self.complete {
             rl.set_helper(Some(SessionLineHelper {
@@ -191,6 +193,26 @@ impl Session {
 
     fn show_proof_system(&self) {
         println!("{}", unparse::proof_system(&self.proof_system));
+        let g = transform::make_graph(&self.proof_system);
+        let d = petgraph::dot::Dot::with_attr_getters(
+            &g,
+            &[petgraph::dot::Config::EdgeNoLabel],
+            &|_, e| match e.weight() {
+                PSGEdge::And => "color=red".to_string(),
+                PSGEdge::Or => "color=blue, style=dashed".to_string(),
+            },
+            &|_, (_, n)| match n {
+                PSGNode::Prop(_) => {
+                    "color=darkslateblue, fontcolor=darkslateblue, penwidth=2"
+                        .to_string()
+                }
+                PSGNode::Rule(_) => {
+                    "shape=hexagon, color=gray35, fontcolor=gray35".to_string()
+                }
+            },
+        );
+        let mut file = std::fs::File::create("out/proof_system.dot").unwrap();
+        write!(file, "{}", d).unwrap();
     }
 
     fn exec(&mut self, cmd: Command) {
@@ -260,15 +282,13 @@ impl Session {
                                     .premises
                                     .into_iter()
                                     .enumerate()
-                                    .filter_map(
-                                        |(i, p)| {
-                                            if i + 1 == premise {
-                                                None
-                                            } else {
-                                                Some(p)
-                                            }
-                                        },
-                                    )
+                                    .filter_map(|(i, p)| {
+                                        if i + 1 == premise {
+                                            None
+                                        } else {
+                                            Some(p)
+                                        }
+                                    })
                                     .collect(),
                                 ..r
                             }

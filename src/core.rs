@@ -10,7 +10,7 @@ impl Rule {
         Self {
             premises: vec![],
             conclusion: prop.to_string(),
-            name: format!("axiom.{}", prop),
+            name: format!("ax:{}", prop),
         }
     }
 }
@@ -18,12 +18,38 @@ impl Rule {
 pub type ProofSystem = Vec<Rule>;
 
 #[derive(Debug, Clone)]
-pub enum ProofSystemGraphNode {
+pub enum PSGNode {
     Prop(String),
     Rule(String),
 }
 
-pub type ProofSystemGraph = petgraph::graph::Graph<ProofSystemGraphNode, String>;
+impl std::fmt::Display for PSGNode {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        let s = match self {
+            Self::Prop(x) => x,
+            Self::Rule(x) => x,
+        };
+        write!(f, "{}", s)
+    }
+}
+
+#[derive(Debug, Clone)]
+pub enum PSGEdge {
+    And,
+    Or,
+}
+
+pub type ProofSystemGraph = petgraph::graph::Graph<PSGNode, PSGEdge>;
+
+impl std::fmt::Display for PSGEdge {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        let s = match self {
+            Self::And => "and",
+            Self::Or => "or",
+        };
+        write!(f, "{}", s)
+    }
+}
 
 #[derive(Debug, Clone)]
 pub struct Proof {
