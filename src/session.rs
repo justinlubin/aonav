@@ -202,6 +202,10 @@ impl Session {
                 PSGEdge::Or => "color=blue, style=dashed".to_string(),
             },
             &|_, (_, n)| match n {
+                PSGNode::Top => {
+                    "color=goldenrod, fontcolor=goldenrod, penwidth=3"
+                        .to_string()
+                }
                 PSGNode::Prop(_) => {
                     "color=darkslateblue, fontcolor=darkslateblue, penwidth=2"
                         .to_string()

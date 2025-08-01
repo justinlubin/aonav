@@ -19,6 +19,7 @@ pub type ProofSystem = Vec<Rule>;
 
 #[derive(Debug, Clone)]
 pub enum PSGNode {
+    Top,
     Prop(String),
     Rule(String),
 }
@@ -26,6 +27,7 @@ pub enum PSGNode {
 impl std::fmt::Display for PSGNode {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let s = match self {
+            Self::Top => "⊤",
             Self::Prop(x) => x,
             Self::Rule(x) => x,
         };

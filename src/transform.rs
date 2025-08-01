@@ -48,6 +48,7 @@ pub fn make_graph(ps: &ProofSystem) -> ProofSystemGraph {
     let prs = props(ps);
     let mut im = IndexMap::with_capacity(prs.len());
     let mut g = Graph::with_capacity(ps.len(), 3 * ps.len());
+    let i_top = g.add_node(PSGNode::Top);
     for p in prs {
         let i = g.add_node(PSGNode::Prop(p.clone()));
         let _ = im.insert(p, i);
@@ -55,8 +56,12 @@ pub fn make_graph(ps: &ProofSystem) -> ProofSystemGraph {
     for r in ps {
         let i = g.add_node(PSGNode::Rule(r.name.clone()));
         let _ = g.add_edge(i, *im.get(&r.conclusion).unwrap(), PSGEdge::Or);
-        for prem in &r.premises {
-            let _ = g.add_edge(*im.get(prem).unwrap(), i, PSGEdge::And);
+        if r.premises.is_empty() {
+            let _ = g.add_edge(i_top, i, PSGEdge::And);
+        } else {
+            for prem in &r.premises {
+                let _ = g.add_edge(*im.get(prem).unwrap(), i, PSGEdge::And);
+            }
         }
     }
     g
