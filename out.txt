@@ -1,0 +1,40 @@
+{
+  "nodes": {
+    "0.0": {
+      "op": "b",
+      "children": [],
+      "eclass": "0",
+      "cost": 1.0,
+      "subsumed": false
+    },
+    "0.1": {
+      "op": "a",
+      "children": [],
+      "eclass": "0",
+      "cost": 1.0,
+      "subsumed": false
+    },
+    "3.0": {
+      "op": "bar",
+      "children": [
+        "0.0",
+        "0.0"
+      ],
+      "eclass": "3",
+      "cost": 1.0,
+      "subsumed": false
+    },
+    "2.0": {
+      "op": "foo",
+      "children": [
+        "0.0",
+        "0.0"
+      ],
+      "eclass": "2",
+      "cost": 1.0,
+      "subsumed": false
+    }
+  },
+  "root_eclasses": [],
+  "class_data": {}
+}

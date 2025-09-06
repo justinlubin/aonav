@@ -1,0 +1,125 @@
+{
+  "id": "test",
+  "label": "label?",
+  "directed": true,
+  "type": null,
+  "metadata": null,
+  "nodes": {
+    "0": {
+      "label": "0",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "b": {
+      "label": "b",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "a": {
+      "label": "a",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "3": {
+      "label": "3",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "bar": {
+      "label": "bar",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2": {
+      "label": "2",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "foo": {
+      "label": "foo",
+      "metadata": {
+        "kind": "OR"
+      }
+    }
+  },
+  "edges": [
+    {
+      "id": null,
+      "source": "0",
+      "target": "b",
+      "relation": null,
+      "directed": true,
+      "label": null,
+      "metadata": null
+    },
+    {
+      "id": null,
+      "source": "0",
+      "target": "a",
+      "relation": null,
+      "directed": true,
+      "label": null,
+      "metadata": null
+    },
+    {
+      "id": null,
+      "source": "3",
+      "target": "bar",
+      "relation": null,
+      "directed": true,
+      "label": null,
+      "metadata": null
+    },
+    {
+      "id": null,
+      "source": "bar",
+      "target": "0",
+      "relation": null,
+      "directed": true,
+      "label": null,
+      "metadata": null
+    },
+    {
+      "id": null,
+      "source": "bar",
+      "target": "0",
+      "relation": null,
+      "directed": true,
+      "label": null,
+      "metadata": null
+    },
+    {
+      "id": null,
+      "source": "2",
+      "target": "foo",
+      "relation": null,
+      "directed": true,
+      "label": null,
+      "metadata": null
+    },
+    {
+      "id": null,
+      "source": "foo",
+      "target": "0",
+      "relation": null,
+      "directed": true,
+      "label": null,
+      "metadata": null
+    },
+    {
+      "id": null,
+      "source": "foo",
+      "target": "0",
+      "relation": null,
+      "directed": true,
+      "label": null,
+      "metadata": null
+    }
+  ]
+}
