@@ -1,41 +1,61 @@
-use under::ao;
-use under::jgf;
+use under::main_handler;
 
-use std::fs::File;
-use std::io::Write;
-use std::process::Command;
+use ansi_term::Color::*;
+use clap::{builder::styling::*, Parser, Subcommand};
+use std::path::PathBuf;
+
+fn styles() -> Styles {
+    Styles::styled()
+        .header(AnsiColor::Green.on_default().bold())
+        .usage(AnsiColor::Green.on_default().bold())
+        .literal(AnsiColor::Cyan.on_default().bold())
+        .placeholder(AnsiColor::Cyan.on_default())
+        .valid(AnsiColor::Green.on_default())
+        .invalid(AnsiColor::Yellow.on_default())
+}
+
+#[derive(Parser)]
+#[command(
+    version,
+    about = format!("{}",
+        Purple.bold().paint("Underivability Explorations"),
+    ),
+    long_about = None,
+    styles = styles(),
+)]
+struct Cli {
+    #[command(subcommand)]
+    command: Command,
+}
+
+#[derive(Subcommand)]
+enum Command {
+    /// Run Honeybee interactively in the CLI
+    Interact {
+        /// The AND-OR graph to use (.json)
+        #[arg(short, long, value_name = "FILE")]
+        graph: PathBuf,
+    },
+}
+
+impl Command {
+    pub fn handle(self) -> Result<(), String> {
+        match self {
+            Self::Interact { graph } => main_handler::interact(&graph),
+        }
+    }
+}
 
 fn main() {
-    let s = std::fs::read_to_string("examples/shared.json").unwrap();
+    let cli = Cli::parse();
 
-    let d: jgf::Data = serde_json::from_str(&s).unwrap();
+    let result = cli.command.handle();
 
-    let g = match d {
-        jgf::Data::Single { graph } => graph,
-        jgf::Data::Multi { .. } => panic!("multi not supported"),
-    };
-
-    let a: ao::AndOrGraph<String, String> = g.try_into().unwrap();
-
-    let mut dot_file = File::create("out/out.dot").unwrap();
-    write!(&mut dot_file, "{}", a.dot()).unwrap();
-
-    let pdf_file = File::create("out/out.pdf").unwrap();
-    let _ = Command::new("dot")
-        .arg("-Tpdf")
-        .arg("out/out.dot")
-        .stdout(std::process::Stdio::from(pdf_file))
-        .status()
-        .unwrap();
-
-    /*
-    let mut eg: EGraph<SymbolLang, ()> = Default::default();
-    serialize::get_simple_egraph(&mut eg);
-    eg.dot().to_svg("foo.svg").unwrap();
-    let out = serialize::egraph_to_serialized_egraph(&mut eg);
-    out.to_json_file("out.txt");
-    serialize::egraph_to_and_or(&eg, String::from("test"));
-    */
-
-    //session::Session::new().go();
+    match result {
+        Ok(()) => (),
+        Err(e) => {
+            eprintln!("{}", e);
+            std::process::exit(1)
+        }
+    }
 }
