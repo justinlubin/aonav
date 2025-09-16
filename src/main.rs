@@ -1,13 +1,33 @@
-use egg::*;
-use serde::ser::SerializeMap;
-use std::fmt::Display;
-use std::path;
-use under::serialize;
-use under::session;
-
 use under::ao;
+use under::jgf;
+
+use std::fs::File;
+use std::io::Write;
+use std::process::Command;
 
 fn main() {
+    let s = std::fs::read_to_string("examples/shared.json").unwrap();
+
+    let d: jgf::Data = serde_json::from_str(&s).unwrap();
+
+    let g = match d {
+        jgf::Data::Single { graph } => graph,
+        jgf::Data::Multi { .. } => panic!("multi not supported"),
+    };
+
+    let a: ao::AndOrGraph<String, String> = g.try_into().unwrap();
+
+    let mut dot_file = File::create("out/out.dot").unwrap();
+    write!(&mut dot_file, "{}", a.dot()).unwrap();
+
+    let pdf_file = File::create("out/out.pdf").unwrap();
+    let _ = Command::new("dot")
+        .arg("-Tpdf")
+        .arg("out/out.dot")
+        .stdout(std::process::Stdio::from(pdf_file))
+        .status()
+        .unwrap();
+
     /*
     let mut eg: EGraph<SymbolLang, ()> = Default::default();
     serialize::get_simple_egraph(&mut eg);
@@ -18,5 +38,4 @@ fn main() {
     */
 
     //session::Session::new().go();
-    ao::main()
 }

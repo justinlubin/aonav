@@ -1,7 +1,6 @@
 use crate::jgf;
 
 use petgraph::visit::EdgeRef;
-use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::io::Write;
 
@@ -81,7 +80,7 @@ impl TryFrom<jgf::Graph> for AndOrGraph<String, String> {
 }
 
 impl AndOrGraph<String, String> {
-    pub fn emit_dot(&self) {
+    pub fn dot(&self) -> String {
         let d = petgraph::dot::Dot::with_attr_getters(
             &self.0,
             &[petgraph::dot::Config::EdgeNoLabel],
@@ -101,23 +100,6 @@ impl AndOrGraph<String, String> {
                 }
             },
         );
-        let mut file = std::fs::File::create("out/ao.dot").unwrap();
-        write!(file, "{}", d).unwrap();
+        return format!("{}", d);
     }
-}
-
-pub fn main() {
-    let s = std::fs::read_to_string("ao-examples/shared.json").unwrap();
-
-    let d: jgf::Data = serde_json::from_str(&s).unwrap();
-    println!("{:#?}", d);
-
-    let g = match d {
-        jgf::Data::Single { graph } => graph,
-        jgf::Data::Multi { .. } => panic!("multi not supported"),
-    };
-
-    let a: AndOrGraph<String, String> = g.try_into().unwrap();
-
-    a.emit_dot();
 }
