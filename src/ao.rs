@@ -10,10 +10,12 @@ use std::fmt;
 ////////////////////////////////////////////////////////////////////////////////
 // Nodes
 
+pub type NodeLabel = String;
+
 #[derive(Debug, Clone)]
 pub enum Node<A, O> {
-    And(String, Option<A>),
-    Or(String, Option<O>),
+    And(NodeLabel, Option<A>),
+    Or(NodeLabel, Option<O>),
 }
 
 impl<A, O> Node<A, O> {
@@ -69,6 +71,7 @@ pub struct AId(pg::NodeIndex);
 #[derive(Debug, Clone)]
 pub struct Graph<A, O> {
     pg: pg::Graph<Node<A, O>, Edge>,
+    goal: NodeLabel,
 }
 
 impl<A, O> TryFrom<jgf::Graph> for Graph<A, O> {
@@ -77,6 +80,22 @@ impl<A, O> TryFrom<jgf::Graph> for Graph<A, O> {
     fn try_from(value: jgf::Graph) -> Result<Self, Self::Error> {
         let nodes = value.nodes.ok_or("missing nodes")?;
         let edges = value.edges.ok_or("missing edges")?;
+
+        let goal = value
+            .metadata
+            .ok_or("missing graph metadata")?
+            .get("goal")
+            .ok_or("missing goal metadata")?
+            .as_str()
+            .ok_or("goal metadata is not a string")?
+            .to_owned();
+
+        if !nodes.contains_key(&goal) {
+            return Err(format!(
+                "goal node '{}' does not exist in graph",
+                goal
+            ));
+        }
 
         let mut petgraph_ids = HashMap::with_capacity(nodes.len());
 
@@ -116,7 +135,7 @@ impl<A, O> TryFrom<jgf::Graph> for Graph<A, O> {
             let _ = ret.add_edge(source_pid, target_pid, Edge);
         }
 
-        Ok(Graph { pg: ret })
+        Ok(Graph { pg: ret, goal })
     }
 }
 
@@ -175,7 +194,7 @@ impl<A, O> From<Graph<A, O>> for jgf::Graph {
 
 impl<A, O> Graph<A, O> {
     fn node_format(
-        highlighted_nodes: &IndexSet<String>,
+        highlighted_nodes: &IndexSet<NodeLabel>,
         n: &Node<A, O>,
     ) -> String {
         let (label, base) = match n {
@@ -197,7 +216,7 @@ impl<A, O> Graph<A, O> {
         }
     }
 
-    pub fn dot(&self, highlighted_nodes: &IndexSet<String>) -> String {
+    pub fn dot(&self, highlighted_nodes: &IndexSet<NodeLabel>) -> String {
         let get_node_attrs =
             |_, (_, n)| Self::node_format(highlighted_nodes, n);
 
@@ -219,6 +238,18 @@ impl<A, O> Graph<A, O> {
 // Graph operations
 
 impl<A, O> Graph<A, O> {
+    pub fn find_oid(&self, label: &str) -> OId {
+        OId(self
+            .pg
+            .node_indices()
+            .find(|nid| self.pg[*nid].label() == label)
+            .unwrap())
+    }
+
+    pub fn goal_oid(&self) -> OId {
+        self.find_oid(&self.goal)
+    }
+
     pub fn or_label(&self, oid: OId) -> &str {
         self.pg[oid.0].label()
     }
@@ -294,6 +325,13 @@ impl<A, O> Graph<A, O> {
         self.pg
             .edges_directed(oid.0, Direction::Outgoing)
             .map(|er| AId(er.target()))
+    }
+
+    pub fn ancestors(&self, oid: OId) -> IndexSet<OId> {
+        self.or_preds(oid)
+            .flat_map(|aid| self.and_preds(aid))
+            .flat_map(|parent_oid| self.ancestors(parent_oid).into_iter())
+            .collect()
     }
 
     // Uses forward chaining

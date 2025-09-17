@@ -10,7 +10,7 @@ use indexmap::IndexSet;
 // Expressions
 
 #[derive(Debug, Clone)]
-pub struct AxiomSet(IndexSet<String>);
+pub struct AxiomSet(IndexSet<ao::NodeLabel>);
 
 impl AxiomSet {
     pub fn new() -> Self {
@@ -37,7 +37,7 @@ impl std::fmt::Display for AxiomSet {
 
 #[derive(Debug, Clone)]
 pub enum AOStep {
-    Add(String),
+    Add(ao::NodeLabel),
 }
 
 impl pbn::Step for AOStep {
@@ -59,22 +59,28 @@ impl pbn::Step for AOStep {
 
 // Checker
 
-pub struct TargetReachableChecker {
-    target: String,
+pub struct GoalProvable<A, O> {
+    graph: ao::Graph<A, O>,
 }
 
-impl TargetReachableChecker {
-    pub fn new(target: String) -> Self {
-        Self { target }
+impl<A, O> GoalProvable<A, O> {
+    pub fn new(graph: ao::Graph<A, O>) -> Self {
+        Self { graph }
     }
 }
 
-impl pbn::ValidityChecker for TargetReachableChecker {
+impl<A: Clone, O: Clone> pbn::ValidityChecker for GoalProvable<A, O> {
     type Exp = AxiomSet;
 
-    fn check(&self, _e: &Self::Exp) -> bool {
-        // TODO implement this!
-        self.target == self.target
+    // TODO switch to using backward reasoning
+    fn check(&self, e: &Self::Exp) -> bool {
+        let mut graph_with_axioms = self.graph.clone();
+        for node_label in &e.0 {
+            graph_with_axioms.make_axiom(graph_with_axioms.find_oid(node_label))
+        }
+        graph_with_axioms
+            .provable_or_nodes()
+            .contains(&graph_with_axioms.goal_oid())
     }
 }
 

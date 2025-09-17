@@ -60,7 +60,7 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
     reduced.reduce();
     emit_graph(&reduced, "reduced");
 
-    let msg = format!(
+    let msg1 = format!(
         "Set of provable OR nodes: {:?}",
         graph
             .provable_or_nodes()
@@ -69,11 +69,17 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
             .collect::<Vec<_>>()
     );
 
-    println!("\n    {}\n", Yellow.bold().paint(msg));
+    println!("\n    {}", Yellow.bold().paint(msg1));
 
-    let provider = ao_navigation::IncorrectProvider { graph };
+    let msg2 = format!("Goal is: {}", graph.or_label(graph.goal_oid()));
 
-    let checker = ao_navigation::TargetReachableChecker::new("GOAL".to_owned());
+    println!("    {}\n", Yellow.bold().paint(msg2));
+
+    let provider = ao_navigation::IncorrectProvider {
+        graph: graph.clone(),
+    };
+
+    let checker = ao_navigation::GoalProvable::new(graph.clone());
 
     let mut controller = pbn::Controller::new(
         Timer::infinite(),
