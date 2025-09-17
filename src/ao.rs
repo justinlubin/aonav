@@ -1,5 +1,6 @@
 use crate::jgf;
 
+use indexmap::IndexMap;
 use petgraph::visit::EdgeRef;
 use std::collections::HashMap;
 
@@ -75,6 +76,57 @@ impl TryFrom<jgf::Graph> for AndOrGraph<String, String> {
         }
 
         Ok(AndOrGraph(ret))
+    }
+}
+
+impl From<AndOrGraph<String, String>> for jgf::Graph {
+    fn from(ao: AndOrGraph<String, String>) -> Self {
+        jgf::Graph {
+            id: None,
+            label: None,
+            directed: true,
+            graph_type: None,
+            metadata: None,
+            nodes: Some(
+                ao.0.node_weights()
+                    .map(|nw| match nw {
+                        AONode::And(key) => (
+                            key.clone(),
+                            jgf::Node {
+                                label: None,
+                                metadata: Some(IndexMap::from([(
+                                    "kind".to_owned(),
+                                    serde_json::Value::String("AND".to_owned()),
+                                )])),
+                            },
+                        ),
+                        AONode::Or(key) => (
+                            key.clone(),
+                            jgf::Node {
+                                label: None,
+                                metadata: Some(IndexMap::from([(
+                                    "kind".to_owned(),
+                                    serde_json::Value::String("OR".to_owned()),
+                                )])),
+                            },
+                        ),
+                    })
+                    .collect(),
+            ),
+            edges: Some(
+                ao.0.edge_references()
+                    .map(|e| jgf::Edge {
+                        id: None,
+                        source: format!("{}", ao.0[e.source()]),
+                        target: format!("{}", ao.0[e.target()]),
+                        relation: None,
+                        directed: true,
+                        label: None,
+                        metadata: None,
+                    })
+                    .collect(),
+            ),
+        }
     }
 }
 

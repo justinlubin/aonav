@@ -1,16 +1,32 @@
 use crate::ao;
 use crate::ao_navigation;
+use crate::convert;
 use crate::jgf;
 use crate::pbn;
 use crate::util::Timer;
 
 use ansi_term::Color::*;
+use serde::{Deserialize, Serialize};
 use std::fs::File;
 use std::io::Write;
 use std::path::PathBuf;
 use std::process::Command;
 
-fn load_graph(path: &PathBuf) -> ao::AndOrGraph<String, String> {
+#[derive(Debug, Clone, Deserialize, Serialize)]
+pub enum ConversionInputFormat {
+    EGraphSerialize,
+    AOJsonGraph,
+}
+
+impl std::str::FromStr for ConversionInputFormat {
+    type Err = serde_json::Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        serde_json::from_str(&format!("\"{}\"", s))
+    }
+}
+
+fn load_ao(path: &PathBuf) -> ao::AndOrGraph<String, String> {
     let json_string = std::fs::read_to_string(path).unwrap();
     let jgf_data: jgf::Data = serde_json::from_str(&json_string).unwrap();
 
@@ -36,7 +52,7 @@ fn emit_graph(graph: &ao::AndOrGraph<String, String>) {
 }
 
 pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
-    let graph = load_graph(graph_path);
+    let graph = load_ao(graph_path);
     emit_graph(&graph);
 
     let provider = ao_navigation::IncorrectProvider { graph };
@@ -136,15 +152,26 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
     );
 
     Ok(())
+}
 
-    /*
-    let mut eg: EGraph<SymbolLang, ()> = Default::default();
-    serialize::get_simple_egraph(&mut eg);
-    eg.dot().to_svg("foo.svg").unwrap();
-    let out = serialize::egraph_to_serialized_egraph(&mut eg);
-    out.to_json_file("out.txt");
-    serialize::egraph_to_and_or(&eg, String::from("test"));
-    */
-
-    //session::Session::new().go();
+pub fn convert(
+    path: &PathBuf,
+    format: &ConversionInputFormat,
+) -> Result<(), String> {
+    match format {
+        ConversionInputFormat::EGraphSerialize => {
+            let es_egraph =
+                egraph_serialize::EGraph::from_json_file(path).unwrap();
+            let ao = convert::es_egraph_to_ao(&es_egraph);
+            let jgf_graph: jgf::Graph = ao.into();
+            println!("{}", serde_json::to_string_pretty(&jgf_graph).unwrap());
+            Ok(())
+        }
+        ConversionInputFormat::AOJsonGraph => {
+            let ao = load_ao(path);
+            let jgf_graph: jgf::Graph = ao.into();
+            println!("{}", serde_json::to_string_pretty(&jgf_graph).unwrap());
+            Ok(())
+        }
+    }
 }

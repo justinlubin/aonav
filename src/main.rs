@@ -30,11 +30,22 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Command {
-    /// Run Honeybee interactively in the CLI
+    /// Run interactively in the CLI
     Interact {
         /// The AND-OR graph to use (.json)
         #[arg(short, long, value_name = "FILE")]
         graph: PathBuf,
+    },
+
+    /// Convert various representations to the AND/OR JSON Graph Format
+    Convert {
+        /// The file to convert
+        #[arg(short, long, value_name = "FILE")]
+        path: PathBuf,
+
+        /// The format to convert from
+        #[arg(short, long, value_name = "FORMAT")]
+        format: main_handler::ConversionInputFormat,
     },
 }
 
@@ -42,6 +53,9 @@ impl Command {
     pub fn handle(self) -> Result<(), String> {
         match self {
             Self::Interact { graph } => main_handler::interact(&graph),
+            Self::Convert { path, format } => {
+                main_handler::convert(&path, &format)
+            }
         }
     }
 }

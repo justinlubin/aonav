@@ -2,7 +2,9 @@
 
 // what are root e-classes and do they matter here
 
-use crate::jgf::{self};
+use crate::ao;
+use crate::jgf;
+
 use egg::*;
 use indexmap::IndexMap;
 use serde_json;
@@ -133,4 +135,10 @@ where
     let mut file = File::create("ao-examples/from_egg.json")
         .expect("Failed to create file");
     file.write_all(to_json.as_bytes()).expect("Failed to write");
+}
+
+pub fn es_egraph_to_ao(
+    _es_egraph: &egraph_serialize::EGraph,
+) -> ao::AndOrGraph<String, String> {
+    todo!()
 }
