@@ -81,11 +81,11 @@ impl pbn::ValidityChecker for TargetReachableChecker {
 ////////////////////////////////////////////////////////////////////////////////
 // Providers
 
-pub struct IncorrectProvider {
-    pub graph: ao::AndOrGraph<String, String>,
+pub struct IncorrectProvider<A, O> {
+    pub graph: ao::Graph<A, O>,
 }
 
-impl pbn::StepProvider for IncorrectProvider {
+impl<A, O> pbn::StepProvider for IncorrectProvider<A, O> {
     type Step = AOStep;
 
     fn provide(
@@ -95,11 +95,12 @@ impl pbn::StepProvider for IncorrectProvider {
     ) -> Result<Vec<AOStep>, EarlyCutoff> {
         let mut steps = vec![];
 
-        for node in &self.graph.or_nodes() {
-            if e.0.contains(node) {
+        for node in self.graph.or_nodes() {
+            let label = self.graph.label(node).to_owned();
+            if e.0.contains(&label) {
                 continue;
             }
-            steps.push(AOStep::Add(node.clone()))
+            steps.push(AOStep::Add(label))
         }
 
         Ok(steps)

@@ -139,6 +139,6 @@ where
 
 pub fn es_egraph_to_ao(
     _es_egraph: &egraph_serialize::EGraph,
-) -> ao::AndOrGraph<String, String> {
+) -> ao::Graph<String, String> {
     todo!()
 }

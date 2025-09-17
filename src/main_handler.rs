@@ -27,7 +27,7 @@ impl std::str::FromStr for ConversionInputFormat {
     }
 }
 
-fn load_ao(path: &PathBuf) -> ao::AndOrGraph<String, String> {
+fn load_ao(path: &PathBuf) -> ao::Graph<(), ()> {
     let json_string = std::fs::read_to_string(path).unwrap();
     let jgf_data: jgf::Data = serde_json::from_str(&json_string).unwrap();
 
@@ -39,7 +39,7 @@ fn load_ao(path: &PathBuf) -> ao::AndOrGraph<String, String> {
     graph.try_into().unwrap()
 }
 
-fn emit_graph(graph: &ao::AndOrGraph<String, String>) {
+fn emit_graph<A, O>(graph: &ao::Graph<A, O>) {
     let mut dot_file = File::create("out/out.dot").unwrap();
     write!(&mut dot_file, "{}", graph.dot(&IndexSet::new())).unwrap();
 

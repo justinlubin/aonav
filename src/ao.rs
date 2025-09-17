@@ -1,35 +1,70 @@
 use crate::jgf;
 
 use indexmap::{IndexMap, IndexSet};
+use petgraph::graph as pg;
 use petgraph::visit::EdgeRef;
+use petgraph::Direction;
 use std::collections::HashMap;
+use std::fmt;
 
-pub enum AONode<A, O> {
-    And(A),
-    Or(O),
+////////////////////////////////////////////////////////////////////////////////
+// Nodes
+
+pub enum Node<A, O> {
+    And(String, Option<A>),
+    Or(String, Option<O>),
 }
 
-impl std::fmt::Display for AONode<String, String> {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        let s = match self {
-            Self::And(x) => x,
-            Self::Or(x) => x,
-        };
-        write!(f, "{}", s)
+impl<A, O> Node<A, O> {
+    pub fn label(&self) -> &str {
+        match self {
+            Node::And(label, _) => label,
+            Node::Or(label, _) => label,
+        }
+    }
+
+    pub fn is_and(&self) -> bool {
+        match self {
+            Node::And(_, _) => true,
+            Node::Or(_, _) => false,
+        }
+    }
+
+    pub fn is_or(&self) -> bool {
+        match self {
+            Node::And(_, _) => false,
+            Node::Or(_, _) => true,
+        }
     }
 }
 
-pub struct AOEdge;
+impl<A, O> fmt::Display for Node<A, O> {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.label())
+    }
+}
 
-impl std::fmt::Display for AOEdge {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+////////////////////////////////////////////////////////////////////////////////
+// Edges
+
+pub struct Edge;
+
+impl fmt::Display for Edge {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "")
     }
 }
 
-pub struct AndOrGraph<A, O>(petgraph::graph::Graph<AONode<A, O>, AOEdge>);
+////////////////////////////////////////////////////////////////////////////////
+// Graph construction, conversion, and formatting
 
-impl TryFrom<jgf::Graph> for AndOrGraph<String, String> {
+pub struct NodeId(pg::NodeIndex);
+
+pub struct Graph<A, O> {
+    pg: pg::Graph<Node<A, O>, Edge>,
+}
+
+impl<A, O> TryFrom<jgf::Graph> for Graph<A, O> {
     type Error = String;
 
     fn try_from(value: jgf::Graph) -> Result<Self, Self::Error> {
@@ -38,8 +73,7 @@ impl TryFrom<jgf::Graph> for AndOrGraph<String, String> {
 
         let mut petgraph_ids = HashMap::with_capacity(nodes.len());
 
-        let mut ret =
-            petgraph::graph::Graph::with_capacity(nodes.len(), edges.len());
+        let mut ret = pg::Graph::with_capacity(nodes.len(), edges.len());
 
         for (node_id, node_val) in nodes {
             let metadata = node_val
@@ -56,8 +90,8 @@ impl TryFrom<jgf::Graph> for AndOrGraph<String, String> {
                 .to_ascii_uppercase()
                 .as_str()
             {
-                "AND" => AONode::And(node_id.clone()),
-                "OR" => AONode::Or(node_id.clone()),
+                "AND" => Node::And(node_id.clone(), None),
+                "OR" => Node::Or(node_id.clone(), None),
                 _ => {
                     return Err(format!(
                         "unknown 'kind' metadata for '{}'",
@@ -72,15 +106,15 @@ impl TryFrom<jgf::Graph> for AndOrGraph<String, String> {
         for edge in edges {
             let source_pid = *petgraph_ids.get(&edge.source).unwrap();
             let target_pid = *petgraph_ids.get(&edge.target).unwrap();
-            let _ = ret.add_edge(source_pid, target_pid, AOEdge);
+            let _ = ret.add_edge(source_pid, target_pid, Edge);
         }
 
-        Ok(AndOrGraph(ret))
+        Ok(Graph { pg: ret })
     }
 }
 
-impl From<AndOrGraph<String, String>> for jgf::Graph {
-    fn from(ao: AndOrGraph<String, String>) -> Self {
+impl<A, O> From<Graph<A, O>> for jgf::Graph {
+    fn from(ao: Graph<A, O>) -> Self {
         jgf::Graph {
             id: None,
             label: None,
@@ -88,10 +122,11 @@ impl From<AndOrGraph<String, String>> for jgf::Graph {
             graph_type: None,
             metadata: None,
             nodes: Some(
-                ao.0.node_weights()
+                ao.pg
+                    .node_weights()
                     .map(|nw| match nw {
-                        AONode::And(key) => (
-                            key.clone(),
+                        Node::And(label, _) => (
+                            label.clone(),
                             jgf::Node {
                                 label: None,
                                 metadata: Some(IndexMap::from([(
@@ -100,8 +135,8 @@ impl From<AndOrGraph<String, String>> for jgf::Graph {
                                 )])),
                             },
                         ),
-                        AONode::Or(key) => (
-                            key.clone(),
+                        Node::Or(label, _) => (
+                            label.clone(),
                             jgf::Node {
                                 label: None,
                                 metadata: Some(IndexMap::from([(
@@ -114,11 +149,12 @@ impl From<AndOrGraph<String, String>> for jgf::Graph {
                     .collect(),
             ),
             edges: Some(
-                ao.0.edge_references()
+                ao.pg
+                    .edge_references()
                     .map(|e| jgf::Edge {
                         id: None,
-                        source: format!("{}", ao.0[e.source()]),
-                        target: format!("{}", ao.0[e.target()]),
+                        source: format!("{}", ao.pg[e.source()]),
+                        target: format!("{}", ao.pg[e.target()]),
                         relation: None,
                         directed: true,
                         label: None,
@@ -130,37 +166,24 @@ impl From<AndOrGraph<String, String>> for jgf::Graph {
     }
 }
 
-impl<A: Clone, O: Clone> AndOrGraph<A, O> {
-    pub fn or_nodes(&self) -> Vec<O> {
-        let mut ret = vec![];
-        for nw in self.0.node_weights() {
-            match nw {
-                AONode::And(_) => continue,
-                AONode::Or(o) => ret.push(o.clone()),
-            }
-        }
-        ret
-    }
-}
-
-impl AndOrGraph<String, String> {
+impl<A, O> Graph<A, O> {
     fn node_format(
         highlighted_nodes: &IndexSet<String>,
-        n: &AONode<String, String>,
+        n: &Node<A, O>,
     ) -> String {
-        let (key, base) = match n {
-            AONode::Or(k) => (
-                k,
+        let (label, base) = match n {
+            Node::Or(label, _) => (
+                label,
                 "color=darkslateblue,fontcolor=darkslateblue,penwidth=2"
                     .to_string(),
             ),
-            AONode::And(k) => (
-                k,
+            Node::And(label, _) => (
+                label,
                 "shape=rectangle,color=gray35,fontcolor=gray35,margin=0"
                     .to_string(),
             ),
         };
-        base + if highlighted_nodes.contains(key) {
+        base + if highlighted_nodes.contains(label) {
             ",fillcolor=yellow"
         } else {
             ""
@@ -172,15 +195,79 @@ impl AndOrGraph<String, String> {
             |_, (_, n)| Self::node_format(highlighted_nodes, n);
 
         let d = petgraph::dot::Dot::with_attr_getters(
-            &self.0,
+            &self.pg,
             &[petgraph::dot::Config::EdgeNoLabel],
             &|g, e| match g.node_weight(e.target()) {
-                Some(AONode::And(_)) => "color=red".to_string(),
-                Some(AONode::Or(_)) => "color=blue, style=dashed".to_string(),
+                Some(Node::And(_, _)) => "color=red".to_string(),
+                Some(Node::Or(_, _)) => "color=blue, style=dashed".to_string(),
                 _ => panic!("malformatted graph"),
             },
             &get_node_attrs,
         );
         format!("{}", d)
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Graph operations
+
+impl<A, O> Graph<A, O> {
+    pub fn label(&self, nid: NodeId) -> &str {
+        self.pg[nid.0].label()
+    }
+
+    pub fn or_nodes(&self) -> impl Iterator<Item = NodeId> + use<'_, A, O> {
+        self.pg.node_indices().filter_map(|nid| {
+            if self.pg[nid].is_or() {
+                Some(NodeId(nid))
+            } else {
+                None
+            }
+        })
+    }
+
+    pub fn sources(&self) -> impl Iterator<Item = NodeId> + use<'_, A, O> {
+        self.pg.externals(Direction::Incoming).filter_map(|nid| {
+            if self.pg[nid].is_and() {
+                Some(NodeId(nid))
+            } else {
+                None
+            }
+        })
+    }
+
+    pub fn make_axiom(&mut self, nid: NodeId) {
+        let label = &self.pg[nid.0];
+        let ax_nid = self.pg.add_node(Node::And(format!("ax:{}", label), None));
+        let _ = self.pg.add_edge(ax_nid, nid.0, Edge);
+    }
+
+    pub fn remove_axiom(&mut self, nid: NodeId) {
+        for er in self.pg.edges_directed(nid.0, Direction::Incoming) {
+            let source_nid = er.source();
+            if self.pg[source_nid].label().starts_with("ax:") {
+                let _ = self.pg.remove_node(source_nid);
+                return;
+            }
+        }
+        panic!("'{}' is not an axiom", self.pg[nid.0].label())
+    }
+
+    pub fn preds(
+        &self,
+        nid: NodeId,
+    ) -> impl Iterator<Item = NodeId> + use<'_, A, O> {
+        self.pg
+            .edges_directed(nid.0, Direction::Incoming)
+            .map(|er| NodeId(er.source()))
+    }
+
+    pub fn succs(
+        &self,
+        nid: NodeId,
+    ) -> impl Iterator<Item = NodeId> + use<'_, A, O> {
+        self.pg
+            .edges_directed(nid.0, Direction::Outgoing)
+            .map(|er| NodeId(er.target()))
     }
 }
