@@ -96,7 +96,7 @@ impl<A, O> pbn::StepProvider for IncorrectProvider<A, O> {
         let mut steps = vec![];
 
         for node in self.graph.or_nodes() {
-            let label = self.graph.label(node).to_owned();
+            let label = self.graph.or_label(node).to_owned();
             if e.0.contains(&label) {
                 continue;
             }

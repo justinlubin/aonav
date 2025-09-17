@@ -4,7 +4,7 @@ use indexmap::{IndexMap, IndexSet};
 use petgraph::graph as pg;
 use petgraph::visit::EdgeRef;
 use petgraph::Direction;
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::fmt;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -58,7 +58,11 @@ impl fmt::Display for Edge {
 ////////////////////////////////////////////////////////////////////////////////
 // Graph construction, conversion, and formatting
 
-pub struct NodeId(pg::NodeIndex);
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
+pub struct OId(pg::NodeIndex);
+
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
+pub struct AId(pg::NodeIndex);
 
 pub struct Graph<A, O> {
     pg: pg::Graph<Node<A, O>, Edge>,
@@ -212,62 +216,106 @@ impl<A, O> Graph<A, O> {
 // Graph operations
 
 impl<A, O> Graph<A, O> {
-    pub fn label(&self, nid: NodeId) -> &str {
-        self.pg[nid.0].label()
+    pub fn or_label(&self, oid: OId) -> &str {
+        self.pg[oid.0].label()
     }
 
-    pub fn or_nodes(&self) -> impl Iterator<Item = NodeId> + use<'_, A, O> {
+    pub fn or_nodes(&self) -> impl Iterator<Item = OId> + use<'_, A, O> {
         self.pg.node_indices().filter_map(|nid| {
             if self.pg[nid].is_or() {
-                Some(NodeId(nid))
+                Some(OId(nid))
             } else {
                 None
             }
         })
     }
 
-    pub fn sources(&self) -> impl Iterator<Item = NodeId> + use<'_, A, O> {
+    pub fn sources(&self) -> impl Iterator<Item = AId> + use<'_, A, O> {
         self.pg.externals(Direction::Incoming).filter_map(|nid| {
             if self.pg[nid].is_and() {
-                Some(NodeId(nid))
+                Some(AId(nid))
             } else {
                 None
             }
         })
     }
 
-    pub fn make_axiom(&mut self, nid: NodeId) {
-        let label = &self.pg[nid.0];
+    pub fn make_axiom(&mut self, oid: OId) {
+        let label = &self.pg[oid.0];
         let ax_nid = self.pg.add_node(Node::And(format!("ax:{}", label), None));
-        let _ = self.pg.add_edge(ax_nid, nid.0, Edge);
+        let _ = self.pg.add_edge(ax_nid, oid.0, Edge);
     }
 
-    pub fn remove_axiom(&mut self, nid: NodeId) {
-        for er in self.pg.edges_directed(nid.0, Direction::Incoming) {
+    pub fn remove_axiom(&mut self, oid: OId) {
+        for er in self.pg.edges_directed(oid.0, Direction::Incoming) {
             let source_nid = er.source();
             if self.pg[source_nid].label().starts_with("ax:") {
                 let _ = self.pg.remove_node(source_nid);
                 return;
             }
         }
-        panic!("'{}' is not an axiom", self.pg[nid.0].label())
+        panic!("'{}' is not an axiom", self.pg[oid.0].label())
     }
 
-    pub fn preds(
+    pub fn and_preds(
         &self,
-        nid: NodeId,
-    ) -> impl Iterator<Item = NodeId> + use<'_, A, O> {
+        aid: AId,
+    ) -> impl Iterator<Item = OId> + use<'_, A, O> {
         self.pg
-            .edges_directed(nid.0, Direction::Incoming)
-            .map(|er| NodeId(er.source()))
+            .edges_directed(aid.0, Direction::Incoming)
+            .map(|er| OId(er.source()))
     }
 
-    pub fn succs(
+    pub fn and_succs(
         &self,
-        nid: NodeId,
-    ) -> impl Iterator<Item = NodeId> + use<'_, A, O> {
+        aid: AId,
+    ) -> impl Iterator<Item = OId> + use<'_, A, O> {
         self.pg
-            .edges_directed(nid.0, Direction::Outgoing)
-            .map(|er| NodeId(er.target()))
+            .edges_directed(aid.0, Direction::Outgoing)
+            .map(|er| OId(er.target()))
+    }
+
+    pub fn or_preds(
+        &self,
+        oid: OId,
+    ) -> impl Iterator<Item = AId> + use<'_, A, O> {
+        self.pg
+            .edges_directed(oid.0, Direction::Incoming)
+            .map(|er| AId(er.source()))
+    }
+
+    pub fn or_succs(
+        &self,
+        oid: OId,
+    ) -> impl Iterator<Item = AId> + use<'_, A, O> {
+        self.pg
+            .edges_directed(oid.0, Direction::Outgoing)
+            .map(|er| AId(er.target()))
+    }
+
+    // Uses forward chaining
+    // Reference: https://courses.cs.washington.edu/courses/cse473/12au/slides/lect10.pdf
+    pub fn provable_or_nodes(&self) -> HashSet<OId> {
+        let mut count: HashMap<AId, usize> = HashMap::new();
+        let mut inferred: HashSet<OId> = HashSet::new();
+        let mut agenda: Vec<OId> =
+            self.sources().flat_map(|aid| self.and_succs(aid)).collect();
+
+        while let Some(p) = agenda.pop() {
+            if !inferred.insert(p) {
+                continue;
+            }
+
+            for c in self.or_succs(p) {
+                *count.entry(c).or_insert_with(|| self.and_preds(c).count()) -=
+                    1;
+
+                if count[&c] == 0 {
+                    agenda.extend(self.and_succs(c))
+                }
+            }
+        }
+
+        inferred
     }
 }
