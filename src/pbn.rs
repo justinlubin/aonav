@@ -83,7 +83,3 @@ impl<S: Step> Controller<S> {
         self.checker.check(&self.state)
     }
 }
-
-pub trait Driver<S: Step> {
-    fn drive(controller: Controller<S>) -> Option<S::Exp>;
-}

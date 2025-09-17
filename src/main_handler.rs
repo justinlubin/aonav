@@ -1,9 +1,9 @@
 use crate::ao;
 use crate::ao_navigation;
 use crate::convert;
-use crate::drivers;
+use crate::drivers::{self, Driver};
 use crate::jgf;
-use crate::pbn::{self, Driver};
+use crate::pbn;
 use crate::util::Timer;
 
 use ansi_term::Color::*;

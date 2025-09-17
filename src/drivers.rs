@@ -3,9 +3,13 @@ use crate::pbn;
 use ansi_term::Color::*;
 use std::io::Write;
 
+pub trait Driver<S: pbn::Step> {
+    fn drive(controller: pbn::Controller<S>) -> Option<S::Exp>;
+}
+
 pub struct CliDriver;
 
-impl<S: std::fmt::Display + pbn::Step + Clone> pbn::Driver<S> for CliDriver
+impl<S: std::fmt::Display + pbn::Step + Clone> Driver<S> for CliDriver
 where
     S::Exp: std::fmt::Display,
 {
