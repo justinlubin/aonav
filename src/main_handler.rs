@@ -1,8 +1,9 @@
 use crate::ao;
 use crate::ao_navigation;
 use crate::convert;
+use crate::drivers;
 use crate::jgf;
-use crate::pbn;
+use crate::pbn::{self, Driver};
 use crate::util::Timer;
 
 use ansi_term::Color::*;
@@ -78,97 +79,14 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
     let provider = ao_navigation::GreedyProvider::new(graph.clone());
     let checker = ao_navigation::GoalProvable::new(graph.clone());
 
-    let mut controller = pbn::Controller::new(
+    let controller = pbn::Controller::new(
         Timer::infinite(),
         provider,
         checker,
         ao_navigation::AxiomSet::new(),
     );
 
-    let mut round = 0;
-
-    loop {
-        round += 1;
-
-        let valid = controller.valid();
-        let mut options = controller.provide().unwrap();
-
-        if !valid && options.is_empty() {
-            println!("{}", Red.bold().paint("Not possible!"));
-            return Ok(());
-        }
-
-        println!(
-            "{}\n\n{}\n\n    {}\n\n{}\n",
-            Fixed(8).paint(format!("══ Round {} {}", round, "═".repeat(40))),
-            Cyan.bold().paint("Working expression:"),
-            controller.working_expression(),
-            Cyan.bold().paint("Possible next steps:"),
-        );
-
-        for (i, option) in options.iter().cloned().enumerate() {
-            print!("  {}) ", i + 1);
-            match option {
-                ao_navigation::AOStep::Add(s) => {
-                    println!("{}", Yellow.paint(format!("+ {}", s)))
-                }
-            }
-        }
-
-        if valid {
-            println!(
-                "  f) Expression is {}, finish navigation",
-                Green.bold().paint("valid")
-            )
-        }
-
-        let idx = loop {
-            print!(
-                "\n{} {}\n\n> ",
-                Purple.bold().paint("Which step would you like to take?"),
-                Fixed(8).paint("('q' to quit)"),
-            );
-            std::io::stdout().flush().unwrap();
-
-            let mut input = String::new();
-            std::io::stdin().read_line(&mut input).unwrap();
-            let input = input.trim();
-
-            if input == "q" {
-                return Ok(());
-            }
-
-            if valid && input == "f" {
-                break None;
-            }
-
-            match input.parse::<usize>() {
-                Ok(choice) => {
-                    if 1 <= choice && choice <= options.len() {
-                        break Some(choice - 1);
-                    } else {
-                        continue;
-                    }
-                }
-                Err(_) => continue,
-            };
-        };
-
-        let idx = match idx {
-            Some(idx) => idx,
-            None => break,
-        };
-
-        controller.decide(options.swap_remove(idx))
-    }
-
-    let output = format!("{}", controller.working_expression());
-
-    println!(
-        "\n{}\n\n    {}",
-        Green.bold().paint("Final expression:"),
-        output
-    );
+    let _ = drivers::CliDriver::drive(controller);
 
     Ok(())
 }

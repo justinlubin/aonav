@@ -57,6 +57,16 @@ impl pbn::Step for AOStep {
     }
 }
 
+impl std::fmt::Display for AOStep {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        match self {
+            AOStep::Add(s) => {
+                write!(f, "+ {}", s)
+            }
+        }
+    }
+}
+
 // Checker
 
 pub struct GoalProvable<A, O> {
