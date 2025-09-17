@@ -18,6 +18,7 @@ use std::process::Command;
 pub enum ConversionInputFormat {
     EGraphSerialize,
     AOJsonGraph,
+    Argus,
 }
 
 impl std::str::FromStr for ConversionInputFormat {
@@ -109,6 +110,9 @@ pub fn convert(
             let jgf_graph: jgf::Graph = ao.into();
             println!("{}", serde_json::to_string_pretty(&jgf_graph).unwrap());
             Ok(())
+        }
+        ConversionInputFormat::Argus => {
+            todo!()
         }
     }
 }
