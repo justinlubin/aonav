@@ -74,7 +74,7 @@ impl pbn::ValidityChecker for TargetReachableChecker {
 
     fn check(&self, _e: &Self::Exp) -> bool {
         // TODO implement this!
-        true
+        self.target == self.target
     }
 }
 

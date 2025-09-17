@@ -8,17 +8,19 @@ use indexmap::IndexMap;
 use serde_json;
 use std::{collections::HashSet, fmt::Display, fs::File, io::prelude::*};
 
+#[allow(dead_code)]
 pub fn get_simple_egraph(eg: &mut EGraph<egg::SymbolLang, ()>) {
     //let mut eg: EGraph<SymbolLang, ()> = Default::default();
     let a_class = eg.add(SymbolLang::leaf("a"));
     let b_class = eg.add(SymbolLang::leaf("b"));
     //let ab_class = eg.union(a_class, b_class);
     eg.add(SymbolLang::new("c", vec![a_class, b_class]));
-    let ab_class = eg.union(a_class, b_class);
+    let _ab_class = eg.union(a_class, b_class);
     eg.rebuild();
 }
 
 // copy-paste from egraph-serialize
+#[allow(dead_code)]
 pub fn egraph_to_serialized_egraph<L, A>(
     egraph: &EGraph<L, A>,
 ) -> egraph_serialize::EGraph
@@ -51,6 +53,7 @@ where
 
 // strongly inspired by egraph-serialize
 // serializes egraph into and/or format in ao-examples/name.json
+#[allow(dead_code)]
 pub fn egraph_to_and_or<L, A>(egraph: &EGraph<L, A>, name: String)
 where
     L: Language + Display,
@@ -72,7 +75,7 @@ where
                 metadata: Some(or_metadata),
             },
         );
-        for (i, node) in class.nodes.iter().enumerate() {
+        for (_i, node) in class.nodes.iter().enumerate() {
             // add AND node for node
             let mut and_metadata = IndexMap::new();
             and_metadata.insert(

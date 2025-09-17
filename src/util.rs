@@ -11,7 +11,6 @@ use instant::Instant;
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum EarlyCutoff {
     TimerExpired,
-    OutOfMemory,
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -30,6 +29,7 @@ enum TimerInner {
 #[derive(Debug)]
 pub struct Timer(TimerInner);
 
+#[allow(dead_code)]
 impl Timer {
     /// A finite-duration timer.
     pub fn finite(duration: Duration) -> Self {
@@ -63,6 +63,7 @@ impl Timer {
 // Small utilities
 
 /// Take the cartesion product of a set of chocies
+#[allow(dead_code)]
 pub fn cartesian_product<K: Clone + Eq + std::hash::Hash, V: Clone>(
     timer: &Timer,
     choices: IndexMap<K, Vec<V>>,
