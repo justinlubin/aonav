@@ -84,10 +84,19 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
         Timer::infinite(),
         provider,
         checker,
-        ao_navigation::AxiomSet::new(),
+        ao_navigation::AxiomSet::empty(),
     );
 
-    let _ = drivers::CliDriver::drive(controller);
+    // let mut driver = drivers::CliDriver;
+    let mut driver = drivers::RandomizedSolutionDrivenDriver {
+        solution: ao_navigation::AxiomSet::from([
+            "B".to_owned(),
+            "C".to_owned(),
+        ]),
+    };
+    let e = driver.drive(controller);
+
+    println!("{:?}", e);
 
     Ok(())
 }

@@ -1,11 +1,16 @@
+use crate::ao_navigation;
 use crate::pbn;
 
 use ansi_term::Color::*;
+use rand::seq::IteratorRandom;
 use std::io::Write;
 
 pub trait Driver<S: pbn::Step> {
-    fn drive(controller: pbn::Controller<S>) -> Option<S::Exp>;
+    fn drive(&mut self, controller: pbn::Controller<S>) -> Option<S::Exp>;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// CLI Driver
 
 pub struct CliDriver;
 
@@ -14,6 +19,7 @@ where
     S::Exp: std::fmt::Display,
 {
     fn drive(
+        &mut self,
         mut controller: pbn::Controller<S>,
     ) -> Option<<S as pbn::Step>::Exp> {
         let mut round = 0;
@@ -100,5 +106,44 @@ where
         );
 
         Some(final_expression)
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Randomized goal-driven driver
+
+pub struct RandomizedSolutionDrivenDriver {
+    pub solution: ao_navigation::AxiomSet,
+}
+
+impl Driver<ao_navigation::AOStep> for RandomizedSolutionDrivenDriver {
+    fn drive(
+        &mut self,
+        mut controller: pbn::Controller<ao_navigation::AOStep>,
+    ) -> Option<ao_navigation::AxiomSet> {
+        loop {
+            let exp = controller.working_expression();
+            if exp == self.solution {
+                return Some(exp);
+            }
+
+            let mut options = controller.provide().unwrap();
+
+            let idx = options
+                .iter()
+                .enumerate()
+                .filter_map(|(i, option)| match &option {
+                    ao_navigation::AOStep::Add(label) => {
+                        if self.solution.contains(label) {
+                            Some(i)
+                        } else {
+                            None
+                        }
+                    }
+                })
+                .choose(&mut rand::rng())?;
+
+            controller.decide(options.swap_remove(idx))
+        }
     }
 }

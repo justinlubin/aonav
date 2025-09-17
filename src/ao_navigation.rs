@@ -9,12 +9,20 @@ use indexmap::IndexSet;
 
 // Expressions
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct AxiomSet(IndexSet<ao::NodeLabel>);
 
 impl AxiomSet {
-    pub fn new() -> Self {
+    pub fn empty() -> Self {
         AxiomSet(IndexSet::new())
+    }
+
+    pub fn from<const N: usize>(set: [ao::NodeLabel; N]) -> Self {
+        AxiomSet(IndexSet::from(set))
+    }
+
+    pub fn contains(&self, label: &ao::NodeLabel) -> bool {
+        self.0.contains(label)
     }
 }
 
@@ -100,7 +108,7 @@ fn proper_axiom_sets<A: Clone, O: Clone>(
     graph: &ao::Graph<A, O>,
 ) -> Vec<AxiomSet> {
     let mut ret: Vec<AxiomSet> = vec![];
-    let mut agenda: Vec<AxiomSet> = vec![AxiomSet::new()];
+    let mut agenda: Vec<AxiomSet> = vec![AxiomSet::empty()];
     let or_labels: Vec<&str> = graph.or_labels().collect();
 
     while let Some(axs) = agenda.pop() {
