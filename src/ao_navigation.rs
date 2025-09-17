@@ -80,32 +80,7 @@ impl<A: Clone, O: Clone> pbn::ValidityChecker for GoalProvable<A, O> {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Providers
-
-pub struct IncorrectProvider<A, O> {
-    pub graph: ao::Graph<A, O>,
-}
-
-impl<A, O> pbn::StepProvider for IncorrectProvider<A, O> {
-    type Step = AOStep;
-
-    fn provide(
-        &mut self,
-        _timer: &Timer,
-        e: &AxiomSet,
-    ) -> Result<Vec<AOStep>, EarlyCutoff> {
-        let mut steps = vec![];
-
-        for label in self.graph.or_labels() {
-            if e.0.contains(label) {
-                continue;
-            }
-            steps.push(AOStep::Add(label.to_owned()))
-        }
-
-        Ok(steps)
-    }
-}
+// Greedy provider
 
 pub struct GreedyProvider {
     proper_axiom_sets: Vec<AxiomSet>,
