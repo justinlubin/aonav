@@ -113,7 +113,21 @@ where
 // Randomized goal-driven driver
 
 pub struct RandomizedSolutionDrivenDriver {
-    pub solution: ao_navigation::AxiomSet,
+    solution: ao_navigation::AxiomSet,
+    decisions: usize,
+}
+
+impl RandomizedSolutionDrivenDriver {
+    pub fn new(solution: ao_navigation::AxiomSet) -> Self {
+        Self {
+            solution,
+            decisions: 0,
+        }
+    }
+
+    pub fn decisions(&self) -> usize {
+        self.decisions
+    }
 }
 
 impl Driver<ao_navigation::AOStep> for RandomizedSolutionDrivenDriver {

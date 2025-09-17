@@ -9,6 +9,7 @@ use crate::util::Timer;
 
 use ansi_term::Color::*;
 use indexmap::{IndexMap, IndexSet};
+use instant::Duration;
 use serde::{Deserialize, Serialize};
 use std::fs::File;
 use std::io::Write;
@@ -109,22 +110,14 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
         ao_navigation::AxiomSet::empty(),
     );
 
-    // let mut driver = drivers::CliDriver;
-    let mut driver = drivers::RandomizedSolutionDrivenDriver {
-        solution: ao_navigation::AxiomSet::from_slice([
-            "B".to_owned(),
-            "C".to_owned(),
-        ]),
-    };
-    let e = driver.drive(controller);
-
-    println!("{:?}", e);
+    let mut driver = drivers::CliDriver;
+    let _ = driver.drive(controller);
 
     Ok(())
 }
 
 pub fn benchmark(suite_path: &PathBuf) -> Result<(), String> {
-    let mut entries: Vec<benchmark::BenchmarkEntry> = vec![];
+    let mut suite: Vec<benchmark::BenchmarkEntry> = vec![];
 
     for path in glob::glob(suite_path.join("*.json").to_str().unwrap())
         .unwrap()
@@ -137,7 +130,7 @@ pub fn benchmark(suite_path: &PathBuf) -> Result<(), String> {
             continue;
         }
 
-        entries.push(benchmark::BenchmarkEntry {
+        suite.push(benchmark::BenchmarkEntry {
             name: path_noext.file_name().unwrap().to_str().unwrap().to_owned(),
             graph: load_ao(&path),
             chosen_solutions: load_chosen_solutions(
@@ -146,7 +139,14 @@ pub fn benchmark(suite_path: &PathBuf) -> Result<(), String> {
         });
     }
 
-    println!("{:#?}", entries);
+    let config = benchmark::Config {
+        replicates: 3,
+        timeout: Duration::from_secs(1),
+        parallel: false,
+    };
+
+    let runner = benchmark::Runner::new(config, std::io::stdout());
+    runner.suite(&suite);
 
     Ok(())
 }
