@@ -1,6 +1,6 @@
 use crate::jgf;
 
-use indexmap::IndexMap;
+use indexmap::{IndexMap, IndexSet};
 use petgraph::visit::EdgeRef;
 use std::collections::HashMap;
 
@@ -144,7 +144,33 @@ impl<A: Clone, O: Clone> AndOrGraph<A, O> {
 }
 
 impl AndOrGraph<String, String> {
-    pub fn dot(&self) -> String {
+    fn node_format(
+        highlighted_nodes: &IndexSet<String>,
+        n: &AONode<String, String>,
+    ) -> String {
+        let (key, base) = match n {
+            AONode::Or(k) => (
+                k,
+                "color=darkslateblue,fontcolor=darkslateblue,penwidth=2"
+                    .to_string(),
+            ),
+            AONode::And(k) => (
+                k,
+                "shape=rectangle,color=gray35,fontcolor=gray35,margin=0"
+                    .to_string(),
+            ),
+        };
+        base + if highlighted_nodes.contains(key) {
+            ",fillcolor=yellow"
+        } else {
+            ""
+        }
+    }
+
+    pub fn dot(&self, highlighted_nodes: &IndexSet<String>) -> String {
+        let get_node_attrs =
+            |_, (_, n)| Self::node_format(highlighted_nodes, n);
+
         let d = petgraph::dot::Dot::with_attr_getters(
             &self.0,
             &[petgraph::dot::Config::EdgeNoLabel],
@@ -153,17 +179,8 @@ impl AndOrGraph<String, String> {
                 Some(AONode::Or(_)) => "color=blue, style=dashed".to_string(),
                 _ => panic!("malformatted graph"),
             },
-            &|_, (_, n)| match n {
-                AONode::Or(_) => {
-                    "color=darkslateblue, fontcolor=darkslateblue, penwidth=2"
-                        .to_string()
-                }
-                AONode::And(_) => {
-                    "shape=rectangle, color=gray35, fontcolor=gray35, margin=0"
-                        .to_string()
-                }
-            },
+            &get_node_attrs,
         );
-        return format!("{}", d);
+        format!("{}", d)
     }
 }

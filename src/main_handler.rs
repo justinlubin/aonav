@@ -6,6 +6,7 @@ use crate::pbn;
 use crate::util::Timer;
 
 use ansi_term::Color::*;
+use indexmap::IndexSet;
 use serde::{Deserialize, Serialize};
 use std::fs::File;
 use std::io::Write;
@@ -40,7 +41,7 @@ fn load_ao(path: &PathBuf) -> ao::AndOrGraph<String, String> {
 
 fn emit_graph(graph: &ao::AndOrGraph<String, String>) {
     let mut dot_file = File::create("out/out.dot").unwrap();
-    write!(&mut dot_file, "{}", graph.dot()).unwrap();
+    write!(&mut dot_file, "{}", graph.dot(&IndexSet::new())).unwrap();
 
     let pdf_file = File::create("out/out.pdf").unwrap();
     let _ = Command::new("dot")
