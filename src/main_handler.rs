@@ -56,6 +56,17 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
     let graph = load_ao(graph_path);
     emit_graph(&graph);
 
+    let msg = format!(
+        "Set of provable OR nodes: {:?}",
+        graph
+            .provable_or_nodes()
+            .iter()
+            .map(|oid| graph.or_label(*oid))
+            .collect::<Vec<_>>()
+    );
+
+    println!("\n    {}\n", Yellow.bold().paint(msg));
+
     let provider = ao_navigation::IncorrectProvider { graph };
 
     let checker = ao_navigation::TargetReachableChecker::new("GOAL".to_owned());
