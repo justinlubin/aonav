@@ -1,5 +1,6 @@
 use crate::ao;
 use crate::ao_navigation;
+use crate::benchmark;
 use crate::convert;
 use crate::drivers::{self, Driver};
 use crate::jgf;
@@ -7,7 +8,7 @@ use crate::pbn;
 use crate::util::Timer;
 
 use ansi_term::Color::*;
-use indexmap::IndexSet;
+use indexmap::{IndexMap, IndexSet};
 use serde::{Deserialize, Serialize};
 use std::fs::File;
 use std::io::Write;
@@ -27,6 +28,27 @@ impl std::str::FromStr for ConversionInputFormat {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         serde_json::from_str(&format!("\"{}\"", s))
     }
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ChosenSolutions {
+    pub chosen_solutions: Vec<Vec<String>>,
+}
+
+fn load_chosen_solutions(
+    path: &PathBuf,
+) -> Option<Vec<ao_navigation::AxiomSet>> {
+    let json_string = match std::fs::read_to_string(path) {
+        Ok(s) => s,
+        Err(_) => return None,
+    };
+    let cs: ChosenSolutions = serde_json::from_str(&json_string).unwrap();
+    Some(
+        cs.chosen_solutions
+            .into_iter()
+            .map(ao_navigation::AxiomSet::from_vec)
+            .collect(),
+    )
 }
 
 fn load_ao(path: &PathBuf) -> ao::Graph<(), ()> {
@@ -89,7 +111,7 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
 
     // let mut driver = drivers::CliDriver;
     let mut driver = drivers::RandomizedSolutionDrivenDriver {
-        solution: ao_navigation::AxiomSet::from([
+        solution: ao_navigation::AxiomSet::from_slice([
             "B".to_owned(),
             "C".to_owned(),
         ]),
@@ -97,6 +119,34 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
     let e = driver.drive(controller);
 
     println!("{:?}", e);
+
+    Ok(())
+}
+
+pub fn benchmark(suite_path: &PathBuf) -> Result<(), String> {
+    let mut entries: Vec<benchmark::BenchmarkEntry> = vec![];
+
+    for path in glob::glob(suite_path.join("*.json").to_str().unwrap())
+        .unwrap()
+        .filter_map(Result::ok)
+    {
+        let path_noext = path.with_extension("");
+
+        if path_noext.extension().and_then(|e| e.to_str()) == Some("solutions")
+        {
+            continue;
+        }
+
+        entries.push(benchmark::BenchmarkEntry {
+            name: path_noext.file_name().unwrap().to_str().unwrap().to_owned(),
+            graph: load_ao(&path),
+            chosen_solutions: load_chosen_solutions(
+                &path_noext.with_extension("solutions.json"),
+            ),
+        });
+    }
+
+    println!("{:#?}", entries);
 
     Ok(())
 }

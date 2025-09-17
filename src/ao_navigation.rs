@@ -17,7 +17,11 @@ impl AxiomSet {
         AxiomSet(IndexSet::new())
     }
 
-    pub fn from<const N: usize>(set: [ao::NodeLabel; N]) -> Self {
+    pub fn from_vec(set: Vec<ao::NodeLabel>) -> Self {
+        AxiomSet(set.into_iter().collect())
+    }
+
+    pub fn from_slice<const N: usize>(set: [ao::NodeLabel; N]) -> Self {
         AxiomSet(IndexSet::from(set))
     }
 

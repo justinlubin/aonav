@@ -3,6 +3,7 @@ pub mod jgf;
 pub mod main_handler;
 
 mod ao_navigation;
+mod benchmark;
 mod convert;
 mod drivers;
 mod pbn;

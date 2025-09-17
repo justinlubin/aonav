@@ -37,6 +37,13 @@ enum Command {
         graph: PathBuf,
     },
 
+    /// Run a benchmark suite
+    Benchmark {
+        /// The path to the benchmark suite directory
+        #[arg(short, long, value_name = "DIRECTORY")]
+        path: PathBuf,
+    },
+
     /// Convert various representations to the AND/OR JSON Graph Format
     Convert {
         /// The file to convert
@@ -51,10 +58,11 @@ enum Command {
 
 impl Command {
     pub fn handle(self) -> Result<(), String> {
-        match self {
-            Self::Interact { graph } => main_handler::interact(&graph),
+        match &self {
+            Self::Interact { graph } => main_handler::interact(graph),
+            Self::Benchmark { path } => main_handler::benchmark(path),
             Self::Convert { path, format } => {
-                main_handler::convert(&path, &format)
+                main_handler::convert(path, format)
             }
         }
     }
