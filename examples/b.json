@@ -1,0 +1,22 @@
+{
+    "graph": {
+        "nodes": {
+            "A": { "metadata": { "kind": "OR" } },
+            "B": { "metadata": { "kind": "OR" } },
+            "C": { "metadata": { "kind": "OR" } },
+            "D": { "metadata": { "kind": "OR" } },
+            "f": { "metadata": { "kind": "AND" } },
+            "g": { "metadata": { "kind": "AND" } },
+            "ax:B": { "metadata": { "kind": "AND" } }
+        },
+        "edges": [
+            { "source": "B", "target": "f" },
+            { "source": "C", "target": "f" },
+            { "source": "f", "target": "A" },
+            { "source": "C", "target": "g" },
+            { "source": "D", "target": "g" },
+            { "source": "g", "target": "A" },
+            { "source": "ax:B", "target": "B" }
+        ]
+    }
+}

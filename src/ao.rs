@@ -10,6 +10,7 @@ use std::fmt;
 ////////////////////////////////////////////////////////////////////////////////
 // Nodes
 
+#[derive(Debug, Clone)]
 pub enum Node<A, O> {
     And(String, Option<A>),
     Or(String, Option<O>),
@@ -47,6 +48,7 @@ impl<A, O> fmt::Display for Node<A, O> {
 ////////////////////////////////////////////////////////////////////////////////
 // Edges
 
+#[derive(Debug, Clone)]
 pub struct Edge;
 
 impl fmt::Display for Edge {
@@ -64,6 +66,7 @@ pub struct OId(pg::NodeIndex);
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub struct AId(pg::NodeIndex);
 
+#[derive(Debug, Clone)]
 pub struct Graph<A, O> {
     pg: pg::Graph<Node<A, O>, Edge>,
 }
@@ -317,5 +320,16 @@ impl<A, O> Graph<A, O> {
         }
 
         inferred
+    }
+
+    pub fn reduce(&mut self) {
+        for oid in self.provable_or_nodes() {
+            for aid in self.or_preds(oid).collect::<Vec<_>>() {
+                if self.and_succs(aid).count() == 1 {
+                    let _ = self.pg.remove_node(aid.0);
+                }
+            }
+            let _ = self.pg.remove_node(oid.0);
+        }
     }
 }

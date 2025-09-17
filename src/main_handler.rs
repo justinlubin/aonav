@@ -39,14 +39,14 @@ fn load_ao(path: &PathBuf) -> ao::Graph<(), ()> {
     graph.try_into().unwrap()
 }
 
-fn emit_graph<A, O>(graph: &ao::Graph<A, O>) {
-    let mut dot_file = File::create("out/out.dot").unwrap();
+fn emit_graph<A, O>(graph: &ao::Graph<A, O>, name: &str) {
+    let mut dot_file = File::create(format!("out/{}.dot", name)).unwrap();
     write!(&mut dot_file, "{}", graph.dot(&IndexSet::new())).unwrap();
 
-    let pdf_file = File::create("out/out.pdf").unwrap();
+    let pdf_file = File::create(format!("out/{}.pdf", name)).unwrap();
     let _ = Command::new("dot")
         .arg("-Tpdf")
-        .arg("out/out.dot")
+        .arg(format!("out/{}.dot", name))
         .stdout(std::process::Stdio::from(pdf_file))
         .status()
         .unwrap();
@@ -54,7 +54,11 @@ fn emit_graph<A, O>(graph: &ao::Graph<A, O>) {
 
 pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
     let graph = load_ao(graph_path);
-    emit_graph(&graph);
+    emit_graph(&graph, "initial");
+
+    let mut reduced = graph.clone();
+    reduced.reduce();
+    emit_graph(&reduced, "reduced");
 
     let msg = format!(
         "Set of provable OR nodes: {:?}",
