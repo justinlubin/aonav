@@ -61,6 +61,8 @@ impl Command {
 }
 
 fn main() {
+    env_logger::init();
+
     let cli = Cli::parse();
 
     let result = cli.command.handle();

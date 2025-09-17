@@ -238,11 +238,11 @@ impl<A, O> Graph<A, O> {
 // Graph operations
 
 impl<A, O> Graph<A, O> {
-    pub fn find_oid(&self, label: &str) -> OId {
+    pub fn find_oid(&self, or_label: &str) -> OId {
         OId(self
             .pg
             .node_indices()
-            .find(|nid| self.pg[*nid].label() == label)
+            .find(|nid| self.pg[*nid].label() == or_label)
             .unwrap())
     }
 
@@ -254,10 +254,10 @@ impl<A, O> Graph<A, O> {
         self.pg[oid.0].label()
     }
 
-    pub fn or_nodes(&self) -> impl Iterator<Item = OId> + use<'_, A, O> {
+    pub fn or_labels(&self) -> impl Iterator<Item = &str> + use<'_, A, O> {
         self.pg.node_indices().filter_map(|nid| {
             if self.pg[nid].is_or() {
-                Some(OId(nid))
+                Some(self.pg[nid].label())
             } else {
                 None
             }
@@ -274,10 +274,20 @@ impl<A, O> Graph<A, O> {
         })
     }
 
-    pub fn make_axiom(&mut self, oid: OId) {
+    pub fn make_axiom(&mut self, or_label: &str) {
+        let oid = self.find_oid(or_label);
         let label = &self.pg[oid.0];
         let ax_nid = self.pg.add_node(Node::And(format!("ax:{}", label), None));
         let _ = self.pg.add_edge(ax_nid, oid.0, Edge);
+    }
+
+    pub fn make_axioms<'a>(
+        &'a mut self,
+        or_labels: impl Iterator<Item = &'a String>,
+    ) {
+        for or_label in or_labels {
+            self.make_axiom(or_label)
+        }
     }
 
     pub fn remove_axiom(&mut self, oid: OId) {
@@ -358,6 +368,11 @@ impl<A, O> Graph<A, O> {
         }
 
         inferred
+    }
+
+    // TODO switch to using backward reasoning
+    pub fn provable_or_node(&self, oid: OId) -> bool {
+        self.provable_or_nodes().contains(&oid)
     }
 
     pub fn reduce(&mut self) {

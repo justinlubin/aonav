@@ -72,15 +72,10 @@ impl<A, O> GoalProvable<A, O> {
 impl<A: Clone, O: Clone> pbn::ValidityChecker for GoalProvable<A, O> {
     type Exp = AxiomSet;
 
-    // TODO switch to using backward reasoning
     fn check(&self, e: &Self::Exp) -> bool {
-        let mut graph_with_axioms = self.graph.clone();
-        for node_label in &e.0 {
-            graph_with_axioms.make_axiom(graph_with_axioms.find_oid(node_label))
-        }
-        graph_with_axioms
-            .provable_or_nodes()
-            .contains(&graph_with_axioms.goal_oid())
+        let mut ax_graph = self.graph.clone();
+        ax_graph.make_axioms(e.0.iter());
+        ax_graph.provable_or_node(ax_graph.goal_oid())
     }
 }
 
@@ -101,14 +96,97 @@ impl<A, O> pbn::StepProvider for IncorrectProvider<A, O> {
     ) -> Result<Vec<AOStep>, EarlyCutoff> {
         let mut steps = vec![];
 
-        for node in self.graph.or_nodes() {
-            let label = self.graph.or_label(node).to_owned();
-            if e.0.contains(&label) {
+        for label in self.graph.or_labels() {
+            if e.0.contains(label) {
                 continue;
             }
-            steps.push(AOStep::Add(label))
+            steps.push(AOStep::Add(label.to_owned()))
         }
 
         Ok(steps)
+    }
+}
+
+pub struct GreedyProvider {
+    proper_axiom_sets: Vec<AxiomSet>,
+}
+
+fn proper_axiom_sets<A: Clone, O: Clone>(
+    graph: &ao::Graph<A, O>,
+) -> Vec<AxiomSet> {
+    let mut ret: Vec<AxiomSet> = vec![];
+    let mut agenda: Vec<AxiomSet> = vec![AxiomSet::new()];
+    let or_labels: Vec<&str> = graph.or_labels().collect();
+
+    while let Some(axs) = agenda.pop() {
+        let mut ax_graph = graph.clone();
+        ax_graph.make_axioms(axs.0.iter());
+        if ax_graph.provable_or_node(ax_graph.goal_oid()) {
+            let mut new_ret = vec![];
+            let mut should_add = true;
+            for ret_axs in ret {
+                if ret_axs.0.is_subset(&axs.0) {
+                    should_add = false;
+                }
+                if !axs.0.is_subset(&ret_axs.0) {
+                    new_ret.push(ret_axs);
+                }
+            }
+            if should_add {
+                new_ret.push(axs);
+            }
+            ret = new_ret;
+        } else {
+            'label: for label in or_labels.iter().cloned() {
+                let mut new_axs = axs.clone();
+                if new_axs.0.insert(label.to_owned()) {
+                    for ret_axs in &ret {
+                        if ret_axs.0.is_subset(&new_axs.0) {
+                            continue 'label;
+                        }
+                    }
+                    agenda.push(new_axs);
+                };
+            }
+        }
+    }
+
+    if log::log_enabled!(log::Level::Debug) {
+        let mut msg = "Proper axiom sets: [".to_owned();
+        for ret_axs in &ret {
+            msg += &format!(" {}", ret_axs);
+        }
+        msg += " ]";
+        log::debug!("{}", msg);
+    }
+
+    ret
+}
+
+impl GreedyProvider {
+    pub fn new<A: Clone, O: Clone>(graph: ao::Graph<A, O>) -> Self {
+        Self {
+            proper_axiom_sets: proper_axiom_sets(&graph),
+        }
+    }
+}
+
+impl pbn::StepProvider for GreedyProvider {
+    type Step = AOStep;
+
+    fn provide(
+        &mut self,
+        _timer: &Timer,
+        e: &AxiomSet,
+    ) -> Result<Vec<AOStep>, EarlyCutoff> {
+        let mut next_labels = IndexSet::new();
+
+        for axs in &self.proper_axiom_sets {
+            if e.0.is_subset(&axs.0) {
+                next_labels.extend(axs.0.difference(&e.0).cloned())
+            }
+        }
+
+        Ok(next_labels.into_iter().map(AOStep::Add).collect())
     }
 }

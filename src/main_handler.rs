@@ -75,10 +75,7 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
 
     println!("    {}\n", Yellow.bold().paint(msg2));
 
-    let provider = ao_navigation::IncorrectProvider {
-        graph: graph.clone(),
-    };
-
+    let provider = ao_navigation::GreedyProvider::new(graph.clone());
     let checker = ao_navigation::GoalProvable::new(graph.clone());
 
     let mut controller = pbn::Controller::new(
