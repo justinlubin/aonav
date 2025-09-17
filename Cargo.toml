@@ -4,6 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+# To get WASM to work
+instant = { version = "0.1.13", features = [ "wasm-bindgen" ] }
+getrandom = { version = "0.2", features = ["js"] }
+
 colored = "3.0.0"
 indexmap = { version = "2.10.0", features = ["serde"] }
 petgraph = "0.8.2"

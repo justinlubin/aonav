@@ -2,7 +2,6 @@ use crate::jgf;
 
 use petgraph::visit::EdgeRef;
 use std::collections::HashMap;
-use std::io::Write;
 
 pub enum AONode<A, O> {
     And(A),
@@ -76,6 +75,19 @@ impl TryFrom<jgf::Graph> for AndOrGraph<String, String> {
         }
 
         Ok(AndOrGraph(ret))
+    }
+}
+
+impl<A: Clone, O: Clone> AndOrGraph<A, O> {
+    pub fn or_nodes(&self) -> Vec<O> {
+        let mut ret = vec![];
+        for nw in self.0.node_weights() {
+            match nw {
+                AONode::And(_) => continue,
+                AONode::Or(o) => ret.push(o.clone()),
+            }
+        }
+        ret
     }
 }
 
