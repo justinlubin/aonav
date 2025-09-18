@@ -3,6 +3,7 @@ use crate::pbn;
 use crate::util::{EarlyCutoff, Timer};
 
 use indexmap::IndexSet;
+use std::cmp::Ordering;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Basics
@@ -45,11 +46,26 @@ impl std::fmt::Display for AxiomSet {
     }
 }
 
+impl Ord for AxiomSet {
+    fn cmp(&self, other: &Self) -> Ordering {
+        let vec1: Vec<_> = self.0.iter().collect();
+        let vec2: Vec<_> = other.0.iter().collect();
+        vec1.cmp(&vec2)
+    }
+}
+
+impl PartialOrd for AxiomSet {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
 // Steps
 
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub enum AOStep {
     Add(ao::NodeLabel),
+    Refine(ao::NodeLabel, AxiomSet),
 }
 
 impl pbn::Step for AOStep {
@@ -65,6 +81,15 @@ impl pbn::Step for AOStep {
                     None
                 }
             }
+            AOStep::Refine(x, axs) => {
+                let mut ret = e.clone();
+                if ret.0.swap_remove(x) {
+                    ret.0.extend(axs.0.iter().cloned());
+                    Some(ret)
+                } else {
+                    None
+                }
+            }
         }
     }
 }
@@ -74,6 +99,9 @@ impl std::fmt::Display for AOStep {
         match self {
             AOStep::Add(s) => {
                 write!(f, "+ {}", s)
+            }
+            AOStep::Refine(x, axs) => {
+                write!(f, "{} -> {}", x, axs)
             }
         }
     }

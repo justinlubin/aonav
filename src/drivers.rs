@@ -154,6 +154,7 @@ impl Driver<ao_navigation::AOStep> for RandomizedSolutionDrivenDriver {
                             None
                         }
                     }
+                    ao_navigation::AOStep::Refine(_, _) => None,
                 })
                 .choose(&mut rand::rng())?;
 
