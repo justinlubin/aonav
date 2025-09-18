@@ -44,6 +44,13 @@ enum Command {
         path: PathBuf,
     },
 
+    /// Generate solutions for a benchmark suite
+    GenerateSolutions {
+        /// The path to the benchmark suite directory
+        #[arg(short, long, value_name = "DIRECTORY")]
+        path: PathBuf,
+    },
+
     /// Convert various representations to the AND/OR JSON Graph Format
     Convert {
         /// The file to convert
@@ -61,6 +68,9 @@ impl Command {
         match &self {
             Self::Interact { graph } => main_handler::interact(graph),
             Self::Benchmark { path } => main_handler::benchmark(path),
+            Self::GenerateSolutions { path } => {
+                main_handler::generate_solutions(path)
+            }
             Self::Convert { path, format } => {
                 main_handler::convert(path, format)
             }

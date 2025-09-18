@@ -25,6 +25,10 @@ impl AxiomSet {
         AxiomSet(IndexSet::from(set))
     }
 
+    pub fn to_vec(&self) -> Vec<ao::NodeLabel> {
+        self.0.iter().cloned().collect()
+    }
+
     pub fn contains(&self, label: &ao::NodeLabel) -> bool {
         self.0.contains(label)
     }
@@ -108,7 +112,7 @@ pub struct GreedyProvider {
     proper_axiom_sets: Vec<AxiomSet>,
 }
 
-fn proper_axiom_sets<A: Clone, O: Clone>(
+pub fn proper_axiom_sets<A: Clone, O: Clone>(
     graph: &ao::Graph<A, O>,
 ) -> Vec<AxiomSet> {
     let mut ret: Vec<AxiomSet> = vec![];

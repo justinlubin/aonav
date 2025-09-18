@@ -117,6 +117,10 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
 }
 
 pub fn benchmark(suite_path: &PathBuf) -> Result<(), String> {
+    if !suite_path.exists() {
+        panic!("Path '{}' does not exist", suite_path.display())
+    }
+
     let mut suite: Vec<benchmark::BenchmarkEntry> = vec![];
 
     for path in glob::glob(suite_path.join("*.json").to_str().unwrap())
@@ -147,6 +151,36 @@ pub fn benchmark(suite_path: &PathBuf) -> Result<(), String> {
 
     let runner = benchmark::Runner::new(config, std::io::stdout());
     runner.suite(&suite);
+
+    Ok(())
+}
+
+pub fn generate_solutions(suite_path: &PathBuf) -> Result<(), String> {
+    for path in glob::glob(suite_path.join("*.json").to_str().unwrap())
+        .unwrap()
+        .filter_map(Result::ok)
+    {
+        let path_noext = path.with_extension("");
+
+        if path_noext.extension().and_then(|e| e.to_str()) == Some("solutions")
+        {
+            continue;
+        }
+
+        let graph = load_ao(&path);
+
+        let cs = ChosenSolutions {
+            chosen_solutions: ao_navigation::proper_axiom_sets(&graph)
+                .into_iter()
+                .map(|axs| axs.to_vec())
+                .collect(),
+        };
+
+        let mut file =
+            File::create(path_noext.with_extension("solutions.json")).unwrap();
+        writeln!(file, "{}", serde_json::to_string_pretty(&cs).unwrap())
+            .unwrap();
+    }
 
     Ok(())
 }
