@@ -200,14 +200,14 @@ pub fn convert(
             let es_egraph =
                 egraph_serialize::EGraph::from_json_file(path).unwrap();
             let ao = convert::es_egraph_to_ao(&es_egraph);
-            let jgf_graph: jgf::Graph = ao.into();
-            println!("{}", serde_json::to_string_pretty(&jgf_graph).unwrap());
+            let jgf = jgf::Data::Single { graph: ao.into() };
+            println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
             Ok(())
         }
         ConversionInputFormat::AOJsonGraph => {
             let ao = load_ao(path);
-            let jgf_graph: jgf::Graph = ao.into();
-            println!("{}", serde_json::to_string_pretty(&jgf_graph).unwrap());
+            let jgf = jgf::Data::Single { graph: ao.into() };
+            println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
             Ok(())
         }
         ConversionInputFormat::Argus => {
@@ -221,8 +221,8 @@ pub fn convert(
             let proof_system = crate::legacy_parse::proof_system(&lines);
             let ao: ao::Graph<(), ()> =
                 crate::legacy_core::to_ao(proof_system, goal);
-            let jgf_graph: jgf::Graph = ao.into();
-            println!("{}", serde_json::to_string_pretty(&jgf_graph).unwrap());
+            let jgf = jgf::Data::Single { graph: ao.into() };
+            println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
             Ok(())
         }
     }
