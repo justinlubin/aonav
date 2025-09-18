@@ -4,6 +4,7 @@ use indexmap::{IndexMap, IndexSet};
 use petgraph::graph as pg;
 use petgraph::visit::EdgeRef;
 use petgraph::Direction;
+use serde::{de::DeserializeOwned, Serialize};
 use std::collections::{HashMap, HashSet};
 use std::fmt;
 
@@ -17,6 +18,8 @@ pub enum Node<A, O> {
     And(NodeLabel, Option<A>),
     Or(NodeLabel, Option<O>),
 }
+
+pub type GenericNode = Node<serde_json::Value, serde_json::Value>;
 
 impl<A, O> Node<A, O> {
     pub fn label(&self) -> &str {
@@ -41,9 +44,20 @@ impl<A, O> Node<A, O> {
     }
 }
 
-impl<A, O> fmt::Display for Node<A, O> {
+impl fmt::Display for GenericNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.label())
+        let label = match self {
+            Node::And(lab, Some(data)) => data
+                .as_str()
+                .map(|x| "[".to_owned() + self.label() + "]\n" + x)
+                .unwrap_or(lab.to_owned()),
+            Node::Or(lab, Some(data)) => data
+                .as_str()
+                .map(|x| "[".to_owned() + self.label() + "]\n" + x)
+                .unwrap_or(lab.to_owned()),
+            _ => self.label().to_owned(),
+        };
+        write!(f, "{}", label)
     }
 }
 
@@ -74,7 +88,11 @@ pub struct Graph<A, O> {
     pub goal: NodeLabel,
 }
 
-impl<A, O> TryFrom<jgf::Graph> for Graph<A, O> {
+pub type GenericGraph = Graph<serde_json::Value, serde_json::Value>;
+
+impl<A: DeserializeOwned, O: DeserializeOwned> TryFrom<jgf::Graph>
+    for Graph<A, O>
+{
     type Error = String;
 
     fn try_from(value: jgf::Graph) -> Result<Self, Self::Error> {
@@ -105,6 +123,7 @@ impl<A, O> TryFrom<jgf::Graph> for Graph<A, O> {
             let metadata = node_val
                 .metadata
                 .ok_or(format!("missing metadata for '{}'", node_id))?;
+            let data = metadata.get("data").cloned();
             let n = match metadata
                 .get("kind")
                 .ok_or(format!("missing 'kind' metadata for '{}'", node_id))?
@@ -116,8 +135,14 @@ impl<A, O> TryFrom<jgf::Graph> for Graph<A, O> {
                 .to_ascii_uppercase()
                 .as_str()
             {
-                "AND" => Node::And(node_id.clone(), None),
-                "OR" => Node::Or(node_id.clone(), None),
+                "AND" => Node::And(
+                    node_id.clone(),
+                    data.map(|v| serde_json::from_value(v).unwrap()),
+                ),
+                "OR" => Node::Or(
+                    node_id.clone(),
+                    data.map(|v| serde_json::from_value(v).unwrap()),
+                ),
                 _ => {
                     return Err(format!(
                         "unknown 'kind' metadata for '{}'",
@@ -139,7 +164,7 @@ impl<A, O> TryFrom<jgf::Graph> for Graph<A, O> {
     }
 }
 
-impl<A, O> From<Graph<A, O>> for jgf::Graph {
+impl<A: Serialize, O: Serialize> From<Graph<A, O>> for jgf::Graph {
     fn from(ao: Graph<A, O>) -> Self {
         jgf::Graph {
             id: None,
@@ -182,8 +207,8 @@ impl<A, O> From<Graph<A, O>> for jgf::Graph {
                     .edge_references()
                     .map(|e| jgf::Edge {
                         id: None,
-                        source: format!("{}", ao.pg[e.source()]),
-                        target: format!("{}", ao.pg[e.target()]),
+                        source: ao.pg[e.source()].label().to_owned(),
+                        target: ao.pg[e.target()].label().to_owned(),
                         relation: None,
                         directed: true,
                         label: None,
@@ -195,10 +220,10 @@ impl<A, O> From<Graph<A, O>> for jgf::Graph {
     }
 }
 
-impl<A, O> Graph<A, O> {
+impl GenericGraph {
     fn node_format(
         highlighted_nodes: &IndexSet<NodeLabel>,
-        n: &Node<A, O>,
+        n: &GenericNode,
     ) -> String {
         let (label, base) = match n {
             Node::Or(label, _) => (
@@ -320,7 +345,7 @@ impl<A, O> Graph<A, O> {
 
     pub fn make_axiom(&mut self, or_label: &str) {
         let oid = self.find_oid(or_label);
-        let label = &self.pg[oid.0];
+        let label = self.pg[oid.0].label().to_owned();
         let ax_nid = self.pg.add_node(Node::And(format!("ax:{}", label), None));
         let _ = self.pg.add_edge(ax_nid, oid.0, Edge);
     }

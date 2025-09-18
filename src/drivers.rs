@@ -16,19 +16,19 @@ pub trait Driver<S: pbn::Step> {
 ////////////////////////////////////////////////////////////////////////////////
 // CLI Driver
 
-pub struct CliDriver<'a, A, O> {
-    graph: &'a ao::Graph<A, O>,
+pub struct CliDriver<'a> {
+    graph: &'a ao::GenericGraph,
 }
 
-impl<'a, A, O> CliDriver<'a, A, O> {
-    pub fn new(graph: &'a ao::Graph<A, O>) -> Self {
+impl<'a> CliDriver<'a> {
+    pub fn new(graph: &'a ao::GenericGraph) -> Self {
         Self { graph }
     }
 }
 
-fn emit_graph<A, O>(
+fn emit_graph(
     name: &str,
-    graph: &ao::Graph<A, O>,
+    graph: &ao::GenericGraph,
     highlighted_nodes: &IndexSet<String>,
 ) {
     let mut dot_file = File::create(format!("out/{}.dot", name)).unwrap();
@@ -43,7 +43,7 @@ fn emit_graph<A, O>(
         .unwrap();
 }
 
-impl<'a, A, O> Driver<ao_navigation::AOStep> for CliDriver<'a, A, O> {
+impl<'a> Driver<ao_navigation::AOStep> for CliDriver<'a> {
     fn drive(
         &mut self,
         mut controller: pbn::Controller<ao_navigation::AOStep>,

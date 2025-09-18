@@ -9,7 +9,7 @@ use crate::util::Timer;
 
 use ansi_term::Color::*;
 use instant::Duration;
-use serde::{Deserialize, Serialize};
+use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use std::fs::File;
 use std::io::Write;
 use std::path::PathBuf;
@@ -51,7 +51,9 @@ fn load_chosen_solutions(
     )
 }
 
-fn load_ao(path: &PathBuf) -> ao::Graph<(), ()> {
+fn load_ao<A: DeserializeOwned, O: DeserializeOwned>(
+    path: &PathBuf,
+) -> ao::Graph<A, O> {
     let json_string = std::fs::read_to_string(path).unwrap();
     let jgf_data: jgf::Data = serde_json::from_str(&json_string).unwrap();
 
@@ -64,7 +66,7 @@ fn load_ao(path: &PathBuf) -> ao::Graph<(), ()> {
 }
 
 pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
-    let graph = load_ao(graph_path);
+    let graph: ao::GenericGraph = load_ao(graph_path);
 
     let msg1 = format!(
         "Set of provable OR nodes: {:?}",
@@ -153,7 +155,7 @@ pub fn generate_solutions(suite_path: &PathBuf) -> Result<(), String> {
             continue;
         }
 
-        let graph = load_ao(&path);
+        let graph: ao::GenericGraph = load_ao(&path);
 
         let cs = ChosenSolutions {
             chosen_solutions: ao_navigation::proper_axiom_sets(&graph)
@@ -185,7 +187,7 @@ pub fn convert(
             Ok(())
         }
         ConversionInputFormat::AOJsonGraph => {
-            let ao = load_ao(path);
+            let ao: ao::GenericGraph = load_ao(path);
             let jgf = jgf::Data::Single { graph: ao.into() };
             println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
             Ok(())

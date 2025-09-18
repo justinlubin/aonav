@@ -13,7 +13,7 @@ use std::sync::{Arc, Mutex};
 #[derive(Debug)]
 pub struct BenchmarkEntry {
     pub name: String,
-    pub graph: ao::Graph<(), ()>,
+    pub graph: ao::GenericGraph,
     pub chosen_solutions: Option<Vec<ao_navigation::AxiomSet>>,
 }
 
