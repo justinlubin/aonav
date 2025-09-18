@@ -146,7 +146,10 @@ impl<A, O> From<Graph<A, O>> for jgf::Graph {
             label: None,
             directed: true,
             graph_type: None,
-            metadata: None,
+            metadata: Some(IndexMap::from([(
+                "goal".to_owned(),
+                serde_json::Value::String(ao.goal),
+            )])),
             nodes: Some(
                 ao.pg
                     .node_weights()

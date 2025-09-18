@@ -1,150 +1,155 @@
 {
-  "nodes": {
-    "ax:B": {
-      "metadata": {
-        "kind": "AND"
+  "graph": {
+    "metadata": {
+      "goal": "Q"
+    },
+    "nodes": {
+      "ax:B": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "B": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ax:C": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "C": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ax:D": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "D": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ax:E": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "E": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ax:F": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "F": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "f": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "A": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "g": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "h": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "Q": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "i": {
+        "metadata": {
+          "kind": "AND"
+        }
       }
     },
-    "B": {
-      "metadata": {
-        "kind": "OR"
+    "edges": [
+      {
+        "source": "ax:B",
+        "target": "B"
+      },
+      {
+        "source": "ax:C",
+        "target": "C"
+      },
+      {
+        "source": "ax:D",
+        "target": "D"
+      },
+      {
+        "source": "ax:E",
+        "target": "E"
+      },
+      {
+        "source": "ax:F",
+        "target": "F"
+      },
+      {
+        "source": "f",
+        "target": "A"
+      },
+      {
+        "source": "B",
+        "target": "f"
+      },
+      {
+        "source": "C",
+        "target": "f"
+      },
+      {
+        "source": "g",
+        "target": "A"
+      },
+      {
+        "source": "C",
+        "target": "g"
+      },
+      {
+        "source": "D",
+        "target": "g"
+      },
+      {
+        "source": "h",
+        "target": "Q"
+      },
+      {
+        "source": "A",
+        "target": "h"
+      },
+      {
+        "source": "i",
+        "target": "Q"
+      },
+      {
+        "source": "E",
+        "target": "i"
+      },
+      {
+        "source": "F",
+        "target": "i"
       }
-    },
-    "ax:C": {
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "C": {
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "ax:D": {
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "D": {
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "ax:E": {
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "E": {
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "ax:F": {
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "F": {
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "f": {
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "A": {
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "g": {
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "h": {
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "Q": {
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "i": {
-      "metadata": {
-        "kind": "AND"
-      }
-    }
-  },
-  "edges": [
-    {
-      "source": "ax:B",
-      "target": "B"
-    },
-    {
-      "source": "ax:C",
-      "target": "C"
-    },
-    {
-      "source": "ax:D",
-      "target": "D"
-    },
-    {
-      "source": "ax:E",
-      "target": "E"
-    },
-    {
-      "source": "ax:F",
-      "target": "F"
-    },
-    {
-      "source": "f",
-      "target": "A"
-    },
-    {
-      "source": "B",
-      "target": "f"
-    },
-    {
-      "source": "C",
-      "target": "f"
-    },
-    {
-      "source": "g",
-      "target": "A"
-    },
-    {
-      "source": "C",
-      "target": "g"
-    },
-    {
-      "source": "D",
-      "target": "g"
-    },
-    {
-      "source": "h",
-      "target": "Q"
-    },
-    {
-      "source": "A",
-      "target": "h"
-    },
-    {
-      "source": "i",
-      "target": "Q"
-    },
-    {
-      "source": "E",
-      "target": "i"
-    },
-    {
-      "source": "F",
-      "target": "i"
-    }
-  ]
+    ]
+  }
 }

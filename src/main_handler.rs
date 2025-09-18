@@ -218,9 +218,9 @@ pub fn convert(
                 crate::util::read_lines(&format!("{}", path.display()))
                     .unwrap();
             let goal = lines.remove(0).trim().to_owned();
-            let proof_system = crate::legacy_parse::proof_system(&lines);
+            let proof_system = crate::legacy::proof_system(&lines);
             let ao: ao::Graph<(), ()> =
-                crate::legacy_core::to_ao(proof_system, goal);
+                crate::legacy::to_ao(proof_system, goal);
             let jgf = jgf::Data::Single { graph: ao.into() };
             println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
             Ok(())
