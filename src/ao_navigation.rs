@@ -47,7 +47,7 @@ impl std::fmt::Display for AxiomSet {
 
 // Steps
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub enum AOStep {
     Add(ao::NodeLabel),
 }
@@ -184,6 +184,10 @@ impl pbn::StepProvider for GreedyProvider {
             }
         }
 
-        Ok(next_labels.into_iter().map(AOStep::Add).collect())
+        let mut steps: Vec<_> =
+            next_labels.into_iter().map(AOStep::Add).collect();
+        steps.sort();
+
+        Ok(steps)
     }
 }

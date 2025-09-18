@@ -157,6 +157,8 @@ impl Driver<ao_navigation::AOStep> for RandomizedSolutionDrivenDriver {
                 })
                 .choose(&mut rand::rng())?;
 
+            self.decisions += idx;
+
             controller.decide(options.swap_remove(idx))
         }
     }

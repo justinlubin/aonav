@@ -1,5 +1,8 @@
 use crate::ao;
 use crate::ao_navigation;
+use crate::drivers::{self, Driver};
+use crate::pbn;
+use crate::util::Timer;
 
 use instant::{Duration, Instant};
 use rayon::prelude::*;
@@ -63,25 +66,54 @@ impl Runner {
     }
 
     fn entry(&self, entry: &BenchmarkEntry) {
-        let now = Instant::now();
-
-        todo!();
-
-        let r = BenchmarkResult {
-            strategy: todo!(),
-            name: entry.name.clone(),
-            chosen_solution: todo!(),
-            replicate: todo!(),
-            completed: todo!(),
-            success: todo!(),
-            duration: todo!(),
-            decisions: todo!(),
+        let chosen_solutions = match &entry.chosen_solutions {
+            Some(cs) => cs,
+            None => return,
         };
 
-        let wtr = Arc::clone(&self.wtr);
-        let mut wtr = wtr.lock().unwrap();
-        wtr.serialize(r).unwrap();
-        wtr.flush().unwrap();
+        for (i, solution) in chosen_solutions.iter().enumerate() {
+            for replicate in 0..self.config.replicates {
+                let now = Instant::now();
+
+                let provider =
+                    ao_navigation::GreedyProvider::new(entry.graph.clone());
+                let checker =
+                    ao_navigation::GoalProvable::new(entry.graph.clone());
+                let controller = pbn::Controller::new(
+                    Timer::finite(self.config.timeout),
+                    provider,
+                    checker,
+                    ao_navigation::AxiomSet::empty(),
+                );
+                let mut driver = drivers::RandomizedSolutionDrivenDriver::new(
+                    solution.clone(),
+                );
+                let e = driver.drive(controller);
+
+                let duration = now.elapsed().as_millis();
+
+                let (completed, success) = match e {
+                    None => (false, false),
+                    Some(e) => (true, e == *solution),
+                };
+
+                let r = BenchmarkResult {
+                    strategy: "greedy-pbn".to_owned(),
+                    name: entry.name.clone(),
+                    chosen_solution: i,
+                    replicate,
+                    completed,
+                    success,
+                    duration,
+                    decisions: driver.decisions(),
+                };
+
+                let wtr = Arc::clone(&self.wtr);
+                let mut wtr = wtr.lock().unwrap();
+                wtr.serialize(r).unwrap();
+                wtr.flush().unwrap();
+            }
+        }
     }
 
     /// Run a benchmark suite
