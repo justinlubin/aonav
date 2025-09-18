@@ -8,7 +8,7 @@ use crate::pbn;
 use crate::util::Timer;
 
 use ansi_term::Color::*;
-use indexmap::{IndexMap, IndexSet};
+use indexmap::IndexSet;
 use instant::Duration;
 use serde::{Deserialize, Serialize};
 use std::fs::File;
