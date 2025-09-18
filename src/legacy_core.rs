@@ -1,3 +1,7 @@
+use crate::ao;
+
+use indexmap::IndexSet;
+
 #[derive(Debug, Clone)]
 pub struct Rule {
     pub premises: Vec<String>,
@@ -16,6 +20,36 @@ impl Rule {
 }
 
 pub type ProofSystem = Vec<Rule>;
+
+pub fn to_ao<A, O>(
+    ps: ProofSystem,
+    target: ao::NodeLabel,
+) -> crate::ao::Graph<A, O> {
+    let mut ret = ao::Graph::new(target);
+    let mut props = IndexSet::new();
+    for rule in ps {
+        let aid = ret.add_and_node(rule.name, None);
+
+        let conclusion_oid = if props.insert(rule.conclusion.clone()) {
+            ret.add_or_node(rule.conclusion, None)
+        } else {
+            ret.find_oid(&rule.conclusion)
+        };
+
+        ret.add_or_edge(aid, conclusion_oid);
+
+        for premise in rule.premises {
+            let oid = if props.insert(premise.clone()) {
+                ret.add_or_node(premise, None)
+            } else {
+                ret.find_oid(&premise)
+            };
+
+            ret.add_and_edge(oid, aid);
+        }
+    }
+    ret
+}
 
 #[derive(Debug, Clone)]
 pub enum PSGNode {

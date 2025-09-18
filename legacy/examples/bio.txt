@@ -1,7 +1,29 @@
+DifferentialGeneExpression
+# Note! All these rules have one premise and one conclusion!
+
+# Leaf rules
+
 rule:
-RNAseq
-- load
+IlluminaRNAseq
+- load_illumina
 UncheckedRNAseq
+
+rule:
+NanoporeRNAseq
+- load_nanopore
+UncheckedRNAseq
+
+rule:
+Raw_NCBI_SRA
+- fetch_raw_ncbi_sra
+UncheckedRNAseq
+
+rule:
+Quantified_NCBI_SRA
+- fetch_quantified_ncbi_sra
+GeneQuantification
+
+# Inner rules
 
 rule:
 UncheckedRNAseq
@@ -54,16 +76,21 @@ CheckedRNAseq
 TranscriptQuantification
 
 rule:
+TranscriptQuantification
+- tximport
+GeneQuantification
+
+rule:
 GeneQuantification
 - deseq2
 DifferentialGeneExpression
 
 rule:
-Quantification
+GeneQuantification
 - limma
 DifferentialGeneExpression
 
 rule:
-Quantification
+GeneQuantification
 - edgeR
 DifferentialGeneExpression

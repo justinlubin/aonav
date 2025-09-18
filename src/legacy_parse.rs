@@ -1,4 +1,4 @@
-use crate::core::*;
+use crate::legacy_core::*;
 
 #[derive(Debug, Clone)]
 struct Context<'a> {
@@ -47,7 +47,10 @@ impl<'a> Context<'a> {
         let name_line = self.next();
         let conclusion_line = self.next();
         self.rules.push(Rule {
-            premises: premises_line.split_whitespace().map(String::from).collect(),
+            premises: premises_line
+                .split_whitespace()
+                .map(String::from)
+                .collect(),
             conclusion: conclusion_line.trim().to_string(),
             name: name_line.trim().trim_start_matches("-").trim().to_string(),
         });

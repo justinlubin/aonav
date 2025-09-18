@@ -238,6 +238,47 @@ impl<A, O> Graph<A, O> {
 // Graph operations
 
 impl<A, O> Graph<A, O> {
+    pub fn new(goal: NodeLabel) -> Self {
+        Self {
+            pg: pg::Graph::new(),
+            goal,
+        }
+    }
+
+    pub fn add_and_node(&mut self, label: String, data: Option<A>) -> AId {
+        AId(self.pg.add_node(Node::And(label, data)))
+    }
+
+    pub fn add_or_node(&mut self, label: String, data: Option<O>) -> OId {
+        OId(self.pg.add_node(Node::Or(label, data)))
+    }
+
+    pub fn add_and_edge(&mut self, source: OId, target: AId) {
+        let _ = self.pg.add_edge(source.0, target.0, Edge);
+    }
+
+    pub fn add_or_edge(&mut self, source: AId, target: OId) {
+        let _ = self.pg.add_edge(source.0, target.0, Edge);
+    }
+
+    pub fn and_labels(&self) -> impl Iterator<Item = &str> + use<'_, A, O> {
+        self.pg.node_indices().filter_map(|nid| {
+            if self.pg[nid].is_and() {
+                Some(self.pg[nid].label())
+            } else {
+                None
+            }
+        })
+    }
+
+    pub fn find_aid(&self, and_label: &str) -> AId {
+        AId(self
+            .pg
+            .node_indices()
+            .find(|nid| self.pg[*nid].label() == and_label)
+            .unwrap())
+    }
+
     pub fn find_oid(&self, or_label: &str) -> OId {
         OId(self
             .pg

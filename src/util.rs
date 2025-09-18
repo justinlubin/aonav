@@ -83,3 +83,10 @@ pub fn cartesian_product<K: Clone + Eq + std::hash::Hash, V: Clone>(
     }
     Ok(results)
 }
+
+pub fn read_lines(path: &str) -> Option<Vec<String>> {
+    match std::fs::read_to_string(&path) {
+        Ok(s) => Some(s.lines().map(String::from).collect()),
+        Err(_) => None,
+    }
+}

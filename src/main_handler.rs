@@ -21,6 +21,7 @@ pub enum ConversionInputFormat {
     EGraphSerialize,
     AOJsonGraph,
     Argus,
+    Legacy,
 }
 
 impl std::str::FromStr for ConversionInputFormat {
@@ -211,6 +212,18 @@ pub fn convert(
         }
         ConversionInputFormat::Argus => {
             todo!()
+        }
+        ConversionInputFormat::Legacy => {
+            let mut lines =
+                crate::util::read_lines(&format!("{}", path.display()))
+                    .unwrap();
+            let goal = lines.remove(0).trim().to_owned();
+            let proof_system = crate::legacy_parse::proof_system(&lines);
+            let ao: ao::Graph<(), ()> =
+                crate::legacy_core::to_ao(proof_system, goal);
+            let jgf_graph: jgf::Graph = ao.into();
+            println!("{}", serde_json::to_string_pretty(&jgf_graph).unwrap());
+            Ok(())
         }
     }
 }

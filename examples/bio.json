@@ -1,0 +1,264 @@
+{
+  "nodes": {
+    "load_illumina": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "UncheckedRNAseq": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "IlluminaRNAseq": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "load_nanopore": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "NanoporeRNAseq": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "fetch_raw_ncbi_sra": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "Raw_NCBI_SRA": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "fetch_quantified_ncbi_sra": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "GeneQuantification": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "Quantified_NCBI_SRA": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "fastqc": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "CheckedRNAseq": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "multiqc": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "STAR": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "Alignment": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "bowtie2": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "featureCountsGene": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "featureCountsTranscript": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "TranscriptQuantification": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "kallisto": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "salmon": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "tximport": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "deseq2": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "DifferentialGeneExpression": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "limma": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "edgeR": {
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "load_illumina",
+      "target": "UncheckedRNAseq"
+    },
+    {
+      "source": "IlluminaRNAseq",
+      "target": "load_illumina"
+    },
+    {
+      "source": "load_nanopore",
+      "target": "UncheckedRNAseq"
+    },
+    {
+      "source": "NanoporeRNAseq",
+      "target": "load_nanopore"
+    },
+    {
+      "source": "fetch_raw_ncbi_sra",
+      "target": "UncheckedRNAseq"
+    },
+    {
+      "source": "Raw_NCBI_SRA",
+      "target": "fetch_raw_ncbi_sra"
+    },
+    {
+      "source": "fetch_quantified_ncbi_sra",
+      "target": "GeneQuantification"
+    },
+    {
+      "source": "Quantified_NCBI_SRA",
+      "target": "fetch_quantified_ncbi_sra"
+    },
+    {
+      "source": "fastqc",
+      "target": "CheckedRNAseq"
+    },
+    {
+      "source": "UncheckedRNAseq",
+      "target": "fastqc"
+    },
+    {
+      "source": "multiqc",
+      "target": "CheckedRNAseq"
+    },
+    {
+      "source": "UncheckedRNAseq",
+      "target": "multiqc"
+    },
+    {
+      "source": "STAR",
+      "target": "Alignment"
+    },
+    {
+      "source": "CheckedRNAseq",
+      "target": "STAR"
+    },
+    {
+      "source": "bowtie2",
+      "target": "Alignment"
+    },
+    {
+      "source": "CheckedRNAseq",
+      "target": "bowtie2"
+    },
+    {
+      "source": "featureCountsGene",
+      "target": "GeneQuantification"
+    },
+    {
+      "source": "Alignment",
+      "target": "featureCountsGene"
+    },
+    {
+      "source": "featureCountsTranscript",
+      "target": "TranscriptQuantification"
+    },
+    {
+      "source": "Alignment",
+      "target": "featureCountsTranscript"
+    },
+    {
+      "source": "kallisto",
+      "target": "TranscriptQuantification"
+    },
+    {
+      "source": "CheckedRNAseq",
+      "target": "kallisto"
+    },
+    {
+      "source": "salmon",
+      "target": "TranscriptQuantification"
+    },
+    {
+      "source": "CheckedRNAseq",
+      "target": "salmon"
+    },
+    {
+      "source": "tximport",
+      "target": "GeneQuantification"
+    },
+    {
+      "source": "TranscriptQuantification",
+      "target": "tximport"
+    },
+    {
+      "source": "deseq2",
+      "target": "DifferentialGeneExpression"
+    },
+    {
+      "source": "GeneQuantification",
+      "target": "deseq2"
+    },
+    {
+      "source": "limma",
+      "target": "DifferentialGeneExpression"
+    },
+    {
+      "source": "GeneQuantification",
+      "target": "limma"
+    },
+    {
+      "source": "edgeR",
+      "target": "DifferentialGeneExpression"
+    },
+    {
+      "source": "GeneQuantification",
+      "target": "edgeR"
+    }
+  ]
+}
