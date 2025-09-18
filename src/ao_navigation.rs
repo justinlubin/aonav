@@ -21,10 +21,6 @@ impl AxiomSet {
         AxiomSet(set.into_iter().collect())
     }
 
-    pub fn from_slice<const N: usize>(set: [ao::NodeLabel; N]) -> Self {
-        AxiomSet(IndexSet::from(set))
-    }
-
     pub fn to_vec(&self) -> Vec<ao::NodeLabel> {
         self.0.iter().cloned().collect()
     }

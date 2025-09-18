@@ -33,28 +33,28 @@ enum Command {
     /// Run interactively in the CLI
     Interact {
         /// The AND-OR graph to use (.json)
-        #[arg(short, long, value_name = "FILE")]
+        #[arg(value_name = "FILE")]
         graph: PathBuf,
     },
 
     /// Run a benchmark suite
     Benchmark {
         /// The path to the benchmark suite directory
-        #[arg(short, long, value_name = "DIRECTORY")]
+        #[arg(value_name = "DIRECTORY")]
         path: PathBuf,
     },
 
     /// Generate solutions for a benchmark suite
     GenerateSolutions {
         /// The path to the benchmark suite directory
-        #[arg(short, long, value_name = "DIRECTORY")]
+        #[arg(value_name = "DIRECTORY")]
         path: PathBuf,
     },
 
     /// Convert various representations to the AND/OR JSON Graph Format
     Convert {
         /// The file to convert
-        #[arg(short, long, value_name = "FILE")]
+        #[arg(value_name = "FILE")]
         path: PathBuf,
 
         /// The format to convert from (options: EGraphSerialize, AOJsonGraph, Argus)
