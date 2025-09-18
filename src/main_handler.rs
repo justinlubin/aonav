@@ -100,7 +100,12 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
 
     println!("    {}\n", Yellow.bold().paint(msg2));
 
-    let provider = ao_navigation::GreedyProvider::new(graph.clone());
+    let provider1 = ao_navigation::GreedyAddProvider::new(graph.clone());
+    let provider2 = ao_navigation::GreedyRefineProvider::new(graph.clone());
+    let provider = ao_navigation::CompoundProvider::new(vec![
+        Box::new(provider1),
+        Box::new(provider2),
+    ]);
     let checker = ao_navigation::GoalProvable::new(graph.clone());
 
     let controller = pbn::Controller::new(

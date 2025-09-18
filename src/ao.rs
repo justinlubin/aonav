@@ -71,7 +71,7 @@ pub struct AId(pg::NodeIndex);
 #[derive(Debug, Clone)]
 pub struct Graph<A, O> {
     pg: pg::Graph<Node<A, O>, Edge>,
-    goal: NodeLabel,
+    pub goal: NodeLabel,
 }
 
 impl<A, O> TryFrom<jgf::Graph> for Graph<A, O> {

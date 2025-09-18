@@ -130,9 +130,38 @@ impl<A: Clone, O: Clone> pbn::ValidityChecker for GoalProvable<A, O> {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Greedy provider
+// Compound provider (composition of other providers)
 
-pub struct GreedyProvider {
+pub struct CompoundProvider<S: pbn::Step> {
+    providers: Vec<Box<dyn pbn::StepProvider<Step = S>>>,
+}
+
+impl<S: pbn::Step> CompoundProvider<S> {
+    pub fn new(providers: Vec<Box<dyn pbn::StepProvider<Step = S>>>) -> Self {
+        Self { providers }
+    }
+}
+
+impl<S: pbn::Step> pbn::StepProvider for CompoundProvider<S> {
+    type Step = S;
+
+    fn provide(
+        &mut self,
+        timer: &Timer,
+        e: &<Self::Step as pbn::Step>::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let mut steps = vec![];
+        for p in &mut self.providers {
+            steps.extend(p.provide(timer, e)?);
+        }
+        Ok(steps)
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Greedy add provider
+
+pub struct GreedyAddProvider {
     proper_axiom_sets: Vec<AxiomSet>,
 }
 
@@ -188,7 +217,7 @@ pub fn proper_axiom_sets<A: Clone, O: Clone>(
     ret
 }
 
-impl GreedyProvider {
+impl GreedyAddProvider {
     pub fn new<A: Clone, O: Clone>(graph: ao::Graph<A, O>) -> Self {
         Self {
             proper_axiom_sets: proper_axiom_sets(&graph),
@@ -196,7 +225,7 @@ impl GreedyProvider {
     }
 }
 
-impl pbn::StepProvider for GreedyProvider {
+impl pbn::StepProvider for GreedyAddProvider {
     type Step = AOStep;
 
     fn provide(
@@ -215,6 +244,43 @@ impl pbn::StepProvider for GreedyProvider {
         let mut steps: Vec<_> =
             next_labels.into_iter().map(AOStep::Add).collect();
         steps.sort();
+
+        Ok(steps)
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Greedy refine provider
+
+pub struct GreedyRefineProvider<A, O> {
+    graph: ao::Graph<A, O>,
+}
+
+impl<A, O> GreedyRefineProvider<A, O> {
+    pub fn new(graph: ao::Graph<A, O>) -> Self {
+        Self { graph }
+    }
+}
+
+impl<A: Clone, O: Clone> pbn::StepProvider for GreedyRefineProvider<A, O> {
+    type Step = AOStep;
+
+    fn provide(
+        &mut self,
+        _timer: &Timer,
+        e: &AxiomSet,
+    ) -> Result<Vec<AOStep>, EarlyCutoff> {
+        let mut steps = vec![];
+
+        for x in &e.0 {
+            self.graph.goal = x.clone();
+            for axs in proper_axiom_sets(&self.graph) {
+                if axs.0 == IndexSet::from([x.clone()]) {
+                    continue;
+                }
+                steps.push(AOStep::Refine(x.clone(), axs))
+            }
+        }
 
         Ok(steps)
     }

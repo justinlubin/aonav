@@ -75,8 +75,15 @@ impl Runner {
             for replicate in 0..self.config.replicates {
                 let now = Instant::now();
 
-                let provider =
-                    ao_navigation::GreedyProvider::new(entry.graph.clone());
+                let provider1 =
+                    ao_navigation::GreedyAddProvider::new(entry.graph.clone());
+                let provider2 = ao_navigation::GreedyRefineProvider::new(
+                    entry.graph.clone(),
+                );
+                let provider = ao_navigation::CompoundProvider::new(vec![
+                    Box::new(provider1),
+                    Box::new(provider2),
+                ]);
                 let checker =
                     ao_navigation::GoalProvable::new(entry.graph.clone());
                 let controller = pbn::Controller::new(
