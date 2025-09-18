@@ -213,7 +213,7 @@ impl<A, O> Graph<A, O> {
             ),
         };
         base + if highlighted_nodes.contains(label) {
-            ",fillcolor=yellow"
+            ",style=filled,fillcolor=yellow"
         } else {
             ""
         }

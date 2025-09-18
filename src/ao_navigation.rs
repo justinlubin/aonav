@@ -26,6 +26,10 @@ impl AxiomSet {
         self.0.iter().cloned().collect()
     }
 
+    pub fn nodes(&self) -> &IndexSet<String> {
+        &self.0
+    }
+
     pub fn contains(&self, label: &ao::NodeLabel) -> bool {
         self.0.contains(label)
     }

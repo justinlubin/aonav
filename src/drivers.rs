@@ -1,9 +1,13 @@
+use crate::ao;
 use crate::ao_navigation;
 use crate::pbn;
 
 use ansi_term::Color::*;
+use indexmap::IndexSet;
 use rand::seq::IteratorRandom;
+use std::fs::File;
 use std::io::Write;
+use std::process::Command;
 
 pub trait Driver<S: pbn::Step> {
     fn drive(&mut self, controller: pbn::Controller<S>) -> Option<S::Exp>;
@@ -12,19 +16,47 @@ pub trait Driver<S: pbn::Step> {
 ////////////////////////////////////////////////////////////////////////////////
 // CLI Driver
 
-pub struct CliDriver;
+pub struct CliDriver<'a, A, O> {
+    graph: &'a ao::Graph<A, O>,
+}
 
-impl<S: std::fmt::Display + pbn::Step + Clone> Driver<S> for CliDriver
-where
-    S::Exp: std::fmt::Display,
-{
+impl<'a, A, O> CliDriver<'a, A, O> {
+    pub fn new(graph: &'a ao::Graph<A, O>) -> Self {
+        Self { graph }
+    }
+}
+
+fn emit_graph<A, O>(
+    name: &str,
+    graph: &ao::Graph<A, O>,
+    highlighted_nodes: &IndexSet<String>,
+) {
+    let mut dot_file = File::create(format!("out/{}.dot", name)).unwrap();
+    write!(&mut dot_file, "{}", graph.dot(&highlighted_nodes)).unwrap();
+
+    let pdf_file = File::create(format!("out/{}.pdf", name)).unwrap();
+    let _ = Command::new("dot")
+        .arg("-Tpdf")
+        .arg(format!("out/{}.dot", name))
+        .stdout(std::process::Stdio::from(pdf_file))
+        .status()
+        .unwrap();
+}
+
+impl<'a, A, O> Driver<ao_navigation::AOStep> for CliDriver<'a, A, O> {
     fn drive(
         &mut self,
-        mut controller: pbn::Controller<S>,
-    ) -> Option<<S as pbn::Step>::Exp> {
+        mut controller: pbn::Controller<ao_navigation::AOStep>,
+    ) -> Option<ao_navigation::AxiomSet> {
         let mut round = 0;
 
         loop {
+            emit_graph(
+                "interactive",
+                self.graph,
+                controller.working_expression().nodes(),
+            );
+
             round += 1;
 
             let valid = controller.valid();

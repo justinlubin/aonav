@@ -8,13 +8,11 @@ use crate::pbn;
 use crate::util::Timer;
 
 use ansi_term::Color::*;
-use indexmap::IndexSet;
 use instant::Duration;
 use serde::{Deserialize, Serialize};
 use std::fs::File;
 use std::io::Write;
 use std::path::PathBuf;
-use std::process::Command;
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub enum ConversionInputFormat {
@@ -65,26 +63,8 @@ fn load_ao(path: &PathBuf) -> ao::Graph<(), ()> {
     graph.try_into().unwrap()
 }
 
-fn emit_graph<A, O>(graph: &ao::Graph<A, O>, name: &str) {
-    let mut dot_file = File::create(format!("out/{}.dot", name)).unwrap();
-    write!(&mut dot_file, "{}", graph.dot(&IndexSet::new())).unwrap();
-
-    let pdf_file = File::create(format!("out/{}.pdf", name)).unwrap();
-    let _ = Command::new("dot")
-        .arg("-Tpdf")
-        .arg(format!("out/{}.dot", name))
-        .stdout(std::process::Stdio::from(pdf_file))
-        .status()
-        .unwrap();
-}
-
 pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
     let graph = load_ao(graph_path);
-    emit_graph(&graph, "initial");
-
-    let mut reduced = graph.clone();
-    reduced.reduce();
-    emit_graph(&reduced, "reduced");
 
     let msg1 = format!(
         "Set of provable OR nodes: {:?}",
@@ -116,7 +96,7 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
         ao_navigation::AxiomSet::empty(),
     );
 
-    let mut driver = drivers::CliDriver;
+    let mut driver = drivers::CliDriver::new(&graph);
     let _ = driver.drive(controller);
 
     Ok(())
