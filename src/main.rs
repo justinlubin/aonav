@@ -57,7 +57,7 @@ enum Command {
         #[arg(short, long, value_name = "FILE")]
         path: PathBuf,
 
-        /// The format to convert from
+        /// The format to convert from (options: EGraphSerialize, AOJsonGraph, Argus)
         #[arg(short, long, value_name = "FORMAT")]
         format: main_handler::ConversionInputFormat,
     },
