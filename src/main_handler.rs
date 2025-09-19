@@ -8,11 +8,13 @@ use crate::pbn;
 use crate::util::Timer;
 
 use ansi_term::Color::*;
+use indexmap::IndexSet;
 use instant::Duration;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use std::fs::File;
 use std::io::Write;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
+use std::process::Command;
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub enum ConversionInputFormat {
@@ -208,4 +210,24 @@ pub fn convert(
             Ok(())
         }
     }
+}
+
+pub fn render(path: &PathBuf) -> Result<(), String> {
+    let outdir = Path::new("out/");
+
+    let ao: ao::GenericGraph = load_ao(path);
+
+    let dot_path = outdir.join("RENDERED.dot");
+    let mut dot_file = File::create(dot_path.clone()).unwrap();
+    write!(&mut dot_file, "{}", ao.dot(&IndexSet::new())).unwrap();
+
+    let pdf_file = File::create(outdir.join("RENDERED.pdf")).unwrap();
+    let _ = Command::new("dot")
+        .arg("-Tpdf")
+        .arg(dot_path)
+        .stdout(std::process::Stdio::from(pdf_file))
+        .status()
+        .unwrap();
+
+    Ok(())
 }

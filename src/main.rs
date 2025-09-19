@@ -61,6 +61,13 @@ enum Command {
         #[arg(short, long, value_name = "FORMAT")]
         format: main_handler::ConversionInputFormat,
     },
+
+    /// Render an AND/OR graph in the AND/OR JSON Graph Format (stored in out/RENDERED.dot and out/RENDERED.pdf)
+    Render {
+        /// The path to the graph to render
+        #[arg(value_name = "FILE")]
+        path: PathBuf,
+    },
 }
 
 impl Command {
@@ -74,6 +81,7 @@ impl Command {
             Self::Convert { path, format } => {
                 main_handler::convert(path, format)
             }
+            Self::Render { path } => main_handler::render(path),
         }
     }
 }

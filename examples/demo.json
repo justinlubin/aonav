@@ -1,0 +1,157 @@
+{
+    "graph": {
+        "nodes": {
+            "D1": { "metadata": { "kind": "OR" } },
+            "D2": { "metadata": { "kind": "OR" } },
+            "D3": { "metadata": { "kind": "OR" } },
+            "D4": { "metadata": { "kind": "OR" } },
+            "D5": { "metadata": { "kind": "OR" } },
+            "D6": { "metadata": { "kind": "OR" } },
+
+            "C1": { "metadata": { "kind": "AND" } },
+            "C2": { "metadata": { "kind": "AND" } },
+            "C3": { "metadata": { "kind": "AND" } },
+            "C4": { "metadata": { "kind": "AND" } },
+            "C5": { "metadata": { "kind": "AND" } },
+            "C6": { "metadata": { "kind": "AND" } },
+            "C7": { "metadata": { "kind": "AND" } },
+            "C8": { "metadata": { "kind": "AND" } },
+            "C9": { "metadata": { "kind": "AND" } },
+            "CA": { "metadata": { "kind": "AND" } },
+            "CB": { "metadata": { "kind": "AND" } },
+            "CC": { "metadata": { "kind": "AND" } },
+
+            "B1": { "metadata": { "kind": "OR" } },
+            "B2": { "metadata": { "kind": "OR" } },
+            "B3": { "metadata": { "kind": "OR" } },
+            "B4": { "metadata": { "kind": "OR" } },
+            "B5": { "metadata": { "kind": "OR" } },
+            "B6": { "metadata": { "kind": "OR" } },
+            "B7": { "metadata": { "kind": "OR" } },
+            "B8": { "metadata": { "kind": "OR" } },
+            "B9": { "metadata": { "kind": "OR" } },
+            "BA": { "metadata": { "kind": "OR" } },
+            "BB": { "metadata": { "kind": "OR" } },
+            "BC": { "metadata": { "kind": "OR" } },
+
+            "A1": { "metadata": { "kind": "AND" } },
+            "A2": { "metadata": { "kind": "AND" } },
+
+            "91": { "metadata": { "kind": "OR" } },
+            "92": { "metadata": { "kind": "OR" } },
+
+            "81": { "metadata": { "kind": "AND" } },
+            "82": { "metadata": { "kind": "AND" } },
+            "83": { "metadata": { "kind": "AND" } },
+            "84": { "metadata": { "kind": "AND" } },
+            "85": { "metadata": { "kind": "AND" } },
+            "86": { "metadata": { "kind": "AND" } },
+
+            "71": { "metadata": { "kind": "OR" } },
+            "72": { "metadata": { "kind": "OR" } },
+            "73": { "metadata": { "kind": "OR" } },
+            "74": { "metadata": { "kind": "OR" } },
+            "75": { "metadata": { "kind": "OR" } },
+            "76": { "metadata": { "kind": "OR" } },
+
+            "61": { "metadata": { "kind": "AND" } },
+
+            "51": { "metadata": { "kind": "OR" } },
+
+            "41": { "metadata": { "kind": "AND" } },
+            "42": { "metadata": { "kind": "AND" } },
+            "43": { "metadata": { "kind": "AND" } },
+
+            "31": { "metadata": { "kind": "OR" } },
+            "32": { "metadata": { "kind": "OR" } },
+            "33": { "metadata": { "kind": "OR" } },
+
+            "21": { "metadata": { "kind": "AND" } },
+
+            "11": { "metadata": { "kind": "OR" } }
+        },
+        "edges": [
+            { "source": "D1", "target": "C1" },
+            { "source": "D1", "target": "C2" },
+            { "source": "D2", "target": "C3" },
+            { "source": "D2", "target": "C4" },
+            { "source": "D3", "target": "C5" },
+            { "source": "D3", "target": "C6" },
+            { "source": "D4", "target": "C7" },
+            { "source": "D4", "target": "C8" },
+            { "source": "D5", "target": "C9" },
+            { "source": "D5", "target": "CA" },
+            { "source": "D6", "target": "CB" },
+            { "source": "D6", "target": "CC" },
+
+            { "source": "C1", "target": "B1" },
+            { "source": "C2", "target": "B2" },
+            { "source": "C3", "target": "B3" },
+            { "source": "C4", "target": "B4" },
+            { "source": "C5", "target": "B5" },
+            { "source": "C6", "target": "B6" },
+            { "source": "C7", "target": "B7" },
+            { "source": "C8", "target": "B8" },
+            { "source": "C9", "target": "B9" },
+            { "source": "CA", "target": "BA" },
+            { "source": "CB", "target": "BB" },
+            { "source": "CC", "target": "BC" },
+
+            { "source": "B1", "target": "A1" },
+            { "source": "B2", "target": "A1" },
+            { "source": "B3", "target": "A1" },
+            { "source": "B4", "target": "A1" },
+            { "source": "B5", "target": "A1" },
+            { "source": "B6", "target": "A1" },
+            { "source": "B7", "target": "A2" },
+            { "source": "B8", "target": "A2" },
+            { "source": "B9", "target": "A2" },
+            { "source": "BA", "target": "A2" },
+            { "source": "BB", "target": "A2" },
+            { "source": "BC", "target": "A2" },
+
+            { "source": "A1", "target": "91" },
+            { "source": "A2", "target": "92" },
+
+            { "source": "91", "target": "81" },
+            { "source": "91", "target": "82" },
+            { "source": "91", "target": "83" },
+            { "source": "92", "target": "84" },
+            { "source": "92", "target": "85" },
+            { "source": "92", "target": "86" },
+
+            { "source": "81", "target": "71" },
+            { "source": "82", "target": "72" },
+            { "source": "83", "target": "73" },
+            { "source": "84", "target": "74" },
+            { "source": "85", "target": "75" },
+            { "source": "86", "target": "76" },
+
+            { "source": "71", "target": "61" },
+            { "source": "72", "target": "61" },
+            { "source": "73", "target": "61" },
+            { "source": "74", "target": "61" },
+            { "source": "75", "target": "61" },
+            { "source": "76", "target": "61" },
+
+            { "source": "61", "target": "51" },
+
+            { "source": "51", "target": "41" },
+            { "source": "51", "target": "42" },
+            { "source": "51", "target": "43" },
+
+            { "source": "41", "target": "31" },
+            { "source": "42", "target": "32" },
+            { "source": "43", "target": "33" },
+
+            { "source": "31", "target": "21" },
+            { "source": "32", "target": "21" },
+            { "source": "33", "target": "21" },
+
+            { "source": "21", "target": "11" }
+        ],
+        "metadata": {
+            "goal": "11"
+        }
+    }
+}

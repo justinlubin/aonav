@@ -157,6 +157,22 @@ impl<A: DeserializeOwned, O: DeserializeOwned> TryFrom<jgf::Graph>
         for edge in edges {
             let source_pid = *petgraph_ids.get(&edge.source).unwrap();
             let target_pid = *petgraph_ids.get(&edge.target).unwrap();
+            match (&ret[source_pid], &ret[target_pid]) {
+                (Node::And(lab1, _), Node::And(lab2, _)) => {
+                    return Err(format!(
+                        "{} AND node '{}' connects to AND node '{}'",
+                        "AND/OR graph not bipartite", lab1, lab2
+                    ))
+                }
+                (Node::Or(lab1, _), Node::Or(lab2, _)) => {
+                    return Err(format!(
+                        "{} OR node '{}' connects to OR node '{}'",
+                        "AND/OR graph not bipartite", lab1, lab2
+                    ))
+                }
+                (Node::And(_, _), Node::Or(_, _))
+                | (Node::Or(_, _), Node::And(_, _)) => (),
+            }
             let _ = ret.add_edge(source_pid, target_pid, Edge);
         }
 
