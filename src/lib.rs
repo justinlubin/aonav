@@ -8,5 +8,4 @@ mod convert;
 mod drivers;
 mod legacy;
 mod pbn;
-mod prove;
 mod util;
