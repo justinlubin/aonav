@@ -2,6 +2,7 @@ use crate::ao;
 use crate::ao_navigation;
 use crate::benchmark;
 use crate::convert;
+use crate::convert::argus_to_and_or;
 use crate::drivers::{self, Driver};
 use crate::jgf;
 use crate::pbn;
@@ -195,7 +196,8 @@ pub fn convert(
             Ok(())
         }
         ConversionInputFormat::Argus => {
-            todo!()
+            argus_to_and_or("path");
+            Ok(())
         }
         ConversionInputFormat::Legacy => {
             let mut lines =
