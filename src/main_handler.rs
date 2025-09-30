@@ -196,7 +196,7 @@ pub fn convert(
             Ok(())
         }
         ConversionInputFormat::Argus => {
-            argus_to_and_or("path");
+            argus_to_and_or(path);
             Ok(())
         }
         ConversionInputFormat::Legacy => {

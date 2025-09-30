@@ -1,0 +1,22 @@
+{
+  "root": "goal 0: TraitPredicate(<entrait::Impl<()> as std::iter::IntoIterator>, polarity:Positive)",
+  "parent_to_children": {
+    "goal 1: TraitPredicate(<entrait::Impl<()> as std::iter::Iterator>, polarity:Positive)": [
+      "candidate 0"
+    ],
+    "candidate 0": [
+      "goal 0: TraitPredicate(<entrait::Impl<()> as std::iter::IntoIterator>, polarity:Positive)"
+    ],
+    "candidate 254": [
+      "goal 2: TraitPredicate(<entrait::Impl<()> as std::marker::Sized>, polarity:Positive)"
+    ],
+    "goal 2: TraitPredicate(<entrait::Impl<()> as std::marker::Sized>, polarity:Positive)": [
+      "candidate 0"
+    ]
+  },
+  "goals": [
+    "goal 1: TraitPredicate(<entrait::Impl<()> as std::iter::Iterator>, polarity:Positive)",
+    "goal 0: TraitPredicate(<entrait::Impl<()> as std::iter::IntoIterator>, polarity:Positive)",
+    "goal 2: TraitPredicate(<entrait::Impl<()> as std::marker::Sized>, polarity:Positive)"
+  ]
+}

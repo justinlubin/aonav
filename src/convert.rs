@@ -18,6 +18,7 @@ use std::collections::HashSet;
 use std::fs;
 use std::hash::RandomState;
 use std::os::unix::process::parent_id;
+use std::path::PathBuf;
 use std::{fmt::Display, fs::File, io::prelude::*};
 
 // create new Graph from args and write to .json
@@ -199,10 +200,8 @@ struct ArgusData {
     goals: HashSet<String>,
 }
 
-pub fn argus_to_and_or(path: &str) {
-    let json_data =
-        fs::read_to_string("/Users/marlenapreigh/under/examples/argus.json")
-            .expect("Failed to read file");
+pub fn argus_to_and_or(path: &PathBuf) {
+    let json_data = fs::read_to_string(path).expect("Failed to read file");
     let deserialized: ArgusData =
         serde_json::from_str(&json_data).expect("Failed to deserialize JSON");
 
