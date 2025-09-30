@@ -447,6 +447,8 @@ impl<A, O> Graph<A, O> {
                     1;
 
                 if count[&c] == 0 {
+                    // TODO: wrong for and nodes with more than 1 succ
+                    // (which represent OR edges, not AND edges!!)
                     agenda.extend(self.and_succs(c))
                 }
             }
@@ -460,6 +462,9 @@ impl<A, O> Graph<A, O> {
         self.provable_or_nodes().contains(&oid)
     }
 
+    // TODO Maybe simply switch to a pass over all AND nodes that removes
+    // any with no head (after clearing out all ORs)? Seems not strictly
+    // necessary to include the AND pass at all, though, just cosmetic?
     pub fn reduce(&mut self) {
         for oid in self.provable_or_nodes() {
             for aid in self.or_preds(oid).collect::<Vec<_>>() {
