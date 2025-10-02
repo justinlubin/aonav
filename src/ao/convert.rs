@@ -215,6 +215,7 @@ where
     out
 }
 
+#[allow(dead_code)]
 fn insert_node(
     mut nodes: IndexMap<String, jgf::Node>,
     kind: String,
@@ -334,7 +335,6 @@ pub fn argus_to_and_or(path: &PathBuf) {
     // for each parent, add edge to each child
     for (parent, children) in deserialized.parent_to_children.iter() {
         let parent_id = parent.to_string();
-        let parent_id_copy = parent_id.clone();
         // if node is key in goal_info it's an OR node and the others are AND nodes
         if !nodes.contains_key(&parent_id) {
             if deserialized.goals.contains(&parent_id) {
@@ -368,7 +368,6 @@ pub fn argus_to_and_or(path: &PathBuf) {
             }
         }
         for child in children {
-            let mut child_label: String = "".to_string();
             let child_id = child.to_string();
             if !nodes.contains_key(&child_id) {
                 if deserialized.goals.contains(&child_id) {

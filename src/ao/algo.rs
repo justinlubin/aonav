@@ -1,6 +1,6 @@
 use crate::ao::*;
 use indexmap::IndexSet;
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 
 // Graph operations
 
