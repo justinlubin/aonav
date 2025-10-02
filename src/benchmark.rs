@@ -77,8 +77,8 @@ impl Runner {
                 let now = Instant::now();
 
                 let provider1 =
-                    ao_navigation::GreedyAddProvider::new(entry.graph.clone());
-                let provider2 = ao_navigation::GreedyRefineProvider::new(
+                    ao_navigation::NaiveAddProvider::new(entry.graph.clone());
+                let provider2 = ao_navigation::NaiveRefineProvider::new(
                     entry.graph.clone(),
                 );
                 let provider = ao_navigation::CompoundProvider::new(vec![
@@ -108,7 +108,7 @@ impl Runner {
                 };
 
                 let r = BenchmarkResult {
-                    strategy: "greedy-pbn".to_owned(),
+                    strategy: "naive-pbn".to_owned(),
                     name: entry.name.clone(),
                     chosen_solution: i,
                     replicate,

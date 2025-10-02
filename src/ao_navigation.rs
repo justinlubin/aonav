@@ -6,50 +6,19 @@ use indexmap::IndexSet;
 use std::marker::PhantomData;
 
 ////////////////////////////////////////////////////////////////////////////////
-// Basics
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct AxiomSet {
-    pub set: IndexSet<ao::OIdx>,
-}
-
-impl AxiomSet {
-    pub fn ids<A, O>(&self, graph: &ao::Graph<A, O>) -> IndexSet<ao::NodeId> {
-        self.set
-            .iter()
-            .map(|oid| graph.or_at(*oid).id().to_owned())
-            .collect()
-    }
-
-    pub fn show<A, O>(&self, graph: &ao::Graph<A, O>) -> String {
-        if self.set.is_empty() {
-            "∅".to_owned()
-        } else {
-            let mut first = true;
-            let mut s = "".to_owned();
-            for oid in &self.set {
-                let ax = graph.or_at(*oid);
-                s += &format!("{}{}", if first { "{" } else { ", " }, ax);
-                first = false;
-            }
-            s + "}"
-        }
-    }
-}
-
-// TODO implement sorting for axiom sets
+// Expressions
 
 #[derive(Debug, Clone)]
 pub struct Exp<A, O> {
     graph: ao::Graph<A, O>,
-    axioms: AxiomSet,
+    axioms: ao::NodeSet,
 }
 
 impl<A, O> Exp<A, O> {
     pub fn new(graph: ao::Graph<A, O>) -> Self {
         Exp {
             graph,
-            axioms: AxiomSet {
+            axioms: ao::NodeSet {
                 set: IndexSet::new(),
             },
         }
@@ -59,7 +28,7 @@ impl<A, O> Exp<A, O> {
         &self.graph
     }
 
-    pub fn axioms(&self) -> &AxiomSet {
+    pub fn axioms(&self) -> &ao::NodeSet {
         &self.axioms
     }
 }
@@ -70,12 +39,13 @@ impl<A, O> std::fmt::Display for Exp<A, O> {
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////
 // Steps
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Step<A, O> {
     Add(ao::OIdx, PhantomData<(A, O)>),
-    Refine(ao::OIdx, AxiomSet),
+    Refine(ao::OIdx, ao::NodeSet),
 }
 
 impl<A, O> Step<A, O> {
@@ -119,7 +89,8 @@ impl<A: Clone, O: Clone> pbn::Step for Step<A, O> {
 
 // TODO implement sorting for steps
 
-// Checker
+////////////////////////////////////////////////////////////////////////////////
+// Validity checker
 
 pub struct GoalProvable<A, O> {
     graph: ao::Graph<A, O>,
@@ -137,7 +108,7 @@ impl<A: Clone, O: Clone> pbn::ValidityChecker for GoalProvable<A, O> {
     fn check(&self, e: &Self::Exp) -> bool {
         let mut ax_graph = self.graph.clone();
         ax_graph.make_axioms(e.axioms.set.iter().cloned());
-        ax_graph.provable_or_node(ax_graph.goal())
+        ao::algo::provable(&ax_graph, ax_graph.goal())
     }
 }
 
@@ -173,75 +144,21 @@ impl<S: pbn::Step> pbn::StepProvider for CompoundProvider<S> {
 ////////////////////////////////////////////////////////////////////////////////
 // Greedy add provider
 
-pub struct GreedyAddProvider<A, O> {
+pub struct NaiveAddProvider<A, O> {
     phantom: PhantomData<(A, O)>,
-    proper_axiom_sets: Vec<AxiomSet>,
+    proper_axiom_sets: Vec<ao::NodeSet>,
 }
 
-pub fn proper_axiom_sets<A: Clone, O: Clone>(
-    graph: &ao::Graph<A, O>,
-) -> Vec<AxiomSet> {
-    let mut ret: Vec<AxiomSet> = vec![];
-    let mut agenda: Vec<AxiomSet> = vec![AxiomSet {
-        set: IndexSet::new(),
-    }];
-    let or_indexes: Vec<ao::OIdx> = graph.or_indexes().collect();
-
-    while let Some(axs) = agenda.pop() {
-        let mut ax_graph = graph.clone();
-        ax_graph.make_axioms(axs.set.iter().cloned());
-        if ax_graph.provable_or_node(ax_graph.goal()) {
-            let mut new_ret = vec![];
-            let mut should_add = true;
-            for ret_axs in ret {
-                if ret_axs.set.is_subset(&axs.set) {
-                    should_add = false;
-                }
-                if !axs.set.is_subset(&ret_axs.set) {
-                    new_ret.push(ret_axs);
-                }
-            }
-            if should_add {
-                new_ret.push(axs);
-            }
-            ret = new_ret;
-        } else {
-            'label: for o in or_indexes.iter().cloned() {
-                let mut new_axs = axs.clone();
-                if new_axs.set.insert(o) {
-                    for ret_axs in &ret {
-                        if ret_axs.set.is_subset(&new_axs.set) {
-                            continue 'label;
-                        }
-                    }
-                    agenda.push(new_axs);
-                };
-            }
-        }
-    }
-
-    if log::log_enabled!(log::Level::Debug) {
-        let mut msg = "Proper axiom sets: [".to_owned();
-        for ret_axs in &ret {
-            msg += &format!(" {}", ret_axs.show(graph));
-        }
-        msg += " ]";
-        log::debug!("{}", msg);
-    }
-
-    ret
-}
-
-impl<A: Clone, O: Clone> GreedyAddProvider<A, O> {
+impl<A: Clone, O: Clone> NaiveAddProvider<A, O> {
     pub fn new(graph: ao::Graph<A, O>) -> Self {
         Self {
             phantom: PhantomData,
-            proper_axiom_sets: proper_axiom_sets(&graph),
+            proper_axiom_sets: ao::algo::proper_axiom_sets(&graph),
         }
     }
 }
 
-impl<A: Clone, O: Clone> pbn::StepProvider for GreedyAddProvider<A, O> {
+impl<A: Clone, O: Clone> pbn::StepProvider for NaiveAddProvider<A, O> {
     type Step = Step<A, O>;
 
     fn provide(
@@ -262,9 +179,6 @@ impl<A: Clone, O: Clone> pbn::StepProvider for GreedyAddProvider<A, O> {
             .map(|o| Step::Add(o, PhantomData))
             .collect();
 
-        // TODO sort
-        // steps.sort();
-
         Ok(steps)
     }
 }
@@ -272,17 +186,17 @@ impl<A: Clone, O: Clone> pbn::StepProvider for GreedyAddProvider<A, O> {
 ////////////////////////////////////////////////////////////////////////////////
 // Greedy refine provider
 
-pub struct GreedyRefineProvider<A, O> {
+pub struct NaiveRefineProvider<A, O> {
     graph: ao::Graph<A, O>,
 }
 
-impl<A, O> GreedyRefineProvider<A, O> {
+impl<A, O> NaiveRefineProvider<A, O> {
     pub fn new(graph: ao::Graph<A, O>) -> Self {
         Self { graph }
     }
 }
 
-impl<A: Clone, O: Clone> pbn::StepProvider for GreedyRefineProvider<A, O> {
+impl<A: Clone, O: Clone> pbn::StepProvider for NaiveRefineProvider<A, O> {
     type Step = Step<A, O>;
 
     fn provide(
@@ -294,7 +208,7 @@ impl<A: Clone, O: Clone> pbn::StepProvider for GreedyRefineProvider<A, O> {
 
         for x in &e.axioms.set {
             self.graph.set_goal(*x);
-            for axs in proper_axiom_sets(&self.graph) {
+            for axs in ao::algo::proper_axiom_sets(&self.graph) {
                 if axs.set == IndexSet::from([x.clone()]) {
                     continue;
                 }

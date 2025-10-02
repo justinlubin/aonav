@@ -317,3 +317,35 @@ impl<A, O> Graph<A, O> {
         format!("{}", d)
     }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Node sets
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct NodeSet {
+    pub set: IndexSet<OIdx>,
+}
+
+impl NodeSet {
+    pub fn ids<A, O>(&self, graph: &Graph<A, O>) -> IndexSet<NodeId> {
+        self.set
+            .iter()
+            .map(|oid| graph.or_at(*oid).id().to_owned())
+            .collect()
+    }
+
+    pub fn show<A, O>(&self, graph: &Graph<A, O>) -> String {
+        if self.set.is_empty() {
+            "∅".to_owned()
+        } else {
+            let mut first = true;
+            let mut s = "".to_owned();
+            for oid in &self.set {
+                let ax = graph.or_at(*oid);
+                s += &format!("{}{}", if first { "{" } else { ", " }, ax);
+                first = false;
+            }
+            s + "}"
+        }
+    }
+}

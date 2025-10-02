@@ -64,8 +64,8 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
 
     let msg1 = format!(
         "Set of provable OR nodes: {:?}",
-        graph
-            .provable_or_nodes()
+        ao::algo::provable_or_nodes(&graph)
+            .set
             .iter()
             .map(|oid| graph.or_at(*oid))
             .collect::<Vec<_>>()
@@ -77,8 +77,8 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
 
     println!("    {}\n", Yellow.bold().paint(msg2));
 
-    let provider1 = ao_navigation::GreedyAddProvider::new(graph.clone());
-    let provider2 = ao_navigation::GreedyRefineProvider::new(graph.clone());
+    let provider1 = ao_navigation::NaiveAddProvider::new(graph.clone());
+    let provider2 = ao_navigation::NaiveRefineProvider::new(graph.clone());
     let provider = ao_navigation::CompoundProvider::new(vec![
         Box::new(provider1),
         Box::new(provider2),
@@ -152,7 +152,7 @@ pub fn generate_solutions(suite_path: &PathBuf) -> Result<(), String> {
         let graph: ao::Graph<ao::Generic, ao::Generic> = load_ao(&path);
 
         let cs = ChosenSolutions {
-            chosen_solutions: ao_navigation::proper_axiom_sets(&graph)
+            chosen_solutions: ao::algo::proper_axiom_sets(&graph)
                 .into_iter()
                 .map(|axs| axs.ids(&graph))
                 .collect(),
