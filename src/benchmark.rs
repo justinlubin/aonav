@@ -4,6 +4,7 @@ use crate::drivers::{self, Driver};
 use crate::pbn;
 use crate::util::Timer;
 
+use indexmap::IndexSet;
 use instant::{Duration, Instant};
 use rayon::prelude::*;
 use serde::Serialize;
@@ -13,8 +14,8 @@ use std::sync::{Arc, Mutex};
 #[derive(Debug)]
 pub struct BenchmarkEntry {
     pub name: String,
-    pub graph: ao::GenericGraph,
-    pub chosen_solutions: Option<Vec<ao_navigation::AxiomSet>>,
+    pub graph: ao::Graph<ao::Generic, ao::Generic>,
+    pub chosen_solutions: Option<Vec<IndexSet<ao::NodeId>>>,
 }
 
 #[derive(Debug, Clone, Serialize)]
@@ -90,7 +91,7 @@ impl Runner {
                     Timer::finite(self.config.timeout),
                     provider,
                     checker,
-                    ao_navigation::AxiomSet::empty(),
+                    ao_navigation::Exp::new(entry.graph.clone()),
                 );
                 let mut driver = drivers::RandomizedSolutionDrivenDriver::new(
                     solution.clone(),
@@ -101,7 +102,9 @@ impl Runner {
 
                 let (completed, success) = match e {
                     None => (false, false),
-                    Some(e) => (true, e == *solution),
+                    Some(e) => {
+                        (true, e.axioms().ids(&entry.graph) == *solution)
+                    }
                 };
 
                 let r = BenchmarkResult {

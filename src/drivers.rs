@@ -16,20 +16,18 @@ pub trait Driver<S: pbn::Step> {
 ////////////////////////////////////////////////////////////////////////////////
 // CLI Driver
 
-pub struct CliDriver<'a> {
-    graph: &'a ao::GenericGraph,
-}
+pub struct CliDriver;
 
-impl<'a> CliDriver<'a> {
-    pub fn new(graph: &'a ao::GenericGraph) -> Self {
-        Self { graph }
+impl CliDriver {
+    pub fn new() -> Self {
+        Self {}
     }
 }
 
 fn emit_graph(
     name: &str,
-    graph: &ao::GenericGraph,
-    highlighted_nodes: &IndexSet<String>,
+    graph: &ao::Graph<ao::Generic, ao::Generic>,
+    highlighted_nodes: &IndexSet<ao::OIdx>,
 ) {
     let mut dot_file = File::create(format!("out/{}.dot", name)).unwrap();
     write!(&mut dot_file, "{}", graph.dot(&highlighted_nodes)).unwrap();
@@ -43,19 +41,19 @@ fn emit_graph(
         .unwrap();
 }
 
-impl<'a> Driver<ao_navigation::AOStep> for CliDriver<'a> {
+impl Driver<ao_navigation::Step<ao::Generic, ao::Generic>> for CliDriver {
     fn drive(
         &mut self,
-        mut controller: pbn::Controller<ao_navigation::AOStep>,
-    ) -> Option<ao_navigation::AxiomSet> {
+        mut controller: pbn::Controller<
+            ao_navigation::Step<ao::Generic, ao::Generic>,
+        >,
+    ) -> Option<ao_navigation::Exp<ao::Generic, ao::Generic>> {
         let mut round = 0;
 
         loop {
-            emit_graph(
-                "interactive",
-                self.graph,
-                controller.working_expression().nodes(),
-            );
+            let exp = controller.working_expression();
+
+            emit_graph("interactive", exp.graph(), &exp.axioms().set);
 
             round += 1;
 
@@ -73,12 +71,13 @@ impl<'a> Driver<ao_navigation::AOStep> for CliDriver<'a> {
                 "{}\n\n{}\n\n    {}\n\n{}\n",
                 Fixed(8).paint(header),
                 Cyan.bold().paint("Working expression:"),
-                controller.working_expression(),
+                exp,
                 Cyan.bold().paint("Possible next steps:"),
             );
 
             for (i, option) in options.iter().cloned().enumerate() {
-                let option_string = Yellow.paint(format!("{}", option));
+                let option_string =
+                    Yellow.paint(format!("{}", option.show(&exp)));
                 println!("  {}) {}", i + 1, option_string);
             }
 
@@ -145,12 +144,12 @@ impl<'a> Driver<ao_navigation::AOStep> for CliDriver<'a> {
 // Randomized goal-driven driver
 
 pub struct RandomizedSolutionDrivenDriver {
-    solution: ao_navigation::AxiomSet,
+    solution: IndexSet<ao::NodeId>,
     decisions: usize,
 }
 
 impl RandomizedSolutionDrivenDriver {
-    pub fn new(solution: ao_navigation::AxiomSet) -> Self {
+    pub fn new(solution: IndexSet<ao::NodeId>) -> Self {
         Self {
             solution,
             decisions: 0,
@@ -162,14 +161,18 @@ impl RandomizedSolutionDrivenDriver {
     }
 }
 
-impl Driver<ao_navigation::AOStep> for RandomizedSolutionDrivenDriver {
+impl Driver<ao_navigation::Step<ao::Generic, ao::Generic>>
+    for RandomizedSolutionDrivenDriver
+{
     fn drive(
         &mut self,
-        mut controller: pbn::Controller<ao_navigation::AOStep>,
-    ) -> Option<ao_navigation::AxiomSet> {
+        mut controller: pbn::Controller<
+            ao_navigation::Step<ao::Generic, ao::Generic>,
+        >,
+    ) -> Option<ao_navigation::Exp<ao::Generic, ao::Generic>> {
         loop {
             let exp = controller.working_expression();
-            if exp == self.solution {
+            if exp.axioms().ids(exp.graph()) == self.solution {
                 return Some(exp);
             }
 
@@ -179,14 +182,14 @@ impl Driver<ao_navigation::AOStep> for RandomizedSolutionDrivenDriver {
                 .iter()
                 .enumerate()
                 .filter_map(|(i, option)| match &option {
-                    ao_navigation::AOStep::Add(label) => {
-                        if self.solution.contains(label) {
+                    ao_navigation::Step::Add(id, _) => {
+                        if self.solution.contains(exp.graph().or_at(*id).id()) {
                             Some(i)
                         } else {
                             None
                         }
                     }
-                    ao_navigation::AOStep::Refine(_, _) => None,
+                    ao_navigation::Step::Refine(_, _) => None,
                 })
                 .choose(&mut rand::rng())?;
 

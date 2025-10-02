@@ -1,25 +1,149 @@
-// serialize egraph to our and/or format
+use crate::ao::*;
 
-// what are root e-classes and do they matter here
-
-use crate::ao;
 use crate::jgf;
-use crate::jgf::Edge;
-use crate::jgf::Node;
 
 use egg::*;
 use indexmap::IndexMap;
-use log::info;
-use rayon::string;
 use serde::Deserialize;
-use serde_json;
+use serde::{de::DeserializeOwned, Serialize};
 use serde_json::Value;
 use std::collections::HashSet;
-use std::fs;
-use std::hash::RandomState;
-use std::os::unix::process::parent_id;
+use std::fmt::Display;
+use std::fs::File;
+use std::io::prelude::*;
 use std::path::PathBuf;
-use std::{fmt::Display, fs::File, io::prelude::*};
+
+////////////////////////////////////////////////////////////////////////////////
+// JSON Graph Format
+
+impl<A: DeserializeOwned, O: DeserializeOwned> TryFrom<jgf::Graph>
+    for Graph<A, O>
+{
+    type Error = String;
+
+    fn try_from(value: jgf::Graph) -> Result<Self, Self::Error> {
+        let jgf_nodes = value.nodes.ok_or("Missing graph nodes")?;
+        let jgf_edges = value.edges.ok_or("Missing graph edges")?;
+
+        let goal = value
+            .metadata
+            .ok_or("Missing graph metadata")?
+            .get("goal")
+            .ok_or("Missing 'goal' metadata for graph")?
+            .as_str()
+            .ok_or("'goal' metadata for graph is not a string")?
+            .to_owned();
+
+        let mut nodes = vec![];
+
+        for (node_id, node_val) in jgf_nodes {
+            let metadata = node_val
+                .metadata
+                .ok_or(format!("Missing metadata for node '{}'", node_id))?;
+            let data = metadata.get("data").cloned();
+            let node = match metadata
+                .get("kind")
+                .ok_or(format!(
+                    "Missing 'kind' metadata for node '{}'",
+                    node_id
+                ))?
+                .as_str()
+                .ok_or(format!(
+                    "'kind' metadata for node '{}' is not a string",
+                    node_id
+                ))?
+                .to_ascii_uppercase()
+                .as_str()
+            {
+                "AND" => Node::And {
+                    id: node_id.clone(),
+                    label: node_val.label,
+                    data: data.map(|v| serde_json::from_value(v).unwrap()),
+                },
+                "OR" => Node::Or {
+                    id: node_id.clone(),
+                    label: node_val.label,
+                    data: data.map(|v| serde_json::from_value(v).unwrap()),
+                },
+                k => {
+                    return Err(format!(
+                        "Unknown 'kind' metadata '{}' for node '{}'",
+                        k, node_id
+                    ))
+                }
+            };
+            nodes.push(node);
+        }
+
+        Ok(Graph::new(
+            nodes.into_iter(),
+            jgf_edges.into_iter().map(|e| (e.source, e.target)),
+            &goal,
+        )?)
+    }
+}
+
+impl<A: Serialize, O: Serialize> TryFrom<Graph<A, O>> for jgf::Graph {
+    type Error = String;
+
+    fn try_from(ao: Graph<A, O>) -> Result<Self, Self::Error> {
+        let mut nodes = IndexMap::new();
+
+        for node in ao.nodes() {
+            let serialized_data = match node {
+                Node::And { data, .. } => {
+                    serde_json::to_value(data).map_err(|e| {
+                        format!("Error serializing AND data: {}", e)
+                    })?
+                }
+                Node::Or { data, .. } => serde_json::to_value(data)
+                    .map_err(|e| format!("Error serializing OR data: {}", e))?,
+            };
+            nodes.insert(
+                node.id().to_owned(),
+                jgf::Node {
+                    label: node.label().clone(),
+                    metadata: Some(IndexMap::from([
+                        (
+                            "kind".to_owned(),
+                            serde_json::Value::String(node.kind().to_owned()),
+                        ),
+                        ("data".to_owned(), serialized_data),
+                    ])),
+                },
+            );
+        }
+
+        Ok(jgf::Graph {
+            id: None,
+            label: None,
+            directed: true,
+            graph_type: None,
+            metadata: Some(IndexMap::from([(
+                "goal".to_owned(),
+                serde_json::Value::String(ao.or_at(ao.goal()).id().to_owned()),
+            )])),
+            nodes: Some(nodes),
+            edges: Some(
+                ao.edges()
+                    .map(|(source, target)| jgf::Edge {
+                        id: None,
+                        source: source.id().to_owned(),
+                        target: target.id().to_owned(),
+                        relation: None,
+                        directed: true,
+                        label: None,
+                        metadata: None,
+                    })
+                    .collect(),
+            ),
+        })
+    }
+}
+
+// serialize egraph to our and/or format
+
+// what are root e-classes and do they matter here
 
 // create new Graph from args and write to .json
 pub fn new_ao(
@@ -28,8 +152,8 @@ pub fn new_ao(
     directed_arg: bool,
     graph_type_arg: Option<String>,
     metadata_arg: Option<IndexMap<String, serde_json::Value>>,
-    nodes_arg: Option<IndexMap<String, Node>>,
-    edges_arg: Option<Vec<Edge>>,
+    nodes_arg: Option<IndexMap<String, jgf::Node>>,
+    edges_arg: Option<Vec<jgf::Edge>>,
     file_name: &str,
 ) {
     let and_or_g = jgf::Graph {
@@ -189,7 +313,7 @@ where
 
 pub fn es_egraph_to_ao(
     _es_egraph: &egraph_serialize::EGraph,
-) -> ao::Graph<String, String> {
+) -> Graph<String, String> {
     todo!()
 }
 
@@ -201,7 +325,7 @@ struct ArgusData {
 }
 
 pub fn argus_to_and_or(path: &PathBuf) {
-    let json_data = fs::read_to_string(path).expect("Failed to read file");
+    let json_data = std::fs::read_to_string(path).expect("Failed to read file");
     let deserialized: ArgusData =
         serde_json::from_str(&json_data).expect("Failed to deserialize JSON");
 
