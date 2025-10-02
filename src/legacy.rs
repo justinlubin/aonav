@@ -23,32 +23,38 @@ pub type ProofSystem = Vec<Rule>;
 
 pub fn to_ao<A, O>(
     ps: ProofSystem,
-    target: ao::NodeLabel,
+    target: ao::NodeId,
 ) -> crate::ao::Graph<A, O> {
-    let mut ret = ao::Graph::new(target);
     let mut props = IndexSet::new();
+    let mut rules = IndexSet::new();
+    let mut edges = vec![];
     for rule in ps {
-        let aid = ret.add_and_node(rule.name, None);
-
-        let conclusion_oid = if props.insert(rule.conclusion.clone()) {
-            ret.add_or_node(rule.conclusion, None)
-        } else {
-            ret.find_oid(&rule.conclusion)
-        };
-
-        ret.add_or_edge(aid, conclusion_oid);
+        props.insert(rule.conclusion.clone());
+        rules.insert(rule.name.clone());
+        edges.push((rule.conclusion.clone(), rule.name.clone()));
 
         for premise in rule.premises {
-            let oid = if props.insert(premise.clone()) {
-                ret.add_or_node(premise, None)
-            } else {
-                ret.find_oid(&premise)
-            };
-
-            ret.add_and_edge(oid, aid);
+            props.insert(premise.clone());
+            edges.push((rule.name.clone(), premise.clone()));
         }
     }
-    ret
+    ao::Graph::new(
+        props
+            .into_iter()
+            .map(|id| ao::Node::Or {
+                id,
+                label: None,
+                data: None,
+            })
+            .chain(rules.into_iter().map(|id| ao::Node::And {
+                id,
+                label: None,
+                data: None,
+            })),
+        edges.into_iter(),
+        &target,
+    )
+    .unwrap()
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -73,6 +73,7 @@ impl<S: Step> Controller<S> {
         self.state = step.apply(&self.state).unwrap();
     }
 
+    // TODO consider returning reference?
     /// Returns the current working expression
     pub fn working_expression(&self) -> S::Exp {
         self.state.clone()

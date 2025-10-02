@@ -107,100 +107,100 @@
     },
     "edges": [
       {
-        "source": "UncheckedRNAseq",
+        "source": "load",
+        "target": "UncheckedRNAseq"
+      },
+      {
+        "source": "RNAseq",
         "target": "load"
       },
       {
-        "source": "load",
-        "target": "RNAseq"
+        "source": "fastqc",
+        "target": "CheckedRNAseq"
       },
       {
-        "source": "CheckedRNAseq",
+        "source": "UncheckedRNAseq",
         "target": "fastqc"
       },
       {
-        "source": "fastqc",
-        "target": "UncheckedRNAseq"
+        "source": "multiqc",
+        "target": "CheckedRNAseq"
       },
       {
-        "source": "CheckedRNAseq",
+        "source": "UncheckedRNAseq",
         "target": "multiqc"
       },
       {
-        "source": "multiqc",
-        "target": "UncheckedRNAseq"
+        "source": "STAR",
+        "target": "Alignment"
       },
       {
-        "source": "Alignment",
+        "source": "CheckedRNAseq",
         "target": "STAR"
       },
       {
-        "source": "STAR",
-        "target": "CheckedRNAseq"
+        "source": "bowtie2",
+        "target": "Alignment"
       },
       {
-        "source": "Alignment",
+        "source": "CheckedRNAseq",
         "target": "bowtie2"
       },
       {
-        "source": "bowtie2",
-        "target": "CheckedRNAseq"
-      },
-      {
-        "source": "GeneQuantification",
-        "target": "featureCountsGene"
-      },
-      {
         "source": "featureCountsGene",
-        "target": "Alignment"
-      },
-      {
-        "source": "TranscriptQuantification",
-        "target": "featureCountsTranscript"
-      },
-      {
-        "source": "featureCountsTranscript",
-        "target": "Alignment"
-      },
-      {
-        "source": "TranscriptQuantification",
-        "target": "kallisto"
-      },
-      {
-        "source": "kallisto",
-        "target": "CheckedRNAseq"
-      },
-      {
-        "source": "TranscriptQuantification",
-        "target": "salmon"
-      },
-      {
-        "source": "salmon",
-        "target": "CheckedRNAseq"
-      },
-      {
-        "source": "DifferentialGeneExpression",
-        "target": "deseq2"
-      },
-      {
-        "source": "deseq2",
         "target": "GeneQuantification"
       },
       {
-        "source": "DifferentialGeneExpression",
-        "target": "limma"
+        "source": "Alignment",
+        "target": "featureCountsGene"
+      },
+      {
+        "source": "featureCountsTranscript",
+        "target": "TranscriptQuantification"
+      },
+      {
+        "source": "Alignment",
+        "target": "featureCountsTranscript"
+      },
+      {
+        "source": "kallisto",
+        "target": "TranscriptQuantification"
+      },
+      {
+        "source": "CheckedRNAseq",
+        "target": "kallisto"
+      },
+      {
+        "source": "salmon",
+        "target": "TranscriptQuantification"
+      },
+      {
+        "source": "CheckedRNAseq",
+        "target": "salmon"
+      },
+      {
+        "source": "deseq2",
+        "target": "DifferentialGeneExpression"
+      },
+      {
+        "source": "GeneQuantification",
+        "target": "deseq2"
       },
       {
         "source": "limma",
-        "target": "Quantification"
+        "target": "DifferentialGeneExpression"
       },
       {
-        "source": "DifferentialGeneExpression",
-        "target": "edgeR"
+        "source": "Quantification",
+        "target": "limma"
       },
       {
         "source": "edgeR",
-        "target": "Quantification"
+        "target": "DifferentialGeneExpression"
+      },
+      {
+        "source": "Quantification",
+        "target": "edgeR"
       }
     ]
   }

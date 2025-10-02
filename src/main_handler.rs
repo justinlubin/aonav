@@ -1,7 +1,6 @@
 use crate::ao;
 use crate::ao_navigation;
 use crate::benchmark;
-use crate::convert;
 use crate::drivers::{self, Driver};
 use crate::jgf;
 use crate::pbn;
@@ -34,23 +33,16 @@ impl std::str::FromStr for ConversionInputFormat {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ChosenSolutions {
-    pub chosen_solutions: Vec<Vec<String>>,
+    pub chosen_solutions: Vec<IndexSet<ao::NodeId>>,
 }
 
-fn load_chosen_solutions(
-    path: &PathBuf,
-) -> Option<Vec<ao_navigation::AxiomSet>> {
+fn load_chosen_solutions(path: &PathBuf) -> Option<Vec<IndexSet<ao::NodeId>>> {
     let json_string = match std::fs::read_to_string(path) {
         Ok(s) => s,
         Err(_) => return None,
     };
     let cs: ChosenSolutions = serde_json::from_str(&json_string).unwrap();
-    Some(
-        cs.chosen_solutions
-            .into_iter()
-            .map(ao_navigation::AxiomSet::from_vec)
-            .collect(),
-    )
+    Some(cs.chosen_solutions)
 }
 
 fn load_ao<A: DeserializeOwned, O: DeserializeOwned>(
@@ -68,20 +60,20 @@ fn load_ao<A: DeserializeOwned, O: DeserializeOwned>(
 }
 
 pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
-    let graph: ao::GenericGraph = load_ao(graph_path);
+    let graph: ao::Graph<ao::Generic, ao::Generic> = load_ao(graph_path);
 
     let msg1 = format!(
         "Set of provable OR nodes: {:?}",
         graph
             .provable_or_nodes()
             .iter()
-            .map(|oid| graph.or_label(*oid))
+            .map(|oid| graph.or_at(*oid))
             .collect::<Vec<_>>()
     );
 
     println!("\n    {}", Yellow.bold().paint(msg1));
 
-    let msg2 = format!("Goal is: {}", graph.or_label(graph.goal_oid()));
+    let msg2 = format!("Goal is: {}", graph.or_at(graph.goal()));
 
     println!("    {}\n", Yellow.bold().paint(msg2));
 
@@ -97,10 +89,10 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
         Timer::infinite(),
         provider,
         checker,
-        ao_navigation::AxiomSet::empty(),
+        ao_navigation::Exp::new(graph),
     );
 
-    let mut driver = drivers::CliDriver::new(&graph);
+    let mut driver = drivers::CliDriver::new();
     let _ = driver.drive(controller);
 
     Ok(())
@@ -157,12 +149,12 @@ pub fn generate_solutions(suite_path: &PathBuf) -> Result<(), String> {
             continue;
         }
 
-        let graph: ao::GenericGraph = load_ao(&path);
+        let graph: ao::Graph<ao::Generic, ao::Generic> = load_ao(&path);
 
         let cs = ChosenSolutions {
             chosen_solutions: ao_navigation::proper_axiom_sets(&graph)
                 .into_iter()
-                .map(|axs| axs.to_vec())
+                .map(|axs| axs.ids(&graph))
                 .collect(),
         };
 
@@ -183,14 +175,18 @@ pub fn convert(
         ConversionInputFormat::EGraphSerialize => {
             let es_egraph =
                 egraph_serialize::EGraph::from_json_file(path).unwrap();
-            let ao = convert::es_egraph_to_ao(&es_egraph);
-            let jgf = jgf::Data::Single { graph: ao.into() };
+            let ao = ao::convert::es_egraph_to_ao(&es_egraph);
+            let jgf = jgf::Data::Single {
+                graph: ao.try_into()?,
+            };
             println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
             Ok(())
         }
         ConversionInputFormat::AOJsonGraph => {
-            let ao: ao::GenericGraph = load_ao(path);
-            let jgf = jgf::Data::Single { graph: ao.into() };
+            let ao: ao::Graph<ao::Generic, ao::Generic> = load_ao(path);
+            let jgf = jgf::Data::Single {
+                graph: ao.try_into()?,
+            };
             println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
             Ok(())
         }
@@ -203,9 +199,11 @@ pub fn convert(
                     .unwrap();
             let goal = lines.remove(0).trim().to_owned();
             let proof_system = crate::legacy::proof_system(&lines);
-            let ao: ao::Graph<(), ()> =
+            let ao: ao::Graph<ao::Generic, ao::Generic> =
                 crate::legacy::to_ao(proof_system, goal);
-            let jgf = jgf::Data::Single { graph: ao.into() };
+            let jgf = jgf::Data::Single {
+                graph: ao.try_into()?,
+            };
             println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
             Ok(())
         }
@@ -215,7 +213,7 @@ pub fn convert(
 pub fn render(path: &PathBuf) -> Result<(), String> {
     let outdir = Path::new("out/");
 
-    let ao: ao::GenericGraph = load_ao(path);
+    let ao: ao::Graph<ao::Generic, ao::Generic> = load_ao(path);
 
     let dot_path = outdir.join("RENDERED.dot");
     let mut dot_file = File::create(dot_path.clone()).unwrap();
