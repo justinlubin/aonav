@@ -308,7 +308,7 @@ impl<A, O> Graph<A, O> {
         let d = petgraph::dot::Dot::with_attr_getters(
             &self.pg,
             &[petgraph::dot::Config::EdgeNoLabel],
-            &|g, e| match g[e.target()] {
+            &|g, e| match g[e.source()] {
                 Node::And { .. } => "color=red".to_string(),
                 Node::Or { .. } => "color=blue, style=dashed".to_string(),
             },
