@@ -53,7 +53,7 @@ impl Driver<ao_navigation::Step<ao::Generic, ao::Generic>> for CliDriver {
         loop {
             let exp = controller.working_expression();
 
-            emit_graph("interactive", exp.graph(), &exp.axioms().set);
+            emit_graph("interactive", exp.graph(), &exp.committed().set);
 
             round += 1;
 
@@ -172,7 +172,7 @@ impl Driver<ao_navigation::Step<ao::Generic, ao::Generic>>
     ) -> Option<ao_navigation::Exp<ao::Generic, ao::Generic>> {
         loop {
             let exp = controller.working_expression();
-            if exp.axioms().ids(exp.graph()) == self.solution {
+            if exp.committed().ids(exp.graph()) == self.solution {
                 return Some(exp);
             }
 
@@ -189,7 +189,7 @@ impl Driver<ao_navigation::Step<ao::Generic, ao::Generic>>
                             None
                         }
                     }
-                    ao_navigation::Step::Refine(_, _) => None,
+                    _ => None,
                 })
                 .choose(&mut rand::rng())?;
 

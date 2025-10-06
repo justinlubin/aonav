@@ -76,8 +76,9 @@ impl Runner {
             for replicate in 0..self.config.replicates {
                 let now = Instant::now();
 
-                let provider1 =
-                    ao_navigation::NaiveAddProvider::new(entry.graph.clone());
+                let provider1 = ao_navigation::CommittalAddProvider::new(
+                    entry.graph.clone(),
+                );
                 let provider2 = ao_navigation::NaiveRefineProvider::new(
                     entry.graph.clone(),
                 );
@@ -103,7 +104,7 @@ impl Runner {
                 let (completed, success) = match e {
                     None => (false, false),
                     Some(e) => {
-                        (true, e.axioms().ids(&entry.graph) == *solution)
+                        (true, e.committed().ids(&entry.graph) == *solution)
                     }
                 };
 

@@ -87,3 +87,12 @@ pub fn proper_axiom_sets<A: Clone, O: Clone>(
 
     ret
 }
+
+pub fn provable_with<A: Clone, O: Clone>(
+    graph: &Graph<A, O>,
+    axioms: &NodeSet,
+) -> bool {
+    let mut ax_graph = graph.clone();
+    ax_graph.make_axioms(axioms.set.iter().cloned());
+    provable(&ax_graph, ax_graph.goal())
+}

@@ -77,7 +77,7 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
 
     println!("    {}\n", Yellow.bold().paint(msg2));
 
-    let provider1 = ao_navigation::NaiveAddProvider::new(graph.clone());
+    let provider1 = ao_navigation::CommittalAddProvider::new(graph.clone());
     let provider2 = ao_navigation::NaiveRefineProvider::new(graph.clone());
     let provider = ao_navigation::CompoundProvider::new(vec![
         Box::new(provider1),
