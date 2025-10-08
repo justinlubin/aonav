@@ -1,5 +1,5 @@
 use crate::ao;
-use crate::ao_navigation;
+use crate::navigation;
 use crate::pbn;
 
 use ansi_term::Color::*;
@@ -41,13 +41,13 @@ fn emit_graph(
         .unwrap();
 }
 
-impl Driver<ao_navigation::Step<ao::Generic, ao::Generic>> for CliDriver {
+impl Driver<navigation::Step<ao::Generic, ao::Generic>> for CliDriver {
     fn drive(
         &mut self,
         mut controller: pbn::Controller<
-            ao_navigation::Step<ao::Generic, ao::Generic>,
+            navigation::Step<ao::Generic, ao::Generic>,
         >,
-    ) -> Option<ao_navigation::Exp<ao::Generic, ao::Generic>> {
+    ) -> Option<navigation::Exp<ao::Generic, ao::Generic>> {
         let mut round = 0;
 
         loop {
@@ -161,15 +161,15 @@ impl RandomizedSolutionDrivenDriver {
     }
 }
 
-impl Driver<ao_navigation::Step<ao::Generic, ao::Generic>>
+impl Driver<navigation::Step<ao::Generic, ao::Generic>>
     for RandomizedSolutionDrivenDriver
 {
     fn drive(
         &mut self,
         mut controller: pbn::Controller<
-            ao_navigation::Step<ao::Generic, ao::Generic>,
+            navigation::Step<ao::Generic, ao::Generic>,
         >,
-    ) -> Option<ao_navigation::Exp<ao::Generic, ao::Generic>> {
+    ) -> Option<navigation::Exp<ao::Generic, ao::Generic>> {
         loop {
             let exp = controller.working_expression();
             if exp.committed().ids(exp.graph()) == self.solution {
@@ -182,7 +182,7 @@ impl Driver<ao_navigation::Step<ao::Generic, ao::Generic>>
                 .iter()
                 .enumerate()
                 .filter_map(|(i, option)| match &option {
-                    ao_navigation::Step::Add(id, _) => {
+                    navigation::Step::Add(id, _) => {
                         if self.solution.contains(exp.graph().or_at(*id).id()) {
                             Some(i)
                         } else {

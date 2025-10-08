@@ -1,5 +1,5 @@
 use crate::ao;
-use crate::ao_navigation;
+use crate::navigation;
 use crate::drivers::{self, Driver};
 use crate::pbn;
 use crate::util::Timer;
@@ -76,23 +76,23 @@ impl Runner {
             for replicate in 0..self.config.replicates {
                 let now = Instant::now();
 
-                let provider1 = ao_navigation::CommittalAddProvider::new(
+                let provider1 = navigation::CommittalAddProvider::new(
                     entry.graph.clone(),
                 );
-                let provider2 = ao_navigation::NaiveRefineProvider::new(
+                let provider2 = navigation::NaiveRefineProvider::new(
                     entry.graph.clone(),
                 );
-                let provider = ao_navigation::CompoundProvider::new(vec![
+                let provider = navigation::CompoundProvider::new(vec![
                     Box::new(provider1),
                     Box::new(provider2),
                 ]);
                 let checker =
-                    ao_navigation::GoalProvable::new(entry.graph.clone());
+                    navigation::GoalProvable::new(entry.graph.clone());
                 let controller = pbn::Controller::new(
                     Timer::finite(self.config.timeout),
                     provider,
                     checker,
-                    ao_navigation::Exp::new(entry.graph.clone()),
+                    navigation::Exp::new(entry.graph.clone()),
                 );
                 let mut driver = drivers::RandomizedSolutionDrivenDriver::new(
                     solution.clone(),

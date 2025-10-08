@@ -1,5 +1,5 @@
 use crate::ao;
-use crate::ao_navigation;
+use crate::navigation;
 use crate::benchmark;
 use crate::drivers::{self, Driver};
 use crate::jgf;
@@ -77,19 +77,19 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
 
     println!("    {}\n", Yellow.bold().paint(msg2));
 
-    let provider1 = ao_navigation::CommittalAddProvider::new(graph.clone());
-    let provider2 = ao_navigation::NaiveRefineProvider::new(graph.clone());
-    let provider = ao_navigation::CompoundProvider::new(vec![
+    let provider1 = navigation::CommittalAddProvider::new(graph.clone());
+    let provider2 = navigation::NaiveRefineProvider::new(graph.clone());
+    let provider = navigation::CompoundProvider::new(vec![
         Box::new(provider1),
         Box::new(provider2),
     ]);
-    let checker = ao_navigation::GoalProvable::new(graph.clone());
+    let checker = navigation::GoalProvable::new(graph.clone());
 
     let controller = pbn::Controller::new(
         Timer::infinite(),
         provider,
         checker,
-        ao_navigation::Exp::new(graph),
+        navigation::Exp::new(graph),
     );
 
     let mut driver = drivers::CliDriver::new();
