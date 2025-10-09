@@ -1,8 +1,8 @@
 use crate::ao;
-use crate::navigation;
 use crate::benchmark;
 use crate::drivers::{self, Driver};
 use crate::jgf;
+use crate::navigation;
 use crate::pbn;
 use crate::util::Timer;
 
@@ -77,13 +77,15 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
 
     println!("    {}\n", Yellow.bold().paint(msg2));
 
-    let provider1 = navigation::CommittalAddProvider::new(graph.clone());
-    let provider2 = navigation::NaiveRefineProvider::new(graph.clone());
+    let provider1 = navigation::CommittalAddProvider::new();
+    let provider2 = navigation::CompleteRefineProvider::new();
+    let provider3 = navigation::ArbitrarySubsetCommitProvider::new();
     let provider = navigation::CompoundProvider::new(vec![
         Box::new(provider1),
         Box::new(provider2),
+        Box::new(provider3),
     ]);
-    let checker = navigation::GoalProvable::new(graph.clone());
+    let checker = navigation::GoalProvable::new();
 
     let controller = pbn::Controller::new(
         Timer::infinite(),

@@ -255,7 +255,7 @@ impl<A, O> Graph<A, O> {
     }
 
     pub fn or_data_ref(&self, o: OIdx) -> Option<&O> {
-        match &mut self.pg[o.0] {
+        match &self.pg[o.0] {
             Node::Or { data, .. } => data.as_ref(),
             _ => panic!("OR-index is not valid"),
         }

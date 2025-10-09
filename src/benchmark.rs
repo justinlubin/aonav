@@ -1,6 +1,6 @@
 use crate::ao;
-use crate::navigation;
 use crate::drivers::{self, Driver};
+use crate::navigation;
 use crate::pbn;
 use crate::util::Timer;
 
@@ -76,18 +76,8 @@ impl Runner {
             for replicate in 0..self.config.replicates {
                 let now = Instant::now();
 
-                let provider1 = navigation::CommittalAddProvider::new(
-                    entry.graph.clone(),
-                );
-                let provider2 = navigation::NaiveRefineProvider::new(
-                    entry.graph.clone(),
-                );
-                let provider = navigation::CompoundProvider::new(vec![
-                    Box::new(provider1),
-                    Box::new(provider2),
-                ]);
-                let checker =
-                    navigation::GoalProvable::new(entry.graph.clone());
+                let provider = navigation::CommittalAddProvider::new();
+                let checker = navigation::GoalProvable::new();
                 let controller = pbn::Controller::new(
                     Timer::finite(self.config.timeout),
                     provider,
@@ -104,7 +94,7 @@ impl Runner {
                 let (completed, success) = match e {
                     None => (false, false),
                     Some(e) => {
-                        (true, e.committed().ids(&entry.graph) == *solution)
+                        (true, e.committed().ids(e.graph()) == *solution)
                     }
                 };
 

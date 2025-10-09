@@ -24,13 +24,11 @@ impl CliDriver {
     }
 }
 
-fn emit_graph(
-    name: &str,
-    graph: &ao::Graph<ao::Generic, ao::Generic>,
-    highlighted_nodes: &IndexSet<ao::OIdx>,
-) {
+fn emit_graph(name: &str, e: &navigation::Exp<ao::Generic, ao::Generic>) {
+    let highlighted_nodes = e.committed().set;
+
     let mut dot_file = File::create(format!("out/{}.dot", name)).unwrap();
-    write!(&mut dot_file, "{}", graph.dot(&highlighted_nodes)).unwrap();
+    write!(&mut dot_file, "{}", e.graph().dot(&highlighted_nodes)).unwrap();
 
     let pdf_file = File::create(format!("out/{}.pdf", name)).unwrap();
     let _ = Command::new("dot")
@@ -53,7 +51,7 @@ impl Driver<navigation::Step<ao::Generic, ao::Generic>> for CliDriver {
         loop {
             let exp = controller.working_expression();
 
-            emit_graph("interactive", exp.graph(), &exp.committed().set);
+            emit_graph("interactive", &exp);
 
             round += 1;
 
@@ -182,7 +180,14 @@ impl Driver<navigation::Step<ao::Generic, ao::Generic>>
                 .iter()
                 .enumerate()
                 .filter_map(|(i, option)| match &option {
-                    navigation::Step::Add(id, _) => {
+                    navigation::Step::SetClass(
+                        id,
+                        navigation::PartitionClass::ShouldBeTrue {
+                            will_provide: true,
+                            force_use: true,
+                        },
+                        _,
+                    ) => {
                         if self.solution.contains(exp.graph().or_at(*id).id()) {
                             Some(i)
                         } else {

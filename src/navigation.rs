@@ -17,7 +17,8 @@ use std::marker::PhantomData;
 // T*: T + user will provide an impl
 // T!*: T! + user will provide an impl
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
-enum PartitionClass {
+#[allow(dead_code)]
+pub enum PartitionClass {
     // U
     Unseen,
 
@@ -35,6 +36,7 @@ enum PartitionClass {
 }
 
 impl PartitionClass {
+    #[allow(dead_code)]
     pub fn all() -> &'static [PartitionClass] {
         &[
             Self::Unseen,
@@ -71,6 +73,15 @@ impl PartitionClass {
         }
     }
 
+    pub fn provided(&self) -> bool {
+        match self {
+            PartitionClass::ShouldBeTrue { will_provide, .. } => *will_provide,
+            PartitionClass::Unseen
+            | PartitionClass::Unknown
+            | PartitionClass::ShouldBeFalse => false,
+        }
+    }
+
     pub fn shorthand(&self) -> &str {
         match self {
             Self::Unseen => "U",
@@ -98,13 +109,14 @@ impl PartitionClass {
 
 #[derive(Debug, Clone)]
 pub struct Partitioned<T> {
+    #[allow(dead_code)]
     data: T,
     class: PartitionClass,
 }
 
 #[derive(Debug, Clone)]
 pub struct Exp<A, O> {
-    graph: ao::Graph<A, Partitioned<O>>,
+    graph: ao::Graph<A, Partitioned<Option<O>>>,
 }
 
 impl<A: Clone, O: Clone> Exp<A, O> {
@@ -112,8 +124,8 @@ impl<A: Clone, O: Clone> Exp<A, O> {
         Exp {
             graph: graph.map(
                 |o| {
-                    o.map(|data| Partitioned {
-                        data: data.clone(),
+                    Some(Partitioned {
+                        data: o.cloned(),
                         class: PartitionClass::Unseen,
                     })
                 },
@@ -122,7 +134,7 @@ impl<A: Clone, O: Clone> Exp<A, O> {
         }
     }
 
-    pub fn graph(&self) -> &ao::Graph<A, Partitioned<O>> {
+    pub fn graph(&self) -> &ao::Graph<A, Partitioned<Option<O>>> {
         &self.graph
     }
 
@@ -133,6 +145,18 @@ impl<A: Clone, O: Clone> Exp<A, O> {
                 .or_indexes()
                 .filter(|oidx| {
                     self.graph.or_data_ref(*oidx).unwrap().class.committed()
+                })
+                .collect(),
+        }
+    }
+
+    pub fn provided(&self) -> ao::NodeSet {
+        ao::NodeSet {
+            set: self
+                .graph
+                .or_indexes()
+                .filter(|oidx| {
+                    self.graph.or_data_ref(*oidx).unwrap().class.provided()
                 })
                 .collect(),
         }
@@ -240,12 +264,14 @@ impl<A: Clone, O: Clone> pbn::Step for Step<A, O> {
 // Validity checker
 
 pub struct GoalProvable<A, O> {
-    graph: ao::Graph<A, O>,
+    phantom: PhantomData<(A, O)>,
 }
 
 impl<A, O> GoalProvable<A, O> {
-    pub fn new(graph: ao::Graph<A, O>) -> Self {
-        Self { graph }
+    pub fn new() -> Self {
+        Self {
+            phantom: PhantomData,
+        }
     }
 }
 
@@ -253,7 +279,7 @@ impl<A: Clone, O: Clone> pbn::ValidityChecker for GoalProvable<A, O> {
     type Exp = Exp<A, O>;
 
     fn check(&self, e: &Self::Exp) -> bool {
-        ao::algo::provable_with(&self.graph, &e.committed())
+        ao::algo::provable_with(&e.graph, &e.committed())
     }
 }
 
@@ -293,17 +319,26 @@ pub enum CommittalAddAlgorithm {
     Naive,
 }
 
+impl CommittalAddAlgorithm {
+    pub fn proper_axiom_sets<A: Clone, O: Clone>(
+        &self,
+        graph: &ao::Graph<A, O>,
+    ) -> Vec<ao::NodeSet> {
+        match self {
+            CommittalAddAlgorithm::Naive => ao::algo::proper_axiom_sets(graph),
+        }
+    }
+}
+
 pub struct CommittalAddProvider<A, O> {
     phantom: PhantomData<(A, O)>,
-    proper_axiom_sets: Vec<ao::NodeSet>,
     algorithm: CommittalAddAlgorithm,
 }
 
 impl<A: Clone, O: Clone> CommittalAddProvider<A, O> {
-    pub fn new(graph: ao::Graph<A, O>) -> Self {
+    pub fn new() -> Self {
         Self {
             phantom: PhantomData,
-            proper_axiom_sets: ao::algo::proper_axiom_sets(&graph),
             algorithm: CommittalAddAlgorithm::Naive,
         }
     }
@@ -320,7 +355,7 @@ impl<A: Clone, O: Clone> pbn::StepProvider for CommittalAddProvider<A, O> {
         let mut next_labels = IndexSet::new();
 
         let committed = e.committed();
-        for axs in &self.proper_axiom_sets {
+        for axs in &self.algorithm.proper_axiom_sets(e.graph()) {
             if committed.set.is_subset(&axs.set) {
                 next_labels.extend(axs.set.difference(&committed.set).cloned())
             }
@@ -345,20 +380,21 @@ impl<A: Clone, O: Clone> pbn::StepProvider for CommittalAddProvider<A, O> {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Naive refine provider
-// Note: Only operates on allowed set, so requires some form of CommitProvider!
+// Complete refine provider
 
-pub struct NaiveRefineProvider<A, O> {
-    graph: ao::Graph<A, O>,
+pub struct CompleteRefineProvider<A, O> {
+    phantom: PhantomData<(A, O)>,
 }
 
-impl<A, O> NaiveRefineProvider<A, O> {
-    pub fn new(graph: ao::Graph<A, O>) -> Self {
-        Self { graph }
+impl<A, O> CompleteRefineProvider<A, O> {
+    pub fn new() -> Self {
+        Self {
+            phantom: PhantomData,
+        }
     }
 }
 
-impl<A: Clone, O: Clone> pbn::StepProvider for NaiveRefineProvider<A, O> {
+impl<A: Clone, O: Clone> pbn::StepProvider for CompleteRefineProvider<A, O> {
     type Step = Step<A, O>;
 
     fn provide(
@@ -368,13 +404,14 @@ impl<A: Clone, O: Clone> pbn::StepProvider for NaiveRefineProvider<A, O> {
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut steps = vec![];
 
-        for x in &e.allowed.set {
-            self.graph.set_goal(*x);
-            for axs in ao::algo::proper_axiom_sets(&self.graph) {
-                if axs.set == IndexSet::from([x.clone()]) {
+        for x in e.committed().set {
+            let mut g = e.graph.clone();
+            g.set_goal(x);
+            for axs in ao::algo::proper_axiom_sets(&g) {
+                if axs.set == IndexSet::from([x]) {
                     continue;
                 }
-                steps.push(Step::Refine(*x, axs))
+                steps.push(Step::Refine(x, axs))
             }
         }
 
@@ -383,40 +420,7 @@ impl<A: Clone, O: Clone> pbn::StepProvider for NaiveRefineProvider<A, O> {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Basic commit provider
-
-pub struct BasicCommitProvider<A, O> {
-    phantom: PhantomData<(A, O)>,
-}
-
-impl<A, O> BasicCommitProvider<A, O> {
-    pub fn new() -> Self {
-        Self {
-            phantom: PhantomData,
-        }
-    }
-}
-
-impl<A: Clone, O: Clone> pbn::StepProvider for BasicCommitProvider<A, O> {
-    type Step = Step<A, O>;
-
-    fn provide(
-        &mut self,
-        _timer: &Timer,
-        e: &Exp<A, O>,
-    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
-        let mut steps = vec![];
-
-        for x in &e.allowed.set {
-            steps.push(Step::Commit(*x))
-        }
-
-        Ok(steps)
-    }
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// Basic commit provider
+// Arbitrary subset commit provider
 
 pub struct ArbitrarySubsetCommitProvider<A, O> {
     phantom: PhantomData<(A, O)>,
@@ -440,29 +444,46 @@ impl<A: Clone, O: Clone> pbn::StepProvider
         _timer: &Timer,
         e: &Exp<A, O>,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
-        if !ao::algo::provable_with(&e.graph, &e.committed) {
+        let committed = e.committed();
+
+        if ao::algo::provable_with(&e.graph, &committed) {
             return Ok(vec![]);
         }
 
-        let mut subset = e.committed.clone();
+        let mut subset = e.provided();
+
+        if !ao::algo::provable_with(&e.graph, &subset) {
+            return Ok(vec![]);
+        }
 
         'fixpoint: loop {
             for x in &subset.set {
-                let mut candidate = subset.clone();
-                candidate.set.swap_remove(x);
-                if ao::algo::provable_with(&e.graph, &candidate) {
-                    subset = candidate;
-                    continue 'fixpoint;
+                let c = e.graph.or_data_ref(*x).unwrap().class;
+                if c.provided() && !c.committed() {
+                    let mut candidate = subset.clone();
+                    candidate.set.swap_remove(x);
+                    if ao::algo::provable_with(&e.graph, &candidate) {
+                        subset = candidate;
+                        continue 'fixpoint;
+                    }
                 }
             }
             break;
         }
 
-        let step =
-            match Step::sequence(subset.set.into_iter().map(Step::Commit)) {
-                Some(x) => x,
-                None => return Ok(vec![]),
-            };
+        let step = match Step::sequence(subset.set.into_iter().map(|oid| {
+            Step::SetClass(
+                oid,
+                PartitionClass::ShouldBeTrue {
+                    will_provide: true,
+                    force_use: true,
+                },
+                PhantomData,
+            )
+        })) {
+            Some(x) => x,
+            None => return Ok(vec![]),
+        };
 
         Ok(vec![step])
     }
