@@ -324,6 +324,22 @@ impl<A, O> Graph<A, O> {
         }
     }
 
+    pub fn force_false(&mut self, oidx: OIdx) {
+        for aidx in self.providers(oidx).collect::<Vec<_>>() {
+            let _ = self.pg.remove_node(aidx.0);
+        }
+        for aidx in self.consumers(oidx).collect::<Vec<_>>() {
+            let _ = self.pg.remove_node(aidx.0);
+        }
+        self.pg.remove_node(oidx.0);
+    }
+
+    pub fn force_all_false(&mut self, oidxs: impl Iterator<Item = OIdx>) {
+        for o in oidxs {
+            self.force_false(o)
+        }
+    }
+
     // DOT formatting
 
     fn node_format(
@@ -374,6 +390,18 @@ pub struct NodeSet {
 }
 
 impl NodeSet {
+    pub fn new() -> Self {
+        NodeSet {
+            set: IndexSet::new(),
+        }
+    }
+
+    pub fn singleton(oidx: OIdx) -> Self {
+        NodeSet {
+            set: IndexSet::from([oidx]),
+        }
+    }
+
     pub fn ids<A, O>(&self, graph: &Graph<A, O>) -> IndexSet<NodeId> {
         self.set
             .iter()

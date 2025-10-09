@@ -2,6 +2,7 @@ use crate::ao;
 use crate::benchmark;
 use crate::drivers::{self, Driver};
 use crate::jgf;
+use crate::menu;
 use crate::navigation;
 use crate::pbn;
 use crate::util::Timer;
@@ -59,7 +60,10 @@ fn load_ao<A: DeserializeOwned, O: DeserializeOwned>(
     graph.try_into().unwrap()
 }
 
-pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
+pub fn interact(
+    graph_path: &PathBuf,
+    providers: &Vec<menu::Provider>,
+) -> Result<(), String> {
     let graph: ao::Graph<ao::Generic, ao::Generic> = load_ao(graph_path);
 
     let msg1 = format!(
@@ -77,14 +81,9 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
 
     println!("    {}\n", Yellow.bold().paint(msg2));
 
-    let provider1 = navigation::CommittalAddProvider::new();
-    let provider2 = navigation::CompleteRefineProvider::new();
-    let provider3 = navigation::ArbitrarySubsetCommitProvider::new();
-    let provider = navigation::CompoundProvider::new(vec![
-        Box::new(provider1),
-        Box::new(provider2),
-        Box::new(provider3),
-    ]);
+    let provider = navigation::CompoundProvider::new(
+        providers.iter().map(|p| p.provider()).collect(),
+    );
     let checker = navigation::GoalProvable::new();
 
     let controller = pbn::Controller::new(
@@ -154,7 +153,7 @@ pub fn generate_solutions(suite_path: &PathBuf) -> Result<(), String> {
         let graph: ao::Graph<ao::Generic, ao::Generic> = load_ao(&path);
 
         let cs = ChosenSolutions {
-            chosen_solutions: ao::algo::proper_axiom_sets(&graph)
+            chosen_solutions: ao::algo::proper_axiom_sets(&graph, graph.goal())
                 .into_iter()
                 .map(|axs| axs.ids(&graph))
                 .collect(),

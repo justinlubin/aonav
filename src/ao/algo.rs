@@ -30,12 +30,13 @@ pub fn provable_or_nodes<A, O>(graph: &Graph<A, O>) -> NodeSet {
 }
 
 // TODO switch to using backward reasoning
-pub fn provable<A, O>(graph: &Graph<A, O>, oid: OIdx) -> bool {
+fn provable<A, O>(graph: &Graph<A, O>, oid: OIdx) -> bool {
     provable_or_nodes(graph).set.contains(&oid)
 }
 
 pub fn proper_axiom_sets<A: Clone, O: Clone>(
     graph: &Graph<A, O>,
+    oid: OIdx,
 ) -> Vec<NodeSet> {
     let mut ret: Vec<NodeSet> = vec![];
     let mut agenda: Vec<NodeSet> = vec![NodeSet {
@@ -46,7 +47,7 @@ pub fn proper_axiom_sets<A: Clone, O: Clone>(
     while let Some(axs) = agenda.pop() {
         let mut ax_graph = graph.clone();
         ax_graph.make_axioms(axs.set.iter().cloned());
-        if provable(&ax_graph, ax_graph.goal()) {
+        if provable(&ax_graph, oid) {
             let mut new_ret = vec![];
             let mut should_add = true;
             for ret_axs in ret {
@@ -86,13 +87,4 @@ pub fn proper_axiom_sets<A: Clone, O: Clone>(
     }
 
     ret
-}
-
-pub fn provable_with<A: Clone, O: Clone>(
-    graph: &Graph<A, O>,
-    axioms: &NodeSet,
-) -> bool {
-    let mut ax_graph = graph.clone();
-    ax_graph.make_axioms(axioms.set.iter().cloned());
-    provable(&ax_graph, ax_graph.goal())
 }

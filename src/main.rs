@@ -1,4 +1,5 @@
 use under::main_handler;
+use under::menu;
 
 use ansi_term::Color::*;
 use clap::{builder::styling::*, Parser, Subcommand};
@@ -13,6 +14,14 @@ fn styles() -> Styles {
         .valid(AnsiColor::Green.on_default())
         .invalid(AnsiColor::Yellow.on_default())
 }
+
+// fn providers_parser(s: &str) -> Result<Vec<menu::Provider>, String> {
+//     let mut ret = vec![];
+//     for p in s.split(",") {
+//         ret.push(p.try_into()?)
+//     }
+//     Ok(ret)
+// }
 
 #[derive(Parser)]
 #[command(
@@ -35,6 +44,17 @@ enum Command {
         /// The AND-OR graph to use (.json)
         #[arg(value_name = "FILE")]
         graph: PathBuf,
+
+        /// Comma-separated list of providers to (options: CA, CR, ASC, R)
+        #[arg(
+            short,
+            long,
+            value_name = "PROVIDERS",
+            num_args = 1..,
+            value_delimiter = ',',
+            default_value = "CA,CR")
+        ]
+        providers: Vec<menu::Provider>,
     },
 
     /// Run a benchmark suite
@@ -73,7 +93,9 @@ enum Command {
 impl Command {
     pub fn handle(self) -> Result<(), String> {
         match &self {
-            Self::Interact { graph } => main_handler::interact(graph),
+            Self::Interact { graph, providers } => {
+                main_handler::interact(graph, providers)
+            }
             Self::Benchmark { path } => main_handler::benchmark(path),
             Self::GenerateSolutions { path } => {
                 main_handler::generate_solutions(path)
