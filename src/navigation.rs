@@ -1,55 +1,157 @@
 use crate::ao;
 use crate::pbn;
-use crate::util::{EarlyCutoff, Timer};
+use crate::util::{self, EarlyCutoff, Timer};
 
 use indexmap::IndexSet;
+use std::hash::Hash;
 use std::marker::PhantomData;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Expressions
 
-#[derive(Debug, Clone)]
-pub struct Exp<A, O> {
-    graph: ao::Graph<A, O>,
-    committed: ao::NodeSet,
-    allowed: ao::NodeSet,
-    rejected: ao::NodeSet,
+// U: unseen
+// O: don't know if should be true or false
+// F: should be false
+// T: should be true
+// T!: should be true; only consider solutions with it in dependencies
+// T*: T + user will provide an impl
+// T!*: T! + user will provide an impl
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
+enum PartitionClass {
+    // U
+    Unseen,
+
+    // O
+    Unknown,
+
+    // F
+    ShouldBeFalse,
+
+    // T
+    ShouldBeTrue {
+        will_provide: bool, // *
+        force_use: bool,    // !
+    },
 }
 
-impl<A, O> Exp<A, O> {
-    pub fn new(graph: ao::Graph<A, O>) -> Self {
-        Exp {
-            graph,
-            committed: ao::NodeSet {
-                set: IndexSet::new(),
+impl PartitionClass {
+    pub fn all() -> &'static [PartitionClass] {
+        &[
+            Self::Unseen,
+            Self::Unknown,
+            Self::ShouldBeFalse,
+            Self::ShouldBeTrue {
+                will_provide: false,
+                force_use: false,
             },
-            allowed: ao::NodeSet {
-                set: IndexSet::new(),
+            Self::ShouldBeTrue {
+                will_provide: false,
+                force_use: true,
             },
-            rejected: ao::NodeSet {
-                set: IndexSet::new(),
+            Self::ShouldBeTrue {
+                will_provide: true,
+                force_use: false,
             },
+            Self::ShouldBeTrue {
+                will_provide: false,
+                force_use: true,
+            },
+        ]
+    }
+
+    pub fn committed(&self) -> bool {
+        match self {
+            PartitionClass::ShouldBeTrue {
+                will_provide,
+                force_use,
+            } => *will_provide && *force_use,
+            PartitionClass::Unseen
+            | PartitionClass::Unknown
+            | PartitionClass::ShouldBeFalse => false,
         }
     }
 
-    pub fn graph(&self) -> &ao::Graph<A, O> {
+    pub fn shorthand(&self) -> &str {
+        match self {
+            Self::Unseen => "U",
+            Self::Unknown => "O",
+            Self::ShouldBeFalse => "F",
+            Self::ShouldBeTrue {
+                will_provide: false,
+                force_use: false,
+            } => "T",
+            Self::ShouldBeTrue {
+                will_provide: false,
+                force_use: true,
+            } => "T!",
+            Self::ShouldBeTrue {
+                will_provide: true,
+                force_use: false,
+            } => "T*",
+            Self::ShouldBeTrue {
+                will_provide: true,
+                force_use: true,
+            } => "T!*",
+        }
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct Partitioned<T> {
+    data: T,
+    class: PartitionClass,
+}
+
+#[derive(Debug, Clone)]
+pub struct Exp<A, O> {
+    graph: ao::Graph<A, Partitioned<O>>,
+}
+
+impl<A: Clone, O: Clone> Exp<A, O> {
+    pub fn new(graph: ao::Graph<A, O>) -> Self {
+        Exp {
+            graph: graph.map(
+                |o| {
+                    o.map(|data| Partitioned {
+                        data: data.clone(),
+                        class: PartitionClass::Unseen,
+                    })
+                },
+                |a| a.cloned(),
+            ),
+        }
+    }
+
+    pub fn graph(&self) -> &ao::Graph<A, Partitioned<O>> {
         &self.graph
     }
 
-    pub fn committed(&self) -> &ao::NodeSet {
-        &self.committed
+    pub fn committed(&self) -> ao::NodeSet {
+        ao::NodeSet {
+            set: self
+                .graph
+                .or_indexes()
+                .filter(|oidx| {
+                    self.graph.or_data_ref(*oidx).unwrap().class.committed()
+                })
+                .collect(),
+        }
     }
 }
 
 impl<A, O> std::fmt::Display for Exp<A, O> {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(
-            f,
-            "c: {} a: {} r: {}",
-            self.committed.show(&self.graph),
-            self.allowed.show(&self.graph),
-            self.rejected.show(&self.graph)
-        )
+        for (class, oidxs) in util::preimage(
+            self.graph
+                .or_indexes()
+                .map(|oid| (oid, self.graph.or_data_ref(oid).unwrap().class)),
+        ) {
+            let ns = ao::NodeSet {
+                set: oidxs.into_iter().collect(),
+            };
+            write!(f, "{}: {} ", class.shorthand(), ns.show(&self.graph))?;
+        }
+        Ok(())
     }
 }
 
@@ -58,17 +160,11 @@ impl<A, O> std::fmt::Display for Exp<A, O> {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Step<A, O> {
-    /// Add node to allowed set
-    Add(ao::OIdx, PhantomData<(A, O)>),
+    /// Set a node's partition class
+    SetClass(ao::OIdx, PartitionClass, PhantomData<(A, O)>),
 
-    /// Mark a node as permanently rejected
-    Reject(ao::OIdx),
-
-    /// Refine a node in the allowed set
+    /// Refine a node the user said they would provide
     Refine(ao::OIdx, ao::NodeSet),
-
-    /// Commit node from allowed set to committed set
-    Commit(ao::OIdx),
 
     /// Sequence two steps
     Seq(Box<Step<A, O>>, Box<Step<A, O>>),
@@ -89,17 +185,11 @@ impl<A, O> Step<A, O> {
 
     pub fn show(&self, e: &Exp<A, O>) -> String {
         match self {
-            Step::Add(oid, _) => {
-                format!("+ {}", e.graph.or_at(*oid))
-            }
-            Step::Reject(oid) => {
-                format!("- {}", e.graph.or_at(*oid))
+            Step::SetClass(oid, class, _) => {
+                format!("{} += {}", class.shorthand(), e.graph.or_at(*oid))
             }
             Step::Refine(oid, axs) => {
                 format!("{} -> {}", e.graph.or_at(*oid), axs.show(&e.graph))
-            }
-            Step::Commit(oid) => {
-                format!("commit {}", e.graph.or_at(*oid))
             }
             Step::Seq(s1, s2) => {
                 format!("{} ; {}", s1.show(e), s2.show(e))
@@ -111,42 +201,33 @@ impl<A, O> Step<A, O> {
 impl<A: Clone, O: Clone> pbn::Step for Step<A, O> {
     type Exp = Exp<A, O>;
 
+    // TODO Enforce partition class size invariants
     fn apply(&self, e: &Self::Exp) -> Option<Self::Exp> {
         match self {
-            Step::Add(oid, _) => {
+            Step::SetClass(oid, class, _) => {
                 let mut ret = e.clone();
-                if ret.allowed.set.insert(*oid) {
-                    Some(ret)
-                } else {
-                    None
-                }
-            }
-            Step::Reject(oid) => {
-                let mut ret = e.clone();
-                if ret.rejected.set.insert(*oid) {
-                    Some(ret)
-                } else {
-                    None
-                }
-            }
-            Step::Refine(x, axs) => {
-                let mut ret = e.clone();
-                if ret.allowed.set.swap_remove(x) {
-                    ret.allowed.set.extend(axs.set.iter().cloned());
-                    Some(ret)
-                } else {
-                    None
-                }
-            }
-            Step::Commit(oid) => {
-                let mut ret = e.clone();
-                if !ret.allowed.set.swap_remove(oid) {
-                    return None;
-                }
-                if !ret.committed.set.insert(*oid) {
-                    return None;
-                }
+                ret.graph.or_data_mut(*oid).unwrap().class = *class;
                 Some(ret)
+            }
+            Step::Refine(oid, ns) => {
+                let mut ret = e.clone();
+                let data = ret.graph.or_data_mut(*oid).unwrap();
+                if data.class.committed() {
+                    data.class = PartitionClass::ShouldBeTrue {
+                        will_provide: false,
+                        force_use: true,
+                    };
+                    for new_oid in &ns.set {
+                        ret.graph.or_data_mut(*new_oid).unwrap().class =
+                            PartitionClass::ShouldBeTrue {
+                                will_provide: true,
+                                force_use: true,
+                            }
+                    }
+                    Some(ret)
+                } else {
+                    None
+                }
             }
             Step::Seq(s1, s2) => s1.apply(e).and_then(|x| s2.apply(&x)),
         }
@@ -172,7 +253,7 @@ impl<A: Clone, O: Clone> pbn::ValidityChecker for GoalProvable<A, O> {
     type Exp = Exp<A, O>;
 
     fn check(&self, e: &Self::Exp) -> bool {
-        ao::algo::provable_with(&self.graph, &e.committed)
+        ao::algo::provable_with(&self.graph, &e.committed())
     }
 }
 
@@ -238,19 +319,23 @@ impl<A: Clone, O: Clone> pbn::StepProvider for CommittalAddProvider<A, O> {
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut next_labels = IndexSet::new();
 
+        let committed = e.committed();
         for axs in &self.proper_axiom_sets {
-            if e.committed.set.is_subset(&axs.set) {
-                next_labels
-                    .extend(axs.set.difference(&e.committed.set).cloned())
+            if committed.set.is_subset(&axs.set) {
+                next_labels.extend(axs.set.difference(&committed.set).cloned())
             }
         }
 
         let steps: Vec<_> = next_labels
             .into_iter()
             .map(|o| {
-                Step::Seq(
-                    Box::new(Step::Add(o, PhantomData)),
-                    Box::new(Step::Commit(o)),
+                Step::SetClass(
+                    o,
+                    PartitionClass::ShouldBeTrue {
+                        will_provide: true,
+                        force_use: true,
+                    },
+                    PhantomData,
                 )
             })
             .collect();

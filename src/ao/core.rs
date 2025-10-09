@@ -100,6 +100,8 @@ pub struct AIdx(pg::NodeIndex);
 pub struct OIdx(pg::NodeIndex);
 
 impl<A, O> Graph<A, O> {
+    // Creation
+
     pub fn new<'a>(
         nodes: impl Iterator<Item = Node<A, O>>,
         edges: impl Iterator<Item = (NodeId, NodeId)>,
@@ -170,6 +172,37 @@ impl<A, O> Graph<A, O> {
         Ok(Self { pg, goal })
     }
 
+    pub fn map<F, G, A2, O2>(
+        &self,
+        mut or_map: F,
+        mut and_map: G,
+    ) -> Graph<A2, O2>
+    where
+        F: FnMut(Option<&O>) -> Option<O2>,
+        G: FnMut(Option<&A>) -> Option<A2>,
+    {
+        Graph {
+            pg: self.pg.map(
+                |_, n| match n {
+                    Node::And { id, label, data } => Node::And {
+                        id: id.clone(),
+                        label: label.clone(),
+                        data: and_map(data.as_ref()),
+                    },
+                    Node::Or { id, label, data } => Node::Or {
+                        id: id.clone(),
+                        label: label.clone(),
+                        data: or_map(data.as_ref()),
+                    },
+                },
+                |_, e| e.clone(),
+            ),
+            goal: self.goal,
+        }
+    }
+
+    // Basics
+
     pub fn or_indexes(&self) -> impl Iterator<Item = OIdx> + '_ {
         self.pg.node_indices().filter_map(|pid| {
             if self.pg[pid].is_or() {
@@ -219,6 +252,20 @@ impl<A, O> Graph<A, O> {
 
     pub fn or_at(&self, o: OIdx) -> &Node<A, O> {
         &self.pg[o.0]
+    }
+
+    pub fn or_data_ref(&self, o: OIdx) -> Option<&O> {
+        match &mut self.pg[o.0] {
+            Node::Or { data, .. } => data.as_ref(),
+            _ => panic!("OR-index is not valid"),
+        }
+    }
+
+    pub fn or_data_mut(&mut self, o: OIdx) -> Option<&mut O> {
+        match &mut self.pg[o.0] {
+            Node::Or { data, .. } => data.as_mut(),
+            _ => panic!("OR-index is not valid"),
+        }
     }
 
     pub fn premises(&self, a: AIdx) -> impl Iterator<Item = OIdx> + '_ {

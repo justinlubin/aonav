@@ -3,6 +3,8 @@
 use indexmap::IndexMap;
 use instant::Duration;
 use instant::Instant;
+use std::collections::HashMap;
+use std::hash::Hash;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Early cutoff
@@ -89,4 +91,14 @@ pub fn read_lines(path: &str) -> Option<Vec<String>> {
         Ok(s) => Some(s.lines().map(String::from).collect()),
         Err(_) => None,
     }
+}
+
+pub fn preimage<'a, X, Y: Eq + Hash>(
+    mapping: impl Iterator<Item = (X, Y)>,
+) -> HashMap<Y, Vec<X>> {
+    let mut ret = HashMap::new();
+    for (x, y) in mapping {
+        ret.entry(y).or_insert(vec![]).push(x)
+    }
+    ret
 }
