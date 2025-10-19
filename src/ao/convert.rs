@@ -3,13 +3,17 @@ use crate::ao::*;
 use crate::jgf;
 
 use egg::*;
+use env_logger::try_init_from_env;
 use indexmap::IndexMap;
+use rustyline::completion::Candidate;
 use serde::Deserialize;
 use serde::{de::DeserializeOwned, Serialize};
 use serde_json::Value;
+use std::collections::HashMap;
 use std::collections::HashSet;
 use std::fmt::Display;
 use std::fs::File;
+use std::hash::Hash;
 use std::io::prelude::*;
 use std::path::PathBuf;
 
@@ -319,119 +323,67 @@ pub fn es_egraph_to_ao(
 }
 
 #[derive(serde::Serialize, Deserialize, Debug)]
-struct ArgusData {
-    root: String,
-    parent_to_children: IndexMap<String, Vec<String>>,
-    goals: HashSet<String>,
+struct ArgusAO {
+    topology: HashMap<String, Vec<String>>,
+    goals: HashMap<String, String>,
+    candidates: HashMap<String, String>,
+    exclude: Vec<String>
 }
 
-pub fn argus_to_and_or(path: &PathBuf) {
+pub fn argus_to_and_or<A, O>(path: &PathBuf) 
+    where jgf::Graph: TryFrom<core::Graph<A, O>> {
+    // get into Graph<A, O>::new new<'a>(nodes: impl Iterator<Item = Node<A, O>>, edges: impl Iterator<Item = (NodeId, NodeId)>, goal: &'a nodeid,)
     let json_data = std::fs::read_to_string(path).expect("Failed to read file");
-    let deserialized: ArgusData =
+    let deserialized: ArgusAO =
         serde_json::from_str(&json_data).expect("Failed to deserialize JSON");
-
-    let mut edges = Vec::new();
-    let mut nodes: IndexMap<String, jgf::Node> = IndexMap::new();
-    // for each parent, add edge to each child
-    for (parent, children) in deserialized.parent_to_children.iter() {
-        let parent_id = parent.to_string();
-        // if node is key in goal_info it's an OR node and the others are AND nodes
-        if !nodes.contains_key(&parent_id) {
-            if deserialized.goals.contains(&parent_id) {
-                // OR ndoe
-                let mut metadata: IndexMap<String, Value> = IndexMap::new();
-                metadata.insert(
-                    String::from("kind"),
-                    serde_json::Value::String("OR".to_string()),
-                );
-                nodes.insert(
-                    parent_id.clone(),
-                    jgf::Node {
-                        label: Some(parent_id.clone()),
-                        metadata: Some(metadata),
-                    },
-                );
-            } else {
-                // AND node
-                let mut metadata: IndexMap<String, Value> = IndexMap::new();
-                metadata.insert(
-                    String::from("kind"),
-                    serde_json::Value::String("AND".to_string()),
-                );
-                nodes.insert(
-                    parent_id.clone(),
-                    jgf::Node {
-                        label: Some(parent_id.clone()),
-                        metadata: Some(metadata),
-                    },
-                );
+        // remove excluded goals (candidates are already filtered)
+        let mut new_goals = deserialized.goals.clone();
+        let candidates: HashMap<String, String> = deserialized.candidates.clone();
+        for id in deserialized.exclude {
+            new_goals.remove(&id);
+        }
+        // go through edges, creating nodes for unseen ids, and creating edges
+        let mut nodes: Vec<Node<A, O>> = Vec::new();
+        let mut edges: Vec<(NodeId, NodeId)> = Vec::new();
+        let mut flat_top: HashSet<&String> = HashSet::new();
+        for key in deserialized.topology.keys() {
+            flat_top.insert(key);
+            let vals = deserialized.topology.get(key).unwrap();
+            for val in vals {
+                flat_top.insert(val);
             }
         }
-        for child in children {
-            let child_id = child.to_string();
-            if !nodes.contains_key(&child_id) {
-                if deserialized.goals.contains(&child_id) {
-                    // OR ndoe
-                    let mut metadata: IndexMap<String, Value> = IndexMap::new();
-                    metadata.insert(
-                        String::from("kind"),
-                        serde_json::Value::String("OR".to_string()),
-                    );
-                    nodes.insert(
-                        child_id.clone(),
-                        jgf::Node {
-                            label: Some(child_id.clone()),
-                            metadata: Some(metadata),
-                        },
-                    );
-                } else {
-                    // AND node
-                    let mut metadata: IndexMap<String, Value> = IndexMap::new();
-                    metadata.insert(
-                        String::from("kind"),
-                        serde_json::Value::String("AND".to_string()),
-                    );
-                    nodes.insert(
-                        child_id.clone(),
-                        jgf::Node {
-                            label: Some(child_id.clone()),
-                            metadata: Some(metadata),
-                        },
-                    );
+        let goal = "0";
+        for (goal_id, goal_label) in &new_goals {
+            if flat_top.contains(&goal_id) {
+                nodes.push(Node::Or { id: goal_id.to_string(), label: /*Some(goal_label)*/ None, data: None });
+            }
+        }
+        for (candidate_id, candidate_label) in deserialized.candidates {
+            if flat_top.contains(&candidate_id) {
+                nodes.push(Node::And { id: candidate_id, label: /*Some(candidate_label)*/ None, data: None });
+            }
+        }
+        for (parent, children) in deserialized.topology {
+            if new_goals.contains_key(&parent) || candidates.contains_key(&parent) {
+                for child in children {
+                    if new_goals.contains_key(&child) || candidates.contains_key(&child) {
+                        edges.push((parent.clone(), child));
+                    }
                 }
             }
-            edges.push(jgf::Edge {
-                id: None,
-                source: parent_id.clone(),
-                target: child_id.clone(),
-                relation: None,
-                directed: true,
-                label: None,
-                metadata: None,
-            });
         }
-    }
-
-    let mut md: IndexMap<String, Value> = IndexMap::new();
-    md.insert(
-        "goal".to_string(),
-        serde_json::Value::String(deserialized.root),
-    );
-
-    new_ao(
-        Some("id".to_string()),
-        Some("label".to_string()),
-        true,
-        Some("type".to_string()),
-        Some(md),
-        Some(nodes),
-        Some(edges),
-        "ao-examples/from_argus.json",
-    );
-
-    // double check ArgusData structure has right stuff
-    /*let to_json = serde_json::to_string_pretty(&deserialized).expect("failed");
-    let mut file = File::create("ao-examples/from_argus.json")
-        .expect("Failed to create file");
-    file.write_all(to_json.as_bytes()).expect("Failed to write");*/
+        // get ao graph
+        let graph = Graph::new(nodes.into_iter(), edges.into_iter(), &goal).unwrap();
+        // go to jgf and write to file
+        let jgf = jgf::Graph::try_from(graph);
+        match jgf {
+            Ok(g) => {
+                let to_json = serde_json::to_string_pretty(&g).expect("Failed to go from struct to pretty json");
+                let mut file = File::create("argus-examples/argus-ao-read.json").expect("Failed to create file");
+                file.write_all(to_json.as_bytes()).expect("Failed to write");
+            },
+            Err(e) => {panic!("Failed");}
+        }
+        
 }
