@@ -346,29 +346,45 @@ pub fn argus_to_and_or<A, O>(path: &PathBuf)
         let mut nodes: Vec<Node<A, O>> = Vec::new();
         let mut edges: Vec<(NodeId, NodeId)> = Vec::new();
         let mut flat_top: HashSet<&String> = HashSet::new();
+        // flatten topology into set of all nodes that should be included in graph
+        // filter goals that include ::send in their label
         for key in deserialized.topology.keys() {
-            flat_top.insert(key);
+            if new_goals.contains_key(key) && new_goals.get(key).unwrap().contains("::Send") {
+                new_goals.remove(key);
+            } else {
+                flat_top.insert(key);
+            }
             let vals = deserialized.topology.get(key).unwrap();
             for val in vals {
-                flat_top.insert(val);
+                if new_goals.contains_key(val) && new_goals.get(val).unwrap().contains("::Send") {
+                    new_goals.remove(val);
+                } else {
+                    flat_top.insert(val);
+                }
             }
         }
         let goal = "0";
         for (goal_id, goal_label) in &new_goals {
             if flat_top.contains(&goal_id) {
-                nodes.push(Node::Or { id: goal_id.to_string(), label: /*Some(goal_label)*/ None, data: None });
+                nodes.push(Node::Or { id: goal_id.to_string(), label: Some(goal_label.to_string()), data: None });
             }
         }
         for (candidate_id, candidate_label) in deserialized.candidates {
             if flat_top.contains(&candidate_id) {
-                nodes.push(Node::And { id: candidate_id, label: /*Some(candidate_label)*/ None, data: None });
+                nodes.push(Node::And { id: candidate_id.to_string(), label: Some(candidate_label.to_string()), data: None });
             }
         }
+        // if both are goals, remove child from graph
         for (parent, children) in deserialized.topology {
             if new_goals.contains_key(&parent) || candidates.contains_key(&parent) {
                 for child in children {
-                    if new_goals.contains_key(&child) || candidates.contains_key(&child) {
+                    if deserialized.goals.contains_key(&parent) && deserialized.goals.contains_key(&child) {
+                        new_goals.remove(&child);
+                        print!("\nremoving goal {}", child)
+                    } else {
+                        if new_goals.contains_key(&child) || candidates.contains_key(&child) {
                         edges.push((parent.clone(), child));
+                    }
                     }
                 }
             }
@@ -381,7 +397,9 @@ pub fn argus_to_and_or<A, O>(path: &PathBuf)
             Ok(g) => {
                 let to_json = serde_json::to_string_pretty(&g).expect("Failed to go from struct to pretty json");
                 let mut file = File::create("argus-examples/argus-ao-read.json").expect("Failed to create file");
+                file.write_all("{ \"graph\": ".as_bytes()).expect("Failed to write");
                 file.write_all(to_json.as_bytes()).expect("Failed to write");
+                file.write_all("}".as_bytes()).expect("Failed to write");
             },
             Err(e) => {panic!("Failed");}
         }
