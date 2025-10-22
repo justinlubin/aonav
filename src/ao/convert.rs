@@ -375,12 +375,14 @@ pub fn argus_to_and_or<A, O>(path: &PathBuf)
             }
         }
         // if both are goals, remove child from graph
+        let mut removed: HashSet<String> = HashSet::new();
         for (parent, children) in deserialized.topology {
             if new_goals.contains_key(&parent) || candidates.contains_key(&parent) {
                 for child in children {
-                    if deserialized.goals.contains_key(&parent) && deserialized.goals.contains_key(&child) {
+                    if new_goals.contains_key(&parent) && new_goals.contains_key(&child) && !removed.contains(&child){
+                        print!("\nremoving goal {}: {:?}", child, new_goals.get(&child));
                         new_goals.remove(&child);
-                        print!("\nremoving goal {}", child)
+                        removed.insert(child);
                     } else {
                         if new_goals.contains_key(&child) || candidates.contains_key(&child) {
                         edges.push((parent.clone(), child));
