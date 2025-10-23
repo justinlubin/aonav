@@ -141,6 +141,21 @@ impl<A: Serialize, O: Serialize> TryFrom<Graph<A, O>> for jgf::Graph {
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// egglog
+
+impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
+    type Error = String;
+
+    fn try_from(
+        egglog_program: Vec<egglog::ast::Command>,
+    ) -> Result<Self, Self::Error> {
+        todo!()
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 // serialize egraph to our and/or format
 
 // what are root e-classes and do they matter here

@@ -22,6 +22,7 @@ pub enum ConversionInputFormat {
     AOJsonGraph,
     Argus,
     Legacy,
+    Egglog,
 }
 
 impl std::str::FromStr for ConversionInputFormat {
@@ -203,6 +204,18 @@ pub fn convert(
             let proof_system = crate::legacy::proof_system(&lines);
             let ao: ao::Graph<ao::Generic, ao::Generic> =
                 crate::legacy::to_ao(proof_system, goal);
+            let jgf = jgf::Data::Single {
+                graph: ao.try_into()?,
+            };
+            println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
+            Ok(())
+        }
+        ConversionInputFormat::Egglog => {
+            let input = std::fs::read_to_string(path).unwrap();
+            let mut egraph = egglog::EGraph::default();
+            let egglog_program =
+                egraph.parser.get_program_from_string(None, &input).unwrap();
+            let ao: ao::Graph<(), ()> = egglog_program.try_into()?;
             let jgf = jgf::Data::Single {
                 graph: ao.try_into()?,
             };
