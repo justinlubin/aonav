@@ -34,6 +34,33 @@ pub trait StepProvider {
     ) -> Result<Vec<Self::Step>, EarlyCutoff>;
 }
 
+/// Compound provider (composition of other providers)
+pub struct CompoundProvider<S: Step> {
+    providers: Vec<Box<dyn StepProvider<Step = S>>>,
+}
+
+impl<S: Step> CompoundProvider<S> {
+    pub fn new(providers: Vec<Box<dyn StepProvider<Step = S>>>) -> Self {
+        Self { providers }
+    }
+}
+
+impl<S: Step> StepProvider for CompoundProvider<S> {
+    type Step = S;
+
+    fn provide(
+        &mut self,
+        timer: &Timer,
+        e: &<Self::Step as Step>::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let mut steps = vec![];
+        for p in &mut self.providers {
+            steps.extend(p.provide(timer, e)?);
+        }
+        Ok(steps)
+    }
+}
+
 /// A Programming By Navigation controller. Controllers abstract away the
 /// actual step provider (and validity checker) and can be used to engage in
 /// the Programming By Navigation interactive process in a way that is

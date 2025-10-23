@@ -14,15 +14,17 @@ impl Provider {
     ) -> Box<dyn pbn::StepProvider<Step = navigation::Step<A, O>> + 'a> {
         match self {
             Provider::CommittalAdd => {
-                Box::new(navigation::CommittalAddProvider::new())
+                Box::new(navigation::providers::CommittalAddProvider::new())
             }
             Provider::CompleteRefine => {
-                Box::new(navigation::CompleteRefineProvider::new())
+                Box::new(navigation::providers::CompleteRefineProvider::new())
             }
-            Provider::ArbitrarySubsetCommit => {
-                Box::new(navigation::ArbitrarySubsetCommitProvider::new())
+            Provider::ArbitrarySubsetCommit => Box::new(
+                navigation::providers::ArbitrarySubsetCommitProvider::new(),
+            ),
+            Provider::Random => {
+                Box::new(navigation::providers::RandomProvider::new())
             }
-            Provider::Random => Box::new(navigation::RandomProvider::new()),
         }
     }
 }

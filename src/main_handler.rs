@@ -81,7 +81,7 @@ pub fn interact(
 
     println!("    {}\n", Yellow.bold().paint(msg2));
 
-    let provider = navigation::CompoundProvider::new(
+    let provider = pbn::CompoundProvider::new(
         providers.iter().map(|p| p.provider()).collect(),
     );
     let checker = navigation::GoalProvable::new();

@@ -76,7 +76,8 @@ impl Runner {
             for replicate in 0..self.config.replicates {
                 let now = Instant::now();
 
-                let provider = navigation::CommittalAddProvider::new();
+                let provider =
+                    navigation::providers::CommittalAddProvider::new();
                 let checker = navigation::GoalProvable::new();
                 let controller = pbn::Controller::new(
                     Timer::finite(self.config.timeout),
