@@ -1,7 +1,10 @@
+use crate::ao;
 use crate::navigation::*;
 use crate::pbn;
 use crate::util::{EarlyCutoff, Timer};
 
+use indexmap::IndexSet;
+use rand::prelude::*;
 use std::marker::PhantomData;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -137,7 +140,7 @@ impl<A: Clone, O: Clone> pbn::StepProvider
 
         'fixpoint: loop {
             for x in &subset.set {
-                let c = e.graph.or_data_ref(*x).unwrap().class;
+                let c = e.graph().or_data_ref(*x).unwrap().class;
                 if c.provided() && !c.committed() {
                     let mut candidate = subset.clone();
                     candidate.set.swap_remove(x);
