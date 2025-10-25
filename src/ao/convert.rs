@@ -1,9 +1,10 @@
 use crate::ao::*;
 
 use crate::jgf;
+use crate::util;
 
 use egg::*;
-use indexmap::IndexMap;
+use indexmap::{IndexMap, IndexSet};
 use serde::Deserialize;
 use serde::{de::DeserializeOwned, Serialize};
 use serde_json::Value;
@@ -144,13 +145,186 @@ impl<A: Serialize, O: Serialize> TryFrom<Graph<A, O>> for jgf::Graph {
 ////////////////////////////////////////////////////////////////////////////////
 // egglog
 
+fn egglog_or_id(relation: &str, arguments: &Vec<i64>) -> String {
+    format!(
+        "{}({})",
+        relation,
+        arguments
+            .iter()
+            .map(|x| x.to_string())
+            .collect::<Vec<_>>()
+            .join(", ")
+    )
+}
+
 impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
     type Error = String;
 
     fn try_from(
         egglog_program: Vec<egglog::ast::Command>,
     ) -> Result<Self, Self::Error> {
-        todo!()
+        // Extract relevant parts of egglog program: relations, rules, checks
+
+        let mut relations = vec![];
+        let mut rules = vec![];
+        let mut checks = vec![];
+
+        for cmd in egglog_program {
+            match cmd {
+                egglog::ast::Command::Relation { name, inputs, .. } => {
+                    relations.push((name, inputs))
+                }
+                egglog::ast::Command::Rule { mut rule } => {
+                    if rule.head.0.len() != 1 {
+                        return Err(format!(
+                            "Head size must be 1 for '{}'",
+                            rule
+                        ));
+                    }
+
+                    let head = match rule.head.0.swap_remove(0) {
+                        egglog::ast::GenericAction::Expr(_, e) => e,
+                        h => return Err(format!("Unsupported head '{}'", h)),
+                    };
+
+                    rules.push((head, rule.body));
+                }
+                egglog::ast::Command::Check(_, check) => checks.push(check),
+                _ => return Err(format!("Unsupported command '{}'", cmd)),
+            };
+        }
+
+        // Make sure there's exactly 1 check, and of the right form
+
+        if checks.len() != 1 {
+            return Err(format!(
+                "Must have exactly 1 check, not {}",
+                checks.len()
+            ));
+        }
+
+        let mut supercheck = checks.swap_remove(0);
+
+        if supercheck.len() != 1 {
+            return Err(format!(
+                "Must have exactly 1 check in check, not {}",
+                checks.len()
+            ));
+        }
+
+        let check = supercheck.swap_remove(0);
+
+        let (check_relation, check_arguments) =
+            match check {
+                egglog::ast::GenericFact::Fact(
+                    egglog::ast::GenericExpr::Call(_, head, body),
+                ) => {
+                    let mut args = vec![];
+                    for e in body {
+                        match e {
+                            egglog::ast::GenericExpr::Lit(
+                                _,
+                                egglog::ast::Literal::Int(x),
+                            ) => args.push(x),
+                            _ => {
+                                return Err(format!(
+                                "Unsupported body expression in check: '{}'",
+                                e
+                            ))
+                            }
+                        }
+                    }
+                    (head, args)
+                }
+                _ => return Err(format!("Unsupported check type")),
+            };
+
+        // Calculate domain
+
+        let mut domain: IndexSet<_> = check_arguments.iter().cloned().collect();
+        let mut supported_domain = true;
+
+        for (head, body) in &rules {
+            let mut roots = vec![head];
+            for fact in body {
+                match fact {
+                    egglog::ast::GenericFact::Eq(_, e1, e2) => {
+                        roots.extend(vec![e1, e2])
+                    }
+                    egglog::ast::GenericFact::Fact(e) => roots.push(e),
+                };
+            }
+            for root in roots {
+                root.walk(
+                    &mut |e| {
+                        match e {
+                            egglog::ast::GenericExpr::Lit(_, lit) => {
+                                match lit {
+                                    egglog::ast::Literal::Int(x) => {
+                                        domain.insert(*x);
+                                    }
+                                    _ => supported_domain = false,
+                                }
+                            }
+                            _ => (),
+                        };
+                    },
+                    &mut |_| {},
+                )
+            }
+        }
+
+        if !supported_domain {
+            return Err(format!("Unsupported types for domain"));
+        }
+
+        // Compute nodes
+
+        let mut nodes = vec![];
+
+        // OR nodes: Ground all relations and find goal
+
+        let mut goal = None;
+
+        for (relation, params) in relations {
+            let mut choices = IndexMap::new();
+            for (i, param) in params.into_iter().enumerate() {
+                if param != "i64" {
+                    return Err(format!(
+                        "Unsupported parameter type for relation '{}': '{}'",
+                        relation, param
+                    ));
+                }
+                let _ = choices.insert(i, domain.iter().cloned().collect());
+            }
+            for arguments in
+                util::cartesian_product(&util::Timer::infinite(), choices)
+                    .unwrap()
+            {
+                let arguments: Vec<_> = arguments.into_values().collect();
+                let id = egglog_or_id(&relation, &arguments);
+                if relation == check_relation && arguments == check_arguments {
+                    goal = Some(id.clone());
+                }
+                nodes.push(Node::Or {
+                    id,
+                    label: None,
+                    data: None,
+                });
+            }
+        }
+
+        let goal = goal.ok_or_else(|| "Could not find goal")?;
+
+        // AND nodes: Ground all rules (also create edges)
+
+        let mut edges = vec![];
+
+        for (head, body) in rules {
+            todo!() // TODO justin pick up here
+        }
+
+        Graph::new(nodes.into_iter(), edges.into_iter(), &goal)
     }
 }
 
