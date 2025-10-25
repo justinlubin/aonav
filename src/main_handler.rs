@@ -9,6 +9,7 @@ use crate::util::Timer;
 use ansi_term::Color::*;
 use indexmap::IndexSet;
 use instant::Duration;
+use petgraph::dot;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use std::fs::File;
 use std::io::Write;
@@ -193,7 +194,7 @@ pub fn convert(
             Ok(())
         }
         ConversionInputFormat::Argus => {
-            ao::convert::argus_to_and_or(path);
+            ao::convert::argus_to_and_or::<String, String>(path);
             Ok(())
         }
         ConversionInputFormat::Legacy => {
@@ -215,7 +216,7 @@ pub fn convert(
 
 pub fn render(path: &PathBuf) -> Result<(), String> {
     let outdir = Path::new("out/");
-
+    //let outdir = Path::new("/Users/mpreigh/under/out/");
     let ao: ao::Graph<ao::Generic, ao::Generic> = load_ao(path);
 
     let dot_path = outdir.join("RENDERED.dot");

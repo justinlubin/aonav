@@ -380,7 +380,7 @@ pub fn argus_to_and_or<A, O>(path: &PathBuf)
             if new_goals.contains_key(&parent) || candidates.contains_key(&parent) {
                 for child in children {
                     if new_goals.contains_key(&parent) && new_goals.contains_key(&child) && !removed.contains(&child){
-                        print!("\nremoving goal {}: {:?}", child, new_goals.get(&child));
+                        print!("\nremoving goal {}: {:?}\n parent was goal {}: {:?}\n", child, new_goals.get(&child), parent, new_goals.get(&parent));
                         new_goals.remove(&child);
                         removed.insert(child);
                     } else {

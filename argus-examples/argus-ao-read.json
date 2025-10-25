@@ -1,0 +1,309 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "0": {
+      "label": "TraitPredicate(<(fn(Timer) {run_timer},) as bevy::prelude::IntoSystemConfigs<_>>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "3": {
+      "label": "TraitPredicate(<fn(Timer) {run_timer} as bevy::prelude::IntoSystem<(), (), _>>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "58": {
+      "label": "TraitPredicate(<&'a mut fn(Timer) {run_timer} as std::ops::FnMut<(Timer,)>>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "110": {
+      "label": "TraitPredicate(<fn(Timer) {run_timer} as bevy::prelude::System>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "51": {
+      "label": "TraitPredicate(<fn(Timer) {run_timer} as bevy::prelude::SystemParamFunction<_>>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "16": {
+      "label": "TraitPredicate(<fn(Timer) {run_timer} as std::marker::Sized>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "56": {
+      "label": "TraitPredicate(<Timer as std::marker::Sized>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "1": {
+      "label": "TraitPredicate(<_ as std::marker::Sized>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "59": {
+      "label": "TraitPredicate(<() as std::marker::Sized>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "8": {
+      "label": "TraitPredicate(<(&mut bevy::prelude::World,) as std::marker::Sized>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "55": {
+      "label": "ProjectionPredicate(AliasTerm { args: [&'^0.Named(DefId(24:15940 ~ bevy_ecs[1678]::system::function_system::{impl#12}::'a)) mut FnDef(DefId(0:4 ~ simple_bevy_game[a3fb]::run_timer), []), (Timer,)], def_id: DefId(2:3987 ~ core[4f7d]::ops::function::FnOnce::Output), .. }, Term::Ty(()))",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "92": {
+      "label": "TraitPredicate(<_ as bevy::prelude::Bundle>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "60": {
+      "label": "TraitPredicate(<_ as bevy::bevy_ecs::system::SystemParam>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "54": {
+      "label": "TraitPredicate(<Timer as bevy::bevy_ecs::system::SystemParam>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "13": {
+      "label": "OutlivesPredicate(?13t, 'static)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "18": {
+      "label": "TraitPredicate(<_ as bevy::bevy_ecs::system::ExclusiveSystemParam>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "15": {
+      "label": "TraitPredicate(<fn(Timer) {run_timer} as std::marker::Sync>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "10": {
+      "label": "TraitPredicate(<fn(Timer) {run_timer} as std::marker::MetaSized>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "12": {
+      "label": "OutlivesPredicate(FnDef(DefId(0:4 ~ simple_bevy_game[a3fb]::run_timer), []), 'static)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "11": {
+      "label": "TraitPredicate(<(&mut bevy::prelude::World,) as std::marker::Tuple>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "57": {
+      "label": "OutlivesPredicate((), 'static)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "2": {
+      "label": "TraitPredicate(<fn(Timer) {run_timer} as bevy::prelude::IntoSystemConfigs<_>>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "9": {
+      "label": "TraitPredicate(<&mut bevy::prelude::World as std::marker::Sized>, polarity:Positive)",
+      "metadata": {
+        "kind": "OR",
+        "data": null
+      }
+    },
+    "2147483672": {
+      "label": "impl <T> bevy_ecs::system::IntoSystem<Alias, Alias, ()> for T where T: bevy_ecs::system::system::System",
+      "metadata": {
+        "kind": "AND",
+        "data": null
+      }
+    },
+    "2147484751": {
+      "label": "impl <Out, Func, F0> bevy_ecs::system::function_system::SystemParamFunction<FnPtr> for Func where Func: core::marker::Send, core::marker::Sync, {'Region': {'type': 'Static'}}, F0: bevy_ecs::system::system_param::SystemParam, &Func: {'FnTrait': ['Positive', {'l': {'f': '/Users/mpreigh/.rustup/toolchains/nightly-2025-08-20-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/function.rs', 'r': {'end': {'column': 42, 'line': 164}, 'filename': {'private_use_as_methods_instead': 9}, 'start': {'column': 0, 'line': 164}}}, 'path': [{'name': 'core', 'type': 'DefPathDataName'}, {'type': 'Colons'}, {'disambiguator': 0, 'name': 'ops', 'type': 'DefPathDataName'}, {'type': 'Colons'}, {'disambiguator': 0, 'name': 'function', 'type': 'DefPathDataName'}, {'type': 'Colons'}, {'disambiguator': 0, 'name': 'FnMut', 'type': 'DefPathDataName'}, {'entries': [{'Type': 1381}], 'type': 'GenericArgumentList'}]}, 108]}, {'FnTrait': ['Positive', {'l': {'f': '/Users/mpreigh/.rustup/toolchains/nightly-2025-08-20-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/function.rs', 'r': {'end': {'column': 42, 'line': 164}, 'filename': {'private_use_as_methods_instead': 9}, 'start': {'column': 0, 'line': 164}}}, 'path': [{'name': 'core', 'type': 'DefPathDataName'}, {'type': 'Colons'}, {'disambiguator': 0, 'name': 'ops', 'type': 'DefPathDataName'}, {'type': 'Colons'}, {'disambiguator': 0, 'name': 'function', 'type': 'DefPathDataName'}, {'type': 'Colons'}, {'disambiguator': 0, 'name': 'FnMut', 'type': 'DefPathDataName'}, {'entries': [{'Type': 1383}], 'type': 'GenericArgumentList'}]}, 108]}, Out: {'Region': {'type': 'Static'}}",
+      "metadata": {
+        "kind": "AND",
+        "data": null
+      }
+    },
+    "2147483651": {
+      "label": "impl <P0, S0> bevy_ecs::schedule::config::IntoSystemConfigs<(bevy_ecs::schedule::config::SystemConfigTupleMarker, P0)> for (S0) where S0: bevy_ecs::schedule::config::IntoSystemConfigs<P0>",
+      "metadata": {
+        "kind": "AND",
+        "data": null
+      }
+    },
+    "2147483674": {
+      "label": "impl <Marker, F> bevy_ecs::system::IntoSystem<Alias, Alias, (bevy_ecs::system::function_system::IsFunctionSystem, Marker)> for F where Marker: {'Region': {'type': 'Static'}}, F: bevy_ecs::system::function_system::SystemParamFunction<Marker>",
+      "metadata": {
+        "kind": "AND",
+        "data": null
+      }
+    },
+    "2147483650": {
+      "label": "impl <Marker, F> bevy_ecs::schedule::config::IntoSystemConfigs<Marker> for F where F: bevy_ecs::system::IntoSystem<(), (), Marker>",
+      "metadata": {
+        "kind": "AND",
+        "data": null
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "2147483674",
+      "target": "16"
+    },
+    {
+      "source": "2147483674",
+      "target": "13"
+    },
+    {
+      "source": "2147483674",
+      "target": "1"
+    },
+    {
+      "source": "2147483674",
+      "target": "51"
+    },
+    {
+      "source": "3",
+      "target": "2147483674"
+    },
+    {
+      "source": "3",
+      "target": "2147483672"
+    },
+    {
+      "source": "2",
+      "target": "2147483650"
+    },
+    {
+      "source": "2147483651",
+      "target": "1"
+    },
+    {
+      "source": "2147483651",
+      "target": "2"
+    },
+    {
+      "source": "2147483651",
+      "target": "16"
+    },
+    {
+      "source": "2147483650",
+      "target": "1"
+    },
+    {
+      "source": "2147483650",
+      "target": "3"
+    },
+    {
+      "source": "2147483650",
+      "target": "16"
+    },
+    {
+      "source": "2147484751",
+      "target": "56"
+    },
+    {
+      "source": "2147484751",
+      "target": "16"
+    },
+    {
+      "source": "2147484751",
+      "target": "57"
+    },
+    {
+      "source": "2147484751",
+      "target": "15"
+    },
+    {
+      "source": "2147484751",
+      "target": "12"
+    },
+    {
+      "source": "2147484751",
+      "target": "55"
+    },
+    {
+      "source": "2147484751",
+      "target": "58"
+    },
+    {
+      "source": "2147484751",
+      "target": "54"
+    },
+    {
+      "source": "2147484751",
+      "target": "59"
+    },
+    {
+      "source": "51",
+      "target": "2147484751"
+    },
+    {
+      "source": "2147483672",
+      "target": "110"
+    },
+    {
+      "source": "2147483672",
+      "target": "16"
+    },
+    {
+      "source": "0",
+      "target": "2147483651"
+    }
+  ]
+}}

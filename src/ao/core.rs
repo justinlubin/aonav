@@ -138,7 +138,7 @@ impl<A, O> Graph<A, O> {
                 }
                 (Node::Or { .. }, Node::Or { .. }) => {
                     return Err(format!(
-                        "Cannot connect AND node '{}' to AND node '{}'",
+                        "Cannot connect Or node '{}' to Or node '{}'",
                         source_nid, target_nid
                     ))
                 }
