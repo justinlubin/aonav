@@ -324,10 +324,10 @@ pub fn es_egraph_to_ao(
 
 #[derive(serde::Serialize, Deserialize, Debug)]
 struct ArgusAO {
-    topology: HashMap<String, Vec<String>>,
+    root: String,
     goals: HashMap<String, String>,
     candidates: HashMap<String, String>,
-    exclude: Vec<String>
+    topology: HashMap<String, Vec<String>>
 }
 
 pub fn argus_to_and_or<A, O>(path: &PathBuf) 
@@ -336,58 +336,39 @@ pub fn argus_to_and_or<A, O>(path: &PathBuf)
     let json_data = std::fs::read_to_string(path).expect("Failed to read file");
     let deserialized: ArgusAO =
         serde_json::from_str(&json_data).expect("Failed to deserialize JSON");
-        // remove excluded goals (candidates are already filtered)
-        let mut new_goals = deserialized.goals.clone();
-        let candidates: HashMap<String, String> = deserialized.candidates.clone();
-        for id in deserialized.exclude {
-            new_goals.remove(&id);
-        }
+
         // go through edges, creating nodes for unseen ids, and creating edges
         let mut nodes: Vec<Node<A, O>> = Vec::new();
         let mut edges: Vec<(NodeId, NodeId)> = Vec::new();
-        let mut flat_top: HashSet<&String> = HashSet::new();
-        // flatten topology into set of all nodes that should be included in graph
-        // filter goals that include ::send in their label
-        for key in deserialized.topology.keys() {
-            if new_goals.contains_key(key) && new_goals.get(key).unwrap().contains("::Send") {
-                new_goals.remove(key);
-            } else {
-                flat_top.insert(key);
-            }
-            let vals = deserialized.topology.get(key).unwrap();
-            for val in vals {
-                if new_goals.contains_key(val) && new_goals.get(val).unwrap().contains("::Send") {
-                    new_goals.remove(val);
-                } else {
-                    flat_top.insert(val);
+        let goal = deserialized.root;
+
+        // if both are goals, remove child from graph
+        let mut removed: HashSet<String> = HashSet::new();
+        for (parent, children) in &deserialized.topology {
+            for child in children {
+                if deserialized.goals.contains_key(parent) && deserialized.goals.contains_key(child) && !removed.contains(child){
+                    print!("\nremoving goal {}: {:?}\n parent was goal {}: {:?}\n", child, deserialized.goals.get(child), parent, deserialized.goals.get(parent));
+                    removed.insert(child.to_string());
                 }
             }
         }
-        let goal = "0";
-        for (goal_id, goal_label) in &new_goals {
-            if flat_top.contains(&goal_id) {
+
+        // goal nodes
+        for (goal_id, goal_label) in &deserialized.goals {
+            if !removed.contains(goal_id) {
                 nodes.push(Node::Or { id: goal_id.to_string(), label: Some(goal_label.to_string()), data: None });
             }
         }
+        // candidate nodes
         for (candidate_id, candidate_label) in deserialized.candidates {
-            if flat_top.contains(&candidate_id) {
-                nodes.push(Node::And { id: candidate_id.to_string(), label: Some(candidate_label.to_string()), data: None });
-            }
+            nodes.push(Node::And { id: candidate_id.to_string(), label: Some(candidate_label.to_string()), data: None });
         }
-        // if both are goals, remove child from graph
-        let mut removed: HashSet<String> = HashSet::new();
+
+        // edges
         for (parent, children) in deserialized.topology {
-            if new_goals.contains_key(&parent) || candidates.contains_key(&parent) {
-                for child in children {
-                    if new_goals.contains_key(&parent) && new_goals.contains_key(&child) && !removed.contains(&child){
-                        print!("\nremoving goal {}: {:?}\n parent was goal {}: {:?}\n", child, new_goals.get(&child), parent, new_goals.get(&parent));
-                        new_goals.remove(&child);
-                        removed.insert(child);
-                    } else {
-                        if new_goals.contains_key(&child) || candidates.contains_key(&child) {
-                        edges.push((parent.clone(), child));
-                    }
-                    }
+            for child in children {
+                if !removed.contains(&child) {
+                    edges.push((parent.clone(), child));
                 }
             }
         }
