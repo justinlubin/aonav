@@ -157,6 +157,74 @@ fn egglog_or_id(relation: &str, arguments: &Vec<i64>) -> String {
     )
 }
 
+fn egglog_and_id(
+    head: &str,
+    vars: &Vec<String>,
+    substitutions: &IndexMap<String, i64>,
+) -> String {
+    format!(
+        "{} @ {}",
+        head,
+        vars.iter()
+            .map(|x| format!("{}={}", x, substitutions[x]))
+            .collect::<Vec<_>>()
+            .join(", ")
+    )
+}
+
+fn sorted_rule_vars(
+    head: &egglog::ast::GenericExpr<String, String>,
+    body: &Vec<egglog::ast::GenericFact<String, String>>,
+) -> Vec<String> {
+    let mut set: HashSet<_> = head.vars().collect();
+    for f in body {
+        match f {
+            egglog::ast::GenericFact::Eq(_, e1, e2) => {
+                set.extend(e1.vars().chain(e2.vars()))
+            }
+            egglog::ast::GenericFact::Fact(e) => set.extend(e.vars()),
+        };
+    }
+    let mut vec: Vec<_> = set.into_iter().collect();
+    vec.sort();
+    vec
+}
+
+fn head_var(
+    e: &egglog::ast::GenericExpr<String, String>,
+) -> Result<String, String> {
+    match e {
+        egglog::ast::GenericExpr::Call(_, head, _) => Ok(head.clone()),
+        _ => Err(format!("Unsupported head expression '{}'", e)),
+    }
+}
+
+fn ground_args(
+    args: &Vec<egglog::ast::GenericExpr<String, String>>,
+) -> Result<Vec<i64>, String> {
+    let mut ret = vec![];
+    for arg in args {
+        match arg {
+            egglog::ast::GenericExpr::Lit(_, egglog::ast::Literal::Int(x)) => {
+                ret.push(*x)
+            }
+            _ => return Err(format!("{} not a supported literal", arg)),
+        }
+    }
+    Ok(ret)
+}
+
+fn ground_fact(
+    e: &egglog::ast::GenericExpr<String, String>,
+) -> Result<(String, Vec<i64>), String> {
+    match e {
+        egglog::ast::GenericExpr::Call(_, head, args) => {
+            Ok((head.clone(), ground_args(args)?))
+        }
+        _ => Err(format!("'{}' not a ground fact", e)),
+    }
+}
+
 impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
     type Error = String;
 
@@ -321,8 +389,51 @@ impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
         let mut edges = vec![];
 
         for (head, body) in rules {
-            todo!() // TODO justin pick up here
+            let mut choices = IndexMap::new();
+            let vars = sorted_rule_vars(&head, &body);
+            for var in &vars {
+                let _ = choices
+                    .insert(var.clone(), domain.iter().cloned().collect());
+            }
+            for substitutions in
+                util::cartesian_product(&util::Timer::infinite(), choices)
+                    .unwrap()
+            {
+                let id =
+                    egglog_and_id(&head_var(&head)?, &vars, &substitutions);
+
+                for f in &body {
+                    match f {
+                        egglog::ast::GenericFact::Fact(e) => {
+                            let (relation, arguments) = ground_fact(e)?;
+                            let premise = egglog_or_id(&relation, &arguments);
+                            edges.push((id.clone(), premise));
+                        }
+                        egglog::ast::GenericFact::Eq(..) => (),
+                    }
+                }
+
+                let ground_head = head.subst_leaf(&mut |s, x| {
+                    egglog::ast::GenericExpr::Lit(
+                        s.clone(),
+                        egglog::ast::Literal::Int(substitutions[x]),
+                    )
+                });
+
+                let (head_relation, head_arguments) =
+                    ground_fact(&ground_head)?;
+                let conclusion = egglog_or_id(&head_relation, &head_arguments);
+                edges.push((conclusion, id.clone()));
+
+                nodes.push(Node::And {
+                    id,
+                    label: None,
+                    data: None,
+                });
+            }
         }
+
+        // Return graph
 
         Graph::new(nodes.into_iter(), edges.into_iter(), &goal)
     }
