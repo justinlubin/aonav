@@ -190,14 +190,14 @@ fn sorted_rule_vars(
     vec
 }
 
-fn head_var(
-    e: &egglog::ast::GenericExpr<String, String>,
-) -> Result<String, String> {
-    match e {
-        egglog::ast::GenericExpr::Call(_, head, _) => Ok(head.clone()),
-        _ => Err(format!("Unsupported head expression '{}'", e)),
-    }
-}
+// fn head_var(
+//     e: &egglog::ast::GenericExpr<String, String>,
+// ) -> Result<String, String> {
+//     match e {
+//         egglog::ast::GenericExpr::Call(_, head, _) => Ok(head.clone()),
+//         _ => Err(format!("Unsupported head expression '{}'", e)),
+//     }
+// }
 
 fn ground_args(
     args: &Vec<egglog::ast::GenericExpr<String, String>>,
@@ -208,7 +208,12 @@ fn ground_args(
             egglog::ast::GenericExpr::Lit(_, egglog::ast::Literal::Int(x)) => {
                 ret.push(*x)
             }
-            _ => return Err(format!("{} not a supported literal", arg)),
+            _ => {
+                return Err(format!(
+                    "{} not a supported ground literal in {:?}",
+                    arg, args
+                ))
+            }
         }
     }
     Ok(ret)
@@ -237,7 +242,7 @@ impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
         let mut rules = vec![];
         let mut checks = vec![];
 
-        for cmd in egglog_program {
+        for (i, cmd) in egglog_program.into_iter().enumerate() {
             match cmd {
                 egglog::ast::Command::Relation { name, inputs, .. } => {
                     relations.push((name, inputs))
@@ -255,9 +260,16 @@ impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
                         h => return Err(format!("Unsupported head '{}'", h)),
                     };
 
-                    rules.push((head, rule.body));
+                    let name = if rule.name.is_empty() {
+                        format!("rule{}", i)
+                    } else {
+                        rule.name
+                    };
+
+                    rules.push((name, head, rule.body));
                 }
                 egglog::ast::Command::Check(_, check) => checks.push(check),
+                egglog::ast::GenericCommand::RunSchedule(_) => (),
                 _ => return Err(format!("Unsupported command '{}'", cmd)),
             };
         }
@@ -312,7 +324,7 @@ impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
         let mut domain: IndexSet<_> = check_arguments.iter().cloned().collect();
         let mut supported_domain = true;
 
-        for (head, body) in &rules {
+        for (_, head, body) in &rules {
             let mut roots = vec![head];
             for fact in body {
                 match fact {
@@ -388,7 +400,7 @@ impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
 
         let mut edges = vec![];
 
-        for (head, body) in rules {
+        for (name, head, body) in rules {
             let mut choices = IndexMap::new();
             let vars = sorted_rule_vars(&head, &body);
             for var in &vars {
@@ -399,13 +411,25 @@ impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
                 util::cartesian_product(&util::Timer::infinite(), choices)
                     .unwrap()
             {
-                let id =
-                    egglog_and_id(&head_var(&head)?, &vars, &substitutions);
+                let id = egglog_and_id(&name, &vars, &substitutions);
+
+                let mut lookup = |s: &egglog::ast::Span,
+                                  x: &String|
+                 -> egglog::ast::GenericExpr<
+                    String,
+                    String,
+                > {
+                    egglog::ast::GenericExpr::Lit(
+                        s.clone(),
+                        egglog::ast::Literal::Int(substitutions[x]),
+                    )
+                };
 
                 for f in &body {
                     match f {
                         egglog::ast::GenericFact::Fact(e) => {
-                            let (relation, arguments) = ground_fact(e)?;
+                            let (relation, arguments) =
+                                ground_fact(&e.subst_leaf(&mut lookup))?;
                             let premise = egglog_or_id(&relation, &arguments);
                             edges.push((id.clone(), premise));
                         }
@@ -413,12 +437,7 @@ impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
                     }
                 }
 
-                let ground_head = head.subst_leaf(&mut |s, x| {
-                    egglog::ast::GenericExpr::Lit(
-                        s.clone(),
-                        egglog::ast::Literal::Int(substitutions[x]),
-                    )
-                });
+                let ground_head = head.subst_leaf(&mut lookup);
 
                 let (head_relation, head_arguments) =
                     ground_fact(&ground_head)?;
