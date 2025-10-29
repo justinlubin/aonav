@@ -201,6 +201,35 @@ impl<A, O> Graph<A, O> {
         }
     }
 
+    pub fn map_owned<F, G, A2, O2>(
+        self,
+        mut or_map: F,
+        mut and_map: G,
+    ) -> Graph<A2, O2>
+    where
+        F: FnMut(Option<O>) -> Option<O2>,
+        G: FnMut(Option<A>) -> Option<A2>,
+    {
+        Graph {
+            pg: self.pg.map_owned(
+                |_, n| match n {
+                    Node::And { id, label, data } => Node::And {
+                        id,
+                        label,
+                        data: and_map(data),
+                    },
+                    Node::Or { id, label, data } => Node::Or {
+                        id,
+                        label,
+                        data: or_map(data),
+                    },
+                },
+                |_, e| e,
+            ),
+            goal: self.goal,
+        }
+    }
+
     // Basics
 
     pub fn or_indexes(&self) -> impl Iterator<Item = OIdx> + '_ {
@@ -250,6 +279,7 @@ impl<A, O> Graph<A, O> {
 
     // Indexing
 
+    // TODO This is a bit wonky since it only ever returns OR nodes
     pub fn or_at(&self, o: OIdx) -> &Node<A, O> {
         &self.pg[o.0]
     }

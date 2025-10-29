@@ -30,7 +30,7 @@ pub fn provable_or_nodes<A, O>(graph: &Graph<A, O>) -> NodeSet {
 }
 
 // TODO switch to using backward reasoning
-fn provable<A, O>(graph: &Graph<A, O>, oid: OIdx) -> bool {
+pub fn provable<A, O>(graph: &Graph<A, O>, oid: OIdx) -> bool {
     provable_or_nodes(graph).set.contains(&oid)
 }
 
