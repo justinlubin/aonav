@@ -18,6 +18,9 @@ impl Provider {
             Provider::Remaining => {
                 Box::new(partition_navigation::providers::Remaining::new())
             }
+            Provider::Random => {
+                Box::new(partition_navigation::providers::Random::new())
+            }
             _ => panic!("Unimplemented!"),
         }
     }
