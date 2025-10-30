@@ -84,6 +84,7 @@ impl Runner {
                     provider,
                     checker,
                     partition_navigation::Exp::new(entry.graph.clone()),
+                    false,
                 );
                 let mut driver = drivers::RandomizedSolutionDrivenDriver::new(
                     solution.clone(),

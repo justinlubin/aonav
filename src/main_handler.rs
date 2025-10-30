@@ -86,6 +86,7 @@ pub fn interact(
         provider,
         checker,
         partition_navigation::Exp::new(graph),
+        true,
     );
 
     let mut driver = drivers::CliDriver::new();

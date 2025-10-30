@@ -16,7 +16,7 @@ pub enum EarlyCutoff {
 ////////////////////////////////////////////////////////////////////////////////
 // Timer
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 enum TimerInner {
     Finite { end: Instant },
     Infinite,
