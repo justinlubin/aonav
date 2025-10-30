@@ -66,12 +66,8 @@ pub fn interact(
     let graph = load_ao(graph_path);
 
     let msg1 = format!(
-        "Set of provable OR nodes: {:?}",
-        ao::algo::provable_or_nodes(&graph)
-            .set
-            .iter()
-            .map(|oid| graph.or_at(*oid))
-            .collect::<Vec<_>>()
+        "Set of provable OR nodes: {}",
+        ao::algo::provable_or_nodes(&graph).show(&graph)
     );
 
     println!("\n    {}", Yellow.bold().paint(msg1));

@@ -187,10 +187,9 @@ impl pbn::Step for Step {
 ////////////////////////////////////////////////////////////////////////////////
 // Validity checker
 
-fn prune_forced(g: ao::Graph) -> ao::Graph {
-    // TODO
-    g
-}
+// TODO
+// fn prune_forced(g: ao::Graph) -> ao::Graph {
+// }
 
 pub fn valid(e: &Exp) -> bool {
     let mut g = e.graph().clone();
@@ -223,11 +222,10 @@ pub fn valid(e: &Exp) -> bool {
         return false;
     }
 
-    // Prune according to ! nodes, check if goal still provable
+    true
 
-    let pruned = prune_forced(e.graph.clone());
-
-    ao::algo::provable(&pruned, pruned.goal())
+    // TODO: Prune according to ! nodes, check if goal still provable
+    // ao::algo::provable(&g, g.goal())
 }
 
 pub struct Valid;

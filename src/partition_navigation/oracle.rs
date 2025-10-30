@@ -203,20 +203,20 @@ pub fn nonempty_completion(e: &Exp) -> bool {
 
     let ok = solver.solve().unwrap() == rustsat::solvers::SolverResult::Sat;
 
-    if ok {
-        println!("{}", e);
+    if ok && log::log_enabled!(log::Level::Debug) {
+        log::debug!("{}", e);
         let sol = solver.full_solution().unwrap();
         for (oidx, lit) in vars.o_true {
-            println!("{} true: {}", e.graph().or_at(oidx), sol[lit.var()])
+            log::debug!("{} true: {}", e.graph().or_at(oidx), sol[lit.var()])
         }
         for (oidx, lit) in vars.o_active {
-            println!("{} active: {}", e.graph().or_at(oidx), sol[lit.var()])
+            log::debug!("{} active: {}", e.graph().or_at(oidx), sol[lit.var()])
         }
         for (aidx, lit) in vars.a_true {
-            println!("{} true: {}", e.graph().and_at(aidx), sol[lit.var()])
+            log::debug!("{} true: {}", e.graph().and_at(aidx), sol[lit.var()])
         }
         for (aidx, lit) in vars.a_active {
-            println!("{} active: {}", e.graph().and_at(aidx), sol[lit.var()])
+            log::debug!("{} active: {}", e.graph().and_at(aidx), sol[lit.var()])
         }
     }
 
