@@ -85,7 +85,7 @@ impl TryFrom<Graph> for jgf::Graph {
                     label: node.label().map(|x| x.to_owned()),
                     metadata: Some(IndexMap::from([(
                         "kind".to_owned(),
-                        serde_json::Value::String(node.to_string()),
+                        serde_json::Value::String(node.kind().to_string()),
                     )])),
                 },
             );
