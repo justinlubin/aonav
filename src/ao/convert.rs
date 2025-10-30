@@ -6,7 +6,6 @@ use crate::util;
 use egg::*;
 use indexmap::{IndexMap, IndexSet};
 use serde::Deserialize;
-use serde::{de::DeserializeOwned, Serialize};
 use serde_json::Value;
 use std::collections::HashSet;
 use std::fmt::Display;
@@ -17,9 +16,7 @@ use std::path::PathBuf;
 ////////////////////////////////////////////////////////////////////////////////
 // JSON Graph Format
 
-impl<A: DeserializeOwned, O: DeserializeOwned> TryFrom<jgf::Graph>
-    for Graph<A, O>
-{
+impl TryFrom<jgf::Graph> for Graph {
     type Error = String;
 
     fn try_from(value: jgf::Graph) -> Result<Self, Self::Error> {
@@ -41,8 +38,7 @@ impl<A: DeserializeOwned, O: DeserializeOwned> TryFrom<jgf::Graph>
             let metadata = node_val
                 .metadata
                 .ok_or(format!("Missing metadata for node '{}'", node_id))?;
-            let data = metadata.get("data").cloned();
-            let node = match metadata
+            let kind = match metadata
                 .get("kind")
                 .ok_or(format!(
                     "Missing 'kind' metadata for node '{}'",
@@ -56,16 +52,8 @@ impl<A: DeserializeOwned, O: DeserializeOwned> TryFrom<jgf::Graph>
                 .to_ascii_uppercase()
                 .as_str()
             {
-                "AND" => Node::And {
-                    id: node_id.clone(),
-                    label: node_val.label,
-                    data: data.map(|v| serde_json::from_value(v).unwrap()),
-                },
-                "OR" => Node::Or {
-                    id: node_id.clone(),
-                    label: node_val.label,
-                    data: data.map(|v| serde_json::from_value(v).unwrap()),
-                },
+                "AND" => NodeKind::And,
+                "OR" => NodeKind::Or,
                 k => {
                     return Err(format!(
                         "Unknown 'kind' metadata '{}' for node '{}'",
@@ -73,7 +61,7 @@ impl<A: DeserializeOwned, O: DeserializeOwned> TryFrom<jgf::Graph>
                     ))
                 }
             };
-            nodes.push(node);
+            nodes.push(Node::new(node_id, node_val.label, kind));
         }
 
         Ok(Graph::new(
@@ -84,33 +72,21 @@ impl<A: DeserializeOwned, O: DeserializeOwned> TryFrom<jgf::Graph>
     }
 }
 
-impl<A: Serialize, O: Serialize> TryFrom<Graph<A, O>> for jgf::Graph {
+impl TryFrom<Graph> for jgf::Graph {
     type Error = String;
 
-    fn try_from(ao: Graph<A, O>) -> Result<Self, Self::Error> {
+    fn try_from(ao: Graph) -> Result<Self, Self::Error> {
         let mut nodes = IndexMap::new();
 
         for node in ao.nodes() {
-            let serialized_data = match node {
-                Node::And { data, .. } => {
-                    serde_json::to_value(data).map_err(|e| {
-                        format!("Error serializing AND data: {}", e)
-                    })?
-                }
-                Node::Or { data, .. } => serde_json::to_value(data)
-                    .map_err(|e| format!("Error serializing OR data: {}", e))?,
-            };
             nodes.insert(
                 node.id().to_owned(),
                 jgf::Node {
-                    label: node.label().clone(),
-                    metadata: Some(IndexMap::from([
-                        (
-                            "kind".to_owned(),
-                            serde_json::Value::String(node.kind().to_owned()),
-                        ),
-                        ("data".to_owned(), serialized_data),
-                    ])),
+                    label: node.label().map(|x| x.to_owned()),
+                    metadata: Some(IndexMap::from([(
+                        "kind".to_owned(),
+                        serde_json::Value::String(node.to_string()),
+                    )])),
                 },
             );
         }
@@ -230,7 +206,7 @@ fn ground_fact(
     }
 }
 
-impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
+impl TryFrom<Vec<egglog::ast::Command>> for Graph {
     type Error = String;
 
     fn try_from(
@@ -386,11 +362,7 @@ impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
                 if relation == check_relation && arguments == check_arguments {
                     goal = Some(id.clone());
                 }
-                nodes.push(Node::Or {
-                    id,
-                    label: None,
-                    data: None,
-                });
+                nodes.push(Node::new(id, None, NodeKind::Or));
             }
         }
 
@@ -444,11 +416,7 @@ impl TryFrom<Vec<egglog::ast::Command>> for Graph<(), ()> {
                 let conclusion = egglog_or_id(&head_relation, &head_arguments);
                 edges.push((conclusion, id.clone()));
 
-                nodes.push(Node::And {
-                    id,
-                    label: None,
-                    data: None,
-                });
+                nodes.push(Node::new(id, None, NodeKind::And));
             }
         }
 
@@ -631,9 +599,7 @@ where
     );
 }
 
-pub fn es_egraph_to_ao(
-    _es_egraph: &egraph_serialize::EGraph,
-) -> Graph<String, String> {
+pub fn es_egraph_to_ao(_es_egraph: &egraph_serialize::EGraph) -> Graph {
     todo!()
 }
 

@@ -1,10 +1,8 @@
 use crate::ao;
 use crate::pbn;
-use crate::util;
 
-use indexmap::IndexSet;
+use indexmap::IndexMap;
 use std::hash::Hash;
-use std::marker::PhantomData;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Expressions
@@ -116,106 +114,47 @@ impl Class {
 }
 
 #[derive(Debug, Clone)]
-pub struct Partitioned<T> {
-    #[allow(dead_code)]
-    pub data: T,
-    pub class: Class,
+pub struct Exp {
+    graph: ao::Graph,
+    partition: IndexMap<ao::OIdx, Class>,
 }
 
-impl<T> Partitioned<T> {
-    pub fn as_ref(&self) -> Partitioned<&T> {
-        Partitioned {
-            data: &self.data,
-            class: self.class,
-        }
+impl Exp {
+    pub fn new(graph: ao::Graph) -> Self {
+        let mut partition: IndexMap<_, _> = graph
+            .or_indexes()
+            .map(|oidx| (oidx, Class::Unknown))
+            .collect();
+        *partition.get_mut(&graph.goal()).unwrap() =
+            Class::True { force_use: true };
+        Self { graph, partition }
     }
 
-    pub fn as_mut(&mut self) -> Partitioned<&mut T> {
-        Partitioned {
-            data: &mut self.data,
-            class: self.class,
-        }
-    }
-
-    pub fn map<U, F>(self, f: F) -> Partitioned<U>
-    where
-        F: FnOnce(T) -> U,
-    {
-        Partitioned {
-            data: f(self.data),
-            class: self.class,
-        }
-    }
-}
-
-#[derive(Debug, Clone)]
-pub struct Exp<A, O> {
-    graph: ao::Graph<A, Partitioned<Option<O>>>,
-}
-
-impl<A, O> Exp<A, O> {
-    pub fn new(graph: ao::Graph<A, O>) -> Self {
-        let mut graph = graph.map_owned(
-            |o| {
-                Some(Partitioned {
-                    data: o,
-                    class: PartitionClass::Unseen,
-                })
-            },
-            |a| a,
-        );
-
-        let mut ret = Self { graph };
-
-        ret.or_data_mut(ret.graph().goal()).class =
-            PartitionClass::True { force_use: true };
-
-        ret
-    }
-
-    pub fn graph(&self) -> &ao::Graph<A, Partitioned<Option<O>>> {
+    pub fn graph(&self) -> &ao::Graph {
         &self.graph
     }
 
-    pub fn or_data_ref(&self, o: OIdx) -> Partitioned<Option<&O>> {
-        self.graph()
-            .or_data_ref(o)
-            .unwrap()
-            .as_ref()
-            .map(|x| x.as_ref())
-    }
-
-    pub fn or_data_mut(&mut self, o: OIdx) -> Partitioned<Option<&mut O>> {
-        self.graph()
-            .or_data_mut(o)
-            .unwrap()
-            .as_mut()
-            .map(|x| x.as_mut())
-    }
-
-    pub fn class_mut(&mut self, o: OIdx) -> &mut Class {
-        &mut self.graph().or_data_mut(o).unwrap().class
-    }
-
-    pub fn or_indexes_by_class<F>(&self, f: F) -> ao::NodeSet
+    pub fn filter_class<F>(&self, f: F) -> ao::OrSet
     where
         F: Fn(Class) -> bool,
     {
-        ao::NodeSet {
+        ao::OrSet {
             set: self
-                .graph()
-                .or_indexes()
-                .filter(|oidx| f(self.or_data_ref(*oidx).class))
+                .partition
+                .iter()
+                .filter_map(
+                    |(oidx, class)| if f(*class) { Some(*oidx) } else { None },
+                )
                 .collect(),
         }
     }
 }
 
-impl<A, O> std::fmt::Display for Exp<A, O> {
+impl std::fmt::Display for Exp {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         for class in Class::all() {
-            let ns = self.or_indexes_by_class(|c| c == *class);
-            write!(f, "{}: {} ", class.shorthand(), ns.show(&self.graph))?;
+            let os = self.filter_class(|c| c == *class);
+            write!(f, "{}: {} ", class.shorthand(), os.show(&self.graph))?;
         }
         Ok(())
     }
@@ -225,18 +164,16 @@ impl<A, O> std::fmt::Display for Exp<A, O> {
 // Steps
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub enum Step<A, O> {
+pub enum Step {
     /// Set a node's partition class
-    SetClass(ao::OIdx, PartitionClass, PhantomData<(A, O)>),
+    SetClass(ao::OIdx, Class),
 
     /// Sequence two steps
-    Seq(Box<Step<A, O>>, Box<Step<A, O>>),
+    Seq(Box<Step>, Box<Step>),
 }
 
-impl<A, O> Step<A, O> {
-    pub fn sequence(
-        mut steps: impl Iterator<Item = Step<A, O>>,
-    ) -> Option<Step<A, O>> {
+impl Step {
+    pub fn sequence(mut steps: impl Iterator<Item = Step>) -> Option<Step> {
         let mut step = steps.next()?;
 
         for s in steps {
@@ -246,9 +183,9 @@ impl<A, O> Step<A, O> {
         Some(step)
     }
 
-    pub fn show(&self, e: &Exp<A, O>) -> String {
+    pub fn show(&self, e: &Exp) -> String {
         match self {
-            Step::SetClass(oid, class, _) => {
+            Step::SetClass(oid, class) => {
                 format!("set {} {}", e.graph.or_at(*oid), class.shorthand())
             }
             Step::Seq(s1, s2) => {
@@ -258,18 +195,17 @@ impl<A, O> Step<A, O> {
     }
 }
 
-impl<A: Clone, O: Clone> pbn::Step for Step<A, O> {
-    type Exp = Exp<A, O>;
+impl pbn::Step for Step {
+    type Exp = Exp;
 
     fn apply(&self, e: &Self::Exp) -> Option<Self::Exp> {
         match self {
-            Step::SetClass(oid, c, _) => {
+            Step::SetClass(oid, c) => {
                 let mut ret = e.clone();
-                let class_ref = ret.class_mut(*oid);
-                if *class_ref != Class::Unseen {
+                if *ret.partition.get(oid).unwrap() != Class::Unseen {
                     return None;
                 }
-                *class_ref = c;
+                *ret.partition.get_mut(oid).unwrap() = *c;
                 Some(ret)
             }
             Step::Seq(s1, s2) => s1.apply(e).and_then(|e2| s2.apply(&e2)),
@@ -309,34 +245,37 @@ impl<A: Clone, O: Clone> pbn::Step for Step<A, O> {
 //     consistent_with(e, &ao::NodeSet::new(), &ao::NodeSet::new())
 // }
 
-fn prune_forced<A, O>(g: ao::Graph<A, O>) -> ao::Graph<A, O> {
-    todo!()
+fn prune_forced(g: ao::Graph) -> ao::Graph {
+    // TODO
+    g
 }
 
-pub fn valid<A: Clone, O: Clone>(e: &Exp<A, O>) -> bool {
-    // Treat bot as ?
+pub fn valid(e: &Exp) -> bool {
     let mut g = e.graph().clone();
 
     // Add axioms for A / A!
-    g.make_axioms(e.or_indexes_by_class(|c| c.is_assume()).set.into_iter());
 
-    // Compute all provable nodes - make sure contains T / T! and disjoint with F
+    g.make_axioms(e.filter_class(|c| c.is_assume()).set.into_iter());
+
+    // Compute all provable nodes
+
     let provable = ao::algo::provable_or_nodes(&g);
 
     // Make sure contains T / T! ...
 
     let contains_true = provable
         .set
-        .is_superset(&e.or_indexes_by_class(|c| c.is_true()).set);
+        .is_superset(&e.filter_class(|c| c.is_true()).set);
 
     if !contains_true {
         return false;
     }
 
     // ... and disjoint from F
+
     let disjoint_from_false = provable
         .set
-        .is_disjoint(&e.or_indexes_by_class(|c| c == Class::False).set);
+        .is_disjoint(&e.filter_class(|c| c == Class::False).set);
 
     if !disjoint_from_false {
         return false;
@@ -349,20 +288,16 @@ pub fn valid<A: Clone, O: Clone>(e: &Exp<A, O>) -> bool {
     ao::algo::provable(&pruned, pruned.goal())
 }
 
-pub struct GoalProvable<A, O> {
-    phantom: PhantomData<(A, O)>,
-}
+pub struct Valid;
 
-impl<A, O> GoalProvable<A, O> {
+impl Valid {
     pub fn new() -> Self {
-        Self {
-            phantom: PhantomData,
-        }
+        Self {}
     }
 }
 
-impl<A: Clone, O: Clone> pbn::ValidityChecker for GoalProvable<A, O> {
-    type Exp = Exp<A, O>;
+impl pbn::ValidityChecker for Valid {
+    type Exp = Exp;
 
     fn check(&self, e: &Self::Exp) -> bool {
         valid(e)

@@ -1,6 +1,6 @@
-use crate::navigation::*;
+use crate::partition_navigation::*;
 
 #[allow(dead_code)]
-pub fn nonempty_completion<A, O>(_e: Exp<A, O>) -> bool {
+pub fn nonempty_completion(_e: Exp) -> bool {
     todo!()
 }

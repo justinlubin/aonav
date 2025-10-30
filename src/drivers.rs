@@ -1,5 +1,5 @@
 use crate::ao;
-use crate::navigation;
+use crate::partition_navigation;
 use crate::pbn;
 
 use ansi_term::Color::*;
@@ -24,8 +24,12 @@ impl CliDriver {
     }
 }
 
-fn emit_graph(name: &str, e: &navigation::Exp<ao::Generic, ao::Generic>) {
-    let highlighted_nodes = e.committed().set;
+fn emit_graph(name: &str, e: &partition_navigation::Exp) {
+    let highlighted_nodes = e
+        .filter_class(|c| {
+            c == partition_navigation::Class::Assume { force_use: true }
+        })
+        .set;
 
     let mut dot_file = File::create(format!("out/{}.dot", name)).unwrap();
     write!(&mut dot_file, "{}", e.graph().dot(&highlighted_nodes)).unwrap();
@@ -39,13 +43,11 @@ fn emit_graph(name: &str, e: &navigation::Exp<ao::Generic, ao::Generic>) {
         .unwrap();
 }
 
-impl Driver<navigation::Step<ao::Generic, ao::Generic>> for CliDriver {
+impl Driver<partition_navigation::Step> for CliDriver {
     fn drive(
         &mut self,
-        mut controller: pbn::Controller<
-            navigation::Step<ao::Generic, ao::Generic>,
-        >,
-    ) -> Option<navigation::Exp<ao::Generic, ao::Generic>> {
+        mut controller: pbn::Controller<partition_navigation::Step>,
+    ) -> Option<partition_navigation::Exp> {
         let mut round = 0;
 
         loop {
@@ -159,18 +161,20 @@ impl RandomizedSolutionDrivenDriver {
     }
 }
 
-impl Driver<navigation::Step<ao::Generic, ao::Generic>>
-    for RandomizedSolutionDrivenDriver
-{
+impl Driver<partition_navigation::Step> for RandomizedSolutionDrivenDriver {
     fn drive(
         &mut self,
-        mut controller: pbn::Controller<
-            navigation::Step<ao::Generic, ao::Generic>,
-        >,
-    ) -> Option<navigation::Exp<ao::Generic, ao::Generic>> {
+        mut controller: pbn::Controller<partition_navigation::Step>,
+    ) -> Option<partition_navigation::Exp> {
         loop {
             let exp = controller.working_expression();
-            if exp.committed().ids(exp.graph()) == self.solution {
+            if exp
+                .filter_class(|c| {
+                    c == partition_navigation::Class::Assume { force_use: true }
+                })
+                .ids(exp.graph())
+                == self.solution
+            {
                 return Some(exp);
             }
 
@@ -180,13 +184,9 @@ impl Driver<navigation::Step<ao::Generic, ao::Generic>>
                 .iter()
                 .enumerate()
                 .filter_map(|(i, option)| match &option {
-                    navigation::Step::SetClass(
+                    partition_navigation::Step::SetClass(
                         id,
-                        navigation::PartitionClass::ShouldBeTrue {
-                            will_provide: true,
-                            force_use: true,
-                        },
-                        _,
+                        partition_navigation::Class::True { force_use: true },
                     ) => {
                         if self.solution.contains(exp.graph().or_at(*id).id()) {
                             Some(i)

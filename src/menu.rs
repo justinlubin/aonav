@@ -9,23 +9,25 @@ pub enum Provider {
 }
 
 impl Provider {
-    pub fn provider<'a, A: Clone + 'a, O: Clone + 'a>(
+    pub fn provider(
         &self,
-    ) -> Box<dyn pbn::StepProvider<Step = navigation::Step<A, O>> + 'a> {
-        match self {
-            Provider::CommittalAdd => {
-                Box::new(navigation::providers::CommittalAddProvider::new())
-            }
-            Provider::CompleteRefine => {
-                Box::new(navigation::providers::CompleteRefineProvider::new())
-            }
-            Provider::ArbitrarySubsetCommit => Box::new(
-                navigation::providers::ArbitrarySubsetCommitProvider::new(),
-            ),
-            Provider::Random => {
-                Box::new(navigation::providers::RandomProvider::new())
-            }
-        }
+    ) -> Box<dyn pbn::StepProvider<Step = partition_navigation::Step>> {
+        Box::new(pbn::CompoundProvider::new(vec![]))
+        // TODO: add back in providers
+        //  match self {
+        //      Provider::CommittalAdd => {
+        //          Box::new(navigation::providers::CommittalAddProvider::new())
+        //      }
+        //      Provider::CompleteRefine => {
+        //          Box::new(navigation::providers::CompleteRefineProvider::new())
+        //      }
+        //      Provider::ArbitrarySubsetCommit => Box::new(
+        //          navigation::providers::ArbitrarySubsetCommitProvider::new(),
+        //      ),
+        //      Provider::Random => {
+        //          Box::new(navigation::providers::RandomProvider::new())
+        //      }
+        //  }
     }
 }
 
