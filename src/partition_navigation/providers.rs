@@ -1,3 +1,47 @@
+use crate::partition_navigation as pn;
+use crate::pbn::{self, Step};
+use crate::util::{EarlyCutoff, Timer};
+
+pub struct Remaining;
+
+impl Remaining {
+    pub fn new() -> Self {
+        Self
+    }
+}
+
+impl pbn::StepProvider for Remaining {
+    type Step = pn::Step;
+
+    fn provide(
+        &mut self,
+        _timer: &Timer,
+        e: &pn::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let mut ret = vec![];
+        for (oidx, class) in e.partition() {
+            if *class != pn::Class::Unseen {
+                continue;
+            }
+            for new_class in pn::Class::all() {
+                if new_class == class {
+                    continue;
+                }
+                let step = pn::Step::SetClass(*oidx, *new_class);
+                match step.apply(e) {
+                    None => continue,
+                    Some(result) => {
+                        if pn::oracle::nonempty_completion(&result) {
+                            ret.push(step);
+                        }
+                    }
+                }
+            }
+        }
+        Ok(ret)
+    }
+}
+
 // use crate::ao;
 // use crate::partition_navigation::*;
 // use crate::pbn;

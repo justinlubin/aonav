@@ -84,7 +84,7 @@ impl Exp {
     pub fn new(graph: ao::Graph) -> Self {
         let mut partition: IndexMap<_, _> = graph
             .or_indexes()
-            .map(|oidx| (oidx, Class::Unknown))
+            .map(|oidx| (oidx, Class::Unseen))
             .collect();
         *partition.get_mut(&graph.goal()).unwrap() =
             Class::True { force_use: true };
@@ -95,8 +95,12 @@ impl Exp {
         &self.graph
     }
 
+    pub fn partition(&self) -> &IndexMap<ao::OIdx, Class> {
+        &self.partition
+    }
+
     pub fn class(&self, oidx: ao::OIdx) -> Class {
-        *self.partition.get(&oidx).unwrap()
+        *self.partition().get(&oidx).unwrap()
     }
 
     pub fn filter_class<F>(&self, f: F) -> ao::OrSet
@@ -105,7 +109,7 @@ impl Exp {
     {
         ao::OrSet {
             set: self
-                .partition
+                .partition()
                 .iter()
                 .filter_map(
                     |(oidx, class)| if f(*class) { Some(*oidx) } else { None },
@@ -119,7 +123,7 @@ impl std::fmt::Display for Exp {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         for class in Class::all() {
             let os = self.filter_class(|c| c == *class);
-            write!(f, "{}: {} ", class.shorthand(), os.show(&self.graph))?;
+            write!(f, "{}: {}    ", class.shorthand(), os.show(&self.graph))?;
         }
         Ok(())
     }

@@ -76,8 +76,8 @@ impl Runner {
             for replicate in 0..self.config.replicates {
                 let now = Instant::now();
 
-                // TODO add providers for benchmark
-                let provider = pbn::CompoundProvider::new(vec![]);
+                let provider =
+                    partition_navigation::providers::Remaining::new();
                 let checker = partition_navigation::Valid::new();
                 let controller = pbn::Controller::new(
                     Timer::finite(self.config.timeout),

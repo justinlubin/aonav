@@ -222,10 +222,14 @@ impl Graph {
         &self.pg[o.0]
     }
 
+    pub fn and_at(&self, a: AIdx) -> &Node {
+        &self.pg[a.0]
+    }
+
     pub fn premises(&self, a: AIdx) -> impl Iterator<Item = OIdx> + '_ {
         self.pg
             .edges_directed(a.0, Direction::Outgoing)
-            .map(|er| OIdx(er.source()))
+            .map(|er| OIdx(er.target()))
     }
 
     pub fn conclusion(&self, a: AIdx) -> OIdx {
@@ -241,7 +245,7 @@ impl Graph {
     pub fn providers(&self, o: OIdx) -> impl Iterator<Item = AIdx> + '_ {
         self.pg
             .edges_directed(o.0, Direction::Outgoing)
-            .map(|er| AIdx(er.source()))
+            .map(|er| AIdx(er.target()))
     }
 
     pub fn consumers(&self, o: OIdx) -> impl Iterator<Item = AIdx> + '_ {

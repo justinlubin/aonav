@@ -1,6 +1,7 @@
+use crate::ao;
 use crate::partition_navigation::*;
 
-use rustsat::instances::{Cnf, SatInstance};
+use rustsat::instances::SatInstance;
 use rustsat::solvers::Solve;
 use rustsat::types::{constraints::CardConstraint, Lit};
 use std::collections::HashMap;
@@ -15,11 +16,14 @@ fn add_lit_eq_clause(instance: &mut SatInstance, a: Lit, b: &[Lit]) {
     instance.add_clause_impl_lit(b, a);
 }
 
-fn compile(e: &Exp) -> Cnf {
-    let graph = e.graph();
+struct Vars {
+    o_true: HashMap<ao::OIdx, Lit>,
+    a_true: HashMap<ao::AIdx, Lit>,
+    o_active: HashMap<ao::OIdx, Lit>,
+    a_active: HashMap<ao::AIdx, Lit>,
+}
 
-    let mut instance: SatInstance = SatInstance::new();
-
+fn make_vars(instance: &mut SatInstance, e: &Exp) -> Vars {
     // OR node truth values
     let mut o_true = HashMap::new();
 
@@ -32,15 +36,32 @@ fn compile(e: &Exp) -> Cnf {
     // AND node on chosen derivation tree
     let mut a_active = HashMap::new();
 
-    for oidx in graph.or_indexes() {
+    for oidx in e.graph().or_indexes() {
         o_true.insert(oidx, instance.new_lit());
         o_active.insert(oidx, instance.new_lit());
     }
 
-    for aidx in graph.and_indexes() {
+    for aidx in e.graph().and_indexes() {
         a_true.insert(aidx, instance.new_lit());
         a_active.insert(aidx, instance.new_lit());
     }
+
+    Vars {
+        o_true,
+        a_true,
+        o_active,
+        a_active,
+    }
+}
+
+fn compile(instance: &mut SatInstance, vars: &Vars, e: &Exp) {
+    let graph = e.graph();
+    let Vars {
+        o_true,
+        a_true,
+        o_active,
+        a_active,
+    } = vars;
 
     // Add OR node constraints (semantic, activity, and consistency)
 
@@ -51,11 +72,22 @@ fn compile(e: &Exp) -> Cnf {
 
         // Add semantic and activity constraints
 
-        // Activity: Active implies true
+        // --- Activity (universal) ---
         instance.add_lit_impl_lit(is_active, is_true);
 
+        // If non-goal OR node active, then at least one consumer is active
+        if oidx != graph.goal() {
+            let consumers_active = graph
+                .consumers(oidx)
+                .map(|a| *a_active.get(&a).unwrap())
+                .collect::<Vec<_>>();
+
+            instance.add_lit_impl_clause(is_active, &consumers_active[..]);
+        }
+
+        // Optimistically assume all unseen nodes are assumed
         let assume_semantics = match class {
-            Class::Assume { .. } => true,
+            Class::Assume { .. } | Class::Unseen => true,
             _ => false,
         };
 
@@ -76,7 +108,7 @@ fn compile(e: &Exp) -> Cnf {
 
             // OR node true iff at least one provider true
             add_lit_eq_clause(
-                &mut instance,
+                instance,
                 is_true,
                 &graph
                     .providers(oidx)
@@ -134,7 +166,7 @@ fn compile(e: &Exp) -> Cnf {
 
         // AND node true iff premises true
         add_lit_eq_cube(
-            &mut instance,
+            instance,
             is_true,
             &graph
                 .premises(aidx)
@@ -152,88 +184,41 @@ fn compile(e: &Exp) -> Cnf {
             .map(|o| *o_active.get(&o).unwrap())
             .collect::<Vec<_>>();
 
-        // If at least one premise is active, then AND node must be active
-        instance.add_clause_impl_lit(&premises_active[..], is_active);
-
         // if AND node is active, then all premises active
         instance.add_lit_impl_cube(is_active, &premises_active[..]);
     }
-
-    instance.into_cnf().0
 }
 
 #[allow(dead_code)]
 pub fn nonempty_completion(e: &Exp) -> bool {
-    let cnf = compile(e);
+    let mut instance = SatInstance::new();
+
+    let vars = make_vars(&mut instance, e);
+
+    compile(&mut instance, &vars, e);
+    let cnf = instance.into_cnf().0;
 
     let mut solver = rustsat_batsat::BasicSolver::default();
     solver.add_cnf(cnf).unwrap();
 
-    solver.solve().unwrap() == rustsat::solvers::SolverResult::Sat
-}
+    let ok = solver.solve().unwrap() == rustsat::solvers::SolverResult::Sat;
 
-pub fn main() {
-    let mut instance: SatInstance = SatInstance::new();
-    let l1 = instance.new_lit();
-    let l2 = instance.new_lit();
-    instance.add_binary(l1, l2);
-    instance.add_binary(!l1, l2);
-    instance.add_unit(l1);
-    let mut solver = rustsat_batsat::BasicSolver::default();
-    solver.add_cnf(instance.into_cnf().0).unwrap();
-    let res = solver.solve().unwrap();
-    let sol = solver.full_solution().unwrap();
-    println!("{:?}", res);
-    println!("{:?}", sol[l1.var()]);
-    println!("{:?}", sol[l2.var()]);
-    std::process::exit(1);
-}
+    if ok {
+        println!("{}", e);
+        let sol = solver.full_solution().unwrap();
+        for (oidx, lit) in vars.o_true {
+            println!("{} true: {}", e.graph().or_at(oidx), sol[lit.var()])
+        }
+        for (oidx, lit) in vars.o_active {
+            println!("{} active: {}", e.graph().or_at(oidx), sol[lit.var()])
+        }
+        for (aidx, lit) in vars.a_true {
+            println!("{} true: {}", e.graph().and_at(aidx), sol[lit.var()])
+        }
+        for (aidx, lit) in vars.a_active {
+            println!("{} active: {}", e.graph().and_at(aidx), sol[lit.var()])
+        }
+    }
 
-// use varisat::solver::Solver;
-// use varisat::{CnfFormula, ExtendFormula};
-//
-// #[allow(dead_code)]
-// pub fn nonempty_completion(_e: Exp) -> bool {
-//     todo!()
-// }
-//
-// #[derive(Debug, Clone)]
-// enum Formula {
-//     Var(varisat::Var),
-//     And(Vec<Formula>),
-//     Or(Vec<Formula>),
-//     Not(Box<Formula>),
-// }
-//
-// impl Formula {
-//     fn eq(f1: Self, f2: Self) -> Self {
-//         Formula::Or(vec![
-//             Formula::And(vec![f1.clone(), f2.clone()]),
-//             Formula::And(vec![
-//                 Formula::Not(Box::new(f1)),
-//                 Formula::Not(Box::new(f2)),
-//             ]),
-//         ])
-//     }
-//
-//     fn implies(f1: Self, f2: Self) -> Self {
-//         Formula::Or(vec![Formula::Not(Box::new(f1)), f2])
-//     }
-//
-//     pub fn cnf(&self) -> &[varisat::Lit] {}
-// }
-//
-// // "A == B" is (A + B') * (A' + B)
-// fn eq() -> CnfFormula {}
-//
-// pub fn main() {
-//     let mut solver = Solver::new();
-//     let (x, y, z) = solver.new_lits();
-//     solver.add_clause(&[x, y]);
-//     solver.add_clause(&[!x]);
-//     solver.add_clause(&[!y]);
-//     let solution = solver.solve();
-//     println!("{:?}", solution);
-//     println!("{:?}", solver.model());
-//     std::process::exit(1);
-// }
+    ok
+}

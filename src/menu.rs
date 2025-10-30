@@ -2,32 +2,24 @@ use crate::*;
 
 #[derive(Debug, Clone)]
 pub enum Provider {
-    CommittalAdd,
-    CompleteRefine,
-    ArbitrarySubsetCommit,
+    Remaining,
     Random,
+    TopDownInversion,
+    BottomUpInversion,
+    TopDownJump,
+    MaxInfoGain,
 }
 
 impl Provider {
     pub fn provider(
         &self,
     ) -> Box<dyn pbn::StepProvider<Step = partition_navigation::Step>> {
-        Box::new(pbn::CompoundProvider::new(vec![]))
-        // TODO: add back in providers
-        //  match self {
-        //      Provider::CommittalAdd => {
-        //          Box::new(navigation::providers::CommittalAddProvider::new())
-        //      }
-        //      Provider::CompleteRefine => {
-        //          Box::new(navigation::providers::CompleteRefineProvider::new())
-        //      }
-        //      Provider::ArbitrarySubsetCommit => Box::new(
-        //          navigation::providers::ArbitrarySubsetCommitProvider::new(),
-        //      ),
-        //      Provider::Random => {
-        //          Box::new(navigation::providers::RandomProvider::new())
-        //      }
-        //  }
+        match self {
+            Provider::Remaining => {
+                Box::new(partition_navigation::providers::Remaining::new())
+            }
+            _ => panic!("Unimplemented!"),
+        }
     }
 }
 
@@ -36,10 +28,12 @@ impl std::str::FromStr for Provider {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
-            "CommittalAdd" | "CA" => Ok(Self::CommittalAdd),
-            "CompleteRefine" | "CR" => Ok(Self::CompleteRefine),
-            "ArbitrarySubsetCommit" | "ASC" => Ok(Self::ArbitrarySubsetCommit),
-            "Random" | "R" => Ok(Self::Random),
+            "Remaining" | "Re" => Ok(Self::Remaining),
+            "Random" | "Ra" => Ok(Self::Random),
+            "TopDownInversion" | "TDI" => Ok(Self::TopDownInversion),
+            "BottomUpInversion" | "BUI" => Ok(Self::BottomUpInversion),
+            "TopDownJump" | "TDJ" => Ok(Self::TopDownJump),
+            "MaxInfoGain" | "MIG" => Ok(Self::MaxInfoGain),
             _ => Err(format!("Unknown provider '{}'", s)),
         }
     }
