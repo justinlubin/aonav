@@ -47,45 +47,6 @@ impl Class {
         ]
     }
 
-    // pub fn committed(&self) -> bool {
-    //     match self {
-    //         PartitionClass::ShouldBeTrue {
-    //             will_provide,
-    //             force_use,
-    //         } => *will_provide && *force_use,
-    //         PartitionClass::Unseen
-    //         | PartitionClass::Unknown
-    //         | PartitionClass::ShouldBeFalse => false,
-    //     }
-    // }
-
-    // pub fn provided(&self) -> bool {
-    //     match self {
-    //         PartitionClass::ShouldBeTrue { will_provide, .. } => *will_provide,
-    //         PartitionClass::Unseen
-    //         | PartitionClass::Unknown
-    //         | PartitionClass::ShouldBeFalse => false,
-    //     }
-    // }
-
-    // pub fn should_be_true(&self) -> bool {
-    //     match self {
-    //         PartitionClass::ShouldBeTrue { .. } => true,
-    //         PartitionClass::Unseen
-    //         | PartitionClass::Unknown
-    //         | PartitionClass::ShouldBeFalse => false,
-    //     }
-    // }
-
-    // pub fn should_be_false(&self) -> bool {
-    //     match self {
-    //         PartitionClass::ShouldBeFalse => true,
-    //         PartitionClass::Unseen
-    //         | PartitionClass::Unknown
-    //         | PartitionClass::ShouldBeTrue { .. } => false,
-    //     }
-    // }
-
     pub fn shorthand(&self) -> &str {
         match self {
             Self::Unseen => "⊥",
@@ -217,33 +178,6 @@ impl pbn::Step for Step {
 
 ////////////////////////////////////////////////////////////////////////////////
 // Validity checker
-
-// pub fn consistent_with<A: Clone, O: Clone>(
-//     e: &Exp<A, O>,
-//     extra_provided: &ao::NodeSet,
-//     unprovided: &ao::NodeSet,
-// ) -> bool {
-//     let mut g = e.graph().clone();
-//
-//     g.make_axioms(
-//         e.provided()
-//             .set
-//             .union(&extra_provided.set)
-//             .cloned()
-//             .collect::<IndexSet<_>>()
-//             .difference(&unprovided.set)
-//             .cloned(),
-//     );
-//     g.force_all_false(e.should_be_false().set.into_iter());
-//
-//     let provable = ao::algo::provable_or_nodes(&g);
-//
-//     e.should_be_true().set.is_subset(&provable.set)
-// }
-//
-// fn consistent<A: Clone, O: Clone>(e: &Exp<A, O>) -> bool {
-//     consistent_with(e, &ao::NodeSet::new(), &ao::NodeSet::new())
-// }
 
 fn prune_forced(g: ao::Graph) -> ao::Graph {
     // TODO

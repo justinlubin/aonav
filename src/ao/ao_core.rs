@@ -169,64 +169,6 @@ impl Graph {
         Ok(Self { pg, goal })
     }
 
-    // pub fn map<F, G, A2, O2>(
-    //     &self,
-    //     mut or_map: F,
-    //     mut and_map: G,
-    // ) -> Graph<A2, O2>
-    // where
-    //     F: FnMut(Option<&O>) -> Option<O2>,
-    //     G: FnMut(Option<&A>) -> Option<A2>,
-    // {
-    //     Graph {
-    //         pg: self.pg.map(
-    //             |_, n| match n {
-    //                 Node::And { id, label, data } => Node::And {
-    //                     id: id.clone(),
-    //                     label: label.clone(),
-    //                     data: and_map(data.as_ref()),
-    //                 },
-    //                 Node::Or { id, label, data } => Node::Or {
-    //                     id: id.clone(),
-    //                     label: label.clone(),
-    //                     data: or_map(data.as_ref()),
-    //                 },
-    //             },
-    //             |_, e| e.clone(),
-    //         ),
-    //         goal: self.goal,
-    //     }
-    // }
-
-    // pub fn map_owned<F, G, A2, O2>(
-    //     self,
-    //     mut or_map: F,
-    //     mut and_map: G,
-    // ) -> Graph<A2, O2>
-    // where
-    //     F: FnMut(Option<O>) -> Option<O2>,
-    //     G: FnMut(Option<A>) -> Option<A2>,
-    // {
-    //     Graph {
-    //         pg: self.pg.map_owned(
-    //             |_, n| match n {
-    //                 Node::And { id, label, data } => Node::And {
-    //                     id,
-    //                     label,
-    //                     data: and_map(data),
-    //                 },
-    //                 Node::Or { id, label, data } => Node::Or {
-    //                     id,
-    //                     label,
-    //                     data: or_map(data),
-    //                 },
-    //             },
-    //             |_, e| e,
-    //         ),
-    //         goal: self.goal,
-    //     }
-    // }
-
     // Basics
 
     pub fn or_indexes(&self) -> impl Iterator<Item = OIdx> + '_ {
@@ -279,20 +221,6 @@ impl Graph {
     pub fn or_at(&self, o: OIdx) -> &Node {
         &self.pg[o.0]
     }
-
-    // pub fn or_data_ref(&self, o: OIdx) -> Option<&O> {
-    //     match &self.pg[o.0] {
-    //         Node::Or { data, .. } => data.as_ref(),
-    //         _ => panic!("OR-index is not valid"),
-    //     }
-    // }
-
-    // pub fn or_data_mut(&mut self, o: OIdx) -> Option<&mut O> {
-    //     match &mut self.pg[o.0] {
-    //         Node::Or { data, .. } => data.as_mut(),
-    //         _ => panic!("OR-index is not valid"),
-    //     }
-    // }
 
     pub fn premises(&self, a: AIdx) -> impl Iterator<Item = OIdx> + '_ {
         self.pg
@@ -350,22 +278,6 @@ impl Graph {
         }
     }
 
-    // pub fn force_false(&mut self, oidx: OIdx) {
-    //     for aidx in self.providers(oidx).collect::<Vec<_>>() {
-    //         let _ = self.pg.remove_node(aidx.0);
-    //     }
-    //     for aidx in self.consumers(oidx).collect::<Vec<_>>() {
-    //         let _ = self.pg.remove_node(aidx.0);
-    //     }
-    //     self.pg.remove_node(oidx.0);
-    // }
-
-    // pub fn force_all_false(&mut self, oidxs: impl Iterator<Item = OIdx>) {
-    //     for o in oidxs {
-    //         self.force_false(o)
-    //     }
-    // }
-
     // DOT formatting
 
     fn node_format(
@@ -408,7 +320,7 @@ impl Graph {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Node sets
+// OR sets
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct OrSet {
