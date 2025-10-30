@@ -1,6 +1,6 @@
 use crate::ao;
 use crate::drivers::{self, Driver};
-use crate::navigation;
+use crate::partition_navigation;
 use crate::pbn;
 use crate::util::Timer;
 
@@ -14,7 +14,7 @@ use std::sync::{Arc, Mutex};
 #[derive(Debug)]
 pub struct BenchmarkEntry {
     pub name: String,
-    pub graph: ao::Graph<ao::Generic, ao::Generic>,
+    pub graph: ao::Graph,
     pub chosen_solutions: Option<Vec<IndexSet<ao::NodeId>>>,
 }
 
@@ -77,13 +77,13 @@ impl Runner {
                 let now = Instant::now();
 
                 let provider =
-                    navigation::providers::CommittalAddProvider::new();
-                let checker = navigation::GoalProvable::new();
+                    partition_navigation::providers::Remaining::new();
+                let checker = partition_navigation::Valid::new();
                 let controller = pbn::Controller::new(
                     Timer::finite(self.config.timeout),
                     provider,
                     checker,
-                    navigation::Exp::new(entry.graph.clone()),
+                    partition_navigation::Exp::new(entry.graph.clone()),
                 );
                 let mut driver = drivers::RandomizedSolutionDrivenDriver::new(
                     solution.clone(),
@@ -94,9 +94,16 @@ impl Runner {
 
                 let (completed, success) = match e {
                     None => (false, false),
-                    Some(e) => {
-                        (true, e.committed().ids(e.graph()) == *solution)
-                    }
+                    Some(e) => (
+                        true,
+                        e.filter_class(|c| {
+                            c == partition_navigation::Class::Assume {
+                                force_use: true,
+                            }
+                        })
+                        .ids(e.graph())
+                            == *solution,
+                    ),
                 };
 
                 let r = BenchmarkResult {

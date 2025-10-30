@@ -6,6 +6,6 @@ pub mod menu;
 mod benchmark;
 mod drivers;
 mod legacy;
-mod navigation;
+mod partition_navigation;
 mod pbn;
 mod util;

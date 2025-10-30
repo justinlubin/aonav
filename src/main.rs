@@ -45,14 +45,14 @@ enum Command {
         #[arg(value_name = "FILE")]
         graph: PathBuf,
 
-        /// Comma-separated list of providers to (options: CA, CR, ASC, R)
+        /// Comma-separated list of providers
         #[arg(
             short,
             long,
             value_name = "PROVIDERS",
             num_args = 1..,
             value_delimiter = ',',
-            default_value = "CA,CR")
+            default_value = "Re")
         ]
         providers: Vec<menu::Provider>,
     },

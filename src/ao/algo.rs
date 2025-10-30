@@ -6,7 +6,7 @@ use std::collections::HashMap;
 
 // Uses forward chaining
 // Reference: https://courses.cs.washington.edu/courses/cse473/12au/slides/lect10.pdf
-pub fn provable_or_nodes<A, O>(graph: &Graph<A, O>) -> NodeSet {
+pub fn provable_or_nodes(graph: &Graph) -> OrSet {
     let mut count: HashMap<AIdx, usize> = HashMap::new();
     let mut inferred: IndexSet<OIdx> = IndexSet::new();
     let mut agenda: Vec<OIdx> =
@@ -26,20 +26,17 @@ pub fn provable_or_nodes<A, O>(graph: &Graph<A, O>) -> NodeSet {
         }
     }
 
-    NodeSet { set: inferred }
+    OrSet { set: inferred }
 }
 
 // TODO switch to using backward reasoning
-fn provable<A, O>(graph: &Graph<A, O>, oid: OIdx) -> bool {
+pub fn provable(graph: &Graph, oid: OIdx) -> bool {
     provable_or_nodes(graph).set.contains(&oid)
 }
 
-pub fn proper_axiom_sets<A: Clone, O: Clone>(
-    graph: &Graph<A, O>,
-    oid: OIdx,
-) -> Vec<NodeSet> {
-    let mut ret: Vec<NodeSet> = vec![];
-    let mut agenda: Vec<NodeSet> = vec![NodeSet {
+pub fn proper_axiom_sets(graph: &Graph, oid: OIdx) -> Vec<OrSet> {
+    let mut ret: Vec<OrSet> = vec![];
+    let mut agenda: Vec<OrSet> = vec![OrSet {
         set: IndexSet::new(),
     }];
     let or_indexes: Vec<OIdx> = graph.or_indexes().collect();
