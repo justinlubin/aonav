@@ -111,6 +111,8 @@ impl Command {
 fn main() {
     env_logger::init();
 
+    under::partition_navigation::oracle::main();
+
     let cli = Cli::parse();
 
     let result = cli.command.handle();

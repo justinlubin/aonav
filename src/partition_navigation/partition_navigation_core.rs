@@ -95,6 +95,10 @@ impl Exp {
         &self.graph
     }
 
+    pub fn class(&self, oidx: ao::OIdx) -> Class {
+        *self.partition.get(&oidx).unwrap()
+    }
+
     pub fn filter_class<F>(&self, f: F) -> ao::OrSet
     where
         F: Fn(Class) -> bool,
