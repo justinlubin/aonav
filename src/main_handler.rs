@@ -10,12 +10,7 @@ use crate::util::Timer;
 use ansi_term::Color::*;
 use indexmap::IndexSet;
 use instant::Duration;
-<<<<<<< HEAD
-use petgraph::dot;
-use serde::{de::DeserializeOwned, Deserialize, Serialize};
-=======
 use serde::{Deserialize, Serialize};
->>>>>>> refs/remotes/origin/main
 use std::fs::File;
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -226,13 +221,8 @@ pub fn convert(
 
 pub fn render(path: &PathBuf) -> Result<(), String> {
     let outdir = Path::new("out/");
-<<<<<<< HEAD
-    //let outdir = Path::new("/Users/mpreigh/under/out/");
-    let ao: ao::Graph<ao::Generic, ao::Generic> = load_ao(path);
-=======
 
     let ao = load_ao(path);
->>>>>>> refs/remotes/origin/main
 
     let dot_path = outdir.join("RENDERED.dot");
     let mut dot_file = File::create(dot_path.clone()).unwrap();
