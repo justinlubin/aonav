@@ -34,6 +34,33 @@ pub trait StepProvider {
     ) -> Result<Vec<Self::Step>, EarlyCutoff>;
 }
 
+/// Compound provider (composition of other providers)
+pub struct CompoundProvider<S: Step> {
+    providers: Vec<Box<dyn StepProvider<Step = S>>>,
+}
+
+impl<S: Step> CompoundProvider<S> {
+    pub fn new(providers: Vec<Box<dyn StepProvider<Step = S>>>) -> Self {
+        Self { providers }
+    }
+}
+
+impl<S: Step> StepProvider for CompoundProvider<S> {
+    type Step = S;
+
+    fn provide(
+        &mut self,
+        timer: &Timer,
+        e: &<Self::Step as Step>::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let mut steps = vec![];
+        for p in &mut self.providers {
+            steps.extend(p.provide(timer, e)?);
+        }
+        Ok(steps)
+    }
+}
+
 /// A Programming By Navigation controller. Controllers abstract away the
 /// actual step provider (and validity checker) and can be used to engage in
 /// the Programming By Navigation interactive process in a way that is
@@ -43,6 +70,7 @@ pub struct Controller<S: Step> {
     provider: Box<dyn StepProvider<Step = S> + 'static>,
     checker: Box<dyn ValidityChecker<Exp = S::Exp> + 'static>,
     state: S::Exp,
+    history: Option<Vec<S::Exp>>,
 }
 
 impl<S: Step> Controller<S> {
@@ -52,12 +80,14 @@ impl<S: Step> Controller<S> {
         provider: impl StepProvider<Step = S> + 'static,
         checker: impl ValidityChecker<Exp = S::Exp> + 'static,
         start: S::Exp,
+        save_history: bool,
     ) -> Self {
         Self {
             timer,
             provider: Box::new(provider),
             checker: Box::new(checker),
             state: start,
+            history: if save_history { Some(vec![]) } else { None },
         }
     }
 
@@ -70,6 +100,10 @@ impl<S: Step> Controller<S> {
     /// Decide which step to take - must be selected from among the ones that
     /// are provided by the [`provide`] function
     pub fn decide(&mut self, step: S) {
+        match &mut self.history {
+            None => (),
+            Some(his) => his.push(self.state.clone()),
+        };
         self.state = step.apply(&self.state).unwrap();
     }
 
@@ -82,5 +116,18 @@ impl<S: Step> Controller<S> {
     /// Returns whether or not the current working expression is valid
     pub fn valid(&self) -> bool {
         self.checker.check(&self.state)
+    }
+
+    /// Returns whether or not "undo" is applicable
+    pub fn can_undo(&self) -> bool {
+        match &self.history {
+            None => false,
+            Some(xs) => !xs.is_empty(),
+        }
+    }
+
+    /// Perform an "undo" (panic if not possible)
+    pub fn undo(&mut self) {
+        self.state = self.history.as_mut().unwrap().pop().unwrap();
     }
 }

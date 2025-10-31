@@ -2,15 +2,20 @@ use crate::ao;
 use crate::benchmark;
 use crate::drivers::{self, Driver};
 use crate::jgf;
-use crate::navigation;
+use crate::menu;
+use crate::partition_navigation;
 use crate::pbn;
 use crate::util::Timer;
 
 use ansi_term::Color::*;
 use indexmap::IndexSet;
 use instant::Duration;
+<<<<<<< HEAD
 use petgraph::dot;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
+=======
+use serde::{Deserialize, Serialize};
+>>>>>>> refs/remotes/origin/main
 use std::fs::File;
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -22,6 +27,7 @@ pub enum ConversionInputFormat {
     AOJsonGraph,
     Argus,
     Legacy,
+    Egglog,
 }
 
 impl std::str::FromStr for ConversionInputFormat {
@@ -46,9 +52,7 @@ fn load_chosen_solutions(path: &PathBuf) -> Option<Vec<IndexSet<ao::NodeId>>> {
     Some(cs.chosen_solutions)
 }
 
-fn load_ao<A: DeserializeOwned, O: DeserializeOwned>(
-    path: &PathBuf,
-) -> ao::Graph<A, O> {
+fn load_ao(path: &PathBuf) -> ao::Graph {
     let json_string = std::fs::read_to_string(path).unwrap();
     let jgf_data: jgf::Data = serde_json::from_str(&json_string).unwrap();
 
@@ -60,16 +64,15 @@ fn load_ao<A: DeserializeOwned, O: DeserializeOwned>(
     graph.try_into().unwrap()
 }
 
-pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
-    let graph: ao::Graph<ao::Generic, ao::Generic> = load_ao(graph_path);
+pub fn interact(
+    graph_path: &PathBuf,
+    providers: &Vec<menu::Provider>,
+) -> Result<(), String> {
+    let graph = load_ao(graph_path);
 
     let msg1 = format!(
-        "Set of provable OR nodes: {:?}",
-        ao::algo::provable_or_nodes(&graph)
-            .set
-            .iter()
-            .map(|oid| graph.or_at(*oid))
-            .collect::<Vec<_>>()
+        "Set of provable OR nodes: {}",
+        ao::algo::provable_or_nodes(&graph).show(&graph)
     );
 
     println!("\n    {}", Yellow.bold().paint(msg1));
@@ -78,21 +81,17 @@ pub fn interact(graph_path: &PathBuf) -> Result<(), String> {
 
     println!("    {}\n", Yellow.bold().paint(msg2));
 
-    let provider1 = navigation::CommittalAddProvider::new();
-    let provider2 = navigation::CompleteRefineProvider::new();
-    let provider3 = navigation::ArbitrarySubsetCommitProvider::new();
-    let provider = navigation::CompoundProvider::new(vec![
-        Box::new(provider1),
-        Box::new(provider2),
-        Box::new(provider3),
-    ]);
-    let checker = navigation::GoalProvable::new();
+    let provider = pbn::CompoundProvider::new(
+        providers.iter().map(|p| p.provider()).collect(),
+    );
+    let checker = partition_navigation::Valid::new();
 
     let controller = pbn::Controller::new(
         Timer::infinite(),
         provider,
         checker,
-        navigation::Exp::new(graph),
+        partition_navigation::Exp::new(graph),
+        true,
     );
 
     let mut driver = drivers::CliDriver::new();
@@ -152,10 +151,10 @@ pub fn generate_solutions(suite_path: &PathBuf) -> Result<(), String> {
             continue;
         }
 
-        let graph: ao::Graph<ao::Generic, ao::Generic> = load_ao(&path);
+        let graph = load_ao(&path);
 
         let cs = ChosenSolutions {
-            chosen_solutions: ao::algo::proper_axiom_sets(&graph)
+            chosen_solutions: ao::algo::proper_axiom_sets(&graph, graph.goal())
                 .into_iter()
                 .map(|axs| axs.ids(&graph))
                 .collect(),
@@ -186,7 +185,7 @@ pub fn convert(
             Ok(())
         }
         ConversionInputFormat::AOJsonGraph => {
-            let ao: ao::Graph<ao::Generic, ao::Generic> = load_ao(path);
+            let ao = load_ao(path);
             let jgf = jgf::Data::Single {
                 graph: ao.try_into()?,
             };
@@ -203,8 +202,19 @@ pub fn convert(
                     .unwrap();
             let goal = lines.remove(0).trim().to_owned();
             let proof_system = crate::legacy::proof_system(&lines);
-            let ao: ao::Graph<ao::Generic, ao::Generic> =
-                crate::legacy::to_ao(proof_system, goal);
+            let ao = crate::legacy::to_ao(proof_system, goal);
+            let jgf = jgf::Data::Single {
+                graph: ao.try_into()?,
+            };
+            println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
+            Ok(())
+        }
+        ConversionInputFormat::Egglog => {
+            let input = std::fs::read_to_string(path).unwrap();
+            let mut egraph = egglog::EGraph::default();
+            let egglog_program =
+                egraph.parser.get_program_from_string(None, &input).unwrap();
+            let ao: ao::Graph = egglog_program.try_into()?;
             let jgf = jgf::Data::Single {
                 graph: ao.try_into()?,
             };
@@ -216,8 +226,13 @@ pub fn convert(
 
 pub fn render(path: &PathBuf) -> Result<(), String> {
     let outdir = Path::new("out/");
+<<<<<<< HEAD
     //let outdir = Path::new("/Users/mpreigh/under/out/");
     let ao: ao::Graph<ao::Generic, ao::Generic> = load_ao(path);
+=======
+
+    let ao = load_ao(path);
+>>>>>>> refs/remotes/origin/main
 
     let dot_path = outdir.join("RENDERED.dot");
     let mut dot_file = File::create(dot_path.clone()).unwrap();

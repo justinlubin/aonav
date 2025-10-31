@@ -1,5 +1,5 @@
 use crate::ao;
-use crate::navigation;
+use crate::partition_navigation as pn;
 use crate::pbn;
 
 use ansi_term::Color::*;
@@ -20,12 +20,14 @@ pub struct CliDriver;
 
 impl CliDriver {
     pub fn new() -> Self {
-        Self {}
+        Self
     }
 }
 
-fn emit_graph(name: &str, e: &navigation::Exp<ao::Generic, ao::Generic>) {
-    let highlighted_nodes = e.committed().set;
+fn emit_graph(name: &str, e: &pn::Exp) {
+    let highlighted_nodes = e
+        .filter_class(|c| c == pn::Class::Assume { force_use: true })
+        .set;
 
     let mut dot_file = File::create(format!("out/{}.dot", name)).unwrap();
     write!(&mut dot_file, "{}", e.graph().dot(&highlighted_nodes)).unwrap();
@@ -39,16 +41,14 @@ fn emit_graph(name: &str, e: &navigation::Exp<ao::Generic, ao::Generic>) {
         .unwrap();
 }
 
-impl Driver<navigation::Step<ao::Generic, ao::Generic>> for CliDriver {
+impl Driver<pn::Step> for CliDriver {
     fn drive(
         &mut self,
-        mut controller: pbn::Controller<
-            navigation::Step<ao::Generic, ao::Generic>,
-        >,
-    ) -> Option<navigation::Exp<ao::Generic, ao::Generic>> {
+        mut controller: pbn::Controller<pn::Step>,
+    ) -> Option<pn::Exp> {
         let mut round = 0;
 
-        loop {
+        'main_loop: loop {
             let exp = controller.working_expression();
 
             emit_graph("interactive", &exp);
@@ -79,6 +79,10 @@ impl Driver<navigation::Step<ao::Generic, ao::Generic>> for CliDriver {
                 println!("  {}) {}", i + 1, option_string);
             }
 
+            if controller.can_undo() {
+                println!("{}", Fixed(8).paint("  u) undo"));
+            }
+
             if valid {
                 println!(
                     "  f) Expression is {}, finish navigation",
@@ -86,7 +90,7 @@ impl Driver<navigation::Step<ao::Generic, ao::Generic>> for CliDriver {
                 )
             }
 
-            let idx = loop {
+            loop {
                 print!(
                     "\n{} {}\n\n> ",
                     Purple.bold().paint("Which step would you like to take?"),
@@ -102,28 +106,25 @@ impl Driver<navigation::Step<ao::Generic, ao::Generic>> for CliDriver {
                     return None;
                 }
 
+                if controller.can_undo() && input == "u" {
+                    controller.undo();
+                    break;
+                }
+
                 if valid && input == "f" {
-                    break None;
+                    break 'main_loop;
                 }
 
                 match input.parse::<usize>() {
                     Ok(choice) => {
                         if 1 <= choice && choice <= options.len() {
-                            break Some(choice - 1);
-                        } else {
-                            continue;
+                            controller.decide(options.swap_remove(choice - 1));
+                            break;
                         }
                     }
-                    Err(_) => continue,
+                    Err(_) => (),
                 };
-            };
-
-            let idx = match idx {
-                Some(idx) => idx,
-                None => break,
-            };
-
-            controller.decide(options.swap_remove(idx))
+            }
         }
 
         let final_expression = controller.working_expression();
@@ -159,18 +160,18 @@ impl RandomizedSolutionDrivenDriver {
     }
 }
 
-impl Driver<navigation::Step<ao::Generic, ao::Generic>>
-    for RandomizedSolutionDrivenDriver
-{
+impl Driver<pn::Step> for RandomizedSolutionDrivenDriver {
     fn drive(
         &mut self,
-        mut controller: pbn::Controller<
-            navigation::Step<ao::Generic, ao::Generic>,
-        >,
-    ) -> Option<navigation::Exp<ao::Generic, ao::Generic>> {
+        mut controller: pbn::Controller<pn::Step>,
+    ) -> Option<pn::Exp> {
         loop {
             let exp = controller.working_expression();
-            if exp.committed().ids(exp.graph()) == self.solution {
+            if exp
+                .filter_class(|c| c == pn::Class::Assume { force_use: true })
+                .ids(exp.graph())
+                == self.solution
+            {
                 return Some(exp);
             }
 
@@ -180,12 +181,9 @@ impl Driver<navigation::Step<ao::Generic, ao::Generic>>
                 .iter()
                 .enumerate()
                 .filter_map(|(i, option)| match &option {
-                    navigation::Step::SetClass(
+                    pn::Step::SetClass(
                         id,
-                        navigation::PartitionClass::ShouldBeTrue {
-                            will_provide: true,
-                            force_use: true,
-                        },
+                        pn::Class::True { force_use: true },
                         _,
                     ) => {
                         if self.solution.contains(exp.graph().or_at(*id).id()) {

@@ -21,10 +21,7 @@ impl Rule {
 
 pub type ProofSystem = Vec<Rule>;
 
-pub fn to_ao<A, O>(
-    ps: ProofSystem,
-    target: ao::NodeId,
-) -> crate::ao::Graph<A, O> {
+pub fn to_ao(ps: ProofSystem, target: ao::NodeId) -> crate::ao::Graph {
     let mut props = IndexSet::new();
     let mut rules = IndexSet::new();
     let mut edges = vec![];
@@ -41,16 +38,12 @@ pub fn to_ao<A, O>(
     ao::Graph::new(
         props
             .into_iter()
-            .map(|id| ao::Node::Or {
-                id,
-                label: None,
-                data: None,
-            })
-            .chain(rules.into_iter().map(|id| ao::Node::And {
-                id,
-                label: None,
-                data: None,
-            })),
+            .map(|id| ao::Node::new(id, None, ao::NodeKind::Or))
+            .chain(
+                rules
+                    .into_iter()
+                    .map(|id| ao::Node::new(id, None, ao::NodeKind::And)),
+            ),
         edges.into_iter(),
         &target,
     )

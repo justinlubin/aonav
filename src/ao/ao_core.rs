@@ -12,56 +12,55 @@ pub type NodeId = String;
 #[allow(non_camel_case_types)]
 pub type nodeid = str;
 
-#[derive(Debug, Clone)]
-pub enum Node<A, O> {
-    And {
-        id: NodeId,
-        label: Option<String>,
-        data: Option<A>,
-    },
-    Or {
-        id: NodeId,
-        label: Option<String>,
-        data: Option<O>,
-    },
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum NodeKind {
+    And,
+    Or,
 }
 
-impl<A, O> Node<A, O> {
-    pub fn id(&self) -> &nodeid {
+impl fmt::Display for NodeKind {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
-            Node::And { id, .. } | Node::Or { id, .. } => id,
+            Self::And => write!(f, "AND"),
+            Self::Or => write!(f, "OR"),
         }
     }
+}
 
-    pub fn label(&self) -> &Option<String> {
-        match self {
-            Node::And { label, .. } | Node::Or { label, .. } => label,
-        }
+#[derive(Debug, Clone)]
+pub struct Node {
+    id: NodeId,
+    label: Option<String>,
+    kind: NodeKind,
+}
+
+impl Node {
+    pub fn new(id: NodeId, label: Option<String>, kind: NodeKind) -> Self {
+        Self { id, label, kind }
+    }
+
+    pub fn id(&self) -> &nodeid {
+        &self.id
+    }
+
+    pub fn label(&self) -> Option<&nodeid> {
+        self.label.as_ref().map(|x| x.as_str())
+    }
+
+    pub fn kind(&self) -> NodeKind {
+        self.kind
     }
 
     pub fn is_and(&self) -> bool {
-        match self {
-            Node::And { .. } => true,
-            Node::Or { .. } => false,
-        }
+        self.kind == NodeKind::And
     }
 
     pub fn is_or(&self) -> bool {
-        match self {
-            Node::And { .. } => false,
-            Node::Or { .. } => true,
-        }
-    }
-
-    pub fn kind(&self) -> &str {
-        match self {
-            Node::And { .. } => "AND",
-            Node::Or { .. } => "OR",
-        }
+        self.kind == NodeKind::Or
     }
 }
 
-impl<A, O> fmt::Display for Node<A, O> {
+impl fmt::Display for Node {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self.label() {
             Some(s) => write!(f, "[{}]\n{}", self.id(), s),
@@ -86,12 +85,10 @@ impl fmt::Display for Edge {
 // Graphs
 
 #[derive(Debug, Clone)]
-pub struct Graph<A, O> {
-    pg: pg::StableGraph<Node<A, O>, Edge>,
+pub struct Graph {
+    pg: pg::StableGraph<Node, Edge>,
     goal: pg::NodeIndex,
 }
-
-pub type Generic = serde_json::Value;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct AIdx(pg::NodeIndex);
@@ -99,20 +96,20 @@ pub struct AIdx(pg::NodeIndex);
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct OIdx(pg::NodeIndex);
 
-impl<A, O> Graph<A, O> {
+impl Graph {
     // Creation
 
-    pub fn new<'a>(
-        nodes: impl Iterator<Item = Node<A, O>>,
+    pub fn new(
+        nodes: impl Iterator<Item = Node>,
         edges: impl Iterator<Item = (NodeId, NodeId)>,
-        goal: &'a nodeid,
+        goal: &nodeid,
     ) -> Result<Self, String> {
         let mut pg = pg::StableGraph::new();
 
         let mut translation = IndexMap::new();
 
         for node in nodes {
-            let nid = node.id().to_owned();
+            let nid = node.id.to_owned();
             if translation.contains_key(&nid) {
                 return Err(format!("Duplicate node '{}'", nid));
             }
@@ -129,28 +126,28 @@ impl<A, O> Graph<A, O> {
                 .get(&target_nid)
                 .ok_or(format!("Target '{}' is not a node", target_nid))?;
 
-            match (&pg[source_pid], &pg[target_pid]) {
-                (Node::And { .. }, Node::And { .. }) => {
+            match (&pg[source_pid].kind, &pg[target_pid].kind) {
+                (NodeKind::And, NodeKind::And) => {
                     return Err(format!(
                         "Cannot connect AND node '{}' to AND node '{}'",
                         source_nid, target_nid
                     ))
                 }
-                (Node::Or { .. }, Node::Or { .. }) => {
+                (NodeKind::Or, NodeKind::Or) => {
                     return Err(format!(
                         "Cannot connect Or node '{}' to Or node '{}'",
                         source_nid, target_nid
                     ))
                 }
-                (Node::And { .. }, Node::Or { .. })
-                | (Node::Or { .. }, Node::And { .. }) => (),
+                (NodeKind::And, NodeKind::Or)
+                | (NodeKind::Or, NodeKind::And) => (),
             };
 
             let _ = pg.add_edge(source_pid, target_pid, Edge);
         }
 
-        let goal = match translation.get(goal).map(|pid| (pid, &pg[*pid])) {
-            Some((pid, Node::Or { .. })) => *pid,
+        let goal = match translation.get(goal).map(|pid| (pid, pg[*pid].kind)) {
+            Some((pid, NodeKind::Or)) => *pid,
             _ => return Err(format!("Goal node '{}' is not an OR node", goal)),
         };
 
@@ -164,41 +161,12 @@ impl<A, O> Graph<A, O> {
             if it.next().is_some() {
                 return Err(format!(
                     "AND node '{}' has more than one conclusion",
-                    node.id()
+                    node.id
                 ));
             }
         }
 
         Ok(Self { pg, goal })
-    }
-
-    pub fn map<F, G, A2, O2>(
-        &self,
-        mut or_map: F,
-        mut and_map: G,
-    ) -> Graph<A2, O2>
-    where
-        F: FnMut(Option<&O>) -> Option<O2>,
-        G: FnMut(Option<&A>) -> Option<A2>,
-    {
-        Graph {
-            pg: self.pg.map(
-                |_, n| match n {
-                    Node::And { id, label, data } => Node::And {
-                        id: id.clone(),
-                        label: label.clone(),
-                        data: and_map(data.as_ref()),
-                    },
-                    Node::Or { id, label, data } => Node::Or {
-                        id: id.clone(),
-                        label: label.clone(),
-                        data: or_map(data.as_ref()),
-                    },
-                },
-                |_, e| e.clone(),
-            ),
-            goal: self.goal,
-        }
     }
 
     // Basics
@@ -223,11 +191,11 @@ impl<A, O> Graph<A, O> {
         })
     }
 
-    pub fn nodes(&self) -> impl Iterator<Item = &Node<A, O>> {
+    pub fn nodes(&self) -> impl Iterator<Item = &Node> {
         self.pg.node_weights()
     }
 
-    pub fn edges(&self) -> impl Iterator<Item = (&Node<A, O>, &Node<A, O>)> {
+    pub fn edges(&self) -> impl Iterator<Item = (&Node, &Node)> {
         self.pg
             .edge_references()
             .map(|e| (&self.pg[e.source()], &self.pg[e.target()]))
@@ -250,28 +218,18 @@ impl<A, O> Graph<A, O> {
 
     // Indexing
 
-    pub fn or_at(&self, o: OIdx) -> &Node<A, O> {
+    pub fn or_at(&self, o: OIdx) -> &Node {
         &self.pg[o.0]
     }
 
-    pub fn or_data_ref(&self, o: OIdx) -> Option<&O> {
-        match &self.pg[o.0] {
-            Node::Or { data, .. } => data.as_ref(),
-            _ => panic!("OR-index is not valid"),
-        }
-    }
-
-    pub fn or_data_mut(&mut self, o: OIdx) -> Option<&mut O> {
-        match &mut self.pg[o.0] {
-            Node::Or { data, .. } => data.as_mut(),
-            _ => panic!("OR-index is not valid"),
-        }
+    pub fn and_at(&self, a: AIdx) -> &Node {
+        &self.pg[a.0]
     }
 
     pub fn premises(&self, a: AIdx) -> impl Iterator<Item = OIdx> + '_ {
         self.pg
             .edges_directed(a.0, Direction::Outgoing)
-            .map(|er| OIdx(er.source()))
+            .map(|er| OIdx(er.target()))
     }
 
     pub fn conclusion(&self, a: AIdx) -> OIdx {
@@ -287,7 +245,7 @@ impl<A, O> Graph<A, O> {
     pub fn providers(&self, o: OIdx) -> impl Iterator<Item = AIdx> + '_ {
         self.pg
             .edges_directed(o.0, Direction::Outgoing)
-            .map(|er| AIdx(er.source()))
+            .map(|er| AIdx(er.target()))
     }
 
     pub fn consumers(&self, o: OIdx) -> impl Iterator<Item = AIdx> + '_ {
@@ -310,10 +268,10 @@ impl<A, O> Graph<A, O> {
     }
 
     pub fn make_axiom(&mut self, o: OIdx) {
-        let ax_pid = self.pg.add_node(Node::And {
-            id: format!("ax:{}", self.pg[o.0].id()),
+        let ax_pid = self.pg.add_node(Node {
+            id: format!("ax:{}", self.pg[o.0].id),
             label: None,
-            data: None,
+            kind: NodeKind::And,
         });
         let _ = self.pg.add_edge(o.0, ax_pid, Edge);
     }
@@ -329,14 +287,14 @@ impl<A, O> Graph<A, O> {
     fn node_format(
         highlighted_nodes: &IndexSet<OIdx>,
         pid: pg::NodeIndex,
-        node: &Node<A, O>,
+        node: &Node,
     ) -> String {
-        let base = match node {
-            Node::Or { .. } => {
+        let base = match node.kind {
+            NodeKind::Or => {
                 "color=darkslateblue,fontcolor=darkslateblue,penwidth=2"
                     .to_string()
             }
-            Node::And { .. } => {
+            NodeKind::And => {
                 "shape=rectangle,color=gray35,fontcolor=gray35,margin=0"
                     .to_string()
             }
@@ -355,9 +313,9 @@ impl<A, O> Graph<A, O> {
         let d = petgraph::dot::Dot::with_attr_getters(
             &self.pg,
             &[petgraph::dot::Config::EdgeNoLabel],
-            &|g, e| match g[e.source()] {
-                Node::And { .. } => "color=red".to_string(),
-                Node::Or { .. } => "color=blue, style=dashed".to_string(),
+            &|g, e| match g[e.source()].kind {
+                NodeKind::And => "color=red".to_string(),
+                NodeKind::Or => "color=blue, style=dashed".to_string(),
             },
             &get_node_attrs,
         );
@@ -366,29 +324,82 @@ impl<A, O> Graph<A, O> {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Node sets
+// AND sets and OR sets
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct NodeSet {
-    pub set: IndexSet<OIdx>,
+pub struct AndSet {
+    pub set: IndexSet<AIdx>,
 }
 
-impl NodeSet {
-    pub fn ids<A, O>(&self, graph: &Graph<A, O>) -> IndexSet<NodeId> {
+impl AndSet {
+    pub fn new() -> Self {
+        AndSet {
+            set: IndexSet::new(),
+        }
+    }
+
+    pub fn singleton(aidx: AIdx) -> Self {
+        AndSet {
+            set: IndexSet::from([aidx]),
+        }
+    }
+
+    pub fn ids(&self, graph: &Graph) -> IndexSet<NodeId> {
         self.set
             .iter()
-            .map(|oid| graph.or_at(*oid).id().to_owned())
+            .map(|aidx| graph.and_at(*aidx).id.to_owned())
             .collect()
     }
 
-    pub fn show<A, O>(&self, graph: &Graph<A, O>) -> String {
+    pub fn show(&self, graph: &Graph) -> String {
         if self.set.is_empty() {
             "∅".to_owned()
         } else {
             let mut first = true;
             let mut s = "".to_owned();
-            for oid in &self.set {
-                let ax = graph.or_at(*oid);
+            for aidx in &self.set {
+                let ax = graph.and_at(*aidx);
+                s += &format!("{}{}", if first { "{" } else { ", " }, ax);
+                first = false;
+            }
+            s + "}"
+        }
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct OrSet {
+    pub set: IndexSet<OIdx>,
+}
+
+impl OrSet {
+    pub fn new() -> Self {
+        OrSet {
+            set: IndexSet::new(),
+        }
+    }
+
+    pub fn singleton(oidx: OIdx) -> Self {
+        OrSet {
+            set: IndexSet::from([oidx]),
+        }
+    }
+
+    pub fn ids(&self, graph: &Graph) -> IndexSet<NodeId> {
+        self.set
+            .iter()
+            .map(|oidx| graph.or_at(*oidx).id.to_owned())
+            .collect()
+    }
+
+    pub fn show(&self, graph: &Graph) -> String {
+        if self.set.is_empty() {
+            "∅".to_owned()
+        } else {
+            let mut first = true;
+            let mut s = "".to_owned();
+            for oidx in &self.set {
+                let ax = graph.or_at(*oidx);
                 s += &format!("{}{}", if first { "{" } else { ", " }, ax);
                 first = false;
             }

@@ -1,5 +1,5 @@
 pub mod algo;
+mod ao_core;
 pub mod convert;
-mod core;
 
-pub use core::*;
+pub use ao_core::*;
