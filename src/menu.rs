@@ -1,4 +1,5 @@
 use crate::*;
+use partition_navigation as pn;
 
 #[derive(Debug, Clone)]
 pub enum Provider {
@@ -11,15 +12,12 @@ pub enum Provider {
 }
 
 impl Provider {
-    pub fn provider(
-        &self,
-    ) -> Box<dyn pbn::StepProvider<Step = partition_navigation::Step>> {
+    pub fn provider(&self) -> Box<dyn pbn::StepProvider<Step = pn::Step>> {
         match self {
-            Provider::Remaining => {
-                Box::new(partition_navigation::providers::Remaining::new())
-            }
-            Provider::Random => {
-                Box::new(partition_navigation::providers::Random::new())
+            Provider::Remaining => Box::new(pn::providers::Remaining::new()),
+            Provider::Random => Box::new(pn::providers::Random::new()),
+            Provider::TopDownInversion => {
+                Box::new(pn::providers::TopDownInversion::new())
             }
             _ => panic!("Unimplemented!"),
         }

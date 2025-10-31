@@ -4,19 +4,9 @@
       "goal": "Q"
     },
     "nodes": {
-      "ax:B": {
-        "metadata": {
-          "kind": "AND"
-        }
-      },
       "B": {
         "metadata": {
           "kind": "OR"
-        }
-      },
-      "ax:C": {
-        "metadata": {
-          "kind": "AND"
         }
       },
       "C": {
@@ -24,29 +14,14 @@
           "kind": "OR"
         }
       },
-      "ax:D": {
-        "metadata": {
-          "kind": "AND"
-        }
-      },
       "D": {
         "metadata": {
           "kind": "OR"
         }
       },
-      "ax:E": {
-        "metadata": {
-          "kind": "AND"
-        }
-      },
       "E": {
         "metadata": {
           "kind": "OR"
-        }
-      },
-      "ax:F": {
-        "metadata": {
-          "kind": "AND"
         }
       },
       "F": {
@@ -86,26 +61,6 @@
       }
     },
     "edges": [
-      {
-        "source": "B",
-        "target": "ax:B"
-      },
-      {
-        "source": "C",
-        "target": "ax:C"
-      },
-      {
-        "source": "D",
-        "target": "ax:D"
-      },
-      {
-        "source": "E",
-        "target": "ax:E"
-      },
-      {
-        "source": "F",
-        "target": "ax:F"
-      },
       {
         "source": "A",
         "target": "f"

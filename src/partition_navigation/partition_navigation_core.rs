@@ -155,7 +155,11 @@ impl Step {
     pub fn show(&self, e: &Exp) -> String {
         match self {
             Step::SetClass(oid, class) => {
-                format!("set {} {}", e.graph.or_at(*oid), class.shorthand())
+                format!(
+                    "set \"{}\" to {}",
+                    e.graph.or_at(*oid),
+                    class.shorthand()
+                )
             }
             Step::Seq(s1, s2) => {
                 format!("{} ; {}", s1.show(e), s2.show(e))

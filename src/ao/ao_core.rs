@@ -324,7 +324,48 @@ impl Graph {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// OR sets
+// AND sets and OR sets
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct AndSet {
+    pub set: IndexSet<AIdx>,
+}
+
+impl AndSet {
+    pub fn new() -> Self {
+        AndSet {
+            set: IndexSet::new(),
+        }
+    }
+
+    pub fn singleton(aidx: AIdx) -> Self {
+        AndSet {
+            set: IndexSet::from([aidx]),
+        }
+    }
+
+    pub fn ids(&self, graph: &Graph) -> IndexSet<NodeId> {
+        self.set
+            .iter()
+            .map(|aidx| graph.and_at(*aidx).id.to_owned())
+            .collect()
+    }
+
+    pub fn show(&self, graph: &Graph) -> String {
+        if self.set.is_empty() {
+            "∅".to_owned()
+        } else {
+            let mut first = true;
+            let mut s = "".to_owned();
+            for aidx in &self.set {
+                let ax = graph.and_at(*aidx);
+                s += &format!("{}{}", if first { "{" } else { ", " }, ax);
+                first = false;
+            }
+            s + "}"
+        }
+    }
+}
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct OrSet {
@@ -347,7 +388,7 @@ impl OrSet {
     pub fn ids(&self, graph: &Graph) -> IndexSet<NodeId> {
         self.set
             .iter()
-            .map(|oid| graph.or_at(*oid).id.to_owned())
+            .map(|oidx| graph.or_at(*oidx).id.to_owned())
             .collect()
     }
 
@@ -357,8 +398,8 @@ impl OrSet {
         } else {
             let mut first = true;
             let mut s = "".to_owned();
-            for oid in &self.set {
-                let ax = graph.or_at(*oid);
+            for oidx in &self.set {
+                let ax = graph.or_at(*oidx);
                 s += &format!("{}{}", if first { "{" } else { ", " }, ax);
                 first = false;
             }
