@@ -1,4 +1,3 @@
-use crate::ao;
 use crate::partition_navigation as pn;
 use crate::pbn::{self, Step};
 use crate::util::{EarlyCutoff, Timer};
@@ -34,7 +33,7 @@ impl pbn::StepProvider for Remaining {
                 if new_class == class {
                     continue;
                 }
-                let step = pn::Step::SetClass(*oidx, *new_class);
+                let step = pn::Step::SetClass(*oidx, *new_class, None);
                 match step.apply(e) {
                     None => continue,
                     Some(result) => {
@@ -81,7 +80,7 @@ impl pbn::StepProvider for Random {
             if *new_class == pn::Class::Unseen {
                 continue;
             }
-            let step = pn::Step::SetClass(oidx, *new_class);
+            let step = pn::Step::SetClass(oidx, *new_class, None);
             match step.apply(e) {
                 None => continue,
                 Some(result) => {
@@ -98,32 +97,6 @@ impl pbn::StepProvider for Random {
 
 ////////////////////////////////////////////////////////////////////////////////
 // Top-down inversion
-
-fn forced_frontier(e: &pn::Exp) -> ao::AndSet {
-    todo!()
-    // let mut set = IndexSet::new();
-    // let g = e.graph();
-    // let mut worklist = vec![g.goal()];
-    // let mut frontier = IndexSet::new();
-
-    // 'worklist_loop: while let Some(oidx) = worklist.pop() {
-    //     let providers = g.providers(oidx);
-    //     for aidx in providers {
-    //         if g.premises(aidx)
-    //             .find(|&premise_oidx| {
-    //                 e.class(premise_oidx) == pn::Class::True { force_use: true }
-    //             })
-    //             .is_some()
-    //         {
-    //             worklist.extend(g.premises(aidx));
-    //             continue 'worklist_loop;
-    //         }
-    //     }
-
-    // }
-
-    // ao::AndSet { set: frontier }
-}
 
 pub struct TopDownInversion;
 
@@ -161,14 +134,20 @@ impl pbn::StepProvider for TopDownInversion {
                     continue;
                 }
 
-                let explore_step =
+                let mut explore_step =
                     pn::Step::sequence(unseen.iter().map(|prem_oidx| {
                         pn::Step::SetClass(
                             *prem_oidx,
                             pn::Class::True { force_use: true },
+                            None,
                         )
                     }))
                     .unwrap();
+
+                explore_step.set_label(Some(format!(
+                    "explore rule \"{}\"",
+                    e.graph().and_at(aidx)
+                )));
 
                 if let Some(result) = explore_step.apply(e) {
                     if pn::oracle::nonempty_completion(&result) {
@@ -176,14 +155,20 @@ impl pbn::StepProvider for TopDownInversion {
                     }
                 }
 
-                let commit_step =
+                let mut commit_step =
                     pn::Step::sequence(unseen.into_iter().map(|prem_oidx| {
                         pn::Step::SetClass(
                             prem_oidx,
                             pn::Class::Assume { force_use: true },
+                            None,
                         )
                     }))
                     .unwrap();
+
+                commit_step.set_label(Some(format!(
+                    "commit to rule \"{}\"",
+                    e.graph().and_at(aidx)
+                )));
 
                 if let Some(result) = commit_step.apply(e) {
                     if pn::oracle::nonempty_completion(&result) {

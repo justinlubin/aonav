@@ -184,6 +184,7 @@ impl Driver<pn::Step> for RandomizedSolutionDrivenDriver {
                     pn::Step::SetClass(
                         id,
                         pn::Class::True { force_use: true },
+                        _,
                     ) => {
                         if self.solution.contains(exp.graph().or_at(*id).id()) {
                             Some(i)

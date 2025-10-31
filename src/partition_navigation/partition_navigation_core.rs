@@ -135,34 +135,59 @@ impl std::fmt::Display for Exp {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Step {
     /// Set a node's partition class
-    SetClass(ao::OIdx, Class),
+    SetClass(ao::OIdx, Class, Option<String>),
 
     /// Sequence two steps
-    Seq(Box<Step>, Box<Step>),
+    Seq(Box<Step>, Box<Step>, Option<String>),
 }
 
 impl Step {
+    pub fn set_label(&mut self, label: Option<String>) {
+        match self {
+            Self::SetClass(_, _, old_label) => *old_label = label,
+            Self::Seq(_, _, old_label) => *old_label = label,
+        }
+    }
+
+    pub fn label(&self) -> Option<&str> {
+        match self {
+            Self::SetClass(_, _, label) => label.as_ref().map(|x| x.as_str()),
+            Self::Seq(_, _, label) => label.as_ref().map(|x| x.as_str()),
+        }
+    }
+
     pub fn sequence(mut steps: impl Iterator<Item = Step>) -> Option<Step> {
         let mut step = steps.next()?;
 
         for s in steps {
-            step = Step::Seq(Box::new(step), Box::new(s));
+            step = Step::Seq(Box::new(step), Box::new(s), None);
         }
 
         Some(step)
     }
 
     pub fn show(&self, e: &Exp) -> String {
-        match self {
-            Step::SetClass(oid, class) => {
+        let default = match self {
+            Step::SetClass(oid, class, _) => {
                 format!(
                     "set \"{}\" to {}",
                     e.graph.or_at(*oid),
                     class.shorthand()
                 )
             }
-            Step::Seq(s1, s2) => {
+            Step::Seq(s1, s2, _) => {
                 format!("{} ; {}", s1.show(e), s2.show(e))
+            }
+        };
+
+        match self.label() {
+            None => default,
+            Some(lab) => {
+                format!(
+                    "{} {}",
+                    lab,
+                    ansi_term::Color::Fixed(8).paint(format!("({})", default))
+                )
             }
         }
     }
@@ -173,7 +198,7 @@ impl pbn::Step for Step {
 
     fn apply(&self, e: &Self::Exp) -> Option<Self::Exp> {
         match self {
-            Step::SetClass(oid, c) => {
+            Step::SetClass(oid, c, _) => {
                 let mut ret = e.clone();
                 if *ret.partition.get(oid).unwrap() != Class::Unseen {
                     return None;
@@ -181,7 +206,7 @@ impl pbn::Step for Step {
                 *ret.partition.get_mut(oid).unwrap() = *c;
                 Some(ret)
             }
-            Step::Seq(s1, s2) => s1.apply(e).and_then(|e2| s2.apply(&e2)),
+            Step::Seq(s1, s2, _) => s1.apply(e).and_then(|e2| s2.apply(&e2)),
         }
     }
 }
