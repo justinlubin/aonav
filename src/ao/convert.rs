@@ -610,7 +610,8 @@ struct ArgusAO {
     root: String,
     goals: HashMap<String, String>,
     candidates: HashMap<String, String>,
-    topology: HashMap<String, Vec<String>>
+    topology: HashMap<String, Vec<String>>,
+    yesGoals: Vec<String>
 }
 
 pub fn argus_to_and_or<A, O>(path: &PathBuf) 
@@ -658,6 +659,13 @@ pub fn argus_to_and_or<A, O>(path: &PathBuf)
                 if !removed.contains(&child) {
                     edges.push((parent.clone(), child));
                 }
+            }
+        }
+        // for each goals this is true, add empty impl going into it
+        for true_goal in deserialized.yesGoals {
+            if !removed.contains(&true_goal) {
+                nodes.push(Node::new("-".to_owned() + &true_goal, None, NodeKind::And));
+                edges.push((true_goal.clone(), "-".to_owned() + &true_goal));
             }
         }
         // get ao graph
