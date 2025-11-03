@@ -26,7 +26,12 @@ impl CliDriver {
 
 fn emit_graph(name: &str, e: &pn::Exp) {
     let highlighted_nodes = e
-        .filter_class(|c| c == pn::Class::Assume { force_use: true })
+        .filter_class(|c| {
+            c == pn::Class::True {
+                force_use: true,
+                assume: Some(true),
+            }
+        })
         .set;
 
     let mut dot_file = File::create(format!("out/{}.dot", name)).unwrap();
@@ -168,7 +173,12 @@ impl Driver<pn::Step> for RandomizedSolutionDrivenDriver {
         loop {
             let exp = controller.working_expression();
             if exp
-                .filter_class(|c| c == pn::Class::Assume { force_use: true })
+                .filter_class(|c| {
+                    c == pn::Class::True {
+                        force_use: true,
+                        assume: Some(true),
+                    }
+                })
                 .ids(exp.graph())
                 == self.solution
             {
@@ -183,7 +193,10 @@ impl Driver<pn::Step> for RandomizedSolutionDrivenDriver {
                 .filter_map(|(i, option)| match &option {
                     pn::Step::SetClass(
                         id,
-                        pn::Class::True { force_use: true },
+                        pn::Class::True {
+                            force_use: true,
+                            assume: Some(true),
+                        },
                         _,
                     ) => {
                         if self.solution.contains(exp.graph().or_at(*id).id()) {

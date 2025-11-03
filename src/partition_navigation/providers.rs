@@ -6,6 +6,50 @@ use indexmap::IndexSet;
 use rand::prelude::*;
 
 ////////////////////////////////////////////////////////////////////////////////
+// Commit
+
+pub struct Commit;
+
+impl Commit {
+    pub fn new() -> Self {
+        Self
+    }
+}
+
+impl pbn::StepProvider for Commit {
+    type Step = pn::Step;
+
+    fn provide(
+        &mut self,
+        _timer: &Timer,
+        e: &pn::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let mut ret = vec![];
+
+        for (oidx, class) in e.partition() {
+            for assume in &[false, true] {
+                let new_class = match class.commit_true(*assume) {
+                    Some(nc) => nc,
+                    None => continue,
+                };
+
+                let step = pn::Step::SetClass(*oidx, new_class, None);
+                match step.apply(e) {
+                    None => continue,
+                    Some(result) => {
+                        if pn::oracle::nonempty_completion(&result) {
+                            ret.push(step);
+                        }
+                    }
+                }
+            }
+        }
+
+        Ok(ret)
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
 // Remaining
 
 pub struct Remaining;
@@ -116,11 +160,16 @@ impl pbn::StepProvider for TopDownInversion {
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut ret = vec![];
 
-        let true_force_use = e
-            .filter_class(|c| c == pn::Class::True { force_use: true })
+        let frontier = e
+            .filter_class(|c| {
+                c == pn::Class::True {
+                    force_use: true,
+                    assume: Some(false),
+                }
+            })
             .set;
 
-        for oidx in true_force_use {
+        for oidx in frontier {
             for aidx in e.graph().providers(oidx) {
                 let unseen = e
                     .graph()
@@ -134,45 +183,27 @@ impl pbn::StepProvider for TopDownInversion {
                     continue;
                 }
 
-                let mut explore_step =
-                    pn::Step::sequence(unseen.iter().map(|prem_oidx| {
+                let mut step =
+                    pn::Step::sequence(unseen.into_iter().map(|prem_oidx| {
                         pn::Step::SetClass(
-                            *prem_oidx,
-                            pn::Class::True { force_use: true },
+                            prem_oidx,
+                            pn::Class::True {
+                                force_use: true,
+                                assume: None,
+                            },
                             None,
                         )
                     }))
                     .unwrap();
 
-                explore_step.set_label(Some(format!(
+                step.set_label(Some(format!(
                     "explore rule \"{}\"",
                     e.graph().and_at(aidx)
                 )));
 
-                if let Some(result) = explore_step.apply(e) {
+                if let Some(result) = step.apply(e) {
                     if pn::oracle::nonempty_completion(&result) {
-                        ret.push(explore_step);
-                    }
-                }
-
-                let mut commit_step =
-                    pn::Step::sequence(unseen.into_iter().map(|prem_oidx| {
-                        pn::Step::SetClass(
-                            prem_oidx,
-                            pn::Class::Assume { force_use: true },
-                            None,
-                        )
-                    }))
-                    .unwrap();
-
-                commit_step.set_label(Some(format!(
-                    "commit to rule \"{}\"",
-                    e.graph().and_at(aidx)
-                )));
-
-                if let Some(result) = commit_step.apply(e) {
-                    if pn::oracle::nonempty_completion(&result) {
-                        ret.push(commit_step);
+                        ret.push(step);
                     }
                 }
             }

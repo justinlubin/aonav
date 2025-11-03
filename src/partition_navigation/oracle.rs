@@ -85,9 +85,13 @@ fn compile(instance: &mut SatInstance, vars: &Vars, e: &Exp) {
             instance.add_lit_impl_clause(is_active, &consumers_active[..]);
         }
 
-        // Optimistically assume all unseen nodes are assumed
+        // Optimistically assume all unseen and T/A nodes are assumed
         let assume_semantics = match class {
-            Class::Assume { .. } | Class::Unseen => true,
+            Class::True {
+                assume: None | Some(true),
+                ..
+            }
+            | Class::Unseen => true,
             _ => false,
         };
 
@@ -142,13 +146,19 @@ fn compile(instance: &mut SatInstance, vars: &Vars, e: &Exp) {
             Class::Unseen => (),
             Class::Unknown => (),
             Class::False => instance.add_unit(!is_true),
-            Class::True { force_use } => {
+            Class::True {
+                force_use,
+                assume: Some(false),
+            } => {
                 instance.add_unit(is_true);
                 if force_use {
                     instance.add_unit(is_active);
                 }
             }
-            Class::Assume { force_use } => {
+            Class::True {
+                force_use,
+                assume: _,
+            } => {
                 if force_use {
                     instance.add_unit(is_active);
                 }
