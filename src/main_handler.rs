@@ -226,7 +226,12 @@ pub fn render(path: &PathBuf) -> Result<(), String> {
 
     let dot_path = outdir.join("RENDERED.dot");
     let mut dot_file = File::create(dot_path.clone()).unwrap();
-    write!(&mut dot_file, "{}", ao.dot(&IndexSet::new())).unwrap();
+    write!(
+        &mut dot_file,
+        "{}",
+        ao.dot(&IndexSet::new(), &IndexSet::new())
+    )
+    .unwrap();
 
     let pdf_file = File::create(outdir.join("RENDERED.pdf")).unwrap();
     let _ = Command::new("dot")

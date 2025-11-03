@@ -98,8 +98,9 @@ impl Runner {
                     Some(e) => (
                         true,
                         e.filter_class(|c| {
-                            c == partition_navigation::Class::Assume {
+                            c == partition_navigation::Class::True {
                                 force_use: true,
+                                assume: Some(true),
                             }
                         })
                         .ids(e.graph())

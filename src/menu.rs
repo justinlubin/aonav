@@ -17,7 +17,10 @@ impl Provider {
             Provider::Remaining => Box::new(pn::providers::Remaining::new()),
             Provider::Random => Box::new(pn::providers::Random::new()),
             Provider::TopDownInversion => {
-                Box::new(pn::providers::TopDownInversion::new())
+                Box::new(pbn::CompoundProvider::new(vec![
+                    Box::new(pn::providers::Commit::new()),
+                    Box::new(pn::providers::TopDownInversion::new()),
+                ]))
             }
             _ => panic!("Unimplemented!"),
         }

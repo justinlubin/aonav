@@ -26,11 +26,11 @@ pub enum Class {
     // F
     False,
 
-    // T
-    True { force_use: bool },
-
-    // A
-    Assume { force_use: bool },
+    // T/A
+    True {
+        force_use: bool,      // !
+        assume: Option<bool>, // T or A
+    },
 }
 
 impl Class {
@@ -40,11 +40,63 @@ impl Class {
             Self::Unseen,
             Self::Unknown,
             Self::False,
-            Self::True { force_use: false },
-            Self::True { force_use: true },
-            Self::Assume { force_use: false },
-            Self::Assume { force_use: true },
+            Self::True {
+                force_use: false,
+                assume: None,
+            },
+            Self::True {
+                force_use: false,
+                assume: Some(false),
+            },
+            Self::True {
+                force_use: false,
+                assume: Some(true),
+            },
+            Self::True {
+                force_use: true,
+                assume: None,
+            },
+            Self::True {
+                force_use: true,
+                assume: Some(false),
+            },
+            Self::True {
+                force_use: true,
+                assume: Some(true),
+            },
         ]
+    }
+
+    pub fn lattice_lt(&self, other: &Self) -> bool {
+        match (self, other) {
+            // Unseen < everything other than self
+            (Class::Unseen, Class::Unseen) => false,
+            // T/A < T, A
+            (Class::Unseen, _) => true,
+            (
+                Class::True {
+                    force_use: false,
+                    assume: None,
+                },
+                Class::True {
+                    force_use: false,
+                    assume: Some(_),
+                },
+            ) => true,
+            // T/A! < T!, A!
+            (
+                Class::True {
+                    force_use: true,
+                    assume: None,
+                },
+                Class::True {
+                    force_use: true,
+                    assume: Some(_),
+                },
+            ) => true,
+            // Nothing else is < anything else
+            _ => false,
+        }
     }
 
     pub fn shorthand(&self) -> &str {
@@ -52,10 +104,30 @@ impl Class {
             Self::Unseen => "⊥",
             Self::Unknown => "?",
             Self::False => "F",
-            Self::True { force_use: false } => "T",
-            Self::True { force_use: true } => "T!",
-            Self::Assume { force_use: false } => "A",
-            Self::Assume { force_use: true } => "A!",
+            Self::True {
+                force_use: false,
+                assume: None,
+            } => "T/A",
+            Self::True {
+                force_use: false,
+                assume: Some(false),
+            } => "T",
+            Self::True {
+                force_use: false,
+                assume: Some(true),
+            } => "A",
+            Self::True {
+                force_use: true,
+                assume: None,
+            } => "T/A!",
+            Self::True {
+                force_use: true,
+                assume: Some(false),
+            } => "T!",
+            Self::True {
+                force_use: true,
+                assume: Some(true),
+            } => "A!",
         }
     }
 
@@ -68,8 +140,23 @@ impl Class {
 
     pub fn is_assume(&self) -> bool {
         match self {
-            Self::Assume { .. } => true,
+            Self::True {
+                assume: Some(true), ..
+            } => true,
             _ => false,
+        }
+    }
+
+    pub fn commit_true(&self, assume: bool) -> Option<Self> {
+        match self {
+            Self::True {
+                assume: None,
+                force_use,
+            } => Some(Self::True {
+                assume: Some(assume),
+                force_use: *force_use,
+            }),
+            _ => None,
         }
     }
 }
@@ -86,8 +173,10 @@ impl Exp {
             .or_indexes()
             .map(|oidx| (oidx, Class::Unseen))
             .collect();
-        *partition.get_mut(&graph.goal()).unwrap() =
-            Class::True { force_use: true };
+        *partition.get_mut(&graph.goal()).unwrap() = Class::True {
+            force_use: true,
+            assume: None,
+        };
         Self { graph, partition }
     }
 
@@ -200,7 +289,7 @@ impl pbn::Step for Step {
         match self {
             Step::SetClass(oid, c, _) => {
                 let mut ret = e.clone();
-                if *ret.partition.get(oid).unwrap() != Class::Unseen {
+                if !ret.partition.get(oid).unwrap().lattice_lt(c) {
                     return None;
                 }
                 *ret.partition.get_mut(oid).unwrap() = *c;

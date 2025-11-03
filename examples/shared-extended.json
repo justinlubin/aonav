@@ -4,6 +4,26 @@
       "goal": "Q"
     },
     "nodes": {
+      "fx": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "fy": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "X": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "Y": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
       "B": {
         "metadata": {
           "kind": "OR"
@@ -104,6 +124,22 @@
       {
         "source": "i",
         "target": "F"
+      },
+      {
+        "source": "D",
+        "target": "fx"
+      },
+      {
+        "source": "D",
+        "target": "fy"
+      },
+      {
+        "source": "fx",
+        "target": "X"
+      },
+      {
+        "source": "fy",
+        "target": "Y"
       }
     ]
   }
