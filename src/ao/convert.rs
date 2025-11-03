@@ -635,7 +635,7 @@ pub fn argus_to_and_or<A, O>(path: &PathBuf)
             for child in children {
                 if deserialized.goals.contains_key(parent) && deserialized.goals.contains_key(child) && !removed.contains(child){
                     //print!("\nremoving goal {}: {:?}\n parent was goal {}: {:?}\n", child, deserialized.goals.get(child), parent, deserialized.goals.get(parent));
-                    print!("\n adding rule between parent {:?} and child {:?}\n", parent, child);
+                    //print!("\n adding rule between parent {:?} and child {:?}\n", parent, child);
                     nodes.push(Node::new(new_rule_id.to_string(), None, NodeKind::And));
                     edges.push((parent.to_string(), new_rule_id.to_string()));
                     edges.push((new_rule_id.to_string(), child.to_string()));
@@ -681,11 +681,12 @@ pub fn argus_to_and_or<A, O>(path: &PathBuf)
         let jgf = jgf::Graph::try_from(graph);
         match jgf {
             Ok(g) => {
-                let to_json = serde_json::to_string_pretty(&g).expect("Failed to go from struct to pretty json");
-                let mut file = File::create("argus-examples/argus-ao-read.json").expect("Failed to create file");
-                file.write_all("{ \"graph\": ".as_bytes()).expect("Failed to write");
-                file.write_all(to_json.as_bytes()).expect("Failed to write");
-                file.write_all("}".as_bytes()).expect("Failed to write");
+                // let to_json = serde_json::to_string_pretty(&g).expect("Failed to go from struct to pretty json");
+                // let mut file = File::create("argus-examples/argus-ao-read.json").expect("Failed to create file");
+                // file.write_all("{ \"graph\": ".as_bytes()).expect("Failed to write");
+                // file.write_all(to_json.as_bytes()).expect("Failed to write");
+                // file.write_all("}".as_bytes()).expect("Failed to write");
+                println!("{{ \"graph\": {} }}", serde_json::to_string_pretty(&g).unwrap());
             },
             Err(e) => {panic!("Failed");}
         }
