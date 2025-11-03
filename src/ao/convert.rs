@@ -615,26 +615,33 @@ struct ArgusAO {
 }
 
 pub fn argus_to_and_or<A, O>(path: &PathBuf) 
-    //where jgf::Graph: TryFrom<core::Graph<A, O>> {
     where jgf::Graph: TryFrom<Graph> {
-    // get into Graph<A, O>::new new<'a>(nodes: impl Iterator<Item = Node<A, O>>, edges: impl Iterator<Item = (NodeId, NodeId)>, goal: &'a nodeid,)
     let json_data = std::fs::read_to_string(path).expect("Failed to read file");
     let deserialized: ArgusAO =
         serde_json::from_str(&json_data).expect("Failed to deserialize JSON");
 
         // go through edges, creating nodes for unseen ids, and creating edges
-        //let mut nodes: Vec<Node<A, O>> = Vec::new();
         let mut nodes: Vec<Node> = Vec::new();
         let mut edges: Vec<(NodeId, NodeId)> = Vec::new();
         let goal = deserialized.root;
 
         // if both are goals, remove child from graph
+        // or if parent has been removed, remove child as well- doesn't work because ids aren't visited perfectly in order
+        // 
         let mut removed: HashSet<String> = HashSet::new();
+        let mut edges_removed: HashSet<(String, String)> = HashSet::new();
+        let mut new_rule_id = -1;
         for (parent, children) in &deserialized.topology {
             for child in children {
                 if deserialized.goals.contains_key(parent) && deserialized.goals.contains_key(child) && !removed.contains(child){
-                    print!("\nremoving goal {}: {:?}\n parent was goal {}: {:?}\n", child, deserialized.goals.get(child), parent, deserialized.goals.get(parent));
-                    removed.insert(child.to_string());
+                    //print!("\nremoving goal {}: {:?}\n parent was goal {}: {:?}\n", child, deserialized.goals.get(child), parent, deserialized.goals.get(parent));
+                    print!("\n adding rule between parent {:?} and child {:?}\n", parent, child);
+                    nodes.push(Node::new(new_rule_id.to_string(), None, NodeKind::And));
+                    edges.push((parent.to_string(), new_rule_id.to_string()));
+                    edges.push((new_rule_id.to_string(), child.to_string()));
+                    new_rule_id -= 1;
+                    edges_removed.insert((parent.to_string(), child.to_string()));
+                    //removed.insert(child.to_string());
                 }
             }
         }
@@ -642,21 +649,18 @@ pub fn argus_to_and_or<A, O>(path: &PathBuf)
         // goal nodes
         for (goal_id, goal_label) in &deserialized.goals {
             if !removed.contains(goal_id) {
-                //Node::new(id, None, NodeKind::Or)
-                //nodes.push(Node::Or { id: goal_id.to_string(), label: Some(goal_label.to_string()), data: None });
                 nodes.push(Node::new(goal_id.to_string(), Some(goal_label.to_string()), NodeKind::Or));
             }
         }
         // candidate nodes
         for (candidate_id, candidate_label) in deserialized.candidates {
-            //nodes.push(Node::And { id: candidate_id.to_string(), label: Some(candidate_label.to_string()), data: None });
             nodes.push(Node::new(candidate_id.to_string(), Some(candidate_label.to_string()), NodeKind::And));
         }
 
         // edges
         for (parent, children) in deserialized.topology {
             for child in children {
-                if !removed.contains(&child) {
+                if !removed.contains(&child) && !edges_removed.contains(&(parent.clone(), child.clone())) {
                     edges.push((parent.clone(), child));
                 }
             }
@@ -664,8 +668,11 @@ pub fn argus_to_and_or<A, O>(path: &PathBuf)
         // for each goals this is true, add empty impl going into it
         for true_goal in deserialized.yesGoals {
             if !removed.contains(&true_goal) {
-                nodes.push(Node::new("-".to_owned() + &true_goal, None, NodeKind::And));
-                edges.push((true_goal.clone(), "-".to_owned() + &true_goal));
+                //nodes.push(Node::new("-".to_owned() + &true_goal, None, NodeKind::And));
+                nodes.push(Node::new(new_rule_id.to_string(), None, NodeKind::And));
+                edges.push((true_goal.clone(), new_rule_id.to_string()));
+                new_rule_id -= 1;
+                //edges.push((true_goal.clone(), "-".to_owned() + &true_goal));
             }
         }
         // get ao graph
