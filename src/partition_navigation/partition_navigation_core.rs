@@ -175,7 +175,7 @@ impl Exp {
             .collect();
         *partition.get_mut(&graph.goal()).unwrap() = Class::True {
             force_use: true,
-            assume: Some(false),
+            assume: None,
         };
         Self { graph, partition }
     }

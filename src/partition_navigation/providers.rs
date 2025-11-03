@@ -164,8 +164,12 @@ impl pbn::StepProvider for TopDownInversion {
             .filter_class(|c| {
                 c == pn::Class::True {
                     force_use: true,
-                    assume: Some(false),
-                }
+                    assume: None,
+                } || c
+                    == pn::Class::True {
+                        force_use: true,
+                        assume: Some(false),
+                    }
             })
             .set;
 
@@ -183,18 +187,35 @@ impl pbn::StepProvider for TopDownInversion {
                     continue;
                 }
 
-                let mut step =
-                    pn::Step::sequence(unseen.into_iter().map(|prem_oidx| {
-                        pn::Step::SetClass(
-                            prem_oidx,
-                            pn::Class::True {
-                                force_use: true,
-                                assume: None,
-                            },
-                            None,
-                        )
-                    }))
-                    .unwrap();
+                let it = unseen.into_iter().map(|prem_oidx| {
+                    pn::Step::SetClass(
+                        prem_oidx,
+                        pn::Class::True {
+                            force_use: true,
+                            assume: None,
+                        },
+                        None,
+                    )
+                });
+
+                let it: Box<dyn Iterator<Item = _>> = if e.class(oidx)
+                    == (pn::Class::True {
+                        force_use: true,
+                        assume: None,
+                    }) {
+                    Box::new(it.chain(std::iter::once(pn::Step::SetClass(
+                        oidx,
+                        pn::Class::True {
+                            force_use: true,
+                            assume: Some(false),
+                        },
+                        None,
+                    ))))
+                } else {
+                    Box::new(it)
+                };
+
+                let mut step = pn::Step::sequence(it).unwrap();
 
                 step.set_label(Some(format!(
                     "explore rule \"{}\"",

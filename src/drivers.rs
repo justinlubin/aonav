@@ -34,8 +34,22 @@ fn emit_graph(name: &str, e: &pn::Exp) {
         })
         .set;
 
+    let semi_highlighted_nodes = e
+        .filter_class(|c| {
+            c == pn::Class::True {
+                force_use: true,
+                assume: None,
+            }
+        })
+        .set;
+
     let mut dot_file = File::create(format!("out/{}.dot", name)).unwrap();
-    write!(&mut dot_file, "{}", e.graph().dot(&highlighted_nodes)).unwrap();
+    write!(
+        &mut dot_file,
+        "{}",
+        e.graph().dot(&highlighted_nodes, &semi_highlighted_nodes)
+    )
+    .unwrap();
 
     let pdf_file = File::create(format!("out/{}.pdf", name)).unwrap();
     let _ = Command::new("dot")

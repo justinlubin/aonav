@@ -286,6 +286,7 @@ impl Graph {
 
     fn node_format(
         highlighted_nodes: &IndexSet<OIdx>,
+        semi_highlighted_nodes: &IndexSet<OIdx>,
         pid: pg::NodeIndex,
         node: &Node,
     ) -> String {
@@ -301,14 +302,26 @@ impl Graph {
         };
         base + if highlighted_nodes.contains(&OIdx(pid)) {
             ",style=filled,fillcolor=yellow"
+        } else if semi_highlighted_nodes.contains(&OIdx(pid)) {
+            ",style=filled,fillcolor=\"#FFFFCC\""
         } else {
             ""
         }
     }
 
-    pub fn dot(&self, highlighted_nodes: &IndexSet<OIdx>) -> String {
-        let get_node_attrs =
-            |_, (pid, node)| Self::node_format(highlighted_nodes, pid, node);
+    pub fn dot(
+        &self,
+        highlighted_nodes: &IndexSet<OIdx>,
+        semi_highlighted_nodes: &IndexSet<OIdx>,
+    ) -> String {
+        let get_node_attrs = |_, (pid, node)| {
+            Self::node_format(
+                highlighted_nodes,
+                semi_highlighted_nodes,
+                pid,
+                node,
+            )
+        };
 
         let d = petgraph::dot::Dot::with_attr_getters(
             &self.pg,
