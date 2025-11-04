@@ -7,36 +7,14 @@ use rustsat::solvers::Solve;
 use rustsat::types::{constraints::CardConstraint, Lit};
 use std::collections::HashMap;
 
+////////////////////////////////////////////////////////////////////////////////
+// Main oracle implementation
+
 // Helpers
 
 fn add_lit_eq_cube(instance: &mut SatInstance, a: Lit, b: &[Lit]) {
     instance.add_lit_impl_cube(a, b);
     instance.add_cube_impl_lit(b, a);
-}
-
-fn add_lit_eq_clause(instance: &mut SatInstance, a: Lit, b: &[Lit]) {
-    instance.add_lit_impl_clause(a, b);
-    instance.add_clause_impl_lit(b, a);
-}
-
-fn add_lit_eq_lit(instance: &mut SatInstance, a: Lit, b: Lit) {
-    instance.add_lit_impl_lit(a, b);
-    instance.add_lit_impl_lit(b, a);
-}
-
-fn add_guarded_lit(instance: &mut SatInstance, guard: Lit, a: Lit, b: Lit) {
-    instance.add_cube_impl_lit(&[guard, a], b);
-    instance.add_cube_impl_lit(&[guard, b], a);
-}
-
-fn add_guarded_lit_eq_lit(
-    instance: &mut SatInstance,
-    guard: Lit,
-    a: Lit,
-    b: Lit,
-) {
-    instance.add_cube_impl_lit(&[guard, a], b);
-    instance.add_cube_impl_lit(&[guard, b], a);
 }
 
 fn add_guarded_lit_eq_clause(
@@ -49,10 +27,6 @@ fn add_guarded_lit_eq_clause(
     for bi in b {
         instance.add_cube_impl_lit(&[guard, *bi], a);
     }
-}
-
-fn add_guarded_unit(instance: &mut SatInstance, guard: Lit, unit: Lit) {
-    instance.add_lit_impl_lit(guard, unit);
 }
 
 // Compilation
@@ -288,7 +262,7 @@ pub fn nonempty_completion(e: &Exp) -> bool {
 
 pub fn valid(e: &Exp) -> bool {
     let mut e = e.clone();
-    e.set_remaining_unknown();
+    e.set_remaining_pessimistically();
     nonempty_completion(&e)
 }
 
