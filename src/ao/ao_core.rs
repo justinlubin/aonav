@@ -136,7 +136,7 @@ impl Graph {
                 }
                 (NodeKind::Or, NodeKind::Or) => {
                     return Err(format!(
-                        "Cannot connect AND node '{}' to AND node '{}'",
+                        "Cannot connect Or node '{}' to Or node '{}'",
                         source_nid, target_nid
                     ))
                 }

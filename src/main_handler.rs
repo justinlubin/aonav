@@ -189,7 +189,7 @@ pub fn convert(
             Ok(())
         }
         ConversionInputFormat::Argus => {
-            ao::convert::argus_to_and_or(path);
+            ao::convert::argus_to_and_or::<String, String>(path);
             Ok(())
         }
         ConversionInputFormat::Legacy => {
