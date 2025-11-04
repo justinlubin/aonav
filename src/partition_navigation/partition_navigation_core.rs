@@ -223,10 +223,20 @@ impl Exp {
         }
     }
 
-    pub fn set_remaining_unknown(&mut self) {
+    pub fn set_remaining_pessimistically(&mut self) {
         for class in self.partition.values_mut() {
-            if *class == Class::Unseen {
-                *class = Class::Unknown
+            match *class {
+                Class::Unseen => *class = Class::Unknown,
+                Class::True {
+                    force_use,
+                    assume: None,
+                } => {
+                    *class = Class::True {
+                        force_use,
+                        assume: Some(false),
+                    }
+                }
+                _ => (),
             }
         }
     }
