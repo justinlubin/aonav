@@ -134,7 +134,7 @@ fn compile(instance: &mut SatInstance, vars: &Vars, e: &Exp) {
             instance.add_lit_impl_clause(is_active, &providers_active[..]);
 
             // At most one provider is active
-            instance.add_card_constr(CardConstraint::new_eq(
+            instance.add_card_constr(CardConstraint::new_ub(
                 providers_active.into_iter(),
                 1,
             ));
