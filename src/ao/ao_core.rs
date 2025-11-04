@@ -2,6 +2,7 @@ use indexmap::{IndexMap, IndexSet};
 use petgraph::stable_graph as pg;
 use petgraph::visit::{EdgeRef, IntoEdgeReferences};
 use petgraph::Direction;
+use std::collections::HashMap;
 use std::fmt;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -285,8 +286,7 @@ impl Graph {
     // DOT formatting
 
     fn node_format(
-        highlighted_nodes: &IndexSet<OIdx>,
-        semi_highlighted_nodes: &IndexSet<OIdx>,
+        highlights: &HashMap<OIdx, String>,
         pid: pg::NodeIndex,
         node: &Node,
     ) -> String {
@@ -300,28 +300,15 @@ impl Graph {
                     .to_string()
             }
         };
-        base + if highlighted_nodes.contains(&OIdx(pid)) {
-            ",style=filled,fillcolor=yellow"
-        } else if semi_highlighted_nodes.contains(&OIdx(pid)) {
-            ",style=filled,fillcolor=\"#FFFFCC\""
-        } else {
-            ""
+        base + &match highlights.get(&OIdx(pid)) {
+            Some(c) => format!(",style=filled,fillcolor={}", c),
+            None => "".to_string(),
         }
     }
 
-    pub fn dot(
-        &self,
-        highlighted_nodes: &IndexSet<OIdx>,
-        semi_highlighted_nodes: &IndexSet<OIdx>,
-    ) -> String {
-        let get_node_attrs = |_, (pid, node)| {
-            Self::node_format(
-                highlighted_nodes,
-                semi_highlighted_nodes,
-                pid,
-                node,
-            )
-        };
+    pub fn dot(&self, highlights: &HashMap<OIdx, String>) -> String {
+        let get_node_attrs =
+            |_, (pid, node)| Self::node_format(highlights, pid, node);
 
         let d = petgraph::dot::Dot::with_attr_getters(
             &self.pg,

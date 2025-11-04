@@ -159,6 +159,22 @@ impl Class {
             _ => None,
         }
     }
+
+    pub fn is_committed(&self) -> bool {
+        match self {
+            Class::Unseen => false,
+            Class::Unknown => true,
+            Class::False => true,
+            Class::True {
+                force_use: _,
+                assume: None,
+            } => false,
+            Class::True {
+                force_use: _,
+                assume: Some(_),
+            } => true,
+        }
+    }
 }
 
 #[derive(Debug, Clone)]
@@ -175,7 +191,7 @@ impl Exp {
             .collect();
         *partition.get_mut(&graph.goal()).unwrap() = Class::True {
             force_use: true,
-            assume: None,
+            assume: Some(false),
         };
         Self { graph, partition }
     }
@@ -204,6 +220,14 @@ impl Exp {
                     |(oidx, class)| if f(*class) { Some(*oidx) } else { None },
                 )
                 .collect(),
+        }
+    }
+
+    pub fn set_remaining_unknown(&mut self) {
+        for class in self.partition.values_mut() {
+            if *class == Class::Unseen {
+                *class = Class::Unknown
+            }
         }
     }
 }
@@ -301,63 +325,3 @@ impl pbn::Step for Step {
 }
 
 // TODO implement sorting for steps
-
-////////////////////////////////////////////////////////////////////////////////
-// Validity checker
-
-// TODO
-// fn prune_forced(g: ao::Graph) -> ao::Graph {
-// }
-
-pub fn valid(e: &Exp) -> bool {
-    let mut g = e.graph().clone();
-
-    // Add axioms for A / A!
-
-    g.make_axioms(e.filter_class(|c| c.is_assume()).set.into_iter());
-
-    // Compute all provable nodes
-
-    let provable = ao::algo::provable_or_nodes(&g);
-
-    // Make sure contains T / T! ...
-
-    let contains_true = provable
-        .set
-        .is_superset(&e.filter_class(|c| c.is_true()).set);
-
-    if !contains_true {
-        return false;
-    }
-
-    // ... and disjoint from F
-
-    let disjoint_from_false = provable
-        .set
-        .is_disjoint(&e.filter_class(|c| c == Class::False).set);
-
-    if !disjoint_from_false {
-        return false;
-    }
-
-    true
-
-    // TODO: Prune according to ! nodes, check if goal still provable
-    // ao::algo::provable(&g, g.goal())
-}
-
-pub struct Valid;
-
-impl Valid {
-    pub fn new() -> Self {
-        Self {}
-    }
-}
-
-impl pbn::ValidityChecker for Valid {
-    type Exp = Exp;
-
-    fn check(&self, e: &Self::Exp) -> bool {
-        valid(e)
-    }
-}

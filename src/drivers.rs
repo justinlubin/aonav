@@ -5,6 +5,7 @@ use crate::pbn;
 use ansi_term::Color::*;
 use indexmap::IndexSet;
 use rand::seq::IteratorRandom;
+use std::collections::HashMap;
 use std::fs::File;
 use std::io::Write;
 use std::process::Command;
@@ -25,31 +26,56 @@ impl CliDriver {
 }
 
 fn emit_graph(name: &str, e: &pn::Exp) {
-    let highlighted_nodes = e
-        .filter_class(|c| {
-            c == pn::Class::True {
-                force_use: true,
-                assume: Some(true),
-            }
+    let highlights: HashMap<_, _> = e
+        .partition()
+        .iter()
+        .map(|(oidx, c)| {
+            (
+                *oidx,
+                match c {
+                    pn::Class::Unseen => None,
+                    pn::Class::Unknown => Some("gray"),
+                    pn::Class::False => Some("red"),
+                    // pastel = force_use is false
+                    // saturated = force_use is true
+                    // blue = undecided assume
+                    pn::Class::True {
+                        force_use: false,
+                        assume: None,
+                    } => Some("\"#CCFFFF\""),
+                    pn::Class::True {
+                        force_use: true,
+                        assume: None,
+                    } => Some("\"#55FFFF\""),
+                    // green = decided not to assume
+                    pn::Class::True {
+                        force_use: false,
+                        assume: Some(false),
+                    } => Some("\"#CCFFCC\""),
+                    pn::Class::True {
+                        force_use: true,
+                        assume: Some(false),
+                    } => Some("green"),
+                    // yellow = decided to assume
+                    pn::Class::True {
+                        force_use: false,
+                        assume: Some(true),
+                    } => Some("\"#FFFFCC\""),
+                    pn::Class::True {
+                        force_use: true,
+                        assume: Some(true),
+                    } => Some("yellow"),
+                },
+            )
         })
-        .set;
-
-    let semi_highlighted_nodes = e
-        .filter_class(|c| {
-            c == pn::Class::True {
-                force_use: true,
-                assume: None,
-            }
+        .filter_map(|(oidx, c)| match c {
+            Some(c) => Some((oidx, c.to_owned())),
+            None => None,
         })
-        .set;
+        .collect();
 
     let mut dot_file = File::create(format!("out/{}.dot", name)).unwrap();
-    write!(
-        &mut dot_file,
-        "{}",
-        e.graph().dot(&highlighted_nodes, &semi_highlighted_nodes)
-    )
-    .unwrap();
+    write!(&mut dot_file, "{}", e.graph().dot(&highlights)).unwrap();
 
     let pdf_file = File::create(format!("out/{}.pdf", name)).unwrap();
     let _ = Command::new("dot")

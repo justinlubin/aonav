@@ -69,14 +69,8 @@ impl pbn::StepProvider for Remaining {
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut ret = vec![];
-        for (oidx, class) in e.partition() {
-            if *class != pn::Class::Unseen {
-                continue;
-            }
+        for oidx in e.partition().keys() {
             for new_class in pn::Class::all() {
-                if new_class == class {
-                    continue;
-                }
                 let step = pn::Step::SetClass(*oidx, *new_class, None);
                 match step.apply(e) {
                     None => continue,
@@ -111,7 +105,7 @@ impl pbn::StepProvider for Random {
         _timer: &Timer,
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
-        let unseen = e.filter_class(|c| c == pn::Class::Unseen).set;
+        let unseen = e.filter_class(|c| !c.is_committed()).set;
         if unseen.is_empty() {
             return Ok(vec![]);
         }
@@ -121,9 +115,6 @@ impl pbn::StepProvider for Random {
         let mut ret = vec![];
 
         for new_class in pn::Class::all() {
-            if *new_class == pn::Class::Unseen {
-                continue;
-            }
             let step = pn::Step::SetClass(oidx, *new_class, None);
             match step.apply(e) {
                 None => continue,

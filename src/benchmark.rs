@@ -78,7 +78,7 @@ impl Runner {
 
                 let provider =
                     partition_navigation::providers::Remaining::new();
-                let checker = partition_navigation::Valid::new();
+                let checker = partition_navigation::oracle::Valid::new();
                 let controller = pbn::Controller::new(
                     Timer::finite(self.config.timeout),
                     provider,

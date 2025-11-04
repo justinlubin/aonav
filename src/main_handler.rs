@@ -11,6 +11,7 @@ use ansi_term::Color::*;
 use indexmap::IndexSet;
 use instant::Duration;
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 use std::fs::File;
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -79,7 +80,7 @@ pub fn interact(
     let provider = pbn::CompoundProvider::new(
         providers.iter().map(|p| p.provider()).collect(),
     );
-    let checker = partition_navigation::Valid::new();
+    let checker = partition_navigation::oracle::Valid::new();
 
     let controller = pbn::Controller::new(
         Timer::infinite(),
@@ -226,12 +227,7 @@ pub fn render(path: &PathBuf) -> Result<(), String> {
 
     let dot_path = outdir.join("RENDERED.dot");
     let mut dot_file = File::create(dot_path.clone()).unwrap();
-    write!(
-        &mut dot_file,
-        "{}",
-        ao.dot(&IndexSet::new(), &IndexSet::new())
-    )
-    .unwrap();
+    write!(&mut dot_file, "{}", ao.dot(&HashMap::new())).unwrap();
 
     let pdf_file = File::create(outdir.join("RENDERED.pdf")).unwrap();
     let _ = Command::new("dot")
