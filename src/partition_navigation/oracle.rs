@@ -1,4 +1,5 @@
 use crate::ao;
+use crate::model_count;
 use crate::partition_navigation::*;
 use crate::pbn;
 
@@ -264,6 +265,14 @@ pub fn valid(e: &Exp) -> bool {
     let mut e = e.clone();
     e.set_remaining_pessimistically();
     nonempty_completion(&e)
+    // let ctx = Context::compile(SatInstance::new(), &e);
+    // let cnf = ctx.instance.cnf();
+    // let mc = model_count::model_count(
+    //     ctx.instance.n_vars(),
+    //     cnf,
+    //     Some(vec![rustsat::types::Var::new(0)]),
+    // );
+    // mc > 0
 }
 
 pub struct Valid;
