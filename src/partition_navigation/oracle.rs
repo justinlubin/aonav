@@ -259,20 +259,25 @@ pub fn nonempty_completion(e: &Exp) -> bool {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+// Entropy
+
+pub fn entropy(e: &Exp) -> Option<f64> {
+    let ctx = Context::compile(SatInstance::new(), &e);
+    let cnf = ctx.instance.cnf();
+    model_count::log10_model_count(
+        ctx.instance.n_vars(),
+        cnf,
+        Some(ctx.o_assume.values().map(|lit| lit.var()).collect()),
+    )
+}
+
+////////////////////////////////////////////////////////////////////////////////
 // Validity checker
 
 pub fn valid(e: &Exp) -> bool {
     let mut e = e.clone();
     e.set_remaining_pessimistically();
     nonempty_completion(&e)
-    // let ctx = Context::compile(SatInstance::new(), &e);
-    // let cnf = ctx.instance.cnf();
-    // let mc = model_count::model_count(
-    //     ctx.instance.n_vars(),
-    //     cnf,
-    //     Some(vec![rustsat::types::Var::new(0)]),
-    // );
-    // mc > 0
 }
 
 pub struct Valid;

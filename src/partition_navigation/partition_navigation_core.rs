@@ -34,7 +34,6 @@ pub enum Class {
 }
 
 impl Class {
-    #[allow(dead_code)]
     pub fn all() -> &'static [Class] {
         &[
             Self::Unseen,
@@ -55,6 +54,29 @@ impl Class {
             Self::True {
                 force_use: true,
                 assume: None,
+            },
+            Self::True {
+                force_use: true,
+                assume: Some(false),
+            },
+            Self::True {
+                force_use: true,
+                assume: Some(true),
+            },
+        ]
+    }
+
+    pub fn committed() -> &'static [Class] {
+        &[
+            Self::Unknown,
+            Self::False,
+            Self::True {
+                force_use: false,
+                assume: Some(false),
+            },
+            Self::True {
+                force_use: false,
+                assume: Some(true),
             },
             Self::True {
                 force_use: true,

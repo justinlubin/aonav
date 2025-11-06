@@ -22,6 +22,9 @@ impl Provider {
                     Box::new(pn::providers::TopDownInversion::new()),
                 ]))
             }
+            Provider::MaxInfoGain => {
+                Box::new(pn::providers::MaxInfoGain::new())
+            }
             _ => panic!("Unimplemented!"),
         }
     }

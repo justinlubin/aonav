@@ -114,7 +114,7 @@ impl pbn::StepProvider for Random {
 
         let mut ret = vec![];
 
-        for new_class in pn::Class::all() {
+        for new_class in pn::Class::committed() {
             let step = pn::Step::SetClass(oidx, *new_class, None);
             match step.apply(e) {
                 None => continue,
@@ -221,6 +221,57 @@ impl pbn::StepProvider for TopDownInversion {
             }
         }
 
+        Ok(ret)
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Maximum information gain
+
+pub struct MaxInfoGain;
+
+impl MaxInfoGain {
+    pub fn new() -> Self {
+        Self
+    }
+}
+
+impl pbn::StepProvider for MaxInfoGain {
+    type Step = pn::Step;
+
+    fn provide(
+        &mut self,
+        _timer: &Timer,
+        e: &pn::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let mut ret = vec![];
+        // Can just take sum, as denominator of average in expectation is always # classes
+        // TODO: think about -inf entropy?
+        let mut min_entropy_sum = f64::INFINITY;
+        for oidx in e.partition().keys() {
+            let mut steps = vec![];
+            let mut entropy_sum = 0.0;
+            for new_class in pn::Class::committed() {
+                let step = pn::Step::SetClass(*oidx, *new_class, None);
+                match step.apply(e) {
+                    None => continue,
+                    Some(child) => match pn::oracle::entropy(&child) {
+                        Some(h) => {
+                            entropy_sum += h;
+                            steps.push(step);
+                        }
+                        None => {}
+                    },
+                }
+            }
+            if steps.is_empty() {
+                continue;
+            }
+            if entropy_sum < min_entropy_sum {
+                min_entropy_sum = entropy_sum;
+                ret = steps;
+            }
+        }
         Ok(ret)
     }
 }

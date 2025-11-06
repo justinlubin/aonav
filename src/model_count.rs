@@ -4,11 +4,12 @@ use std::{
     process::{Command, Stdio},
 };
 
-pub fn model_count(
+// Returns None if unsat (0 models)
+pub fn log10_model_count(
     n_vars: u32,
     cnf: &Cnf,
     projected_vars: Option<Vec<Var>>,
-) -> usize {
+) -> Option<f64> {
     let mut child = Command::new("ganak")
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
@@ -31,16 +32,17 @@ pub fn model_count(
             }
             write!(writer, "0\n").unwrap();
         }
-
-        writer.flush().unwrap();
     }
 
     let child_output = child.wait_with_output().unwrap();
     let result_string = String::from_utf8(child_output.stdout).unwrap();
 
     for line in result_string.lines() {
-        match line.strip_prefix("c s exact arb int ") {
-            Some(n) => return n.parse::<usize>().unwrap(),
+        if line == "s UNSATISFIABLE" {
+            return None;
+        }
+        match line.strip_prefix("c s log10-estimate ") {
+            Some(n) => return Some(n.parse::<f64>().unwrap()),
             None => (),
         }
     }
