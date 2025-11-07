@@ -213,6 +213,9 @@ impl pbn::StepProvider for TopDownInversion {
                     e.graph().and_at(aidx)
                 )));
 
+                // TODO this should always apply and does NOT need oracle call
+                // Although oracle call is necessary if want to combine with
+                // other strategies
                 if let Some(result) = step.apply(e) {
                     if pn::oracle::nonempty_completion(&result) {
                         ret.push(step);
@@ -221,6 +224,85 @@ impl pbn::StepProvider for TopDownInversion {
             }
         }
 
+        Ok(ret)
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Bottom-up inversion
+
+pub struct BottomUpInversion;
+
+impl BottomUpInversion {
+    pub fn new() -> Self {
+        Self
+    }
+}
+
+impl pbn::StepProvider for BottomUpInversion {
+    type Step = pn::Step;
+
+    fn provide(
+        &mut self,
+        _timer: &Timer,
+        e: &pn::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let mut ret = vec![];
+
+        let frontier = e.filter_class(|c| c == pn::Class::False).set;
+
+        for oidx in frontier {
+            for aidx in e.graph().consumers(oidx) {
+                let conclusion_oidx = e.graph().conclusion(aidx);
+                for new_class in pn::Class::all() {
+                    let step =
+                        pn::Step::SetClass(conclusion_oidx, *new_class, None);
+                    if let Some(result) = step.apply(e) {
+                        if pn::oracle::nonempty_completion(&result) {
+                            ret.push(step);
+                        }
+                    }
+                }
+            }
+        }
+
+        Ok(ret)
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Leaf
+
+pub struct Leaf;
+
+impl Leaf {
+    pub fn new() -> Self {
+        Self
+    }
+}
+
+impl pbn::StepProvider for Leaf {
+    type Step = pn::Step;
+
+    fn provide(
+        &mut self,
+        _timer: &Timer,
+        e: &pn::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let mut ret = vec![];
+        for oidx in e.graph().or_leaves() {
+            for new_class in pn::Class::committed() {
+                let step = pn::Step::SetClass(oidx, *new_class, None);
+                match step.apply(e) {
+                    None => continue,
+                    Some(result) => {
+                        if pn::oracle::nonempty_completion(&result) {
+                            ret.push(step);
+                        }
+                    }
+                }
+            }
+        }
         Ok(ret)
     }
 }
@@ -246,6 +328,7 @@ impl pbn::StepProvider for MaxInfoGain {
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut ret = vec![];
         // Can just take sum, as denominator of average in expectation is always # classes
+        // TODO i don't think we can actually
         // TODO: think about -inf entropy?
         let mut min_entropy_sum = f64::INFINITY;
         for oidx in e.partition().keys() {

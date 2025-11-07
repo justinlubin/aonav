@@ -61,6 +61,35 @@ impl<S: Step> StepProvider for CompoundProvider<S> {
     }
 }
 
+/// Fallback provider (composition of other providers)
+pub struct FallbackProvider<S: Step> {
+    providers: Vec<Box<dyn StepProvider<Step = S>>>,
+}
+
+impl<S: Step> FallbackProvider<S> {
+    pub fn new(providers: Vec<Box<dyn StepProvider<Step = S>>>) -> Self {
+        Self { providers }
+    }
+}
+
+impl<S: Step> StepProvider for FallbackProvider<S> {
+    type Step = S;
+
+    fn provide(
+        &mut self,
+        timer: &Timer,
+        e: &<Self::Step as Step>::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        for p in &mut self.providers {
+            let steps = p.provide(timer, e)?;
+            if !steps.is_empty() {
+                return Ok(steps);
+            }
+        }
+        Ok(vec![])
+    }
+}
+
 /// A Programming By Navigation controller. Controllers abstract away the
 /// actual step provider (and validity checker) and can be used to engage in
 /// the Programming By Navigation interactive process in a way that is

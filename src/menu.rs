@@ -22,6 +22,12 @@ impl Provider {
                     Box::new(pn::providers::TopDownInversion::new()),
                 ]))
             }
+            Provider::BottomUpInversion => {
+                Box::new(pbn::FallbackProvider::new(vec![
+                    Box::new(pn::providers::BottomUpInversion::new()),
+                    Box::new(pn::providers::Leaf::new()),
+                ]))
+            }
             Provider::MaxInfoGain => {
                 Box::new(pn::providers::MaxInfoGain::new())
             }
