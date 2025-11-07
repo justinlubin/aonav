@@ -1,4 +1,5 @@
 use crate::ao;
+use crate::min_ones;
 use crate::model_count;
 use crate::partition_navigation::*;
 use crate::pbn;
@@ -7,6 +8,7 @@ use rustsat::instances::SatInstance;
 use rustsat::solvers::Solve;
 use rustsat::types::{constraints::CardConstraint, Lit};
 use std::collections::HashMap;
+use std::collections::HashSet;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Main oracle implementation
@@ -272,11 +274,50 @@ pub fn entropy(e: &Exp) -> Option<f64> {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+// Minimal leaves
+
+pub fn minimal_leaves(e: &Exp) -> Option<ao::OrSet> {
+    let mut e = e.clone();
+
+    let unseen_leaves: HashSet<_> = e
+        .graph()
+        .or_leaves()
+        .filter(|oidx| e.class(*oidx) == Class::Unseen)
+        .collect();
+
+    e.set_remaining_pessimistically(&unseen_leaves);
+
+    let ctx = Context::compile(SatInstance::new(), &e);
+
+    let leaf_map: HashMap<_, _> = unseen_leaves
+        .into_iter()
+        .map(|oidx| (oidx, *ctx.o_assume.get(&oidx).unwrap()))
+        .collect();
+
+    let assignment =
+        min_ones::solve(ctx.instance, &leaf_map.values().copied().collect())?;
+
+    Some(ao::OrSet {
+        set: leaf_map
+            .into_iter()
+            .filter_map(|(oidx, lit)| {
+                if assignment.lit_value(lit) == rustsat::types::TernaryVal::True
+                {
+                    Some(oidx)
+                } else {
+                    None
+                }
+            })
+            .collect(),
+    })
+}
+
+////////////////////////////////////////////////////////////////////////////////
 // Validity checker
 
 pub fn valid(e: &Exp) -> bool {
     let mut e = e.clone();
-    e.set_remaining_pessimistically();
+    e.set_remaining_pessimistically(&HashSet::new());
     nonempty_completion(&e)
 }
 

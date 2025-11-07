@@ -358,3 +358,44 @@ impl pbn::StepProvider for MaxInfoGain {
         Ok(ret)
     }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// MinLeafHeuristic
+
+pub struct MinLeafHeuristic;
+
+impl MinLeafHeuristic {
+    pub fn new() -> Self {
+        Self
+    }
+}
+
+impl pbn::StepProvider for MinLeafHeuristic {
+    type Step = pn::Step;
+
+    fn provide(
+        &mut self,
+        _timer: &Timer,
+        e: &pn::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let minimal_leaves = match pn::oracle::minimal_leaves(e) {
+            Some(x) => x,
+            None => return Ok(vec![]),
+        };
+        let possible_step =
+            pn::Step::sequence(minimal_leaves.set.into_iter().map(|oidx| {
+                pn::Step::SetClass(
+                    oidx,
+                    pn::Class::True {
+                        force_use: false,
+                        assume: Some(true),
+                    },
+                    None,
+                )
+            }));
+        match possible_step {
+            Some(step) => Ok(vec![step]),
+            None => Ok(vec![]),
+        }
+    }
+}

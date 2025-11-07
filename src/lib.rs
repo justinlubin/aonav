@@ -6,6 +6,7 @@ pub mod menu;
 mod benchmark;
 mod drivers;
 mod legacy;
+mod min_ones;
 mod model_count;
 mod partition_navigation;
 mod pbn;

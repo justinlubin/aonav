@@ -1,0 +1,159 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "Q"
+    },
+    "nodes": {
+      "z": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "fx": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "fy": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "X": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "Y": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "B": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "C": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "D": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "E": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "F": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "f": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "A": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "g": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "h": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "Q": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "i": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "A",
+        "target": "z"
+      },
+      {
+        "source": "z",
+        "target": "F"
+      },
+      {
+        "source": "A",
+        "target": "f"
+      },
+      {
+        "source": "f",
+        "target": "B"
+      },
+      {
+        "source": "f",
+        "target": "C"
+      },
+      {
+        "source": "A",
+        "target": "g"
+      },
+      {
+        "source": "g",
+        "target": "C"
+      },
+      {
+        "source": "g",
+        "target": "D"
+      },
+      {
+        "source": "Q",
+        "target": "h"
+      },
+      {
+        "source": "h",
+        "target": "A"
+      },
+      {
+        "source": "Q",
+        "target": "i"
+      },
+      {
+        "source": "i",
+        "target": "E"
+      },
+      {
+        "source": "i",
+        "target": "F"
+      },
+      {
+        "source": "D",
+        "target": "fx"
+      },
+      {
+        "source": "D",
+        "target": "fy"
+      },
+      {
+        "source": "fx",
+        "target": "X"
+      },
+      {
+        "source": "fy",
+        "target": "Y"
+      }
+    ]
+  }
+}

@@ -11,7 +11,6 @@ use std::collections::HashMap;
 use std::collections::HashSet;
 use std::fmt::Display;
 use std::fs::File;
-use std::hash::Hash;
 use std::io::prelude::*;
 use std::path::PathBuf;
 
@@ -606,6 +605,7 @@ pub fn es_egraph_to_ao(_es_egraph: &egraph_serialize::EGraph) -> Graph {
 }
 
 #[derive(serde::Serialize, Deserialize, Debug)]
+#[allow(non_snake_case)]
 struct ArgusAO {
     root: String,
     goals: HashMap<String, String>,
@@ -614,6 +614,7 @@ struct ArgusAO {
     yesGoals: Vec<String>,
 }
 
+#[allow(unused_mut, unused_variables)]
 pub fn argus_to_and_or<A, O>(path: &PathBuf)
 where
     jgf::Graph: TryFrom<Graph>,

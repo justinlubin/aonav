@@ -2,6 +2,7 @@ use crate::ao;
 use crate::pbn;
 
 use indexmap::IndexMap;
+use std::collections::HashSet;
 use std::hash::Hash;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -245,8 +246,14 @@ impl Exp {
         }
     }
 
-    pub fn set_remaining_pessimistically(&mut self) {
-        for class in self.partition.values_mut() {
+    pub fn set_remaining_pessimistically(
+        &mut self,
+        exceptions: &HashSet<ao::OIdx>,
+    ) {
+        for (oidx, class) in self.partition.iter_mut() {
+            if exceptions.contains(oidx) {
+                continue;
+            }
             match *class {
                 Class::Unseen => *class = Class::Unknown,
                 Class::True {

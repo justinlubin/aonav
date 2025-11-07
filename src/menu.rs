@@ -9,6 +9,7 @@ pub enum Provider {
     BottomUpInversion,
     TopDownJump,
     MaxInfoGain,
+    MinLeafHeuristic,
 }
 
 impl Provider {
@@ -31,6 +32,9 @@ impl Provider {
             Provider::MaxInfoGain => {
                 Box::new(pn::providers::MaxInfoGain::new())
             }
+            Provider::MinLeafHeuristic => {
+                Box::new(pn::providers::MinLeafHeuristic::new())
+            }
             _ => panic!("Unimplemented!"),
         }
     }
@@ -47,6 +51,7 @@ impl std::str::FromStr for Provider {
             "BottomUpInversion" | "BUI" => Ok(Self::BottomUpInversion),
             "TopDownJump" | "TDJ" => Ok(Self::TopDownJump),
             "MaxInfoGain" | "MIG" => Ok(Self::MaxInfoGain),
+            "MinLeafHeuristic" | "MLH" => Ok(Self::MinLeafHeuristic),
             _ => Err(format!("Unknown provider '{}'", s)),
         }
     }
