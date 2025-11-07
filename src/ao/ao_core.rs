@@ -217,6 +217,17 @@ impl Graph {
         })
     }
 
+    pub fn or_leaves(&self) -> impl Iterator<Item = OIdx> + '_ {
+        self.pg.externals(Direction::Outgoing).filter_map(|pid| {
+            let node = &self.pg[pid];
+            if node.is_or() {
+                Some(OIdx(pid))
+            } else {
+                None
+            }
+        })
+    }
+
     // Indexing
 
     pub fn or_at(&self, o: OIdx) -> &Node {
