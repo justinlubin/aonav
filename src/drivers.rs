@@ -111,7 +111,7 @@ impl Driver<pn::Step> for CliDriver {
             let header = format!("══ Round {} {}", round, "═".repeat(40));
 
             println!(
-                "{}\n\n{}\n\n    {}\n\n{}\n",
+                "{}\n\n{}\n\n{}\n{}\n",
                 Fixed(8).paint(header),
                 Cyan.bold().paint("Working expression:"),
                 exp,

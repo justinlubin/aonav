@@ -64,7 +64,7 @@ impl Node {
 impl fmt::Display for Node {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self.label() {
-            Some(s) => write!(f, "[{}]\n{}", self.id(), s),
+            Some(s) => write!(f, "{}", s),
             None => write!(f, "{}", self.id()),
         }
     }

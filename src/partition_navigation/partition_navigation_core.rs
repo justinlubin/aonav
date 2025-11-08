@@ -275,7 +275,12 @@ impl std::fmt::Display for Exp {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         for class in Class::all() {
             let os = self.filter_class(|c| c == *class);
-            write!(f, "{}: {}    ", class.shorthand(), os.show(&self.graph))?;
+            write!(
+                f,
+                "    {:5}: {}\n",
+                class.shorthand(),
+                os.show(&self.graph)
+            )?;
         }
         Ok(())
     }
