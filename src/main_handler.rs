@@ -64,7 +64,8 @@ pub fn interact(
     graph_path: &PathBuf,
     providers: &Vec<menu::Provider>,
 ) -> Result<(), String> {
-    let graph = load_ao(graph_path);
+    let mut graph = load_ao(graph_path);
+    ao::algo::reduce(&mut graph);
 
     let msg1 = format!(
         "Set of provable OR nodes: {}",

@@ -294,6 +294,13 @@ impl Graph {
         }
     }
 
+    pub fn or_remove(&mut self, oidx: OIdx) {
+        for aidx in self.providers(oidx).collect::<Vec<_>>() {
+            self.pg.remove_node(aidx.0);
+        }
+        self.pg.remove_node(oidx.0);
+    }
+
     // DOT formatting
 
     fn node_format(

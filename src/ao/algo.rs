@@ -85,3 +85,9 @@ pub fn proper_axiom_sets(graph: &Graph, oid: OIdx) -> Vec<OrSet> {
 
     ret
 }
+
+pub fn reduce(graph: &mut Graph) {
+    for oidx in provable_or_nodes(graph).set {
+        graph.or_remove(oidx);
+    }
+}
