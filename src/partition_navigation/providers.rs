@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use crate::partition_navigation as pn;
 use crate::pbn::{self, Step};
 use crate::util::{EarlyCutoff, Timer};
@@ -395,5 +397,60 @@ impl pbn::StepProvider for MinLeafHeuristic {
             Some(step) => Ok(vec![step]),
             None => Ok(vec![]),
         }
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Forced assumptions
+
+pub struct ForcedAssumptions;
+
+impl ForcedAssumptions {
+    pub fn new() -> Self {
+        Self
+    }
+}
+
+impl pbn::StepProvider for ForcedAssumptions {
+    type Step = pn::Step;
+
+    fn provide(
+        &mut self,
+        _timer: &Timer,
+        e: &pn::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let mut r = Remaining::new();
+        let steps = r.provide(_timer, e)?;
+        let mut show = HashMap::new();
+        for step in &steps {
+            match step {
+                pn::Step::SetClass(
+                    oidx,
+                    pn::Class::True {
+                        assume: None | Some(true),
+                        ..
+                    },
+                    _,
+                ) => match show.get(oidx) {
+                    Some(_) => (),
+                    None => {
+                        let _ = show.insert(*oidx, true);
+                        println!("setting {:?} to true", oidx);
+                    }
+                },
+                pn::Step::SetClass(oidx, _, _) => {
+                    let _ = show.insert(*oidx, false);
+                }
+                pn::Step::Seq(..) => (),
+            };
+        }
+        println!("{:?}", show);
+        Ok(steps
+            .into_iter()
+            .filter(|s| match s {
+                pn::Step::SetClass(oidx, ..) => show.get(oidx) == Some(&true),
+                pn::Step::Seq(..) => false,
+            })
+            .collect())
     }
 }

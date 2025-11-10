@@ -1,0 +1,178 @@
+{
+  "graph": {
+    "nodes": {
+      "A": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "B": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "C": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "D": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "E": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "F": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "H": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "I": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "J": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "K": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "L": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "M": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "a": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "b1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "b2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "b3": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "c1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "c2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "A",
+        "target": "a"
+      },
+      {
+        "source": "a",
+        "target": "B"
+      },
+      {
+        "source": "a",
+        "target": "C"
+      },
+      {
+        "source": "B",
+        "target": "b1"
+      },
+      {
+        "source": "B",
+        "target": "b2"
+      },
+      {
+        "source": "B",
+        "target": "b3"
+      },
+      {
+        "source": "C",
+        "target": "c1"
+      },
+      {
+        "source": "C",
+        "target": "c2"
+      },
+      {
+        "source": "b1",
+        "target": "D"
+      },
+      {
+        "source": "b2",
+        "target": "E"
+      },
+      {
+        "source": "b2",
+        "target": "F"
+      },
+      {
+        "source": "b3",
+        "target": "G"
+      },
+      {
+        "source": "c1",
+        "target": "H"
+      },
+      {
+        "source": "c1",
+        "target": "I"
+      },
+      {
+        "source": "c1",
+        "target": "J"
+      },
+      {
+        "source": "c2",
+        "target": "K"
+      },
+      {
+        "source": "c2",
+        "target": "L"
+      },
+      {
+        "source": "c2",
+        "target": "M"
+      }
+    ],
+    "metadata": {
+      "goal": "A"
+    }
+  }
+}

@@ -7,9 +7,9 @@ pub enum Provider {
     Random,
     TopDownInversion,
     BottomUpInversion,
-    TopDownJump,
     MaxInfoGain,
     MinLeafHeuristic,
+    ForcedAssumptions,
 }
 
 impl Provider {
@@ -35,7 +35,9 @@ impl Provider {
             Provider::MinLeafHeuristic => {
                 Box::new(pn::providers::MinLeafHeuristic::new())
             }
-            _ => panic!("Unimplemented!"),
+            Provider::ForcedAssumptions => {
+                Box::new(pn::providers::ForcedAssumptions::new())
+            }
         }
     }
 }
@@ -49,9 +51,10 @@ impl std::str::FromStr for Provider {
             "Random" | "Ra" => Ok(Self::Random),
             "TopDownInversion" | "TDI" => Ok(Self::TopDownInversion),
             "BottomUpInversion" | "BUI" => Ok(Self::BottomUpInversion),
-            "TopDownJump" | "TDJ" => Ok(Self::TopDownJump),
+            // "TopDownJump" | "TDJ" => Ok(Self::TopDownJump),
             "MaxInfoGain" | "MIG" => Ok(Self::MaxInfoGain),
             "MinLeafHeuristic" | "MLH" => Ok(Self::MinLeafHeuristic),
+            "ForcedAssumptions" | "FA" => Ok(Self::ForcedAssumptions),
             _ => Err(format!("Unknown provider '{}'", s)),
         }
     }
