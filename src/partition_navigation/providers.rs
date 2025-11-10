@@ -327,10 +327,7 @@ impl pbn::StepProvider for MaxInfoGain {
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut ret = vec![];
-        // Can just take sum, as denominator of average in expectation is always # classes
-        // TODO i don't think we can actually
-        // TODO: think about -inf entropy?
-        let mut min_entropy_sum = f64::INFINITY;
+        let mut min_expected_entropy = f64::INFINITY;
         for oidx in e.partition().keys() {
             let mut steps = vec![];
             let mut entropy_sum = 0.0;
@@ -350,8 +347,9 @@ impl pbn::StepProvider for MaxInfoGain {
             if steps.is_empty() {
                 continue;
             }
-            if entropy_sum < min_entropy_sum {
-                min_entropy_sum = entropy_sum;
+            let expected_entropy = entropy_sum / (steps.len() as f64);
+            if expected_entropy < min_expected_entropy {
+                min_expected_entropy = expected_entropy;
                 ret = steps;
             }
         }
