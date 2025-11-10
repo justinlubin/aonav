@@ -435,7 +435,6 @@ impl pbn::StepProvider for ForcedAssumptions {
                     Some(_) => (),
                     None => {
                         let _ = show.insert(*oidx, true);
-                        println!("setting {:?} to true", oidx);
                     }
                 },
                 pn::Step::SetClass(oidx, _, _) => {
@@ -444,11 +443,18 @@ impl pbn::StepProvider for ForcedAssumptions {
                 pn::Step::Seq(..) => (),
             };
         }
-        println!("{:?}", show);
         Ok(steps
             .into_iter()
             .filter(|s| match s {
-                pn::Step::SetClass(oidx, ..) => show.get(oidx) == Some(&true),
+                pn::Step::SetClass(oidx, class, ..) => {
+                    show.get(oidx) == Some(&true)
+                        && match class {
+                            pn::Class::True {
+                                assume: Some(_), ..
+                            } => true,
+                            _ => false,
+                        }
+                }
                 pn::Step::Seq(..) => false,
             })
             .collect())
