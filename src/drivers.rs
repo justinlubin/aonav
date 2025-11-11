@@ -175,7 +175,7 @@ impl Driver<pn::Step> for CliDriver {
         let final_expression = controller.working_expression();
 
         println!(
-            "\n{}\n\n    {}",
+            "\n{}\n\n{}",
             Green.bold().paint("Final expression:"),
             final_expression
         );
