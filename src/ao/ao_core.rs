@@ -158,7 +158,12 @@ impl Graph {
                 continue;
             }
             let mut it = pg.edges_directed(pid, Direction::Incoming);
-            let _ = it.next();
+            if !it.next().is_some() {
+                return Err(format!(
+                    "AND node '{}' has no conclusion",
+                    node.id
+                ));
+            }
             if it.next().is_some() {
                 return Err(format!(
                     "AND node '{}' has more than one conclusion",
