@@ -460,3 +460,119 @@ impl pbn::StepProvider for ForcedAssumptions {
             .collect())
     }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// AlphabeticalUnsound
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum AlphabeticalMode {
+    Unsound,
+    Complete,
+    Relevant,
+}
+
+pub struct Alphabetical {
+    mode: AlphabeticalMode,
+    fancy_prune: bool,
+}
+
+impl Alphabetical {
+    pub fn new(mode: AlphabeticalMode) -> Self {
+        Self {
+            mode,
+            fancy_prune: false,
+        }
+    }
+}
+
+impl pbn::StepProvider for Alphabetical {
+    type Step = pn::Step;
+
+    fn provide(
+        &mut self,
+        _timer: &Timer,
+        e: &pn::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let mut unseen: Vec<_> = e
+            .filter_class(|c| !c.is_committed())
+            .set
+            .into_iter()
+            .collect();
+        unseen.sort_by(|o1, o2| {
+            e.graph().or_at(*o1).id().cmp(e.graph().or_at(*o2).id())
+        });
+
+        for oidx in unseen {
+            let mut ret = vec![];
+
+            let mut show_unknown = true;
+
+            if self.mode == AlphabeticalMode::Relevant {
+                let force_step = pn::Step::SetClass(
+                    oidx,
+                    pn::Class::True {
+                        force_use: true,
+                        assume: Some(true),
+                    },
+                    None,
+                );
+                match force_step.apply(e) {
+                    None => continue,
+                    Some(force_result) => {
+                        if !pn::oracle::nonempty_completion(&force_result) {
+                            continue;
+                        }
+                    }
+                }
+
+                if self.fancy_prune {
+                    let true_step = pn::Step::SetClass(
+                        oidx,
+                        pn::Class::True {
+                            force_use: false,
+                            assume: Some(false),
+                        },
+                        None,
+                    );
+                    let true_step_ok = match true_step.apply(e) {
+                        None => false,
+                        Some(result) => {
+                            pn::oracle::nonempty_completion(&result)
+                        }
+                    };
+
+                    let false_step =
+                        pn::Step::SetClass(oidx, pn::Class::False, None);
+                    let false_step_ok = match false_step.apply(e) {
+                        None => false,
+                        Some(result) => {
+                            pn::oracle::nonempty_completion(&result)
+                        }
+                    };
+
+                    show_unknown = true_step_ok && false_step_ok;
+                }
+            }
+
+            for new_class in pn::Class::committed() {
+                if !show_unknown && *new_class == pn::Class::Unknown {
+                    continue;
+                }
+                let step = pn::Step::SetClass(oidx, *new_class, None);
+                match step.apply(e) {
+                    None => continue,
+                    Some(result) => {
+                        if self.mode == AlphabeticalMode::Unsound
+                            || pn::oracle::nonempty_completion(&result)
+                        {
+                            ret.push(step);
+                        }
+                    }
+                }
+            }
+
+            return Ok(ret);
+        }
+        return Ok(vec![]);
+    }
+}

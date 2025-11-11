@@ -10,6 +10,9 @@ pub enum Provider {
     MaxInfoGain,
     MinLeafHeuristic,
     ForcedAssumptions,
+    AlphabeticalUnsound,
+    AlphabeticalComplete,
+    AlphabeticalRelevant,
 }
 
 impl Provider {
@@ -38,6 +41,21 @@ impl Provider {
             Provider::ForcedAssumptions => {
                 Box::new(pn::providers::ForcedAssumptions::new())
             }
+            Provider::AlphabeticalUnsound => {
+                Box::new(pn::providers::Alphabetical::new(
+                    pn::providers::AlphabeticalMode::Unsound,
+                ))
+            }
+            Provider::AlphabeticalComplete => {
+                Box::new(pn::providers::Alphabetical::new(
+                    pn::providers::AlphabeticalMode::Complete,
+                ))
+            }
+            Provider::AlphabeticalRelevant => {
+                Box::new(pn::providers::Alphabetical::new(
+                    pn::providers::AlphabeticalMode::Relevant,
+                ))
+            }
         }
     }
 }
@@ -55,6 +73,9 @@ impl std::str::FromStr for Provider {
             "MaxInfoGain" | "MIG" => Ok(Self::MaxInfoGain),
             "MinLeafHeuristic" | "MLH" => Ok(Self::MinLeafHeuristic),
             "ForcedAssumptions" | "FA" => Ok(Self::ForcedAssumptions),
+            "AlphabeticalUnsound" | "AU" => Ok(Self::AlphabeticalUnsound),
+            "AlphabeticalComplete" | "AC" => Ok(Self::AlphabeticalComplete),
+            "AlphabeticalRelevant" | "AR" => Ok(Self::AlphabeticalRelevant),
             _ => Err(format!("Unknown provider '{}'", s)),
         }
     }
