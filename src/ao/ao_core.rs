@@ -158,7 +158,12 @@ impl Graph {
                 continue;
             }
             let mut it = pg.edges_directed(pid, Direction::Incoming);
-            let _ = it.next();
+            if !it.next().is_some() {
+                return Err(format!(
+                    "AND node '{}' has no conclusion",
+                    node.id
+                ));
+            }
             if it.next().is_some() {
                 return Err(format!(
                     "AND node '{}' has more than one conclusion",
@@ -221,6 +226,17 @@ impl Graph {
         self.pg.externals(Direction::Outgoing).filter_map(|pid| {
             let node = &self.pg[pid];
             if node.is_or() {
+                Some(OIdx(pid))
+            } else {
+                None
+            }
+        })
+    }
+
+    pub fn find_or_by_id(&self, id: &nodeid) -> Option<OIdx> {
+        self.pg.node_indices().find_map(|pid| {
+            let n = &self.pg[pid];
+            if n.is_or() && n.id() == id {
                 Some(OIdx(pid))
             } else {
                 None

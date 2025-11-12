@@ -62,10 +62,22 @@ enum Command {
         /// The path to the benchmark suite directory
         #[arg(value_name = "DIRECTORY")]
         path: PathBuf,
+
+        /// The path to the benchmark suite directory
+        #[arg(short, long, default_value_t = 5)]
+        replicates: usize,
+
+        /// Run the benchmark entries in parallel
+        #[arg(short, long, action)]
+        parallel: bool,
     },
 
     /// Generate solutions for a benchmark suite
     GenerateSolutions {
+        /// The number of solutions to generate per graph
+        #[arg(short, long, value_name = "DIRECTORY", default_value_t = 10)]
+        count: usize,
+
         /// The path to the benchmark suite directory
         #[arg(value_name = "DIRECTORY")]
         path: PathBuf,
@@ -80,6 +92,10 @@ enum Command {
         /// The format to convert from (options: EGraphSerialize, AOJsonGraph, Argus)
         #[arg(short, long, value_name = "FORMAT")]
         format: main_handler::ConversionInputFormat,
+
+        /// Randomize the IDs of the output
+        #[arg(short, long, action)]
+        randomize: bool,
     },
 
     /// Render an AND/OR graph in the AND/OR JSON Graph Format (stored in out/RENDERED.dot and out/RENDERED.pdf)
@@ -96,13 +112,19 @@ impl Command {
             Self::Interact { graph, providers } => {
                 main_handler::interact(graph, providers)
             }
-            Self::Benchmark { path } => main_handler::benchmark(path),
-            Self::GenerateSolutions { path } => {
-                main_handler::generate_solutions(path)
+            Self::Benchmark {
+                path,
+                replicates,
+                parallel,
+            } => main_handler::benchmark(path, *replicates, *parallel),
+            Self::GenerateSolutions { path, count } => {
+                main_handler::generate_solutions(path, *count)
             }
-            Self::Convert { path, format } => {
-                main_handler::convert(path, format)
-            }
+            Self::Convert {
+                path,
+                format,
+                randomize,
+            } => main_handler::convert(path, format, *randomize),
             Self::Render { path } => main_handler::render(path),
         }
     }

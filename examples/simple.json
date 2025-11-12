@@ -1,0 +1,34 @@
+{
+  "graph": {
+    "nodes": {
+      "A": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "B": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "f": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "A",
+        "target": "f"
+      },
+      {
+        "source": "f",
+        "target": "B"
+      }
+    ],
+    "metadata": {
+      "goal": "A"
+    }
+  }
+}

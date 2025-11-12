@@ -1,10 +1,10 @@
 use crate::ao;
 use crate::partition_navigation as pn;
 use crate::pbn;
+use rand::Rng;
+use std::collections::HashSet;
 
 use ansi_term::Color::*;
-use indexmap::IndexSet;
-use rand::seq::IteratorRandom;
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::Write;
@@ -17,9 +17,9 @@ pub trait Driver<S: pbn::Step> {
 ////////////////////////////////////////////////////////////////////////////////
 // CLI Driver
 
-pub struct CliDriver;
+pub struct Cli;
 
-impl CliDriver {
+impl Cli {
     pub fn new() -> Self {
         Self
     }
@@ -86,7 +86,7 @@ fn emit_graph(name: &str, e: &pn::Exp) {
         .unwrap();
 }
 
-impl Driver<pn::Step> for CliDriver {
+impl Driver<pn::Step> for Cli {
     fn drive(
         &mut self,
         mut controller: pbn::Controller<pn::Step>,
@@ -175,7 +175,7 @@ impl Driver<pn::Step> for CliDriver {
         let final_expression = controller.working_expression();
 
         println!(
-            "\n{}\n\n    {}",
+            "\n{}\n\n{}",
             Green.bold().paint("Final expression:"),
             final_expression
         );
@@ -185,73 +185,104 @@ impl Driver<pn::Step> for CliDriver {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Randomized goal-driven driver
+// Solution-driven driver
 
-pub struct RandomizedSolutionDrivenDriver {
-    solution: IndexSet<ao::NodeId>,
-    decisions: usize,
+pub struct SolutionDriven {
+    solution: pn::Exp,
+    decisions: HashSet<(ao::OIdx, pn::Class)>,
+    total_decisions: usize,
 }
 
-impl RandomizedSolutionDrivenDriver {
-    pub fn new(solution: IndexSet<ao::NodeId>) -> Self {
+impl SolutionDriven {
+    pub fn new(solution: pn::Exp) -> Self {
         Self {
             solution,
-            decisions: 0,
+            decisions: HashSet::new(),
+            total_decisions: 0,
         }
     }
 
-    pub fn decisions(&self) -> usize {
-        self.decisions
+    pub fn unique_decisions(&self) -> usize {
+        self.decisions.len()
+    }
+
+    pub fn total_decisions(&self) -> usize {
+        self.total_decisions
     }
 }
 
-impl Driver<pn::Step> for RandomizedSolutionDrivenDriver {
+impl Driver<pn::Step> for SolutionDriven {
     fn drive(
         &mut self,
         mut controller: pbn::Controller<pn::Step>,
     ) -> Option<pn::Exp> {
         loop {
-            let exp = controller.working_expression();
-            if exp
-                .filter_class(|c| {
-                    c == pn::Class::True {
-                        force_use: true,
-                        assume: Some(true),
-                    }
-                })
-                .ids(exp.graph())
-                == self.solution
-            {
-                return Some(exp);
+            if controller.valid() {
+                return Some(controller.working_expression());
             }
 
             let mut options = controller.provide().unwrap();
+            let mut chosen_option = None;
 
-            let idx = options
-                .iter()
-                .enumerate()
-                .filter_map(|(i, option)| match &option {
-                    pn::Step::SetClass(
-                        id,
-                        pn::Class::True {
-                            force_use: true,
-                            assume: Some(true),
-                        },
-                        _,
-                    ) => {
-                        if self.solution.contains(exp.graph().or_at(*id).id()) {
-                            Some(i)
-                        } else {
-                            None
+            for (i, option) in options.iter().enumerate() {
+                match option {
+                    pn::Step::SetClass(oidx, class, _) => {
+                        self.total_decisions += 1;
+                        let _ = self.decisions.insert((*oidx, *class));
+                        // "User oracle" call
+                        if self.solution.class(*oidx) == *class {
+                            chosen_option = Some(i);
                         }
                     }
-                    _ => None,
-                })
-                .choose(&mut rand::rng())?;
+                    pn::Step::Seq(..) => {
+                        panic!("SolutionDriver driver does not work with sequence steps");
+                    }
+                }
+            }
 
-            self.decisions += idx;
+            let chosen_option = chosen_option
+                .expect("SolutionDriven driver could not find consistent step");
 
-            controller.decide(options.swap_remove(idx))
+            controller.decide(options.swap_remove(chosen_option))
+        }
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Random driver
+
+pub struct Random {
+    go_until_maximal: bool,
+}
+
+impl Random {
+    pub fn new(go_until_maximal: bool) -> Self {
+        Self { go_until_maximal }
+    }
+}
+
+impl Driver<pn::Step> for Random {
+    fn drive(
+        &mut self,
+        mut controller: pbn::Controller<pn::Step>,
+    ) -> Option<pn::Exp> {
+        loop {
+            let e = controller.working_expression();
+
+            let done = if self.go_until_maximal {
+                e.maximal()
+            } else {
+                controller.valid()
+            };
+
+            if done {
+                return Some(e);
+            }
+
+            let mut options = controller.provide().unwrap();
+            let choice = rand::rng().random_range(0..options.len());
+
+            controller.decide(options.swap_remove(choice))
         }
     }
 }

@@ -1,0 +1,124 @@
+{
+  "graph": {
+    "nodes": {
+      "A": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "B": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "C": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "D": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "E": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "F": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "f": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "g": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "h": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "i": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "j": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "k": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "A",
+        "target": "f"
+      },
+      {
+        "source": "f",
+        "target": "B"
+      },
+      {
+        "source": "B",
+        "target": "g"
+      },
+      {
+        "source": "g",
+        "target": "C"
+      },
+      {
+        "source": "C",
+        "target": "h"
+      },
+      {
+        "source": "h",
+        "target": "D"
+      },
+      {
+        "source": "D",
+        "target": "i"
+      },
+      {
+        "source": "i",
+        "target": "E"
+      },
+      {
+        "source": "E",
+        "target": "j"
+      },
+      {
+        "source": "j",
+        "target": "F"
+      },
+      {
+        "source": "F",
+        "target": "k"
+      },
+      {
+        "source": "k",
+        "target": "G"
+      }
+    ],
+    "metadata": {
+      "goal": "A"
+    }
+  }
+}

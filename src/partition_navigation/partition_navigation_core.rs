@@ -2,6 +2,7 @@ use crate::ao;
 use crate::pbn;
 
 use indexmap::IndexMap;
+use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
 use std::hash::Hash;
 
@@ -15,8 +16,8 @@ use std::hash::Hash;
 // T!: should be true; only consider solutions with it in dependencies
 // T*: T + user will provide an impl
 // T!*: T! + user will provide an impl
-#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
-#[allow(dead_code)]
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(try_from = "String", into = "String")]
 pub enum Class {
     // ⊥ ("Bot")
     Unseen,
@@ -200,6 +201,25 @@ impl Class {
     }
 }
 
+impl TryFrom<String> for Class {
+    type Error = String;
+
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        for class in Class::all() {
+            if class.shorthand() == value {
+                return Ok(*class);
+            }
+        }
+        return Err(format!("Unknown partition class '{}'", value));
+    }
+}
+
+impl From<Class> for String {
+    fn from(class: Class) -> Self {
+        class.shorthand().to_owned()
+    }
+}
+
 #[derive(Debug, Clone)]
 pub struct Exp {
     graph: ao::Graph,
@@ -217,6 +237,32 @@ impl Exp {
             assume: Some(false),
         };
         Self { graph, partition }
+    }
+
+    pub fn from_labels(
+        graph: ao::Graph,
+        labels: IndexMap<ao::NodeId, Class>,
+    ) -> Result<Self, String> {
+        let mut partition: IndexMap<_, _> = graph
+            .or_indexes()
+            .map(|oidx| (oidx, Class::Unseen))
+            .collect();
+        for (id, class) in labels {
+            let oidx = graph.find_or_by_id(&id).ok_or_else(|| {
+                format!("Could not find OR node with ID '{}'", id)
+            })?;
+            *partition.get_mut(&oidx).unwrap() = class;
+        }
+        Ok(Self { graph, partition })
+    }
+
+    pub fn make_labels(&self) -> IndexMap<ao::NodeId, Class> {
+        self.partition()
+            .iter()
+            .map(|(oidx, class)| {
+                (self.graph().or_at(*oidx).id().to_owned(), *class)
+            })
+            .collect()
     }
 
     pub fn graph(&self) -> &ao::Graph {
@@ -268,6 +314,14 @@ impl Exp {
                 _ => (),
             }
         }
+    }
+
+    pub fn maximal(&self) -> bool {
+        self.partition.values().all(|c| c.is_committed())
+    }
+
+    pub fn unsafe_set_class(&mut self, oidx: ao::OIdx, class: Class) {
+        let _ = self.partition.insert(oidx, class);
     }
 }
 

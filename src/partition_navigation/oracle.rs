@@ -4,6 +4,7 @@ use crate::model_count;
 use crate::partition_navigation::*;
 use crate::pbn;
 
+use rustsat::instances::ManageVars;
 use rustsat::instances::SatInstance;
 use rustsat::solvers::Solve;
 use rustsat::types::{constraints::CardConstraint, Lit};
@@ -264,11 +265,11 @@ pub fn nonempty_completion(e: &Exp) -> bool {
 // Entropy
 
 pub fn entropy(e: &Exp) -> Option<f64> {
-    let ctx = Context::compile(SatInstance::new(), &e);
-    let cnf = ctx.instance.cnf();
+    let ctx = Context::compile(SatInstance::new(), e);
+    let (cnf, vm) = ctx.instance.into_cnf();
     model_count::log10_model_count(
-        ctx.instance.n_vars(),
-        cnf,
+        vm.n_used(),
+        &cnf,
         Some(ctx.o_assume.values().map(|lit| lit.var()).collect()),
     )
 }
