@@ -1,0 +1,205 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "gWcarPUGmmgAfcQsKhpmZevaGZwOvhhG"
+    },
+    "nodes": {
+      "QjTceohbKJdIOIIfjggEYheejlFuaxOQ": {
+        "label": "_: SingleValue",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "xSiBYlrgzxGfdxXRmAvcMzQIPyvAwWbZ": {
+        "label": "(SqlQuery): AsQuery",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "qcffMeLmVlBfLTcnGgLvMjsvLQDHPimH": {
+        "label": "_: FromStaticSqlRow<_, Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "TJkdqARjAipprFofJRNFjaDgLJOpTHAm": {
+        "label": "(SqlQuery): Table",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "gWcarPUGmmgAfcQsKhpmZevaGZwOvhhG": {
+        "label": "(SqlQuery): LoadQuery<PgConnection, User>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "RvaIlyBCmcKoFKLgiBFIJxLliAJgNQVu": {
+        "label": "(SqlQuery): RunQueryDsl<PgConnection>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "xWXGhEdNdukaySNNjAZJPBZZViLFKIrM": {
+        "label": "_: Selectable<Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "RGojZMtSYPKfoDXUKXIznIpPsLdOCkxj": {
+        "label": "_: SqlTypeOrSelectable",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "xuxISnEzhHOwernyYpgnVzfJCTebjoKC": {
+        "label": "_: CompatibleType<User, Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "KMguBAcCIoSCdJxEQcWmJTCKxtJkpLrZ": {
+        "label": "User: FromSqlRow<_, Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "FeYjrZZbKDfBtkUYtQKHrxbMOoLrPSQt": {
+        "label": "_: SqlType",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "hKZkijkDTpYXnItxMOjLeOlTjcQlwtDr": {
+        "label": "User: QueryableByName<Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "GpezHEhqPWTgiAxrqXlyFIYwnYsYQJjq": {
+        "label": "(SqlQuery): Query",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "BADGPEYRjBjuoCDFvxuDZkASnbvSvnrb": {
+        "label": "_: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "WrBAHCmdqKKmWSJovAhmmGsnEYWMiMGW": {
+        "label": "User: Queryable<_, Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "bIPVaFbKOTVWpHQaJQrRVaoiCYrEKzvH": {
+        "label": "_: QueryFragment<Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "eJOoTTIRXlGBQfOSuyTZlgUunjUPUzqu": {
+        "label": "impl<T> AsQuery for Twhere T: Query",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "JkkwfyRBSKpcgrOwYAaKGDdrQbvMlfri": {
+        "label": "impl<DB, T> FromSqlRow<Untyped, DB> for Twhere DB: BackendT: QueryableByName<DB>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "DdnBAkZxiEsNyjjZjvobqRRMUJcvEaQZ": {
+        "label": "impl<'query, Conn, T, U, DB, B> LoadQuery<'query, Conn, U, B> for Twhere Conn: Connection + LoadConnection<B>T: AsQuery + RunQueryDsl<Conn><..T as AsQuery>::Query: QueryFragment<DB> + QueryId + 'query<..T as AsQuery>::SqlType: CompatibleType<UDB>DB: Backend + QueryMetadata<<..T as AsQuery>::SqlType> + 'staticU: FromSqlRow<<..<..T as AsQuery>::SqlType as CompatibleType<UDB>>::SqlTypeDB> + 'static<..<..T as AsQuery>::SqlType as CompatibleType<U, DB>>::SqlType: 'static<..Conn as Connection>::Backend == DB",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "jStMeFxjScIXiahxAJTJboYFIXJedISP": {
+        "label": "impl<T, ST, DB> FromSqlRow<ST, DB> for Twhere T: Queryable<STDB>ST: SqlTypeOrSelectableDB: Backend<..T as Queryable<ST, DB>>::Row: FromStaticSqlRow<STDB>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "SpjbPDrZlTePzxRUJBfUsGtXwXvPCrYm": {
+        "label": "impl<T, Conn> RunQueryDsl<Conn> for Twhere T: Table",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "jStMeFxjScIXiahxAJTJboYFIXJedISP",
+        "target": "BADGPEYRjBjuoCDFvxuDZkASnbvSvnrb"
+      },
+      {
+        "source": "jStMeFxjScIXiahxAJTJboYFIXJedISP",
+        "target": "qcffMeLmVlBfLTcnGgLvMjsvLQDHPimH"
+      },
+      {
+        "source": "jStMeFxjScIXiahxAJTJboYFIXJedISP",
+        "target": "WrBAHCmdqKKmWSJovAhmmGsnEYWMiMGW"
+      },
+      {
+        "source": "jStMeFxjScIXiahxAJTJboYFIXJedISP",
+        "target": "RGojZMtSYPKfoDXUKXIznIpPsLdOCkxj"
+      },
+      {
+        "source": "SpjbPDrZlTePzxRUJBfUsGtXwXvPCrYm",
+        "target": "TJkdqARjAipprFofJRNFjaDgLJOpTHAm"
+      },
+      {
+        "source": "eJOoTTIRXlGBQfOSuyTZlgUunjUPUzqu",
+        "target": "GpezHEhqPWTgiAxrqXlyFIYwnYsYQJjq"
+      },
+      {
+        "source": "RvaIlyBCmcKoFKLgiBFIJxLliAJgNQVu",
+        "target": "SpjbPDrZlTePzxRUJBfUsGtXwXvPCrYm"
+      },
+      {
+        "source": "JkkwfyRBSKpcgrOwYAaKGDdrQbvMlfri",
+        "target": "hKZkijkDTpYXnItxMOjLeOlTjcQlwtDr"
+      },
+      {
+        "source": "gWcarPUGmmgAfcQsKhpmZevaGZwOvhhG",
+        "target": "DdnBAkZxiEsNyjjZjvobqRRMUJcvEaQZ"
+      },
+      {
+        "source": "KMguBAcCIoSCdJxEQcWmJTCKxtJkpLrZ",
+        "target": "jStMeFxjScIXiahxAJTJboYFIXJedISP"
+      },
+      {
+        "source": "KMguBAcCIoSCdJxEQcWmJTCKxtJkpLrZ",
+        "target": "JkkwfyRBSKpcgrOwYAaKGDdrQbvMlfri"
+      },
+      {
+        "source": "xSiBYlrgzxGfdxXRmAvcMzQIPyvAwWbZ",
+        "target": "eJOoTTIRXlGBQfOSuyTZlgUunjUPUzqu"
+      },
+      {
+        "source": "DdnBAkZxiEsNyjjZjvobqRRMUJcvEaQZ",
+        "target": "KMguBAcCIoSCdJxEQcWmJTCKxtJkpLrZ"
+      },
+      {
+        "source": "DdnBAkZxiEsNyjjZjvobqRRMUJcvEaQZ",
+        "target": "xSiBYlrgzxGfdxXRmAvcMzQIPyvAwWbZ"
+      },
+      {
+        "source": "DdnBAkZxiEsNyjjZjvobqRRMUJcvEaQZ",
+        "target": "RvaIlyBCmcKoFKLgiBFIJxLliAJgNQVu"
+      },
+      {
+        "source": "DdnBAkZxiEsNyjjZjvobqRRMUJcvEaQZ",
+        "target": "bIPVaFbKOTVWpHQaJQrRVaoiCYrEKzvH"
+      },
+      {
+        "source": "DdnBAkZxiEsNyjjZjvobqRRMUJcvEaQZ",
+        "target": "xuxISnEzhHOwernyYpgnVzfJCTebjoKC"
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "hFhQlvxjfivQgkXnGPJOVxJUGPPcVQiX"
+    },
+    "nodes": {
+      "DSwFaAUIWOfhzzKWAQiCKdjTYDBkSjnb": {
+        "label": "Impl<()>: T2",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "AwCcfISikwPZHtVfrTOOAKwEmmqAcGws": {
+        "label": "Impl<()>: T3",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "QfDabKBtgTlNlwNKHGUzDgFXTnyFROVx": {
+        "label": "Impl<()>: T4",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "hFhQlvxjfivQgkXnGPJOVxJUGPPcVQiX": {
+        "label": "Impl<()>: T1",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "nOEjQewAYiuqsDDFpdDZoxlLcFLmvBFj": {
+        "label": "impl<EntraitT> T3 for Impl<EntraitT>where EntraitT: SyncImpl<EntraitT>: T4",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "XAUATshDXmpOoRtiYUyiDhJOnRGXyrXm": {
+        "label": "impl<EntraitT> T1 for Impl<EntraitT>where EntraitT: SyncImpl<EntraitT>: T2",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "eRgOtufDhmSWwchTuNhIbBANiORtrOTm": {
+        "label": "impl<EntraitT> T2 for Impl<EntraitT>where EntraitT: SyncImpl<EntraitT>: T3",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "eRgOtufDhmSWwchTuNhIbBANiORtrOTm",
+        "target": "AwCcfISikwPZHtVfrTOOAKwEmmqAcGws"
+      },
+      {
+        "source": "XAUATshDXmpOoRtiYUyiDhJOnRGXyrXm",
+        "target": "DSwFaAUIWOfhzzKWAQiCKdjTYDBkSjnb"
+      },
+      {
+        "source": "DSwFaAUIWOfhzzKWAQiCKdjTYDBkSjnb",
+        "target": "eRgOtufDhmSWwchTuNhIbBANiORtrOTm"
+      },
+      {
+        "source": "hFhQlvxjfivQgkXnGPJOVxJUGPPcVQiX",
+        "target": "XAUATshDXmpOoRtiYUyiDhJOnRGXyrXm"
+      },
+      {
+        "source": "AwCcfISikwPZHtVfrTOOAKwEmmqAcGws",
+        "target": "nOEjQewAYiuqsDDFpdDZoxlLcFLmvBFj"
+      },
+      {
+        "source": "nOEjQewAYiuqsDDFpdDZoxlLcFLmvBFj",
+        "target": "QfDabKBtgTlNlwNKHGUzDgFXTnyFROVx"
+      }
+    ]
+  }
+}

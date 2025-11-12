@@ -1,0 +1,77 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "UepwjOwYGeNjsmroxjZdLuZWQPWLjunw"
+    },
+    "nodes": {
+      "VqfGBUANgRIDqaIwyfZZYNlyVdIbIcLf": {
+        "label": "&A: FromRequest<S, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "WzHwzDdcEbbIKLEYoMWdnHzrqwRxLEQW": {
+        "label": "handler fn(&A) -> impl Future<Output = ()>: IntoResponse",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "UepwjOwYGeNjsmroxjZdLuZWQPWLjunw": {
+        "label": "handler fn(&A) -> impl Future<Output = ()>: Handler<T, S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ZCAAPNnXDVKFEGyhybAdpSxoRiXKbEaT": {
+        "label": "&A: FromRequestParts<S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "BJPxvjxXcCByYvQcxxEdkOFazTaFatdW": {
+        "label": "impl<S, T> FromRequest<S, ViaParts> for Twhere S: Send + SyncT: FromRequestParts<S>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "LMNNkrdvCBkJZEGpUywqHFIIyidSMZBu": {
+        "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "SPZFxhurGRMMNmdWUjneeiXFpjosSVTI": {
+        "label": "impl<F, Fut, S, Res, M, T1> Handler<(MT1), S> for Fwhere F: FnOnce<(T1)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "BJPxvjxXcCByYvQcxxEdkOFazTaFatdW",
+        "target": "ZCAAPNnXDVKFEGyhybAdpSxoRiXKbEaT"
+      },
+      {
+        "source": "VqfGBUANgRIDqaIwyfZZYNlyVdIbIcLf",
+        "target": "BJPxvjxXcCByYvQcxxEdkOFazTaFatdW"
+      },
+      {
+        "source": "UepwjOwYGeNjsmroxjZdLuZWQPWLjunw",
+        "target": "SPZFxhurGRMMNmdWUjneeiXFpjosSVTI"
+      },
+      {
+        "source": "UepwjOwYGeNjsmroxjZdLuZWQPWLjunw",
+        "target": "LMNNkrdvCBkJZEGpUywqHFIIyidSMZBu"
+      },
+      {
+        "source": "LMNNkrdvCBkJZEGpUywqHFIIyidSMZBu",
+        "target": "WzHwzDdcEbbIKLEYoMWdnHzrqwRxLEQW"
+      },
+      {
+        "source": "SPZFxhurGRMMNmdWUjneeiXFpjosSVTI",
+        "target": "VqfGBUANgRIDqaIwyfZZYNlyVdIbIcLf"
+      }
+    ]
+  }
+}

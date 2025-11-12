@@ -1,0 +1,66 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "frBTMapKLOXbDVwRbuGmlYbTnWMchaak"
+    },
+    "nodes": {
+      "egnBjQPVZFUeyKZiclPWGDFQjniBBflS": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "STHyvtfwTnKZcbEBVHyAecfdIXHvqDzY": {
+        "label": "<(table) as AsQuery>::Query normalizes to _",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "YlnuRasbmSMbERCpplWYXtofPjCpCTAE": {
+        "label": "(table): Table",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "KMCCjXIvFsyxKNoQhvCrUWsbyNCLZCTP": {
+        "label": "<(table) as AsQuery>::Query == _",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "frBTMapKLOXbDVwRbuGmlYbTnWMchaak": {
+        "label": "(table): SelectDsl<id>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "sbAsknISmpuXPGxqZZixBCnlpZdBbSuC": {
+        "label": "impl<T, Selection> SelectDsl<Selection> for Twhere Selection: ExpressionT: Table<..T as AsQuery>::Query: SelectDsl<Selection>",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "KMCCjXIvFsyxKNoQhvCrUWsbyNCLZCTP",
+        "target": "egnBjQPVZFUeyKZiclPWGDFQjniBBflS"
+      },
+      {
+        "source": "egnBjQPVZFUeyKZiclPWGDFQjniBBflS",
+        "target": "STHyvtfwTnKZcbEBVHyAecfdIXHvqDzY"
+      },
+      {
+        "source": "sbAsknISmpuXPGxqZZixBCnlpZdBbSuC",
+        "target": "YlnuRasbmSMbERCpplWYXtofPjCpCTAE"
+      },
+      {
+        "source": "sbAsknISmpuXPGxqZZixBCnlpZdBbSuC",
+        "target": "KMCCjXIvFsyxKNoQhvCrUWsbyNCLZCTP"
+      },
+      {
+        "source": "frBTMapKLOXbDVwRbuGmlYbTnWMchaak",
+        "target": "sbAsknISmpuXPGxqZZixBCnlpZdBbSuC"
+      }
+    ]
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "tWRiAalzFwuCZecmsLGwKyZVfUkjYDEW"
+    },
+    "nodes": {
+      "REaXQYatmCsIznhrsoEwzXIEOqKcPWyr": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "SpIfklMPXCmdvzuSCbTYemFSGvvCCpPF": {
+        "label": "<fn(Vec<char>) -> String as FnOnce<(Vec<char>)>>::Output == Json",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "HSskikaAYzcSArDysPhmkbCVEGoFBduh": {
+        "label": "Map<Map<Then<Map<Then<Just<charcharSimple<char_>>Repeated<Or<Filter<closure#2Simple<char_>>Map<Then<Just<charcharSimple<char_>>Or<Or<Or<Or<Or<Or<Or<Or<Just<charcharSimple<char_>>Just<charcharSimple<char_>>>Just<charcharSimple<char_>>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>Map<Then<Just<charcharSimple<char_>>Validate<Map<Repeated<Filter<closureSimple<char_>>>fn(Vec<char>) -> StringVec<char>>Stringclosure#1>>fn((charchar)) -> char(charchar)>>>fn((charchar)) -> char(charchar)>>>>fn((charVec<char>)) -> Vec<char>(charVec<char>)>Just<charcharSimple<char_>>>fn((Vec<char>char)) -> Vec<char>(Vec<char>char)>, fn(Vec<char>) -> String, Vec<char>>: Parser<char, Json>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "yzFNTwRbxwEDGTKxCdHosGvdvLVOlove": {
+        "label": "_: Error<char>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "aJeiHeWBnUCdwtUqzkGaeryWoqtyDclt": {
+        "label": "Map<Then<Map<Then<Just<charcharSimple<char_>>Repeated<Or<Filter<closure#2Simple<char_>>Map<Then<Just<charcharSimple<char_>>Or<Or<Or<Or<Or<Or<Or<Or<Just<charcharSimple<char_>>Just<charcharSimple<char_>>>Just<charcharSimple<char_>>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>Map<Then<Just<charcharSimple<char_>>Validate<Map<Repeated<Filter<closureSimple<char_>>>fn(Vec<char>) -> StringVec<char>>Stringclosure#1>>fn((charchar)) -> char(charchar)>>>fn((charchar)) -> char(charchar)>>>>fn((charVec<char>)) -> Vec<char>(charVec<char>)>Just<charcharSimple<char_>>>, fn((Vec<char>char)) -> Vec<char>, (Vec<char>char)>: Parser<char, Vec<char>>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "hwyoDxTPFZFXOBtSYSOEGLDAaDBryBhZ": {
+        "label": "char: FnPtr",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "dhWZntaCzKymTEwGaYsdckLbYfwEaTjl": {
+        "label": "<fn(Vec<char>) -> String as FnOnce<(Vec<char>)>>::Output == Json",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "cBbUGhjrpahIMQdyoHDjkvBtZLVtNXgo": {
+        "label": "_: From<&str>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "vBLSBPjRZJUnfoUYlrvPdnUdDrFOtnZc": {
+        "label": "&str: Into<_>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "tWRiAalzFwuCZecmsLGwKyZVfUkjYDEW": {
+        "label": "Label<Map<Map<Then<Map<Then<Just<charcharSimple<char_>>Repeated<Or<Filter<closure#2Simple<char_>>Map<Then<Just<charcharSimple<char_>>Or<Or<Or<Or<Or<Or<Or<Or<Just<charcharSimple<char_>>Just<charcharSimple<char_>>>Just<charcharSimple<char_>>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>Map<Then<Just<charcharSimple<char_>>Validate<Map<Repeated<Filter<closureSimple<char_>>>fn(Vec<char>) -> StringVec<char>>Stringclosure#1>>fn((charchar)) -> char(charchar)>>>fn((charchar)) -> char(charchar)>>>>fn((charVec<char>)) -> Vec<char>(charVec<char>)>Just<charcharSimple<char_>>>fn((Vec<char>char)) -> Vec<char>(Vec<char>char)>fn(Vec<char>) -> StringVec<char>>, &str>: Parser<char, Json>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "eAKDnwJCAmHBwBwCmIfdidVpBPLdqUEW": {
+        "label": "impl<T, U> Into<U> for Twhere U: From<T>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "iBSqWcPJOyVZPrZOvvGRSoSQhPQLBqqg": {
+        "label": "impl<I, O, A, U, F, E> Parser<I, U> for Map<A, F, O>where I: CloneA: Parser<IO>F: Fn<(O)> -> UE: Error<I><..A as Parser<I, O>>::Error == E",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "bEUqPmYTRpjYQStnaZayEqbjYoDdHgKD": {
+        "label": "impl<I, O, A, L, E> Parser<I, O> for Label<A, L>where I: CloneA: Parser<IO>L: Into<<..E as Error<I>>::Label> + CloneE: Error<I><..A as Parser<I, O>>::Error == E",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "dhWZntaCzKymTEwGaYsdckLbYfwEaTjl",
+        "target": "REaXQYatmCsIznhrsoEwzXIEOqKcPWyr"
+      },
+      {
+        "source": "REaXQYatmCsIznhrsoEwzXIEOqKcPWyr",
+        "target": "SpIfklMPXCmdvzuSCbTYemFSGvvCCpPF"
+      },
+      {
+        "source": "tWRiAalzFwuCZecmsLGwKyZVfUkjYDEW",
+        "target": "bEUqPmYTRpjYQStnaZayEqbjYoDdHgKD"
+      },
+      {
+        "source": "bEUqPmYTRpjYQStnaZayEqbjYoDdHgKD",
+        "target": "vBLSBPjRZJUnfoUYlrvPdnUdDrFOtnZc"
+      },
+      {
+        "source": "bEUqPmYTRpjYQStnaZayEqbjYoDdHgKD",
+        "target": "yzFNTwRbxwEDGTKxCdHosGvdvLVOlove"
+      },
+      {
+        "source": "bEUqPmYTRpjYQStnaZayEqbjYoDdHgKD",
+        "target": "HSskikaAYzcSArDysPhmkbCVEGoFBduh"
+      },
+      {
+        "source": "eAKDnwJCAmHBwBwCmIfdidVpBPLdqUEW",
+        "target": "cBbUGhjrpahIMQdyoHDjkvBtZLVtNXgo"
+      },
+      {
+        "source": "vBLSBPjRZJUnfoUYlrvPdnUdDrFOtnZc",
+        "target": "eAKDnwJCAmHBwBwCmIfdidVpBPLdqUEW"
+      },
+      {
+        "source": "iBSqWcPJOyVZPrZOvvGRSoSQhPQLBqqg",
+        "target": "aJeiHeWBnUCdwtUqzkGaeryWoqtyDclt"
+      },
+      {
+        "source": "iBSqWcPJOyVZPrZOvvGRSoSQhPQLBqqg",
+        "target": "dhWZntaCzKymTEwGaYsdckLbYfwEaTjl"
+      },
+      {
+        "source": "HSskikaAYzcSArDysPhmkbCVEGoFBduh",
+        "target": "iBSqWcPJOyVZPrZOvvGRSoSQhPQLBqqg"
+      }
+    ]
+  }
+}

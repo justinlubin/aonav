@@ -1,0 +1,36 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "kIaZIllBrDbqffXLTrjSgvFBUHoUqQDt"
+    },
+    "nodes": {
+      "homUGPveNshQbtmWsfyexAsGHxkIKcxx": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "CFtgVnNsWPKtEfrWUlaFTfAAlypZWxcC": {
+        "label": "<Label<To<Just<char&str{error}>&strJson>, &str> as Parser<char, Json>>::Error == <Or<Label<To<Just<char&str{error}>&strJson>&str>, Label<To<Just<char&str{error}>&strJson>&str>> as Parser<char, Json>>::Error",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "kIaZIllBrDbqffXLTrjSgvFBUHoUqQDt": {
+        "label": "<Label<To<Just<char&str{error}>&strJson>, &str> as Parser<char, Json>>::Error == <Or<Label<To<Just<char&str{error}>&strJson>&str>, Label<To<Just<char&str{error}>&strJson>&str>> as Parser<char, Json>>::Error",
+        "metadata": {
+          "kind": "OR"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "kIaZIllBrDbqffXLTrjSgvFBUHoUqQDt",
+        "target": "homUGPveNshQbtmWsfyexAsGHxkIKcxx"
+      },
+      {
+        "source": "homUGPveNshQbtmWsfyexAsGHxkIKcxx",
+        "target": "CFtgVnNsWPKtEfrWUlaFTfAAlypZWxcC"
+      }
+    ]
+  }
+}

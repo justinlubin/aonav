@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "PAIcMFGcdtBCbWMWpnVQlPjARvgJoZAN"
+    },
+    "nodes": {
+      "ipCtZRCoNZGIlmAhxMDiXEemtZNgPgzO": {
+        "label": "Text: Expression",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "PAIcMFGcdtBCbWMWpnVQlPjARvgJoZAN": {
+        "label": "Text: AsExpression<<name as Expression>::SqlType>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "sgyrxmaprWnSQfPxNOxcsjfSZVoNWWYD": {
+        "label": "impl<T, ST> AsExpression<ST> for Twhere T: ExpressionST: SqlType + TypedExpressionType<..T as Expression>::SqlType == ST",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "PAIcMFGcdtBCbWMWpnVQlPjARvgJoZAN",
+        "target": "sgyrxmaprWnSQfPxNOxcsjfSZVoNWWYD"
+      },
+      {
+        "source": "sgyrxmaprWnSQfPxNOxcsjfSZVoNWWYD",
+        "target": "ipCtZRCoNZGIlmAhxMDiXEemtZNgPgzO"
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "RqmDtToFVtjnwSzQbWzgNYqVegsIIguG"
+    },
+    "nodes": {
+      "blKayvPyOjHrtlRdeUFzXKWpUImpJYHX": {
+        "label": "Eq<name, _>: MetaSized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "PxgWbVHYAQFXscXEKknIXUinYueVQwvX": {
+        "label": "Grouped<Eq<name_>>: Display",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "RqmDtToFVtjnwSzQbWzgNYqVegsIIguG": {
+        "label": "Grouped<Eq<name_>>: ToString",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ciOiWHipValvcRdCQHzzRGRctzYimQYq": {
+        "label": "impl<T> ToString for Twhere T: MetaSized + Display",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "ciOiWHipValvcRdCQHzzRGRctzYimQYq",
+        "target": "PxgWbVHYAQFXscXEKknIXUinYueVQwvX"
+      },
+      {
+        "source": "RqmDtToFVtjnwSzQbWzgNYqVegsIIguG",
+        "target": "ciOiWHipValvcRdCQHzzRGRctzYimQYq"
+      }
+    ]
+  }
+}

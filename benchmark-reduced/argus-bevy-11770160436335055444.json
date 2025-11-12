@@ -1,0 +1,117 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "MpvOjlSmqNUyifKZvQIHDYGqUWUludlP"
+    },
+    "nodes": {
+      "UtLlWkSVGgjohWacbgUnscmNypAbEaKI": {
+        "label": "run_timer fn(Timer): System",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "MpvOjlSmqNUyifKZvQIHDYGqUWUludlP": {
+        "label": "(run_timer fn(Timer)): IntoSystemConfigs<M>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "lipHNyCqttUhywyhZWYjukvjEFYFwgIE": {
+        "label": "run_timer fn(Timer): IntoSystemConfigs<_>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "bbXyPlFBkFwmIXDxnJTEPweJlDRNpHBQ": {
+        "label": "run_timer fn(Timer): IntoSystem<(), (), _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "PCpfwCYLIVyvNhVtBVEWffvGnOfaqKNZ": {
+        "label": "run_timer fn(Timer): SystemParamFunction<_>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "SrcNuFKpkRXfdfklChzAkIqplRVzsfVt": {
+        "label": "Timer: SystemParam",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ksQseRLDixuxoquzAMYxWeNsLxSiPiPT": {
+        "label": "impl<T> IntoSystem<<T as System>::In, <T as System>::Out, ()> for Twhere T: System",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "QRNiINrIpsLFXOFVHoFBOrCSqHzzzdyn": {
+        "label": "impl<Marker, F> IntoSystemConfigs<Marker> for Fwhere F: IntoSystem<()()Marker>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "vhPGfuMfEnIZukTTFFoxuReWGMVSBEBt": {
+        "label": "impl<Marker, F> IntoSystem<<F as SystemParamFunction<Marker>>::In, <F as SystemParamFunction<Marker>>::Out, (IsFunctionSystemMarker)> for Fwhere Marker: 'staticF: SystemParamFunction<Marker>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "aNtEQChWhKcGXYLiEObqADqVfkdclwDW": {
+        "label": "impl<Out, Func, F0> SystemParamFunction<fn(F0) -> Out> for Funcwhere Func: Send + Sync + 'staticF0: SystemParamfor<'a> &'a mut Func: FnMut<(F0)> -> Out + FnMut<(<..F0 as SystemParam>::Item)> -> OutOut: 'static",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "KbEZHoGzWvjiymByqxIUrFpPFujeJzQX": {
+        "label": "impl<P0, S0> IntoSystemConfigs<(SystemConfigTupleMarkerP0)> for (S0)where S0: IntoSystemConfigs<P0>",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "lipHNyCqttUhywyhZWYjukvjEFYFwgIE",
+        "target": "QRNiINrIpsLFXOFVHoFBOrCSqHzzzdyn"
+      },
+      {
+        "source": "ksQseRLDixuxoquzAMYxWeNsLxSiPiPT",
+        "target": "UtLlWkSVGgjohWacbgUnscmNypAbEaKI"
+      },
+      {
+        "source": "MpvOjlSmqNUyifKZvQIHDYGqUWUludlP",
+        "target": "KbEZHoGzWvjiymByqxIUrFpPFujeJzQX"
+      },
+      {
+        "source": "vhPGfuMfEnIZukTTFFoxuReWGMVSBEBt",
+        "target": "PCpfwCYLIVyvNhVtBVEWffvGnOfaqKNZ"
+      },
+      {
+        "source": "aNtEQChWhKcGXYLiEObqADqVfkdclwDW",
+        "target": "SrcNuFKpkRXfdfklChzAkIqplRVzsfVt"
+      },
+      {
+        "source": "KbEZHoGzWvjiymByqxIUrFpPFujeJzQX",
+        "target": "lipHNyCqttUhywyhZWYjukvjEFYFwgIE"
+      },
+      {
+        "source": "bbXyPlFBkFwmIXDxnJTEPweJlDRNpHBQ",
+        "target": "vhPGfuMfEnIZukTTFFoxuReWGMVSBEBt"
+      },
+      {
+        "source": "bbXyPlFBkFwmIXDxnJTEPweJlDRNpHBQ",
+        "target": "ksQseRLDixuxoquzAMYxWeNsLxSiPiPT"
+      },
+      {
+        "source": "PCpfwCYLIVyvNhVtBVEWffvGnOfaqKNZ",
+        "target": "aNtEQChWhKcGXYLiEObqADqVfkdclwDW"
+      },
+      {
+        "source": "QRNiINrIpsLFXOFVHoFBOrCSqHzzzdyn",
+        "target": "bbXyPlFBkFwmIXDxnJTEPweJlDRNpHBQ"
+      }
+    ]
+  }
+}
