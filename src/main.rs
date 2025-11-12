@@ -15,14 +15,6 @@ fn styles() -> Styles {
         .invalid(AnsiColor::Yellow.on_default())
 }
 
-// fn providers_parser(s: &str) -> Result<Vec<menu::Provider>, String> {
-//     let mut ret = vec![];
-//     for p in s.split(",") {
-//         ret.push(p.try_into()?)
-//     }
-//     Ok(ret)
-// }
-
 #[derive(Parser)]
 #[command(
     version,
@@ -81,6 +73,10 @@ enum Command {
         /// Run the benchmark entries in parallel
         #[arg(long, action)]
         parallel: bool,
+
+        /// Use the minimal solutions
+        #[arg(long, action)]
+        minimal: bool,
     },
 
     /// Generate solutions for a benchmark suite
@@ -136,9 +132,14 @@ impl Command {
                 providers,
                 replicates,
                 parallel,
-            } => {
-                main_handler::benchmark(path, providers, *replicates, *parallel)
-            }
+                minimal,
+            } => main_handler::benchmark(
+                path,
+                providers,
+                *replicates,
+                *parallel,
+                *minimal,
+            ),
             Self::GenerateSolutions {
                 path,
                 count,

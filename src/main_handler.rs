@@ -100,6 +100,7 @@ pub fn benchmark(
     providers: &Vec<menu::Provider>,
     replicates: usize,
     parallel: bool,
+    minimal: bool,
 ) -> Result<(), String> {
     if !suite_path.exists() {
         panic!("Path '{}' does not exist", suite_path.display())
@@ -123,22 +124,20 @@ pub fn benchmark(
         let cs =
             load_chosen_solutions(&path_noext.with_extension("solutions.json"));
 
+        let field = if minimal {
+            cs.minimal_solutions
+        } else {
+            cs.nonminimal_solutions
+        };
+
         suite.push(benchmark::Problem {
             name: path_noext.file_name().unwrap().to_str().unwrap().to_owned(),
-            chosen_solutions: cs
-                .nonminimal_solutions
+            chosen_solutions: field
                 .into_iter()
                 .map(|labels| {
                     pn::Exp::from_labels(graph.clone(), labels).unwrap()
                 })
                 .collect(),
-            // minimal_solutions: cs
-            //     .minimal_solutions
-            //     .into_iter()
-            //     .map(|labels| {
-            //         pn::Exp::from_labels(graph.clone(), labels).unwrap()
-            //     })
-            //     .collect(),
         });
     }
 
