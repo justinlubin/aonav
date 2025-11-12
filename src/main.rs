@@ -109,8 +109,12 @@ enum Command {
         format: main_handler::ConversionInputFormat,
 
         /// Randomize the IDs of the output
-        #[arg(short, long, action)]
+        #[arg(long, action)]
         randomize: bool,
+
+        /// Reduce the output (unit-prop True)
+        #[arg(long, action)]
+        reduce: bool,
     },
 
     /// Render an AND/OR graph in the AND/OR JSON Graph Format (stored in out/RENDERED.dot and out/RENDERED.pdf)
@@ -144,7 +148,8 @@ impl Command {
                 path,
                 format,
                 randomize,
-            } => main_handler::convert(path, format, *randomize),
+                reduce,
+            } => main_handler::convert(path, format, *randomize, *reduce),
             Self::Render { path } => main_handler::render(path),
         }
     }

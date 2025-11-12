@@ -246,22 +246,15 @@ pub fn convert(
     path: &PathBuf,
     format: &ConversionInputFormat,
     randomize: bool,
+    reduce: bool,
 ) -> Result<(), String> {
-    let mut jgf = match format {
+    let mut ao: ao::Graph = match format {
         ConversionInputFormat::EGraphSerialize => {
             let es_egraph =
                 egraph_serialize::EGraph::from_json_file(path).unwrap();
-            let ao = ao::convert::es_egraph_to_ao(&es_egraph);
-            jgf::Data::Single {
-                graph: ao.try_into()?,
-            }
+            ao::convert::es_egraph_to_ao(&es_egraph)
         }
-        ConversionInputFormat::AOJsonGraph => {
-            let ao = load_ao(path);
-            jgf::Data::Single {
-                graph: ao.try_into()?,
-            }
-        }
+        ConversionInputFormat::AOJsonGraph => load_ao(path),
         ConversionInputFormat::Argus => {
             todo!()
         }
@@ -271,21 +264,21 @@ pub fn convert(
                     .unwrap();
             let goal = lines.remove(0).trim().to_owned();
             let proof_system = crate::legacy::proof_system(&lines);
-            let ao = crate::legacy::to_ao(proof_system, goal);
-            jgf::Data::Single {
-                graph: ao.try_into()?,
-            }
+            crate::legacy::to_ao(proof_system, goal)
         }
         ConversionInputFormat::Egglog => {
             let input = std::fs::read_to_string(path).unwrap();
             let mut egraph = egglog::EGraph::default();
             let egglog_program =
                 egraph.parser.get_program_from_string(None, &input).unwrap();
-            let ao: ao::Graph = egglog_program.try_into()?;
-            jgf::Data::Single {
-                graph: ao.try_into()?,
-            }
+            egglog_program.try_into()?
         }
+    };
+    if reduce {
+        ao::algo::reduce(&mut ao);
+    }
+    let mut jgf = jgf::Data::Single {
+        graph: ao.try_into()?,
     };
     if randomize {
         let id_map = jgf.randomize_node_ids();
