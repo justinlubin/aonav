@@ -19,7 +19,7 @@ pub struct BenchmarkEntry {
 #[derive(Debug, Clone, Serialize)]
 pub struct BenchmarkResult {
     // Key
-    pub strategy: String,
+    pub provider: String,
     pub name: String,
     pub chosen_solution: usize,
     pub replicate: usize,
@@ -84,7 +84,7 @@ impl Runner {
                 let duration = now.elapsed().as_millis();
 
                 let r = BenchmarkResult {
-                    strategy: "remaining".to_owned(),
+                    provider: "Remaining".to_owned(),
                     name: entry.name.clone(),
                     chosen_solution: i,
                     replicate,
