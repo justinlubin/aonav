@@ -6,7 +6,7 @@ import polars as pl
 
 # %% Load data
 
-data = pl.read_csv("../results/results.csv").with_columns(
+data = pl.read_csv("../results/prelim.csv").with_columns(
     pl.col("duration") / 1000,
 )
 
@@ -27,6 +27,7 @@ summary = (
 
 remaining = summary.filter(pl.col("provider") == "Remaining")
 nonremaining = summary.filter(pl.col("provider") != "Remaining")
+
 remaining_comparison = (
     nonremaining.join(
         remaining,
@@ -43,7 +44,13 @@ remaining_comparison = (
     .drop(pl.selectors.ends_with("_rem"))
 )
 
-# %% Main
+summary = summary.filter(
+    pl.col("total_decisions") > 0,
+    pl.col("provider") != "Remaining",
+)
+
+
+# % % Main
 
 
 def catplot(df, *, by, val):
@@ -71,17 +78,18 @@ def catplot(df, *, by, val):
             x + jitter,
             y,
             c="k",
-            alpha=0.7,
+            alpha=0.3,
             zorder=10,
         )
 
+        print(title, val, y.mean())
         ax.hlines(
             y=y.mean(),
             xmin=x - 0.25,
             xmax=x + 0.25,
             color="r",
             zorder=20,
-            alpha=0.7,
+            alpha=0.8,
         )
 
         ticks.append(x)
@@ -113,7 +121,7 @@ catplot(
 catplot(
     summary,
     by="provider",
-    val="total_decisions",
+    val="unique_decisions",
 )[0].savefig(
     "out/unique_decisions.svg",
 )
@@ -137,7 +145,7 @@ catplot(
 catplot(
     remaining_comparison,
     by="provider",
-    val="total_decisions",
+    val="unique_decisions",
 )[0].savefig(
     "out/comparative-unique_decisions.svg",
 )
