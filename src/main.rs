@@ -84,6 +84,10 @@ enum Command {
         /// The format to convert from (options: EGraphSerialize, AOJsonGraph, Argus)
         #[arg(short, long, value_name = "FORMAT")]
         format: main_handler::ConversionInputFormat,
+
+        /// Whether or not to randomize the IDs of the output
+        #[arg(short, long, action)]
+        randomize: bool,
     },
 
     /// Render an AND/OR graph in the AND/OR JSON Graph Format (stored in out/RENDERED.dot and out/RENDERED.pdf)
@@ -104,9 +108,11 @@ impl Command {
             Self::GenerateSolutions { path, count } => {
                 main_handler::generate_solutions(path, *count)
             }
-            Self::Convert { path, format } => {
-                main_handler::convert(path, format)
-            }
+            Self::Convert {
+                path,
+                format,
+                randomize,
+            } => main_handler::convert(path, format, *randomize),
             Self::Render { path } => main_handler::render(path),
         }
     }

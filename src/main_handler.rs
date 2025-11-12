@@ -212,29 +212,25 @@ pub fn generate_solutions(
 pub fn convert(
     path: &PathBuf,
     format: &ConversionInputFormat,
+    randomize: bool,
 ) -> Result<(), String> {
-    match format {
+    let mut jgf = match format {
         ConversionInputFormat::EGraphSerialize => {
             let es_egraph =
                 egraph_serialize::EGraph::from_json_file(path).unwrap();
             let ao = ao::convert::es_egraph_to_ao(&es_egraph);
-            let jgf = jgf::Data::Single {
+            jgf::Data::Single {
                 graph: ao.try_into()?,
-            };
-            println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
-            Ok(())
+            }
         }
         ConversionInputFormat::AOJsonGraph => {
             let ao = load_ao(path);
-            let jgf = jgf::Data::Single {
+            jgf::Data::Single {
                 graph: ao.try_into()?,
-            };
-            println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
-            Ok(())
+            }
         }
         ConversionInputFormat::Argus => {
-            ao::convert::argus_to_and_or::<String, String>(path);
-            Ok(())
+            todo!()
         }
         ConversionInputFormat::Legacy => {
             let mut lines =
@@ -243,11 +239,9 @@ pub fn convert(
             let goal = lines.remove(0).trim().to_owned();
             let proof_system = crate::legacy::proof_system(&lines);
             let ao = crate::legacy::to_ao(proof_system, goal);
-            let jgf = jgf::Data::Single {
+            jgf::Data::Single {
                 graph: ao.try_into()?,
-            };
-            println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
-            Ok(())
+            }
         }
         ConversionInputFormat::Egglog => {
             let input = std::fs::read_to_string(path).unwrap();
@@ -255,13 +249,38 @@ pub fn convert(
             let egglog_program =
                 egraph.parser.get_program_from_string(None, &input).unwrap();
             let ao: ao::Graph = egglog_program.try_into()?;
-            let jgf = jgf::Data::Single {
+            jgf::Data::Single {
                 graph: ao.try_into()?,
-            };
-            println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
-            Ok(())
+            }
         }
+    };
+    if randomize {
+        let id_map = jgf.randomize_node_ids();
+        match &mut jgf {
+            jgf::Data::Single { graph } => match &mut graph.metadata {
+                Some(m) => m.insert(
+                    "goal".to_owned(),
+                    serde_json::Value::String(
+                        id_map
+                            .get(
+                                m.get("goal")
+                                    .expect("Need goal node for randomization")
+                                    .as_str()
+                                    .expect("Goal node not string for randomization"),
+                            )
+                            .expect("Goal node not found for randomization")
+                            .clone(),
+                    ),
+                ),
+                None => todo!(),
+            },
+            jgf::Data::Multi { .. } => {
+                panic!("Randomization not supported for multi-graphs")
+            },
+        };
     }
+    println!("{}", serde_json::to_string_pretty(&jgf).unwrap());
+    Ok(())
 }
 
 pub fn render(path: &PathBuf) -> Result<(), String> {
