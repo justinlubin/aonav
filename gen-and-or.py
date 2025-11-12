@@ -59,6 +59,8 @@ def main():
                 parent_to_children.pop(r)
 
     print_graph(ands, ors, parent_to_children)
+    if len(ors) != num_or_nodes_final:
+        raise ValueError("ors: " + len(ors) + ", goal: " + num_or_nodes_final)
 
     '''
     # join some nodes to make it a graph
@@ -136,5 +138,5 @@ if __name__ == "__main__":
     #goals
     ors = []
     parent_to_children = {}
-    print_graph(ands, ors, parent_to_children)
-    #main()
+    #print_graph(ands, ors, parent_to_children)
+    main()
