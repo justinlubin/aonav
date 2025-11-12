@@ -1,4 +1,5 @@
 use crate::drivers::{self, Driver};
+use crate::menu;
 use crate::partition_navigation as pn;
 use crate::pbn;
 use crate::util::Timer;
@@ -10,16 +11,24 @@ use std::io;
 use std::sync::{Arc, Mutex};
 
 #[derive(Debug)]
-pub struct BenchmarkEntry {
+pub struct Problem {
     pub name: String,
     // Contain a graph and a selected partition
     pub chosen_solutions: Vec<pn::Exp>,
 }
 
+#[derive(Debug)]
+pub struct BenchmarkEntry {
+    pub provider: menu::Provider,
+    pub name: String,
+    pub chosen_solution: usize,
+    pub replicate: usize,
+}
+
 #[derive(Debug, Clone, Serialize)]
 pub struct BenchmarkResult {
     // Key
-    pub provider: String,
+    pub provider: menu::Provider,
     pub name: String,
     pub chosen_solution: usize,
     pub replicate: usize,
@@ -39,6 +48,8 @@ pub struct Config {
     pub timeout: Duration,
     /// Whether or not to run the benchmarks in parallel
     pub parallel: bool,
+    /// The step providers to use
+    pub providers: Vec<menu::Provider>,
 }
 
 /// The core data structure for running benchmarks
@@ -64,50 +75,85 @@ impl Runner {
         }
     }
 
-    fn entry(&self, entry: &BenchmarkEntry) {
-        for (i, solution) in entry.chosen_solutions.iter().enumerate() {
-            for replicate in 0..self.config.replicates {
-                let now = Instant::now();
+    fn entry(&self, entry: BenchmarkEntry, solution: pn::Exp) {
+        let now = Instant::now();
 
-                let provider = pn::providers::Remaining::new();
-                let checker = pn::oracle::Valid::new();
-                let controller = pbn::Controller::new(
-                    Timer::finite(self.config.timeout),
-                    provider,
-                    checker,
-                    pn::Exp::new(solution.graph().clone()),
-                    false,
-                );
-                let mut driver = drivers::SolutionDriven::new(solution.clone());
-                let _ = driver.drive(controller);
+        let checker = pn::oracle::Valid::new();
+        let controller = pbn::Controller::new(
+            Timer::finite(self.config.timeout),
+            pbn::CompoundProvider::new(vec![entry.provider.provider()]),
+            checker,
+            pn::Exp::new(solution.graph().clone()),
+            false,
+        );
+        let mut driver = drivers::SolutionDriven::new(solution);
+        let _ = driver.drive(controller);
 
-                let duration = now.elapsed().as_millis();
+        let duration = now.elapsed().as_millis();
 
-                let r = BenchmarkResult {
-                    provider: "Remaining".to_owned(),
-                    name: entry.name.clone(),
-                    chosen_solution: i,
-                    replicate,
-                    success: true,
-                    duration,
-                    total_decisions: driver.total_decisions(),
-                    unique_decisions: driver.unique_decisions(),
-                };
+        let r = BenchmarkResult {
+            provider: entry.provider,
+            name: entry.name,
+            chosen_solution: entry.chosen_solution,
+            replicate: entry.replicate,
+            success: true,
+            duration,
+            total_decisions: driver.total_decisions(),
+            unique_decisions: driver.unique_decisions(),
+        };
 
-                let wtr = Arc::clone(&self.wtr);
-                let mut wtr = wtr.lock().unwrap();
-                wtr.serialize(r).unwrap();
-                wtr.flush().unwrap();
-            }
-        }
+        let wtr = Arc::clone(&self.wtr);
+        let mut wtr = wtr.lock().unwrap();
+        wtr.serialize(r).unwrap();
+        wtr.flush().unwrap();
     }
 
     /// Run a benchmark suite
-    pub fn suite(&self, entries: &Vec<BenchmarkEntry>) {
+    pub fn suite(&self, problems: &Vec<Problem>) {
         if self.config.parallel {
-            entries.into_par_iter().for_each(|e| self.entry(e));
+            problems.into_par_iter().for_each(|problem| {
+                self.config.providers.par_iter().for_each(|provider| {
+                    problem.chosen_solutions.par_iter().enumerate().for_each(
+                        |(chosen_solution, solution)| {
+                            (0..self.config.replicates)
+                                .into_par_iter()
+                                .for_each(|replicate| {
+                                    self.entry(
+                                        BenchmarkEntry {
+                                            provider: *provider,
+                                            name: problem.name.clone(),
+                                            chosen_solution,
+                                            replicate,
+                                        },
+                                        solution.clone(),
+                                    );
+                                });
+                        },
+                    )
+                })
+            });
         } else {
-            entries.into_iter().for_each(|e| self.entry(e));
+            problems.into_iter().for_each(|problem| {
+                self.config.providers.iter().for_each(|provider| {
+                    problem.chosen_solutions.iter().enumerate().for_each(
+                        |(chosen_solution, solution)| {
+                            (0..self.config.replicates).into_iter().for_each(
+                                |replicate| {
+                                    self.entry(
+                                        BenchmarkEntry {
+                                            provider: *provider,
+                                            name: problem.name.clone(),
+                                            chosen_solution,
+                                            replicate,
+                                        },
+                                        solution.clone(),
+                                    );
+                                },
+                            );
+                        },
+                    )
+                })
+            });
         }
     }
 }
