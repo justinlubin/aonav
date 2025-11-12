@@ -94,7 +94,11 @@ pub fn interact(
     Ok(())
 }
 
-pub fn benchmark(suite_path: &PathBuf) -> Result<(), String> {
+pub fn benchmark(
+    suite_path: &PathBuf,
+    replicates: usize,
+    parallel: bool,
+) -> Result<(), String> {
     if !suite_path.exists() {
         panic!("Path '{}' does not exist", suite_path.display())
     }
@@ -137,9 +141,9 @@ pub fn benchmark(suite_path: &PathBuf) -> Result<(), String> {
     }
 
     let config = benchmark::Config {
-        replicates: 3,
-        timeout: Duration::from_secs(1),
-        parallel: false,
+        replicates,
+        timeout: Duration::from_secs(1000),
+        parallel,
     };
 
     let runner = benchmark::Runner::new(config, std::io::stdout());

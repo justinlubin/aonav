@@ -62,6 +62,14 @@ enum Command {
         /// The path to the benchmark suite directory
         #[arg(value_name = "DIRECTORY")]
         path: PathBuf,
+
+        /// The path to the benchmark suite directory
+        #[arg(short, long, default_value_t = 5)]
+        replicates: usize,
+
+        /// Run the benchmark entries in parallel
+        #[arg(short, long, action)]
+        parallel: bool,
     },
 
     /// Generate solutions for a benchmark suite
@@ -85,7 +93,7 @@ enum Command {
         #[arg(short, long, value_name = "FORMAT")]
         format: main_handler::ConversionInputFormat,
 
-        /// Whether or not to randomize the IDs of the output
+        /// Randomize the IDs of the output
         #[arg(short, long, action)]
         randomize: bool,
     },
@@ -104,7 +112,11 @@ impl Command {
             Self::Interact { graph, providers } => {
                 main_handler::interact(graph, providers)
             }
-            Self::Benchmark { path } => main_handler::benchmark(path),
+            Self::Benchmark {
+                path,
+                replicates,
+                parallel,
+            } => main_handler::benchmark(path, *replicates, *parallel),
             Self::GenerateSolutions { path, count } => {
                 main_handler::generate_solutions(path, *count)
             }
