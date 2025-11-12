@@ -1,6 +1,7 @@
 use crate::ao;
 use crate::partition_navigation as pn;
 use crate::pbn;
+use rand::Rng;
 use std::collections::HashSet;
 
 use ansi_term::Color::*;
@@ -243,6 +244,45 @@ impl Driver<pn::Step> for SolutionDriven {
                 .expect("SolutionDriven driver could not find consistent step");
 
             controller.decide(options.swap_remove(chosen_option))
+        }
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Random driver
+
+pub struct Random {
+    go_until_maximal: bool,
+}
+
+impl Random {
+    pub fn new(go_until_maximal: bool) -> Self {
+        Self { go_until_maximal }
+    }
+}
+
+impl Driver<pn::Step> for Random {
+    fn drive(
+        &mut self,
+        mut controller: pbn::Controller<pn::Step>,
+    ) -> Option<pn::Exp> {
+        loop {
+            let e = controller.working_expression();
+
+            let done = if self.go_until_maximal {
+                e.maximal()
+            } else {
+                controller.valid()
+            };
+
+            if done {
+                return Some(e);
+            }
+
+            let mut options = controller.provide().unwrap();
+            let choice = rand::rng().random_range(0..options.len());
+
+            controller.decide(options.swap_remove(choice))
         }
     }
 }

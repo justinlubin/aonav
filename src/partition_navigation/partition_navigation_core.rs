@@ -315,6 +315,14 @@ impl Exp {
             }
         }
     }
+
+    pub fn maximal(&self) -> bool {
+        self.partition.values().all(|c| c.is_committed())
+    }
+
+    pub fn unsafe_set_class(&mut self, oidx: ao::OIdx, class: Class) {
+        let _ = self.partition.insert(oidx, class);
+    }
 }
 
 impl std::fmt::Display for Exp {

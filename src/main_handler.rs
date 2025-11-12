@@ -148,6 +148,19 @@ pub fn benchmark(suite_path: &PathBuf) -> Result<(), String> {
     Ok(())
 }
 
+fn generate_random_exp(graph: &ao::Graph) -> pn::Exp {
+    let controller = pbn::Controller::new(
+        Timer::infinite(),
+        pn::providers::Remaining::new(),
+        pn::oracle::Valid::new(),
+        pn::Exp::new(graph.clone()),
+        true,
+    );
+
+    let mut driver = drivers::Random::new(true);
+    driver.drive(controller).unwrap()
+}
+
 pub fn generate_solutions(
     suite_path: &PathBuf,
     solution_count: usize,
@@ -168,12 +181,12 @@ pub fn generate_solutions(
         let mut nonminimal_solutions = vec![];
 
         for _ in 0..solution_count {
-            nonminimal_solutions.push(pn::generate::random(&graph));
+            nonminimal_solutions.push(generate_random_exp(&graph));
         }
 
         let minimal_solutions: Vec<_> = nonminimal_solutions
             .iter()
-            .map(|e| pn::generate::minimize(e.clone()))
+            .map(|e| pn::generate::assumption_minimized(e))
             .collect();
 
         let cs = ChosenSolutions {
