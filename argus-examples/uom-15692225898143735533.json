@@ -1,0 +1,54 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "0": {
+      "label": "Impl<()>: IntoIterator",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "1": {
+      "label": "Impl<()>: Iterator",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2": {
+      "label": "Impl<()>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2147483648": {
+      "label": "impl<I> IntoIterator for Iwhere I: Iterator",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-1": {
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "2147483648",
+      "target": "2"
+    },
+    {
+      "source": "2147483648",
+      "target": "1"
+    },
+    {
+      "source": "0",
+      "target": "2147483648"
+    },
+    {
+      "source": "2",
+      "target": "-1"
+    }
+  ]
+} }

@@ -15,6 +15,7 @@ def main():
     ors = set()
     ors.add(0)
     childless_ands = []
+
     while num__or_nodes_so_far < num_or_nodes_final:
         pop_node = random.randint(0, len(nodes_that_need_children) - 1)
         focus_node = nodes_that_need_children.pop(pop_node)
@@ -40,6 +41,7 @@ def main():
                 break;
         
         parent_to_children[focus_node] = focus_children
+
     # now remove all leaf 'AND' nodes
     for n in nodes_that_need_children + childless_ands:
         if n in ands:
@@ -55,6 +57,8 @@ def main():
                         parent_to_children[parent] = pc
             for r in remove_from_parent_to_children:
                 parent_to_children.pop(r)
+
+    print_graph(ands, ors, parent_to_children)
 
     '''
     # join some nodes to make it a graph
@@ -90,8 +94,8 @@ def main():
                 children.remove(node2)
                 children.add(node1)
         '''
-                
     
+def print_graph(ands, ors, parent_to_children):
     print("{ \"graph\": {\n  \"metadata\": {\n    \"goal\": \"0\"\n  },\n  \"nodes\": {")
 
     # now print all and nodes
@@ -127,4 +131,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    #rules
+    ands = []
+    #goals
+    ors = []
+    parent_to_children = {}
+    print_graph(ands, ors, parent_to_children)
+    #main()

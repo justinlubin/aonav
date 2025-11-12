@@ -1,0 +1,101 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "0": {
+      "label": "Impl<()>: T2",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "3": {
+      "label": "(): Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2": {
+      "label": "Impl<()>: T4",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "4": {
+      "label": "(): Sync",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "1": {
+      "label": "Impl<()>: T3",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2147483649": {
+      "label": "impl<EntraitT> T3 for Impl<EntraitT>where EntraitT: SyncImpl<EntraitT>: T4",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483648": {
+      "label": "impl<EntraitT> T2 for Impl<EntraitT>where EntraitT: SyncImpl<EntraitT>: T3",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-1": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-2": {
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "2147483648",
+      "target": "3"
+    },
+    {
+      "source": "2147483648",
+      "target": "1"
+    },
+    {
+      "source": "2147483648",
+      "target": "4"
+    },
+    {
+      "source": "1",
+      "target": "2147483649"
+    },
+    {
+      "source": "2147483649",
+      "target": "3"
+    },
+    {
+      "source": "2147483649",
+      "target": "4"
+    },
+    {
+      "source": "2147483649",
+      "target": "2"
+    },
+    {
+      "source": "0",
+      "target": "2147483648"
+    },
+    {
+      "source": "3",
+      "target": "-1"
+    },
+    {
+      "source": "4",
+      "target": "-2"
+    }
+  ]
+} }

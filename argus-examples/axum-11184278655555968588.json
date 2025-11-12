@@ -1,0 +1,824 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "-1": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-2": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-3": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-4": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-5": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-6": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-7": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-8": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-9": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-10": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-11": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-12": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-13": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-14": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-15": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "17": {
+      "label": "Json<Test>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "13": {
+      "label": "for<'de> Test: Deserialize<'de>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "47": {
+      "label": "handler fn(Json<Test>) -> impl Future<Output = ()>: IntoResponse",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "11": {
+      "label": "Json<Test>: FromRequest<S, _>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "31": {
+      "label": "_: FromRequestParts<S>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "14": {
+      "label": "Test: Deserialize<'de>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "8": {
+      "label": "handler fn(Json<Test>) -> impl Future<Output = ()>: Clone",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "10": {
+      "label": "S: Sync",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2": {
+      "label": "S: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "32": {
+      "label": "_: FromRequest<S, _>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "28": {
+      "label": "(): IntoResponse",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "22": {
+      "label": "Test: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "26": {
+      "label": "impl Future<Output = ()>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "23": {
+      "label": "handler fn(Json<Test>) -> impl Future<Output = ()>: FnOnce<(Json<Test>)>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "9": {
+      "label": "handler fn(Json<Test>) -> impl Future<Output = ()>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "19": {
+      "label": "<impl Future<Output = ()> as Future>::Output == ()",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "15": {
+      "label": "Test: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "0": {
+      "label": "handler fn(Json<Test>) -> impl Future<Output = ()>: Handler<T, S>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "21": {
+      "label": "Json<Test>: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "6": {
+      "label": "handler fn(Json<Test>) -> impl Future<Output = ()>: 'static",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "12": {
+      "label": "Test: DeserializeOwned",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "24": {
+      "label": "impl Future<Output = ()>: Future",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "16": {
+      "label": "Json<Test>: FromRequestParts<S>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "25": {
+      "label": "impl Future<Output = ()> == impl Future<Output = ()>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "27": {
+      "label": "impl Future<Output = ()>: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "18": {
+      "label": "<handler ..fn(Json<Test>) -> impl Future<Output = ()> as FnOnce<(Json<Test>)>>::Output == impl Future<Output = ()>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "4": {
+      "label": "_: Future",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "29": {
+      "label": "S: 'static",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "5": {
+      "label": "_: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "3": {
+      "label": "_: IntoResponse",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "7": {
+      "label": "handler fn(Json<Test>) -> impl Future<Output = ()>: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "20": {
+      "label": "(): Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2147485819": {
+      "label": "impl<S, T> FromRequest<S, ViaParts> for Twhere S: Send + SyncT: FromRequestParts<S>",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147485840": {
+      "label": "impl<T> DeserializeOwned for Twhere for<'de> T: Deserialize<'de>",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483663": {
+      "label": "impl<F, Fut, S, Res, M, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> Handler<(MT1T2T3T4T5T6T7T8T9T10T11T12), S> for Fwhere F: FnOnce<(T1T2T3T4T5T6T7T8T9T10T11T12)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequestParts<S> + SendT2: FromRequestParts<S> + SendT3: FromRequestParts<S> + SendT4: FromRequestParts<S> + SendT5: FromRequestParts<S> + SendT6: FromRequestParts<S> + SendT7: FromRequestParts<S> + SendT8: FromRequestParts<S> + SendT9: FromRequestParts<S> + SendT10: FromRequestParts<S> + SendT11: FromRequestParts<S> + SendT12: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483649": {
+      "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483716": {
+      "label": "impl IntoResponse for ()",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147485821": {
+      "label": "impl<T, S> FromRequest<S> for Json<T>where T: DeserializeOwnedS: Send + Sync",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483652": {
+      "label": "impl<F, Fut, S, Res, M, T1> Handler<(MT1), S> for Fwhere F: FnOnce<(T1)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-16": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-17": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-18": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-19": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-20": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-21": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-22": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-23": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-24": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-25": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-26": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-27": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-28": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-29": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-30": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-31": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-32": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-33": {
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "4",
+      "target": "-1"
+    },
+    {
+      "source": "-1",
+      "target": "22"
+    },
+    {
+      "source": "8",
+      "target": "-2"
+    },
+    {
+      "source": "-2",
+      "target": "22"
+    },
+    {
+      "source": "3",
+      "target": "-3"
+    },
+    {
+      "source": "-3",
+      "target": "22"
+    },
+    {
+      "source": "6",
+      "target": "-4"
+    },
+    {
+      "source": "-4",
+      "target": "14"
+    },
+    {
+      "source": "20",
+      "target": "-5"
+    },
+    {
+      "source": "-5",
+      "target": "22"
+    },
+    {
+      "source": "10",
+      "target": "-6"
+    },
+    {
+      "source": "-6",
+      "target": "22"
+    },
+    {
+      "source": "17",
+      "target": "-7"
+    },
+    {
+      "source": "-7",
+      "target": "22"
+    },
+    {
+      "source": "21",
+      "target": "-8"
+    },
+    {
+      "source": "-8",
+      "target": "22"
+    },
+    {
+      "source": "7",
+      "target": "-9"
+    },
+    {
+      "source": "-9",
+      "target": "22"
+    },
+    {
+      "source": "15",
+      "target": "-10"
+    },
+    {
+      "source": "-10",
+      "target": "22"
+    },
+    {
+      "source": "2",
+      "target": "-11"
+    },
+    {
+      "source": "-11",
+      "target": "22"
+    },
+    {
+      "source": "5",
+      "target": "-12"
+    },
+    {
+      "source": "-12",
+      "target": "22"
+    },
+    {
+      "source": "9",
+      "target": "-13"
+    },
+    {
+      "source": "-13",
+      "target": "22"
+    },
+    {
+      "source": "13",
+      "target": "-14"
+    },
+    {
+      "source": "-14",
+      "target": "14"
+    },
+    {
+      "source": "24",
+      "target": "-15"
+    },
+    {
+      "source": "-15",
+      "target": "25"
+    },
+    {
+      "source": "12",
+      "target": "2147485840"
+    },
+    {
+      "source": "2147485821",
+      "target": "5"
+    },
+    {
+      "source": "2147485821",
+      "target": "10"
+    },
+    {
+      "source": "2147485821",
+      "target": "2"
+    },
+    {
+      "source": "2147485821",
+      "target": "12"
+    },
+    {
+      "source": "2147485821",
+      "target": "15"
+    },
+    {
+      "source": "2147485819",
+      "target": "17"
+    },
+    {
+      "source": "2147485819",
+      "target": "10"
+    },
+    {
+      "source": "2147485819",
+      "target": "5"
+    },
+    {
+      "source": "2147485819",
+      "target": "16"
+    },
+    {
+      "source": "2147485819",
+      "target": "2"
+    },
+    {
+      "source": "2147483652",
+      "target": "7"
+    },
+    {
+      "source": "2147483652",
+      "target": "19"
+    },
+    {
+      "source": "2147483652",
+      "target": "11"
+    },
+    {
+      "source": "2147483652",
+      "target": "6"
+    },
+    {
+      "source": "2147483652",
+      "target": "18"
+    },
+    {
+      "source": "2147483652",
+      "target": "5"
+    },
+    {
+      "source": "2147483652",
+      "target": "26"
+    },
+    {
+      "source": "2147483652",
+      "target": "2"
+    },
+    {
+      "source": "2147483652",
+      "target": "27"
+    },
+    {
+      "source": "2147483652",
+      "target": "29"
+    },
+    {
+      "source": "2147483652",
+      "target": "8"
+    },
+    {
+      "source": "2147483652",
+      "target": "17"
+    },
+    {
+      "source": "2147483652",
+      "target": "21"
+    },
+    {
+      "source": "2147483652",
+      "target": "20"
+    },
+    {
+      "source": "2147483652",
+      "target": "24"
+    },
+    {
+      "source": "2147483652",
+      "target": "9"
+    },
+    {
+      "source": "2147483652",
+      "target": "28"
+    },
+    {
+      "source": "2147483652",
+      "target": "23"
+    },
+    {
+      "source": "2147483652",
+      "target": "10"
+    },
+    {
+      "source": "2147485840",
+      "target": "15"
+    },
+    {
+      "source": "2147485840",
+      "target": "13"
+    },
+    {
+      "source": "0",
+      "target": "2147483649"
+    },
+    {
+      "source": "0",
+      "target": "2147483652"
+    },
+    {
+      "source": "0",
+      "target": "2147483663"
+    },
+    {
+      "source": "28",
+      "target": "2147483716"
+    },
+    {
+      "source": "2147483663",
+      "target": "4"
+    },
+    {
+      "source": "2147483663",
+      "target": "5"
+    },
+    {
+      "source": "2147483663",
+      "target": "32"
+    },
+    {
+      "source": "2147483663",
+      "target": "3"
+    },
+    {
+      "source": "2147483663",
+      "target": "10"
+    },
+    {
+      "source": "2147483663",
+      "target": "31"
+    },
+    {
+      "source": "2147483663",
+      "target": "6"
+    },
+    {
+      "source": "2147483663",
+      "target": "8"
+    },
+    {
+      "source": "2147483663",
+      "target": "2"
+    },
+    {
+      "source": "2147483663",
+      "target": "7"
+    },
+    {
+      "source": "2147483663",
+      "target": "9"
+    },
+    {
+      "source": "2147483663",
+      "target": "29"
+    },
+    {
+      "source": "11",
+      "target": "2147485821"
+    },
+    {
+      "source": "11",
+      "target": "2147485819"
+    },
+    {
+      "source": "2147483649",
+      "target": "9"
+    },
+    {
+      "source": "2147483649",
+      "target": "7"
+    },
+    {
+      "source": "2147483649",
+      "target": "8"
+    },
+    {
+      "source": "2147483649",
+      "target": "47"
+    },
+    {
+      "source": "2147483649",
+      "target": "2"
+    },
+    {
+      "source": "2147483649",
+      "target": "6"
+    },
+    {
+      "source": "6",
+      "target": "-16"
+    },
+    {
+      "source": "7",
+      "target": "-17"
+    },
+    {
+      "source": "8",
+      "target": "-18"
+    },
+    {
+      "source": "9",
+      "target": "-19"
+    },
+    {
+      "source": "15",
+      "target": "-20"
+    },
+    {
+      "source": "17",
+      "target": "-21"
+    },
+    {
+      "source": "18",
+      "target": "-22"
+    },
+    {
+      "source": "19",
+      "target": "-23"
+    },
+    {
+      "source": "20",
+      "target": "-24"
+    },
+    {
+      "source": "21",
+      "target": "-25"
+    },
+    {
+      "source": "22",
+      "target": "-26"
+    },
+    {
+      "source": "23",
+      "target": "-27"
+    },
+    {
+      "source": "24",
+      "target": "-28"
+    },
+    {
+      "source": "25",
+      "target": "-29"
+    },
+    {
+      "source": "26",
+      "target": "-30"
+    },
+    {
+      "source": "27",
+      "target": "-31"
+    },
+    {
+      "source": "28",
+      "target": "-32"
+    },
+    {
+      "source": "29",
+      "target": "-33"
+    }
+  ]
+} }
