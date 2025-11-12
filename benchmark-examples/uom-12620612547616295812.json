@@ -1,0 +1,73 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "2": {
+      "label": "Quantity<(dyn Dimension + ), (dyn Units + ), f32>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "0": {
+      "label": "Quantity<(dyn Dimension + ), (dyn Units + ), f32>: Into<Quantity<(dyn Dimension + )+f32>>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "3": {
+      "label": "Quantity<(dyn Dimension + ), +, f32>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "1": {
+      "label": "Quantity<(dyn Dimension + ), +, f32>: From<Quantity<(dyn Dimension + )(dyn Units + )f32>>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2147483650": {
+      "label": "impl<T, U> Into<U> for Twhere U: From<T>",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-1": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-2": {
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "0",
+      "target": "2147483650"
+    },
+    {
+      "source": "2147483650",
+      "target": "1"
+    },
+    {
+      "source": "2147483650",
+      "target": "2"
+    },
+    {
+      "source": "2147483650",
+      "target": "3"
+    },
+    {
+      "source": "2",
+      "target": "-1"
+    },
+    {
+      "source": "3",
+      "target": "-2"
+    }
+  ]
+} }

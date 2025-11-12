@@ -1,0 +1,131 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "2": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "3": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "4": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "16": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "0": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "5": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "6": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "9": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "10": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "11": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "12": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "13": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "14": {
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "20": {
+      "metadata": {
+        "kind": "OR"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "0",
+      "target": "2"
+    },
+    {
+      "source": "0",
+      "target": "3"
+    },
+    {
+      "source": "0",
+      "target": "4"
+    },
+    {
+      "source": "3",
+      "target": "5"
+    },
+    {
+      "source": "3",
+      "target": "6"
+    },
+    {
+      "source": "2",
+      "target": "9"
+    },
+    {
+      "source": "2",
+      "target": "10"
+    },
+    {
+      "source": "2",
+      "target": "11"
+    },
+    {
+      "source": "4",
+      "target": "12"
+    },
+    {
+      "source": "4",
+      "target": "13"
+    },
+    {
+      "source": "4",
+      "target": "14"
+    },
+    {
+      "source": "12",
+      "target": "16"
+    },
+    {
+      "source": "16",
+      "target": "20"
+    }
+  ]
+} }
