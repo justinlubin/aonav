@@ -66,6 +66,10 @@ enum Command {
 
     /// Generate solutions for a benchmark suite
     GenerateSolutions {
+        /// The number of solutions to generate per graph
+        #[arg(short, long, value_name = "DIRECTORY", default_value_t = 10)]
+        count: usize,
+
         /// The path to the benchmark suite directory
         #[arg(value_name = "DIRECTORY")]
         path: PathBuf,
@@ -97,8 +101,8 @@ impl Command {
                 main_handler::interact(graph, providers)
             }
             Self::Benchmark { path } => main_handler::benchmark(path),
-            Self::GenerateSolutions { path } => {
-                main_handler::generate_solutions(path)
+            Self::GenerateSolutions { path, count } => {
+                main_handler::generate_solutions(path, *count)
             }
             Self::Convert { path, format } => {
                 main_handler::convert(path, format)

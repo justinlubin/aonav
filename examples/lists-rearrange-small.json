@@ -1,0 +1,47 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "list1(2)"
+    },
+    "nodes": {
+      "element(2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "list1(2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "rule2 @ x=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule3 @ a=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "rule2 @ x=2",
+        "target": "element(2)"
+      },
+      {
+        "source": "list1(2)",
+        "target": "rule2 @ x=2"
+      },
+      {
+        "source": "rule3 @ a=2",
+        "target": "list1(2)"
+      },
+      {
+        "source": "element(2)",
+        "target": "rule3 @ a=2"
+      }
+    ]
+  }
+}

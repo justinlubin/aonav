@@ -1,10 +1,8 @@
-use crate::ao;
 use crate::drivers::{self, Driver};
-use crate::partition_navigation;
+use crate::partition_navigation as pn;
 use crate::pbn;
 use crate::util::Timer;
 
-use indexmap::IndexSet;
 use instant::{Duration, Instant};
 use rayon::prelude::*;
 use serde::Serialize;
@@ -14,8 +12,8 @@ use std::sync::{Arc, Mutex};
 #[derive(Debug)]
 pub struct BenchmarkEntry {
     pub name: String,
-    pub graph: ao::Graph,
-    pub chosen_solutions: Option<Vec<IndexSet<ao::NodeId>>>,
+    // Contain a graph and a selected partition
+    pub chosen_solutions: Vec<pn::Exp>,
 }
 
 #[derive(Debug, Clone, Serialize)]
@@ -27,10 +25,10 @@ pub struct BenchmarkResult {
     pub replicate: usize,
 
     // Values
-    pub completed: bool,
     pub success: bool,
     pub duration: u128,
-    pub decisions: usize,
+    pub total_decisions: usize,
+    pub unique_decisions: usize,
 }
 
 /// Benchmark configuration
@@ -67,56 +65,33 @@ impl Runner {
     }
 
     fn entry(&self, entry: &BenchmarkEntry) {
-        let chosen_solutions = match &entry.chosen_solutions {
-            Some(cs) => cs,
-            None => return,
-        };
-
-        for (i, solution) in chosen_solutions.iter().enumerate() {
+        for (i, solution) in entry.chosen_solutions.iter().enumerate() {
             for replicate in 0..self.config.replicates {
                 let now = Instant::now();
 
-                let provider =
-                    partition_navigation::providers::Remaining::new();
-                let checker = partition_navigation::oracle::Valid::new();
+                let provider = pn::providers::Remaining::new();
+                let checker = pn::oracle::Valid::new();
                 let controller = pbn::Controller::new(
                     Timer::finite(self.config.timeout),
                     provider,
                     checker,
-                    partition_navigation::Exp::new(entry.graph.clone()),
+                    pn::Exp::new(solution.graph().clone()),
                     false,
                 );
-                let mut driver = drivers::RandomizedSolutionDrivenDriver::new(
-                    solution.clone(),
-                );
-                let e = driver.drive(controller);
+                let mut driver = drivers::SolutionDriven::new(solution.clone());
+                let _ = driver.drive(controller);
 
                 let duration = now.elapsed().as_millis();
 
-                let (completed, success) = match e {
-                    None => (false, false),
-                    Some(e) => (
-                        true,
-                        e.filter_class(|c| {
-                            c == partition_navigation::Class::True {
-                                force_use: true,
-                                assume: Some(true),
-                            }
-                        })
-                        .ids(e.graph())
-                            == *solution,
-                    ),
-                };
-
                 let r = BenchmarkResult {
-                    strategy: "naive-pbn".to_owned(),
+                    strategy: "remaining".to_owned(),
                     name: entry.name.clone(),
                     chosen_solution: i,
                     replicate,
-                    completed,
-                    success,
+                    success: true,
                     duration,
-                    decisions: driver.decisions(),
+                    total_decisions: driver.total_decisions(),
+                    unique_decisions: driver.unique_decisions(),
                 };
 
                 let wtr = Arc::clone(&self.wtr);

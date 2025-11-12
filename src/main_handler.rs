@@ -3,12 +3,12 @@ use crate::benchmark;
 use crate::drivers::{self, Driver};
 use crate::jgf;
 use crate::menu;
-use crate::partition_navigation;
+use crate::partition_navigation as pn;
 use crate::pbn;
 use crate::util::Timer;
 
 use ansi_term::Color::*;
-use indexmap::IndexSet;
+use indexmap::IndexMap;
 use instant::Duration;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -36,16 +36,13 @@ impl std::str::FromStr for ConversionInputFormat {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ChosenSolutions {
-    pub chosen_solutions: Vec<IndexSet<ao::NodeId>>,
+    pub nonminimal_solutions: Vec<IndexMap<String, pn::Class>>,
+    pub minimal_solutions: Vec<IndexMap<String, pn::Class>>,
 }
 
-fn load_chosen_solutions(path: &PathBuf) -> Option<Vec<IndexSet<ao::NodeId>>> {
-    let json_string = match std::fs::read_to_string(path) {
-        Ok(s) => s,
-        Err(_) => return None,
-    };
-    let cs: ChosenSolutions = serde_json::from_str(&json_string).unwrap();
-    Some(cs.chosen_solutions)
+fn load_chosen_solutions(path: &PathBuf) -> ChosenSolutions {
+    let json_string = std::fs::read_to_string(path).unwrap();
+    serde_json::from_str(&json_string).unwrap()
 }
 
 fn load_ao(path: &PathBuf) -> ao::Graph {
@@ -81,17 +78,17 @@ pub fn interact(
     let provider = pbn::CompoundProvider::new(
         providers.iter().map(|p| p.provider()).collect(),
     );
-    let checker = partition_navigation::oracle::Valid::new();
+    let checker = pn::oracle::Valid::new();
 
     let controller = pbn::Controller::new(
         Timer::infinite(),
         provider,
         checker,
-        partition_navigation::Exp::new(graph),
+        pn::Exp::new(graph),
         true,
     );
 
-    let mut driver = drivers::CliDriver::new();
+    let mut driver = drivers::Cli::new();
     let _ = driver.drive(controller);
 
     Ok(())
@@ -115,12 +112,27 @@ pub fn benchmark(suite_path: &PathBuf) -> Result<(), String> {
             continue;
         }
 
+        let graph = load_ao(&path);
+
+        let cs =
+            load_chosen_solutions(&path_noext.with_extension("solutions.json"));
+
         suite.push(benchmark::BenchmarkEntry {
             name: path_noext.file_name().unwrap().to_str().unwrap().to_owned(),
-            graph: load_ao(&path),
-            chosen_solutions: load_chosen_solutions(
-                &path_noext.with_extension("solutions.json"),
-            ),
+            chosen_solutions: cs
+                .nonminimal_solutions
+                .into_iter()
+                .map(|labels| {
+                    pn::Exp::from_labels(graph.clone(), labels).unwrap()
+                })
+                .collect(),
+            // minimal_solutions: cs
+            //     .minimal_solutions
+            //     .into_iter()
+            //     .map(|labels| {
+            //         pn::Exp::from_labels(graph.clone(), labels).unwrap()
+            //     })
+            //     .collect(),
         });
     }
 
@@ -136,7 +148,10 @@ pub fn benchmark(suite_path: &PathBuf) -> Result<(), String> {
     Ok(())
 }
 
-pub fn generate_solutions(suite_path: &PathBuf) -> Result<(), String> {
+pub fn generate_solutions(
+    suite_path: &PathBuf,
+    solution_count: usize,
+) -> Result<(), String> {
     for path in glob::glob(suite_path.join("*.json").to_str().unwrap())
         .unwrap()
         .filter_map(Result::ok)
@@ -150,10 +165,25 @@ pub fn generate_solutions(suite_path: &PathBuf) -> Result<(), String> {
 
         let graph = load_ao(&path);
 
+        let mut nonminimal_solutions = vec![];
+
+        for _ in 0..solution_count {
+            nonminimal_solutions.push(pn::generate::random(&graph));
+        }
+
+        let minimal_solutions: Vec<_> = nonminimal_solutions
+            .iter()
+            .map(|e| pn::generate::minimize(e.clone()))
+            .collect();
+
         let cs = ChosenSolutions {
-            chosen_solutions: ao::algo::proper_axiom_sets(&graph, graph.goal())
+            nonminimal_solutions: nonminimal_solutions
                 .into_iter()
-                .map(|axs| axs.ids(&graph))
+                .map(|e| e.make_labels())
+                .collect(),
+            minimal_solutions: minimal_solutions
+                .into_iter()
+                .map(|e| e.make_labels())
                 .collect(),
         };
 

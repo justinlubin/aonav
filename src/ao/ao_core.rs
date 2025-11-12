@@ -233,6 +233,17 @@ impl Graph {
         })
     }
 
+    pub fn find_or_by_id(&self, id: &nodeid) -> Option<OIdx> {
+        self.pg.node_indices().find_map(|pid| {
+            let n = &self.pg[pid];
+            if n.is_or() && n.id() == id {
+                Some(OIdx(pid))
+            } else {
+                None
+            }
+        })
+    }
+
     // Indexing
 
     pub fn or_at(&self, o: OIdx) -> &Node {
