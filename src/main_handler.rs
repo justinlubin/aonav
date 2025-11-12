@@ -10,6 +10,7 @@ use crate::util::Timer;
 use ansi_term::Color::*;
 use indexmap::IndexMap;
 use instant::Duration;
+use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs::File;
@@ -96,6 +97,7 @@ pub fn interact(
 
 pub fn benchmark(
     suite_path: &PathBuf,
+    providers: &Vec<menu::Provider>,
     replicates: usize,
     parallel: bool,
 ) -> Result<(), String> {
@@ -103,7 +105,7 @@ pub fn benchmark(
         panic!("Path '{}' does not exist", suite_path.display())
     }
 
-    let mut suite: Vec<benchmark::BenchmarkEntry> = vec![];
+    let mut suite: Vec<benchmark::Problem> = vec![];
 
     for path in glob::glob(suite_path.join("*.json").to_str().unwrap())
         .unwrap()
@@ -121,7 +123,7 @@ pub fn benchmark(
         let cs =
             load_chosen_solutions(&path_noext.with_extension("solutions.json"));
 
-        suite.push(benchmark::BenchmarkEntry {
+        suite.push(benchmark::Problem {
             name: path_noext.file_name().unwrap().to_str().unwrap().to_owned(),
             chosen_solutions: cs
                 .nonminimal_solutions
@@ -144,6 +146,7 @@ pub fn benchmark(
         replicates,
         timeout: Duration::from_secs(1000),
         parallel,
+        providers: providers.clone(),
     };
 
     let runner = benchmark::Runner::new(config, std::io::stdout());
@@ -165,51 +168,77 @@ fn generate_random_exp(graph: &ao::Graph) -> pn::Exp {
     driver.drive(controller).unwrap()
 }
 
+fn generate_solutions_helper(
+    path: PathBuf,
+    solution_count: usize,
+    parallel: bool,
+) {
+    let path_noext = path.with_extension("");
+
+    if path_noext.extension().and_then(|e| e.to_str()) == Some("solutions") {
+        return;
+    }
+
+    let graph = load_ao(&path);
+
+    let nonminimal_solutions: Vec<_> = if parallel {
+        (0..solution_count)
+            .into_par_iter()
+            .map(|_| generate_random_exp(&graph))
+            .collect()
+    } else {
+        (0..solution_count)
+            .into_iter()
+            .map(|_| generate_random_exp(&graph))
+            .collect()
+    };
+
+    let minimal_solutions: Vec<_> = if parallel {
+        nonminimal_solutions
+            .par_iter()
+            .map(|e| pn::generate::assumption_minimized(e))
+            .collect()
+    } else {
+        nonminimal_solutions
+            .iter()
+            .map(|e| pn::generate::assumption_minimized(e))
+            .collect()
+    };
+
+    let cs = ChosenSolutions {
+        nonminimal_solutions: nonminimal_solutions
+            .into_iter()
+            .map(|e| e.make_labels())
+            .collect(),
+        minimal_solutions: minimal_solutions
+            .into_iter()
+            .map(|e| e.make_labels())
+            .collect(),
+    };
+
+    let mut file =
+        File::create(path_noext.with_extension("solutions.json")).unwrap();
+    writeln!(file, "{}", serde_json::to_string_pretty(&cs).unwrap()).unwrap();
+}
+
 pub fn generate_solutions(
     suite_path: &PathBuf,
     solution_count: usize,
+    parallel: bool,
 ) -> Result<(), String> {
-    for path in glob::glob(suite_path.join("*.json").to_str().unwrap())
+    let paths: Vec<_> = glob::glob(suite_path.join("*.json").to_str().unwrap())
         .unwrap()
         .filter_map(Result::ok)
-    {
-        let path_noext = path.with_extension("");
-
-        if path_noext.extension().and_then(|e| e.to_str()) == Some("solutions")
-        {
-            continue;
-        }
-
-        let graph = load_ao(&path);
-
-        let mut nonminimal_solutions = vec![];
-
-        for _ in 0..solution_count {
-            nonminimal_solutions.push(generate_random_exp(&graph));
-        }
-
-        let minimal_solutions: Vec<_> = nonminimal_solutions
-            .iter()
-            .map(|e| pn::generate::assumption_minimized(e))
-            .collect();
-
-        let cs = ChosenSolutions {
-            nonminimal_solutions: nonminimal_solutions
-                .into_iter()
-                .map(|e| e.make_labels())
-                .collect(),
-            minimal_solutions: minimal_solutions
-                .into_iter()
-                .map(|e| e.make_labels())
-                .collect(),
-        };
-
-        let mut file =
-            File::create(path_noext.with_extension("solutions.json")).unwrap();
-        writeln!(file, "{}", serde_json::to_string_pretty(&cs).unwrap())
-            .unwrap();
+        .collect();
+    if parallel {
+        paths.into_par_iter().for_each(|p| {
+            generate_solutions_helper(p, solution_count, parallel)
+        });
+    } else {
+        paths.into_iter().for_each(|p| {
+            generate_solutions_helper(p, solution_count, parallel)
+        });
     }
-
     Ok(())
 }
 

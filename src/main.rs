@@ -63,12 +63,23 @@ enum Command {
         #[arg(value_name = "DIRECTORY")]
         path: PathBuf,
 
+        /// Comma-separated list of providers to benchmark
+        #[arg(
+            short,
+            long,
+            value_name = "PROVIDERS",
+            num_args = 1..,
+            value_delimiter = ',',
+            default_value = "Re,Ra,MIG")
+        ]
+        providers: Vec<menu::Provider>,
+
         /// The path to the benchmark suite directory
         #[arg(short, long, default_value_t = 5)]
         replicates: usize,
 
         /// Run the benchmark entries in parallel
-        #[arg(short, long, action)]
+        #[arg(long, action)]
         parallel: bool,
     },
 
@@ -81,6 +92,10 @@ enum Command {
         /// The path to the benchmark suite directory
         #[arg(value_name = "DIRECTORY")]
         path: PathBuf,
+
+        /// Run in parallel
+        #[arg(long, action)]
+        parallel: bool,
     },
 
     /// Convert various representations to the AND/OR JSON Graph Format
@@ -114,12 +129,17 @@ impl Command {
             }
             Self::Benchmark {
                 path,
+                providers,
                 replicates,
                 parallel,
-            } => main_handler::benchmark(path, *replicates, *parallel),
-            Self::GenerateSolutions { path, count } => {
-                main_handler::generate_solutions(path, *count)
+            } => {
+                main_handler::benchmark(path, providers, *replicates, *parallel)
             }
+            Self::GenerateSolutions {
+                path,
+                count,
+                parallel,
+            } => main_handler::generate_solutions(path, *count, *parallel),
             Self::Convert {
                 path,
                 format,
