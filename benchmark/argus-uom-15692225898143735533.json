@@ -1,0 +1,56 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "CRdpUOamjdfHzAxAdiFQIsEdkKdJJGvR"
+    },
+    "nodes": {
+      "CRdpUOamjdfHzAxAdiFQIsEdkKdJJGvR": {
+        "label": "Impl<()>: IntoIterator",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "MiVraEktUdchiDMGQHXQlaudFcNnydlD": {
+        "label": "Impl<()>: Iterator",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "cdlLyNTAwDIJSzaZDehMozhTfWUBxyUl": {
+        "label": "Impl<()>: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "nAwfpZBAPyNKBaUPAhErVxVGDasCjTKi": {
+        "label": "impl<I> IntoIterator for Iwhere I: Iterator",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "DvhcJSeelIywlNdGpdTzDjLXUooUZQSl": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "nAwfpZBAPyNKBaUPAhErVxVGDasCjTKi",
+        "target": "cdlLyNTAwDIJSzaZDehMozhTfWUBxyUl"
+      },
+      {
+        "source": "nAwfpZBAPyNKBaUPAhErVxVGDasCjTKi",
+        "target": "MiVraEktUdchiDMGQHXQlaudFcNnydlD"
+      },
+      {
+        "source": "CRdpUOamjdfHzAxAdiFQIsEdkKdJJGvR",
+        "target": "nAwfpZBAPyNKBaUPAhErVxVGDasCjTKi"
+      },
+      {
+        "source": "cdlLyNTAwDIJSzaZDehMozhTfWUBxyUl",
+        "target": "DvhcJSeelIywlNdGpdTzDjLXUooUZQSl"
+      }
+    ]
+  }
+}

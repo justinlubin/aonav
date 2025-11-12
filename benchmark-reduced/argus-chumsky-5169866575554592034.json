@@ -1,0 +1,36 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "TOqOZybWrKffXbrdJzUjoaECVBfkZxZA"
+    },
+    "nodes": {
+      "kZSLHIYgMzXxBJwIOgKQpGqjZDVAvmfo": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "TOqOZybWrKffXbrdJzUjoaECVBfkZxZA": {
+        "label": "<Label<To<Just<char&str{error}>&strJson>, &str> as Parser<char, Json>>::Error == <Label<To<Just<char&str{error}>&strJson>, &str> as Parser<char, Json>>::Error",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "kSiUzcPazkTgoEfDUOjJxYZwQypTHdft": {
+        "label": "<Label<To<Just<char&str{error}>&strJson>, &str> as Parser<char, Json>>::Error == <Label<To<Just<char&str{error}>&strJson>, &str> as Parser<char, Json>>::Error",
+        "metadata": {
+          "kind": "OR"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "TOqOZybWrKffXbrdJzUjoaECVBfkZxZA",
+        "target": "kZSLHIYgMzXxBJwIOgKQpGqjZDVAvmfo"
+      },
+      {
+        "source": "kZSLHIYgMzXxBJwIOgKQpGqjZDVAvmfo",
+        "target": "kSiUzcPazkTgoEfDUOjJxYZwQypTHdft"
+      }
+    ]
+  }
+}

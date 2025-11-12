@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "AIpsFvnbnUPiJguCyGxpSBDZLLtgNkLz"
+    },
+    "nodes": {
+      "AIpsFvnbnUPiJguCyGxpSBDZLLtgNkLz": {
+        "label": "Impl<()>: IntoIterator",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "aJGPqVcCTfOSnypRwTxAmKSaEKSHNMxW": {
+        "label": "Impl<()>: Iterator",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "kajgAtXOSMOxzgCAsjmPXBaZOFGMDiXp": {
+        "label": "impl<I> IntoIterator for Iwhere I: Iterator",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "kajgAtXOSMOxzgCAsjmPXBaZOFGMDiXp",
+        "target": "aJGPqVcCTfOSnypRwTxAmKSaEKSHNMxW"
+      },
+      {
+        "source": "AIpsFvnbnUPiJguCyGxpSBDZLLtgNkLz",
+        "target": "kajgAtXOSMOxzgCAsjmPXBaZOFGMDiXp"
+      }
+    ]
+  }
+}

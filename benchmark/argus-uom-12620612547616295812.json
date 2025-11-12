@@ -1,0 +1,75 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "ErGEmNgFddWBHpeCuKNnlFroZGylUTdH"
+    },
+    "nodes": {
+      "uKgBegWeGtqyCofmNOhWDxddWozxpxcO": {
+        "label": "Quantity<(dyn Dimension + ), (dyn Units + ), f32>: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ErGEmNgFddWBHpeCuKNnlFroZGylUTdH": {
+        "label": "Quantity<(dyn Dimension + ), (dyn Units + ), f32>: Into<Quantity<(dyn Dimension + )+f32>>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "volCOjeuxcbVOikwYNjeAhDXQfGiLdZE": {
+        "label": "Quantity<(dyn Dimension + ), +, f32>: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "UCnqjHjUCYHAzpeqovhXCpPoAOMLmWQg": {
+        "label": "Quantity<(dyn Dimension + ), +, f32>: From<Quantity<(dyn Dimension + )(dyn Units + )f32>>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "VEfimGxZiBldNEISwiEUBjZZyTbhkCGY": {
+        "label": "impl<T, U> Into<U> for Twhere U: From<T>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "OJNHtrniqIERJYOyPNGpfKiQmttapOhI": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "BmoUSDYdcFOKfyQfRYYhONRuExIwVxwk": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "ErGEmNgFddWBHpeCuKNnlFroZGylUTdH",
+        "target": "VEfimGxZiBldNEISwiEUBjZZyTbhkCGY"
+      },
+      {
+        "source": "VEfimGxZiBldNEISwiEUBjZZyTbhkCGY",
+        "target": "UCnqjHjUCYHAzpeqovhXCpPoAOMLmWQg"
+      },
+      {
+        "source": "VEfimGxZiBldNEISwiEUBjZZyTbhkCGY",
+        "target": "uKgBegWeGtqyCofmNOhWDxddWozxpxcO"
+      },
+      {
+        "source": "VEfimGxZiBldNEISwiEUBjZZyTbhkCGY",
+        "target": "volCOjeuxcbVOikwYNjeAhDXQfGiLdZE"
+      },
+      {
+        "source": "uKgBegWeGtqyCofmNOhWDxddWozxpxcO",
+        "target": "OJNHtrniqIERJYOyPNGpfKiQmttapOhI"
+      },
+      {
+        "source": "volCOjeuxcbVOikwYNjeAhDXQfGiLdZE",
+        "target": "BmoUSDYdcFOKfyQfRYYhONRuExIwVxwk"
+      }
+    ]
+  }
+}

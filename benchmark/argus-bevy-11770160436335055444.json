@@ -1,0 +1,369 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "yUKaJqSNrpxeLpSPfqhkLYlUijTeZwUM"
+    },
+    "nodes": {
+      "LJnEXDgFOaHdTIidPFCXjSPXGsPDrFXQ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "gRXMWbsQgJDEprGqZRlLejzqPzELbsjj": {
+        "label": "for<'a> &'a mut run_timer fn(Timer): FnMut<(Timer)>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "jUWJYffqvotOAFMIjikgdzuedZCrYGPh": {
+        "label": "run_timer fn(Timer): System",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ULTlsWroSRUgmzjqQqLiYVpqQkRkhwHH": {
+        "label": "&'_ mut World: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "yUKaJqSNrpxeLpSPfqhkLYlUijTeZwUM": {
+        "label": "(run_timer fn(Timer)): IntoSystemConfigs<M>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "YCLMdoohRhNOsJoZoSLrwNNsajGOWMCb": {
+        "label": "run_timer fn(Timer): IntoSystemConfigs<_>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "KshVMutKEUeMDNoHILfqwhQkjNJGqTAI": {
+        "label": "for<'a> <&'a mut run_timer ..fn(Timer) as FnOnce<(Timer)>>::Output == ()",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "lIFpqnrzwhqNAQmzGFLOgDFgqUmhlACK": {
+        "label": "run_timer fn(Timer): IntoSystem<(), (), _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "fYuKeTaZRnbejfAIzPeMpKRlztNbUEaI": {
+        "label": "(): 'static",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "GoZcrrFBbYsRsmOYLXiwOUDOoVfbvEzA": {
+        "label": "run_timer fn(Timer): 'static",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "uTkvkajjWKhPcfWtBYHwjGKdJHnsKZus": {
+        "label": "run_timer fn(Timer): Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "NMjrYksrTumZhIuewagIMGaRFCLZUlUn": {
+        "label": "run_timer fn(Timer): SystemParamFunction<_>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "PMghRsdamYpFKwCGrCDRvGpWwuOwpDhL": {
+        "label": "Timer: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "wttBUGxtqkMFbGZsCXbIFmvcHJuIMICq": {
+        "label": "_: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "fTtpSMaZaNaRZLexDTCKYgKwrKjzuAZx": {
+        "label": "run_timer fn(Timer): Sync",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "eahGzaLdRFqBFZjpAJyTgTapFIPHjFLf": {
+        "label": "_: 'static",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "QvogOowXIdTBDyQMvRJzFYAKKzYVMdKe": {
+        "label": "run_timer fn(Timer): Send",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "vAseXsGaDxoTSJCorIVUtnKZumMnRjRZ": {
+        "label": "Timer: SystemParam",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "xFqrtXqYewxVqHNwzHzAAoispSiXkezj": {
+        "label": "(): Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "SBmeAUwgNIjyjlWVYnVemTChnCLuiuCu": {
+        "label": "impl<T> IntoSystem<<T as System>::In, <T as System>::Out, ()> for Twhere T: System",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "XopngxyTCccRDzvoWfVVTFpQTxlqVLoS": {
+        "label": "impl<Marker, F> IntoSystemConfigs<Marker> for Fwhere F: IntoSystem<()()Marker>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "kvsgsJpexmxZsvtOBYTpXLpPPFvygjFL": {
+        "label": "impl<Marker, F> IntoSystem<<F as SystemParamFunction<Marker>>::In, <F as SystemParamFunction<Marker>>::Out, (IsFunctionSystemMarker)> for Fwhere Marker: 'staticF: SystemParamFunction<Marker>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "WdtGBgtZfeQaNtygJgZBNWsUfssquIFZ": {
+        "label": "impl<Out, Func, F0> SystemParamFunction<fn(F0) -> Out> for Funcwhere Func: Send + Sync + 'staticF0: SystemParamfor<'a> &'a mut Func: FnMut<(F0)> -> Out + FnMut<(<..F0 as SystemParam>::Item)> -> OutOut: 'static",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "GDMMXGQjRcpRKWfSNKvdyUoEAJWuADri": {
+        "label": "impl<P0, S0> IntoSystemConfigs<(SystemConfigTupleMarkerP0)> for (S0)where S0: IntoSystemConfigs<P0>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "KbZqAOfrdIcLprVjgcNChXlAmwqbHnMG": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "xCPhIfqDhDJPtauIjqhSdVlWjReZhEtV": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "tIRfziPpNHUgnJLzviIpFDnwYnQwqnMl": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "gXJMfhausEXHmYgzywDoBmTaHXOfnKTW": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "UTZgFPrbKfjFGyQVLdnzyrgWmyAHcnkq": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "mulzpnstuSdWPzbOsnDcYSzzMOTIXump": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "kAYPgNdsiUugwBHTlvphaHfPNKlUSGZZ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "hpqGxfBFyhSjyYXiNGJBCujyfjCcvYuS": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "plSEwsXumgSoCiRRRaIuZjxQWrnKRrAn": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "isUQbHIAUQiMYzhOTwUDQvNNadMugizn": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "IRKkNqBnSQxjAxqVuQQpydnOxPBIMeYx": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "wttBUGxtqkMFbGZsCXbIFmvcHJuIMICq",
+        "target": "LJnEXDgFOaHdTIidPFCXjSPXGsPDrFXQ"
+      },
+      {
+        "source": "LJnEXDgFOaHdTIidPFCXjSPXGsPDrFXQ",
+        "target": "ULTlsWroSRUgmzjqQqLiYVpqQkRkhwHH"
+      },
+      {
+        "source": "YCLMdoohRhNOsJoZoSLrwNNsajGOWMCb",
+        "target": "XopngxyTCccRDzvoWfVVTFpQTxlqVLoS"
+      },
+      {
+        "source": "SBmeAUwgNIjyjlWVYnVemTChnCLuiuCu",
+        "target": "uTkvkajjWKhPcfWtBYHwjGKdJHnsKZus"
+      },
+      {
+        "source": "SBmeAUwgNIjyjlWVYnVemTChnCLuiuCu",
+        "target": "jUWJYffqvotOAFMIjikgdzuedZCrYGPh"
+      },
+      {
+        "source": "yUKaJqSNrpxeLpSPfqhkLYlUijTeZwUM",
+        "target": "GDMMXGQjRcpRKWfSNKvdyUoEAJWuADri"
+      },
+      {
+        "source": "kvsgsJpexmxZsvtOBYTpXLpPPFvygjFL",
+        "target": "NMjrYksrTumZhIuewagIMGaRFCLZUlUn"
+      },
+      {
+        "source": "kvsgsJpexmxZsvtOBYTpXLpPPFvygjFL",
+        "target": "eahGzaLdRFqBFZjpAJyTgTapFIPHjFLf"
+      },
+      {
+        "source": "kvsgsJpexmxZsvtOBYTpXLpPPFvygjFL",
+        "target": "wttBUGxtqkMFbGZsCXbIFmvcHJuIMICq"
+      },
+      {
+        "source": "kvsgsJpexmxZsvtOBYTpXLpPPFvygjFL",
+        "target": "uTkvkajjWKhPcfWtBYHwjGKdJHnsKZus"
+      },
+      {
+        "source": "WdtGBgtZfeQaNtygJgZBNWsUfssquIFZ",
+        "target": "fTtpSMaZaNaRZLexDTCKYgKwrKjzuAZx"
+      },
+      {
+        "source": "WdtGBgtZfeQaNtygJgZBNWsUfssquIFZ",
+        "target": "vAseXsGaDxoTSJCorIVUtnKZumMnRjRZ"
+      },
+      {
+        "source": "WdtGBgtZfeQaNtygJgZBNWsUfssquIFZ",
+        "target": "QvogOowXIdTBDyQMvRJzFYAKKzYVMdKe"
+      },
+      {
+        "source": "WdtGBgtZfeQaNtygJgZBNWsUfssquIFZ",
+        "target": "xFqrtXqYewxVqHNwzHzAAoispSiXkezj"
+      },
+      {
+        "source": "WdtGBgtZfeQaNtygJgZBNWsUfssquIFZ",
+        "target": "GoZcrrFBbYsRsmOYLXiwOUDOoVfbvEzA"
+      },
+      {
+        "source": "WdtGBgtZfeQaNtygJgZBNWsUfssquIFZ",
+        "target": "fYuKeTaZRnbejfAIzPeMpKRlztNbUEaI"
+      },
+      {
+        "source": "WdtGBgtZfeQaNtygJgZBNWsUfssquIFZ",
+        "target": "PMghRsdamYpFKwCGrCDRvGpWwuOwpDhL"
+      },
+      {
+        "source": "WdtGBgtZfeQaNtygJgZBNWsUfssquIFZ",
+        "target": "uTkvkajjWKhPcfWtBYHwjGKdJHnsKZus"
+      },
+      {
+        "source": "WdtGBgtZfeQaNtygJgZBNWsUfssquIFZ",
+        "target": "KshVMutKEUeMDNoHILfqwhQkjNJGqTAI"
+      },
+      {
+        "source": "WdtGBgtZfeQaNtygJgZBNWsUfssquIFZ",
+        "target": "gRXMWbsQgJDEprGqZRlLejzqPzELbsjj"
+      },
+      {
+        "source": "GDMMXGQjRcpRKWfSNKvdyUoEAJWuADri",
+        "target": "YCLMdoohRhNOsJoZoSLrwNNsajGOWMCb"
+      },
+      {
+        "source": "GDMMXGQjRcpRKWfSNKvdyUoEAJWuADri",
+        "target": "uTkvkajjWKhPcfWtBYHwjGKdJHnsKZus"
+      },
+      {
+        "source": "GDMMXGQjRcpRKWfSNKvdyUoEAJWuADri",
+        "target": "wttBUGxtqkMFbGZsCXbIFmvcHJuIMICq"
+      },
+      {
+        "source": "lIFpqnrzwhqNAQmzGFLOgDFgqUmhlACK",
+        "target": "kvsgsJpexmxZsvtOBYTpXLpPPFvygjFL"
+      },
+      {
+        "source": "lIFpqnrzwhqNAQmzGFLOgDFgqUmhlACK",
+        "target": "SBmeAUwgNIjyjlWVYnVemTChnCLuiuCu"
+      },
+      {
+        "source": "NMjrYksrTumZhIuewagIMGaRFCLZUlUn",
+        "target": "WdtGBgtZfeQaNtygJgZBNWsUfssquIFZ"
+      },
+      {
+        "source": "XopngxyTCccRDzvoWfVVTFpQTxlqVLoS",
+        "target": "lIFpqnrzwhqNAQmzGFLOgDFgqUmhlACK"
+      },
+      {
+        "source": "XopngxyTCccRDzvoWfVVTFpQTxlqVLoS",
+        "target": "wttBUGxtqkMFbGZsCXbIFmvcHJuIMICq"
+      },
+      {
+        "source": "XopngxyTCccRDzvoWfVVTFpQTxlqVLoS",
+        "target": "uTkvkajjWKhPcfWtBYHwjGKdJHnsKZus"
+      },
+      {
+        "source": "ULTlsWroSRUgmzjqQqLiYVpqQkRkhwHH",
+        "target": "KbZqAOfrdIcLprVjgcNChXlAmwqbHnMG"
+      },
+      {
+        "source": "GoZcrrFBbYsRsmOYLXiwOUDOoVfbvEzA",
+        "target": "xCPhIfqDhDJPtauIjqhSdVlWjReZhEtV"
+      },
+      {
+        "source": "eahGzaLdRFqBFZjpAJyTgTapFIPHjFLf",
+        "target": "tIRfziPpNHUgnJLzviIpFDnwYnQwqnMl"
+      },
+      {
+        "source": "QvogOowXIdTBDyQMvRJzFYAKKzYVMdKe",
+        "target": "gXJMfhausEXHmYgzywDoBmTaHXOfnKTW"
+      },
+      {
+        "source": "fTtpSMaZaNaRZLexDTCKYgKwrKjzuAZx",
+        "target": "UTZgFPrbKfjFGyQVLdnzyrgWmyAHcnkq"
+      },
+      {
+        "source": "uTkvkajjWKhPcfWtBYHwjGKdJHnsKZus",
+        "target": "mulzpnstuSdWPzbOsnDcYSzzMOTIXump"
+      },
+      {
+        "source": "KshVMutKEUeMDNoHILfqwhQkjNJGqTAI",
+        "target": "kAYPgNdsiUugwBHTlvphaHfPNKlUSGZZ"
+      },
+      {
+        "source": "PMghRsdamYpFKwCGrCDRvGpWwuOwpDhL",
+        "target": "hpqGxfBFyhSjyYXiNGJBCujyfjCcvYuS"
+      },
+      {
+        "source": "fYuKeTaZRnbejfAIzPeMpKRlztNbUEaI",
+        "target": "plSEwsXumgSoCiRRRaIuZjxQWrnKRrAn"
+      },
+      {
+        "source": "gRXMWbsQgJDEprGqZRlLejzqPzELbsjj",
+        "target": "isUQbHIAUQiMYzhOTwUDQvNNadMugizn"
+      },
+      {
+        "source": "xFqrtXqYewxVqHNwzHzAAoispSiXkezj",
+        "target": "IRKkNqBnSQxjAxqVuQQpydnOxPBIMeYx"
+      }
+    ]
+  }
+}

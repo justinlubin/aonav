@@ -1,0 +1,56 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "IIcCdijjlkenBlEwoBPgXuTKyXkkytWQ"
+    },
+    "nodes": {
+      "oKcUWEVLwTuGhVEOsQmodREszNYcscFw": {
+        "label": "&str: ToString",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "IIcCdijjlkenBlEwoBPgXuTKyXkkytWQ": {
+        "label": "(&str, &str): ToString",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "KPvORzDVztqCQNHpvGrmofEecONZWpuZ": {
+        "label": "&str: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "wogauHhXpZkntzfuxVCFIXEhxRhRRCjU": {
+        "label": "impl<S, T> ToString for (S, T)where S: ToStringT: ToString",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "gtfpPrSQbywaIvkJzuZpuKNLlMZGGPZU": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "wogauHhXpZkntzfuxVCFIXEhxRhRRCjU",
+        "target": "KPvORzDVztqCQNHpvGrmofEecONZWpuZ"
+      },
+      {
+        "source": "wogauHhXpZkntzfuxVCFIXEhxRhRRCjU",
+        "target": "oKcUWEVLwTuGhVEOsQmodREszNYcscFw"
+      },
+      {
+        "source": "IIcCdijjlkenBlEwoBPgXuTKyXkkytWQ",
+        "target": "wogauHhXpZkntzfuxVCFIXEhxRhRRCjU"
+      },
+      {
+        "source": "KPvORzDVztqCQNHpvGrmofEecONZWpuZ",
+        "target": "gtfpPrSQbywaIvkJzuZpuKNLlMZGGPZU"
+      }
+    ]
+  }
+}

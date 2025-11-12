@@ -1,0 +1,103 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "mzxhOqcurqztFNflNAqmXuARfQGnDJOw"
+    },
+    "nodes": {
+      "mzxhOqcurqztFNflNAqmXuARfQGnDJOw": {
+        "label": "Impl<()>: T2",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "qucWhviAlMcgIeDmoHvnmRSSAmUxffmO": {
+        "label": "(): Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "FYoQdBgpxJkBfvufEnigtnBIEyqupegf": {
+        "label": "Impl<()>: T4",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "lEEnwVHvegdzuSmYbKrQGPNpiYMtybGV": {
+        "label": "(): Sync",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "KkRzadzJEThLMqKpHTzKCFMnVrssuUUU": {
+        "label": "Impl<()>: T3",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "bROasKDwpAOpIhqFatnqKrrxpaGlvOgm": {
+        "label": "impl<EntraitT> T3 for Impl<EntraitT>where EntraitT: SyncImpl<EntraitT>: T4",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "qPlZuIAqhKyvfOZGrQGbFFLwrdfYMQzu": {
+        "label": "impl<EntraitT> T2 for Impl<EntraitT>where EntraitT: SyncImpl<EntraitT>: T3",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "UKUhjUzfdRQPPFbmJXsrtdUgtTOvaTDM": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "pKtHyDvydIjkvDKHmIeNaasVjsbdWxea": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "qPlZuIAqhKyvfOZGrQGbFFLwrdfYMQzu",
+        "target": "qucWhviAlMcgIeDmoHvnmRSSAmUxffmO"
+      },
+      {
+        "source": "qPlZuIAqhKyvfOZGrQGbFFLwrdfYMQzu",
+        "target": "KkRzadzJEThLMqKpHTzKCFMnVrssuUUU"
+      },
+      {
+        "source": "qPlZuIAqhKyvfOZGrQGbFFLwrdfYMQzu",
+        "target": "lEEnwVHvegdzuSmYbKrQGPNpiYMtybGV"
+      },
+      {
+        "source": "KkRzadzJEThLMqKpHTzKCFMnVrssuUUU",
+        "target": "bROasKDwpAOpIhqFatnqKrrxpaGlvOgm"
+      },
+      {
+        "source": "bROasKDwpAOpIhqFatnqKrrxpaGlvOgm",
+        "target": "qucWhviAlMcgIeDmoHvnmRSSAmUxffmO"
+      },
+      {
+        "source": "bROasKDwpAOpIhqFatnqKrrxpaGlvOgm",
+        "target": "lEEnwVHvegdzuSmYbKrQGPNpiYMtybGV"
+      },
+      {
+        "source": "bROasKDwpAOpIhqFatnqKrrxpaGlvOgm",
+        "target": "FYoQdBgpxJkBfvufEnigtnBIEyqupegf"
+      },
+      {
+        "source": "mzxhOqcurqztFNflNAqmXuARfQGnDJOw",
+        "target": "qPlZuIAqhKyvfOZGrQGbFFLwrdfYMQzu"
+      },
+      {
+        "source": "qucWhviAlMcgIeDmoHvnmRSSAmUxffmO",
+        "target": "UKUhjUzfdRQPPFbmJXsrtdUgtTOvaTDM"
+      },
+      {
+        "source": "lEEnwVHvegdzuSmYbKrQGPNpiYMtybGV",
+        "target": "pKtHyDvydIjkvDKHmIeNaasVjsbdWxea"
+      }
+    ]
+  }
+}

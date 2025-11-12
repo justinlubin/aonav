@@ -1,0 +1,152 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "jBAJXzgZNscEnXWxreloSeGEVHEysJyC"
+    },
+    "nodes": {
+      "RrPoewlaybYwyMyRBLKnDmUEBejTTfgL": {
+        "label": "Play: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ADXBaPtsHjFpfCsvgPRSgfKiPsWeiBQc": {
+        "label": "&str: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "jBAJXzgZNscEnXWxreloSeGEVHEysJyC": {
+        "label": "(&str, Vec<Play>): Summary",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "aEDASEKzXzTpdCUNflHNAjNuFOnljvSE": {
+        "label": "Vec<Play>: Summary",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "jQtRZuLQqSIkRKpkxFhjLxmUjIjRLtQc": {
+        "label": "Play: Summary",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "bPceTKccWhRIsvJaAQeEjtPgtesivCxw": {
+        "label": "&str: Summary",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "PUQJrEEvfidKLHZSxtraVbyaDKZqdVIb": {
+        "label": "Vec<Play>: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "vUKDPWfPwkBXabztkgRywiKMCIMzvEwm": {
+        "label": "impl<T> Summary for Vec<T>where T: Summary",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "cBzTMbJCXhJbeQewVJzXqgYDOnvHqQys": {
+        "label": "impl<T, U> Summary for (T, U)where T: SummaryU: Summary",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "qPSUVZVqMaBUKXymySnteNyFJozLowbu": {
+        "label": "impl Summary for Play",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "GDFJmSyntwIbEjoHeWcltZEXXNJBQaNH": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "YzGInAOPgROCrLrZGUAAcvbUnNDFhwQu": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "PRBLUiHQRNZSgtTOMCiLOwiHXDOmskEc": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "QSKFrSvKiCpNeBxhneaMkjIlsxVpTNsZ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "DMXNnFJihwKSpbmbrKyqwRKIDqTOBHQO": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "cBzTMbJCXhJbeQewVJzXqgYDOnvHqQys",
+        "target": "PUQJrEEvfidKLHZSxtraVbyaDKZqdVIb"
+      },
+      {
+        "source": "cBzTMbJCXhJbeQewVJzXqgYDOnvHqQys",
+        "target": "bPceTKccWhRIsvJaAQeEjtPgtesivCxw"
+      },
+      {
+        "source": "cBzTMbJCXhJbeQewVJzXqgYDOnvHqQys",
+        "target": "ADXBaPtsHjFpfCsvgPRSgfKiPsWeiBQc"
+      },
+      {
+        "source": "cBzTMbJCXhJbeQewVJzXqgYDOnvHqQys",
+        "target": "aEDASEKzXzTpdCUNflHNAjNuFOnljvSE"
+      },
+      {
+        "source": "jBAJXzgZNscEnXWxreloSeGEVHEysJyC",
+        "target": "cBzTMbJCXhJbeQewVJzXqgYDOnvHqQys"
+      },
+      {
+        "source": "aEDASEKzXzTpdCUNflHNAjNuFOnljvSE",
+        "target": "vUKDPWfPwkBXabztkgRywiKMCIMzvEwm"
+      },
+      {
+        "source": "jQtRZuLQqSIkRKpkxFhjLxmUjIjRLtQc",
+        "target": "qPSUVZVqMaBUKXymySnteNyFJozLowbu"
+      },
+      {
+        "source": "vUKDPWfPwkBXabztkgRywiKMCIMzvEwm",
+        "target": "RrPoewlaybYwyMyRBLKnDmUEBejTTfgL"
+      },
+      {
+        "source": "vUKDPWfPwkBXabztkgRywiKMCIMzvEwm",
+        "target": "jQtRZuLQqSIkRKpkxFhjLxmUjIjRLtQc"
+      },
+      {
+        "source": "ADXBaPtsHjFpfCsvgPRSgfKiPsWeiBQc",
+        "target": "GDFJmSyntwIbEjoHeWcltZEXXNJBQaNH"
+      },
+      {
+        "source": "PUQJrEEvfidKLHZSxtraVbyaDKZqdVIb",
+        "target": "YzGInAOPgROCrLrZGUAAcvbUnNDFhwQu"
+      },
+      {
+        "source": "aEDASEKzXzTpdCUNflHNAjNuFOnljvSE",
+        "target": "PRBLUiHQRNZSgtTOMCiLOwiHXDOmskEc"
+      },
+      {
+        "source": "RrPoewlaybYwyMyRBLKnDmUEBejTTfgL",
+        "target": "QSKFrSvKiCpNeBxhneaMkjIlsxVpTNsZ"
+      },
+      {
+        "source": "jQtRZuLQqSIkRKpkxFhjLxmUjIjRLtQc",
+        "target": "DMXNnFJihwKSpbmbrKyqwRKIDqTOBHQO"
+      }
+    ]
+  }
+}

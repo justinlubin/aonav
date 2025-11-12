@@ -1,0 +1,57 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "qAOqQASERjJBYEEddpNgZeCZcqVOKifH"
+    },
+    "nodes": {
+      "wywcUpOIeMmoZZMfUYfjFrzIJLkMFdtI": {
+        "label": "(): Future",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "qAOqQASERjJBYEEddpNgZeCZcqVOKifH": {
+        "label": "handler fn(): Handler<T, S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "qGUKpFglEoFqlhZzCkpyVUpidIRkHgni": {
+        "label": "handler fn(): IntoResponse",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "HMueIpcTpgiiRBZLjzDTctilXWKCsFNo": {
+        "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "uaqsxSvVrCeZCGsjcBejRppGULVraodO": {
+        "label": "impl<F, Fut, Res, S> Handler<(()), S> for Fwhere F: FnOnce<()> -> Fut + Clone + Send + 'staticFut: Future + SendRes: IntoResponse<..Fut as Future>::Output == Res",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "HMueIpcTpgiiRBZLjzDTctilXWKCsFNo",
+        "target": "qGUKpFglEoFqlhZzCkpyVUpidIRkHgni"
+      },
+      {
+        "source": "qAOqQASERjJBYEEddpNgZeCZcqVOKifH",
+        "target": "HMueIpcTpgiiRBZLjzDTctilXWKCsFNo"
+      },
+      {
+        "source": "qAOqQASERjJBYEEddpNgZeCZcqVOKifH",
+        "target": "uaqsxSvVrCeZCGsjcBejRppGULVraodO"
+      },
+      {
+        "source": "uaqsxSvVrCeZCGsjcBejRppGULVraodO",
+        "target": "wywcUpOIeMmoZZMfUYfjFrzIJLkMFdtI"
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "WeEPrNMNDziRdYLSzWKmdDcbPCpjflsO"
+    },
+    "nodes": {
+      "ZPbSZVwkTNmkOmTEqiMRCSdSxsWaaBbB": {
+        "label": "Impl<()>: T2",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ZSLsyjBmTOBwfmvYjEucvDDdGIeePTbY": {
+        "label": "Impl<()>: T3",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "lTiZYeFBMptwUHwJrwzCILOUrzmqvUXo": {
+        "label": "Impl<()>: T4",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "WeEPrNMNDziRdYLSzWKmdDcbPCpjflsO": {
+        "label": "Impl<()>: T1",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "hzYZELCqxhnOQasjkrAaFCKxfZyZmvuA": {
+        "label": "impl<EntraitT> T3 for Impl<EntraitT>where EntraitT: SyncImpl<EntraitT>: T4",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "EsCqcDiueNKUKDjPFcsgVWUHqbSMtTaP": {
+        "label": "impl<EntraitT> T1 for Impl<EntraitT>where EntraitT: SyncImpl<EntraitT>: T2",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "jKSLeBGjpAvAjqLMuByarSCVsrwjRRsx": {
+        "label": "impl<EntraitT> T2 for Impl<EntraitT>where EntraitT: SyncImpl<EntraitT>: T3",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "jKSLeBGjpAvAjqLMuByarSCVsrwjRRsx",
+        "target": "ZSLsyjBmTOBwfmvYjEucvDDdGIeePTbY"
+      },
+      {
+        "source": "EsCqcDiueNKUKDjPFcsgVWUHqbSMtTaP",
+        "target": "ZPbSZVwkTNmkOmTEqiMRCSdSxsWaaBbB"
+      },
+      {
+        "source": "ZPbSZVwkTNmkOmTEqiMRCSdSxsWaaBbB",
+        "target": "jKSLeBGjpAvAjqLMuByarSCVsrwjRRsx"
+      },
+      {
+        "source": "WeEPrNMNDziRdYLSzWKmdDcbPCpjflsO",
+        "target": "EsCqcDiueNKUKDjPFcsgVWUHqbSMtTaP"
+      },
+      {
+        "source": "ZSLsyjBmTOBwfmvYjEucvDDdGIeePTbY",
+        "target": "hzYZELCqxhnOQasjkrAaFCKxfZyZmvuA"
+      },
+      {
+        "source": "hzYZELCqxhnOQasjkrAaFCKxfZyZmvuA",
+        "target": "lTiZYeFBMptwUHwJrwzCILOUrzmqvUXo"
+      }
+    ]
+  }
+}

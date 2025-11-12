@@ -1,0 +1,166 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "dbuXpvmaROAPmMDnHqUWYmDucJZAFuIq"
+    },
+    "nodes": {
+      "pXNGzvEIIycPseVimruFzKNvZDjMHxNR": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "AfzEMHKjxBxKJttkmBYCqnLRlWIwozCF": {
+        "label": "for<'de> Test: Deserialize<'de>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "BAHiaJNEuPOLDyhILrfEHGIrkOglLSZk": {
+        "label": "handler fn(Json<Test>) -> impl Future<Output = ()>: IntoResponse",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "RjAEIArTzAPqiTCxHmjokBRCnKfGHXnN": {
+        "label": "Json<Test>: FromRequest<S, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "wnTKBgbzUNVDYplJRtVyabxtRyMeLxYy": {
+        "label": "_: FromRequestParts<S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "nwnpZjCcryHZPtJvOEDrzQRmhiTQYXIK": {
+        "label": "Test: Deserialize<'de>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "nsEwPHZgcIkInRPZwAgDuhBFommnIBWZ": {
+        "label": "_: FromRequest<S, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "dbuXpvmaROAPmMDnHqUWYmDucJZAFuIq": {
+        "label": "handler fn(Json<Test>) -> impl Future<Output = ()>: Handler<T, S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "LZZqJdBttHsVRRSOqfipTIUOURKQGkwu": {
+        "label": "Test: DeserializeOwned",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "VauqoJpwJMuuitLYwUZNGEGXeEctuUpf": {
+        "label": "Json<Test>: FromRequestParts<S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "FqDKnVtzYCqnwSgpLOOqLsdtfmEsSVPd": {
+        "label": "impl<S, T> FromRequest<S, ViaParts> for Twhere S: Send + SyncT: FromRequestParts<S>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "sjkMweZHLTGIaLPzwwRWQqvqxHHbdMdN": {
+        "label": "impl<T> DeserializeOwned for Twhere for<'de> T: Deserialize<'de>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "ZwPqElEHvaUFRzBoMrgAJVjZllPfuKug": {
+        "label": "impl<F, Fut, S, Res, M, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> Handler<(MT1T2T3T4T5T6T7T8T9T10T11T12), S> for Fwhere F: FnOnce<(T1T2T3T4T5T6T7T8T9T10T11T12)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequestParts<S> + SendT2: FromRequestParts<S> + SendT3: FromRequestParts<S> + SendT4: FromRequestParts<S> + SendT5: FromRequestParts<S> + SendT6: FromRequestParts<S> + SendT7: FromRequestParts<S> + SendT8: FromRequestParts<S> + SendT9: FromRequestParts<S> + SendT10: FromRequestParts<S> + SendT11: FromRequestParts<S> + SendT12: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "MdDlyXnOQAnfdOagqXDEhTRUhygsQfvm": {
+        "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "knbBwVmaOQWBVkkqGzRvelJiEPXOxfvF": {
+        "label": "impl<T, S> FromRequest<S> for Json<T>where T: DeserializeOwnedS: Send + Sync",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "FkoNdJrSQozyziFeNivoOVEDcYBSuMFP": {
+        "label": "impl<F, Fut, S, Res, M, T1> Handler<(MT1), S> for Fwhere F: FnOnce<(T1)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "AfzEMHKjxBxKJttkmBYCqnLRlWIwozCF",
+        "target": "pXNGzvEIIycPseVimruFzKNvZDjMHxNR"
+      },
+      {
+        "source": "pXNGzvEIIycPseVimruFzKNvZDjMHxNR",
+        "target": "nwnpZjCcryHZPtJvOEDrzQRmhiTQYXIK"
+      },
+      {
+        "source": "LZZqJdBttHsVRRSOqfipTIUOURKQGkwu",
+        "target": "sjkMweZHLTGIaLPzwwRWQqvqxHHbdMdN"
+      },
+      {
+        "source": "knbBwVmaOQWBVkkqGzRvelJiEPXOxfvF",
+        "target": "LZZqJdBttHsVRRSOqfipTIUOURKQGkwu"
+      },
+      {
+        "source": "FqDKnVtzYCqnwSgpLOOqLsdtfmEsSVPd",
+        "target": "VauqoJpwJMuuitLYwUZNGEGXeEctuUpf"
+      },
+      {
+        "source": "FkoNdJrSQozyziFeNivoOVEDcYBSuMFP",
+        "target": "RjAEIArTzAPqiTCxHmjokBRCnKfGHXnN"
+      },
+      {
+        "source": "sjkMweZHLTGIaLPzwwRWQqvqxHHbdMdN",
+        "target": "AfzEMHKjxBxKJttkmBYCqnLRlWIwozCF"
+      },
+      {
+        "source": "dbuXpvmaROAPmMDnHqUWYmDucJZAFuIq",
+        "target": "MdDlyXnOQAnfdOagqXDEhTRUhygsQfvm"
+      },
+      {
+        "source": "dbuXpvmaROAPmMDnHqUWYmDucJZAFuIq",
+        "target": "FkoNdJrSQozyziFeNivoOVEDcYBSuMFP"
+      },
+      {
+        "source": "dbuXpvmaROAPmMDnHqUWYmDucJZAFuIq",
+        "target": "ZwPqElEHvaUFRzBoMrgAJVjZllPfuKug"
+      },
+      {
+        "source": "ZwPqElEHvaUFRzBoMrgAJVjZllPfuKug",
+        "target": "nsEwPHZgcIkInRPZwAgDuhBFommnIBWZ"
+      },
+      {
+        "source": "ZwPqElEHvaUFRzBoMrgAJVjZllPfuKug",
+        "target": "wnTKBgbzUNVDYplJRtVyabxtRyMeLxYy"
+      },
+      {
+        "source": "RjAEIArTzAPqiTCxHmjokBRCnKfGHXnN",
+        "target": "knbBwVmaOQWBVkkqGzRvelJiEPXOxfvF"
+      },
+      {
+        "source": "RjAEIArTzAPqiTCxHmjokBRCnKfGHXnN",
+        "target": "FqDKnVtzYCqnwSgpLOOqLsdtfmEsSVPd"
+      },
+      {
+        "source": "MdDlyXnOQAnfdOagqXDEhTRUhygsQfvm",
+        "target": "BAHiaJNEuPOLDyhILrfEHGIrkOglLSZk"
+      }
+    ]
+  }
+}

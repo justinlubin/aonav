@@ -1,0 +1,180 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "SFcjXfVaSonOgrlokmeMMScheYQklYHc"
+    },
+    "nodes": {
+      "TggjpDQYoVEMTvXDbJmRRjruKgiwZgLH": {
+        "label": "CsrMatrix<T>: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "qaLGdFQWuwlgaqUWwtnHqYSPZjeqBsyC": {
+        "label": "T: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "XeqWMvXdJNrxivKoXLtIbhEWWDJGLuhm": {
+        "label": "CsrMatrix<T>: ZeroablePrimitive",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "DpUBnWwmrZGpXDctrwMOUDEikeWptOGc": {
+        "label": "_: RawStorage<T, _, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "IeIzCzqOJvAfvGQYOcufngTiVexVXlHG": {
+        "label": "T: Zero",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "sxXwgLfypEcuUixArVJTohFHJUKcsPeL": {
+        "label": "T: ClosedAdd",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "flApTPdFaRmBBTFQuHHrbYKQXCqYwWTo": {
+        "label": "T: Scalar",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "mltzKRrnwNOtQLpHvEMBSBkuOemJZkUW": {
+        "label": "_: Dim",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "SFcjXfVaSonOgrlokmeMMScheYQklYHc": {
+        "label": "CsrMatrix<T>: From<T>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "mDYnpHcmLfwxbpsYUAJivdCMtLwnPrMe": {
+        "label": "impl<T> From<NonZero<T>> for Twhere T: ZeroablePrimitive",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "dauzJWSvTKfEEhBmnblluyaaQSdzHrvC": {
+        "label": "impl<'a, T> From<&'a CooMatrix<T>> for CsrMatrix<T>where T: Scalar + Zero + ClosedAdd",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "YlUYLrERDUthfZpirRSuUIKjayRNbNbG": {
+        "label": "impl<T> From<T> for T",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "oLegtNccefMnrQrdhxgWHuUqloRRYfmb": {
+        "label": "impl<'a, T> From<&'a CscMatrix<T>> for CsrMatrix<T>where T: Scalar",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "LukFwmZIIpuHGiysEwCyFLHuXfzGRavA": {
+        "label": "impl<'a, T, R, C, S> From<&'a Matrix<TRCS>> for CsrMatrix<T>where T: Scalar + ZeroR: DimC: DimS: RawStorage<TRC>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "NzVDnwIvEKZlSYmeTFRtCkZMOHPunGJq": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "mDYnpHcmLfwxbpsYUAJivdCMtLwnPrMe",
+        "target": "XeqWMvXdJNrxivKoXLtIbhEWWDJGLuhm"
+      },
+      {
+        "source": "mDYnpHcmLfwxbpsYUAJivdCMtLwnPrMe",
+        "target": "TggjpDQYoVEMTvXDbJmRRjruKgiwZgLH"
+      },
+      {
+        "source": "dauzJWSvTKfEEhBmnblluyaaQSdzHrvC",
+        "target": "flApTPdFaRmBBTFQuHHrbYKQXCqYwWTo"
+      },
+      {
+        "source": "dauzJWSvTKfEEhBmnblluyaaQSdzHrvC",
+        "target": "qaLGdFQWuwlgaqUWwtnHqYSPZjeqBsyC"
+      },
+      {
+        "source": "dauzJWSvTKfEEhBmnblluyaaQSdzHrvC",
+        "target": "IeIzCzqOJvAfvGQYOcufngTiVexVXlHG"
+      },
+      {
+        "source": "dauzJWSvTKfEEhBmnblluyaaQSdzHrvC",
+        "target": "sxXwgLfypEcuUixArVJTohFHJUKcsPeL"
+      },
+      {
+        "source": "YlUYLrERDUthfZpirRSuUIKjayRNbNbG",
+        "target": "TggjpDQYoVEMTvXDbJmRRjruKgiwZgLH"
+      },
+      {
+        "source": "oLegtNccefMnrQrdhxgWHuUqloRRYfmb",
+        "target": "qaLGdFQWuwlgaqUWwtnHqYSPZjeqBsyC"
+      },
+      {
+        "source": "oLegtNccefMnrQrdhxgWHuUqloRRYfmb",
+        "target": "flApTPdFaRmBBTFQuHHrbYKQXCqYwWTo"
+      },
+      {
+        "source": "SFcjXfVaSonOgrlokmeMMScheYQklYHc",
+        "target": "YlUYLrERDUthfZpirRSuUIKjayRNbNbG"
+      },
+      {
+        "source": "SFcjXfVaSonOgrlokmeMMScheYQklYHc",
+        "target": "mDYnpHcmLfwxbpsYUAJivdCMtLwnPrMe"
+      },
+      {
+        "source": "SFcjXfVaSonOgrlokmeMMScheYQklYHc",
+        "target": "dauzJWSvTKfEEhBmnblluyaaQSdzHrvC"
+      },
+      {
+        "source": "SFcjXfVaSonOgrlokmeMMScheYQklYHc",
+        "target": "LukFwmZIIpuHGiysEwCyFLHuXfzGRavA"
+      },
+      {
+        "source": "SFcjXfVaSonOgrlokmeMMScheYQklYHc",
+        "target": "oLegtNccefMnrQrdhxgWHuUqloRRYfmb"
+      },
+      {
+        "source": "LukFwmZIIpuHGiysEwCyFLHuXfzGRavA",
+        "target": "IeIzCzqOJvAfvGQYOcufngTiVexVXlHG"
+      },
+      {
+        "source": "LukFwmZIIpuHGiysEwCyFLHuXfzGRavA",
+        "target": "DpUBnWwmrZGpXDctrwMOUDEikeWptOGc"
+      },
+      {
+        "source": "LukFwmZIIpuHGiysEwCyFLHuXfzGRavA",
+        "target": "mltzKRrnwNOtQLpHvEMBSBkuOemJZkUW"
+      },
+      {
+        "source": "LukFwmZIIpuHGiysEwCyFLHuXfzGRavA",
+        "target": "qaLGdFQWuwlgaqUWwtnHqYSPZjeqBsyC"
+      },
+      {
+        "source": "LukFwmZIIpuHGiysEwCyFLHuXfzGRavA",
+        "target": "flApTPdFaRmBBTFQuHHrbYKQXCqYwWTo"
+      },
+      {
+        "source": "TggjpDQYoVEMTvXDbJmRRjruKgiwZgLH",
+        "target": "NzVDnwIvEKZlSYmeTFRtCkZMOHPunGJq"
+      }
+    ]
+  }
+}

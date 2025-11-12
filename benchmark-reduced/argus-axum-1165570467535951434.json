@@ -1,0 +1,55 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "lFnPAUdwANKpopUTHuGoTVIdImTgaCvQ"
+    },
+    "nodes": {
+      "sBvFnfxHCpdCrgEPXTQfhYBEKIOFIlsh": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "gbcIRZmwFroUquAkMyCjFQSpoLyzpJbU": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "sVpSEFtRNZLQvfhmDrORTbbpWHaTTaUD": {
+        "label": "<S as Service<Request<Body>>>::Future == _",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "pDVGWvaGJkOCdpXhkOJjwQxmrHvRVqZT": {
+        "label": "<S as Service<Request<Body>>>::Future normalizes to _",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "lFnPAUdwANKpopUTHuGoTVIdImTgaCvQ": {
+        "label": "<S as Service<Request<Body>>>::Future: Send",
+        "metadata": {
+          "kind": "OR"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "lFnPAUdwANKpopUTHuGoTVIdImTgaCvQ",
+        "target": "sBvFnfxHCpdCrgEPXTQfhYBEKIOFIlsh"
+      },
+      {
+        "source": "sBvFnfxHCpdCrgEPXTQfhYBEKIOFIlsh",
+        "target": "sVpSEFtRNZLQvfhmDrORTbbpWHaTTaUD"
+      },
+      {
+        "source": "sVpSEFtRNZLQvfhmDrORTbbpWHaTTaUD",
+        "target": "gbcIRZmwFroUquAkMyCjFQSpoLyzpJbU"
+      },
+      {
+        "source": "gbcIRZmwFroUquAkMyCjFQSpoLyzpJbU",
+        "target": "pDVGWvaGJkOCdpXhkOJjwQxmrHvRVqZT"
+      }
+    ]
+  }
+}

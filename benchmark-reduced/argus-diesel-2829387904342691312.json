@@ -1,0 +1,326 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "lpZjPgTaigiGQTWTIdNEjBNiSExFYwxX"
+    },
+    "nodes": {
+      "uDzweKXPOpdQRyOahfQWurakjCmDBtVS": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "FumaulNQOtamJMBJhXjzSAzlpsBWhvCR": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "IIbbHntKKQVFsxhiEQIGWOJYWMjnQDbI": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "eIVeyOGmQkSMKGKOnpNtIkXYFuZMdzVx": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "EcbAdcRqZAEDykvRyuDBVgRnBidJRPpC": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "FAFGHAzQiLFApGVEhpZqqoduHdzHKJAV": {
+        "label": "(_): Expression",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "oCLcUlqNwvLGdcSPXSmWPggzsyvhcLcm": {
+        "label": "&Text: AsExpression<_>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "bEsJGoSSjBQdwOkbLvgHbafjwYIjuYiD": {
+        "label": "Text: Expression",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "cRkjSueWqbMuSMgsvwdZHTjbolAMQbiH": {
+        "label": "<PgTuple<(_)> as Expression>::SqlType == Record<(_)>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "lpZjPgTaigiGQTWTIdNEjBNiSExFYwxX": {
+        "label": "(&Text): AsExpression<<name as Expression>::SqlType>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "SbpCkkslQAOYuBxWZAQGxExlyCeOowRs": {
+        "label": "&Text: Expression",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "XPDZueOAmGXwDYkNVwhfrnwspjFvMNEV": {
+        "label": "(_): SingleValue",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "LFEPuNlMZJfQwEAIVuDghhJyMFCblayE": {
+        "label": "<name as Expression>::SqlType == Record<(_)>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "KyaPxRQsbFNGrNbGPHUBwIPdXAsLxOfw": {
+        "label": "_: TypedExpressionType",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "YUikVoIqZlZiDOCdAiaKIzaoqXhdzEsu": {
+        "label": "(_): Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "mPrFDuCdFxQvlHSsILULPyhRtUGpnbNi": {
+        "label": "(_): TypedExpressionType",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ncMJfWDJJayKbUxBYxMWpIHWbKkdFOpn": {
+        "label": "_: SqlType",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "XOUMkMHAnNxImnLNaJfhnNBwWfHbzRVe": {
+        "label": "<PgTuple<(_)> as Expression>::SqlType == Record<(_)>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "IOmXfQPFHsKXMHtoMVkSiRHEMJkIteMT": {
+        "label": "_: Expression",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "xeBGRQROaZvOvcIfiAPyImlYdrYFcWDv": {
+        "label": "_: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "jWGEAPKnnOdTfteejvyiwRKiHbwvXLsi": {
+        "label": "PgTuple<(_)>: Expression",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "OAUsQThLAwnagpvzSakGlVdBCaIjgpai": {
+        "label": "impl<T> Expression for PgTuple<T>where T: Expression<..T as Expression>::SqlType: 'static",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "awHIeuZKpRfLoLDWPugxaFFoGqaZixEd": {
+        "label": "impl<ST> TypedExpressionType for STwhere ST: SingleValue",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "gaYZFHHXPZXaiMJNvexiYtqgHReOSmAI": {
+        "label": "impl<T, ST> AsExpression<ST> for Twhere T: ExpressionST: SqlType + TypedExpressionType<..T as Expression>::SqlType == ST",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "ccNKdPiRSxbMOSfXyqxNpQEwymmSUCcz": {
+        "label": "impl<T, ST> AsExpression<Record<(ST)>> for (T)where ST: SqlType + TypedExpressionTypeT: AsExpression<ST>PgTuple<(<..T as AsExpression<ST>>::Expression)>: Expression<..PgTuple<(<..T as AsExpression<ST>>::Expression)> as Expression>::SqlType == Record<(ST)>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "uxKrEbfUpBvIQgLLzBBqVQHqmbEFraIy": {
+        "label": "impl<T> Expression for (T)where T: Expression(<..T as Expression>::SqlType): TypedExpressionType",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "HKyGesYTjnAyMdXxrPxEmesFZBoZtoTV": {
+        "label": "impl<T> Expression for &'_ Twhere T: MetaSized + Expression",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "dMSTfGprNUFGxMEZpzGquzUAMQWGsxxx": {
+        "label": "impl<T> TypedExpressionType for (T)where T: TypedExpressionType",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "YUikVoIqZlZiDOCdAiaKIzaoqXhdzEsu",
+        "target": "uDzweKXPOpdQRyOahfQWurakjCmDBtVS"
+      },
+      {
+        "source": "uDzweKXPOpdQRyOahfQWurakjCmDBtVS",
+        "target": "xeBGRQROaZvOvcIfiAPyImlYdrYFcWDv"
+      },
+      {
+        "source": "KyaPxRQsbFNGrNbGPHUBwIPdXAsLxOfw",
+        "target": "FumaulNQOtamJMBJhXjzSAzlpsBWhvCR"
+      },
+      {
+        "source": "FumaulNQOtamJMBJhXjzSAzlpsBWhvCR",
+        "target": "xeBGRQROaZvOvcIfiAPyImlYdrYFcWDv"
+      },
+      {
+        "source": "IOmXfQPFHsKXMHtoMVkSiRHEMJkIteMT",
+        "target": "IIbbHntKKQVFsxhiEQIGWOJYWMjnQDbI"
+      },
+      {
+        "source": "IIbbHntKKQVFsxhiEQIGWOJYWMjnQDbI",
+        "target": "xeBGRQROaZvOvcIfiAPyImlYdrYFcWDv"
+      },
+      {
+        "source": "cRkjSueWqbMuSMgsvwdZHTjbolAMQbiH",
+        "target": "eIVeyOGmQkSMKGKOnpNtIkXYFuZMdzVx"
+      },
+      {
+        "source": "eIVeyOGmQkSMKGKOnpNtIkXYFuZMdzVx",
+        "target": "XOUMkMHAnNxImnLNaJfhnNBwWfHbzRVe"
+      },
+      {
+        "source": "xeBGRQROaZvOvcIfiAPyImlYdrYFcWDv",
+        "target": "EcbAdcRqZAEDykvRyuDBVgRnBidJRPpC"
+      },
+      {
+        "source": "EcbAdcRqZAEDykvRyuDBVgRnBidJRPpC",
+        "target": "xeBGRQROaZvOvcIfiAPyImlYdrYFcWDv"
+      },
+      {
+        "source": "mPrFDuCdFxQvlHSsILULPyhRtUGpnbNi",
+        "target": "dMSTfGprNUFGxMEZpzGquzUAMQWGsxxx"
+      },
+      {
+        "source": "mPrFDuCdFxQvlHSsILULPyhRtUGpnbNi",
+        "target": "awHIeuZKpRfLoLDWPugxaFFoGqaZixEd"
+      },
+      {
+        "source": "OAUsQThLAwnagpvzSakGlVdBCaIjgpai",
+        "target": "FAFGHAzQiLFApGVEhpZqqoduHdzHKJAV"
+      },
+      {
+        "source": "OAUsQThLAwnagpvzSakGlVdBCaIjgpai",
+        "target": "YUikVoIqZlZiDOCdAiaKIzaoqXhdzEsu"
+      },
+      {
+        "source": "gaYZFHHXPZXaiMJNvexiYtqgHReOSmAI",
+        "target": "SbpCkkslQAOYuBxWZAQGxExlyCeOowRs"
+      },
+      {
+        "source": "gaYZFHHXPZXaiMJNvexiYtqgHReOSmAI",
+        "target": "ncMJfWDJJayKbUxBYxMWpIHWbKkdFOpn"
+      },
+      {
+        "source": "gaYZFHHXPZXaiMJNvexiYtqgHReOSmAI",
+        "target": "KyaPxRQsbFNGrNbGPHUBwIPdXAsLxOfw"
+      },
+      {
+        "source": "gaYZFHHXPZXaiMJNvexiYtqgHReOSmAI",
+        "target": "xeBGRQROaZvOvcIfiAPyImlYdrYFcWDv"
+      },
+      {
+        "source": "ccNKdPiRSxbMOSfXyqxNpQEwymmSUCcz",
+        "target": "jWGEAPKnnOdTfteejvyiwRKiHbwvXLsi"
+      },
+      {
+        "source": "ccNKdPiRSxbMOSfXyqxNpQEwymmSUCcz",
+        "target": "oCLcUlqNwvLGdcSPXSmWPggzsyvhcLcm"
+      },
+      {
+        "source": "ccNKdPiRSxbMOSfXyqxNpQEwymmSUCcz",
+        "target": "ncMJfWDJJayKbUxBYxMWpIHWbKkdFOpn"
+      },
+      {
+        "source": "ccNKdPiRSxbMOSfXyqxNpQEwymmSUCcz",
+        "target": "xeBGRQROaZvOvcIfiAPyImlYdrYFcWDv"
+      },
+      {
+        "source": "ccNKdPiRSxbMOSfXyqxNpQEwymmSUCcz",
+        "target": "KyaPxRQsbFNGrNbGPHUBwIPdXAsLxOfw"
+      },
+      {
+        "source": "ccNKdPiRSxbMOSfXyqxNpQEwymmSUCcz",
+        "target": "cRkjSueWqbMuSMgsvwdZHTjbolAMQbiH"
+      },
+      {
+        "source": "ccNKdPiRSxbMOSfXyqxNpQEwymmSUCcz",
+        "target": "LFEPuNlMZJfQwEAIVuDghhJyMFCblayE"
+      },
+      {
+        "source": "SbpCkkslQAOYuBxWZAQGxExlyCeOowRs",
+        "target": "HKyGesYTjnAyMdXxrPxEmesFZBoZtoTV"
+      },
+      {
+        "source": "uxKrEbfUpBvIQgLLzBBqVQHqmbEFraIy",
+        "target": "xeBGRQROaZvOvcIfiAPyImlYdrYFcWDv"
+      },
+      {
+        "source": "uxKrEbfUpBvIQgLLzBBqVQHqmbEFraIy",
+        "target": "mPrFDuCdFxQvlHSsILULPyhRtUGpnbNi"
+      },
+      {
+        "source": "uxKrEbfUpBvIQgLLzBBqVQHqmbEFraIy",
+        "target": "IOmXfQPFHsKXMHtoMVkSiRHEMJkIteMT"
+      },
+      {
+        "source": "oCLcUlqNwvLGdcSPXSmWPggzsyvhcLcm",
+        "target": "gaYZFHHXPZXaiMJNvexiYtqgHReOSmAI"
+      },
+      {
+        "source": "FAFGHAzQiLFApGVEhpZqqoduHdzHKJAV",
+        "target": "uxKrEbfUpBvIQgLLzBBqVQHqmbEFraIy"
+      },
+      {
+        "source": "awHIeuZKpRfLoLDWPugxaFFoGqaZixEd",
+        "target": "YUikVoIqZlZiDOCdAiaKIzaoqXhdzEsu"
+      },
+      {
+        "source": "awHIeuZKpRfLoLDWPugxaFFoGqaZixEd",
+        "target": "XPDZueOAmGXwDYkNVwhfrnwspjFvMNEV"
+      },
+      {
+        "source": "dMSTfGprNUFGxMEZpzGquzUAMQWGsxxx",
+        "target": "xeBGRQROaZvOvcIfiAPyImlYdrYFcWDv"
+      },
+      {
+        "source": "dMSTfGprNUFGxMEZpzGquzUAMQWGsxxx",
+        "target": "KyaPxRQsbFNGrNbGPHUBwIPdXAsLxOfw"
+      },
+      {
+        "source": "HKyGesYTjnAyMdXxrPxEmesFZBoZtoTV",
+        "target": "bEsJGoSSjBQdwOkbLvgHbafjwYIjuYiD"
+      },
+      {
+        "source": "lpZjPgTaigiGQTWTIdNEjBNiSExFYwxX",
+        "target": "ccNKdPiRSxbMOSfXyqxNpQEwymmSUCcz"
+      },
+      {
+        "source": "jWGEAPKnnOdTfteejvyiwRKiHbwvXLsi",
+        "target": "OAUsQThLAwnagpvzSakGlVdBCaIjgpai"
+      }
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "ExhGDrCXjzrubQaFZxpxlcYdQExUFXex"
+    },
+    "nodes": {
+      "ExhGDrCXjzrubQaFZxpxlcYdQExUFXex": {
+        "label": "handler fn() -> impl Future<Output = bool>: Handler<T, S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "uIinKliRvhfOdmXMQoWrfJRJDRLXFrfc": {
+        "label": "bool: IntoResponse",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "lLstNWWTdVDmPHJnmNkXvnBeLGAaqsVN": {
+        "label": "handler fn() -> impl Future<Output = bool>: IntoResponse",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "OPekplmpzeBVYiccfUpEpcxXgGfNoNfy": {
+        "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "ElVhOeSAbbJOMUVBmUEYETvgEYKhjLZn": {
+        "label": "impl<F, Fut, Res, S> Handler<(()), S> for Fwhere F: FnOnce<()> -> Fut + Clone + Send + 'staticFut: Future + SendRes: IntoResponse<..Fut as Future>::Output == Res",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "ExhGDrCXjzrubQaFZxpxlcYdQExUFXex",
+        "target": "OPekplmpzeBVYiccfUpEpcxXgGfNoNfy"
+      },
+      {
+        "source": "ExhGDrCXjzrubQaFZxpxlcYdQExUFXex",
+        "target": "ElVhOeSAbbJOMUVBmUEYETvgEYKhjLZn"
+      },
+      {
+        "source": "ElVhOeSAbbJOMUVBmUEYETvgEYKhjLZn",
+        "target": "uIinKliRvhfOdmXMQoWrfJRJDRLXFrfc"
+      },
+      {
+        "source": "OPekplmpzeBVYiccfUpEpcxXgGfNoNfy",
+        "target": "lLstNWWTdVDmPHJnmNkXvnBeLGAaqsVN"
+      }
+    ]
+  }
+}

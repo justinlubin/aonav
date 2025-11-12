@@ -1,0 +1,227 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "ZuGeuPeidfNGhdipAOruENyqCNXdgKNd"
+    },
+    "nodes": {
+      "TDiiDagyeASqPiffJuFORxZUmowQcHmA": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "uzaoETwFwpOdkGrrSGdiRUukKgQHGNYC": {
+        "label": "Text: SqlType",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "kzvWpwkjKAhapBPOSJNnvxVAyZRxNaoD": {
+        "label": "<name as Expression>::SqlType normalizes to _",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "wqFOKyZQsdyEtiWvnSqqqICTeBdBXbDi": {
+        "label": "Text: TypedExpressionType",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "lqQalSOJhAVKxWLbegnQbVjOzVlcZjza": {
+        "label": "Text: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "tvSchnrzQUYdLReeapCSzqIfynjvvmpy": {
+        "label": "Text: 'static",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "dwDLeifNuaCcKGCSSoQTlHGTlpSqnEcp": {
+        "label": "Text == <name as Expression>::SqlType",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "RiyaSMKBcJrlbvpuVTqKUSiseixKNnmH": {
+        "label": "Text: Expression",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "GwQGdNNYTmQOaaFExleytMnVRBXgAeUt": {
+        "label": "Text: SingleValue",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ZuGeuPeidfNGhdipAOruENyqCNXdgKNd": {
+        "label": "Text: AsExpression<<name as Expression>::SqlType>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "qnjKMupMwDqIzLvnoOmqRXLdnBLvHmUv": {
+        "label": "impl<ST> TypedExpressionType for STwhere ST: SingleValue",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "mtXUJNROonMtnUZXUaYMlNutFmZmAkRO": {
+        "label": "impl<T, ST> AsExpression<ST> for Twhere T: ExpressionST: SqlType + TypedExpressionType<..T as Expression>::SqlType == ST",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "MTSRaZSMwvXchATpHcBeLBgpisXKEOfF": {
+        "label": "impl SingleValue for Text",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "oRhFVuNvQYilflcvvPgZgmPNvGYfRxYg": {
+        "label": "impl Expression for name",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "RWmBFgYVQZXCmqhBXwyKtittzbMqswrk": {
+        "label": "impl SqlType for Text",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "yJZegsVOfpbmSjXTguOWoRqQsKbZlmNJ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "laYfXdeWauspcpxXrnhprRxVWvOkjned": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "WmShMKUhUeagyWutTHxnyCXYhYgdDLMe": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "NHAvCdKmFzSrIfPaEOYbLUTikmFllhbD": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "tdZulUbkWnscKYrPrmAbnYaeYTdbqxgL": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "mQwKnhsHbzbNKdXJoGjHRfmIpXUxAUbQ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "TDyskkeoREmbhcJJcWDCvKPpsMMefrHZ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "dwDLeifNuaCcKGCSSoQTlHGTlpSqnEcp",
+        "target": "TDiiDagyeASqPiffJuFORxZUmowQcHmA"
+      },
+      {
+        "source": "TDiiDagyeASqPiffJuFORxZUmowQcHmA",
+        "target": "kzvWpwkjKAhapBPOSJNnvxVAyZRxNaoD"
+      },
+      {
+        "source": "uzaoETwFwpOdkGrrSGdiRUukKgQHGNYC",
+        "target": "RWmBFgYVQZXCmqhBXwyKtittzbMqswrk"
+      },
+      {
+        "source": "ZuGeuPeidfNGhdipAOruENyqCNXdgKNd",
+        "target": "mtXUJNROonMtnUZXUaYMlNutFmZmAkRO"
+      },
+      {
+        "source": "wqFOKyZQsdyEtiWvnSqqqICTeBdBXbDi",
+        "target": "qnjKMupMwDqIzLvnoOmqRXLdnBLvHmUv"
+      },
+      {
+        "source": "mtXUJNROonMtnUZXUaYMlNutFmZmAkRO",
+        "target": "wqFOKyZQsdyEtiWvnSqqqICTeBdBXbDi"
+      },
+      {
+        "source": "mtXUJNROonMtnUZXUaYMlNutFmZmAkRO",
+        "target": "dwDLeifNuaCcKGCSSoQTlHGTlpSqnEcp"
+      },
+      {
+        "source": "mtXUJNROonMtnUZXUaYMlNutFmZmAkRO",
+        "target": "uzaoETwFwpOdkGrrSGdiRUukKgQHGNYC"
+      },
+      {
+        "source": "mtXUJNROonMtnUZXUaYMlNutFmZmAkRO",
+        "target": "RiyaSMKBcJrlbvpuVTqKUSiseixKNnmH"
+      },
+      {
+        "source": "mtXUJNROonMtnUZXUaYMlNutFmZmAkRO",
+        "target": "lqQalSOJhAVKxWLbegnQbVjOzVlcZjza"
+      },
+      {
+        "source": "MTSRaZSMwvXchATpHcBeLBgpisXKEOfF",
+        "target": "tvSchnrzQUYdLReeapCSzqIfynjvvmpy"
+      },
+      {
+        "source": "RWmBFgYVQZXCmqhBXwyKtittzbMqswrk",
+        "target": "tvSchnrzQUYdLReeapCSzqIfynjvvmpy"
+      },
+      {
+        "source": "qnjKMupMwDqIzLvnoOmqRXLdnBLvHmUv",
+        "target": "GwQGdNNYTmQOaaFExleytMnVRBXgAeUt"
+      },
+      {
+        "source": "qnjKMupMwDqIzLvnoOmqRXLdnBLvHmUv",
+        "target": "lqQalSOJhAVKxWLbegnQbVjOzVlcZjza"
+      },
+      {
+        "source": "kzvWpwkjKAhapBPOSJNnvxVAyZRxNaoD",
+        "target": "oRhFVuNvQYilflcvvPgZgmPNvGYfRxYg"
+      },
+      {
+        "source": "GwQGdNNYTmQOaaFExleytMnVRBXgAeUt",
+        "target": "MTSRaZSMwvXchATpHcBeLBgpisXKEOfF"
+      },
+      {
+        "source": "dwDLeifNuaCcKGCSSoQTlHGTlpSqnEcp",
+        "target": "yJZegsVOfpbmSjXTguOWoRqQsKbZlmNJ"
+      },
+      {
+        "source": "kzvWpwkjKAhapBPOSJNnvxVAyZRxNaoD",
+        "target": "laYfXdeWauspcpxXrnhprRxVWvOkjned"
+      },
+      {
+        "source": "wqFOKyZQsdyEtiWvnSqqqICTeBdBXbDi",
+        "target": "WmShMKUhUeagyWutTHxnyCXYhYgdDLMe"
+      },
+      {
+        "source": "lqQalSOJhAVKxWLbegnQbVjOzVlcZjza",
+        "target": "NHAvCdKmFzSrIfPaEOYbLUTikmFllhbD"
+      },
+      {
+        "source": "GwQGdNNYTmQOaaFExleytMnVRBXgAeUt",
+        "target": "tdZulUbkWnscKYrPrmAbnYaeYTdbqxgL"
+      },
+      {
+        "source": "tvSchnrzQUYdLReeapCSzqIfynjvvmpy",
+        "target": "mQwKnhsHbzbNKdXJoGjHRfmIpXUxAUbQ"
+      },
+      {
+        "source": "uzaoETwFwpOdkGrrSGdiRUukKgQHGNYC",
+        "target": "TDyskkeoREmbhcJJcWDCvKPpsMMefrHZ"
+      }
+    ]
+  }
+}
