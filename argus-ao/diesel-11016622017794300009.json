@@ -18,20 +18,14 @@
         "kind": "AND"
       }
     },
-    "1": {
-      "label": "(table): Table",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "2": {
-      "label": "_: SelectDsl<id>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
     "5": {
       "label": "(table): Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "3": {
+      "label": "<(table) as AsQuery>::Query == _",
       "metadata": {
         "kind": "OR"
       }
@@ -42,8 +36,14 @@
         "kind": "OR"
       }
     },
-    "3": {
-      "label": "<(table) as AsQuery>::Query == _",
+    "2": {
+      "label": "_: SelectDsl<id>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "1": {
+      "label": "(table): Table",
       "metadata": {
         "kind": "OR"
       }
@@ -131,8 +131,8 @@
       "target": "6"
     },
     {
-      "source": "2147483648",
-      "target": "1"
+      "source": "8",
+      "target": "2147483700"
     },
     {
       "source": "2147483648",
@@ -140,23 +140,23 @@
     },
     {
       "source": "2147483648",
-      "target": "2"
-    },
-    {
-      "source": "2147483648",
       "target": "3"
     },
     {
       "source": "2147483648",
-      "target": "8"
+      "target": "2"
     },
     {
       "source": "2147483648",
       "target": "5"
     },
     {
-      "source": "8",
-      "target": "2147483700"
+      "source": "2147483648",
+      "target": "1"
+    },
+    {
+      "source": "2147483648",
+      "target": "8"
     },
     {
       "source": "0",

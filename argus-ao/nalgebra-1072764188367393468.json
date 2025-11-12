@@ -1,0 +1,178 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "3": {
+      "label": "T: Zero",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "4": {
+      "label": "T: ClosedAdd",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "5": {
+      "label": "_: Dim",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "1": {
+      "label": "T: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "7": {
+      "label": "CsrMatrix<T>: ZeroablePrimitive",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2": {
+      "label": "T: Scalar",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "8": {
+      "label": "CsrMatrix<T>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "6": {
+      "label": "_: RawStorage<T, _, _>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "0": {
+      "label": "CsrMatrix<T>: From<T>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2147484147": {
+      "label": "impl<T> From<NonZero<T>> for Twhere T: ZeroablePrimitive",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147484444": {
+      "label": "impl<'a, T> From<&'a CscMatrix<T>> for CsrMatrix<T>where T: Scalar",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147484148": {
+      "label": "impl<T> From<T> for T",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147484460": {
+      "label": "impl<'a, T, R, C, S> From<&'a Matrix<TRCS>> for CsrMatrix<T>where T: Scalar + ZeroR: DimC: DimS: RawStorage<TRC>",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147484443": {
+      "label": "impl<'a, T> From<&'a CooMatrix<T>> for CsrMatrix<T>where T: Scalar + Zero + ClosedAdd",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-1": {
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "2147484147",
+      "target": "8"
+    },
+    {
+      "source": "2147484147",
+      "target": "7"
+    },
+    {
+      "source": "2147484460",
+      "target": "1"
+    },
+    {
+      "source": "2147484460",
+      "target": "3"
+    },
+    {
+      "source": "2147484460",
+      "target": "6"
+    },
+    {
+      "source": "2147484460",
+      "target": "2"
+    },
+    {
+      "source": "2147484460",
+      "target": "5"
+    },
+    {
+      "source": "0",
+      "target": "2147484443"
+    },
+    {
+      "source": "0",
+      "target": "2147484444"
+    },
+    {
+      "source": "0",
+      "target": "2147484460"
+    },
+    {
+      "source": "0",
+      "target": "2147484147"
+    },
+    {
+      "source": "0",
+      "target": "2147484148"
+    },
+    {
+      "source": "2147484443",
+      "target": "3"
+    },
+    {
+      "source": "2147484443",
+      "target": "4"
+    },
+    {
+      "source": "2147484443",
+      "target": "2"
+    },
+    {
+      "source": "2147484443",
+      "target": "1"
+    },
+    {
+      "source": "2147484444",
+      "target": "1"
+    },
+    {
+      "source": "2147484444",
+      "target": "2"
+    },
+    {
+      "source": "2147484148",
+      "target": "8"
+    },
+    {
+      "source": "8",
+      "target": "-1"
+    }
+  ]
+} }

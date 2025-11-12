@@ -1,0 +1,54 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "0": {
+      "label": "(&str, &str): ToString",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "1": {
+      "label": "&str: ToString",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2": {
+      "label": "&str: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2147483649": {
+      "label": "impl<S, T> ToString for (S, T)where S: ToStringT: ToString",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-1": {
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "2147483649",
+      "target": "1"
+    },
+    {
+      "source": "2147483649",
+      "target": "2"
+    },
+    {
+      "source": "0",
+      "target": "2147483649"
+    },
+    {
+      "source": "2",
+      "target": "-1"
+    }
+  ]
+} }

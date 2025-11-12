@@ -68,32 +68,8 @@
         "kind": "AND"
       }
     },
-    "14": {
-      "label": "<handler ..fn(&A) -> impl Future<Output = ()> as FnOnce<(&A)>>::Output == impl Future<Output = ()>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "15": {
-      "label": "<handler ..fn(&A) -> impl Future<Output = ()> as FnOnce<(&A)>>::Output == impl Future<Output = ()>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "13": {
-      "label": "&A: Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "9": {
-      "label": "handler fn(&A) -> impl Future<Output = ()>: Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "8": {
-      "label": "handler fn(&A) -> impl Future<Output = ()>: Clone",
+    "24": {
+      "label": "impl Future<Output = ()>: Sized",
       "metadata": {
         "kind": "OR"
       }
@@ -104,62 +80,8 @@
         "kind": "OR"
       }
     },
-    "0": {
-      "label": "handler fn(&A) -> impl Future<Output = ()>: Handler<T, S>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "5": {
-      "label": "_: Send",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "12": {
-      "label": "&A: FromRequestParts<S>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "7": {
-      "label": "handler fn(&A) -> impl Future<Output = ()>: Send",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "20": {
-      "label": "handler fn(&A) -> impl Future<Output = ()>: FnOnce<(&A)>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "6": {
-      "label": "handler fn(&A) -> impl Future<Output = ()>: 'static",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "17": {
-      "label": "(): Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "21": {
-      "label": "impl Future<Output = ()>: Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "24": {
-      "label": "impl Future<Output = ()>: Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "18": {
-      "label": "&A: Send",
+    "19": {
+      "label": "A: Sync",
       "metadata": {
         "kind": "OR"
       }
@@ -170,8 +92,50 @@
         "kind": "OR"
       }
     },
-    "16": {
-      "label": "<impl Future<Output = ()> as Future>::Output == ()",
+    "11": {
+      "label": "&A: FromRequest<S, _>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "18": {
+      "label": "&A: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "20": {
+      "label": "handler fn(&A) -> impl Future<Output = ()>: FnOnce<(&A)>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "9": {
+      "label": "handler fn(&A) -> impl Future<Output = ()>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "13": {
+      "label": "&A: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "14": {
+      "label": "<handler ..fn(&A) -> impl Future<Output = ()> as FnOnce<(&A)>>::Output == impl Future<Output = ()>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "23": {
+      "label": "impl Future<Output = ()> == impl Future<Output = ()>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "8": {
+      "label": "handler fn(&A) -> impl Future<Output = ()>: Clone",
       "metadata": {
         "kind": "OR"
       }
@@ -188,26 +152,8 @@
         "kind": "OR"
       }
     },
-    "19": {
-      "label": "A: Sync",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "23": {
-      "label": "impl Future<Output = ()> == impl Future<Output = ()>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
     "45": {
       "label": "handler fn(&A) -> impl Future<Output = ()>: IntoResponse",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "10": {
-      "label": "S: Sync",
       "metadata": {
         "kind": "OR"
       }
@@ -218,20 +164,74 @@
         "kind": "OR"
       }
     },
-    "11": {
-      "label": "&A: FromRequest<S, _>",
+    "5": {
+      "label": "_: Send",
       "metadata": {
         "kind": "OR"
       }
     },
-    "2147483652": {
-      "label": "impl<F, Fut, S, Res, M, T1> Handler<(MT1), S> for Fwhere F: FnOnce<(T1)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
+    "10": {
+      "label": "S: Sync",
       "metadata": {
-        "kind": "AND"
+        "kind": "OR"
+      }
+    },
+    "0": {
+      "label": "handler fn(&A) -> impl Future<Output = ()>: Handler<T, S>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "6": {
+      "label": "handler fn(&A) -> impl Future<Output = ()>: 'static",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "16": {
+      "label": "<impl Future<Output = ()> as Future>::Output == ()",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "7": {
+      "label": "handler fn(&A) -> impl Future<Output = ()>: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "12": {
+      "label": "&A: FromRequestParts<S>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "17": {
+      "label": "(): Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "21": {
+      "label": "impl Future<Output = ()>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "15": {
+      "label": "<handler ..fn(&A) -> impl Future<Output = ()> as FnOnce<(&A)>>::Output == impl Future<Output = ()>",
+      "metadata": {
+        "kind": "OR"
       }
     },
     "2147484063": {
       "label": "impl<T> Send for &'_ Twhere T: Sync",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147485819": {
+      "label": "impl<S, T> FromRequest<S, ViaParts> for Twhere S: Send + SyncT: FromRequestParts<S>",
       "metadata": {
         "kind": "AND"
       }
@@ -242,8 +242,8 @@
         "kind": "AND"
       }
     },
-    "2147485819": {
-      "label": "impl<S, T> FromRequest<S, ViaParts> for Twhere S: Send + SyncT: FromRequestParts<S>",
+    "2147483652": {
+      "label": "impl<F, Fut, S, Res, M, T1> Handler<(MT1), S> for Fwhere F: FnOnce<(T1)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
       "metadata": {
         "kind": "AND"
       }
@@ -352,7 +352,7 @@
   },
   "edges": [
     {
-      "source": "6",
+      "source": "14",
       "target": "-1"
     },
     {
@@ -360,15 +360,15 @@
       "target": "15"
     },
     {
-      "source": "2",
+      "source": "22",
       "target": "-2"
     },
     {
       "source": "-2",
-      "target": "21"
+      "target": "23"
     },
     {
-      "source": "9",
+      "source": "17",
       "target": "-3"
     },
     {
@@ -376,23 +376,23 @@
       "target": "21"
     },
     {
-      "source": "14",
+      "source": "9",
       "target": "-4"
     },
     {
       "source": "-4",
-      "target": "15"
+      "target": "21"
     },
     {
-      "source": "22",
+      "source": "13",
       "target": "-5"
     },
     {
       "source": "-5",
-      "target": "23"
+      "target": "21"
     },
     {
-      "source": "8",
+      "source": "10",
       "target": "-6"
     },
     {
@@ -400,7 +400,7 @@
       "target": "21"
     },
     {
-      "source": "19",
+      "source": "8",
       "target": "-7"
     },
     {
@@ -416,7 +416,7 @@
       "target": "21"
     },
     {
-      "source": "13",
+      "source": "7",
       "target": "-9"
     },
     {
@@ -424,7 +424,7 @@
       "target": "21"
     },
     {
-      "source": "7",
+      "source": "19",
       "target": "-10"
     },
     {
@@ -432,7 +432,7 @@
       "target": "21"
     },
     {
-      "source": "10",
+      "source": "5",
       "target": "-11"
     },
     {
@@ -440,15 +440,15 @@
       "target": "21"
     },
     {
-      "source": "5",
+      "source": "6",
       "target": "-12"
     },
     {
       "source": "-12",
-      "target": "21"
+      "target": "15"
     },
     {
-      "source": "17",
+      "source": "2",
       "target": "-13"
     },
     {
@@ -456,112 +456,12 @@
       "target": "21"
     },
     {
-      "source": "18",
-      "target": "2147484063"
-    },
-    {
-      "source": "2147483649",
-      "target": "6"
-    },
-    {
-      "source": "2147483649",
-      "target": "45"
-    },
-    {
-      "source": "2147483649",
-      "target": "9"
-    },
-    {
-      "source": "2147483649",
-      "target": "2"
-    },
-    {
-      "source": "2147483649",
-      "target": "7"
-    },
-    {
-      "source": "2147483649",
-      "target": "8"
-    },
-    {
-      "source": "2147485819",
-      "target": "2"
-    },
-    {
-      "source": "2147485819",
-      "target": "5"
-    },
-    {
-      "source": "2147485819",
-      "target": "13"
-    },
-    {
-      "source": "2147485819",
-      "target": "10"
-    },
-    {
-      "source": "2147485819",
-      "target": "12"
-    },
-    {
-      "source": "0",
-      "target": "2147483649"
-    },
-    {
-      "source": "0",
-      "target": "2147483652"
-    },
-    {
-      "source": "26",
-      "target": "2147483716"
-    },
-    {
-      "source": "2147483652",
-      "target": "27"
-    },
-    {
-      "source": "2147483652",
-      "target": "16"
-    },
-    {
-      "source": "2147483652",
-      "target": "18"
-    },
-    {
-      "source": "2147483652",
-      "target": "22"
-    },
-    {
       "source": "2147483652",
       "target": "11"
     },
     {
       "source": "2147483652",
-      "target": "25"
-    },
-    {
-      "source": "2147483652",
-      "target": "26"
-    },
-    {
-      "source": "2147483652",
-      "target": "5"
-    },
-    {
-      "source": "2147483652",
       "target": "7"
-    },
-    {
-      "source": "2147483652",
-      "target": "9"
-    },
-    {
-      "source": "2147483652",
-      "target": "13"
-    },
-    {
-      "source": "2147483652",
-      "target": "6"
     },
     {
       "source": "2147483652",
@@ -569,15 +469,11 @@
     },
     {
       "source": "2147483652",
-      "target": "2"
+      "target": "5"
     },
     {
       "source": "2147483652",
-      "target": "8"
-    },
-    {
-      "source": "2147483652",
-      "target": "24"
+      "target": "18"
     },
     {
       "source": "2147483652",
@@ -585,19 +481,123 @@
     },
     {
       "source": "2147483652",
+      "target": "16"
+    },
+    {
+      "source": "2147483652",
+      "target": "2"
+    },
+    {
+      "source": "2147483652",
       "target": "14"
+    },
+    {
+      "source": "2147483652",
+      "target": "8"
+    },
+    {
+      "source": "2147483652",
+      "target": "27"
+    },
+    {
+      "source": "2147483652",
+      "target": "13"
+    },
+    {
+      "source": "2147483652",
+      "target": "26"
+    },
+    {
+      "source": "2147483652",
+      "target": "6"
+    },
+    {
+      "source": "2147483652",
+      "target": "24"
+    },
+    {
+      "source": "2147483652",
+      "target": "25"
     },
     {
       "source": "2147483652",
       "target": "20"
     },
     {
+      "source": "2147483652",
+      "target": "22"
+    },
+    {
+      "source": "2147483652",
+      "target": "9"
+    },
+    {
+      "source": "0",
+      "target": "2147483652"
+    },
+    {
+      "source": "0",
+      "target": "2147483649"
+    },
+    {
       "source": "2147484063",
       "target": "19"
     },
     {
+      "source": "2147485819",
+      "target": "2"
+    },
+    {
+      "source": "2147485819",
+      "target": "13"
+    },
+    {
+      "source": "2147485819",
+      "target": "5"
+    },
+    {
+      "source": "2147485819",
+      "target": "12"
+    },
+    {
+      "source": "2147485819",
+      "target": "10"
+    },
+    {
+      "source": "26",
+      "target": "2147483716"
+    },
+    {
+      "source": "2147483649",
+      "target": "9"
+    },
+    {
+      "source": "2147483649",
+      "target": "7"
+    },
+    {
+      "source": "2147483649",
+      "target": "8"
+    },
+    {
+      "source": "2147483649",
+      "target": "45"
+    },
+    {
+      "source": "2147483649",
+      "target": "6"
+    },
+    {
+      "source": "2147483649",
+      "target": "2"
+    },
+    {
       "source": "11",
       "target": "2147485819"
+    },
+    {
+      "source": "18",
+      "target": "2147484063"
     },
     {
       "source": "6",

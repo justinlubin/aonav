@@ -68,26 +68,8 @@
         "kind": "AND"
       }
     },
-    "26": {
-      "label": "<impl Future<Output = ()> as Future>::Output == ()",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "18": {
-      "label": "String: 'static",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "9": {
-      "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "14": {
-      "label": "Request<Body>: FromRequestParts<S>",
+    "52": {
+      "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: IntoResponse",
       "metadata": {
         "kind": "OR"
       }
@@ -98,62 +80,8 @@
         "kind": "OR"
       }
     },
-    "19": {
-      "label": "String: Clone",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "36": {
-      "label": "(): IntoResponse",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "11": {
-      "label": "S: Sync",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "13": {
-      "label": "S: 'static",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "15": {
-      "label": "Extension<String>: FromRequest<S, _>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "0": {
-      "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: Handler<T, S>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "20": {
-      "label": "String: Send",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "23": {
-      "label": "Extension<String>: Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "28": {
-      "label": "Extension<String>: Send",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "5": {
-      "label": "_: Send",
+    "7": {
+      "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: Send",
       "metadata": {
         "kind": "OR"
       }
@@ -164,32 +92,20 @@
         "kind": "OR"
       }
     },
-    "6": {
-      "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: 'static",
+    "25": {
+      "label": "<handler ..fn(Request<Body>, Extension<String>) -> impl Future<Output = ()> as FnOnce<(Request<Body>Extension<String>)>>::Output == impl Future<Output = ()>",
       "metadata": {
         "kind": "OR"
       }
     },
-    "2": {
-      "label": "S: Sized",
+    "18": {
+      "label": "String: 'static",
       "metadata": {
         "kind": "OR"
       }
     },
-    "34": {
-      "label": "impl Future<Output = ()>: Send",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "21": {
-      "label": "Vec<u8>: Send",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "35": {
-      "label": "Request<Body>: Send",
+    "15": {
+      "label": "Extension<String>: FromRequest<S, _>",
       "metadata": {
         "kind": "OR"
       }
@@ -200,38 +116,8 @@
         "kind": "OR"
       }
     },
-    "16": {
-      "label": "Extension<String>: FromRequestParts<S>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "7": {
-      "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: Send",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "25": {
-      "label": "<handler ..fn(Request<Body>, Extension<String>) -> impl Future<Output = ()> as FnOnce<(Request<Body>Extension<String>)>>::Output == impl Future<Output = ()>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "8": {
-      "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: Clone",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "52": {
-      "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: IntoResponse",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "27": {
-      "label": "(): Sized",
+    "17": {
+      "label": "String: Sized",
       "metadata": {
         "kind": "OR"
       }
@@ -242,8 +128,68 @@
         "kind": "OR"
       }
     },
-    "29": {
-      "label": "Request<Body>: Sized",
+    "0": {
+      "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: Handler<T, S>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "6": {
+      "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: 'static",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "5": {
+      "label": "_: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "9": {
+      "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "35": {
+      "label": "Request<Body>: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "20": {
+      "label": "String: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "28": {
+      "label": "Extension<String>: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "36": {
+      "label": "(): IntoResponse",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "14": {
+      "label": "Request<Body>: FromRequestParts<S>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "21": {
+      "label": "Vec<u8>: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "34": {
+      "label": "impl Future<Output = ()>: Send",
       "metadata": {
         "kind": "OR"
       }
@@ -254,8 +200,38 @@
         "kind": "OR"
       }
     },
-    "17": {
-      "label": "String: Sized",
+    "8": {
+      "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: Clone",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "11": {
+      "label": "S: Sync",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2": {
+      "label": "S: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "26": {
+      "label": "<impl Future<Output = ()> as Future>::Output == ()",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "29": {
+      "label": "Request<Body>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "23": {
+      "label": "Extension<String>: Sized",
       "metadata": {
         "kind": "OR"
       }
@@ -266,26 +242,32 @@
         "kind": "OR"
       }
     },
-    "2147483649": {
-      "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+    "16": {
+      "label": "Extension<String>: FromRequestParts<S>",
       "metadata": {
-        "kind": "AND"
+        "kind": "OR"
       }
     },
-    "2147484569": {
-      "label": "impl Clone for String",
+    "19": {
+      "label": "String: Clone",
       "metadata": {
-        "kind": "AND"
+        "kind": "OR"
+      }
+    },
+    "27": {
+      "label": "(): Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "13": {
+      "label": "S: 'static",
+      "metadata": {
+        "kind": "OR"
       }
     },
     "2147485819": {
       "label": "impl<S, T> FromRequest<S, ViaParts> for Twhere S: Send + SyncT: FromRequestParts<S>",
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "2147483716": {
-      "label": "impl IntoResponse for ()",
       "metadata": {
         "kind": "AND"
       }
@@ -296,8 +278,26 @@
         "kind": "AND"
       }
     },
+    "2147483649": {
+      "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
     "2147483653": {
       "label": "impl<F, Fut, S, Res, M, T1, T2> Handler<(MT1T2), S> for Fwhere F: FnOnce<(T1T2)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequestParts<S> + SendT2: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483716": {
+      "label": "impl IntoResponse for ()",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147484569": {
+      "label": "impl Clone for String",
       "metadata": {
         "kind": "AND"
       }
@@ -430,15 +430,15 @@
   },
   "edges": [
     {
-      "source": "20",
+      "source": "13",
       "target": "-1"
     },
     {
       "source": "-1",
-      "target": "21"
+      "target": "25"
     },
     {
-      "source": "18",
+      "source": "24",
       "target": "-2"
     },
     {
@@ -446,7 +446,7 @@
       "target": "25"
     },
     {
-      "source": "2",
+      "source": "8",
       "target": "-3"
     },
     {
@@ -454,7 +454,7 @@
       "target": "21"
     },
     {
-      "source": "7",
+      "source": "2",
       "target": "-4"
     },
     {
@@ -462,7 +462,7 @@
       "target": "21"
     },
     {
-      "source": "17",
+      "source": "7",
       "target": "-5"
     },
     {
@@ -470,7 +470,7 @@
       "target": "21"
     },
     {
-      "source": "9",
+      "source": "11",
       "target": "-6"
     },
     {
@@ -478,23 +478,23 @@
       "target": "21"
     },
     {
-      "source": "8",
+      "source": "31",
       "target": "-7"
     },
     {
       "source": "-7",
-      "target": "21"
+      "target": "32"
     },
     {
-      "source": "31",
+      "source": "20",
       "target": "-8"
     },
     {
       "source": "-8",
-      "target": "32"
+      "target": "21"
     },
     {
-      "source": "11",
+      "source": "5",
       "target": "-9"
     },
     {
@@ -502,7 +502,7 @@
       "target": "21"
     },
     {
-      "source": "24",
+      "source": "6",
       "target": "-10"
     },
     {
@@ -510,7 +510,7 @@
       "target": "25"
     },
     {
-      "source": "5",
+      "source": "17",
       "target": "-11"
     },
     {
@@ -518,7 +518,7 @@
       "target": "21"
     },
     {
-      "source": "6",
+      "source": "18",
       "target": "-12"
     },
     {
@@ -526,28 +526,20 @@
       "target": "25"
     },
     {
-      "source": "13",
+      "source": "9",
       "target": "-13"
     },
     {
       "source": "-13",
-      "target": "25"
-    },
-    {
-      "source": "19",
-      "target": "2147484569"
-    },
-    {
-      "source": "2147485819",
-      "target": "5"
-    },
-    {
-      "source": "2147485819",
-      "target": "11"
+      "target": "21"
     },
     {
       "source": "2147485819",
       "target": "2"
+    },
+    {
+      "source": "2147485819",
+      "target": "5"
     },
     {
       "source": "2147485819",
@@ -555,119 +547,11 @@
     },
     {
       "source": "2147485819",
-      "target": "23"
-    },
-    {
-      "source": "0",
-      "target": "2147483649"
-    },
-    {
-      "source": "0",
-      "target": "2147483653"
-    },
-    {
-      "source": "15",
-      "target": "2147485819"
-    },
-    {
-      "source": "2147483649",
-      "target": "52"
-    },
-    {
-      "source": "2147483649",
-      "target": "2"
-    },
-    {
-      "source": "2147483649",
-      "target": "6"
-    },
-    {
-      "source": "2147483649",
-      "target": "9"
-    },
-    {
-      "source": "2147483649",
-      "target": "8"
-    },
-    {
-      "source": "2147483649",
-      "target": "7"
-    },
-    {
-      "source": "2147485855",
-      "target": "5"
-    },
-    {
-      "source": "2147485855",
-      "target": "2"
-    },
-    {
-      "source": "2147485855",
-      "target": "18"
-    },
-    {
-      "source": "2147485855",
-      "target": "19"
-    },
-    {
-      "source": "2147485855",
-      "target": "20"
-    },
-    {
-      "source": "2147485855",
-      "target": "22"
-    },
-    {
-      "source": "2147485855",
       "target": "11"
     },
     {
-      "source": "2147485855",
-      "target": "17"
-    },
-    {
-      "source": "2147483653",
-      "target": "2"
-    },
-    {
-      "source": "2147483653",
-      "target": "14"
-    },
-    {
-      "source": "2147483653",
-      "target": "36"
-    },
-    {
-      "source": "2147483653",
-      "target": "24"
-    },
-    {
-      "source": "2147483653",
-      "target": "31"
-    },
-    {
-      "source": "2147483653",
-      "target": "8"
-    },
-    {
-      "source": "2147483653",
-      "target": "9"
-    },
-    {
-      "source": "2147483653",
-      "target": "15"
-    },
-    {
-      "source": "2147483653",
-      "target": "28"
-    },
-    {
-      "source": "2147483653",
-      "target": "34"
-    },
-    {
-      "source": "2147483653",
-      "target": "35"
+      "source": "2147485819",
+      "target": "23"
     },
     {
       "source": "2147483653",
@@ -675,15 +559,23 @@
     },
     {
       "source": "2147483653",
+      "target": "28"
+    },
+    {
+      "source": "2147483653",
       "target": "11"
     },
     {
       "source": "2147483653",
-      "target": "27"
+      "target": "5"
     },
     {
       "source": "2147483653",
-      "target": "29"
+      "target": "15"
+    },
+    {
+      "source": "2147483653",
+      "target": "23"
     },
     {
       "source": "2147483653",
@@ -691,7 +583,43 @@
     },
     {
       "source": "2147483653",
+      "target": "24"
+    },
+    {
+      "source": "2147483653",
       "target": "30"
+    },
+    {
+      "source": "2147483653",
+      "target": "9"
+    },
+    {
+      "source": "2147483653",
+      "target": "26"
+    },
+    {
+      "source": "2147483653",
+      "target": "36"
+    },
+    {
+      "source": "2147483653",
+      "target": "14"
+    },
+    {
+      "source": "2147483653",
+      "target": "27"
+    },
+    {
+      "source": "2147483653",
+      "target": "2"
+    },
+    {
+      "source": "2147483653",
+      "target": "8"
+    },
+    {
+      "source": "2147483653",
+      "target": "34"
     },
     {
       "source": "2147483653",
@@ -703,15 +631,43 @@
     },
     {
       "source": "2147483653",
-      "target": "5"
+      "target": "35"
     },
     {
       "source": "2147483653",
-      "target": "23"
+      "target": "29"
     },
     {
       "source": "2147483653",
-      "target": "26"
+      "target": "31"
+    },
+    {
+      "source": "15",
+      "target": "2147485819"
+    },
+    {
+      "source": "2147483649",
+      "target": "9"
+    },
+    {
+      "source": "2147483649",
+      "target": "6"
+    },
+    {
+      "source": "2147483649",
+      "target": "2"
+    },
+    {
+      "source": "2147483649",
+      "target": "8"
+    },
+    {
+      "source": "2147483649",
+      "target": "7"
+    },
+    {
+      "source": "2147483649",
+      "target": "52"
     },
     {
       "source": "36",
@@ -720,6 +676,50 @@
     {
       "source": "16",
       "target": "2147485855"
+    },
+    {
+      "source": "0",
+      "target": "2147483649"
+    },
+    {
+      "source": "0",
+      "target": "2147483653"
+    },
+    {
+      "source": "2147485855",
+      "target": "11"
+    },
+    {
+      "source": "2147485855",
+      "target": "18"
+    },
+    {
+      "source": "2147485855",
+      "target": "5"
+    },
+    {
+      "source": "2147485855",
+      "target": "2"
+    },
+    {
+      "source": "2147485855",
+      "target": "17"
+    },
+    {
+      "source": "2147485855",
+      "target": "20"
+    },
+    {
+      "source": "2147485855",
+      "target": "22"
+    },
+    {
+      "source": "2147485855",
+      "target": "19"
+    },
+    {
+      "source": "19",
+      "target": "2147484569"
     },
     {
       "source": "6",

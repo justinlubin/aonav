@@ -1,0 +1,647 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "-1": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-2": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-3": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-4": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-5": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-6": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-7": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-8": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "11": {
+      "label": "char: Hash",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "18": {
+      "label": "Json: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "21": {
+      "label": "char: Clone",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "23": {
+      "label": "&str: Into<_>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "27": {
+      "label": "Map<Map<Then<Map<Then<Just<charcharSimple<char_>>Repeated<Or<Filter<closure#2Simple<char_>>Map<Then<Just<charcharSimple<char_>>Or<Or<Or<Or<Or<Or<Or<Or<Just<charcharSimple<char_>>Just<charcharSimple<char_>>>Just<charcharSimple<char_>>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>Map<Then<Just<charcharSimple<char_>>Validate<Map<Repeated<Filter<closureSimple<char_>>>fn(Vec<char>) -> StringVec<char>>Stringclosure#1>>fn((charchar)) -> char(charchar)>>>fn((charchar)) -> char(charchar)>>>>fn((charVec<char>)) -> Vec<char>(charVec<char>)>Just<charcharSimple<char_>>>fn((Vec<char>char)) -> Vec<char>(Vec<char>char)>, fn(Vec<char>) -> String, Vec<char>>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "16": {
+      "label": "String: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "0": {
+      "label": "Label<Map<Map<Then<Map<Then<Just<charcharSimple<char_>>Repeated<Or<Filter<closure#2Simple<char_>>Map<Then<Just<charcharSimple<char_>>Or<Or<Or<Or<Or<Or<Or<Or<Just<charcharSimple<char_>>Just<charcharSimple<char_>>>Just<charcharSimple<char_>>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>Map<Then<Just<charcharSimple<char_>>Validate<Map<Repeated<Filter<closureSimple<char_>>>fn(Vec<char>) -> StringVec<char>>Stringclosure#1>>fn((charchar)) -> char(charchar)>>>fn((charchar)) -> char(charchar)>>>>fn((charVec<char>)) -> Vec<char>(charVec<char>)>Just<charcharSimple<char_>>>fn((Vec<char>char)) -> Vec<char>(Vec<char>char)>fn(Vec<char>) -> StringVec<char>>, &str>: Parser<char, Json>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "25": {
+      "label": "&str: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "26": {
+      "label": "&str: Clone",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "10": {
+      "label": "char: FnPtr",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "19": {
+      "label": "fn(Vec<char>) -> String: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "13": {
+      "label": "<fn(Vec<char>) -> String as FnOnce<(Vec<char>)>>::Output == Json",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "1": {
+      "label": "Map<Map<Then<Map<Then<Just<charcharSimple<char_>>Repeated<Or<Filter<closure#2Simple<char_>>Map<Then<Just<charcharSimple<char_>>Or<Or<Or<Or<Or<Or<Or<Or<Just<charcharSimple<char_>>Just<charcharSimple<char_>>>Just<charcharSimple<char_>>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>Map<Then<Just<charcharSimple<char_>>Validate<Map<Repeated<Filter<closureSimple<char_>>>fn(Vec<char>) -> StringVec<char>>Stringclosure#1>>fn((charchar)) -> char(charchar)>>>fn((charchar)) -> char(charchar)>>>>fn((charVec<char>)) -> Vec<char>(charVec<char>)>Just<charcharSimple<char_>>>fn((Vec<char>char)) -> Vec<char>(Vec<char>char)>, fn(Vec<char>) -> String, Vec<char>>: Parser<char, Json>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "4": {
+      "label": "_: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "15": {
+      "label": "fn(Vec<char>) -> String: Fn<(Vec<char>)>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "24": {
+      "label": "_: From<&str>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "8": {
+      "label": "char: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "12": {
+      "label": "<fn(Vec<char>) -> String as FnOnce<(Vec<char>)>>::Output == Json",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "14": {
+      "label": "Vec<char>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "20": {
+      "label": "Simple<char, _>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "22": {
+      "label": "_: Error<char>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "9": {
+      "label": "char: Eq",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2": {
+      "label": "Map<Then<Map<Then<Just<charcharSimple<char_>>Repeated<Or<Filter<closure#2Simple<char_>>Map<Then<Just<charcharSimple<char_>>Or<Or<Or<Or<Or<Or<Or<Or<Just<charcharSimple<char_>>Just<charcharSimple<char_>>>Just<charcharSimple<char_>>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>Map<Then<Just<charcharSimple<char_>>Validate<Map<Repeated<Filter<closureSimple<char_>>>fn(Vec<char>) -> StringVec<char>>Stringclosure#1>>fn((charchar)) -> char(charchar)>>>fn((charchar)) -> char(charchar)>>>>fn((charVec<char>)) -> Vec<char>(charVec<char>)>Just<charcharSimple<char_>>>, fn((Vec<char>char)) -> Vec<char>, (Vec<char>char)>: Parser<char, Vec<char>>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "3": {
+      "label": "Simple<char, _>: Error<char>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "7": {
+      "label": "_: Debug",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "5": {
+      "label": "_: Span",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "17": {
+      "label": "Map<Then<Map<Then<Just<charcharSimple<char_>>Repeated<Or<Filter<closure#2Simple<char_>>Map<Then<Just<charcharSimple<char_>>Or<Or<Or<Or<Or<Or<Or<Or<Just<charcharSimple<char_>>Just<charcharSimple<char_>>>Just<charcharSimple<char_>>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>Map<Then<Just<charcharSimple<char_>>Validate<Map<Repeated<Filter<closureSimple<char_>>>fn(Vec<char>) -> StringVec<char>>Stringclosure#1>>fn((charchar)) -> char(charchar)>>>fn((charchar)) -> char(charchar)>>>>fn((charVec<char>)) -> Vec<char>(charVec<char>)>Just<charcharSimple<char_>>>, fn((Vec<char>char)) -> Vec<char>, (Vec<char>char)>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "6": {
+      "label": "_: Clone",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2147484590": {
+      "label": "impl<T> Clone for &'_ T",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147485819": {
+      "label": "impl<F> Hash for Fwhere F: FnPtr",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147485654": {
+      "label": "impl<F> Eq for Fwhere F: FnPtr",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483712": {
+      "label": "impl<I, S> Error<I> for Simple<I, S>where I: Hash + EqS: Span + Clone + Debug",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147485900": {
+      "label": "impl<T, U> Into<U> for Twhere U: From<T>",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483839": {
+      "label": "impl Clone for char",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147485809": {
+      "label": "impl Hash for char",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483672": {
+      "label": "impl<I, O, A, L, E> Parser<I, O> for Label<A, L>where I: CloneA: Parser<IO>L: Into<<..E as Error<I>>::Label> + CloneE: Error<I><..A as Parser<I, O>>::Error == E",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483678": {
+      "label": "impl<I, O, A, U, F, E> Parser<I, U> for Map<A, F, O>where I: CloneA: Parser<IO>F: Fn<(O)> -> UE: Error<I><..A as Parser<I, O>>::Error == E",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147485586": {
+      "label": "impl Eq for char",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-9": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-10": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-11": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-12": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-13": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-14": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-15": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-16": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-17": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-18": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-19": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-20": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-21": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-22": {
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "5",
+      "target": "-1"
+    },
+    {
+      "source": "-1",
+      "target": "16"
+    },
+    {
+      "source": "8",
+      "target": "-2"
+    },
+    {
+      "source": "-2",
+      "target": "16"
+    },
+    {
+      "source": "4",
+      "target": "-3"
+    },
+    {
+      "source": "-3",
+      "target": "16"
+    },
+    {
+      "source": "14",
+      "target": "-4"
+    },
+    {
+      "source": "-4",
+      "target": "16"
+    },
+    {
+      "source": "15",
+      "target": "-5"
+    },
+    {
+      "source": "-5",
+      "target": "16"
+    },
+    {
+      "source": "7",
+      "target": "-6"
+    },
+    {
+      "source": "-6",
+      "target": "16"
+    },
+    {
+      "source": "6",
+      "target": "-7"
+    },
+    {
+      "source": "-7",
+      "target": "16"
+    },
+    {
+      "source": "12",
+      "target": "-8"
+    },
+    {
+      "source": "-8",
+      "target": "13"
+    },
+    {
+      "source": "2147483672",
+      "target": "8"
+    },
+    {
+      "source": "2147483672",
+      "target": "21"
+    },
+    {
+      "source": "2147483672",
+      "target": "22"
+    },
+    {
+      "source": "2147483672",
+      "target": "27"
+    },
+    {
+      "source": "2147483672",
+      "target": "1"
+    },
+    {
+      "source": "2147483672",
+      "target": "23"
+    },
+    {
+      "source": "2147483672",
+      "target": "4"
+    },
+    {
+      "source": "2147483672",
+      "target": "25"
+    },
+    {
+      "source": "2147483672",
+      "target": "18"
+    },
+    {
+      "source": "2147483672",
+      "target": "26"
+    },
+    {
+      "source": "23",
+      "target": "2147485900"
+    },
+    {
+      "source": "9",
+      "target": "2147485654"
+    },
+    {
+      "source": "9",
+      "target": "2147485586"
+    },
+    {
+      "source": "2147483712",
+      "target": "8"
+    },
+    {
+      "source": "2147483712",
+      "target": "5"
+    },
+    {
+      "source": "2147483712",
+      "target": "11"
+    },
+    {
+      "source": "2147483712",
+      "target": "4"
+    },
+    {
+      "source": "2147483712",
+      "target": "7"
+    },
+    {
+      "source": "2147483712",
+      "target": "6"
+    },
+    {
+      "source": "2147483712",
+      "target": "9"
+    },
+    {
+      "source": "3",
+      "target": "2147483712"
+    },
+    {
+      "source": "2147485654",
+      "target": "10"
+    },
+    {
+      "source": "2147485654",
+      "target": "8"
+    },
+    {
+      "source": "11",
+      "target": "2147485819"
+    },
+    {
+      "source": "11",
+      "target": "2147485809"
+    },
+    {
+      "source": "2147485819",
+      "target": "8"
+    },
+    {
+      "source": "2147485819",
+      "target": "10"
+    },
+    {
+      "source": "2147485900",
+      "target": "25"
+    },
+    {
+      "source": "2147485900",
+      "target": "4"
+    },
+    {
+      "source": "2147485900",
+      "target": "24"
+    },
+    {
+      "source": "21",
+      "target": "2147483839"
+    },
+    {
+      "source": "26",
+      "target": "2147484590"
+    },
+    {
+      "source": "1",
+      "target": "2147483678"
+    },
+    {
+      "source": "2147483678",
+      "target": "17"
+    },
+    {
+      "source": "2147483678",
+      "target": "19"
+    },
+    {
+      "source": "2147483678",
+      "target": "20"
+    },
+    {
+      "source": "2147483678",
+      "target": "12"
+    },
+    {
+      "source": "2147483678",
+      "target": "3"
+    },
+    {
+      "source": "2147483678",
+      "target": "21"
+    },
+    {
+      "source": "2147483678",
+      "target": "15"
+    },
+    {
+      "source": "2147483678",
+      "target": "8"
+    },
+    {
+      "source": "2147483678",
+      "target": "18"
+    },
+    {
+      "source": "2147483678",
+      "target": "2"
+    },
+    {
+      "source": "2147483678",
+      "target": "14"
+    },
+    {
+      "source": "0",
+      "target": "2147483672"
+    },
+    {
+      "source": "8",
+      "target": "-9"
+    },
+    {
+      "source": "9",
+      "target": "-10"
+    },
+    {
+      "source": "11",
+      "target": "-11"
+    },
+    {
+      "source": "14",
+      "target": "-12"
+    },
+    {
+      "source": "15",
+      "target": "-13"
+    },
+    {
+      "source": "16",
+      "target": "-14"
+    },
+    {
+      "source": "17",
+      "target": "-15"
+    },
+    {
+      "source": "18",
+      "target": "-16"
+    },
+    {
+      "source": "19",
+      "target": "-17"
+    },
+    {
+      "source": "20",
+      "target": "-18"
+    },
+    {
+      "source": "21",
+      "target": "-19"
+    },
+    {
+      "source": "25",
+      "target": "-20"
+    },
+    {
+      "source": "26",
+      "target": "-21"
+    },
+    {
+      "source": "27",
+      "target": "-22"
+    }
+  ]
+} }

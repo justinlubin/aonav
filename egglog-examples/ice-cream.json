@@ -1,0 +1,956 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "dessert()"
+    },
+    "nodes": {
+      "dessert()": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "cone()": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(1, 1)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(1, 2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(1, 3)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(1, 4)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(2, 1)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(2, 2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(2, 3)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(2, 4)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(3, 1)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(3, 2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(3, 3)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(3, 4)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(4, 1)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(4, 2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(4, 3)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard(4, 4)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "blizzard_machine()": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ice_cream(1)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ice_cream(2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ice_cream(3)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ice_cream(4)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "topping(1)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "topping(2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "topping(3)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "topping(4)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ice()": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "milk(1)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "milk(2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "milk(3)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "milk(4)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "rule8 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule9 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule10 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule11 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule12 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule13 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule14 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule15 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule16 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule17 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule18 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule19 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule20 @ i64=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule20 @ i64=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule20 @ i64=3": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule20 @ i64=4": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=1, y=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=1, y=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=1, y=3": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=1, y=4": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=2, y=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=2, y=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=2, y=3": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=2, y=4": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=3, y=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=3, y=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=3, y=3": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=3, y=4": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=4, y=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=4, y=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=4, y=3": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule21 @ x=4, y=4": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule22 @ i64=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule22 @ i64=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule22 @ i64=3": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule22 @ i64=4": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule23 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=1, y=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=1, y=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=1, y=3": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=1, y=4": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=2, y=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=2, y=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=2, y=3": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=2, y=4": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=3, y=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=3, y=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=3, y=3": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=3, y=4": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=4, y=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=4, y=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=4, y=3": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule24 @ x=4, y=4": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "ice_cream(1)",
+        "target": "rule8 @ "
+      },
+      {
+        "source": "ice_cream(2)",
+        "target": "rule9 @ "
+      },
+      {
+        "source": "ice_cream(3)",
+        "target": "rule10 @ "
+      },
+      {
+        "source": "ice_cream(4)",
+        "target": "rule11 @ "
+      },
+      {
+        "source": "topping(1)",
+        "target": "rule12 @ "
+      },
+      {
+        "source": "topping(2)",
+        "target": "rule13 @ "
+      },
+      {
+        "source": "topping(3)",
+        "target": "rule14 @ "
+      },
+      {
+        "source": "topping(4)",
+        "target": "rule15 @ "
+      },
+      {
+        "source": "milk(1)",
+        "target": "rule16 @ "
+      },
+      {
+        "source": "milk(2)",
+        "target": "rule17 @ "
+      },
+      {
+        "source": "milk(3)",
+        "target": "rule18 @ "
+      },
+      {
+        "source": "milk(4)",
+        "target": "rule19 @ "
+      },
+      {
+        "source": "rule20 @ i64=1",
+        "target": "ice()"
+      },
+      {
+        "source": "rule20 @ i64=1",
+        "target": "milk(1)"
+      },
+      {
+        "source": "ice_cream(1)",
+        "target": "rule20 @ i64=1"
+      },
+      {
+        "source": "rule20 @ i64=2",
+        "target": "ice()"
+      },
+      {
+        "source": "rule20 @ i64=2",
+        "target": "milk(2)"
+      },
+      {
+        "source": "ice_cream(2)",
+        "target": "rule20 @ i64=2"
+      },
+      {
+        "source": "rule20 @ i64=3",
+        "target": "ice()"
+      },
+      {
+        "source": "rule20 @ i64=3",
+        "target": "milk(3)"
+      },
+      {
+        "source": "ice_cream(3)",
+        "target": "rule20 @ i64=3"
+      },
+      {
+        "source": "rule20 @ i64=4",
+        "target": "ice()"
+      },
+      {
+        "source": "rule20 @ i64=4",
+        "target": "milk(4)"
+      },
+      {
+        "source": "ice_cream(4)",
+        "target": "rule20 @ i64=4"
+      },
+      {
+        "source": "rule21 @ x=1, y=1",
+        "target": "ice_cream(1)"
+      },
+      {
+        "source": "rule21 @ x=1, y=1",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=1, y=1",
+        "target": "topping(1)"
+      },
+      {
+        "source": "blizzard(1, 1)",
+        "target": "rule21 @ x=1, y=1"
+      },
+      {
+        "source": "rule21 @ x=1, y=2",
+        "target": "ice_cream(1)"
+      },
+      {
+        "source": "rule21 @ x=1, y=2",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=1, y=2",
+        "target": "topping(2)"
+      },
+      {
+        "source": "blizzard(1, 2)",
+        "target": "rule21 @ x=1, y=2"
+      },
+      {
+        "source": "rule21 @ x=1, y=3",
+        "target": "ice_cream(1)"
+      },
+      {
+        "source": "rule21 @ x=1, y=3",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=1, y=3",
+        "target": "topping(3)"
+      },
+      {
+        "source": "blizzard(1, 3)",
+        "target": "rule21 @ x=1, y=3"
+      },
+      {
+        "source": "rule21 @ x=1, y=4",
+        "target": "ice_cream(1)"
+      },
+      {
+        "source": "rule21 @ x=1, y=4",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=1, y=4",
+        "target": "topping(4)"
+      },
+      {
+        "source": "blizzard(1, 4)",
+        "target": "rule21 @ x=1, y=4"
+      },
+      {
+        "source": "rule21 @ x=2, y=1",
+        "target": "ice_cream(2)"
+      },
+      {
+        "source": "rule21 @ x=2, y=1",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=2, y=1",
+        "target": "topping(1)"
+      },
+      {
+        "source": "blizzard(2, 1)",
+        "target": "rule21 @ x=2, y=1"
+      },
+      {
+        "source": "rule21 @ x=2, y=2",
+        "target": "ice_cream(2)"
+      },
+      {
+        "source": "rule21 @ x=2, y=2",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=2, y=2",
+        "target": "topping(2)"
+      },
+      {
+        "source": "blizzard(2, 2)",
+        "target": "rule21 @ x=2, y=2"
+      },
+      {
+        "source": "rule21 @ x=2, y=3",
+        "target": "ice_cream(2)"
+      },
+      {
+        "source": "rule21 @ x=2, y=3",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=2, y=3",
+        "target": "topping(3)"
+      },
+      {
+        "source": "blizzard(2, 3)",
+        "target": "rule21 @ x=2, y=3"
+      },
+      {
+        "source": "rule21 @ x=2, y=4",
+        "target": "ice_cream(2)"
+      },
+      {
+        "source": "rule21 @ x=2, y=4",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=2, y=4",
+        "target": "topping(4)"
+      },
+      {
+        "source": "blizzard(2, 4)",
+        "target": "rule21 @ x=2, y=4"
+      },
+      {
+        "source": "rule21 @ x=3, y=1",
+        "target": "ice_cream(3)"
+      },
+      {
+        "source": "rule21 @ x=3, y=1",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=3, y=1",
+        "target": "topping(1)"
+      },
+      {
+        "source": "blizzard(3, 1)",
+        "target": "rule21 @ x=3, y=1"
+      },
+      {
+        "source": "rule21 @ x=3, y=2",
+        "target": "ice_cream(3)"
+      },
+      {
+        "source": "rule21 @ x=3, y=2",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=3, y=2",
+        "target": "topping(2)"
+      },
+      {
+        "source": "blizzard(3, 2)",
+        "target": "rule21 @ x=3, y=2"
+      },
+      {
+        "source": "rule21 @ x=3, y=3",
+        "target": "ice_cream(3)"
+      },
+      {
+        "source": "rule21 @ x=3, y=3",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=3, y=3",
+        "target": "topping(3)"
+      },
+      {
+        "source": "blizzard(3, 3)",
+        "target": "rule21 @ x=3, y=3"
+      },
+      {
+        "source": "rule21 @ x=3, y=4",
+        "target": "ice_cream(3)"
+      },
+      {
+        "source": "rule21 @ x=3, y=4",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=3, y=4",
+        "target": "topping(4)"
+      },
+      {
+        "source": "blizzard(3, 4)",
+        "target": "rule21 @ x=3, y=4"
+      },
+      {
+        "source": "rule21 @ x=4, y=1",
+        "target": "ice_cream(4)"
+      },
+      {
+        "source": "rule21 @ x=4, y=1",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=4, y=1",
+        "target": "topping(1)"
+      },
+      {
+        "source": "blizzard(4, 1)",
+        "target": "rule21 @ x=4, y=1"
+      },
+      {
+        "source": "rule21 @ x=4, y=2",
+        "target": "ice_cream(4)"
+      },
+      {
+        "source": "rule21 @ x=4, y=2",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=4, y=2",
+        "target": "topping(2)"
+      },
+      {
+        "source": "blizzard(4, 2)",
+        "target": "rule21 @ x=4, y=2"
+      },
+      {
+        "source": "rule21 @ x=4, y=3",
+        "target": "ice_cream(4)"
+      },
+      {
+        "source": "rule21 @ x=4, y=3",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=4, y=3",
+        "target": "topping(3)"
+      },
+      {
+        "source": "blizzard(4, 3)",
+        "target": "rule21 @ x=4, y=3"
+      },
+      {
+        "source": "rule21 @ x=4, y=4",
+        "target": "ice_cream(4)"
+      },
+      {
+        "source": "rule21 @ x=4, y=4",
+        "target": "blizzard_machine()"
+      },
+      {
+        "source": "rule21 @ x=4, y=4",
+        "target": "topping(4)"
+      },
+      {
+        "source": "blizzard(4, 4)",
+        "target": "rule21 @ x=4, y=4"
+      },
+      {
+        "source": "rule22 @ i64=1",
+        "target": "ice_cream(1)"
+      },
+      {
+        "source": "cone()",
+        "target": "rule22 @ i64=1"
+      },
+      {
+        "source": "rule22 @ i64=2",
+        "target": "ice_cream(2)"
+      },
+      {
+        "source": "cone()",
+        "target": "rule22 @ i64=2"
+      },
+      {
+        "source": "rule22 @ i64=3",
+        "target": "ice_cream(3)"
+      },
+      {
+        "source": "cone()",
+        "target": "rule22 @ i64=3"
+      },
+      {
+        "source": "rule22 @ i64=4",
+        "target": "ice_cream(4)"
+      },
+      {
+        "source": "cone()",
+        "target": "rule22 @ i64=4"
+      },
+      {
+        "source": "rule23 @ ",
+        "target": "cone()"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule23 @ "
+      },
+      {
+        "source": "rule24 @ x=1, y=1",
+        "target": "blizzard(1, 1)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=1, y=1"
+      },
+      {
+        "source": "rule24 @ x=1, y=2",
+        "target": "blizzard(1, 2)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=1, y=2"
+      },
+      {
+        "source": "rule24 @ x=1, y=3",
+        "target": "blizzard(1, 3)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=1, y=3"
+      },
+      {
+        "source": "rule24 @ x=1, y=4",
+        "target": "blizzard(1, 4)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=1, y=4"
+      },
+      {
+        "source": "rule24 @ x=2, y=1",
+        "target": "blizzard(2, 1)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=2, y=1"
+      },
+      {
+        "source": "rule24 @ x=2, y=2",
+        "target": "blizzard(2, 2)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=2, y=2"
+      },
+      {
+        "source": "rule24 @ x=2, y=3",
+        "target": "blizzard(2, 3)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=2, y=3"
+      },
+      {
+        "source": "rule24 @ x=2, y=4",
+        "target": "blizzard(2, 4)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=2, y=4"
+      },
+      {
+        "source": "rule24 @ x=3, y=1",
+        "target": "blizzard(3, 1)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=3, y=1"
+      },
+      {
+        "source": "rule24 @ x=3, y=2",
+        "target": "blizzard(3, 2)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=3, y=2"
+      },
+      {
+        "source": "rule24 @ x=3, y=3",
+        "target": "blizzard(3, 3)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=3, y=3"
+      },
+      {
+        "source": "rule24 @ x=3, y=4",
+        "target": "blizzard(3, 4)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=3, y=4"
+      },
+      {
+        "source": "rule24 @ x=4, y=1",
+        "target": "blizzard(4, 1)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=4, y=1"
+      },
+      {
+        "source": "rule24 @ x=4, y=2",
+        "target": "blizzard(4, 2)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=4, y=2"
+      },
+      {
+        "source": "rule24 @ x=4, y=3",
+        "target": "blizzard(4, 3)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=4, y=3"
+      },
+      {
+        "source": "rule24 @ x=4, y=4",
+        "target": "blizzard(4, 4)"
+      },
+      {
+        "source": "dessert()",
+        "target": "rule24 @ x=4, y=4"
+      }
+    ]
+  }
+}

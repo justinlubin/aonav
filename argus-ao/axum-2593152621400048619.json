@@ -49,92 +49,14 @@
         "kind": "OR"
       }
     },
-    "1": {
-      "label": "bool: IntoResponse",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "8": {
-      "label": "handler fn() -> impl Future<Output = bool>: FnOnce<()>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "3": {
-      "label": "<handler ..fn() -> impl Future<Output = bool> as FnOnce<()>>::Output == impl Future<Output = bool>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "10": {
-      "label": "impl Future<Output = bool>: Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "15": {
-      "label": "impl Future<Output = bool>: Send",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "2": {
-      "label": "S: Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "5": {
-      "label": "<impl Future<Output = bool> as Future>::Output == bool",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "6": {
-      "label": "bool: Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "11": {
-      "label": "handler fn() -> impl Future<Output = bool>: Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "4": {
-      "label": "<handler ..fn() -> impl Future<Output = bool> as FnOnce<()>>::Output == impl Future<Output = bool>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
     "12": {
       "label": "handler fn() -> impl Future<Output = bool>: Clone",
       "metadata": {
         "kind": "OR"
       }
     },
-    "9": {
-      "label": "impl Future<Output = bool> == impl Future<Output = bool>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "39": {
-      "label": "handler fn() -> impl Future<Output = bool>: IntoResponse",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "14": {
-      "label": "impl Future<Output = bool>: Future",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "13": {
-      "label": "handler fn() -> impl Future<Output = bool>: Send",
+    "1": {
+      "label": "bool: IntoResponse",
       "metadata": {
         "kind": "OR"
       }
@@ -145,14 +67,92 @@
         "kind": "OR"
       }
     },
-    "2147483650": {
-      "label": "impl<F, Fut, Res, S> Handler<(()), S> for Fwhere F: FnOnce<()> -> Fut + Clone + Send + 'staticFut: Future + SendRes: IntoResponse<..Fut as Future>::Output == Res",
+    "9": {
+      "label": "impl Future<Output = bool> == impl Future<Output = bool>",
       "metadata": {
-        "kind": "AND"
+        "kind": "OR"
+      }
+    },
+    "8": {
+      "label": "handler fn() -> impl Future<Output = bool>: FnOnce<()>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "6": {
+      "label": "bool: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "14": {
+      "label": "impl Future<Output = bool>: Future",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "39": {
+      "label": "handler fn() -> impl Future<Output = bool>: IntoResponse",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "10": {
+      "label": "impl Future<Output = bool>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "4": {
+      "label": "<handler ..fn() -> impl Future<Output = bool> as FnOnce<()>>::Output == impl Future<Output = bool>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "11": {
+      "label": "handler fn() -> impl Future<Output = bool>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "5": {
+      "label": "<impl Future<Output = bool> as Future>::Output == bool",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "15": {
+      "label": "impl Future<Output = bool>: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "13": {
+      "label": "handler fn() -> impl Future<Output = bool>: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2": {
+      "label": "S: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "3": {
+      "label": "<handler ..fn() -> impl Future<Output = bool> as FnOnce<()>>::Output == impl Future<Output = bool>",
+      "metadata": {
+        "kind": "OR"
       }
     },
     "2147483649": {
       "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483650": {
+      "label": "impl<F, Fut, Res, S> Handler<(()), S> for Fwhere F: FnOnce<()> -> Fut + Clone + Send + 'staticFut: Future + SendRes: IntoResponse<..Fut as Future>::Output == Res",
       "metadata": {
         "kind": "AND"
       }
@@ -225,28 +225,28 @@
   },
   "edges": [
     {
-      "source": "6",
+      "source": "3",
       "target": "-1"
     },
     {
       "source": "-1",
-      "target": "9"
+      "target": "4"
     },
     {
-      "source": "6",
+      "source": "2",
       "target": "-2"
     },
     {
       "source": "-2",
-      "target": "10"
+      "target": "9"
     },
     {
-      "source": "3",
+      "source": "2",
       "target": "-3"
     },
     {
       "source": "-3",
-      "target": "4"
+      "target": "10"
     },
     {
       "source": "10",
@@ -273,7 +273,7 @@
       "target": "10"
     },
     {
-      "source": "2",
+      "source": "6",
       "target": "-7"
     },
     {
@@ -281,7 +281,7 @@
       "target": "9"
     },
     {
-      "source": "2",
+      "source": "6",
       "target": "-8"
     },
     {
@@ -289,68 +289,20 @@
       "target": "10"
     },
     {
-      "source": "2147483650",
-      "target": "3"
-    },
-    {
-      "source": "2147483650",
-      "target": "11"
-    },
-    {
-      "source": "2147483650",
-      "target": "8"
-    },
-    {
-      "source": "2147483650",
-      "target": "12"
-    },
-    {
-      "source": "2147483650",
-      "target": "14"
-    },
-    {
-      "source": "2147483650",
+      "source": "2147483649",
       "target": "13"
     },
     {
-      "source": "2147483650",
-      "target": "10"
-    },
-    {
-      "source": "2147483650",
-      "target": "15"
-    },
-    {
-      "source": "2147483650",
-      "target": "2"
-    },
-    {
-      "source": "2147483650",
+      "source": "2147483649",
       "target": "7"
     },
     {
-      "source": "2147483650",
-      "target": "6"
-    },
-    {
-      "source": "2147483650",
-      "target": "1"
-    },
-    {
-      "source": "2147483650",
-      "target": "5"
-    },
-    {
-      "source": "2147483649",
-      "target": "13"
-    },
-    {
-      "source": "2147483649",
-      "target": "2"
-    },
-    {
       "source": "2147483649",
       "target": "11"
+    },
+    {
+      "source": "2147483649",
+      "target": "12"
     },
     {
       "source": "2147483649",
@@ -358,19 +310,67 @@
     },
     {
       "source": "2147483649",
-      "target": "7"
+      "target": "2"
     },
     {
-      "source": "2147483649",
-      "target": "12"
+      "source": "0",
+      "target": "2147483649"
     },
     {
       "source": "0",
       "target": "2147483650"
     },
     {
-      "source": "0",
-      "target": "2147483649"
+      "source": "2147483650",
+      "target": "1"
+    },
+    {
+      "source": "2147483650",
+      "target": "13"
+    },
+    {
+      "source": "2147483650",
+      "target": "15"
+    },
+    {
+      "source": "2147483650",
+      "target": "14"
+    },
+    {
+      "source": "2147483650",
+      "target": "8"
+    },
+    {
+      "source": "2147483650",
+      "target": "3"
+    },
+    {
+      "source": "2147483650",
+      "target": "6"
+    },
+    {
+      "source": "2147483650",
+      "target": "11"
+    },
+    {
+      "source": "2147483650",
+      "target": "2"
+    },
+    {
+      "source": "2147483650",
+      "target": "10"
+    },
+    {
+      "source": "2147483650",
+      "target": "7"
+    },
+    {
+      "source": "2147483650",
+      "target": "12"
+    },
+    {
+      "source": "2147483650",
+      "target": "5"
     },
     {
       "source": "3",

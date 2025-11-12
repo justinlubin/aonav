@@ -23,32 +23,8 @@
         "kind": "AND"
       }
     },
-    "12": {
-      "label": "handler fn() -> impl Future<Output = ()>: Clone",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "5": {
-      "label": "S: Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "4": {
-      "label": "opaque normalizes to _",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "8": {
-      "label": "(): Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "11": {
-      "label": "handler fn() -> impl Future<Output = ()>: Sized",
+    "9": {
+      "label": "handler fn() -> impl Future<Output = ()>: 'static",
       "metadata": {
         "kind": "OR"
       }
@@ -59,50 +35,14 @@
         "kind": "OR"
       }
     },
-    "10": {
-      "label": "handler fn() -> impl Future<Output = ()>: FnOnce<()>",
+    "12": {
+      "label": "handler fn() -> impl Future<Output = ()>: Clone",
       "metadata": {
         "kind": "OR"
       }
     },
-    "1": {
-      "label": "impl Future<Output = ()>: Send",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "7": {
-      "label": "<impl Future<Output = ()> as Future>::Output == ()",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "40": {
-      "label": "handler fn() -> impl Future<Output = ()>: IntoResponse",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "6": {
-      "label": "<handler ..fn() -> impl Future<Output = ()> as FnOnce<()>>::Output == impl Future<Output = ()>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "3": {
-      "label": "impl Future<Output = ()> == impl Future<Output = ()>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "14": {
-      "label": "impl Future<Output = ()>: Future",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "9": {
-      "label": "handler fn() -> impl Future<Output = ()>: 'static",
+    "8": {
+      "label": "(): Sized",
       "metadata": {
         "kind": "OR"
       }
@@ -113,8 +53,50 @@
         "kind": "OR"
       }
     },
+    "3": {
+      "label": "impl Future<Output = ()> == impl Future<Output = ()>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "4": {
+      "label": "opaque normalizes to _",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "7": {
+      "label": "<impl Future<Output = ()> as Future>::Output == ()",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "11": {
+      "label": "handler fn() -> impl Future<Output = ()>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "6": {
+      "label": "<handler ..fn() -> impl Future<Output = ()> as FnOnce<()>>::Output == impl Future<Output = ()>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
     "15": {
       "label": "impl Future<Output = ()>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "14": {
+      "label": "impl Future<Output = ()>: Future",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "5": {
+      "label": "S: Sized",
       "metadata": {
         "kind": "OR"
       }
@@ -125,16 +107,28 @@
         "kind": "OR"
       }
     },
+    "1": {
+      "label": "impl Future<Output = ()>: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "10": {
+      "label": "handler fn() -> impl Future<Output = ()>: FnOnce<()>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
     "16": {
       "label": "(): IntoResponse",
       "metadata": {
         "kind": "OR"
       }
     },
-    "2147483649": {
-      "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+    "40": {
+      "label": "handler fn() -> impl Future<Output = ()>: IntoResponse",
       "metadata": {
-        "kind": "AND"
+        "kind": "OR"
       }
     },
     "2147483650": {
@@ -145,6 +139,12 @@
     },
     "2147485557": {
       "label": "impl IntoResponse for ()",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483649": {
+      "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
       "metadata": {
         "kind": "AND"
       }
@@ -217,23 +217,23 @@
   },
   "edges": [
     {
-      "source": "14",
+      "source": "1",
       "target": "-1"
     },
     {
       "source": "-1",
-      "target": "3"
+      "target": "2"
     },
     {
-      "source": "3",
+      "source": "1",
       "target": "-2"
     },
     {
       "source": "-2",
-      "target": "4"
+      "target": "3"
     },
     {
-      "source": "1",
+      "source": "14",
       "target": "-3"
     },
     {
@@ -241,16 +241,20 @@
       "target": "3"
     },
     {
-      "source": "1",
+      "source": "3",
       "target": "-4"
     },
     {
       "source": "-4",
-      "target": "2"
+      "target": "4"
+    },
+    {
+      "source": "16",
+      "target": "2147485557"
     },
     {
       "source": "2147483650",
-      "target": "13"
+      "target": "9"
     },
     {
       "source": "2147483650",
@@ -262,7 +266,15 @@
     },
     {
       "source": "2147483650",
-      "target": "7"
+      "target": "11"
+    },
+    {
+      "source": "2147483650",
+      "target": "13"
+    },
+    {
+      "source": "2147483650",
+      "target": "14"
     },
     {
       "source": "2147483650",
@@ -270,11 +282,7 @@
     },
     {
       "source": "2147483650",
-      "target": "11"
-    },
-    {
-      "source": "2147483650",
-      "target": "9"
+      "target": "1"
     },
     {
       "source": "2147483650",
@@ -282,7 +290,7 @@
     },
     {
       "source": "2147483650",
-      "target": "14"
+      "target": "8"
     },
     {
       "source": "2147483650",
@@ -294,19 +302,7 @@
     },
     {
       "source": "2147483650",
-      "target": "8"
-    },
-    {
-      "source": "2147483650",
-      "target": "1"
-    },
-    {
-      "source": "2147483649",
-      "target": "40"
-    },
-    {
-      "source": "2147483649",
-      "target": "5"
+      "target": "7"
     },
     {
       "source": "2147483649",
@@ -314,7 +310,7 @@
     },
     {
       "source": "2147483649",
-      "target": "12"
+      "target": "5"
     },
     {
       "source": "2147483649",
@@ -322,11 +318,15 @@
     },
     {
       "source": "2147483649",
+      "target": "12"
+    },
+    {
+      "source": "2147483649",
       "target": "13"
     },
     {
-      "source": "16",
-      "target": "2147485557"
+      "source": "2147483649",
+      "target": "40"
     },
     {
       "source": "0",

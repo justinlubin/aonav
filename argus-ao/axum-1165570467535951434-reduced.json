@@ -1,0 +1,53 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "-1": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-2": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2": {
+      "label": "<S as Service<Request<Body>>>::Future normalizes to _",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "0": {
+      "label": "<S as Service<Request<Body>>>::Future: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "1": {
+      "label": "<S as Service<Request<Body>>>::Future == _",
+      "metadata": {
+        "kind": "OR"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "1",
+      "target": "-1"
+    },
+    {
+      "source": "-1",
+      "target": "2"
+    },
+    {
+      "source": "0",
+      "target": "-2"
+    },
+    {
+      "source": "-2",
+      "target": "1"
+    }
+  ]
+} }

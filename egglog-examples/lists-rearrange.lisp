@@ -13,12 +13,11 @@
 (rule ((list3 a b c)) ((list2 a b)))
 
 (rule ((list2 a b)) ((element b)))
-(rule ((list2 a b)) ((element a)))
+(rule ((list1 a)) ((element a)))
 
-(rule () ((list2 1 2)))
-(rule () ((list2 4 5)))
+(rule () ((list2 6 8)))
 (rule () ((list0)))
 
-(run 1000)
+(run 100)
 
-(check (list3 1 4 2))
+(check (list3 1 2 3))

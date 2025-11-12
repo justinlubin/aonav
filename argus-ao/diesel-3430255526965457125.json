@@ -8,6 +8,12 @@
         "kind": "AND"
       }
     },
+    "1": {
+      "label": "Grouped<Eq<name_>>: Display",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
     "0": {
       "label": "Grouped<Eq<name_>>: ToString",
       "metadata": {
@@ -16,12 +22,6 @@
     },
     "3": {
       "label": "Eq<name, _>: MetaSized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "1": {
-      "label": "Grouped<Eq<name_>>: Display",
       "metadata": {
         "kind": "OR"
       }
@@ -54,16 +54,16 @@
       "target": "3"
     },
     {
-      "source": "0",
-      "target": "2147483648"
-    },
-    {
       "source": "2147483648",
       "target": "2"
     },
     {
       "source": "2147483648",
       "target": "1"
+    },
+    {
+      "source": "0",
+      "target": "2147483648"
     },
     {
       "source": "2",

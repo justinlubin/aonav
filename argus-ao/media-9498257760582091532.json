@@ -3,32 +3,8 @@
     "goal": "0"
   },
   "nodes": {
-    "4": {
-      "label": "Vec<Play>: Summary",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "6": {
-      "label": "Play: Summary",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
     "1": {
       "label": "&str: Summary",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "5": {
-      "label": "Play: Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "0": {
-      "label": "(&str, Vec<Play>): Summary",
       "metadata": {
         "kind": "OR"
       }
@@ -39,8 +15,32 @@
         "kind": "OR"
       }
     },
+    "0": {
+      "label": "(&str, Vec<Play>): Summary",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
     "3": {
       "label": "Vec<Play>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "4": {
+      "label": "Vec<Play>: Summary",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "5": {
+      "label": "Play: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "6": {
+      "label": "Play: Summary",
       "metadata": {
         "kind": "OR"
       }
@@ -91,12 +91,24 @@
   },
   "edges": [
     {
-      "source": "2147483654",
-      "target": "4"
+      "source": "2147483653",
+      "target": "5"
     },
     {
-      "source": "2147483654",
-      "target": "1"
+      "source": "2147483653",
+      "target": "6"
+    },
+    {
+      "source": "6",
+      "target": "2147483649"
+    },
+    {
+      "source": "4",
+      "target": "2147483653"
+    },
+    {
+      "source": "0",
+      "target": "2147483654"
     },
     {
       "source": "2147483654",
@@ -107,24 +119,12 @@
       "target": "2"
     },
     {
-      "source": "2147483653",
-      "target": "5"
+      "source": "2147483654",
+      "target": "4"
     },
     {
-      "source": "2147483653",
-      "target": "6"
-    },
-    {
-      "source": "0",
-      "target": "2147483654"
-    },
-    {
-      "source": "6",
-      "target": "2147483649"
-    },
-    {
-      "source": "4",
-      "target": "2147483653"
+      "source": "2147483654",
+      "target": "1"
     },
     {
       "source": "2",

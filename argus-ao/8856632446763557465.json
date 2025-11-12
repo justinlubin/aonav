@@ -1,0 +1,858 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "-1": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-2": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-3": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-4": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-5": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-6": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-7": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-8": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-9": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-10": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-11": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-12": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-13": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-14": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-15": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-16": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-17": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-18": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-19": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-20": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-21": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-22": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-23": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-24": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "25": {
+      "label": "impl Future<Output = ()> == impl Future<Output = ()>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "16": {
+      "label": "Bytes: FromRequestParts<S>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "19": {
+      "label": "<handler ..fn(String, Bytes) -> impl Future<Output = ()> as FnOnce<(StringBytes)>>::Output == impl Future<Output = ()>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "20": {
+      "label": "<impl Future<Output = ()> as Future>::Output == ()",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "15": {
+      "label": "Bytes: FromRequest<S, _>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "5": {
+      "label": "_: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "11": {
+      "label": "S: Sync",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "6": {
+      "label": "handler fn(String, Bytes) -> impl Future<Output = ()>: 'static",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "9": {
+      "label": "handler fn(String, Bytes) -> impl Future<Output = ()>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "29": {
+      "label": "String: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2": {
+      "label": "S: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "26": {
+      "label": "impl Future<Output = ()>: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "24": {
+      "label": "handler fn(String, Bytes) -> impl Future<Output = ()>: FnOnce<(StringBytes)>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "18": {
+      "label": "<handler ..fn(String, Bytes) -> impl Future<Output = ()> as FnOnce<(StringBytes)>>::Output == impl Future<Output = ()>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "17": {
+      "label": "Bytes: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "7": {
+      "label": "handler fn(String, Bytes) -> impl Future<Output = ()>: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "14": {
+      "label": "String: FromRequestParts<S>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "23": {
+      "label": "String: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "22": {
+      "label": "Bytes: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "21": {
+      "label": "(): Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "13": {
+      "label": "S: 'static",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "28": {
+      "label": "impl Future<Output = ()>: Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "30": {
+      "label": "(): IntoResponse",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "0": {
+      "label": "handler fn(String, Bytes) -> impl Future<Output = ()>: Handler<T, S>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "8": {
+      "label": "handler fn(String, Bytes) -> impl Future<Output = ()>: Clone",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "46": {
+      "label": "handler fn(String, Bytes) -> impl Future<Output = ()>: IntoResponse",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "27": {
+      "label": "impl Future<Output = ()>: Future",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2147483716": {
+      "label": "impl IntoResponse for ()",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483649": {
+      "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483653": {
+      "label": "impl<F, Fut, S, Res, M, T1, T2> Handler<(MT1T2), S> for Fwhere F: FnOnce<(T1T2)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequestParts<S> + SendT2: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483991": {
+      "label": "impl Send for Bytes",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147485816": {
+      "label": "impl<S> FromRequest<S> for Byteswhere S: Send + Sync",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147485819": {
+      "label": "impl<S, T> FromRequest<S, ViaParts> for Twhere S: Send + SyncT: FromRequestParts<S>",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-25": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-26": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-27": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-28": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-29": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-30": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-31": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-32": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-33": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-34": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-35": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-36": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-37": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-38": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-39": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-40": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-41": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-42": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-43": {
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "26",
+      "target": "-1"
+    },
+    {
+      "source": "-1",
+      "target": "25"
+    },
+    {
+      "source": "2",
+      "target": "-2"
+    },
+    {
+      "source": "-2",
+      "target": "26"
+    },
+    {
+      "source": "2",
+      "target": "-3"
+    },
+    {
+      "source": "-3",
+      "target": "25"
+    },
+    {
+      "source": "7",
+      "target": "-4"
+    },
+    {
+      "source": "-4",
+      "target": "26"
+    },
+    {
+      "source": "7",
+      "target": "-5"
+    },
+    {
+      "source": "-5",
+      "target": "25"
+    },
+    {
+      "source": "24",
+      "target": "-6"
+    },
+    {
+      "source": "-6",
+      "target": "26"
+    },
+    {
+      "source": "24",
+      "target": "-7"
+    },
+    {
+      "source": "-7",
+      "target": "25"
+    },
+    {
+      "source": "11",
+      "target": "-8"
+    },
+    {
+      "source": "-8",
+      "target": "26"
+    },
+    {
+      "source": "11",
+      "target": "-9"
+    },
+    {
+      "source": "-9",
+      "target": "25"
+    },
+    {
+      "source": "5",
+      "target": "-10"
+    },
+    {
+      "source": "-10",
+      "target": "26"
+    },
+    {
+      "source": "5",
+      "target": "-11"
+    },
+    {
+      "source": "-11",
+      "target": "25"
+    },
+    {
+      "source": "8",
+      "target": "-12"
+    },
+    {
+      "source": "-12",
+      "target": "26"
+    },
+    {
+      "source": "8",
+      "target": "-13"
+    },
+    {
+      "source": "-13",
+      "target": "25"
+    },
+    {
+      "source": "9",
+      "target": "-14"
+    },
+    {
+      "source": "-14",
+      "target": "26"
+    },
+    {
+      "source": "9",
+      "target": "-15"
+    },
+    {
+      "source": "-15",
+      "target": "25"
+    },
+    {
+      "source": "13",
+      "target": "-16"
+    },
+    {
+      "source": "-16",
+      "target": "19"
+    },
+    {
+      "source": "21",
+      "target": "-17"
+    },
+    {
+      "source": "-17",
+      "target": "26"
+    },
+    {
+      "source": "21",
+      "target": "-18"
+    },
+    {
+      "source": "-18",
+      "target": "25"
+    },
+    {
+      "source": "23",
+      "target": "-19"
+    },
+    {
+      "source": "-19",
+      "target": "26"
+    },
+    {
+      "source": "23",
+      "target": "-20"
+    },
+    {
+      "source": "-20",
+      "target": "25"
+    },
+    {
+      "source": "6",
+      "target": "-21"
+    },
+    {
+      "source": "-21",
+      "target": "19"
+    },
+    {
+      "source": "17",
+      "target": "-22"
+    },
+    {
+      "source": "-22",
+      "target": "26"
+    },
+    {
+      "source": "17",
+      "target": "-23"
+    },
+    {
+      "source": "-23",
+      "target": "25"
+    },
+    {
+      "source": "18",
+      "target": "-24"
+    },
+    {
+      "source": "-24",
+      "target": "19"
+    },
+    {
+      "source": "2147483649",
+      "target": "9"
+    },
+    {
+      "source": "2147483649",
+      "target": "2"
+    },
+    {
+      "source": "2147483649",
+      "target": "8"
+    },
+    {
+      "source": "2147483649",
+      "target": "6"
+    },
+    {
+      "source": "2147483649",
+      "target": "7"
+    },
+    {
+      "source": "2147483649",
+      "target": "46"
+    },
+    {
+      "source": "15",
+      "target": "2147485819"
+    },
+    {
+      "source": "15",
+      "target": "2147485816"
+    },
+    {
+      "source": "2147483653",
+      "target": "26"
+    },
+    {
+      "source": "2147483653",
+      "target": "29"
+    },
+    {
+      "source": "2147483653",
+      "target": "23"
+    },
+    {
+      "source": "2147483653",
+      "target": "8"
+    },
+    {
+      "source": "2147483653",
+      "target": "5"
+    },
+    {
+      "source": "2147483653",
+      "target": "13"
+    },
+    {
+      "source": "2147483653",
+      "target": "24"
+    },
+    {
+      "source": "2147483653",
+      "target": "21"
+    },
+    {
+      "source": "2147483653",
+      "target": "22"
+    },
+    {
+      "source": "2147483653",
+      "target": "7"
+    },
+    {
+      "source": "2147483653",
+      "target": "27"
+    },
+    {
+      "source": "2147483653",
+      "target": "28"
+    },
+    {
+      "source": "2147483653",
+      "target": "2"
+    },
+    {
+      "source": "2147483653",
+      "target": "30"
+    },
+    {
+      "source": "2147483653",
+      "target": "20"
+    },
+    {
+      "source": "2147483653",
+      "target": "14"
+    },
+    {
+      "source": "2147483653",
+      "target": "11"
+    },
+    {
+      "source": "2147483653",
+      "target": "15"
+    },
+    {
+      "source": "2147483653",
+      "target": "17"
+    },
+    {
+      "source": "2147483653",
+      "target": "9"
+    },
+    {
+      "source": "2147483653",
+      "target": "18"
+    },
+    {
+      "source": "2147483653",
+      "target": "6"
+    },
+    {
+      "source": "22",
+      "target": "2147483991"
+    },
+    {
+      "source": "2147485816",
+      "target": "5"
+    },
+    {
+      "source": "2147485816",
+      "target": "11"
+    },
+    {
+      "source": "2147485816",
+      "target": "2"
+    },
+    {
+      "source": "2147485819",
+      "target": "2"
+    },
+    {
+      "source": "2147485819",
+      "target": "16"
+    },
+    {
+      "source": "2147485819",
+      "target": "17"
+    },
+    {
+      "source": "2147485819",
+      "target": "5"
+    },
+    {
+      "source": "2147485819",
+      "target": "11"
+    },
+    {
+      "source": "0",
+      "target": "2147483649"
+    },
+    {
+      "source": "0",
+      "target": "2147483653"
+    },
+    {
+      "source": "30",
+      "target": "2147483716"
+    },
+    {
+      "source": "6",
+      "target": "-25"
+    },
+    {
+      "source": "7",
+      "target": "-26"
+    },
+    {
+      "source": "8",
+      "target": "-27"
+    },
+    {
+      "source": "9",
+      "target": "-28"
+    },
+    {
+      "source": "13",
+      "target": "-29"
+    },
+    {
+      "source": "17",
+      "target": "-30"
+    },
+    {
+      "source": "18",
+      "target": "-31"
+    },
+    {
+      "source": "19",
+      "target": "-32"
+    },
+    {
+      "source": "20",
+      "target": "-33"
+    },
+    {
+      "source": "21",
+      "target": "-34"
+    },
+    {
+      "source": "22",
+      "target": "-35"
+    },
+    {
+      "source": "23",
+      "target": "-36"
+    },
+    {
+      "source": "24",
+      "target": "-37"
+    },
+    {
+      "source": "25",
+      "target": "-38"
+    },
+    {
+      "source": "26",
+      "target": "-39"
+    },
+    {
+      "source": "27",
+      "target": "-40"
+    },
+    {
+      "source": "28",
+      "target": "-41"
+    },
+    {
+      "source": "29",
+      "target": "-42"
+    },
+    {
+      "source": "30",
+      "target": "-43"
+    }
+  ]
+} }

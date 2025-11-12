@@ -1,0 +1,130 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "-2": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2": {
+      "label": "Map<Then<Map<Then<Just<charcharSimple<char_>>Repeated<Or<Filter<closure#2Simple<char_>>Map<Then<Just<charcharSimple<char_>>Or<Or<Or<Or<Or<Or<Or<Or<Just<charcharSimple<char_>>Just<charcharSimple<char_>>>Just<charcharSimple<char_>>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>Map<Then<Just<charcharSimple<char_>>Validate<Map<Repeated<Filter<closureSimple<char_>>>fn(Vec<char>) -> StringVec<char>>Stringclosure#1>>fn((charchar)) -> char(charchar)>>>fn((charchar)) -> char(charchar)>>>>fn((charVec<char>)) -> Vec<char>(charVec<char>)>Just<charcharSimple<char_>>>, fn((Vec<char>char)) -> Vec<char>, (Vec<char>char)>: Parser<char, Vec<char>>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "0": {
+      "label": "Label<Map<Map<Then<Map<Then<Just<charcharSimple<char_>>Repeated<Or<Filter<closure#2Simple<char_>>Map<Then<Just<charcharSimple<char_>>Or<Or<Or<Or<Or<Or<Or<Or<Just<charcharSimple<char_>>Just<charcharSimple<char_>>>Just<charcharSimple<char_>>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>Map<Then<Just<charcharSimple<char_>>Validate<Map<Repeated<Filter<closureSimple<char_>>>fn(Vec<char>) -> StringVec<char>>Stringclosure#1>>fn((charchar)) -> char(charchar)>>>fn((charchar)) -> char(charchar)>>>>fn((charVec<char>)) -> Vec<char>(charVec<char>)>Just<charcharSimple<char_>>>fn((Vec<char>char)) -> Vec<char>(Vec<char>char)>fn(Vec<char>) -> StringVec<char>>, &str>: Parser<char, Json>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "12": {
+      "label": "<fn(Vec<char>) -> String as FnOnce<(Vec<char>)>>::Output == Json",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "22": {
+      "label": "_: Error<char>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "24": {
+      "label": "_: From<&str>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "23": {
+      "label": "&str: Into<_>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "1": {
+      "label": "Map<Map<Then<Map<Then<Just<charcharSimple<char_>>Repeated<Or<Filter<closure#2Simple<char_>>Map<Then<Just<charcharSimple<char_>>Or<Or<Or<Or<Or<Or<Or<Or<Just<charcharSimple<char_>>Just<charcharSimple<char_>>>Just<charcharSimple<char_>>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>To<Just<charcharSimple<char_>>charchar>>Map<Then<Just<charcharSimple<char_>>Validate<Map<Repeated<Filter<closureSimple<char_>>>fn(Vec<char>) -> StringVec<char>>Stringclosure#1>>fn((charchar)) -> char(charchar)>>>fn((charchar)) -> char(charchar)>>>>fn((charVec<char>)) -> Vec<char>(charVec<char>)>Just<charcharSimple<char_>>>fn((Vec<char>char)) -> Vec<char>(Vec<char>char)>, fn(Vec<char>) -> String, Vec<char>>: Parser<char, Json>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "13": {
+      "label": "<fn(Vec<char>) -> String as FnOnce<(Vec<char>)>>::Output == Json",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "10": {
+      "label": "char: FnPtr",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2147485900": {
+      "label": "impl<T, U> Into<U> for Twhere U: From<T>",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483678": {
+      "label": "impl<I, O, A, U, F, E> Parser<I, U> for Map<A, F, O>where I: CloneA: Parser<IO>F: Fn<(O)> -> UE: Error<I><..A as Parser<I, O>>::Error == E",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483672": {
+      "label": "impl<I, O, A, L, E> Parser<I, O> for Label<A, L>where I: CloneA: Parser<IO>L: Into<<..E as Error<I>>::Label> + CloneE: Error<I><..A as Parser<I, O>>::Error == E",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "12",
+      "target": "-2"
+    },
+    {
+      "source": "-2",
+      "target": "13"
+    },
+    {
+      "source": "2147483678",
+      "target": "12"
+    },
+    {
+      "source": "2147483678",
+      "target": "2"
+    },
+    {
+      "source": "2147483672",
+      "target": "22"
+    },
+    {
+      "source": "2147483672",
+      "target": "1"
+    },
+    {
+      "source": "2147483672",
+      "target": "23"
+    },
+    {
+      "source": "23",
+      "target": "2147485900"
+    },
+    {
+      "source": "2147485900",
+      "target": "24"
+    },
+    {
+      "source": "0",
+      "target": "2147483672"
+    },
+    {
+      "source": "1",
+      "target": "2147483678"
+    }
+  ]
+} }

@@ -8,8 +8,50 @@
         "kind": "AND"
       }
     },
-    "54": {
-      "label": "Timer: SystemParam",
+    "12": {
+      "label": "run_timer fn(Timer): 'static",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2": {
+      "label": "run_timer fn(Timer): IntoSystemConfigs<_>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "16": {
+      "label": "run_timer fn(Timer): Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "0": {
+      "label": "(run_timer fn(Timer)): IntoSystemConfigs<M>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "110": {
+      "label": "run_timer fn(Timer): System",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "55": {
+      "label": "for<'a> <&'a mut run_timer ..fn(Timer) as FnOnce<(Timer)>>::Output == ()",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "1": {
+      "label": "_: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "59": {
+      "label": "(): Sized",
       "metadata": {
         "kind": "OR"
       }
@@ -26,14 +68,26 @@
         "kind": "OR"
       }
     },
-    "55": {
-      "label": "for<'a> <&'a mut run_timer ..fn(Timer) as FnOnce<(Timer)>>::Output == ()",
+    "13": {
+      "label": "_: 'static",
       "metadata": {
         "kind": "OR"
       }
     },
-    "9": {
-      "label": "&'_ mut World: Sized",
+    "14": {
+      "label": "run_timer fn(Timer): Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "54": {
+      "label": "Timer: SystemParam",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "51": {
+      "label": "run_timer fn(Timer): SystemParamFunction<_>",
       "metadata": {
         "kind": "OR"
       }
@@ -50,80 +104,20 @@
         "kind": "OR"
       }
     },
-    "14": {
-      "label": "run_timer fn(Timer): Send",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "59": {
-      "label": "(): Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "16": {
-      "label": "run_timer fn(Timer): Sized",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "13": {
-      "label": "_: 'static",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "12": {
-      "label": "run_timer fn(Timer): 'static",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "0": {
-      "label": "(run_timer fn(Timer)): IntoSystemConfigs<M>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
     "3": {
       "label": "run_timer fn(Timer): IntoSystem<(), (), _>",
       "metadata": {
         "kind": "OR"
       }
     },
-    "1": {
-      "label": "_: Sized",
+    "9": {
+      "label": "&'_ mut World: Sized",
       "metadata": {
         "kind": "OR"
       }
     },
-    "110": {
-      "label": "run_timer fn(Timer): System",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "51": {
-      "label": "run_timer fn(Timer): SystemParamFunction<_>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "2": {
-      "label": "run_timer fn(Timer): IntoSystemConfigs<_>",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "2147484751": {
-      "label": "impl<Out, Func, F0> SystemParamFunction<fn(F0) -> Out> for Funcwhere Func: Send + Sync + 'staticF0: SystemParamfor<'a> &'a mut Func: FnMut<(F0)> -> Out + FnMut<(<..F0 as SystemParam>::Item)> -> OutOut: 'static",
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "2147483672": {
-      "label": "impl<T> IntoSystem<<T as System>::In, <T as System>::Out, ()> for Twhere T: System",
+    "2147483650": {
+      "label": "impl<Marker, F> IntoSystemConfigs<Marker> for Fwhere F: IntoSystem<()()Marker>",
       "metadata": {
         "kind": "AND"
       }
@@ -140,8 +134,14 @@
         "kind": "AND"
       }
     },
-    "2147483650": {
-      "label": "impl<Marker, F> IntoSystemConfigs<Marker> for Fwhere F: IntoSystem<()()Marker>",
+    "2147484751": {
+      "label": "impl<Out, Func, F0> SystemParamFunction<fn(F0) -> Out> for Funcwhere Func: Send + Sync + 'staticF0: SystemParamfor<'a> &'a mut Func: FnMut<(F0)> -> Out + FnMut<(<..F0 as SystemParam>::Item)> -> OutOut: 'static",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483672": {
+      "label": "impl<T> IntoSystem<<T as System>::In, <T as System>::Out, ()> for Twhere T: System",
       "metadata": {
         "kind": "AND"
       }
@@ -212,44 +212,16 @@
       "target": "9"
     },
     {
-      "source": "2147484751",
-      "target": "54"
+      "source": "51",
+      "target": "2147484751"
     },
     {
-      "source": "2147484751",
-      "target": "12"
+      "source": "3",
+      "target": "2147483672"
     },
     {
-      "source": "2147484751",
-      "target": "16"
-    },
-    {
-      "source": "2147484751",
-      "target": "55"
-    },
-    {
-      "source": "2147484751",
-      "target": "57"
-    },
-    {
-      "source": "2147484751",
-      "target": "14"
-    },
-    {
-      "source": "2147484751",
-      "target": "58"
-    },
-    {
-      "source": "2147484751",
-      "target": "15"
-    },
-    {
-      "source": "2147484751",
-      "target": "59"
-    },
-    {
-      "source": "2147484751",
-      "target": "56"
+      "source": "3",
+      "target": "2147483674"
     },
     {
       "source": "2",
@@ -258,18 +230,6 @@
     {
       "source": "0",
       "target": "2147483651"
-    },
-    {
-      "source": "2147483650",
-      "target": "1"
-    },
-    {
-      "source": "2147483650",
-      "target": "16"
-    },
-    {
-      "source": "2147483650",
-      "target": "3"
     },
     {
       "source": "2147483672",
@@ -281,23 +241,75 @@
     },
     {
       "source": "2147483674",
-      "target": "1"
-    },
-    {
-      "source": "2147483674",
       "target": "51"
-    },
-    {
-      "source": "2147483674",
-      "target": "16"
     },
     {
       "source": "2147483674",
       "target": "13"
     },
     {
-      "source": "2147483651",
+      "source": "2147483674",
       "target": "1"
+    },
+    {
+      "source": "2147483674",
+      "target": "16"
+    },
+    {
+      "source": "2147484751",
+      "target": "57"
+    },
+    {
+      "source": "2147484751",
+      "target": "58"
+    },
+    {
+      "source": "2147484751",
+      "target": "14"
+    },
+    {
+      "source": "2147484751",
+      "target": "12"
+    },
+    {
+      "source": "2147484751",
+      "target": "55"
+    },
+    {
+      "source": "2147484751",
+      "target": "56"
+    },
+    {
+      "source": "2147484751",
+      "target": "54"
+    },
+    {
+      "source": "2147484751",
+      "target": "59"
+    },
+    {
+      "source": "2147484751",
+      "target": "16"
+    },
+    {
+      "source": "2147484751",
+      "target": "15"
+    },
+    {
+      "source": "2147483650",
+      "target": "1"
+    },
+    {
+      "source": "2147483650",
+      "target": "3"
+    },
+    {
+      "source": "2147483650",
+      "target": "16"
+    },
+    {
+      "source": "2147483651",
+      "target": "16"
     },
     {
       "source": "2147483651",
@@ -305,19 +317,7 @@
     },
     {
       "source": "2147483651",
-      "target": "16"
-    },
-    {
-      "source": "3",
-      "target": "2147483672"
-    },
-    {
-      "source": "3",
-      "target": "2147483674"
-    },
-    {
-      "source": "51",
-      "target": "2147484751"
+      "target": "1"
     },
     {
       "source": "9",

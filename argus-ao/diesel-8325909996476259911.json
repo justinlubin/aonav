@@ -8,14 +8,8 @@
         "kind": "AND"
       }
     },
-    "3": {
-      "label": "<name as Expression>::SqlType normalizes to _",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "0": {
-      "label": "Text: AsExpression<<name as Expression>::SqlType>",
+    "6": {
+      "label": "Text: SingleValue",
       "metadata": {
         "kind": "OR"
       }
@@ -26,14 +20,20 @@
         "kind": "OR"
       }
     },
-    "6": {
-      "label": "Text: SingleValue",
+    "2": {
+      "label": "Text == <name as Expression>::SqlType",
       "metadata": {
         "kind": "OR"
       }
     },
-    "5": {
-      "label": "Text: Sized",
+    "0": {
+      "label": "Text: AsExpression<<name as Expression>::SqlType>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "4": {
+      "label": "Text: TypedExpressionType",
       "metadata": {
         "kind": "OR"
       }
@@ -50,14 +50,14 @@
         "kind": "OR"
       }
     },
-    "2": {
-      "label": "Text == <name as Expression>::SqlType",
+    "5": {
+      "label": "Text: Sized",
       "metadata": {
         "kind": "OR"
       }
     },
-    "4": {
-      "label": "Text: TypedExpressionType",
+    "3": {
+      "label": "<name as Expression>::SqlType normalizes to _",
       "metadata": {
         "kind": "OR"
       }
@@ -74,8 +74,8 @@
         "kind": "AND"
       }
     },
-    "2147484318": {
-      "label": "impl SqlType for Text",
+    "2147483971": {
+      "label": "impl Expression for name",
       "metadata": {
         "kind": "AND"
       }
@@ -86,8 +86,8 @@
         "kind": "AND"
       }
     },
-    "2147483971": {
-      "label": "impl Expression for name",
+    "2147484318": {
+      "label": "impl SqlType for Text",
       "metadata": {
         "kind": "AND"
       }
@@ -138,44 +138,12 @@
       "target": "3"
     },
     {
-      "source": "2147483702",
-      "target": "5"
-    },
-    {
-      "source": "2147483702",
-      "target": "2"
-    },
-    {
-      "source": "2147483702",
-      "target": "1"
-    },
-    {
-      "source": "2147483702",
-      "target": "4"
-    },
-    {
-      "source": "2147483702",
-      "target": "8"
-    },
-    {
-      "source": "3",
-      "target": "2147483971"
-    },
-    {
-      "source": "6",
-      "target": "2147484284"
-    },
-    {
-      "source": "2147484284",
-      "target": "7"
-    },
-    {
-      "source": "4",
-      "target": "2147484209"
-    },
-    {
       "source": "0",
       "target": "2147483702"
+    },
+    {
+      "source": "8",
+      "target": "2147484318"
     },
     {
       "source": "2147484209",
@@ -186,12 +154,44 @@
       "target": "6"
     },
     {
-      "source": "8",
-      "target": "2147484318"
-    },
-    {
       "source": "2147484318",
       "target": "7"
+    },
+    {
+      "source": "2147483702",
+      "target": "1"
+    },
+    {
+      "source": "2147483702",
+      "target": "5"
+    },
+    {
+      "source": "2147483702",
+      "target": "4"
+    },
+    {
+      "source": "2147483702",
+      "target": "2"
+    },
+    {
+      "source": "2147483702",
+      "target": "8"
+    },
+    {
+      "source": "6",
+      "target": "2147484284"
+    },
+    {
+      "source": "2147484284",
+      "target": "7"
+    },
+    {
+      "source": "3",
+      "target": "2147483971"
+    },
+    {
+      "source": "4",
+      "target": "2147484209"
     },
     {
       "source": "2",

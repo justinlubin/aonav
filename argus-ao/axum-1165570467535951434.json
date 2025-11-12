@@ -13,12 +13,6 @@
         "kind": "AND"
       }
     },
-    "1": {
-      "label": "<S as Service<Request<Body>>>::Future == _",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
     "0": {
       "label": "<S as Service<Request<Body>>>::Future: Send",
       "metadata": {
@@ -27,6 +21,12 @@
     },
     "2": {
       "label": "<S as Service<Request<Body>>>::Future normalizes to _",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "1": {
+      "label": "<S as Service<Request<Body>>>::Future == _",
       "metadata": {
         "kind": "OR"
       }

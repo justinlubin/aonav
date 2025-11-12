@@ -1,0 +1,367 @@
+{ "graph": {
+  "metadata": {
+    "goal": "0"
+  },
+  "nodes": {
+    "-1": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "9": {
+      "label": "&'_ mut World: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "1": {
+      "label": "_: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "0": {
+      "label": "(run_timer fn(Timer)): IntoSystemConfigs<M>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "56": {
+      "label": "Timer: Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "15": {
+      "label": "run_timer fn(Timer): Sync",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "16": {
+      "label": "run_timer fn(Timer): Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "3": {
+      "label": "run_timer fn(Timer): IntoSystem<(), (), _>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "57": {
+      "label": "(): 'static",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2": {
+      "label": "run_timer fn(Timer): IntoSystemConfigs<_>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "14": {
+      "label": "run_timer fn(Timer): Send",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "58": {
+      "label": "for<'a> &'a mut run_timer fn(Timer): FnMut<(Timer)>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "12": {
+      "label": "run_timer fn(Timer): 'static",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "55": {
+      "label": "for<'a> <&'a mut run_timer ..fn(Timer) as FnOnce<(Timer)>>::Output == ()",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "51": {
+      "label": "run_timer fn(Timer): SystemParamFunction<_>",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "110": {
+      "label": "run_timer fn(Timer): System",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "13": {
+      "label": "_: 'static",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "54": {
+      "label": "Timer: SystemParam",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "59": {
+      "label": "(): Sized",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "2147483650": {
+      "label": "impl<Marker, F> IntoSystemConfigs<Marker> for Fwhere F: IntoSystem<()()Marker>",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483674": {
+      "label": "impl<Marker, F> IntoSystem<<F as SystemParamFunction<Marker>>::In, <F as SystemParamFunction<Marker>>::Out, (IsFunctionSystemMarker)> for Fwhere Marker: 'staticF: SystemParamFunction<Marker>",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147484751": {
+      "label": "impl<Out, Func, F0> SystemParamFunction<fn(F0) -> Out> for Funcwhere Func: Send + Sync + 'staticF0: SystemParamfor<'a> &'a mut Func: FnMut<(F0)> -> Out + FnMut<(<..F0 as SystemParam>::Item)> -> OutOut: 'static",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483672": {
+      "label": "impl<T> IntoSystem<<T as System>::In, <T as System>::Out, ()> for Twhere T: System",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "2147483651": {
+      "label": "impl<P0, S0> IntoSystemConfigs<(SystemConfigTupleMarkerP0)> for (S0)where S0: IntoSystemConfigs<P0>",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-2": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-3": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-4": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-5": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-6": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-7": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-8": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-9": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-10": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-11": {
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "-12": {
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "1",
+      "target": "-1"
+    },
+    {
+      "source": "-1",
+      "target": "9"
+    },
+    {
+      "source": "2147483651",
+      "target": "16"
+    },
+    {
+      "source": "2147483651",
+      "target": "2"
+    },
+    {
+      "source": "2147483651",
+      "target": "1"
+    },
+    {
+      "source": "3",
+      "target": "2147483672"
+    },
+    {
+      "source": "3",
+      "target": "2147483674"
+    },
+    {
+      "source": "51",
+      "target": "2147484751"
+    },
+    {
+      "source": "2147484751",
+      "target": "57"
+    },
+    {
+      "source": "2147484751",
+      "target": "58"
+    },
+    {
+      "source": "2147484751",
+      "target": "14"
+    },
+    {
+      "source": "2147484751",
+      "target": "12"
+    },
+    {
+      "source": "2147484751",
+      "target": "55"
+    },
+    {
+      "source": "2147484751",
+      "target": "56"
+    },
+    {
+      "source": "2147484751",
+      "target": "54"
+    },
+    {
+      "source": "2147484751",
+      "target": "59"
+    },
+    {
+      "source": "2147484751",
+      "target": "16"
+    },
+    {
+      "source": "2147484751",
+      "target": "15"
+    },
+    {
+      "source": "2",
+      "target": "2147483650"
+    },
+    {
+      "source": "2147483674",
+      "target": "51"
+    },
+    {
+      "source": "2147483674",
+      "target": "13"
+    },
+    {
+      "source": "2147483674",
+      "target": "1"
+    },
+    {
+      "source": "2147483674",
+      "target": "16"
+    },
+    {
+      "source": "2147483672",
+      "target": "110"
+    },
+    {
+      "source": "2147483672",
+      "target": "16"
+    },
+    {
+      "source": "2147483650",
+      "target": "1"
+    },
+    {
+      "source": "2147483650",
+      "target": "3"
+    },
+    {
+      "source": "2147483650",
+      "target": "16"
+    },
+    {
+      "source": "0",
+      "target": "2147483651"
+    },
+    {
+      "source": "9",
+      "target": "-2"
+    },
+    {
+      "source": "12",
+      "target": "-3"
+    },
+    {
+      "source": "13",
+      "target": "-4"
+    },
+    {
+      "source": "14",
+      "target": "-5"
+    },
+    {
+      "source": "15",
+      "target": "-6"
+    },
+    {
+      "source": "16",
+      "target": "-7"
+    },
+    {
+      "source": "55",
+      "target": "-8"
+    },
+    {
+      "source": "56",
+      "target": "-9"
+    },
+    {
+      "source": "57",
+      "target": "-10"
+    },
+    {
+      "source": "58",
+      "target": "-11"
+    },
+    {
+      "source": "59",
+      "target": "-12"
+    }
+  ]
+} }
