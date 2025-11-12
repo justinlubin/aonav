@@ -8,7 +8,7 @@ import polars as pl
 
 metadata = pl.read_csv("metadata.csv")
 
-data = pl.read_csv("../results/prelim-relevant.csv").with_columns(
+data = pl.read_csv("../results/minimal.csv").with_columns(
     duration=pl.col("duration") / 1000,
 )
 
