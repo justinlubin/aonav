@@ -18,7 +18,29 @@ summary = (
         pl.col("unique_decisions").mean(),
     )
     .group_by("provider", "name")
-    .mean()
+    .agg(
+        pl.col("duration").mean(),
+        pl.col("total_decisions").mean(),
+        pl.col("unique_decisions").mean(),
+    )
+)
+
+remaining = summary.filter(pl.col("provider") == "Remaining")
+nonremaining = summary.filter(pl.col("provider") != "Remaining")
+remaining_comparison = (
+    nonremaining.join(
+        remaining,
+        on="name",
+        validate="m:1",
+        suffix="_rem",
+    )
+    .drop("provider_rem")
+    .with_columns(
+        pl.col("duration") / pl.col("duration_rem"),
+        pl.col("total_decisions") / pl.col("total_decisions_rem"),
+        pl.col("unique_decisions") / pl.col("unique_decisions_rem"),
+    )
+    .drop(pl.selectors.ends_with("_rem"))
 )
 
 # %% Main
@@ -31,12 +53,12 @@ def catplot(df, *, by, val):
 
     rng = np.random.default_rng(seed=0)
 
-    for i, ((title,), g) in enumerate(df.group_by(by)):
-        x = np.repeat(
-            i,
-            len(g),
+    for x, ((title,), g) in enumerate(
+        df.sort(by).group_by(
+            by,
+            maintain_order=True,
         )
-
+    ):
         jitter = rng.uniform(
             low=-0.25,
             high=0.25,
@@ -62,7 +84,7 @@ def catplot(df, *, by, val):
             alpha=0.7,
         )
 
-        ticks.append(i)
+        ticks.append(x)
         labels.append(title)
 
     ax.set_xticks(ticks, labels=labels)
@@ -94,4 +116,28 @@ catplot(
     val="total_decisions",
 )[0].savefig(
     "out/unique_decisions.svg",
+)
+
+catplot(
+    remaining_comparison,
+    by="provider",
+    val="duration",
+)[0].savefig(
+    "out/comparative-duration.svg",
+)
+
+catplot(
+    remaining_comparison,
+    by="provider",
+    val="total_decisions",
+)[0].savefig(
+    "out/comparative-total_decisions.svg",
+)
+
+catplot(
+    remaining_comparison,
+    by="provider",
+    val="total_decisions",
+)[0].savefig(
+    "out/comparative-unique_decisions.svg",
 )
