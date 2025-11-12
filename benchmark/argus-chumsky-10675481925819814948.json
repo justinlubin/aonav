@@ -1,21 +1,21 @@
 {
   "graph": {
     "metadata": {
-      "goal": "uZgirKGktdrbPejFouJVQnCBmsWhAcip"
+      "goal": "VnpObjXejZODEolhDolkNkuIDeBxGdYL"
     },
     "nodes": {
-      "OvLJcguVOTVbpquNsTXuwhWoEQvbliBv": {
+      "xESPAkzSbLBKTpUhpHoHYpOmZjYbSowh": {
         "metadata": {
           "kind": "AND"
         }
       },
-      "lbMkTXnVoQfkzEjdSmqyMeMRwgEIWdIT": {
+      "geclJzegwFUsqhxRCGMAaQEGVeYfjXlL": {
         "label": "<Label<To<Just<char&str{error}>&strJson>, &str> as Parser<char, Json>>::Error == <Or<Label<To<Just<char&str{error}>&strJson>&str>, Label<To<Just<char&str{error}>&strJson>&str>> as Parser<char, Json>>::Error",
         "metadata": {
           "kind": "OR"
         }
       },
-      "uZgirKGktdrbPejFouJVQnCBmsWhAcip": {
+      "VnpObjXejZODEolhDolkNkuIDeBxGdYL": {
         "label": "<Label<To<Just<char&str{error}>&strJson>, &str> as Parser<char, Json>>::Error == <Or<Label<To<Just<char&str{error}>&strJson>&str>, Label<To<Just<char&str{error}>&strJson>&str>> as Parser<char, Json>>::Error",
         "metadata": {
           "kind": "OR"
@@ -24,12 +24,12 @@
     },
     "edges": [
       {
-        "source": "uZgirKGktdrbPejFouJVQnCBmsWhAcip",
-        "target": "OvLJcguVOTVbpquNsTXuwhWoEQvbliBv"
+        "source": "VnpObjXejZODEolhDolkNkuIDeBxGdYL",
+        "target": "xESPAkzSbLBKTpUhpHoHYpOmZjYbSowh"
       },
       {
-        "source": "OvLJcguVOTVbpquNsTXuwhWoEQvbliBv",
-        "target": "lbMkTXnVoQfkzEjdSmqyMeMRwgEIWdIT"
+        "source": "xESPAkzSbLBKTpUhpHoHYpOmZjYbSowh",
+        "target": "geclJzegwFUsqhxRCGMAaQEGVeYfjXlL"
       }
     ]
   }

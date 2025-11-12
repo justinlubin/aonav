@@ -1,34 +1,34 @@
 {
   "graph": {
     "metadata": {
-      "goal": "IIcCdijjlkenBlEwoBPgXuTKyXkkytWQ"
+      "goal": "BgtSAEitcjvHYhJPUyCnJCDGPdPTBvnt"
     },
     "nodes": {
-      "oKcUWEVLwTuGhVEOsQmodREszNYcscFw": {
+      "yRdjuAKYzCVhXHjpdHPhObbpbpquBZyC": {
         "label": "&str: ToString",
         "metadata": {
           "kind": "OR"
         }
       },
-      "IIcCdijjlkenBlEwoBPgXuTKyXkkytWQ": {
+      "BgtSAEitcjvHYhJPUyCnJCDGPdPTBvnt": {
         "label": "(&str, &str): ToString",
         "metadata": {
           "kind": "OR"
         }
       },
-      "KPvORzDVztqCQNHpvGrmofEecONZWpuZ": {
+      "aLcYVoMigYGVknVLLjuMaFsxYmNSFxSH": {
         "label": "&str: Sized",
         "metadata": {
           "kind": "OR"
         }
       },
-      "wogauHhXpZkntzfuxVCFIXEhxRhRRCjU": {
+      "UzulHueZVsZMsgpECVRwFSQQUMkJMwge": {
         "label": "impl<S, T> ToString for (S, T)where S: ToStringT: ToString",
         "metadata": {
           "kind": "AND"
         }
       },
-      "gtfpPrSQbywaIvkJzuZpuKNLlMZGGPZU": {
+      "tlxYKbHUDSDRMSXuKRqHbfvVKNoyUDMo": {
         "metadata": {
           "kind": "AND"
         }
@@ -36,20 +36,20 @@
     },
     "edges": [
       {
-        "source": "wogauHhXpZkntzfuxVCFIXEhxRhRRCjU",
-        "target": "KPvORzDVztqCQNHpvGrmofEecONZWpuZ"
+        "source": "UzulHueZVsZMsgpECVRwFSQQUMkJMwge",
+        "target": "aLcYVoMigYGVknVLLjuMaFsxYmNSFxSH"
       },
       {
-        "source": "wogauHhXpZkntzfuxVCFIXEhxRhRRCjU",
-        "target": "oKcUWEVLwTuGhVEOsQmodREszNYcscFw"
+        "source": "UzulHueZVsZMsgpECVRwFSQQUMkJMwge",
+        "target": "yRdjuAKYzCVhXHjpdHPhObbpbpquBZyC"
       },
       {
-        "source": "IIcCdijjlkenBlEwoBPgXuTKyXkkytWQ",
-        "target": "wogauHhXpZkntzfuxVCFIXEhxRhRRCjU"
+        "source": "BgtSAEitcjvHYhJPUyCnJCDGPdPTBvnt",
+        "target": "UzulHueZVsZMsgpECVRwFSQQUMkJMwge"
       },
       {
-        "source": "KPvORzDVztqCQNHpvGrmofEecONZWpuZ",
-        "target": "gtfpPrSQbywaIvkJzuZpuKNLlMZGGPZU"
+        "source": "aLcYVoMigYGVknVLLjuMaFsxYmNSFxSH",
+        "target": "tlxYKbHUDSDRMSXuKRqHbfvVKNoyUDMo"
       }
     ]
   }
