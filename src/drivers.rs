@@ -240,8 +240,8 @@ impl Driver<pn::Step> for SolutionDriven {
                 }
             }
 
-            let chosen_option = chosen_option
-                .expect("SolutionDriven driver could not find consistent step");
+            let chosen_option = chosen_option?;
+            // .expect("SolutionDriven driver could not find consistent step");
 
             controller.decide(options.swap_remove(chosen_option))
         }

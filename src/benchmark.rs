@@ -86,8 +86,9 @@ impl Runner {
             pn::Exp::new(solution.graph().clone()),
             false,
         );
+
         let mut driver = drivers::SolutionDriven::new(solution);
-        let _ = driver.drive(controller);
+        let success = driver.drive(controller).is_some();
 
         let duration = now.elapsed().as_millis();
 
@@ -96,7 +97,7 @@ impl Runner {
             name: entry.name,
             chosen_solution: entry.chosen_solution,
             replicate: entry.replicate,
-            success: true,
+            success,
             duration,
             total_decisions: driver.total_decisions(),
             unique_decisions: driver.unique_decisions(),
