@@ -78,11 +78,10 @@ impl Runner {
     fn entry(&self, entry: BenchmarkEntry, solution: pn::Exp) {
         let now = Instant::now();
 
-        let provider = pn::providers::Remaining::new();
         let checker = pn::oracle::Valid::new();
         let controller = pbn::Controller::new(
             Timer::finite(self.config.timeout),
-            provider,
+            pbn::CompoundProvider::new(vec![entry.provider.provider()]),
             checker,
             pn::Exp::new(solution.graph().clone()),
             false,
