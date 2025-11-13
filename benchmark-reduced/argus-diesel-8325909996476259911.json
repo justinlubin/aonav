@@ -1,22 +1,22 @@
 {
   "graph": {
     "metadata": {
-      "goal": "PAIcMFGcdtBCbWMWpnVQlPjARvgJoZAN"
+      "goal": "seJiJFKAxyNbIsvwECHvnjduwMEQPYMu"
     },
     "nodes": {
-      "ipCtZRCoNZGIlmAhxMDiXEemtZNgPgzO": {
+      "aKxVGJLAPtZFlXQIMQcguSnRShvYHQGD": {
         "label": "Text: Expression",
         "metadata": {
           "kind": "OR"
         }
       },
-      "PAIcMFGcdtBCbWMWpnVQlPjARvgJoZAN": {
+      "seJiJFKAxyNbIsvwECHvnjduwMEQPYMu": {
         "label": "Text: AsExpression<<name as Expression>::SqlType>",
         "metadata": {
           "kind": "OR"
         }
       },
-      "sgyrxmaprWnSQfPxNOxcsjfSZVoNWWYD": {
+      "cVnwLMezrOsfmzTlbpOhRXrtjtaaqrYb": {
         "label": "impl<T, ST> AsExpression<ST> for Twhere T: ExpressionST: SqlType + TypedExpressionType<..T as Expression>::SqlType == ST",
         "metadata": {
           "kind": "AND"
@@ -25,12 +25,12 @@
     },
     "edges": [
       {
-        "source": "PAIcMFGcdtBCbWMWpnVQlPjARvgJoZAN",
-        "target": "sgyrxmaprWnSQfPxNOxcsjfSZVoNWWYD"
+        "source": "seJiJFKAxyNbIsvwECHvnjduwMEQPYMu",
+        "target": "cVnwLMezrOsfmzTlbpOhRXrtjtaaqrYb"
       },
       {
-        "source": "sgyrxmaprWnSQfPxNOxcsjfSZVoNWWYD",
-        "target": "ipCtZRCoNZGIlmAhxMDiXEemtZNgPgzO"
+        "source": "cVnwLMezrOsfmzTlbpOhRXrtjtaaqrYb",
+        "target": "aKxVGJLAPtZFlXQIMQcguSnRShvYHQGD"
       }
     ]
   }

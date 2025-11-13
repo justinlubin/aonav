@@ -1,28 +1,28 @@
 {
   "graph": {
     "metadata": {
-      "goal": "RqmDtToFVtjnwSzQbWzgNYqVegsIIguG"
+      "goal": "YCRJPZHLgosCBWszpxZKCKjVJTGffSzn"
     },
     "nodes": {
-      "blKayvPyOjHrtlRdeUFzXKWpUImpJYHX": {
+      "RtPqGoMWiKMDKZyDuUHlubyZNaWJpGCo": {
         "label": "Eq<name, _>: MetaSized",
         "metadata": {
           "kind": "OR"
         }
       },
-      "PxgWbVHYAQFXscXEKknIXUinYueVQwvX": {
+      "csuPRmvWSnlAvymZHKoneGLZJcIdbLua": {
         "label": "Grouped<Eq<name_>>: Display",
         "metadata": {
           "kind": "OR"
         }
       },
-      "RqmDtToFVtjnwSzQbWzgNYqVegsIIguG": {
+      "YCRJPZHLgosCBWszpxZKCKjVJTGffSzn": {
         "label": "Grouped<Eq<name_>>: ToString",
         "metadata": {
           "kind": "OR"
         }
       },
-      "ciOiWHipValvcRdCQHzzRGRctzYimQYq": {
+      "ceqNrizQZwhHEzIzsXjXpYxDiIPmsDBQ": {
         "label": "impl<T> ToString for Twhere T: MetaSized + Display",
         "metadata": {
           "kind": "AND"
@@ -31,12 +31,12 @@
     },
     "edges": [
       {
-        "source": "ciOiWHipValvcRdCQHzzRGRctzYimQYq",
-        "target": "PxgWbVHYAQFXscXEKknIXUinYueVQwvX"
+        "source": "ceqNrizQZwhHEzIzsXjXpYxDiIPmsDBQ",
+        "target": "csuPRmvWSnlAvymZHKoneGLZJcIdbLua"
       },
       {
-        "source": "RqmDtToFVtjnwSzQbWzgNYqVegsIIguG",
-        "target": "ciOiWHipValvcRdCQHzzRGRctzYimQYq"
+        "source": "YCRJPZHLgosCBWszpxZKCKjVJTGffSzn",
+        "target": "ceqNrizQZwhHEzIzsXjXpYxDiIPmsDBQ"
       }
     ]
   }

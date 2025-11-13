@@ -1,39 +1,39 @@
 {
   "graph": {
     "metadata": {
-      "goal": "frBTMapKLOXbDVwRbuGmlYbTnWMchaak"
+      "goal": "ktZdrzfYtIviKPoGWNSdxPdJGXwDfydx"
     },
     "nodes": {
-      "egnBjQPVZFUeyKZiclPWGDFQjniBBflS": {
+      "lWwMaDeIPOplpzUBEXPyoTiOTMXCjSqp": {
         "metadata": {
           "kind": "AND"
         }
       },
-      "STHyvtfwTnKZcbEBVHyAecfdIXHvqDzY": {
+      "JWLNRNKBrpteVCNePUttUOnpmYpCCLZL": {
         "label": "<(table) as AsQuery>::Query normalizes to _",
         "metadata": {
           "kind": "OR"
         }
       },
-      "YlnuRasbmSMbERCpplWYXtofPjCpCTAE": {
+      "oCFzBQSSIasgatSrzApZbAGpcfBqZNAE": {
         "label": "(table): Table",
         "metadata": {
           "kind": "OR"
         }
       },
-      "KMCCjXIvFsyxKNoQhvCrUWsbyNCLZCTP": {
+      "hCvjCUJiImPcRarLuZRhGGoQYTbydSuQ": {
         "label": "<(table) as AsQuery>::Query == _",
         "metadata": {
           "kind": "OR"
         }
       },
-      "frBTMapKLOXbDVwRbuGmlYbTnWMchaak": {
+      "ktZdrzfYtIviKPoGWNSdxPdJGXwDfydx": {
         "label": "(table): SelectDsl<id>",
         "metadata": {
           "kind": "OR"
         }
       },
-      "sbAsknISmpuXPGxqZZixBCnlpZdBbSuC": {
+      "WnlxqRYVJrRlxRFMcZtyWxVAJgXZmvYI": {
         "label": "impl<T, Selection> SelectDsl<Selection> for Twhere Selection: ExpressionT: Table<..T as AsQuery>::Query: SelectDsl<Selection>",
         "metadata": {
           "kind": "AND"
@@ -42,24 +42,24 @@
     },
     "edges": [
       {
-        "source": "KMCCjXIvFsyxKNoQhvCrUWsbyNCLZCTP",
-        "target": "egnBjQPVZFUeyKZiclPWGDFQjniBBflS"
+        "source": "hCvjCUJiImPcRarLuZRhGGoQYTbydSuQ",
+        "target": "lWwMaDeIPOplpzUBEXPyoTiOTMXCjSqp"
       },
       {
-        "source": "egnBjQPVZFUeyKZiclPWGDFQjniBBflS",
-        "target": "STHyvtfwTnKZcbEBVHyAecfdIXHvqDzY"
+        "source": "lWwMaDeIPOplpzUBEXPyoTiOTMXCjSqp",
+        "target": "JWLNRNKBrpteVCNePUttUOnpmYpCCLZL"
       },
       {
-        "source": "sbAsknISmpuXPGxqZZixBCnlpZdBbSuC",
-        "target": "YlnuRasbmSMbERCpplWYXtofPjCpCTAE"
+        "source": "WnlxqRYVJrRlxRFMcZtyWxVAJgXZmvYI",
+        "target": "oCFzBQSSIasgatSrzApZbAGpcfBqZNAE"
       },
       {
-        "source": "sbAsknISmpuXPGxqZZixBCnlpZdBbSuC",
-        "target": "KMCCjXIvFsyxKNoQhvCrUWsbyNCLZCTP"
+        "source": "WnlxqRYVJrRlxRFMcZtyWxVAJgXZmvYI",
+        "target": "hCvjCUJiImPcRarLuZRhGGoQYTbydSuQ"
       },
       {
-        "source": "frBTMapKLOXbDVwRbuGmlYbTnWMchaak",
-        "target": "sbAsknISmpuXPGxqZZixBCnlpZdBbSuC"
+        "source": "ktZdrzfYtIviKPoGWNSdxPdJGXwDfydx",
+        "target": "WnlxqRYVJrRlxRFMcZtyWxVAJgXZmvYI"
       }
     ]
   }

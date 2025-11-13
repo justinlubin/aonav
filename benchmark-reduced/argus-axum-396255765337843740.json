@@ -1,46 +1,46 @@
 {
   "graph": {
     "metadata": {
-      "goal": "UepwjOwYGeNjsmroxjZdLuZWQPWLjunw"
+      "goal": "qOjNuFffaZwkpEVhEQShtXVOwIdWnaVv"
     },
     "nodes": {
-      "VqfGBUANgRIDqaIwyfZZYNlyVdIbIcLf": {
+      "pjbkkVcebBAmdAoXChEwJNPikHZhMmnO": {
         "label": "&A: FromRequest<S, _>",
         "metadata": {
           "kind": "OR"
         }
       },
-      "WzHwzDdcEbbIKLEYoMWdnHzrqwRxLEQW": {
+      "UXSUGcimKknDpjySBQNAfXSpzJaGhLfa": {
         "label": "handler fn(&A) -> impl Future<Output = ()>: IntoResponse",
         "metadata": {
           "kind": "OR"
         }
       },
-      "UepwjOwYGeNjsmroxjZdLuZWQPWLjunw": {
+      "qOjNuFffaZwkpEVhEQShtXVOwIdWnaVv": {
         "label": "handler fn(&A) -> impl Future<Output = ()>: Handler<T, S>",
         "metadata": {
           "kind": "OR"
         }
       },
-      "ZCAAPNnXDVKFEGyhybAdpSxoRiXKbEaT": {
+      "TNyPXdsreaRAJANRBoMzNmWkponBcGow": {
         "label": "&A: FromRequestParts<S>",
         "metadata": {
           "kind": "OR"
         }
       },
-      "BJPxvjxXcCByYvQcxxEdkOFazTaFatdW": {
+      "CSqtTbelweevQPlXODoYSNfPQRrGVJKX": {
         "label": "impl<S, T> FromRequest<S, ViaParts> for Twhere S: Send + SyncT: FromRequestParts<S>",
         "metadata": {
           "kind": "AND"
         }
       },
-      "LMNNkrdvCBkJZEGpUywqHFIIyidSMZBu": {
+      "NsEgXBArFGYnbcBWsocxLLHKRfynEuwI": {
         "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
         "metadata": {
           "kind": "AND"
         }
       },
-      "SPZFxhurGRMMNmdWUjneeiXFpjosSVTI": {
+      "BdVMCPoGptsxcSwFkdzbnABeYfgJfuCb": {
         "label": "impl<F, Fut, S, Res, M, T1> Handler<(MT1), S> for Fwhere F: FnOnce<(T1)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
         "metadata": {
           "kind": "AND"
@@ -49,28 +49,28 @@
     },
     "edges": [
       {
-        "source": "BJPxvjxXcCByYvQcxxEdkOFazTaFatdW",
-        "target": "ZCAAPNnXDVKFEGyhybAdpSxoRiXKbEaT"
+        "source": "CSqtTbelweevQPlXODoYSNfPQRrGVJKX",
+        "target": "TNyPXdsreaRAJANRBoMzNmWkponBcGow"
       },
       {
-        "source": "VqfGBUANgRIDqaIwyfZZYNlyVdIbIcLf",
-        "target": "BJPxvjxXcCByYvQcxxEdkOFazTaFatdW"
+        "source": "pjbkkVcebBAmdAoXChEwJNPikHZhMmnO",
+        "target": "CSqtTbelweevQPlXODoYSNfPQRrGVJKX"
       },
       {
-        "source": "UepwjOwYGeNjsmroxjZdLuZWQPWLjunw",
-        "target": "SPZFxhurGRMMNmdWUjneeiXFpjosSVTI"
+        "source": "qOjNuFffaZwkpEVhEQShtXVOwIdWnaVv",
+        "target": "BdVMCPoGptsxcSwFkdzbnABeYfgJfuCb"
       },
       {
-        "source": "UepwjOwYGeNjsmroxjZdLuZWQPWLjunw",
-        "target": "LMNNkrdvCBkJZEGpUywqHFIIyidSMZBu"
+        "source": "qOjNuFffaZwkpEVhEQShtXVOwIdWnaVv",
+        "target": "NsEgXBArFGYnbcBWsocxLLHKRfynEuwI"
       },
       {
-        "source": "LMNNkrdvCBkJZEGpUywqHFIIyidSMZBu",
-        "target": "WzHwzDdcEbbIKLEYoMWdnHzrqwRxLEQW"
+        "source": "NsEgXBArFGYnbcBWsocxLLHKRfynEuwI",
+        "target": "UXSUGcimKknDpjySBQNAfXSpzJaGhLfa"
       },
       {
-        "source": "SPZFxhurGRMMNmdWUjneeiXFpjosSVTI",
-        "target": "VqfGBUANgRIDqaIwyfZZYNlyVdIbIcLf"
+        "source": "BdVMCPoGptsxcSwFkdzbnABeYfgJfuCb",
+        "target": "pjbkkVcebBAmdAoXChEwJNPikHZhMmnO"
       }
     ]
   }

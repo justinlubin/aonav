@@ -1,22 +1,22 @@
 {
   "graph": {
     "metadata": {
-      "goal": "HjQknWOGayNbGRFRplxiqBvtQwmanZLT"
+      "goal": "uQiKVBsYTeNMvDjuLDPdsbeTnZTukIQw"
     },
     "nodes": {
-      "gJVoNNBxIBykSMMLoeyoBLKbyNSfdhpV": {
+      "dBQkVwoLgqSnrOwQSrxNphlbpobTKSRc": {
         "label": "&str: ToString",
         "metadata": {
           "kind": "OR"
         }
       },
-      "HjQknWOGayNbGRFRplxiqBvtQwmanZLT": {
+      "uQiKVBsYTeNMvDjuLDPdsbeTnZTukIQw": {
         "label": "(&str, &str): ToString",
         "metadata": {
           "kind": "OR"
         }
       },
-      "gHAKxRMnTsYkRFGeJDIFknlKxlSDYVjx": {
+      "uNxvjTmJQLMuWGnMSHBSvXqkNKirYsWk": {
         "label": "impl<S, T> ToString for (S, T)where S: ToStringT: ToString",
         "metadata": {
           "kind": "AND"
@@ -25,12 +25,12 @@
     },
     "edges": [
       {
-        "source": "gHAKxRMnTsYkRFGeJDIFknlKxlSDYVjx",
-        "target": "gJVoNNBxIBykSMMLoeyoBLKbyNSfdhpV"
+        "source": "uNxvjTmJQLMuWGnMSHBSvXqkNKirYsWk",
+        "target": "dBQkVwoLgqSnrOwQSrxNphlbpobTKSRc"
       },
       {
-        "source": "HjQknWOGayNbGRFRplxiqBvtQwmanZLT",
-        "target": "gHAKxRMnTsYkRFGeJDIFknlKxlSDYVjx"
+        "source": "uQiKVBsYTeNMvDjuLDPdsbeTnZTukIQw",
+        "target": "uNxvjTmJQLMuWGnMSHBSvXqkNKirYsWk"
       }
     ]
   }

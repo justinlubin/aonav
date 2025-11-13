@@ -1,22 +1,22 @@
 {
   "graph": {
     "metadata": {
-      "goal": "gAeKXgxcsalyqfTzuNuUYOvFUTIRuvmi"
+      "goal": "YUVNucZlxHoVMhPzmeddoyaAprTpWHHe"
     },
     "nodes": {
-      "gAeKXgxcsalyqfTzuNuUYOvFUTIRuvmi": {
+      "YUVNucZlxHoVMhPzmeddoyaAprTpWHHe": {
         "label": "(&str, Vec<Play>): Summary",
         "metadata": {
           "kind": "OR"
         }
       },
-      "lPyhsOWqFogGmsyUoJZYndpeEfDXabBu": {
+      "JQPIGJFCyIvSaOwDcfmpvWDvLUOrOPib": {
         "label": "&str: Summary",
         "metadata": {
           "kind": "OR"
         }
       },
-      "qdMukRYsUkyXXOIzIdeYTnuEpRWRZsaI": {
+      "dSHYEolpLIYsrRGtrKquNIgDMGVtplHn": {
         "label": "impl<T, U> Summary for (T, U)where T: SummaryU: Summary",
         "metadata": {
           "kind": "AND"
@@ -25,12 +25,12 @@
     },
     "edges": [
       {
-        "source": "qdMukRYsUkyXXOIzIdeYTnuEpRWRZsaI",
-        "target": "lPyhsOWqFogGmsyUoJZYndpeEfDXabBu"
+        "source": "dSHYEolpLIYsrRGtrKquNIgDMGVtplHn",
+        "target": "JQPIGJFCyIvSaOwDcfmpvWDvLUOrOPib"
       },
       {
-        "source": "gAeKXgxcsalyqfTzuNuUYOvFUTIRuvmi",
-        "target": "qdMukRYsUkyXXOIzIdeYTnuEpRWRZsaI"
+        "source": "YUVNucZlxHoVMhPzmeddoyaAprTpWHHe",
+        "target": "dSHYEolpLIYsrRGtrKquNIgDMGVtplHn"
       }
     ]
   }
