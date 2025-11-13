@@ -47,35 +47,66 @@ summary = (
     )
 )
 
-# remaining = summary.filter(pl.col("provider") == "Remaining")
-# nonremaining = summary.filter(pl.col("provider") != "Remaining")
-#
-# remaining_comparison = (
-#     nonremaining.join(
-#         remaining,
-#         on="name",
-#         validate="m:1",
-#         suffix="_rem",
-#     )
-#     .drop("provider_rem")
-#     .with_columns(
-#         pl.col("duration") / pl.col("duration_rem"),
-#         pl.col("total_decisions") / pl.col("total_decisions_rem"),
-#         pl.col("unique_decisions") / pl.col("unique_decisions_rem"),
-#     )
-#     .drop(pl.selectors.ends_with("_rem"))
+# summary = summary.filter(
+#     pl.col("total_decisions") > 0,
+#     pl.col("provider") != "Remaining",
 # )
 
-summary = summary.filter(
+# % %
+
+baseline_provider = "AlphabeticalComplete"
+
+baseline = summary.filter(
+    pl.col("provider") == baseline_provider,
+    pl.col("duration") > 0,
     pl.col("total_decisions") > 0,
-    pl.col("provider") != "Remaining",
+    pl.col("unique_decisions") > 0,
+)
+
+nonbaseline = summary.filter(
+    pl.col("provider") != baseline_provider,
+)
+
+comparison = (
+    nonbaseline.join(
+        baseline,
+        on="name",
+        validate="m:1",
+        suffix="_base",
+    ).drop("provider_base")
+    # .with_columns(
+    #     pl.col("duration") / pl.col("duration_base"),
+    #     pl.col("total_decisions") / pl.col("total_decisions_base"),
+    #     pl.col("unique_decisions") / pl.col("unique_decisions_base"),
+    # )
+    # .drop(pl.selectors.ends_with("_base"))
 )
 
 summary = summary.join(metadata, on="provider").with_columns(
     suite=pl.col("name").str.split_exact("-", 1).struct.field("field_0"),
 )
 
-# % % Main
+comparison = comparison.join(metadata, on="provider").with_columns(
+    suite=pl.col("name").str.split_exact("-", 1).struct.field("field_0"),
+)
+
+scal = (
+    summary.filter(
+        pl.col("suite") == "random",
+    )
+    .with_columns(
+        size=pl.col("name")
+        .str.split_exact("-", 2)
+        .struct.field("field_1")
+        .cast(pl.Int32),
+    )
+    .group_by("provider", "size")
+    .agg(pl.col("duration").mean())
+)
+
+scal = scal.join(metadata, on="provider")
+
+# %% Main
 
 
 def catplot(
@@ -173,7 +204,7 @@ for (suite,), g in summary.group_by("suite"):
         prefix="ResDur",
         places=2,
     )[0].savefig(
-        f"out/duration-{suite}.pdf",
+        f"out/01-duration-{suite}.pdf",
     )
 
     catplot(
@@ -185,38 +216,143 @@ for (suite,), g in summary.group_by("suite"):
         prefix="ResDec",
         places=0,
     )[0].savefig(
-        f"out/total_decisions-{suite}.pdf",
+        f"out/01-total_decisions-{suite}.pdf",
     )
 
-# catplot(
-#     summary,
-#     by="provider",
-#     val="unique_decisions",
-#     val_label="Unique decisions",
-# )[0].savefig(
-#     "out/unique_decisions.svg",
-# )
+# %%
 
-# catplot(
-#     remaining_comparison,
-#     by="provider",
-#     val="duration",
-# )[0].savefig(
-#     "out/comparative-duration.svg",
-# )
-#
-# catplot(
-#     remaining_comparison,
-#     by="provider",
-#     val="total_decisions",
-# )[0].savefig(
-#     "out/comparative-total_decisions.svg",
-# )
-#
-# catplot(
-#     remaining_comparison,
-#     by="provider",
-#     val="unique_decisions",
-# )[0].savefig(
-#     "out/comparative-unique_decisions.svg",
-# )
+
+def compareplot(
+    df,
+    *,
+    x,
+    y,
+    figtitle,
+):
+    fig, ax = plt.subplots(1, 1, figsize=(5, 5))
+
+    ax.scatter(
+        df[x],
+        df[y],
+        c="k",
+        alpha=0.2,
+        zorder=10,
+    )
+
+    lim = max(df[x].max(), df[y].max())
+
+    ax.axline(xy1=(0, 0), slope=1, ls="--", c="lightgray", zorder=1)
+
+    ax.set_xlim(0, lim)
+    ax.set_ylim(0, lim)
+
+    ax.set_aspect("equal", adjustable="box")
+    ax.spines[["top", "right"]].set_visible(False)
+
+    fig.suptitle(figtitle, fontweight="bold", fontsize=14)
+    # fig.tight_layout()
+
+    return fig, ax
+
+
+for (suite, provider), g in comparison.group_by("suite", "provider"):
+    compareplot(
+        g,
+        x="duration_base",
+        y="duration",
+        figtitle=nice_suite[suite],
+    )[0].savefig(
+        f"out/02-cmp-duration-{suite}-{provider}.pdf",
+    )
+
+    compareplot(
+        g,
+        x="total_decisions_base",
+        y="total_decisions",
+        figtitle=nice_suite[suite],
+    )[0].savefig(
+        f"out/02-cmp-total_decisions-{suite}-{provider}.pdf",
+    )
+
+# %%
+
+for (suite, provider, short), g in comparison.group_by(
+    "suite", "provider", "short"
+):
+    dur_multiplier = (g["duration_base"] / g["duration"]).median()
+    dec_multiplier = (g["total_decisions_base"] / g["total_decisions"]).median()
+    print(
+        "\\newcommand{\\MultDur"
+        + nice_suite[suite]
+        + short
+        + "}{"
+        + str(round(dur_multiplier, 2))
+        + "}"
+    )
+    print(
+        "\\newcommand{\\MultDec"
+        + nice_suite[suite]
+        + short
+        + "}{"
+        + str(round(dec_multiplier, 2))
+        + "}"
+    )
+
+# %%
+
+
+def scalplot(
+    df,
+    *,
+    x,
+    y,
+    order="order",
+):
+    fig, ax = plt.subplots(1, 1, figsize=(7, 3))
+
+    for (label, color, marker), g in df.sort(order).group_by(
+        "label",
+        "color",
+        "marker",
+        maintain_order=True,
+    ):
+        g = g.sort(x)
+        ax.plot(
+            g[x],
+            g[y],
+            c=color,
+            marker=marker,
+            clip_on=False,
+            label=label,
+        )
+
+    ax.set_xticks(np.arange(0, 201, 20))
+    ax.set_yticks(np.arange(0, 20.1, 2))
+
+    ax.set_xlim(0, 200)
+    ax.set_ylim(0, 20)
+
+    ax.spines[["top", "right"]].set_visible(False)
+
+    ax.set_xlabel("Size (OR nodes)", fontweight="bold")
+    ax.set_ylabel("Duration (s)", fontweight="bold")
+
+    # fig.suptitle(figtitle, fontweight="bold", fontsize=14)
+    fig.tight_layout()
+    # fig.legend(loc='center left', bbox_to_anchor=(1, 0))
+    fig.legend(
+        loc="upper left",
+        bbox_to_anchor=(0.12, 1),
+    )
+
+    return fig, ax
+
+
+scalplot(
+    scal,
+    x="size",
+    y="duration",
+)[0].savefig(
+    "out/03-scal.pdf",
+    bbox_inches="tight",
+)
