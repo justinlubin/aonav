@@ -4,11 +4,31 @@ import matplotlib.pyplot as plt
 import numpy as np
 import polars as pl
 
+SERIF_FONT = "Linux Libertine O"
+SANS_SERIF_FONT = "Linux Biolinum O"
+
+plt.rcParams.update(
+    {
+        "pdf.fonttype": 42,
+        "font.family": [SANS_SERIF_FONT],
+        "mathtext.fontset": "custom",
+        "mathtext.rm": SANS_SERIF_FONT,
+        "mathtext.it": SANS_SERIF_FONT + ":italic",
+        "mathtext.bf": SANS_SERIF_FONT + ":bold",
+    }
+)
+
 # %% Load data
+
+nice_suite = {
+    "manual": "Manual",
+    "random": "Random",
+    "argus": "Argus",
+}
 
 metadata = pl.read_csv("metadata.csv")
 
-data = pl.read_csv("../results/minimal.csv").with_columns(
+data = pl.read_csv("../results/combined.csv").with_columns(
     duration=pl.col("duration") / 1000,
 )
 
@@ -64,6 +84,10 @@ def catplot(
     by,
     val,
     val_label,
+    figtitle,
+    prefix,
+    places,
+    short="short",
     order="order",
     label="label",
 ):
@@ -73,9 +97,9 @@ def catplot(
 
     rng = np.random.default_rng(seed=0)
 
-    for x, ((_, title), g) in enumerate(
+    for x, ((_, title, short), g) in enumerate(
         df.sort([order, by]).group_by(
-            [by, label],
+            [by, label, short],
             maintain_order=True,
         )
     ):
@@ -95,7 +119,9 @@ def catplot(
             zorder=10,
         )
 
-        print(title, val, y.mean())
+        rhs = str(round(y.mean(), places) if places > 0 else round(y.mean()))
+        print("\\newcommand{\\" + prefix + figtitle + short + "}{" + rhs + "}")
+
         ax.hlines(
             y=y.mean(),
             xmin=x - 0.25,
@@ -108,18 +134,30 @@ def catplot(
         ticks.append(x)
         labels.append(title)
 
-    ax.set_xticks(ticks, labels=labels)
+    ax.set_xticks(ticks, labels=labels, fontweight="bold")
     ax.set_xlim([min(ticks) - 0.5, max(ticks) + 0.5])
 
-    if "decision" in val:
-        ymax = round(1 + 1.1 * max(df[val]) / 100) * 100
-        ax.set_ylim(0, ymax)
-        ax.set_yticks(np.arange(0, ymax + 1, 100))
+    m = max(df[val])
+    if m < 1:
+        ydelta = 0.05
+    elif m < 5:
+        ydelta = 0.5
+    elif m < 30:
+        ydelta = 5
+    elif m < 1000:
+        ydelta = 50
+    else:
+        ydelta = 100
 
-    ax.set_ylabel(val_label)
+    ymax = int(1 + max(df[val]) / ydelta) * ydelta
+    ax.set_ylim(0, ymax)
+    ax.set_yticks(np.arange(0, ymax + 0.000001, ydelta))
+
+    ax.set_ylabel(val_label, fontweight="bold")
 
     ax.spines[["top", "right"]].set_visible(False)
 
+    fig.suptitle(figtitle, fontweight="bold", fontsize=14)
     fig.tight_layout()
 
     return fig, ax
@@ -131,8 +169,11 @@ for (suite,), g in summary.group_by("suite"):
         by="provider",
         val="duration",
         val_label="Duration (s)",
+        figtitle=nice_suite[suite],
+        prefix="ResDur",
+        places=2,
     )[0].savefig(
-        f"out/duration-{suite}.svg",
+        f"out/duration-{suite}.pdf",
     )
 
     catplot(
@@ -140,8 +181,11 @@ for (suite,), g in summary.group_by("suite"):
         by="provider",
         val="total_decisions",
         val_label="Total decisions",
+        figtitle=nice_suite[suite],
+        prefix="ResDec",
+        places=0,
     )[0].savefig(
-        f"out/total_decisions-{suite}.svg",
+        f"out/total_decisions-{suite}.pdf",
     )
 
 # catplot(
