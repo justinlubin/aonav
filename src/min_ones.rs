@@ -28,7 +28,7 @@ pub fn solve(
     //     return None;
     // }
 
-    let mut original_solver = rustsat_batsat::BasicSolver::default();
+    let mut original_solver = rustsat_cadical::CaDiCaL::default();
     original_solver.add_cnf_ref(instance.cnf()).unwrap();
     if original_solver.solve().unwrap() != SolverResult::Sat {
         return None;
@@ -54,7 +54,7 @@ pub fn solve(
             lits_to_minimize.iter().copied(),
             k,
         ));
-        let mut solver = rustsat_batsat::BasicSolver::default();
+        let mut solver = rustsat_cadical::CaDiCaL::default();
         solver.add_cnf_ref(instance.cnf()).unwrap();
         if solver.solve().unwrap() == SolverResult::Sat {
             sol = solver.full_solution().unwrap();

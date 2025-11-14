@@ -236,7 +236,7 @@ pub fn nonempty_completion(e: &Exp) -> bool {
     let ctx = Context::compile(SatInstance::new(), e);
     let cnf = ctx.instance.into_cnf().0;
 
-    let mut solver = rustsat_batsat::BasicSolver::default();
+    let mut solver = rustsat_cadical::CaDiCaL::default();
     solver.add_cnf(cnf).unwrap();
 
     let ok = solver.solve().unwrap() == rustsat::solvers::SolverResult::Sat;
