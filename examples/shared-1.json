@@ -1,0 +1,83 @@
+{
+  "graph": {
+    "nodes": {
+      "A": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "B": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "C": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "D": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "f": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "g": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "axiom:B": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "axiom:C": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "B",
+        "target": "axiom:B"
+      },
+      {
+        "source": "C",
+        "target": "axiom:C"
+      },
+      {
+        "source": "f",
+        "target": "B"
+      },
+      {
+        "source": "f",
+        "target": "C"
+      },
+      {
+        "source": "A",
+        "target": "f"
+      },
+      {
+        "source": "g",
+        "target": "C"
+      },
+      {
+        "source": "g",
+        "target": "D"
+      },
+      {
+        "source": "A",
+        "target": "g"
+      }
+    ],
+    "metadata": {
+      "goal": "A"
+    }
+  }
+}
