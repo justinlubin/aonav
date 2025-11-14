@@ -312,11 +312,13 @@ impl pbn::StepProvider for Leaf {
 ////////////////////////////////////////////////////////////////////////////////
 // Maximum information gain
 
-pub struct MaxInfoGain;
+pub struct MaxInfoGain {
+    relevancy_prune: bool,
+}
 
 impl MaxInfoGain {
-    pub fn new() -> Self {
-        Self
+    pub fn new(relevancy_prune: bool) -> Self {
+        Self { relevancy_prune }
     }
 }
 
@@ -331,6 +333,25 @@ impl pbn::StepProvider for MaxInfoGain {
         let mut ret = vec![];
         let mut min_expected_entropy = f64::INFINITY;
         for oidx in e.partition().keys() {
+            if self.relevancy_prune {
+                let force_step = pn::Step::SetClass(
+                    *oidx,
+                    pn::Class::True {
+                        force_use: true,
+                        assume: Some(true),
+                    },
+                    None,
+                );
+                match force_step.apply(e) {
+                    None => continue,
+                    Some(force_result) => {
+                        if !pn::oracle::nonempty_completion(&force_result) {
+                            continue;
+                        }
+                    }
+                }
+            }
+
             let mut steps = vec![];
             let mut entropy_sum = 0.0;
             for new_class in pn::Class::committed() {

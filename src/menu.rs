@@ -10,6 +10,7 @@ pub enum Provider {
     TopDownInversion,
     BottomUpInversion,
     MaxInfoGain,
+    MaxInfoGainRelevant,
     MinLeafHeuristic,
     ForcedAssumptions,
     AlphabeticalUnsound,
@@ -25,6 +26,7 @@ impl Provider {
             Provider::TopDownInversion,
             Provider::BottomUpInversion,
             Provider::MaxInfoGain,
+            Provider::MaxInfoGainRelevant,
             Provider::MinLeafHeuristic,
             Provider::ForcedAssumptions,
             Provider::AlphabeticalUnsound,
@@ -50,7 +52,10 @@ impl Provider {
                 ]))
             }
             Provider::MaxInfoGain => {
-                Box::new(pn::providers::MaxInfoGain::new())
+                Box::new(pn::providers::MaxInfoGain::new(false))
+            }
+            Provider::MaxInfoGainRelevant => {
+                Box::new(pn::providers::MaxInfoGain::new(true))
             }
             Provider::MinLeafHeuristic => {
                 Box::new(pn::providers::MinLeafHeuristic::new())
@@ -83,6 +88,7 @@ impl Provider {
             Provider::TopDownInversion => "TDI",
             Provider::BottomUpInversion => "BUI",
             Provider::MaxInfoGain => "MIG",
+            Provider::MaxInfoGainRelevant => "MIGR",
             Provider::MinLeafHeuristic => "MLH",
             Provider::ForcedAssumptions => "FA",
             Provider::AlphabeticalUnsound => "AU",
@@ -100,6 +106,7 @@ impl std::fmt::Display for Provider {
             Provider::TopDownInversion => write!(f, "TopDownInversion"),
             Provider::BottomUpInversion => write!(f, "BottomUpInversion"),
             Provider::MaxInfoGain => write!(f, "MaxInfoGain"),
+            Provider::MaxInfoGainRelevant => write!(f, "MaxInfoGainRelevant"),
             Provider::MinLeafHeuristic => write!(f, "MinLeafHeuristic"),
             Provider::ForcedAssumptions => write!(f, "ForcedAssumptions"),
             Provider::AlphabeticalUnsound => write!(f, "AlphabeticalUnsound"),
