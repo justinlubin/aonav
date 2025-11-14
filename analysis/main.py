@@ -28,7 +28,7 @@ nice_suite = {
 
 metadata = pl.read_csv("metadata.csv")
 
-data = pl.read_csv("../results/combined.csv").with_columns(
+data = pl.read_csv("../results/combined-cadical.csv").with_columns(
     duration=pl.col("duration") / 1000,
 )
 
@@ -330,7 +330,7 @@ def scalplot(
     ax.set_yticks(np.arange(0, 20.1, 2))
 
     ax.set_xlim(0, 200)
-    ax.set_ylim(0, 20)
+    ax.set_ylim(0, 10)
 
     ax.spines[["top", "right"]].set_visible(False)
 
