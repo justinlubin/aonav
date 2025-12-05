@@ -54,7 +54,7 @@ summary = (
 
 # % %
 
-baseline_provider = "AlphabeticalComplete"
+baseline_provider = "AlphabeticalUnsound"
 
 baseline = summary.filter(
     pl.col("provider") == baseline_provider,
@@ -122,7 +122,7 @@ def catplot(
     order="order",
     label="label",
 ):
-    fig, ax = plt.subplots(1, 1, figsize=(5, 5))
+    fig, ax = plt.subplots(1, 1, figsize=(5, 2.5))
     ticks = []
     labels = []
 
