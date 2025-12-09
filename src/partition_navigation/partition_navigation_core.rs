@@ -1,6 +1,6 @@
-use crate::ao;
 use crate::pbn;
 
+use aograph as ao;
 use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
 use std::collections::HashSet;

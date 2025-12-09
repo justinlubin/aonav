@@ -1,9 +1,9 @@
-use crate::ao;
 use crate::min_ones;
 use crate::model_count;
 use crate::partition_navigation::*;
 use crate::pbn;
 
+use aograph as ao;
 use rustsat::instances::ManageVars;
 use rustsat::instances::SatInstance;
 use rustsat::solvers::Solve;

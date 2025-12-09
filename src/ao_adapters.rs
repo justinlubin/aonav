@@ -1,10 +1,9 @@
-use crate::ao::*;
-
-use crate::jgf;
 use crate::util;
 
+use aograph::*;
 use egg::*;
 use indexmap::{IndexMap, IndexSet};
+use jsongraph as jgf;
 use serde::Deserialize;
 use serde_json::Value;
 use std::collections::HashMap;
@@ -13,111 +12,6 @@ use std::fmt::Display;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::PathBuf;
-
-////////////////////////////////////////////////////////////////////////////////
-// JSON Graph Format
-
-impl TryFrom<jgf::Graph> for Graph {
-    type Error = String;
-
-    fn try_from(value: jgf::Graph) -> Result<Self, Self::Error> {
-        let jgf_nodes = value.nodes.ok_or("Missing graph nodes")?;
-        let jgf_edges = value.edges.ok_or("Missing graph edges")?;
-
-        let goal = value
-            .metadata
-            .ok_or("Missing graph metadata")?
-            .get("goal")
-            .ok_or("Missing 'goal' metadata for graph")?
-            .as_str()
-            .ok_or("'goal' metadata for graph is not a string")?
-            .to_owned();
-
-        let mut nodes = vec![];
-
-        for (node_id, node_val) in jgf_nodes {
-            let metadata = node_val
-                .metadata
-                .ok_or(format!("Missing metadata for node '{}'", node_id))?;
-            let kind = match metadata
-                .get("kind")
-                .ok_or(format!(
-                    "Missing 'kind' metadata for node '{}'",
-                    node_id
-                ))?
-                .as_str()
-                .ok_or(format!(
-                    "'kind' metadata for node '{}' is not a string",
-                    node_id
-                ))?
-                .to_ascii_uppercase()
-                .as_str()
-            {
-                "AND" => NodeKind::And,
-                "OR" => NodeKind::Or,
-                k => {
-                    return Err(format!(
-                        "Unknown 'kind' metadata '{}' for node '{}'",
-                        k, node_id
-                    ))
-                }
-            };
-            nodes.push(Node::new(node_id, node_val.label, kind));
-        }
-
-        Ok(Graph::new(
-            nodes.into_iter(),
-            jgf_edges.into_iter().map(|e| (e.source, e.target)),
-            &goal,
-        )?)
-    }
-}
-
-impl TryFrom<Graph> for jgf::Graph {
-    type Error = String;
-
-    fn try_from(ao: Graph) -> Result<Self, Self::Error> {
-        let mut nodes = IndexMap::new();
-
-        for node in ao.nodes() {
-            nodes.insert(
-                node.id().to_owned(),
-                jgf::Node {
-                    label: node.label().map(|x| x.to_owned()),
-                    metadata: Some(IndexMap::from([(
-                        "kind".to_owned(),
-                        serde_json::Value::String(node.kind().to_string()),
-                    )])),
-                },
-            );
-        }
-
-        Ok(jgf::Graph {
-            id: None,
-            label: None,
-            directed: true,
-            graph_type: None,
-            metadata: Some(IndexMap::from([(
-                "goal".to_owned(),
-                serde_json::Value::String(ao.or_at(ao.goal()).id().to_owned()),
-            )])),
-            nodes: Some(nodes),
-            edges: Some(
-                ao.edges()
-                    .map(|(source, target)| jgf::Edge {
-                        id: None,
-                        source: source.id().to_owned(),
-                        target: target.id().to_owned(),
-                        relation: None,
-                        directed: true,
-                        label: None,
-                        metadata: None,
-                    })
-                    .collect(),
-            ),
-        })
-    }
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 // egglog
@@ -207,224 +101,208 @@ fn ground_fact(
     }
 }
 
-impl TryFrom<Vec<egglog::ast::Command>> for Graph {
-    type Error = String;
+pub fn try_from_egglog(
+    egglog_program: Vec<egglog::ast::Command>,
+) -> Result<Graph, String> {
+    // Extract relevant parts of egglog program: relations, rules, checks
 
-    fn try_from(
-        egglog_program: Vec<egglog::ast::Command>,
-    ) -> Result<Self, Self::Error> {
-        // Extract relevant parts of egglog program: relations, rules, checks
+    let mut relations = vec![];
+    let mut rules = vec![];
+    let mut checks = vec![];
 
-        let mut relations = vec![];
-        let mut rules = vec![];
-        let mut checks = vec![];
-
-        for (i, cmd) in egglog_program.into_iter().enumerate() {
-            match cmd {
-                egglog::ast::Command::Relation { name, inputs, .. } => {
-                    relations.push((name, inputs))
+    for (i, cmd) in egglog_program.into_iter().enumerate() {
+        match cmd {
+            egglog::ast::Command::Relation { name, inputs, .. } => {
+                relations.push((name, inputs))
+            }
+            egglog::ast::Command::Rule { mut rule } => {
+                if rule.head.0.len() != 1 {
+                    return Err(format!("Head size must be 1 for '{}'", rule));
                 }
-                egglog::ast::Command::Rule { mut rule } => {
-                    if rule.head.0.len() != 1 {
-                        return Err(format!(
-                            "Head size must be 1 for '{}'",
-                            rule
-                        ));
-                    }
 
-                    let head = match rule.head.0.swap_remove(0) {
-                        egglog::ast::GenericAction::Expr(_, e) => e,
-                        h => return Err(format!("Unsupported head '{}'", h)),
-                    };
-
-                    let name = if rule.name.is_empty() {
-                        format!("rule{}", i)
-                    } else {
-                        rule.name
-                    };
-
-                    rules.push((name, head, rule.body));
-                }
-                egglog::ast::Command::Check(_, check) => checks.push(check),
-                egglog::ast::GenericCommand::RunSchedule(_) => (),
-                _ => return Err(format!("Unsupported command '{}'", cmd)),
-            };
-        }
-
-        // Make sure there's exactly 1 check, and of the right form
-
-        if checks.len() != 1 {
-            return Err(format!(
-                "Must have exactly 1 check, not {}",
-                checks.len()
-            ));
-        }
-
-        let mut supercheck = checks.swap_remove(0);
-
-        if supercheck.len() != 1 {
-            return Err(format!(
-                "Must have exactly 1 check in check, not {}",
-                checks.len()
-            ));
-        }
-
-        let check = supercheck.swap_remove(0);
-
-        let (check_relation, check_arguments) =
-            match check {
-                egglog::ast::GenericFact::Fact(
-                    egglog::ast::GenericExpr::Call(_, head, body),
-                ) => {
-                    let mut args = vec![];
-                    for e in body {
-                        match e {
-                            egglog::ast::GenericExpr::Lit(
-                                _,
-                                egglog::ast::Literal::Int(x),
-                            ) => args.push(x),
-                            _ => {
-                                return Err(format!(
-                                "Unsupported body expression in check: '{}'",
-                                e
-                            ))
-                            }
-                        }
-                    }
-                    (head, args)
-                }
-                _ => return Err(format!("Unsupported check type")),
-            };
-
-        // Calculate domain
-
-        let mut domain: IndexSet<_> = check_arguments.iter().cloned().collect();
-        let mut supported_domain = true;
-
-        for (_, head, body) in &rules {
-            let mut roots = vec![head];
-            for fact in body {
-                match fact {
-                    egglog::ast::GenericFact::Eq(_, e1, e2) => {
-                        roots.extend(vec![e1, e2])
-                    }
-                    egglog::ast::GenericFact::Fact(e) => roots.push(e),
+                let head = match rule.head.0.swap_remove(0) {
+                    egglog::ast::GenericAction::Expr(_, e) => e,
+                    h => return Err(format!("Unsupported head '{}'", h)),
                 };
+
+                let name = if rule.name.is_empty() {
+                    format!("rule{}", i)
+                } else {
+                    rule.name
+                };
+
+                rules.push((name, head, rule.body));
             }
-            for root in roots {
-                root.walk(
-                    &mut |e| {
-                        match e {
-                            egglog::ast::GenericExpr::Lit(_, lit) => {
-                                match lit {
-                                    egglog::ast::Literal::Int(x) => {
-                                        domain.insert(*x);
-                                    }
-                                    _ => supported_domain = false,
-                                }
+            egglog::ast::Command::Check(_, check) => checks.push(check),
+            egglog::ast::GenericCommand::RunSchedule(_) => (),
+            _ => return Err(format!("Unsupported command '{}'", cmd)),
+        };
+    }
+
+    // Make sure there's exactly 1 check, and of the right form
+
+    if checks.len() != 1 {
+        return Err(format!("Must have exactly 1 check, not {}", checks.len()));
+    }
+
+    let mut supercheck = checks.swap_remove(0);
+
+    if supercheck.len() != 1 {
+        return Err(format!(
+            "Must have exactly 1 check in check, not {}",
+            checks.len()
+        ));
+    }
+
+    let check = supercheck.swap_remove(0);
+
+    let (check_relation, check_arguments) = match check {
+        egglog::ast::GenericFact::Fact(egglog::ast::GenericExpr::Call(
+            _,
+            head,
+            body,
+        )) => {
+            let mut args = vec![];
+            for e in body {
+                match e {
+                    egglog::ast::GenericExpr::Lit(
+                        _,
+                        egglog::ast::Literal::Int(x),
+                    ) => args.push(x),
+                    _ => {
+                        return Err(format!(
+                            "Unsupported body expression in check: '{}'",
+                            e
+                        ))
+                    }
+                }
+            }
+            (head, args)
+        }
+        _ => return Err(format!("Unsupported check type")),
+    };
+
+    // Calculate domain
+
+    let mut domain: IndexSet<_> = check_arguments.iter().cloned().collect();
+    let mut supported_domain = true;
+
+    for (_, head, body) in &rules {
+        let mut roots = vec![head];
+        for fact in body {
+            match fact {
+                egglog::ast::GenericFact::Eq(_, e1, e2) => {
+                    roots.extend(vec![e1, e2])
+                }
+                egglog::ast::GenericFact::Fact(e) => roots.push(e),
+            };
+        }
+        for root in roots {
+            root.walk(
+                &mut |e| {
+                    match e {
+                        egglog::ast::GenericExpr::Lit(_, lit) => match lit {
+                            egglog::ast::Literal::Int(x) => {
+                                domain.insert(*x);
                             }
-                            _ => (),
-                        };
-                    },
-                    &mut |_| {},
-                )
-            }
+                            _ => supported_domain = false,
+                        },
+                        _ => (),
+                    };
+                },
+                &mut |_| {},
+            )
         }
+    }
 
-        if !supported_domain {
-            return Err(format!("Unsupported types for domain"));
+    if !supported_domain {
+        return Err(format!("Unsupported types for domain"));
+    }
+
+    // Compute nodes
+
+    let mut nodes = vec![];
+
+    // OR nodes: Ground all relations and find goal
+
+    let mut goal = None;
+
+    for (relation, params) in relations {
+        let mut choices = IndexMap::new();
+        for (i, param) in params.into_iter().enumerate() {
+            if param != "i64" {
+                return Err(format!(
+                    "Unsupported parameter type for relation '{}': '{}'",
+                    relation, param
+                ));
+            }
+            let _ = choices.insert(i, domain.iter().cloned().collect());
         }
-
-        // Compute nodes
-
-        let mut nodes = vec![];
-
-        // OR nodes: Ground all relations and find goal
-
-        let mut goal = None;
-
-        for (relation, params) in relations {
-            let mut choices = IndexMap::new();
-            for (i, param) in params.into_iter().enumerate() {
-                if param != "i64" {
-                    return Err(format!(
-                        "Unsupported parameter type for relation '{}': '{}'",
-                        relation, param
-                    ));
-                }
-                let _ = choices.insert(i, domain.iter().cloned().collect());
+        for arguments in
+            util::cartesian_product(&util::Timer::infinite(), choices).unwrap()
+        {
+            let arguments: Vec<_> = arguments.into_values().collect();
+            let id = egglog_or_id(&relation, &arguments);
+            if relation == check_relation && arguments == check_arguments {
+                goal = Some(id.clone());
             }
-            for arguments in
-                util::cartesian_product(&util::Timer::infinite(), choices)
-                    .unwrap()
-            {
-                let arguments: Vec<_> = arguments.into_values().collect();
-                let id = egglog_or_id(&relation, &arguments);
-                if relation == check_relation && arguments == check_arguments {
-                    goal = Some(id.clone());
-                }
-                nodes.push(Node::new(id, None, NodeKind::Or));
-            }
+            nodes.push(Node::new(id, None, NodeKind::Or));
         }
+    }
 
-        let goal = goal.ok_or_else(|| "Could not find goal")?;
+    let goal = goal.ok_or_else(|| "Could not find goal")?;
 
-        // AND nodes: Ground all rules (also create edges)
+    // AND nodes: Ground all rules (also create edges)
 
-        let mut edges = vec![];
+    let mut edges = vec![];
 
-        for (name, head, body) in rules {
-            let mut choices = IndexMap::new();
-            let vars = sorted_rule_vars(&head, &body);
-            for var in &vars {
-                let _ = choices
-                    .insert(var.clone(), domain.iter().cloned().collect());
-            }
-            for substitutions in
-                util::cartesian_product(&util::Timer::infinite(), choices)
-                    .unwrap()
-            {
-                let id = egglog_and_id(&name, &vars, &substitutions);
+    for (name, head, body) in rules {
+        let mut choices = IndexMap::new();
+        let vars = sorted_rule_vars(&head, &body);
+        for var in &vars {
+            let _ =
+                choices.insert(var.clone(), domain.iter().cloned().collect());
+        }
+        for substitutions in
+            util::cartesian_product(&util::Timer::infinite(), choices).unwrap()
+        {
+            let id = egglog_and_id(&name, &vars, &substitutions);
 
-                let mut lookup = |s: &egglog::ast::Span,
-                                  x: &String|
-                 -> egglog::ast::GenericExpr<
-                    String,
-                    String,
-                > {
+            let mut lookup =
+                |s: &egglog::ast::Span,
+                 x: &String|
+                 -> egglog::ast::GenericExpr<String, String> {
                     egglog::ast::GenericExpr::Lit(
                         s.clone(),
                         egglog::ast::Literal::Int(substitutions[x]),
                     )
                 };
 
-                for f in &body {
-                    match f {
-                        egglog::ast::GenericFact::Fact(e) => {
-                            let (relation, arguments) =
-                                ground_fact(&e.subst_leaf(&mut lookup))?;
-                            let premise = egglog_or_id(&relation, &arguments);
-                            edges.push((id.clone(), premise));
-                        }
-                        egglog::ast::GenericFact::Eq(..) => (),
+            for f in &body {
+                match f {
+                    egglog::ast::GenericFact::Fact(e) => {
+                        let (relation, arguments) =
+                            ground_fact(&e.subst_leaf(&mut lookup))?;
+                        let premise = egglog_or_id(&relation, &arguments);
+                        edges.push((id.clone(), premise));
                     }
+                    egglog::ast::GenericFact::Eq(..) => (),
                 }
-
-                let ground_head = head.subst_leaf(&mut lookup);
-
-                let (head_relation, head_arguments) =
-                    ground_fact(&ground_head)?;
-                let conclusion = egglog_or_id(&head_relation, &head_arguments);
-                edges.push((conclusion, id.clone()));
-
-                nodes.push(Node::new(id, None, NodeKind::And));
             }
+
+            let ground_head = head.subst_leaf(&mut lookup);
+
+            let (head_relation, head_arguments) = ground_fact(&ground_head)?;
+            let conclusion = egglog_or_id(&head_relation, &head_arguments);
+            edges.push((conclusion, id.clone()));
+
+            nodes.push(Node::new(id, None, NodeKind::And));
         }
-
-        // Return graph
-
-        Graph::new(nodes.into_iter(), edges.into_iter(), &goal)
     }
+
+    // Return graph
+
+    Graph::new(nodes.into_iter(), edges.into_iter(), &goal)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -614,7 +492,7 @@ struct ArgusAO {
     yesGoals: Vec<String>,
 }
 
-#[allow(unused_mut, unused_variables)]
+#[allow(unused_mut, unused_variables, dead_code)]
 pub fn argus_to_and_or<A, O>(path: &PathBuf)
 where
     jgf::Graph: TryFrom<Graph>,

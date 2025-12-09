@@ -1,8 +1,7 @@
-pub mod ao;
-pub mod jgf;
 pub mod main_handler;
 pub mod menu;
 
+mod ao_adapters;
 mod benchmark;
 mod drivers;
 mod legacy;

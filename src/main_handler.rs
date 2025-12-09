@@ -1,15 +1,16 @@
-use crate::ao;
+use crate::ao_adapters;
 use crate::benchmark;
 use crate::drivers::{self, Driver};
-use crate::jgf;
 use crate::menu;
 use crate::partition_navigation as pn;
 use crate::pbn;
-use crate::util::Timer;
+use crate::util;
 
 use ansi_term::Color::*;
+use aograph as ao;
 use indexmap::IndexMap;
 use instant::Duration;
+use jsongraph as jgf;
 use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -82,7 +83,7 @@ pub fn interact(
     let checker = pn::oracle::Valid::new();
 
     let controller = pbn::Controller::new(
-        Timer::infinite(),
+        util::Timer::infinite(),
         provider,
         checker,
         pn::Exp::new(graph),
@@ -156,7 +157,7 @@ pub fn benchmark(
 
 fn generate_random_exp(graph: &ao::Graph) -> pn::Exp {
     let controller = pbn::Controller::new(
-        Timer::infinite(),
+        util::Timer::infinite(),
         pn::providers::Remaining::new(),
         pn::oracle::Valid::new(),
         pn::Exp::new(graph.clone()),
@@ -251,7 +252,7 @@ pub fn convert(
         ConversionInputFormat::EGraphSerialize => {
             let es_egraph =
                 egraph_serialize::EGraph::from_json_file(path).unwrap();
-            ao::convert::es_egraph_to_ao(&es_egraph)
+            ao_adapters::es_egraph_to_ao(&es_egraph)
         }
         ConversionInputFormat::AOJsonGraph => load_ao(path),
         ConversionInputFormat::Argus => {
@@ -270,7 +271,7 @@ pub fn convert(
             let mut egraph = egglog::EGraph::default();
             let egglog_program =
                 egraph.parser.get_program_from_string(None, &input).unwrap();
-            egglog_program.try_into()?
+            ao_adapters::try_from_egglog(egglog_program)?
         }
     };
     if reduce {
@@ -280,7 +281,7 @@ pub fn convert(
         graph: ao.try_into()?,
     };
     if randomize {
-        let id_map = jgf.randomize_node_ids();
+        let id_map = util::jgf_randomize_node_ids(&mut jgf);
         match &mut jgf {
             jgf::Data::Single { graph } => match &mut graph.metadata {
                 Some(m) => m.insert(

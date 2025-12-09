@@ -1,8 +1,12 @@
 //! # Utilities
 
+use std::collections::HashMap;
+
 use indexmap::IndexMap;
 use instant::Duration;
 use instant::Instant;
+use jsongraph as jgf;
+use rand::distr::{Alphabetic, SampleString};
 
 ////////////////////////////////////////////////////////////////////////////////
 // Early cutoff
@@ -89,4 +93,61 @@ pub fn read_lines(path: &str) -> Option<Vec<String>> {
         Ok(s) => Some(s.lines().map(String::from).collect()),
         Err(_) => None,
     }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// JSON Graph Format helpers
+
+pub fn jgf_randomize_node_ids(data: &mut jgf::Data) -> HashMap<String, String> {
+    match data {
+        jgf::Data::Single { graph } => jgf_graph_randomize_node_ids(graph),
+        jgf::Data::Multi { .. } => {
+            panic!("Randomize not supported for multi-graphs")
+        }
+    }
+}
+
+fn jgf_graph_randomize_node_ids(
+    graph: &mut jgf::Graph,
+) -> HashMap<String, String> {
+    let nodes = match graph.nodes.take() {
+        Some(ns) => ns,
+        None => return HashMap::new(),
+    };
+    let mut id_map = HashMap::new();
+    let mut new_nodes = IndexMap::new();
+    for (old_id, node) in nodes {
+        let new_id = loop {
+            let candidate = Alphabetic.sample_string(&mut rand::rng(), 32);
+            if !id_map.contains_key(&candidate) {
+                break candidate;
+            }
+        };
+        id_map.insert(old_id.clone(), new_id.clone());
+        let _ = new_nodes.insert(new_id, node);
+    }
+    graph.nodes = Some(new_nodes);
+
+    let edges = match graph.edges.take() {
+        Some(es) => es,
+        None => return id_map,
+    };
+
+    let mut new_edges = vec![];
+
+    for mut edge in edges {
+        edge.source = id_map
+            .get(&edge.source)
+            .expect(&format!("Invalid source id '{}'", edge.source))
+            .clone();
+        edge.target = id_map
+            .get(&edge.target)
+            .expect(&format!("Invalid target id '{}'", edge.target))
+            .clone();
+        new_edges.push(edge)
+    }
+
+    graph.edges = Some(new_edges);
+
+    id_map
 }

@@ -1,10 +1,10 @@
-use crate::ao;
 use crate::partition_navigation as pn;
 use crate::pbn;
 use rand::Rng;
 use std::collections::HashSet;
 
 use ansi_term::Color::*;
+use aograph as ao;
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::Write;

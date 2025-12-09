@@ -1,5 +1,4 @@
-use crate::ao;
-
+use aograph as ao;
 use indexmap::IndexSet;
 
 #[derive(Debug, Clone)]
@@ -21,7 +20,7 @@ impl Rule {
 
 pub type ProofSystem = Vec<Rule>;
 
-pub fn to_ao(ps: ProofSystem, target: ao::NodeId) -> crate::ao::Graph {
+pub fn to_ao(ps: ProofSystem, target: ao::NodeId) -> ao::Graph {
     let mut props = IndexSet::new();
     let mut rules = IndexSet::new();
     let mut edges = vec![];
