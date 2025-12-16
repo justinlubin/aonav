@@ -1,7 +1,6 @@
 use crate::min_ones;
 use crate::model_count;
 use crate::partition_navigation::*;
-use crate::pbn;
 
 use aograph as ao;
 use rustsat::instances::ManageVars;

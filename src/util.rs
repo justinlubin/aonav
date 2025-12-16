@@ -6,6 +6,7 @@ use indexmap::IndexMap;
 use instant::Duration;
 use instant::Instant;
 use jsongraph as jgf;
+use pbn::Timer as _;
 use rand::distr::{Alphabetic, SampleString};
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -16,6 +17,16 @@ use rand::distr::{Alphabetic, SampleString};
 pub enum EarlyCutoff {
     TimerExpired,
 }
+
+impl std::fmt::Display for EarlyCutoff {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            EarlyCutoff::TimerExpired => write!(f, "TimerExpired"),
+        }
+    }
+}
+
+impl std::error::Error for EarlyCutoff {}
 
 ////////////////////////////////////////////////////////////////////////////////
 // Timer
@@ -46,10 +57,14 @@ impl Timer {
     pub fn infinite() -> Self {
         Timer(TimerInner::Infinite)
     }
+}
+
+impl pbn::Timer for Timer {
+    type EarlyCutoff = EarlyCutoff;
 
     /// Tick the timer (cooperatively check to see if the computation needs to
     /// stop).
-    pub fn tick(&self) -> Result<(), EarlyCutoff> {
+    fn tick(&self) -> Result<(), EarlyCutoff> {
         match self.0 {
             TimerInner::Finite { end } => {
                 if Instant::now() > end {

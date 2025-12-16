@@ -1,17 +1,20 @@
 use crate::partition_navigation as pn;
-use crate::pbn;
-use rand::Rng;
-use std::collections::HashSet;
+use crate::util;
 
 use ansi_term::Color::*;
 use aograph as ao;
+use rand::Rng;
 use std::collections::HashMap;
+use std::collections::HashSet;
 use std::fs::File;
 use std::io::Write;
 use std::process::Command;
 
 pub trait Driver<S: pbn::Step> {
-    fn drive(&mut self, controller: pbn::Controller<S>) -> Option<S::Exp>;
+    fn drive(
+        &mut self,
+        controller: pbn::Controller<util::Timer, S>,
+    ) -> Option<S::Exp>;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -89,19 +92,19 @@ fn emit_graph(name: &str, e: &pn::Exp) {
 impl Driver<pn::Step> for Cli {
     fn drive(
         &mut self,
-        mut controller: pbn::Controller<pn::Step>,
+        mut controller: pbn::Controller<util::Timer, pn::Step>,
     ) -> Option<pn::Exp> {
         let mut round = 0;
 
         'main_loop: loop {
-            let exp = controller.working_expression();
-
-            emit_graph("interactive", &exp);
-
             round += 1;
 
             let valid = controller.valid();
             let mut options = controller.provide().unwrap();
+
+            let exp = controller.working_expression();
+
+            emit_graph("interactive", &exp);
 
             if !valid && options.is_empty() {
                 println!("{}", Red.bold().paint("Not possible!"));
@@ -172,7 +175,7 @@ impl Driver<pn::Step> for Cli {
             }
         }
 
-        let final_expression = controller.working_expression();
+        let final_expression = controller.end();
 
         println!(
             "\n{}\n\n{}",
@@ -214,11 +217,11 @@ impl SolutionDriven {
 impl Driver<pn::Step> for SolutionDriven {
     fn drive(
         &mut self,
-        mut controller: pbn::Controller<pn::Step>,
+        mut controller: pbn::Controller<util::Timer, pn::Step>,
     ) -> Option<pn::Exp> {
         loop {
             if controller.valid() {
-                return Some(controller.working_expression());
+                return Some(controller.end());
             }
 
             let mut options = controller.provide().unwrap();
@@ -264,7 +267,7 @@ impl Random {
 impl Driver<pn::Step> for Random {
     fn drive(
         &mut self,
-        mut controller: pbn::Controller<pn::Step>,
+        mut controller: pbn::Controller<util::Timer, pn::Step>,
     ) -> Option<pn::Exp> {
         loop {
             let e = controller.working_expression();
@@ -276,7 +279,7 @@ impl Driver<pn::Step> for Random {
             };
 
             if done {
-                return Some(e);
+                return Some(controller.end());
             }
 
             let mut options = controller.provide().unwrap();

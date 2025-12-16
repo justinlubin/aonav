@@ -35,7 +35,9 @@ impl Provider {
         ]
     }
 
-    pub fn provider(&self) -> Box<dyn pbn::StepProvider<Step = pn::Step>> {
+    pub fn provider(
+        &self,
+    ) -> Box<dyn pbn::StepProvider<util::Timer, Step = pn::Step>> {
         match self {
             Provider::Remaining => Box::new(pn::providers::Remaining::new()),
             Provider::Random => Box::new(pn::providers::Random::new()),

@@ -3,7 +3,6 @@ use crate::benchmark;
 use crate::drivers::{self, Driver};
 use crate::menu;
 use crate::partition_navigation as pn;
-use crate::pbn;
 use crate::util;
 
 use ansi_term::Color::*;

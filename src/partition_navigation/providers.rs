@@ -1,10 +1,10 @@
 use std::collections::HashMap;
 
 use crate::partition_navigation as pn;
-use crate::pbn::{self, Step};
-use crate::util::{EarlyCutoff, Timer};
+use crate::util::{self, EarlyCutoff, Timer};
 
 use indexmap::IndexSet;
+use pbn::Step;
 use rand::prelude::*;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -18,7 +18,7 @@ impl Commit {
     }
 }
 
-impl pbn::StepProvider for Commit {
+impl pbn::StepProvider<util::Timer> for Commit {
     type Step = pn::Step;
 
     fn provide(
@@ -62,7 +62,7 @@ impl Remaining {
     }
 }
 
-impl pbn::StepProvider for Remaining {
+impl pbn::StepProvider<util::Timer> for Remaining {
     type Step = pn::Step;
 
     fn provide(
@@ -99,7 +99,7 @@ impl Random {
     }
 }
 
-impl pbn::StepProvider for Random {
+impl pbn::StepProvider<util::Timer> for Random {
     type Step = pn::Step;
 
     fn provide(
@@ -143,7 +143,7 @@ impl TopDownInversion {
     }
 }
 
-impl pbn::StepProvider for TopDownInversion {
+impl pbn::StepProvider<util::Timer> for TopDownInversion {
     type Step = pn::Step;
 
     fn provide(
@@ -241,7 +241,7 @@ impl BottomUpInversion {
     }
 }
 
-impl pbn::StepProvider for BottomUpInversion {
+impl pbn::StepProvider<util::Timer> for BottomUpInversion {
     type Step = pn::Step;
 
     fn provide(
@@ -283,7 +283,7 @@ impl Leaf {
     }
 }
 
-impl pbn::StepProvider for Leaf {
+impl pbn::StepProvider<util::Timer> for Leaf {
     type Step = pn::Step;
 
     fn provide(
@@ -322,7 +322,7 @@ impl MaxInfoGain {
     }
 }
 
-impl pbn::StepProvider for MaxInfoGain {
+impl pbn::StepProvider<util::Timer> for MaxInfoGain {
     type Step = pn::Step;
 
     fn provide(
@@ -391,7 +391,7 @@ impl MinLeafHeuristic {
     }
 }
 
-impl pbn::StepProvider for MinLeafHeuristic {
+impl pbn::StepProvider<util::Timer> for MinLeafHeuristic {
     type Step = pn::Step;
 
     fn provide(
@@ -432,7 +432,7 @@ impl ForcedAssumptions {
     }
 }
 
-impl pbn::StepProvider for ForcedAssumptions {
+impl pbn::StepProvider<util::Timer> for ForcedAssumptions {
     type Step = pn::Step;
 
     fn provide(
@@ -506,7 +506,7 @@ impl Alphabetical {
     }
 }
 
-impl pbn::StepProvider for Alphabetical {
+impl pbn::StepProvider<util::Timer> for Alphabetical {
     type Step = pn::Step;
 
     fn provide(

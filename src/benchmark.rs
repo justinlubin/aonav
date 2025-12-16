@@ -1,7 +1,6 @@
 use crate::drivers::{self, Driver};
 use crate::menu;
 use crate::partition_navigation as pn;
-use crate::pbn;
 use crate::util::Timer;
 
 use instant::{Duration, Instant};
