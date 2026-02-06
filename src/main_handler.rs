@@ -152,7 +152,7 @@ fn generate_random_exp(graph: &ao::Graph) -> pn::Exp {
         pn::providers::Remaining::new(),
         pn::oracle::Valid::new(),
         pn::Exp::new(graph.clone()),
-        true,
+        false,
     );
 
     let mut driver = drivers::Random::new(true);
