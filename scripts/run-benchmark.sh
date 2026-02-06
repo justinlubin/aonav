@@ -7,7 +7,7 @@ for suite in $(ls benchmark/suites); do
     --parallel \
     --replicates 3 \
     --minimal \
-    --providers AlphabeticalUnsound,AlphabeticalComplete,AlphabeticalRelevant \
+    --providers AlphabeticalUnsound,AlphabeticalComplete,AlphabeticalRelevant,MaxInfoGain,MaxInfoGainRelevant \
     "benchmark/suites/${suite}" \
     > "benchmark/results/${suite}.csv"
 done
