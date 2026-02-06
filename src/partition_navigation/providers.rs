@@ -332,26 +332,35 @@ impl pbn::StepProvider<util::Timer> for MaxInfoGain {
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut ret = vec![];
         let mut min_expected_entropy = f64::INFINITY;
-        for oidx in e.partition().keys() {
-            if self.relevancy_prune {
-                let force_step = pn::Step::SetClass(
-                    *oidx,
-                    pn::Class::True {
-                        force_use: true,
-                        assume: Some(true),
-                    },
-                    None,
-                );
-                match force_step.apply(e) {
-                    None => continue,
-                    Some(force_result) => {
-                        if !pn::oracle::nonempty_completion(&force_result) {
-                            continue;
-                        }
-                    }
-                }
-            }
 
+        let projected = aograph::OrSet {
+            set: if self.relevancy_prune {
+                e.partition()
+                    .keys()
+                    .cloned()
+                    .filter(|oidx| {
+                        let force_step = pn::Step::SetClass(
+                            *oidx,
+                            pn::Class::True {
+                                force_use: true,
+                                assume: Some(true),
+                            },
+                            None,
+                        );
+                        match force_step.apply(e) {
+                            None => false,
+                            Some(force_result) => {
+                                pn::oracle::nonempty_completion(&force_result)
+                            }
+                        }
+                    })
+                    .collect()
+            } else {
+                e.partition().keys().cloned().collect()
+            },
+        };
+
+        for oidx in &projected.set {
             let mut steps = vec![];
             let mut entropy_sum = 0.0;
             for new_class in pn::Class::committed() {
@@ -359,7 +368,9 @@ impl pbn::StepProvider<util::Timer> for MaxInfoGain {
                 match step.apply(e) {
                     None => continue,
                     Some(child) => {
-                        match pn::oracle::log10_assume_model_count(&child) {
+                        match pn::oracle::log10_assume_model_count(
+                            &child, &projected,
+                        ) {
                             Some(h) => {
                                 entropy_sum += h;
                                 steps.push(step);
