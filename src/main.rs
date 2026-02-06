@@ -42,10 +42,9 @@ enum Command {
             short,
             long,
             value_name = "PROVIDERS",
-            num_args = 1..,
             value_delimiter = ',',
-            default_value = "Re")
-        ]
+            default_value = "Remaining"
+        )]
         providers: Vec<menu::Provider>,
     },
 
@@ -60,10 +59,9 @@ enum Command {
             short,
             long,
             value_name = "PROVIDERS",
-            num_args = 1..,
             value_delimiter = ',',
-            default_value = "Remaining")
-        ]
+            default_value = "Remaining"
+        )]
         providers: Vec<menu::Provider>,
 
         /// The path to the benchmark suite directory
