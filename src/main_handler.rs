@@ -17,21 +17,14 @@ use std::fs::File;
 use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::process::Command;
+use strum::EnumString;
 
-#[derive(Debug, Clone, Deserialize, Serialize)]
+#[derive(Debug, Clone, EnumString)]
 pub enum ConversionInputFormat {
     EGraphSerialize,
     AOJsonGraph,
     Argus,
     Egglog,
-}
-
-impl std::str::FromStr for ConversionInputFormat {
-    type Err = serde_json::Error;
-
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        serde_json::from_str(&format!("\"{}\"", s))
-    }
 }
 
 #[derive(Debug, Serialize, Deserialize)]

@@ -12,7 +12,7 @@ use std::sync::{Arc, Mutex};
 #[derive(Debug)]
 pub struct Problem {
     pub name: String,
-    // Contain a graph and a selected partition
+    // Contains a graph and a selected partition
     pub chosen_solutions: Vec<pn::Exp>,
 }
 

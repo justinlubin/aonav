@@ -2,31 +2,6 @@ use crate::partition_navigation::*;
 
 use rand::seq::SliceRandom;
 
-// pub fn random(graph: &Graph) -> Exp {
-//     let mut ret = Exp::new(graph.clone());
-//     let mut oidxs: Vec<_> = ret.graph().or_indexes().collect();
-//     oidxs.shuffle(&mut rand::rng());
-//     for oidx in oidxs {
-//         if oidx == ret.graph().goal() {
-//             continue;
-//         }
-//         ret = (pn::Step::SetClass(
-//             oidx,
-//             Class::True {
-//                 force_use: false,
-//                 assume: Some(true),
-//             },
-//             None,
-//         ))
-//         .apply(&ret)
-//         .unwrap();
-//         if pn::oracle::valid(&ret) {
-//             break;
-//         }
-//     }
-//     panic!("Could not satisfy graph even assuming everything");
-// }
-
 fn minimize_one_step(e: &Exp) -> Option<Exp> {
     let mut part: Vec<_> = e.partition().iter().collect();
     part.shuffle(&mut rand::rng());

@@ -62,7 +62,7 @@ enum Command {
             value_name = "PROVIDERS",
             num_args = 1..,
             value_delimiter = ',',
-            default_value = "Re,Ra,MIG")
+            default_value = "Remaining")
         ]
         providers: Vec<menu::Provider>,
 
@@ -100,7 +100,7 @@ enum Command {
         #[arg(value_name = "FILE")]
         path: PathBuf,
 
-        /// The format to convert from (options: EGraphSerialize, AOJsonGraph, Argus)
+        /// The format to convert from
         #[arg(short, long, value_name = "FORMAT")]
         format: main_handler::ConversionInputFormat,
 
