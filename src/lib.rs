@@ -4,7 +4,6 @@ pub mod menu;
 mod ao_adapters;
 mod benchmark;
 mod drivers;
-mod legacy;
 mod min_ones;
 mod model_count;
 mod partition_navigation;

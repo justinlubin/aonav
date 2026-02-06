@@ -230,7 +230,6 @@ impl<'a> Context<'a> {
     }
 }
 
-#[allow(dead_code)]
 pub fn nonempty_completion(e: &Exp) -> bool {
     let ctx = Context::compile(SatInstance::new(), e);
     let cnf = ctx.instance.into_cnf().0;

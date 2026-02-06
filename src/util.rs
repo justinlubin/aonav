@@ -44,7 +44,6 @@ enum TimerInner {
 #[derive(Debug)]
 pub struct Timer(TimerInner);
 
-#[allow(dead_code)]
 impl Timer {
     /// A finite-duration timer.
     pub fn finite(duration: Duration) -> Self {
@@ -82,7 +81,6 @@ impl pbn::Timer for Timer {
 // Small utilities
 
 /// Take the cartesion product of a set of chocies
-#[allow(dead_code)]
 pub fn cartesian_product<K: Clone + Eq + std::hash::Hash, V: Clone>(
     timer: &Timer,
     choices: IndexMap<K, Vec<V>>,
@@ -101,13 +99,6 @@ pub fn cartesian_product<K: Clone + Eq + std::hash::Hash, V: Clone>(
         results = new_results;
     }
     Ok(results)
-}
-
-pub fn read_lines(path: &str) -> Option<Vec<String>> {
-    match std::fs::read_to_string(&path) {
-        Ok(s) => Some(s.lines().map(String::from).collect()),
-        Err(_) => None,
-    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

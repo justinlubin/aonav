@@ -23,7 +23,6 @@ pub enum ConversionInputFormat {
     EGraphSerialize,
     AOJsonGraph,
     Argus,
-    Legacy,
     Egglog,
 }
 
@@ -256,14 +255,6 @@ pub fn convert(
         ConversionInputFormat::AOJsonGraph => load_ao(path),
         ConversionInputFormat::Argus => {
             todo!()
-        }
-        ConversionInputFormat::Legacy => {
-            let mut lines =
-                crate::util::read_lines(&format!("{}", path.display()))
-                    .unwrap();
-            let goal = lines.remove(0).trim().to_owned();
-            let proof_system = crate::legacy::proof_system(&lines);
-            crate::legacy::to_ao(proof_system, goal)
         }
         ConversionInputFormat::Egglog => {
             let input = std::fs::read_to_string(path).unwrap();
