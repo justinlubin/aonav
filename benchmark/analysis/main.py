@@ -1,5 +1,7 @@
 # %% Imports
 
+import glob
+
 import matplotlib.pyplot as plt
 import numpy as np
 import polars as pl
@@ -28,7 +30,11 @@ nice_suite = {
 
 metadata = pl.read_csv("metadata.csv")
 
-data = pl.read_csv("../results/combined-cadical.csv").with_columns(
+datas = []
+for path in glob.glob("../results/*.csv"):
+    datas.append(pl.read_csv(path))
+
+data = pl.concat(datas).with_columns(
     duration=pl.col("duration") / 1000,
 )
 
