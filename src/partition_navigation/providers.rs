@@ -358,13 +358,15 @@ impl pbn::StepProvider<util::Timer> for MaxInfoGain {
                 let step = pn::Step::SetClass(*oidx, *new_class, None);
                 match step.apply(e) {
                     None => continue,
-                    Some(child) => match pn::oracle::entropy(&child) {
-                        Some(h) => {
-                            entropy_sum += h;
-                            steps.push(step);
+                    Some(child) => {
+                        match pn::oracle::log10_assume_model_count(&child) {
+                            Some(h) => {
+                                entropy_sum += h;
+                                steps.push(step);
+                            }
+                            None => {}
                         }
-                        None => {}
-                    },
+                    }
                 }
             }
             if steps.is_empty() {

@@ -262,7 +262,7 @@ pub fn nonempty_completion(e: &Exp) -> bool {
 ////////////////////////////////////////////////////////////////////////////////
 // Entropy
 
-pub fn entropy(e: &Exp) -> Option<f64> {
+pub fn log10_assume_model_count(e: &Exp) -> Option<f64> {
     let ctx = Context::compile(SatInstance::new(), e);
     let (cnf, vm) = ctx.instance.into_cnf();
     model_count::log10_model_count(
