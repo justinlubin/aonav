@@ -485,7 +485,7 @@ impl pbn::StepProvider<util::Timer> for ForcedAssumptions {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// AlphabeticalUnsound
+// Alphabetical
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum AlphabeticalMode {
