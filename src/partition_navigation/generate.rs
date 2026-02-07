@@ -1,5 +1,6 @@
 use crate::partition_navigation::*;
 
+use pbn::ValidityChecker;
 use rand::seq::SliceRandom;
 
 fn minimize_one_step(e: &Exp) -> Option<Exp> {
@@ -26,7 +27,9 @@ fn minimize_one_step(e: &Exp) -> Option<Exp> {
                 options.shuffle(&mut rand::rng());
                 for new_class in options {
                     ret.unsafe_set_class(*oidx, new_class);
-                    if oracle::valid(&ret) {
+                    if oracle::Valid::new(oracle::OptInc::NonIncremental)
+                        .check(&ret)
+                    {
                         return Some(ret);
                     }
                 }

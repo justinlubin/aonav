@@ -3,9 +3,10 @@ use crate::model_count;
 use crate::partition_navigation::*;
 
 use aograph as ao;
+use indexmap::IndexMap;
 use rustsat::instances::ManageVars;
 use rustsat::instances::SatInstance;
-use rustsat::solvers::Solve;
+use rustsat::solvers::{Solve, SolveIncremental};
 use rustsat::types::{constraints::CardConstraint, Lit};
 use std::collections::HashMap;
 use std::collections::HashSet;
@@ -32,11 +33,17 @@ fn add_guarded_lit_eq_clause(
     }
 }
 
+fn add_cube(instance: &mut SatInstance, a: &[Lit]) {
+    for ai in a {
+        instance.add_unit(*ai);
+    }
+}
+
 // Compilation
 
-struct Context<'a> {
+struct CompileContext {
+    graph: ao::Graph,
     instance: SatInstance,
-    exp: &'a Exp,
     // Whether or not OR node should use assume semantics
     o_assume: HashMap<ao::OIdx, Lit>,
     // OR node truth values
@@ -49,11 +56,18 @@ struct Context<'a> {
     a_active: HashMap<ao::AIdx, Lit>,
 }
 
-impl<'a> Context<'a> {
-    fn compile(instance: SatInstance, exp: &'a Exp) -> Self {
+impl CompileContext {
+    fn compile(exp: &Exp) -> Self {
+        let mut ret = Self::compile_shared(exp.graph().clone());
+        let assumptions = ret.or_consistency_lits(exp.partition());
+        add_cube(&mut ret.instance, &assumptions);
+        ret
+    }
+
+    fn compile_shared(graph: ao::Graph) -> Self {
         let mut ret = Self {
-            instance,
-            exp,
+            graph,
+            instance: SatInstance::new(),
             o_assume: HashMap::new(),
             o_true: HashMap::new(),
             o_active: HashMap::new(),
@@ -61,35 +75,33 @@ impl<'a> Context<'a> {
             a_active: HashMap::new(),
         };
 
-        for oidx in exp.graph().or_indexes() {
+        for oidx in ret.graph.or_indexes() {
             ret.o_assume.insert(oidx, ret.instance.new_lit());
             ret.o_true.insert(oidx, ret.instance.new_lit());
             ret.o_active.insert(oidx, ret.instance.new_lit());
         }
 
-        for aidx in exp.graph().and_indexes() {
+        for aidx in ret.graph.and_indexes() {
             ret.a_true.insert(aidx, ret.instance.new_lit());
             ret.a_active.insert(aidx, ret.instance.new_lit());
         }
 
-        ret.add_constraints();
+        ret.add_shared_constraints();
 
         ret
     }
 
-    fn add_constraints(&mut self) {
-        for oidx in self.exp.graph().or_indexes() {
-            self.or(oidx)
+    fn add_shared_constraints(&mut self) {
+        for oidx in self.graph.or_indexes().collect::<Vec<_>>() {
+            self.shared_or(oidx)
         }
 
-        for aidx in self.exp.graph().and_indexes() {
-            self.and(aidx)
+        for aidx in self.graph.and_indexes().collect::<Vec<_>>() {
+            self.shared_and(aidx)
         }
     }
 
     fn or_semantics(&mut self, oidx: ao::OIdx) {
-        let graph = self.exp.graph();
-
         let is_assume = *self.o_assume.get(&oidx).unwrap();
         let is_true = *self.o_true.get(&oidx).unwrap();
 
@@ -98,7 +110,8 @@ impl<'a> Context<'a> {
             &mut self.instance,
             !is_assume,
             is_true,
-            &graph
+            &self
+                .graph
                 .providers(oidx)
                 .map(|a| *self.a_true.get(&a).unwrap())
                 .collect::<Vec<_>>()[..],
@@ -109,8 +122,6 @@ impl<'a> Context<'a> {
     }
 
     fn or_activity(&mut self, oidx: ao::OIdx) {
-        let graph = self.exp.graph();
-
         let is_assume = *self.o_assume.get(&oidx).unwrap();
         let is_true = *self.o_true.get(&oidx).unwrap();
         let is_active = *self.o_active.get(&oidx).unwrap();
@@ -118,8 +129,9 @@ impl<'a> Context<'a> {
         // Active implies true
         self.instance.add_lit_impl_lit(is_active, is_true);
 
-        if oidx != graph.goal() {
-            let consumers_active = graph
+        if oidx != self.graph.goal() {
+            let consumers_active = self
+                .graph
                 .consumers(oidx)
                 .map(|a| *self.a_active.get(&a).unwrap())
                 .collect::<Vec<_>>();
@@ -129,7 +141,8 @@ impl<'a> Context<'a> {
                 .add_lit_impl_clause(is_active, &consumers_active[..]);
         }
 
-        let providers_active = graph
+        let providers_active = self
+            .graph
             .providers(oidx)
             .map(|a| *self.a_active.get(&a).unwrap())
             .collect::<Vec<_>>();
@@ -155,39 +168,45 @@ impl<'a> Context<'a> {
         ));
     }
 
-    fn or_consistency(&mut self, oidx: ao::OIdx) {
-        let class = self.exp.class(oidx);
+    fn or_consistency_lits(
+        &mut self,
+        partition: &IndexMap<ao::OIdx, Class>,
+    ) -> Vec<Lit> {
+        let mut ret = vec![];
 
-        let is_assume = *self.o_assume.get(&oidx).unwrap();
-        let is_true = *self.o_true.get(&oidx).unwrap();
-        let is_active = *self.o_active.get(&oidx).unwrap();
+        for (oidx, class) in partition {
+            let is_assume = *self.o_assume.get(&oidx).unwrap();
+            let is_true = *self.o_true.get(&oidx).unwrap();
+            let is_active = *self.o_active.get(&oidx).unwrap();
 
-        match class {
-            Class::Unseen => (),
-            Class::Unknown => self.instance.add_unit(!is_assume),
-            Class::False => {
-                self.instance.add_unit(!is_assume);
-                self.instance.add_unit(!is_true);
-                self.instance.add_unit(!is_active);
-            }
-            Class::True { force_use, assume } => {
-                self.instance.add_unit(is_true);
-                if force_use {
-                    self.instance.add_unit(is_active);
+            match class {
+                Class::Unseen => (),
+                Class::Unknown => ret.push(!is_assume),
+                Class::False => {
+                    ret.push(!is_assume);
+                    ret.push(!is_true);
+                    ret.push(!is_active);
                 }
-                match assume {
-                    Some(false) => self.instance.add_unit(!is_assume),
-                    Some(true) => self.instance.add_unit(is_assume),
-                    None => (),
+                Class::True { force_use, assume } => {
+                    ret.push(is_true);
+                    if *force_use {
+                        ret.push(is_active);
+                    }
+                    match assume {
+                        Some(false) => ret.push(!is_assume),
+                        Some(true) => ret.push(is_assume),
+                        None => (),
+                    }
                 }
             }
         }
+
+        ret
     }
 
-    fn or(&mut self, oidx: ao::OIdx) {
+    fn shared_or(&mut self, oidx: ao::OIdx) {
         self.or_semantics(oidx);
         self.or_activity(oidx);
-        self.or_consistency(oidx);
     }
 
     fn and_semantics(&mut self, aidx: ao::AIdx) {
@@ -197,8 +216,7 @@ impl<'a> Context<'a> {
             &mut self.instance,
             is_true,
             &self
-                .exp
-                .graph()
+                .graph
                 .premises(aidx)
                 .map(|o| *self.o_true.get(&o).unwrap())
                 .collect::<Vec<_>>()[..],
@@ -206,15 +224,14 @@ impl<'a> Context<'a> {
     }
 
     fn and_activity(&mut self, aidx: ao::AIdx) {
-        let graph = self.exp.graph();
-
         let is_true = *self.a_true.get(&aidx).unwrap();
         let is_active = *self.a_active.get(&aidx).unwrap();
 
         // Active implies true
         self.instance.add_lit_impl_lit(is_active, is_true);
 
-        let premises_active = graph
+        let premises_active = self
+            .graph
             .premises(aidx)
             .map(|o| *self.o_active.get(&o).unwrap())
             .collect::<Vec<_>>();
@@ -224,46 +241,100 @@ impl<'a> Context<'a> {
             .add_lit_impl_cube(is_active, &premises_active[..]);
     }
 
-    fn and(&mut self, aidx: ao::AIdx) {
+    fn shared_and(&mut self, aidx: ao::AIdx) {
         self.and_semantics(aidx);
         self.and_activity(aidx);
     }
 }
 
-pub fn nonempty_completion(e: &Exp) -> bool {
-    let ctx = Context::compile(SatInstance::new(), e);
-    let cnf = ctx.instance.into_cnf().0;
+pub struct IncrementalContext {
+    solver: rustsat_cadical::CaDiCaL<'static, 'static>,
+    ctx: CompileContext,
+}
 
-    let mut solver = rustsat_cadical::CaDiCaL::default();
-    solver.add_cnf(cnf).unwrap();
+impl IncrementalContext {
+    pub fn new(e: &Exp) -> Self {
+        let mut ctx = CompileContext::compile_shared(e.graph().clone());
+        let instance = std::mem::take(&mut ctx.instance);
+        let cnf = instance.into_cnf().0;
 
-    let ok = solver.solve().unwrap() == rustsat::solvers::SolverResult::Sat;
+        let mut solver = rustsat_cadical::CaDiCaL::default();
+        solver.add_cnf(cnf).unwrap();
 
-    if ok && log::log_enabled!(log::Level::Debug) {
-        log::debug!("{}", e);
-        let sol = solver.full_solution().unwrap();
-        for (oidx, lit) in ctx.o_true {
-            log::debug!("{} true: {}", e.graph().or_at(oidx), sol[lit.var()])
+        Self { solver, ctx }
+    }
+
+    pub fn nonempty_completion(&mut self, e: &Exp) -> bool {
+        let assumptions = self.ctx.or_consistency_lits(e.partition());
+
+        let ok = self.solver.solve_assumps(&assumptions[..]).unwrap()
+            == rustsat::solvers::SolverResult::Sat;
+
+        if ok && log::log_enabled!(log::Level::Debug) {
+            log::debug!("{}", e);
+            let sol = self.solver.full_solution().unwrap();
+            for (oidx, lit) in &self.ctx.o_true {
+                log::debug!(
+                    "{} true: {}",
+                    e.graph().or_at(*oidx),
+                    sol[lit.var()]
+                )
+            }
+            for (oidx, lit) in &self.ctx.o_active {
+                log::debug!(
+                    "{} active: {}",
+                    e.graph().or_at(*oidx),
+                    sol[lit.var()]
+                )
+            }
+            for (aidx, lit) in &self.ctx.a_true {
+                log::debug!(
+                    "{} true: {}",
+                    e.graph().and_at(*aidx),
+                    sol[lit.var()]
+                )
+            }
+            for (aidx, lit) in &self.ctx.a_active {
+                log::debug!(
+                    "{} active: {}",
+                    e.graph().and_at(*aidx),
+                    sol[lit.var()]
+                )
+            }
         }
-        for (oidx, lit) in ctx.o_active {
-            log::debug!("{} active: {}", e.graph().or_at(oidx), sol[lit.var()])
-        }
-        for (aidx, lit) in ctx.a_true {
-            log::debug!("{} true: {}", e.graph().and_at(aidx), sol[lit.var()])
-        }
-        for (aidx, lit) in ctx.a_active {
-            log::debug!("{} active: {}", e.graph().and_at(aidx), sol[lit.var()])
+
+        ok
+    }
+}
+
+pub enum OptInc {
+    Incremental(IncrementalContext),
+    NonIncremental,
+}
+
+impl OptInc {
+    pub fn from_optional_start(start: Option<&Exp>) -> Self {
+        match start {
+            Some(e) => Self::Incremental(IncrementalContext::new(e)),
+            None => Self::NonIncremental,
         }
     }
 
-    ok
+    pub fn nonempty_completion(&mut self, e: &Exp) -> bool {
+        match self {
+            Self::Incremental(inc) => inc.nonempty_completion(e),
+            Self::NonIncremental => {
+                IncrementalContext::new(e).nonempty_completion(e)
+            }
+        }
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Entropy
 
 pub fn log10_assume_model_count(e: &Exp, projected: &ao::OrSet) -> Option<f64> {
-    let ctx = Context::compile(SatInstance::new(), e);
+    let ctx = CompileContext::compile(e);
     let (cnf, vm) = ctx.instance.into_cnf();
 
     model_count::log10_model_count(
@@ -298,7 +369,7 @@ pub fn minimal_leaves(e: &Exp) -> Option<ao::OrSet> {
 
     e.set_remaining_pessimistically(&unseen_leaves);
 
-    let ctx = Context::compile(SatInstance::new(), &e);
+    let ctx = CompileContext::compile(&e);
 
     let leaf_map: HashMap<_, _> = unseen_leaves
         .into_iter()
@@ -326,24 +397,22 @@ pub fn minimal_leaves(e: &Exp) -> Option<ao::OrSet> {
 ////////////////////////////////////////////////////////////////////////////////
 // Validity checker
 
-pub fn valid(e: &Exp) -> bool {
-    let mut e = e.clone();
-    e.set_remaining_pessimistically(&HashSet::new());
-    nonempty_completion(&e)
+pub struct Valid {
+    incremental: OptInc,
 }
 
-pub struct Valid;
-
 impl Valid {
-    pub fn new() -> Self {
-        Self {}
+    pub fn new(incremental: OptInc) -> Self {
+        Self { incremental }
     }
 }
 
 impl pbn::ValidityChecker for Valid {
     type Exp = Exp;
 
-    fn check(&self, e: &Self::Exp) -> bool {
-        valid(e)
+    fn check(&mut self, e: &Self::Exp) -> bool {
+        let mut e = e.clone();
+        e.set_remaining_pessimistically(&HashSet::new());
+        self.incremental.nonempty_completion(&e)
     }
 }

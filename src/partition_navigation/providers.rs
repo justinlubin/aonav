@@ -2,6 +2,7 @@ use std::collections::HashMap;
 
 use crate::partition_navigation as pn;
 use crate::util::{self, EarlyCutoff, Timer};
+use pn::oracle::OptInc;
 
 use indexmap::IndexSet;
 use pbn::Step;
@@ -10,11 +11,13 @@ use rand::prelude::*;
 ////////////////////////////////////////////////////////////////////////////////
 // Commit
 
-pub struct Commit;
+pub struct Commit {
+    incremental: OptInc,
+}
 
 impl Commit {
-    pub fn new() -> Self {
-        Self
+    pub fn new(incremental: OptInc) -> Self {
+        Self { incremental }
     }
 }
 
@@ -39,7 +42,7 @@ impl pbn::StepProvider<util::Timer> for Commit {
                 match step.apply(e) {
                     None => continue,
                     Some(result) => {
-                        if pn::oracle::nonempty_completion(&result) {
+                        if self.incremental.nonempty_completion(&result) {
                             ret.push(step);
                         }
                     }
@@ -54,11 +57,13 @@ impl pbn::StepProvider<util::Timer> for Commit {
 ////////////////////////////////////////////////////////////////////////////////
 // Remaining
 
-pub struct Remaining;
+pub struct Remaining {
+    incremental: OptInc,
+}
 
 impl Remaining {
-    pub fn new() -> Self {
-        Self
+    pub fn new(incremental: OptInc) -> Self {
+        Self { incremental }
     }
 }
 
@@ -77,7 +82,7 @@ impl pbn::StepProvider<util::Timer> for Remaining {
                 match step.apply(e) {
                     None => continue,
                     Some(result) => {
-                        if pn::oracle::nonempty_completion(&result) {
+                        if self.incremental.nonempty_completion(&result) {
                             ret.push(step);
                         }
                     }
@@ -91,11 +96,13 @@ impl pbn::StepProvider<util::Timer> for Remaining {
 ////////////////////////////////////////////////////////////////////////////////
 // Random
 
-pub struct Random;
+pub struct Random {
+    incremental: OptInc,
+}
 
 impl Random {
-    pub fn new() -> Self {
-        Self
+    pub fn new(incremental: OptInc) -> Self {
+        Self { incremental }
     }
 }
 
@@ -121,7 +128,7 @@ impl pbn::StepProvider<util::Timer> for Random {
             match step.apply(e) {
                 None => continue,
                 Some(result) => {
-                    if pn::oracle::nonempty_completion(&result) {
+                    if self.incremental.nonempty_completion(&result) {
                         ret.push(step);
                     }
                 }
@@ -135,11 +142,13 @@ impl pbn::StepProvider<util::Timer> for Random {
 ////////////////////////////////////////////////////////////////////////////////
 // Top-down inversion
 
-pub struct TopDownInversion;
+pub struct TopDownInversion {
+    incremental: OptInc,
+}
 
 impl TopDownInversion {
-    pub fn new() -> Self {
-        Self
+    pub fn new(incremental: OptInc) -> Self {
+        Self { incremental }
     }
 }
 
@@ -219,7 +228,7 @@ impl pbn::StepProvider<util::Timer> for TopDownInversion {
                 // Although oracle call is necessary if want to combine with
                 // other strategies
                 if let Some(result) = step.apply(e) {
-                    if pn::oracle::nonempty_completion(&result) {
+                    if self.incremental.nonempty_completion(&result) {
                         ret.push(step);
                     }
                 }
@@ -233,11 +242,13 @@ impl pbn::StepProvider<util::Timer> for TopDownInversion {
 ////////////////////////////////////////////////////////////////////////////////
 // Bottom-up inversion
 
-pub struct BottomUpInversion;
+pub struct BottomUpInversion {
+    incremental: OptInc,
+}
 
 impl BottomUpInversion {
-    pub fn new() -> Self {
-        Self
+    pub fn new(incremental: OptInc) -> Self {
+        Self { incremental }
     }
 }
 
@@ -260,7 +271,7 @@ impl pbn::StepProvider<util::Timer> for BottomUpInversion {
                     let step =
                         pn::Step::SetClass(conclusion_oidx, *new_class, None);
                     if let Some(result) = step.apply(e) {
-                        if pn::oracle::nonempty_completion(&result) {
+                        if self.incremental.nonempty_completion(&result) {
                             ret.push(step);
                         }
                     }
@@ -275,11 +286,13 @@ impl pbn::StepProvider<util::Timer> for BottomUpInversion {
 ////////////////////////////////////////////////////////////////////////////////
 // Leaf
 
-pub struct Leaf;
+pub struct Leaf {
+    incremental: OptInc,
+}
 
 impl Leaf {
-    pub fn new() -> Self {
-        Self
+    pub fn new(incremental: OptInc) -> Self {
+        Self { incremental }
     }
 }
 
@@ -298,7 +311,7 @@ impl pbn::StepProvider<util::Timer> for Leaf {
                 match step.apply(e) {
                     None => continue,
                     Some(result) => {
-                        if pn::oracle::nonempty_completion(&result) {
+                        if self.incremental.nonempty_completion(&result) {
                             ret.push(step);
                         }
                     }
@@ -313,12 +326,16 @@ impl pbn::StepProvider<util::Timer> for Leaf {
 // Maximum information gain
 
 pub struct MaxInfoGain {
+    incremental: OptInc,
     relevancy_prune: bool,
 }
 
 impl MaxInfoGain {
-    pub fn new(relevancy_prune: bool) -> Self {
-        Self { relevancy_prune }
+    pub fn new(incremental: OptInc, relevancy_prune: bool) -> Self {
+        Self {
+            incremental,
+            relevancy_prune,
+        }
     }
 }
 
@@ -349,9 +366,9 @@ impl pbn::StepProvider<util::Timer> for MaxInfoGain {
                         );
                         match force_step.apply(e) {
                             None => false,
-                            Some(force_result) => {
-                                pn::oracle::nonempty_completion(&force_result)
-                            }
+                            Some(force_result) => self
+                                .incremental
+                                .nonempty_completion(&force_result),
                         }
                     })
                     .collect()
@@ -437,11 +454,15 @@ impl pbn::StepProvider<util::Timer> for MinLeafHeuristic {
 ////////////////////////////////////////////////////////////////////////////////
 // Forced assumptions
 
-pub struct ForcedAssumptions;
+pub struct ForcedAssumptions {
+    provider: Box<dyn pbn::StepProvider<util::Timer, Step = pn::Step>>,
+}
 
 impl ForcedAssumptions {
-    pub fn new() -> Self {
-        Self
+    pub fn new(
+        provider: Box<dyn pbn::StepProvider<util::Timer, Step = pn::Step>>,
+    ) -> Self {
+        Self { provider }
     }
 }
 
@@ -450,11 +471,10 @@ impl pbn::StepProvider<util::Timer> for ForcedAssumptions {
 
     fn provide(
         &mut self,
-        _timer: &Timer,
+        timer: &Timer,
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
-        let mut r = Remaining::new();
-        let steps = r.provide(_timer, e)?;
+        let steps = self.provider.provide(timer, e)?;
         let mut show = HashMap::new();
         for step in &steps {
             match step {
@@ -506,13 +526,15 @@ pub enum AlphabeticalMode {
 }
 
 pub struct Alphabetical {
+    incremental: OptInc,
     mode: AlphabeticalMode,
     fancy_prune: bool,
 }
 
 impl Alphabetical {
-    pub fn new(mode: AlphabeticalMode) -> Self {
+    pub fn new(incremental: OptInc, mode: AlphabeticalMode) -> Self {
         Self {
+            incremental,
             mode,
             fancy_prune: false,
         }
@@ -553,7 +575,8 @@ impl pbn::StepProvider<util::Timer> for Alphabetical {
                 match force_step.apply(e) {
                     None => continue,
                     Some(force_result) => {
-                        if !pn::oracle::nonempty_completion(&force_result) {
+                        if !self.incremental.nonempty_completion(&force_result)
+                        {
                             continue;
                         }
                     }
@@ -571,7 +594,7 @@ impl pbn::StepProvider<util::Timer> for Alphabetical {
                     let true_step_ok = match true_step.apply(e) {
                         None => false,
                         Some(result) => {
-                            pn::oracle::nonempty_completion(&result)
+                            self.incremental.nonempty_completion(&result)
                         }
                     };
 
@@ -580,7 +603,7 @@ impl pbn::StepProvider<util::Timer> for Alphabetical {
                     let false_step_ok = match false_step.apply(e) {
                         None => false,
                         Some(result) => {
-                            pn::oracle::nonempty_completion(&result)
+                            self.incremental.nonempty_completion(&result)
                         }
                     };
 
@@ -597,7 +620,7 @@ impl pbn::StepProvider<util::Timer> for Alphabetical {
                     None => continue,
                     Some(result) => {
                         if self.mode == AlphabeticalMode::Unsound
-                            || pn::oracle::nonempty_completion(&result)
+                            || self.incremental.nonempty_completion(&result)
                         {
                             ret.push(step);
                         }
