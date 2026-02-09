@@ -1,0 +1,36 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 \u03b2 : Prop\nha : \u03b1\nh : \u03b1 \u2192 \u03b2\n\u22a2 \u03b2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 \u03b2 : Prop\nha : \u03b1\nh : \u03b1 \u2192 \u03b2\n\u22a2 \u03b2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}
