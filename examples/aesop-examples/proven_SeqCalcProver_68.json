@@ -1,0 +1,86 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case imp_l\n\u03a6 : Type\n\u0393 \u0394 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst\u271d : DecidablePred i\n\u0393\u271d \u0394\u271d : List (Form \u03a6)\n\u03c6\u271d \u03c8\u271d : Form \u03a6\na\u271d\u00b9 : Proof \u0393\u271d (\u03c6\u271d :: \u0394\u271d)\na\u271d : Proof (\u03c8\u271d :: \u0393\u271d) \u0394\u271d\na_ih\u271d\u00b9 : SC i \u0393\u271d (\u03c6\u271d :: \u0394\u271d)\na_ih\u271d : SC i (\u03c8\u271d :: \u0393\u271d) \u0394\u271d\n\u22a2 SC i (\u03c6\u271d \u21d2 \u03c8\u271d :: \u0393\u271d) \u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03a6 : Type\n\u0393 \u0394 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393_1 \u0394_1 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof \u0393_1 (\u03c6 :: \u0394_1)\na_1 : Proof (\u03c8 :: \u0393_1) \u0394_1\na_ih : SC i \u0393_1 (\u03c6 :: \u0394_1)\na_ih_1 : SC i (\u03c8 :: \u0393_1) \u0394_1\n\u22a2 SC i (\u03c6 \u21d2 \u03c8 :: \u0393_1) \u0394_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case inl\n\u03a6 : Type\n\u0393 \u0394 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393_1 \u0394_1 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof \u0393_1 (\u03c6 :: \u0394_1)\na_1 : Proof (\u03c8 :: \u0393_1) \u0394_1\na_ih_1 : Val i \u03c8 \u2192 Any (Val i) \u0394_1\na_2 : Val i \u03c6 \u2192 Val i \u03c8\na_3 : All (Val i) \u0393_1\nh : Val i \u03c6\n\u22a2 Any (Val i) \u0394_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case inr\n\u03a6 : Type\n\u0393 \u0394 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393_1 \u0394_1 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof \u0393_1 (\u03c6 :: \u0394_1)\na_1 : Proof (\u03c8 :: \u0393_1) \u0394_1\na_ih_1 : Val i \u03c8 \u2192 Any (Val i) \u0394_1\na_2 : Val i \u03c6 \u2192 Val i \u03c8\na_3 : All (Val i) \u0393_1\nh_1 : Any (Val i) \u0394_1\n\u22a2 Any (Val i) \u0394_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100/safe] safe|cases|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G2",
+      "target": "R-1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G3",
+      "target": "R-2"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

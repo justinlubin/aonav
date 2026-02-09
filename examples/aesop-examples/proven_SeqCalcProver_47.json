@@ -1,0 +1,116 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03a6 : Type\ni : \u03a6 \u2192 Prop\n\u0393 \u0393' \u0394 : List (Form \u03a6)\nperm : \u0393' \u21ad \u0393\nh : SC i \u0393 \u0394\n\u22a2 SC i \u0393' \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03a6 : Type\ni : \u03a6 \u2192 Prop\n\u0393 \u0393' \u0394 : List (Form \u03a6)\nperm : \u0393' \u21ad \u0393\nh : SC i \u0393 \u0394\n\u22a2 SC i \u0393' \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " \u03a6 : Type\ni : \u03a6 \u2192 Prop\n\u0393 \u0393' \u0394 : List (Form \u03a6)\nperm : \u0393' \u21ad \u0393\nh : All (Val i) \u0393 \u2192 Any (Val i) \u0394\na : All (Val i) \u0393'\n\u22a2 All (Val i) \u0393\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case perm\n\u03a6 : Type\ni : \u03a6 \u2192 Prop\n\u0393 \u0393' \u0394 : List (Form \u03a6)\nperm : \u0393' \u21ad \u0393\nh : All (Val i) \u0393 \u2192 Any (Val i) \u0394\na : All (Val i) \u0393'\n\u22a2 ?xs \u21ad \u0393\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case a\n\u03a6 : Type\ni : \u03a6 \u2192 Prop\n\u0393 \u0393' \u0394 : List (Form \u03a6)\nperm : \u0393' \u21ad \u0393\nh : All (Val i) \u0393 \u2192 Any (Val i) \u0394\na : All (Val i) \u0393'\n\u22a2 All (Val i) ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case perm\n\u03a6 : Type\ni : \u03a6 \u2192 Prop\n\u0393 \u0393' \u0394 : List (Form \u03a6)\nperm : \u0393' \u21ad \u0393\nh : All (Val i) \u0393 \u2192 Any (Val i) \u0394\na : All (Val i) \u0393'\n\u22a2 \u0393' \u21ad \u0393\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.all",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G4",
+      "target": "R3"
+    },
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "G5",
+      "target": "R-1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

@@ -1,0 +1,96 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case prep\n\u03b1 : Type u_1\nxs ys xs\u271d ys\u271d : List \u03b1\nx\u271d : \u03b1\na\u271d : xs\u271d \u21ad ys\u271d\na_ih\u271d : ys\u271d \u21ad xs\u271d\n\u22a2 x\u271d :: ys\u271d \u21ad x\u271d :: xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nxs ys xs_1 ys_1 : List \u03b1\nx : \u03b1\na : xs_1 \u21ad ys_1\na_ih : ys_1 \u21ad xs_1\n\u22a2 x :: ys_1 \u21ad x :: xs_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case a\n\u03b1 : Type u_1\nxs ys xs_1 ys_1 : List \u03b1\nx : \u03b1\na : xs_1 \u21ad ys_1\na_ih : ys_1 \u21ad xs_1\n\u22a2 ys_1 \u21ad xs_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case a\n\u03b1 : Type u_1\nxs ys xs_1 ys_1 : List \u03b1\nx : \u03b1\na : xs_1 \u21ad ys_1\na_ih : ys_1 \u21ad xs_1\n\u22a2 x :: ys_1 \u21ad ?ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case a\n\u03b1 : Type u_1\nxs ys xs_1 ys_1 : List \u03b1\nx : \u03b1\na : xs_1 \u21ad ys_1\na_ih : ys_1 \u21ad xs_1\n\u22a2 ?ys \u21ad x :: xs_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G2",
+      "target": "R-1"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G1",
+      "target": "R2"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

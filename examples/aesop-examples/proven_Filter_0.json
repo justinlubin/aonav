@@ -1,0 +1,286 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case pos\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst\u271d : DecidablePred p\nas\u271d : List \u03b1\na a' : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nh : a \u2208 filter p (a' :: as)\nha' : p a'\n\u22a2 a \u2208 a' :: as \u2227 p a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na a' : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nh : a \u2208 filter p (a' :: as)\nha' : p a'\n\u22a2 a \u2208 a' :: as \u2227 p a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case left\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na a' : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nh : a \u2208 a' :: filter p as\nha' : p a'\n\u22a2 a \u2208 a' :: as\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case left.head\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nha' : p a\n\u22a2 a \u2208 a :: as\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G12": {
+      "label": " case left.head.a\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as\nha' : p a\n\u22a2 a \u2208 as\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case left.tail\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na a' : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nha' : p a'\na_1 : a \u2208 filter p as\n\u22a2 a \u2208 a' :: as\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G11": {
+      "label": " case left.tail.a\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na a' : \u03b1\nas : List \u03b1\nha' : p a'\na_1 : a \u2208 filter p as\nleft : a \u2208 as\nright : p a\n\u22a2 a \u2208 as\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case left.a\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na a' : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nh : a \u2208 a' :: filter p as\nha' : p a'\n\u22a2 a \u2208 as\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case left.a.head\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nha' : p a\n\u22a2 a \u2208 as\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G13": {
+      "label": " case left.a.head\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as\nha' : p a\n\u22a2 a \u2208 filter p as\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G10": {
+      "label": " case left.a.tail\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na a' : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nha' : p a'\na_1 : a \u2208 filter p as\n\u22a2 a \u2208 as\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case right\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na a' : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nh : a \u2208 a' :: filter p as\nha' : p a'\n\u22a2 p a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case right.head\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nha' : p a\n\u22a2 p a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case right.tail\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na a' : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nha' : p a'\na_1 : a \u2208 filter p as\n\u22a2 p a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[101/safe] safe|constructors|global|And",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[50.0000%] unsafe|cases|global|TBA.Mem",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R7": {
+      "label": "[50.0000%] unsafe|constructors|global|TBA.Mem",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R8": {
+      "label": "[50.0000%] unsafe|constructors|global|TBA.Mem",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[50.0000%] unsafe|constructors|global|TBA.Mem",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[50.0000%] unsafe|constructors|global|TBA.Mem",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[50.0000%] unsafe|cases|global|TBA.Mem",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R9": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|cases|global|TBA.Mem",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-3": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-4": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R8",
+      "target": "G12"
+    },
+    {
+      "source": "R5",
+      "target": "G9"
+    },
+    {
+      "source": "R9",
+      "target": "G13"
+    },
+    {
+      "source": "G6",
+      "target": "R7"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "R6",
+      "target": "G11"
+    },
+    {
+      "source": "R4",
+      "target": "G8"
+    },
+    {
+      "source": "G7",
+      "target": "R6"
+    },
+    {
+      "source": "G9",
+      "target": "R9"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R2",
+      "target": "G5"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G8",
+      "target": "R5"
+    },
+    {
+      "source": "R5",
+      "target": "G10"
+    },
+    {
+      "source": "R3",
+      "target": "G6"
+    },
+    {
+      "source": "G10",
+      "target": "R-2"
+    },
+    {
+      "source": "G4",
+      "target": "R-3"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G2",
+      "target": "R4"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G11",
+      "target": "R-1"
+    },
+    {
+      "source": "G6",
+      "target": "R8"
+    },
+    {
+      "source": "G5",
+      "target": "R-4"
+    },
+    {
+      "source": "R3",
+      "target": "G7"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "G2",
+      "target": "R3"
+    }
+  ]
+}
+}

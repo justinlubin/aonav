@@ -1,0 +1,176 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1\u271d : Type u_1\nl : List \u03b1\u271d\n\u22a2 l.length = 1 \u2194 \u2203 a, l = [a]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nl : List \u03b1\n\u22a2 l.length = 1 \u2194 \u2203 a, l = [a]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case mp\n\u03b1 : Type u_1\nl : List \u03b1\n\u22a2 l.length = 1 \u2192 \u2203 a, l = [a]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case mp.h\n\u03b1 : Type u_1\nl : List \u03b1\na : l.length = 1\n\u22a2 l = [?mp.w]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case mp.h.nil\n\u03b1 : Type u_1\na : [].length = 1\n\u22a2 [] = [?m.25 a]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case mp.h.cons\n\u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\na : (head :: tail).length = 1\n\u22a2 head :: tail = [?m.25 a]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case mp.nil\n\u03b1 : Type u_1\na : [].length = 1\n\u22a2 \u2203 a, [] = [a]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case mp.cons\n\u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\na : (head :: tail).length = 1\n\u22a2 \u2203 a, head :: tail = [a]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case mpr\n\u03b1 : Type u_1\nl : List \u03b1\n\u22a2 (\u2203 a, l = [a]) \u2192 l.length = 1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100/safe] safe|constructors|global|Iff",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[1.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[1.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-3": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G3",
+      "target": "R-3"
+    },
+    {
+      "source": "R4",
+      "target": "G8"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G2",
+      "target": "R3"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G6",
+      "target": "R-2"
+    },
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R3",
+      "target": "G6"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G5",
+      "target": "R-1"
+    },
+    {
+      "source": "G4",
+      "target": "R4"
+    }
+  ]
+}
+}

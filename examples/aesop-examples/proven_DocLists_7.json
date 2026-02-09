@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case cons\n\u03b1 : Type u_1\nys zs : MyList \u03b1\nhd\u271d : \u03b1\ntl\u271d : MyList \u03b1\ntl_ih\u271d : tl\u271d ++ ys ++ zs = tl\u271d ++ (ys ++ zs)\n\u22a2 cons hd\u271d tl\u271d ++ ys ++ zs = cons hd\u271d tl\u271d ++ (ys ++ zs)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nys zs : MyList \u03b1\nhd : \u03b1\ntl : MyList \u03b1\ntl_ih : tl ++ ys ++ zs = tl ++ (ys ++ zs)\n\u22a2 cons hd tl ++ ys ++ zs = cons hd tl ++ (ys ++ zs)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G1",
+      "target": "R-1"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    }
+  ]
+}
+}

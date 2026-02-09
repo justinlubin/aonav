@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case prep\n\u03b1 : Type u_1\nxs ys : List \u03b1\nP : \u03b1 \u2192 Prop\nxs\u271d ys\u271d : List \u03b1\nx\u271d : \u03b1\na\u271d : xs\u271d \u21ad ys\u271d\na_ih\u271d : All P xs\u271d \u2192 All P ys\u271d\n\u22a2 All P (x\u271d :: xs\u271d) \u2192 All P (x\u271d :: ys\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nxs ys : List \u03b1\nP : \u03b1 \u2192 Prop\nxs_1 ys_1 : List \u03b1\nx : \u03b1\na : xs_1 \u21ad ys_1\na_ih : All P xs_1 \u2192 All P ys_1\n\u22a2 All P (x :: xs_1) \u2192 All P (x :: ys_1)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R-1"
+    }
+  ]
+}
+}

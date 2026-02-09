@@ -1,0 +1,96 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case cons\n\u03b1 : Type u_1\nhead\u271d : \u03b1\ntail\u271d : List \u03b1\ntail_ih\u271d : All (fun x => x \u2208 tail\u271d) tail\u271d\n\u22a2 All (fun x => x \u2208 head\u271d :: tail\u271d) (head\u271d :: tail\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : All (fun x => x \u2208 tail) tail\n\u22a2 All (fun x => x \u2208 head :: tail) (head :: tail)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case wk\n\u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : All (fun x => x \u2208 tail) tail\n\u22a2 \u2200 (x : \u03b1), ?P x \u2192 x = head \u2228 x \u2208 tail\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case h\n\u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : All (fun x => x \u2208 tail) tail\n\u22a2 All ?P tail\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case wk\n\u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : All (fun x => x \u2208 tail) tail\n\u22a2 \u2200 (x : \u03b1), x \u2208 tail \u2192 x = head \u2228 x \u2208 tail\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|apply|global|All.weaken",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G4",
+      "target": "R-1"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

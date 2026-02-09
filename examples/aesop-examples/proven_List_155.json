@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case cons\n\u03b1 : Type u_1\nhead\u271d : \u03b1\ntail\u271d : List \u03b1\ntail_ih\u271d : \u2200 (l\u2082 : List \u03b1), tail\u271d.reverseAux l\u2082 = tail\u271d.reverse ++ l\u2082\nl\u2082 : List \u03b1\n\u22a2 (head\u271d :: tail\u271d).reverseAux l\u2082 = (head\u271d :: tail\u271d).reverse ++ l\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : \u2200 (l\u2082 : List \u03b1), tail.reverseAux l\u2082 = tail.reverse ++ l\u2082\nl\u2082 : List \u03b1\n\u22a2 (head :: tail).reverseAux l\u2082 = (head :: tail).reverse ++ l\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G1",
+      "target": "R-1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    }
+  ]
+}
+}

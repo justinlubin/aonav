@@ -1,0 +1,206 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type u_1\nl : List \u03b1\n\u22a2 l.length = 2 \u2194 \u2203 a b, l = [a, b]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nl : List \u03b1\n\u22a2 l.length = 2 \u2194 \u2203 a b, l = [a, b]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case mp\n\u03b1 : Type u_1\nl : List \u03b1\n\u22a2 l.length = 2 \u2192 \u2203 a b, l = [a, b]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case mp.nil\n\u03b1 : Type u_1\na : [].length = 2\n\u22a2 \u2203 a b, [] = [a, b]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case mp.cons\n\u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\na : (head :: tail).length = 2\n\u22a2 \u2203 a b, head :: tail = [a, b]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case mp.cons.nil\n\u03b1 : Type u_1\nhead : \u03b1\na : [].length = 1\n\u22a2 \u2203 x, [] = [x]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case mp.cons.cons\n\u03b1 : Type u_1\nhead head_1 : \u03b1\ntail_1 : List \u03b1\na : (head_1 :: tail_1).length = 1\n\u22a2 \u2203 x, head_1 :: tail_1 = [x]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case mp.cons.h\n\u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\na : tail.length = 1\n\u22a2 tail = [?mp.cons.w]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case mp.h\n\u03b1 : Type u_1\nl : List \u03b1\na : l.length = 2\n\u22a2 \u2203 b, l = [?mp.w, b]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case mpr\n\u03b1 : Type u_1\nl : List \u03b1\n\u22a2 (\u2203 a b, l = [a, b]) \u2192 l.length = 2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100/safe] safe|constructors|global|Iff",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[50.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-3": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-4": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G4",
+      "target": "R-1"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G2",
+      "target": "R3"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G5",
+      "target": "R4"
+    },
+    {
+      "source": "R2",
+      "target": "G5"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R3",
+      "target": "G6"
+    },
+    {
+      "source": "G7",
+      "target": "R-2"
+    },
+    {
+      "source": "R5",
+      "target": "G9"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G8",
+      "target": "R-3"
+    },
+    {
+      "source": "G3",
+      "target": "R-4"
+    },
+    {
+      "source": "R4",
+      "target": "G8"
+    },
+    {
+      "source": "G5",
+      "target": "R5"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    }
+  ]
+}
+}

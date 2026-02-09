@@ -1,0 +1,196 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case cons\n\u03b1 : Type u_1\n\u03b1\u271d : Type u_2\nf : \u03b1 \u2192 List \u03b1\u271d\nb : \u03b1\u271d\nhead\u271d : \u03b1\ntail\u271d : List \u03b1\ntail_ih\u271d : (\u2203 a, a \u2208 tail\u271d \u2227 b \u2208 f a) \u2192 b \u2208 flatMap f tail\u271d\n\u22a2 (\u2203 a, a \u2208 head\u271d :: tail\u271d \u2227 b \u2208 f a) \u2192 b \u2208 flatMap f (head\u271d :: tail\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\n\u03b1_1 : Type u_2\nf : \u03b1 \u2192 List \u03b1_1\nb : \u03b1_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : (\u2203 a, a \u2208 tail \u2227 b \u2208 f a) \u2192 b \u2208 flatMap f tail\n\u22a2 (\u2203 a, a \u2208 head :: tail \u2227 b \u2208 f a) \u2192 b \u2208 flatMap f (head :: tail)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case inl\n\u03b1 : Type u_1\n\u03b1_1 : Type u_2\nf : \u03b1 \u2192 List \u03b1_1\nb : \u03b1_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : \u2200 (x : \u03b1), x \u2208 tail \u2192 b \u2208 f x \u2192 \u2203 l, (\u2203 a, a \u2208 tail \u2227 f a = l) \u2227 b \u2208 l\nh : b \u2208 f head\n\u22a2 b \u2208 f head \u2228 \u2203 l, (\u2203 a, a \u2208 tail \u2227 f a = l) \u2227 b \u2208 l\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case inr\n\u03b1 : Type u_1\n\u03b1_1 : Type u_2\nf : \u03b1 \u2192 List \u03b1_1\nb : \u03b1_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : \u2200 (x : \u03b1), x \u2208 tail \u2192 b \u2208 f x \u2192 \u2203 l, (\u2203 a, a \u2208 tail \u2227 f a = l) \u2227 b \u2208 l\nh_1 : \u2203 a, a \u2208 tail \u2227 b \u2208 f a\n\u22a2 b \u2208 f head \u2228 \u2203 l, (\u2203 a, a \u2208 tail \u2227 f a = l) \u2227 b \u2208 l\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case inr.h\n\u03b1 : Type u_1\n\u03b1_1 : Type u_2\nf : \u03b1 \u2192 List \u03b1_1\nb : \u03b1_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : \u2200 (x : \u03b1), x \u2208 tail \u2192 b \u2208 f x \u2192 \u2203 l, (\u2203 a, a \u2208 tail \u2227 f a = l) \u2227 b \u2208 l\nw : \u03b1\nleft : w \u2208 tail\nright : b \u2208 f w\n\u22a2 b \u2208 f head\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case inr.h\n\u03b1 : Type u_1\n\u03b1_1 : Type u_2\nf : \u03b1 \u2192 List \u03b1_1\nb : \u03b1_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : \u2200 (x : \u03b1), x \u2208 tail \u2192 b \u2208 f x \u2192 \u2203 l, (\u2203 a, a \u2208 tail \u2227 f a = l) \u2227 b \u2208 l\nw : \u03b1\nleft : w \u2208 tail\nright : b \u2208 f w\n\u22a2 \u2203 l, (\u2203 a, a \u2208 tail \u2227 f a = l) \u2227 b \u2208 l\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case inr.h.a\n\u03b1 : Type u_1\n\u03b1_1 : Type u_2\nf : \u03b1 \u2192 List \u03b1_1\nb : \u03b1_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : \u2200 (x : \u03b1), x \u2208 tail \u2192 b \u2208 f x \u2192 \u2203 l, (\u2203 a, a \u2208 tail \u2227 f a = l) \u2227 b \u2208 l\nw : \u03b1\nleft : w \u2208 tail\nright : b \u2208 f w\n\u22a2 ?inr.h.x \u2208 tail\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case inr.h.a\n\u03b1 : Type u_1\n\u03b1_1 : Type u_2\nf : \u03b1 \u2192 List \u03b1_1\nb : \u03b1_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : \u2200 (x : \u03b1), x \u2208 tail \u2192 b \u2208 f x \u2192 \u2203 l, (\u2203 a, a \u2208 tail \u2227 f a = l) \u2227 b \u2208 l\nw : \u03b1\nleft : w \u2208 tail\nright : b \u2208 f w\n\u22a2 b \u2208 f ?inr.h.x\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case inr.h.a\n\u03b1 : Type u_1\n\u03b1_1 : Type u_2\nf : \u03b1 \u2192 List \u03b1_1\nb : \u03b1_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : \u2200 (x : \u03b1), x \u2208 tail \u2192 b \u2208 f x \u2192 \u2203 l, (\u2203 a, a \u2208 tail \u2227 f a = l) \u2227 b \u2208 l\nw : \u03b1\nleft : w \u2208 tail\nright : b \u2208 f w\n\u22a2 w \u2208 tail\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case inr.h.h\n\u03b1 : Type u_1\n\u03b1_1 : Type u_2\nf : \u03b1 \u2192 List \u03b1_1\nb : \u03b1_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : \u2200 (x : \u03b1), x \u2208 tail \u2192 b \u2208 f x \u2192 \u2203 l, (\u2203 a, a \u2208 tail \u2227 f a = l) \u2227 b \u2208 l\nw : \u03b1\nleft : w \u2208 tail\nright : b \u2208 f w\n\u22a2 (\u2203 a, a \u2208 tail \u2227 f a = ?inr.h.w) \u2227 b \u2208 ?inr.h.w\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100/safe] safe|cases|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|constructors|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[50.0000%] unsafe|constructors|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G5",
+      "target": "R4"
+    },
+    {
+      "source": "G9",
+      "target": "R-2"
+    },
+    {
+      "source": "G2",
+      "target": "R-1"
+    },
+    {
+      "source": "G3",
+      "target": "R3"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G5",
+      "target": "R5"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "R5",
+      "target": "G8"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "G7",
+      "target": "R6"
+    },
+    {
+      "source": "R6",
+      "target": "G9"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "R4",
+      "target": "G6"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    }
+  ]
+}
+}

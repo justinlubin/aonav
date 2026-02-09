@@ -1,0 +1,126 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type u_1\nl\u2081 l\u2082 l : List \u03b1\n\u22a2 l\u2081 ++ l\u2082 \u2286 l \u2194 l\u2081 \u2286 l \u2227 l\u2082 \u2286 l\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nl\u2081 l\u2082 l : List \u03b1\n\u22a2 l\u2081 ++ l\u2082 \u2286 l \u2194 l\u2081 \u2286 l \u2227 l\u2082 \u2286 l\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case mp\n\u03b1 : Type u_1\nl\u2081 l\u2082 l : List \u03b1\n\u22a2 (\u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2081 \u2228 a \u2208 l\u2082 \u2192 a \u2208 l) \u2192 (\u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2081 \u2192 a \u2208 l) \u2227 \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2082 \u2192 a \u2208 l\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case mpr\n\u03b1 : Type u_1\nl\u2081 l\u2082 l : List \u03b1\n\u22a2 ((\u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2081 \u2192 a \u2208 l) \u2227 \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2082 \u2192 a \u2208 l) \u2192 \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2081 \u2228 a \u2208 l\u2082 \u2192 a \u2208 l\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case mpr.inl\n\u03b1 : Type u_1\nl\u2081 l\u2082 l : List \u03b1\na_1 : \u03b1\nleft : \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2081 \u2192 a \u2208 l\nright : \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2082 \u2192 a \u2208 l\nh : a_1 \u2208 l\u2081\n\u22a2 a_1 \u2208 l\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case mpr.inr\n\u03b1 : Type u_1\nl\u2081 l\u2082 l : List \u03b1\na_1 : \u03b1\nleft : \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2081 \u2192 a \u2208 l\nright : \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2082 \u2192 a \u2208 l\nh_1 : a_1 \u2208 l\u2082\n\u22a2 a_1 \u2208 l\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100/safe] safe|constructors|global|Iff",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[100/safe] safe|cases|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-3": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R2",
+      "target": "G5"
+    },
+    {
+      "source": "G2",
+      "target": "R-1"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G5",
+      "target": "R-3"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G4",
+      "target": "R-2"
+    }
+  ]
+}
+}

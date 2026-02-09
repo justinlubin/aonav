@@ -1,0 +1,86 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Sort u_1\n\u03b2 : Sort u_2\n\u03b3\u2081 \u03b3\u2082 \u03b4\u2081 \u03b4\u2082 : Prop\na : \u03b1\nb : \u03b2\nr\u2081 : \u2200 (a : \u03b1) (b : \u03b2), \u03b3\u2081 \u2227 \u03b3\u2082\nr\u2082 : \u2200 (a : \u03b1), \u03b4\u2081 \u2227 \u03b4\u2082\n\u22a2 \u03b3\u2081 \u2227 \u03b3\u2082 \u2227 \u03b4\u2081 \u2227 \u03b4\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Sort u_1\n\u03b2 : Sort u_2\n\u03b3\u2081 \u03b3\u2082 \u03b4\u2081 \u03b4\u2082 : Prop\na : \u03b1\nb : \u03b2\nr\u2081 : \u2200 (a : \u03b1) (b : \u03b2), \u03b3\u2081 \u2227 \u03b3\u2082\nr\u2082 : \u2200 (a : \u03b1), \u03b4\u2081 \u2227 \u03b4\u2082\n\u22a2 \u03b3\u2081 \u2227 \u03b3\u2082 \u2227 \u03b4\u2081 \u2227 \u03b4\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " \u03b1 : Sort u_1\n\u03b2 : Sort u_2\n\u03b3\u2081 \u03b3\u2082 \u03b4\u2081 \u03b4\u2082 : Prop\na : \u03b1\nb : \u03b2\nr\u2081 : \u2200 (a : \u03b1) (b : \u03b2), \u03b3\u2081 \u2227 \u03b3\u2082\nr\u2082 : \u2200 (a : \u03b1), \u03b4\u2081 \u2227 \u03b4\u2082\nfwd : \u03b3\u2081 \u2227 \u03b3\u2082\n\u22a2 \u03b3\u2081 \u2227 \u03b3\u2082 \u2227 \u03b4\u2081 \u2227 \u03b4\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " \u03b1 : Sort u_1\n\u03b2 : Sort u_2\n\u03b3\u2081 \u03b3\u2082 \u03b4\u2081 \u03b4\u2082 : Prop\na : \u03b1\nb : \u03b2\nr\u2082 : \u2200 (a : \u03b1), \u03b4\u2081 \u2227 \u03b4\u2082\nleft : \u03b3\u2081\nright : \u03b3\u2082\nfwd : \u03b4\u2081 \u2227 \u03b4\u2082\n\u22a2 \u03b4\u2081 \u2227 \u03b4\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[1/safe] safe|forward|local|r\u2081",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[1/safe] safe|forward|local|r\u2082",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "G3",
+      "target": "R-1"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    }
+  ]
+}
+}

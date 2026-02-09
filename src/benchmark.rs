@@ -49,6 +49,8 @@ pub struct Config {
     pub parallel: bool,
     /// The step providers to use
     pub providers: Vec<menu::Provider>,
+    /// Whether or not to use incrementality (if possible)
+    pub incremental_if_possible: bool,
 }
 
 /// The core data structure for running benchmarks
@@ -77,12 +79,24 @@ impl Runner {
     fn entry(&self, entry: BenchmarkEntry, solution: pn::Exp) {
         let now = Instant::now();
 
-        let checker = pn::oracle::Valid::new();
+        let start = pn::Exp::new(solution.graph().clone());
+        let optional_start = if self.config.incremental_if_possible {
+            Some(&start)
+        } else {
+            None
+        };
+
+        let checker = pn::oracle::Valid::new(
+            pn::oracle::OptInc::from_optional_start(optional_start),
+        );
+
         let controller = pbn::Controller::new(
             Timer::finite(self.config.timeout),
-            pbn::CompoundProvider::new(vec![entry.provider.provider()]),
+            pbn::CompoundProvider::new(vec![entry
+                .provider
+                .provider(optional_start)]),
             checker,
-            pn::Exp::new(solution.graph().clone()),
+            start,
             false,
         );
 

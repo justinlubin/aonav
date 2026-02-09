@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type u_1\nl\u2081 l\u2082 : List \u03b1\n\u22a2 l\u2081 \u2286 l\u2082 \u2194 \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2081 \u2192 a \u2208 l\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nl\u2081 l\u2082 : List \u03b1\n\u22a2 l\u2081 \u2286 l\u2082 \u2194 \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2081 \u2192 a \u2208 l\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRules.rfl",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    }
+  ]
+}
+}

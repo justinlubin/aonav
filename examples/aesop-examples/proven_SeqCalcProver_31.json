@@ -1,0 +1,1836 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case cons\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead\u271d : \u03b1\ntail\u271d : List \u03b1\ntail_ih\u271d : tail\u271d ++ v :: ys \u21ad v :: tail\u271d ++ ys\n\u22a2 head\u271d :: tail\u271d ++ v :: ys \u21ad v :: head\u271d :: tail\u271d ++ ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: tail ++ ys\n\u22a2 head :: tail ++ v :: ys \u21ad v :: head :: tail ++ ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G11": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G16": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G17": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G12": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: ?a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G49": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ v :: ys \u21ad v :: ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G50": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.xs\u271d \u21ad tail ++ ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G51": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: ?a.ys\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G52": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G13": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ v :: ys \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G45": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: v :: (tail ++ ys) \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G46": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ ys \u21ad tail ++ ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G115": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ ys \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G116": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.ys\u271d \u21ad tail ++ ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G48": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G47": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: v :: (tail ++ ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G53": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: v :: (tail ++ ys) \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G57": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ ys \u21ad tail ++ ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G58": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: v :: (tail ++ ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G59": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G54": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G113": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G114": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G55": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ v :: ys \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G56": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.ys\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G14": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G34": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G35": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: ?a.a.ys\u271d \u21ad ?ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G36": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ v :: ys \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G37": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G38": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.ys\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G15": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad ?ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G67": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad tail ++ v :: ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G72": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G73": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.ys\u271d \u21ad tail ++ v :: ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G68": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 v :: (tail ++ ys) \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G69": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ ys \u21ad head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G70": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 v :: (tail ++ ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G71": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G81": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad tail ++ v :: ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G86": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G87": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.ys\u271d \u21ad tail ++ v :: ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G82": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 v :: (tail ++ ys) \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G83": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ ys \u21ad head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G84": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 v :: (tail ++ ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G85": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G98": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G99": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?ys \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G100": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.a.x\u271d :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G101": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.x\u271d :: ?a.a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G102": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G103": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.a.x\u271d :: ?a.a.y\u271d :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G104": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.y\u271d :: ?a.a.x\u271d :: ?a.a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G105": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G106": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G107": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.ys\u271d \u21ad ?ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?ys \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G18": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G19": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad v :: ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G25": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G26": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad v :: ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.xs\u271d \u21ad head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G20": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G108": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G109": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G21": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad v :: head :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G22": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.xs\u271d \u21ad tail ++ ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G23": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G24": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.ys\u271d \u21ad head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad head :: v :: ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G42": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ v :: ys \u21ad v :: ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G43": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G44": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad head :: v :: ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.xs\u271d \u21ad tail ++ ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G39": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad head :: v :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G110": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ v :: ys \u21ad v :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G112": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad head :: v :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G111": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G40": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G41": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.ys\u271d \u21ad tail ++ ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?ys \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G60": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 v :: (tail ++ ys) \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G64": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ ys \u21ad head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G65": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 v :: (tail ++ ys) \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G66": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G61": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad tail ++ v :: ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G62": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G63": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad tail ++ v :: ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G74": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 v :: (tail ++ ys) \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G78": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 tail ++ ys \u21ad head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G80": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G79": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 v :: (tail ++ ys) \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G75": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad tail ++ v :: ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G76": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G77": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad tail ++ v :: ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G88": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G89": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G90": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.x\u271d :: ?a.a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G91": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.a.x\u271d :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G92": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G93": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.y\u271d :: ?a.a.x\u271d :: ?a.a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G94": {
+      "label": " case a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 head :: (tail ++ v :: ys) \u21ad ?a.a.x\u271d :: ?a.a.y\u271d :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G95": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G96": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?ys \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G97": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.ys\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G10": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G27": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?ys \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G28": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?ys \u21ad v :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G29": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.xs\u271d \u21ad head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G30": {
+      "label": " case a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?ys \u21ad head :: v :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G31": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.xs\u271d \u21ad tail ++ ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G32": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.ys\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G33": {
+      "label": " case a.a.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : tail ++ v :: ys \u21ad v :: (tail ++ ys)\n\u22a2 ?a.a.ys\u271d \u21ad v :: head :: (tail ++ ys)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R9": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R7": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R29": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R30": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R26": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R27": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R64": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R65": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R28": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R31": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R34": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R35": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R32": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R63": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R33": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R8": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R19": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R20": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R21": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R40": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R43": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R41": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R42": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R48": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R51": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R49": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R50": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R56": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R57": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R58": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R59": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R10": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R14": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R11": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R60": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R12": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R13": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R24": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R25": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R22": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R61": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R62": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R23": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R36": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R38": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R39": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R37": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R44": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R46": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R47": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R45": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R52": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R53": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R54": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R55": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R15": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R16": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R17": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R18": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R47",
+      "target": "G79"
+    },
+    {
+      "source": "G45",
+      "target": "R27"
+    },
+    {
+      "source": "R45",
+      "target": "G76"
+    },
+    {
+      "source": "R7",
+      "target": "G12"
+    },
+    {
+      "source": "R48",
+      "target": "G81"
+    },
+    {
+      "source": "G3",
+      "target": "R4"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "G15",
+      "target": "R59"
+    },
+    {
+      "source": "G39",
+      "target": "R62"
+    },
+    {
+      "source": "R30",
+      "target": "G52"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "R22",
+      "target": "G39"
+    },
+    {
+      "source": "R45",
+      "target": "G77"
+    },
+    {
+      "source": "R55",
+      "target": "G97"
+    },
+    {
+      "source": "R54",
+      "target": "G94"
+    },
+    {
+      "source": "G14",
+      "target": "R21"
+    },
+    {
+      "source": "R28",
+      "target": "G48"
+    },
+    {
+      "source": "R57",
+      "target": "G102"
+    },
+    {
+      "source": "R23",
+      "target": "G40"
+    },
+    {
+      "source": "R34",
+      "target": "G57"
+    },
+    {
+      "source": "R63",
+      "target": "G113"
+    },
+    {
+      "source": "R21",
+      "target": "G38"
+    },
+    {
+      "source": "G3",
+      "target": "R3"
+    },
+    {
+      "source": "R35",
+      "target": "G59"
+    },
+    {
+      "source": "G74",
+      "target": "R46"
+    },
+    {
+      "source": "R17",
+      "target": "G30"
+    },
+    {
+      "source": "R23",
+      "target": "G41"
+    },
+    {
+      "source": "G15",
+      "target": "R56"
+    },
+    {
+      "source": "R53",
+      "target": "G90"
+    },
+    {
+      "source": "R25",
+      "target": "G44"
+    },
+    {
+      "source": "R16",
+      "target": "G28"
+    },
+    {
+      "source": "R65",
+      "target": "G116"
+    },
+    {
+      "source": "R18",
+      "target": "G33"
+    },
+    {
+      "source": "R59",
+      "target": "G106"
+    },
+    {
+      "source": "G74",
+      "target": "R47"
+    },
+    {
+      "source": "R21",
+      "target": "G37"
+    },
+    {
+      "source": "G9",
+      "target": "R36"
+    },
+    {
+      "source": "R9",
+      "target": "G17"
+    },
+    {
+      "source": "R4",
+      "target": "G8"
+    },
+    {
+      "source": "R56",
+      "target": "G98"
+    },
+    {
+      "source": "G53",
+      "target": "R34"
+    },
+    {
+      "source": "R37",
+      "target": "G62"
+    },
+    {
+      "source": "R53",
+      "target": "G91"
+    },
+    {
+      "source": "R3",
+      "target": "G6"
+    },
+    {
+      "source": "R30",
+      "target": "G51"
+    },
+    {
+      "source": "R26",
+      "target": "G45"
+    },
+    {
+      "source": "R63",
+      "target": "G114"
+    },
+    {
+      "source": "G54",
+      "target": "R63"
+    },
+    {
+      "source": "R36",
+      "target": "G61"
+    },
+    {
+      "source": "R28",
+      "target": "G47"
+    },
+    {
+      "source": "G7",
+      "target": "R25"
+    },
+    {
+      "source": "G12",
+      "target": "R30"
+    },
+    {
+      "source": "R24",
+      "target": "G42"
+    },
+    {
+      "source": "R20",
+      "target": "G35"
+    },
+    {
+      "source": "R13",
+      "target": "G23"
+    },
+    {
+      "source": "G81",
+      "target": "R51"
+    },
+    {
+      "source": "G13",
+      "target": "R31"
+    },
+    {
+      "source": "R10",
+      "target": "G18"
+    },
+    {
+      "source": "G46",
+      "target": "R64"
+    },
+    {
+      "source": "R41",
+      "target": "G69"
+    },
+    {
+      "source": "R25",
+      "target": "G43"
+    },
+    {
+      "source": "R5",
+      "target": "G9"
+    },
+    {
+      "source": "R36",
+      "target": "G60"
+    },
+    {
+      "source": "R27",
+      "target": "G46"
+    },
+    {
+      "source": "G11",
+      "target": "R9"
+    },
+    {
+      "source": "G61",
+      "target": "R37"
+    },
+    {
+      "source": "G10",
+      "target": "R15"
+    },
+    {
+      "source": "R35",
+      "target": "G58"
+    },
+    {
+      "source": "R61",
+      "target": "G110"
+    },
+    {
+      "source": "R52",
+      "target": "G88"
+    },
+    {
+      "source": "R46",
+      "target": "G78"
+    },
+    {
+      "source": "R16",
+      "target": "G29"
+    },
+    {
+      "source": "R14",
+      "target": "G25"
+    },
+    {
+      "source": "G46",
+      "target": "R65"
+    },
+    {
+      "source": "R39",
+      "target": "G65"
+    },
+    {
+      "source": "R17",
+      "target": "G31"
+    },
+    {
+      "source": "G10",
+      "target": "R16"
+    },
+    {
+      "source": "R9",
+      "target": "G16"
+    },
+    {
+      "source": "G67",
+      "target": "R43"
+    },
+    {
+      "source": "R42",
+      "target": "G71"
+    },
+    {
+      "source": "G8",
+      "target": "R23"
+    },
+    {
+      "source": "G8",
+      "target": "R22"
+    },
+    {
+      "source": "R11",
+      "target": "G20"
+    },
+    {
+      "source": "G68",
+      "target": "R41"
+    },
+    {
+      "source": "G60",
+      "target": "R38"
+    },
+    {
+      "source": "R54",
+      "target": "G93"
+    },
+    {
+      "source": "R58",
+      "target": "G105"
+    },
+    {
+      "source": "G20",
+      "target": "R60"
+    },
+    {
+      "source": "G68",
+      "target": "R42"
+    },
+    {
+      "source": "R59",
+      "target": "G107"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    },
+    {
+      "source": "R62",
+      "target": "G112"
+    },
+    {
+      "source": "G4",
+      "target": "R10"
+    },
+    {
+      "source": "R58",
+      "target": "G103"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R15",
+      "target": "G27"
+    },
+    {
+      "source": "R50",
+      "target": "G84"
+    },
+    {
+      "source": "G15",
+      "target": "R40"
+    },
+    {
+      "source": "R5",
+      "target": "G10"
+    },
+    {
+      "source": "G2",
+      "target": "R6"
+    },
+    {
+      "source": "R33",
+      "target": "G56"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G39",
+      "target": "R61"
+    },
+    {
+      "source": "G15",
+      "target": "R48"
+    },
+    {
+      "source": "R12",
+      "target": "G22"
+    },
+    {
+      "source": "G2",
+      "target": "R7"
+    },
+    {
+      "source": "R40",
+      "target": "G68"
+    },
+    {
+      "source": "R8",
+      "target": "G14"
+    },
+    {
+      "source": "R29",
+      "target": "G49"
+    },
+    {
+      "source": "R31",
+      "target": "G53"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R12",
+      "target": "G21"
+    },
+    {
+      "source": "R6",
+      "target": "G11"
+    },
+    {
+      "source": "R10",
+      "target": "G19"
+    },
+    {
+      "source": "G3",
+      "target": "R5"
+    },
+    {
+      "source": "R37",
+      "target": "G63"
+    },
+    {
+      "source": "R54",
+      "target": "G95"
+    },
+    {
+      "source": "R43",
+      "target": "G72"
+    },
+    {
+      "source": "G9",
+      "target": "R44"
+    },
+    {
+      "source": "G9",
+      "target": "R55"
+    },
+    {
+      "source": "G82",
+      "target": "R50"
+    },
+    {
+      "source": "G9",
+      "target": "R53"
+    },
+    {
+      "source": "G6",
+      "target": "R13"
+    },
+    {
+      "source": "G10",
+      "target": "R17"
+    },
+    {
+      "source": "G53",
+      "target": "R35"
+    },
+    {
+      "source": "R32",
+      "target": "G54"
+    },
+    {
+      "source": "G14",
+      "target": "R20"
+    },
+    {
+      "source": "R58",
+      "target": "G104"
+    },
+    {
+      "source": "G82",
+      "target": "R49"
+    },
+    {
+      "source": "R57",
+      "target": "G101"
+    },
+    {
+      "source": "G14",
+      "target": "R19"
+    },
+    {
+      "source": "R51",
+      "target": "G86"
+    },
+    {
+      "source": "R39",
+      "target": "G66"
+    },
+    {
+      "source": "R49",
+      "target": "G83"
+    },
+    {
+      "source": "R60",
+      "target": "G109"
+    },
+    {
+      "source": "G15",
+      "target": "R57"
+    },
+    {
+      "source": "R8",
+      "target": "G15"
+    },
+    {
+      "source": "G10",
+      "target": "R18"
+    },
+    {
+      "source": "R57",
+      "target": "G100"
+    },
+    {
+      "source": "R43",
+      "target": "G73"
+    },
+    {
+      "source": "G13",
+      "target": "R32"
+    },
+    {
+      "source": "G13",
+      "target": "R33"
+    },
+    {
+      "source": "G45",
+      "target": "R28"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "R47",
+      "target": "G80"
+    },
+    {
+      "source": "R29",
+      "target": "G50"
+    },
+    {
+      "source": "R65",
+      "target": "G115"
+    },
+    {
+      "source": "G2",
+      "target": "R8"
+    },
+    {
+      "source": "R19",
+      "target": "G34"
+    },
+    {
+      "source": "R13",
+      "target": "G24"
+    },
+    {
+      "source": "G7",
+      "target": "R24"
+    },
+    {
+      "source": "R51",
+      "target": "G87"
+    },
+    {
+      "source": "R56",
+      "target": "G99"
+    },
+    {
+      "source": "R44",
+      "target": "G75"
+    },
+    {
+      "source": "R48",
+      "target": "G82"
+    },
+    {
+      "source": "R42",
+      "target": "G70"
+    },
+    {
+      "source": "G6",
+      "target": "R12"
+    },
+    {
+      "source": "R52",
+      "target": "G89"
+    },
+    {
+      "source": "G6",
+      "target": "R11"
+    },
+    {
+      "source": "R33",
+      "target": "G55"
+    },
+    {
+      "source": "G13",
+      "target": "R26"
+    },
+    {
+      "source": "R14",
+      "target": "G26"
+    },
+    {
+      "source": "R60",
+      "target": "G108"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "G15",
+      "target": "R58"
+    },
+    {
+      "source": "R40",
+      "target": "G67"
+    },
+    {
+      "source": "G9",
+      "target": "R54"
+    },
+    {
+      "source": "G5",
+      "target": "R14"
+    },
+    {
+      "source": "R62",
+      "target": "G111"
+    },
+    {
+      "source": "G12",
+      "target": "R29"
+    },
+    {
+      "source": "R44",
+      "target": "G74"
+    },
+    {
+      "source": "G60",
+      "target": "R39"
+    },
+    {
+      "source": "G9",
+      "target": "R52"
+    },
+    {
+      "source": "G75",
+      "target": "R45"
+    },
+    {
+      "source": "R55",
+      "target": "G96"
+    },
+    {
+      "source": "R7",
+      "target": "G13"
+    },
+    {
+      "source": "R20",
+      "target": "G36"
+    },
+    {
+      "source": "R18",
+      "target": "G32"
+    },
+    {
+      "source": "R53",
+      "target": "G92"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R50",
+      "target": "G85"
+    },
+    {
+      "source": "R38",
+      "target": "G64"
+    }
+  ]
+}
+}

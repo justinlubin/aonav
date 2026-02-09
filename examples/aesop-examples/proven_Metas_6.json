@@ -1,0 +1,496 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R a d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R a d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R a ?y\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R b d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R b ?a.y\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?a.y\u271d d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G13": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R a ?a.y\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G21": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R b ?y\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G28": {
+      "label": " case a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R c d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G25": {
+      "label": " case a.a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R a ?a.a.y\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G26": {
+      "label": " case a.a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?a.a.y\u271d ?a.y\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G27": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R b ?y\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G14": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?a.y\u271d ?y\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G15": {
+      "label": " case a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R b d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G16": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R b ?a.y\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G17": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?a.y\u271d d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?y d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R a c\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R a ?a.y\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?a.y\u271d c\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G10": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?y ?a.y\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G11": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?a.y\u271d d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G20": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?y c\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G22": {
+      "label": " case a.a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?a.y\u271d ?a.a.y\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G23": {
+      "label": " case a.a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?a.a.y\u271d d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G24": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?y c\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G12": {
+      "label": " case a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R a c\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G18": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R a ?a.y\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G19": {
+      "label": " case a.a\n\u03b1 : Sort u_1\nR : \u03b1 \u2192 \u03b1 \u2192 Prop\nR_trans : \u2200 (x y z : \u03b1), R x y \u2192 R y z \u2192 R x z\na b c d : \u03b1\nhab : R a b\nhbc : R b c\nhcd : R c d\n\u22a2 R ?a.y\u271d c\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R8": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R13": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R18": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R16": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R17": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R9": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R10": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R12": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R14": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R15": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R7": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R11": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R11",
+      "target": "G18"
+    },
+    {
+      "source": "G21",
+      "target": "R18"
+    },
+    {
+      "source": "R8",
+      "target": "G13"
+    },
+    {
+      "source": "R3",
+      "target": "G6"
+    },
+    {
+      "source": "R5",
+      "target": "G8"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "R7",
+      "target": "G12"
+    },
+    {
+      "source": "R17",
+      "target": "G27"
+    },
+    {
+      "source": "G2",
+      "target": "R4"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "R16",
+      "target": "G26"
+    },
+    {
+      "source": "R9",
+      "target": "G15"
+    },
+    {
+      "source": "G15",
+      "target": "R10"
+    },
+    {
+      "source": "R15",
+      "target": "G24"
+    },
+    {
+      "source": "G3",
+      "target": "R6"
+    },
+    {
+      "source": "R14",
+      "target": "G23"
+    },
+    {
+      "source": "G11",
+      "target": "R12"
+    },
+    {
+      "source": "R13",
+      "target": "G21"
+    },
+    {
+      "source": "R11",
+      "target": "G19"
+    },
+    {
+      "source": "G13",
+      "target": "R13"
+    },
+    {
+      "source": "R10",
+      "target": "G16"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "R18",
+      "target": "G28"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G7",
+      "target": "R5"
+    },
+    {
+      "source": "R16",
+      "target": "G25"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "G3",
+      "target": "R7"
+    },
+    {
+      "source": "G2",
+      "target": "R8"
+    },
+    {
+      "source": "G28",
+      "target": "R-1"
+    },
+    {
+      "source": "G13",
+      "target": "R17"
+    },
+    {
+      "source": "G4",
+      "target": "R3"
+    },
+    {
+      "source": "G11",
+      "target": "R14"
+    },
+    {
+      "source": "G11",
+      "target": "R15"
+    },
+    {
+      "source": "G2",
+      "target": "R9"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R6",
+      "target": "G11"
+    },
+    {
+      "source": "G13",
+      "target": "R16"
+    },
+    {
+      "source": "R12",
+      "target": "G20"
+    },
+    {
+      "source": "R14",
+      "target": "G22"
+    },
+    {
+      "source": "G12",
+      "target": "R11"
+    },
+    {
+      "source": "R10",
+      "target": "G17"
+    },
+    {
+      "source": "R8",
+      "target": "G14"
+    },
+    {
+      "source": "R5",
+      "target": "G9"
+    },
+    {
+      "source": "R6",
+      "target": "G10"
+    }
+  ]
+}
+}

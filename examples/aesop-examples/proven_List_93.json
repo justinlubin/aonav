@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type u_1\nn : Nat\nhead\u271d : \u03b1\nxs : List \u03b1\nih : take n xs ++ drop n xs = xs\n\u22a2 take n.succ (head\u271d :: xs) ++ drop n.succ (head\u271d :: xs) = head\u271d :: xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nn : Nat\nhead : \u03b1\nxs : List \u03b1\nih : take n xs ++ drop n xs = xs\n\u22a2 take n.succ (head :: xs) ++ drop n.succ (head :: xs) = head :: xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G1",
+      "target": "R-1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    }
+  ]
+}
+}

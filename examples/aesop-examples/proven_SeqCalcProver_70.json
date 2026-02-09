@@ -1,0 +1,96 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case per_r\n\u03a6 : Type\n\u0393 \u0394 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst\u271d : DecidablePred i\n\u0393\u271d \u0394\u271d \u0394'\u271d : List (Form \u03a6)\na\u271d\u00b9 : Proof \u0393\u271d \u0394\u271d\na\u271d : \u0394\u271d \u21ad \u0394'\u271d\na_ih\u271d : SC i \u0393\u271d \u0394\u271d\n\u22a2 SC i \u0393\u271d \u0394'\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03a6 : Type\n\u0393 \u0394 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393_1 \u0394_1 \u0394' : List (Form \u03a6)\na : Proof \u0393_1 \u0394_1\na_1 : \u0394_1 \u21ad \u0394'\na_ih : SC i \u0393_1 \u0394_1\n\u22a2 SC i \u0393_1 \u0394'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case perm\n\u03a6 : Type\n\u0393 \u0394 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393_1 \u0394_1 \u0394' : List (Form \u03a6)\na : Proof \u0393_1 \u0394_1\na_1 : \u0394_1 \u21ad \u0394'\na_ih : Any (Val i) \u0394_1\na_2 : All (Val i) \u0393_1\n\u22a2 ?xs \u21ad \u0394'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case a\n\u03a6 : Type\n\u0393 \u0394 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393_1 \u0394_1 \u0394' : List (Form \u03a6)\na : Proof \u0393_1 \u0394_1\na_1 : \u0394_1 \u21ad \u0394'\na_ih : Any (Val i) \u0394_1\na_2 : All (Val i) \u0393_1\n\u22a2 Any (Val i) ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case perm\n\u03a6 : Type\n\u0393 \u0394 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393_1 \u0394_1 \u0394' : List (Form \u03a6)\na : Proof \u0393_1 \u0394_1\na_1 : \u0394_1 \u21ad \u0394'\na_ih : Any (Val i) \u0394_1\na_2 : All (Val i) \u0393_1\n\u22a2 \u0394_1 \u21ad \u0394'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G4",
+      "target": "R-1"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

@@ -1,0 +1,66 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case neg\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst\u271d : DecidablePred p\nas\u271d : List \u03b1\na a' : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nh : a \u2208 filter p (a' :: as)\nha' : \u00acp a'\n\u22a2 a \u2208 a' :: as \u2227 p a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na a' : \u03b1\nas : List \u03b1\nih : a \u2208 filter p as \u2192 a \u2208 as \u2227 p a\nh : a \u2208 filter p (a' :: as)\nha' : \u00acp a'\n\u22a2 a \u2208 a' :: as \u2227 p a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case a\n\u03b1 : Type\np : \u03b1 \u2192 Prop\ninst : DecidablePred p\nas_1 : List \u03b1\na a' : \u03b1\nas : List \u03b1\nh : a \u2208 filter p as\nha' : \u00acp a'\nleft : a \u2208 as\nright : p a\n\u22a2 a \u2208 as\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|constructors|global|TBA.Mem",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G2",
+      "target": "R-1"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    }
+  ]
+}
+}

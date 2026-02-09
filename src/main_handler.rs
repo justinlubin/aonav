@@ -53,6 +53,7 @@ fn load_ao(path: &PathBuf) -> ao::Graph {
 pub fn interact(
     graph_path: &PathBuf,
     providers: &Vec<menu::Provider>,
+    incremental_if_possible: bool,
 ) -> Result<(), String> {
     let mut graph = load_ao(graph_path);
     ao::algo::reduce(&mut graph);
@@ -68,16 +69,29 @@ pub fn interact(
 
     println!("    {}\n", Yellow.bold().paint(msg2));
 
+    let start = pn::Exp::new(graph);
+    let optional_start = if incremental_if_possible {
+        Some(&start)
+    } else {
+        None
+    };
+
     let provider = pbn::CompoundProvider::new(
-        providers.iter().map(|p| p.provider()).collect(),
+        providers
+            .iter()
+            .map(|p| p.provider(optional_start))
+            .collect(),
     );
-    let checker = pn::oracle::Valid::new();
+
+    let checker = pn::oracle::Valid::new(
+        pn::oracle::OptInc::from_optional_start(optional_start),
+    );
 
     let controller = pbn::Controller::new(
         util::Timer::infinite(),
         provider,
         checker,
-        pn::Exp::new(graph),
+        start,
         true,
     );
 
@@ -93,6 +107,7 @@ pub fn benchmark(
     replicates: usize,
     parallel: bool,
     minimal: bool,
+    incremental_if_possible: bool,
 ) -> Result<(), String> {
     if !suite_path.exists() {
         panic!("Path '{}' does not exist", suite_path.display())
@@ -138,6 +153,7 @@ pub fn benchmark(
         timeout: Duration::from_secs(1000),
         parallel,
         providers: providers.clone(),
+        incremental_if_possible,
     };
 
     let runner = benchmark::Runner::new(config, std::io::stdout());
@@ -149,8 +165,8 @@ pub fn benchmark(
 fn generate_random_exp(graph: &ao::Graph) -> pn::Exp {
     let controller = pbn::Controller::new(
         util::Timer::infinite(),
-        pn::providers::Remaining::new(),
-        pn::oracle::Valid::new(),
+        pn::providers::Remaining::new(pn::oracle::OptInc::NonIncremental),
+        pn::oracle::Valid::new(pn::oracle::OptInc::NonIncremental),
         pn::Exp::new(graph.clone()),
         false,
     );

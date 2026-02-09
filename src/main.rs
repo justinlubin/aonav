@@ -46,6 +46,10 @@ enum Command {
             default_value = "Remaining"
         )]
         providers: Vec<menu::Provider>,
+
+        /// Use incrementality (if possible)
+        #[arg(long, action)]
+        incremental: bool,
     },
 
     /// Run a benchmark suite
@@ -75,6 +79,10 @@ enum Command {
         /// Use the minimal solutions
         #[arg(long, action)]
         minimal: bool,
+
+        /// Use incrementality (if possible)
+        #[arg(long, action)]
+        incremental: bool,
     },
 
     /// Generate solutions for a benchmark suite
@@ -122,21 +130,25 @@ enum Command {
 impl Command {
     pub fn handle(self) -> Result<(), String> {
         match &self {
-            Self::Interact { graph, providers } => {
-                main_handler::interact(graph, providers)
-            }
+            Self::Interact {
+                graph,
+                providers,
+                incremental,
+            } => main_handler::interact(graph, providers, *incremental),
             Self::Benchmark {
                 path,
                 providers,
                 replicates,
                 parallel,
                 minimal,
+                incremental,
             } => main_handler::benchmark(
                 path,
                 providers,
                 *replicates,
                 *parallel,
                 *minimal,
+                *incremental,
             ),
             Self::GenerateSolutions {
                 path,

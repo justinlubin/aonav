@@ -1,0 +1,186 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type ?u.6652\ninst\u271d : IsEmpty \u03b1\n\u22a2 Unique (List \u03b1)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type ?u.6652\ninst : IsEmpty \u03b1\n\u22a2 Unique (List \u03b1)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case uniq\n\u03b1 : Type ?u.6652\ninst : IsEmpty \u03b1\n\u22a2 \u2200 (a : List \u03b1), a = default\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case uniq.nil\n\u03b1 : Type ?u.6652\ninst : IsEmpty \u03b1\n\u22a2 [] = default\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case uniq.cons\n\u03b1 : Type ?u.6652\ninst : IsEmpty \u03b1\nhead : \u03b1\ntail : List \u03b1\n\u22a2 head :: tail = default\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case uniq.cons\n\u03b1 : Type ?u.6652\ninst : IsEmpty \u03b1\nhead : \u03b1\ntail : List \u03b1\nfwd : False\n\u22a2 False\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case uniq.cons\n\u03b1 : Type ?u.6652\ninst : IsEmpty \u03b1\nhead : \u03b1\ntail : List \u03b1\n\u22a2 head :: tail = default\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case uniq.cons\n\u03b1 : Type ?u.6652\ninst : IsEmpty \u03b1\nhead : \u03b1\ntail : List \u03b1\nfwd : False\n\u22a2 head :: tail = default\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case uniq.cons.nil\n\u03b1 : Type ?u.6652\ninst : IsEmpty \u03b1\nhead : \u03b1\nfwd : False\n\u22a2 [head] = default\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case uniq.cons.cons\n\u03b1 : Type ?u.6652\ninst : IsEmpty \u03b1\nhead : \u03b1\nfwd : False\nhead_1 : \u03b1\ntail_1 : List \u03b1\n\u22a2 head :: head_1 :: tail_1 = default\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[1/safe] safe|constructors|global|Unique",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[1.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[1/safe] safe|forward|global|IsEmpty.false'",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[1/safe] safe|forward|global|IsEmpty.false'",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[1.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G5",
+      "target": "R4"
+    },
+    {
+      "source": "G4",
+      "target": "R3"
+    },
+    {
+      "source": "G8",
+      "target": "R6"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R5",
+      "target": "G8"
+    },
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "G3",
+      "target": "R5"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    },
+    {
+      "source": "R6",
+      "target": "G9"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "R4",
+      "target": "G6"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G9",
+      "target": "R-1"
+    }
+  ]
+}
+}

@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case cons\n\u03b1 : Type u_1\n\u03b2 : Type u_2\n\u03b3 : Type u_3\ng : \u03b1 \u2192 List \u03b2\nf : \u03b2 \u2192 \u03b3\nhead\u271d : \u03b1\ntail\u271d : List \u03b1\ntail_ih\u271d : map f (flatMap g tail\u271d) = flatMap (fun a => map f (g a)) tail\u271d\n\u22a2 map f (flatMap g (head\u271d :: tail\u271d)) = flatMap (fun a => map f (g a)) (head\u271d :: tail\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\n\u03b2 : Type u_2\n\u03b3 : Type u_3\ng : \u03b1 \u2192 List \u03b2\nf : \u03b2 \u2192 \u03b3\nhead : \u03b1\ntail : List \u03b1\ntail_ih : map f (flatMap g tail) = flatMap (fun a => map f (g a)) tail\n\u22a2 map f (flatMap g (head :: tail)) = flatMap (fun a => map f (g a)) (head :: tail)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G1",
+      "target": "R-1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    }
+  ]
+}
+}

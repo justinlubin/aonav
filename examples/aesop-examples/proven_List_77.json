@@ -1,0 +1,116 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type u_1\n\u03b2 : Type u_2\nl\u2081 l\u2082 : List \u03b1\nf : \u03b1 \u2192 \u03b2\nH : l\u2081 \u2286 l\u2082\n\u22a2 map f l\u2081 \u2286 map f l\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\n\u03b2 : Type u_2\nl\u2081 l\u2082 : List \u03b1\nf : \u03b1 \u2192 \u03b2\nH : l\u2081 \u2286 l\u2082\n\u22a2 map f l\u2081 \u2286 map f l\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case h\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nl\u2081 l\u2082 : List \u03b1\nf : \u03b1 \u2192 \u03b2\nH : \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2081 \u2192 a \u2208 l\u2082\na : \u03b1\na_1 : a \u2208 l\u2081\n\u22a2 ?w \u2208 l\u2082 \u2227 f ?w = f a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case h.left\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nl\u2081 l\u2082 : List \u03b1\nf : \u03b1 \u2192 \u03b2\nH : \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2081 \u2192 a \u2208 l\u2082\na : \u03b1\na_1 : a \u2208 l\u2081\n\u22a2 ?w \u2208 l\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case h.right\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nl\u2081 l\u2082 : List \u03b1\nf : \u03b1 \u2192 \u03b2\nH : \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2081 \u2192 a \u2208 l\u2082\na : \u03b1\na_1 : a \u2208 l\u2081\n\u22a2 f ?w = f a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case h.left\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nl\u2081 l\u2082 : List \u03b1\nf : \u03b1 \u2192 \u03b2\nH : \u2200 \u2983a : \u03b1\u2984, a \u2208 l\u2081 \u2192 a \u2208 l\u2082\na : \u03b1\na_1 : a \u2208 l\u2081\n\u22a2 a \u2208 l\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[101/safe] safe|constructors|global|And",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G4",
+      "target": "R3"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G5",
+      "target": "R-1"
+    }
+  ]
+}
+}

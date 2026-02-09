@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " fst snd fst_1 snd_1 fst_2 snd_2 w w_1 w_2 w_3 : BitVec 128\nleft : w_1.uaddOverflow w_3 = true\nleft_1 : w.uaddOverflow w_2 = true\nright : (w_1 + w_3).uaddOverflow 1#128 = true\n\u22a2 (fst_2, snd_2) = (fst, snd) + (fst_1, snd_1)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " fst snd fst_1 snd_1 fst_2 snd_2 w w_1 w_2 w_3 : BitVec 128\nleft : w_1.uaddOverflow w_3 = true\nleft_1 : w.uaddOverflow w_2 = true\nright : (w_1 + w_3).uaddOverflow 1#128 = true\n\u22a2 (fst_2, snd_2) = (fst, snd) + (fst_1, snd_1)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[1/safe] safe|tactic|global|_uniq.625",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    }
+  ]
+}
+}
