@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case cons\n\u03b2 : Type u_1\n\u03b1 : Type u_2\nP : \u03b2 \u2192 Prop\nf : \u03b1 \u2192 \u03b2\nhead\u271d : \u03b1\ntail\u271d : List \u03b1\ntail_ih\u271d : All P (List.map f tail\u271d) \u2194 All (fun x => P (f x)) tail\u271d\n\u22a2 All P (List.map f (head\u271d :: tail\u271d)) \u2194 All (fun x => P (f x)) (head\u271d :: tail\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b2 : Type u_1\n\u03b1 : Type u_2\nP : \u03b2 \u2192 Prop\nf : \u03b1 \u2192 \u03b2\nhead : \u03b1\ntail : List \u03b1\ntail_ih : All P (List.map f tail) \u2194 All (fun x => P (f x)) tail\n\u22a2 All P (List.map f (head :: tail)) \u2194 All (fun x => P (f x)) (head :: tail)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R-1"
+    }
+  ]
+}
+}

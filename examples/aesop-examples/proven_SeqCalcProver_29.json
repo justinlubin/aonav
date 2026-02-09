@@ -1,0 +1,96 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case tran\n\u03b1 : Type u_1\nxs ys xs\u271d ys\u271d zs\u271d : List \u03b1\na\u271d\u00b9 : xs\u271d \u21ad ys\u271d\na\u271d : ys\u271d \u21ad zs\u271d\na_ih\u271d\u00b9 : ys\u271d \u21ad xs\u271d\na_ih\u271d : zs\u271d \u21ad ys\u271d\n\u22a2 zs\u271d \u21ad xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nxs ys xs_1 ys_1 zs : List \u03b1\na : xs_1 \u21ad ys_1\na_1 : ys_1 \u21ad zs\na_ih : ys_1 \u21ad xs_1\na_ih_1 : zs \u21ad ys_1\n\u22a2 zs \u21ad xs_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case a\n\u03b1 : Type u_1\nxs ys xs_1 ys_1 zs : List \u03b1\na : xs_1 \u21ad ys_1\na_1 : ys_1 \u21ad zs\na_ih : ys_1 \u21ad xs_1\na_ih_1 : zs \u21ad ys_1\n\u22a2 zs \u21ad ?ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case a\n\u03b1 : Type u_1\nxs ys xs_1 ys_1 zs : List \u03b1\na : xs_1 \u21ad ys_1\na_1 : ys_1 \u21ad zs\na_ih : ys_1 \u21ad xs_1\na_ih_1 : zs \u21ad ys_1\n\u22a2 ?ys \u21ad xs_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case a\n\u03b1 : Type u_1\nxs ys xs_1 ys_1 zs : List \u03b1\na : xs_1 \u21ad ys_1\na_1 : ys_1 \u21ad zs\na_ih : ys_1 \u21ad xs_1\na_ih_1 : zs \u21ad ys_1\n\u22a2 zs \u21ad ys_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G4",
+      "target": "R-1"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

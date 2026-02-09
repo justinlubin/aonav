@@ -1,0 +1,126 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " n m : Nat\nh : MyEq n (id' m)\n\u22a2 n = m\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " n m : Nat\nh : MyEq n (id' m)\n\u22a2 n = m\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " n n_1 : Nat\nh : MyEq n 0\n\u22a2 n = Nat.zero\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case a\nn n_1 : Nat\nh : MyEq n 0\n\u22a2 MyEq n 0\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " n n_1 n_2 : Nat\nh : MyEq n (n_2 + 1)\n\u22a2 n = n_2.succ\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case a\nn n_1 n_2 : Nat\nh : MyEq n (n_2 + 1)\n\u22a2 MyEq n (n_2 + 1)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[1000/safe] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[50.0000%] unsafe|apply|global|MyEq.elim",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|apply|global|MyEq.elim",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G5",
+      "target": "R-1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G2",
+      "target": "R3"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "G4",
+      "target": "R-2"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    }
+  ]
+}
+}

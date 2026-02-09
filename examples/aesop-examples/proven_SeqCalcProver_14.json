@@ -1,0 +1,156 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case here\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nxs : List \u03b1\nx\u271d : \u03b1\nxs\u271d : List \u03b1\na\u271d : P x\u271d\n\u22a2 \u2203 a, P a \u2227 a \u2208 x\u271d :: xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nxs : List \u03b1\nx : \u03b1\nxs_1 : List \u03b1\na : P x\n\u22a2 \u2203 a, P a \u2227 a \u2208 x :: xs_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case h\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nxs : List \u03b1\nx : \u03b1\nxs_1 : List \u03b1\na : P x\n\u22a2 P ?w \u2227 (?w = x \u2228 ?w \u2208 xs_1)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case h.left\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nxs : List \u03b1\nx : \u03b1\nxs_1 : List \u03b1\na : P x\n\u22a2 P ?w\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case h.right\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nxs : List \u03b1\nx : \u03b1\nxs_1 : List \u03b1\na : P x\n\u22a2 x = x \u2228 x \u2208 xs_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case h.right\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nxs : List \u03b1\nx : \u03b1\nxs_1 : List \u03b1\na : P x\n\u22a2 ?w = x \u2228 ?w \u2208 xs_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case h.right.h\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nxs : List \u03b1\nx : \u03b1\nxs_1 : List \u03b1\na : P x\n\u22a2 ?w = x\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case h.right.h\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nxs : List \u03b1\nx : \u03b1\nxs_1 : List \u03b1\na : P x\n\u22a2 ?w \u2208 xs_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[101/safe] safe|constructors|global|And",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[50.0000%] unsafe|constructors|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[50.0000%] unsafe|constructors|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "R4",
+      "target": "G6"
+    },
+    {
+      "source": "R5",
+      "target": "G7"
+    },
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "G4",
+      "target": "R3"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G3",
+      "target": "R5"
+    },
+    {
+      "source": "G7",
+      "target": "R-1"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "G4",
+      "target": "R4"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

@@ -1,0 +1,106 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " A B C : Prop\nn : Nat\nh :\nmatch n with\n| 0 => A\n| 1 => B\n| x => C\n\u22a2 A \u2228 B \u2228 C\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " A B C : Prop\nn : Nat\nh :\nmatch n with\n| 0 => A\n| 1 => B\n| x => C\n\u22a2 A \u2228 B \u2228 C\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " A B C : Prop\nn : Nat\nh : A\n\u22a2 A \u2228 B \u2228 C\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " A B C : Prop\nn : Nat\nh : B\n\u22a2 A \u2228 B \u2228 C\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " A B C : Prop\nn n_1 : Nat\nx : n = 0 \u2192 False\nx_1 : n = 1 \u2192 False\nh : C\n\u22a2 A \u2228 B \u2228 C\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[1000/safe] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-3": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G3",
+      "target": "R-2"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R1",
+      "target": "G4"
+    },
+    {
+      "source": "G2",
+      "target": "R-1"
+    },
+    {
+      "source": "G4",
+      "target": "R-3"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

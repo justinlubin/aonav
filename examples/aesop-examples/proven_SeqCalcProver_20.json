@@ -1,0 +1,106 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type ?u.1215\nP : \u03b1 \u2192 Prop\nd : DecidablePred P\nxs : List \u03b1\n\u22a2 Decidable (Any P [])\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type ?u.1215\nP : \u03b1 \u2192 Prop\nd : DecidablePred P\nxs : List \u03b1\n\u22a2 Decidable (Any P [])\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case h\n\u03b1 : Type ?u.1215\nP : \u03b1 \u2192 Prop\nd : DecidablePred P\nxs : List \u03b1\n\u22a2 \u00acAny P []\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case h.h\n\u03b1 : Type ?u.1215\nP : \u03b1 \u2192 Prop\nd : DecidablePred P\nxs : List \u03b1\n\u22a2 Any P [] \u2192 False\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case h\n\u03b1 : Type ?u.1215\nP : \u03b1 \u2192 Prop\nd : DecidablePred P\nxs : List \u03b1\n\u22a2 Any P []\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|constructors|global|Decidable",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[0/safe] safe|apply|global|Aesop.BuiltinRules.not_intro",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[1/safe] safe|cases|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|constructors|global|Decidable",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G1",
+      "target": "R2"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G4",
+      "target": "R4"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    },
+    {
+      "source": "R3",
+      "target": "G4"
+    },
+    {
+      "source": "G2",
+      "target": "R3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

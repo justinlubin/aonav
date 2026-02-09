@@ -1,0 +1,236 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " a b c : Nat\n\u22a2 a + b + c = c + b + a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " a b c : Nat\n\u22a2 a + b + c = c + b + a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " a b c : Nat\n\u22a2 a + (b + c) = c + b + a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " a b c : Nat\n\u22a2 a + (c + b) = c + b + a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " a b c : Nat\n\u22a2 a + (b + c) = c + (b + a)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " a b c : Nat\n\u22a2 a + (c + b) = c + (b + a)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " a b c : Nat\n\u22a2 b + c + a = c + (b + a)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " a b c : Nat\n\u22a2 b + c + a = c + b + a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " a b c : Nat\n\u22a2 c + (a + b) = c + b + a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " a b c : Nat\n\u22a2 c + (a + b) = c + (b + a)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G10": {
+      "label": " a b c : Nat\n\u22a2 a + b + c = c + b + a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100.0000%] unsafe|tactic|global|tacGen\u2082",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[100.0000%] unsafe|tactic|global|tacGen\u2082",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[100.0000%] unsafe|tactic|global|tacGen\u2082",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[100.0000%] unsafe|tactic|global|tacGen\u2082",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R7": {
+      "label": "[100.0000%] unsafe|tactic|global|tacGen\u2082",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[100.0000%] unsafe|tactic|global|tacGen\u2082",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[100.0000%] unsafe|tactic|global|tacGen\u2082",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R8": {
+      "label": "[100.0000%] unsafe|tactic|global|tacGen\u2082",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R10": {
+      "label": "[100.0000%] unsafe|tactic|global|tacGen\u2082",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R11": {
+      "label": "[100.0000%] unsafe|tactic|global|tacGen\u2082",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R9": {
+      "label": "[100.0000%] unsafe|tactic|global|tacGen\u2082",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G5",
+      "target": "R7"
+    },
+    {
+      "source": "R9",
+      "target": "G10"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R5",
+      "target": "G6"
+    },
+    {
+      "source": "R7",
+      "target": "G8"
+    },
+    {
+      "source": "R6",
+      "target": "G7"
+    },
+    {
+      "source": "R4",
+      "target": "G5"
+    },
+    {
+      "source": "R3",
+      "target": "G4"
+    },
+    {
+      "source": "G9",
+      "target": "R11"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G5",
+      "target": "R6"
+    },
+    {
+      "source": "G2",
+      "target": "R3"
+    },
+    {
+      "source": "G3",
+      "target": "R9"
+    },
+    {
+      "source": "G1",
+      "target": "R2"
+    },
+    {
+      "source": "G9",
+      "target": "R10"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R8",
+      "target": "G9"
+    },
+    {
+      "source": "G3",
+      "target": "R8"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    },
+    {
+      "source": "G2",
+      "target": "R5"
+    },
+    {
+      "source": "G2",
+      "target": "R4"
+    }
+  ]
+}
+}

@@ -1,0 +1,346 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\n\u22a2 Any P (x :: xs) \u2194 P x \u2228 Any P xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\n\u22a2 Any P (x :: xs) \u2194 P x \u2228 Any P xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case mp\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\n\u22a2 Any P (x :: xs) \u2192 P x \u2228 Any P xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G10": {
+      "label": " case mp.here\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\na_1 : P x\n\u22a2 P x \u2228 Any P xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G11": {
+      "label": " case mp.there\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\na_2 : Any P xs\n\u22a2 P x \u2228 Any P xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G12": {
+      "label": " case mp.h\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\na : Any P (x :: xs)\n\u22a2 P x\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G16": {
+      "label": " case mp.h.here\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\na_1 : P x\n\u22a2 P x\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G17": {
+      "label": " case mp.h.there\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\na_2 : Any P xs\n\u22a2 P x\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G13": {
+      "label": " case mp.h\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\na : Any P (x :: xs)\n\u22a2 Any P xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G14": {
+      "label": " case mp.h.here\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\na_1 : P x\n\u22a2 Any P xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G15": {
+      "label": " case mp.h.there\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\na_2 : Any P xs\n\u22a2 Any P xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case mpr\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\n\u22a2 P x \u2228 Any P xs \u2192 Any P (x :: xs)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case mpr.inl\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\nh : P x\n\u22a2 Any P (x :: xs)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case mpr.inl.a\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\nh : P x\n\u22a2 P x\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case mpr.inl.a\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\nh : P x\n\u22a2 Any P xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case mpr.inr\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\nh_1 : Any P xs\n\u22a2 Any P (x :: xs)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case mpr.inr.a\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\nh_1 : Any P xs\n\u22a2 P x\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case mpr.inr.a\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\nx : \u03b1\nxs : List \u03b1\nh_1 : Any P xs\n\u22a2 Any P xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100/safe] safe|constructors|global|Iff",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R7": {
+      "label": "[50.0000%] unsafe|cases|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R8": {
+      "label": "[50.0000%] unsafe|constructors|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R11": {
+      "label": "[50.0000%] unsafe|cases|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R9": {
+      "label": "[50.0000%] unsafe|constructors|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R10": {
+      "label": "[50.0000%] unsafe|cases|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[100/safe] safe|cases|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-3": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-4": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G2",
+      "target": "R8"
+    },
+    {
+      "source": "G2",
+      "target": "R7"
+    },
+    {
+      "source": "R10",
+      "target": "G15"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "R8",
+      "target": "G12"
+    },
+    {
+      "source": "R9",
+      "target": "G13"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G11",
+      "target": "R-2"
+    },
+    {
+      "source": "R7",
+      "target": "G11"
+    },
+    {
+      "source": "G2",
+      "target": "R9"
+    },
+    {
+      "source": "G4",
+      "target": "R5"
+    },
+    {
+      "source": "R2",
+      "target": "G5"
+    },
+    {
+      "source": "G7",
+      "target": "R-4"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R6",
+      "target": "G9"
+    },
+    {
+      "source": "R10",
+      "target": "G14"
+    },
+    {
+      "source": "R7",
+      "target": "G10"
+    },
+    {
+      "source": "G4",
+      "target": "R6"
+    },
+    {
+      "source": "R5",
+      "target": "G8"
+    },
+    {
+      "source": "G10",
+      "target": "R-1"
+    },
+    {
+      "source": "R3",
+      "target": "G6"
+    },
+    {
+      "source": "R11",
+      "target": "G16"
+    },
+    {
+      "source": "G13",
+      "target": "R10"
+    },
+    {
+      "source": "G8",
+      "target": "R-3"
+    },
+    {
+      "source": "G5",
+      "target": "R4"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G12",
+      "target": "R11"
+    },
+    {
+      "source": "R11",
+      "target": "G17"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G5",
+      "target": "R3"
+    }
+  ]
+}
+}

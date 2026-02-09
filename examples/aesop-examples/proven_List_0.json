@@ -1,0 +1,106 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type u_1\na : \u03b1\no : Option \u03b1\n\u22a2 a \u2208 o \u2194 o = some a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\na : \u03b1\no : Option \u03b1\n\u22a2 a \u2208 o \u2194 o = some a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case mp\n\u03b1 : Type u_1\na : \u03b1\no : Option \u03b1\n\u22a2 Mem o (some (some a)) \u2192 o = some a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case mp\n\u03b1 : Type u_1\na : \u03b1\n\u22a2 some a = some a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case mpr\n\u03b1 : Type u_1\na : \u03b1\no : Option \u03b1\n\u22a2 o = some a \u2192 Mem o (some (some a))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100/safe] safe|constructors|global|Iff",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[1/safe] safe|cases|global|Option.Mem",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[1/safe] safe|constructors|global|Option.Mem",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G4",
+      "target": "R-1"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G2",
+      "target": "R3"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R3",
+      "target": "G4"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    }
+  ]
+}
+}

@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u22a2 TT\u2084\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u22a2 TT\u2084\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[1/safe] safe|tactic|global|_uniq.245",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    }
+  ]
+}
+}

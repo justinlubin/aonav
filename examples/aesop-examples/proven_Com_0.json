@@ -1,0 +1,1546 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " c1 c2 c3 : Com\ns s' : State\n\u22a2 BigStep ((c1.Seq c2).Seq c3) s s' \u2194 BigStep (c1.Seq (c2.Seq c3)) s s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " c1 c2 c3 : Com\ns s' : State\n\u22a2 BigStep ((c1.Seq c2).Seq c3) s s' \u2194 BigStep (c1.Seq (c2.Seq c3)) s s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case mp\nc1 c2 c3 : Com\ns s' : State\n\u22a2 BigStep ((c1.Seq c2).Seq c3) s s' \u2192 BigStep (c1.Seq (c2.Seq c3)) s s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G12": {
+      "label": " case mp.Seq\nc1 c2 c3 : Com\ns s' t : State\nh1 : BigStep (c1.Seq c2) s t\nh2 : BigStep c3 t s'\n\u22a2 BigStep (c1.Seq (c2.Seq c3)) s s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G13": {
+      "label": " case mp.Seq.Seq.Skip\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep (c1.Seq (c2.Seq Com.Skip)) s s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G17": {
+      "label": " case mp.Seq.Seq.Skip.h1\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep c1 s ?mp.Seq.Seq.Skip.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G22": {
+      "label": " case mp.Seq.Seq.Skip.h2\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep (c2.Seq Com.Skip) t_1 s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G23": {
+      "label": " case mp.Seq.Seq.Skip.h2.h1\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep c2 t_1 ?mp.Seq.Seq.Skip.h2.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G24": {
+      "label": " case mp.Seq.Seq.Skip.h2.h2\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep Com.Skip ?mp.Seq.Seq.Skip.h2.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G75": {
+      "label": " case mp.Seq.Seq.Skip.h2.h1\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep c2 t_1 s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G47": {
+      "label": " case mp.Seq.Seq.Skip.h2\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep (c2.Seq Com.Skip) t_1 s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G59": {
+      "label": " case mp.Seq.Seq.Skip.h2.h1\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep c2 t_1 ?mp.Seq.Seq.Skip.h2.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G60": {
+      "label": " case mp.Seq.Seq.Skip.h2.h2\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep Com.Skip ?mp.Seq.Seq.Skip.h2.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G18": {
+      "label": " case mp.Seq.Seq.Skip.h2\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep (c2.Seq Com.Skip) ?mp.Seq.Seq.Skip.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G19": {
+      "label": " case mp.Seq.Seq.Skip.h2.h1\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep c2 ?mp.Seq.Seq.Skip.t ?mp.Seq.Seq.Skip.h2.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G20": {
+      "label": " case mp.Seq.Seq.Skip.h2.h2\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep Com.Skip ?mp.Seq.Seq.Skip.h2.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G21": {
+      "label": " case mp.Seq.Seq.Skip.h2.h1\nc1 c2 : Com\ns s' t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 s'\n\u22a2 BigStep c2 ?mp.Seq.Seq.Skip.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G14": {
+      "label": " case mp.Seq.Seq.Seq\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep (c1.Seq (c2.Seq (c\u2081.Seq c\u2082))) s s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G16": {
+      "label": " case mp.Seq.Seq.Seq.h2\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep (c2.Seq (c\u2081.Seq c\u2082)) ?mp.Seq.Seq.Seq.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G34": {
+      "label": " case mp.Seq.Seq.Seq.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c2 ?mp.Seq.Seq.Seq.t ?mp.Seq.Seq.Seq.h2.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G35": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep (c\u2081.Seq c\u2082) ?mp.Seq.Seq.Seq.h2.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G36": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2081 ?mp.Seq.Seq.Seq.h2.t ?mp.Seq.Seq.Seq.h2.h2.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G37": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h2\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2082 ?mp.Seq.Seq.Seq.h2.h2.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G38": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2081 ?mp.Seq.Seq.Seq.h2.t t_2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G74": {
+      "label": " case mp.Seq.Seq.Seq.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c2 ?mp.Seq.Seq.Seq.t t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G82": {
+      "label": " case mp.Seq.Seq.Seq.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c2 ?mp.Seq.Seq.Seq.t t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G50": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2081 ?mp.Seq.Seq.Seq.h2.t t_2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G15": {
+      "label": " case mp.Seq.Seq.Seq.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c1 s ?mp.Seq.Seq.Seq.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G39": {
+      "label": " case mp.Seq.Seq.Seq.h2\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep (c2.Seq (c\u2081.Seq c\u2082)) t_1 s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G40": {
+      "label": " case mp.Seq.Seq.Seq.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c2 t_1 ?mp.Seq.Seq.Seq.h2.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G71": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep (c\u2081.Seq c\u2082) t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G72": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2081 t ?mp.Seq.Seq.Seq.h2.h2.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G73": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h2\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2082 ?mp.Seq.Seq.Seq.h2.h2.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G88": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2081 t t_2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G81": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep (c\u2081.Seq c\u2082) t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G85": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2081 t ?mp.Seq.Seq.Seq.h2.h2.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G86": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h2\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2082 ?mp.Seq.Seq.Seq.h2.h2.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G41": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep (c\u2081.Seq c\u2082) ?mp.Seq.Seq.Seq.h2.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G61": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2081 ?mp.Seq.Seq.Seq.h2.t ?mp.Seq.Seq.Seq.h2.h2.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G62": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h2\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2082 ?mp.Seq.Seq.Seq.h2.h2.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G63": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2081 ?mp.Seq.Seq.Seq.h2.t t_2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G77": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c\u2081 ?mp.Seq.Seq.Seq.h2.t t_2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G51": {
+      "label": " case mp.Seq.Seq.Seq.h2\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep (c2.Seq (c\u2081.Seq c\u2082)) t_1 s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G57": {
+      "label": " case mp.Seq.Seq.Seq.h2.h1\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep c2 t_1 ?mp.Seq.Seq.Seq.h2.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G58": {
+      "label": " case mp.Seq.Seq.Seq.h2.h2\nc1 c2 : Com\ns s' t t_1 : State\nh1_1 : BigStep c1 s t_1\nh2_1 : BigStep c2 t_1 t\nc\u2081 : Com\nt_2 : State\nc\u2082 : Com\nh1 : BigStep c\u2081 t t_2\nh2_2 : BigStep c\u2082 t_2 s'\n\u22a2 BigStep (c\u2081.Seq c\u2082) ?mp.Seq.Seq.Seq.h2.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case mpr\nc1 c2 c3 : Com\ns s' : State\n\u22a2 BigStep (c1.Seq (c2.Seq c3)) s s' \u2192 BigStep ((c1.Seq c2).Seq c3) s s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case mpr.Seq\nc1 c2 c3 : Com\ns s' t : State\nh1 : BigStep c1 s t\nh2 : BigStep (c2.Seq c3) t s'\n\u22a2 BigStep ((c1.Seq c2).Seq c3) s s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case mpr.Seq.Skip\nc2 c3 : Com\ns s' : State\nh2 : BigStep (c2.Seq c3) s s'\n\u22a2 BigStep ((Com.Skip.Seq c2).Seq c3) s s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case mpr.Seq.Skip.Seq\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep ((Com.Skip.Seq c2).Seq c3) s s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G10": {
+      "label": " case mpr.Seq.Skip.Seq.h1\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep (Com.Skip.Seq c2) s ?mpr.Seq.Skip.Seq.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G28": {
+      "label": " case mpr.Seq.Skip.Seq.h1.h1\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep Com.Skip s ?mpr.Seq.Skip.Seq.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G30": {
+      "label": " case mpr.Seq.Skip.Seq.h1.h2\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep c2 s ?mpr.Seq.Skip.Seq.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G76": {
+      "label": " case mpr.Seq.Skip.Seq.h2\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep c3 t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G29": {
+      "label": " case mpr.Seq.Skip.Seq.h1.h2\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep c2 ?mpr.Seq.Skip.Seq.h1.t ?mpr.Seq.Skip.Seq.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G11": {
+      "label": " case mpr.Seq.Skip.Seq.h2\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep c3 ?mpr.Seq.Skip.Seq.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G31": {
+      "label": " case mpr.Seq.Skip.Seq.h1\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep (Com.Skip.Seq c2) s t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G32": {
+      "label": " case mpr.Seq.Skip.Seq.h1.h1\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep Com.Skip s ?mpr.Seq.Skip.Seq.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G33": {
+      "label": " case mpr.Seq.Skip.Seq.h1.h2\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep c2 ?mpr.Seq.Skip.Seq.h1.t t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G49": {
+      "label": " case mpr.Seq.Skip.Seq.h1\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep (Com.Skip.Seq c2) s t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G53": {
+      "label": " case mpr.Seq.Skip.Seq.h1.h1\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep Com.Skip s ?mpr.Seq.Skip.Seq.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G54": {
+      "label": " case mpr.Seq.Skip.Seq.h1.h2\nc2 c3 : Com\ns s' t : State\nh1 : BigStep c2 s t\nh2_1 : BigStep c3 t s'\n\u22a2 BigStep c2 ?mpr.Seq.Skip.Seq.h1.t t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case mpr.Seq.Seq.Seq\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep (((c\u2081.Seq c\u2082).Seq c2).Seq c3) s s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case mpr.Seq.Seq.Seq.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep ((c\u2081.Seq c\u2082).Seq c2) s ?mpr.Seq.Seq.Seq.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G42": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep (c\u2081.Seq c\u2082) s ?mpr.Seq.Seq.Seq.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G44": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2081 s ?mpr.Seq.Seq.Seq.h1.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G46": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2082 t_1 ?mpr.Seq.Seq.Seq.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G70": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c2 t ?mpr.Seq.Seq.Seq.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G80": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c2 t ?mpr.Seq.Seq.Seq.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G52": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2082 t_1 ?mpr.Seq.Seq.Seq.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G45": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2082 ?mpr.Seq.Seq.Seq.h1.h1.t ?mpr.Seq.Seq.Seq.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G43": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c2 ?mpr.Seq.Seq.Seq.h1.t ?mpr.Seq.Seq.Seq.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case mpr.Seq.Seq.Seq.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c3 ?mpr.Seq.Seq.Seq.t s'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G25": {
+      "label": " case mpr.Seq.Seq.Seq.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep ((c\u2081.Seq c\u2082).Seq c2) s t_2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G26": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep (c\u2081.Seq c\u2082) s ?mpr.Seq.Seq.Seq.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G67": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2081 s ?mpr.Seq.Seq.Seq.h1.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G69": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2082 t_1 ?mpr.Seq.Seq.Seq.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G79": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2082 t_1 ?mpr.Seq.Seq.Seq.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G68": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2082 ?mpr.Seq.Seq.Seq.h1.h1.t ?mpr.Seq.Seq.Seq.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G27": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c2 ?mpr.Seq.Seq.Seq.h1.t t_2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G64": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep (c\u2081.Seq c\u2082) s t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G65": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2081 s ?mpr.Seq.Seq.Seq.h1.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G66": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2082 ?mpr.Seq.Seq.Seq.h1.h1.t t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G87": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2081 s t_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G78": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep (c\u2081.Seq c\u2082) s t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G83": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2081 s ?mpr.Seq.Seq.Seq.h1.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G84": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c\u2082 ?mpr.Seq.Seq.Seq.h1.h1.t t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G48": {
+      "label": " case mpr.Seq.Seq.Seq.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep ((c\u2081.Seq c\u2082).Seq c2) s t_2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G55": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h1\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep (c\u2081.Seq c\u2082) s ?mpr.Seq.Seq.Seq.h1.t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G56": {
+      "label": " case mpr.Seq.Seq.Seq.h1.h2\nc2 c3 : Com\ns s' t : State\nc\u2081 : Com\nt_1 : State\nc\u2082 : Com\nh1_1 : BigStep c\u2081 s t_1\nh2_1 : BigStep c\u2082 t_1 t\nt_2 : State\nh1 : BigStep c2 t t_2\nh2_2 : BigStep c3 t_2 s'\n\u22a2 BigStep c2 ?mpr.Seq.Seq.Seq.h1.t t_2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100/safe] safe|constructors|global|Iff",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R7": {
+      "label": "[-100/safe] safe|cases|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R8": {
+      "label": "[-100/safe] safe|cases|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R10": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R13": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R14": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R49": {
+      "label": "[90.0000%] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R29": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R38": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R11": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R12": {
+      "label": "[90.0000%] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R9": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R21": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R22": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R23": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R48": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R56": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R32": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R24": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R25": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R46": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R47": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R60": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R55": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R58": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R39": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R40": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R51": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R33": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R37": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[-100/safe] safe|cases|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[-100/safe] safe|cases|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[-100/safe] safe|cases|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R17": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R18": {
+      "label": "[90.0000%] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R50": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-3": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R19": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R20": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R31": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R35": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R26": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R27": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R28": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R45": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R54": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R34": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R15": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R16": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R43": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R44": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R53": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R41": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R42": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R59": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-4": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R52": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R57": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R30": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R36": {
+      "label": "[1/safe] safe|constructors|global|BigStep",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R22",
+      "target": "G36"
+    },
+    {
+      "source": "G26",
+      "target": "R43"
+    },
+    {
+      "source": "R25",
+      "target": "G40"
+    },
+    {
+      "source": "G87",
+      "target": "R-4"
+    },
+    {
+      "source": "R39",
+      "target": "G61"
+    },
+    {
+      "source": "G28",
+      "target": "R18"
+    },
+    {
+      "source": "R45",
+      "target": "G70"
+    },
+    {
+      "source": "R53",
+      "target": "G79"
+    },
+    {
+      "source": "R58",
+      "target": "G86"
+    },
+    {
+      "source": "G41",
+      "target": "R39"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G11",
+      "target": "R19"
+    },
+    {
+      "source": "R30",
+      "target": "G48"
+    },
+    {
+      "source": "R22",
+      "target": "G37"
+    },
+    {
+      "source": "G30",
+      "target": "R50"
+    },
+    {
+      "source": "R41",
+      "target": "G64"
+    },
+    {
+      "source": "G48",
+      "target": "R36"
+    },
+    {
+      "source": "R16",
+      "target": "G27"
+    },
+    {
+      "source": "R21",
+      "target": "G35"
+    },
+    {
+      "source": "G67",
+      "target": "R44"
+    },
+    {
+      "source": "R6",
+      "target": "G11"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "R20",
+      "target": "G32"
+    },
+    {
+      "source": "G40",
+      "target": "R55"
+    },
+    {
+      "source": "R37",
+      "target": "G58"
+    },
+    {
+      "source": "R13",
+      "target": "G22"
+    },
+    {
+      "source": "R38",
+      "target": "G59"
+    },
+    {
+      "source": "R55",
+      "target": "G81"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R6",
+      "target": "G10"
+    },
+    {
+      "source": "R42",
+      "target": "G66"
+    },
+    {
+      "source": "G38",
+      "target": "R56"
+    },
+    {
+      "source": "G15",
+      "target": "R33"
+    },
+    {
+      "source": "R50",
+      "target": "G76"
+    },
+    {
+      "source": "G78",
+      "target": "R57"
+    },
+    {
+      "source": "R27",
+      "target": "G44"
+    },
+    {
+      "source": "R31",
+      "target": "G49"
+    },
+    {
+      "source": "R29",
+      "target": "G47"
+    },
+    {
+      "source": "R10",
+      "target": "G18"
+    },
+    {
+      "source": "G73",
+      "target": "R60"
+    },
+    {
+      "source": "G24",
+      "target": "R49"
+    },
+    {
+      "source": "G51",
+      "target": "R37"
+    },
+    {
+      "source": "G31",
+      "target": "R20"
+    },
+    {
+      "source": "R27",
+      "target": "G45"
+    },
+    {
+      "source": "R23",
+      "target": "G38"
+    },
+    {
+      "source": "R52",
+      "target": "G78"
+    },
+    {
+      "source": "G37",
+      "target": "R32"
+    },
+    {
+      "source": "R9",
+      "target": "G16"
+    },
+    {
+      "source": "R3",
+      "target": "G6"
+    },
+    {
+      "source": "R57",
+      "target": "G84"
+    },
+    {
+      "source": "R20",
+      "target": "G33"
+    },
+    {
+      "source": "R26",
+      "target": "G42"
+    },
+    {
+      "source": "R34",
+      "target": "G52"
+    },
+    {
+      "source": "G62",
+      "target": "R40"
+    },
+    {
+      "source": "R60",
+      "target": "G88"
+    },
+    {
+      "source": "R56",
+      "target": "G82"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "G62",
+      "target": "R51"
+    },
+    {
+      "source": "R25",
+      "target": "G41"
+    },
+    {
+      "source": "G49",
+      "target": "R35"
+    },
+    {
+      "source": "R47",
+      "target": "G73"
+    },
+    {
+      "source": "G40",
+      "target": "R46"
+    },
+    {
+      "source": "G17",
+      "target": "R29"
+    },
+    {
+      "source": "R33",
+      "target": "G51"
+    },
+    {
+      "source": "R11",
+      "target": "G20"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R17",
+      "target": "G28"
+    },
+    {
+      "source": "G37",
+      "target": "R23"
+    },
+    {
+      "source": "R44",
+      "target": "G69"
+    },
+    {
+      "source": "G2",
+      "target": "R7"
+    },
+    {
+      "source": "G9",
+      "target": "R6"
+    },
+    {
+      "source": "G75",
+      "target": "R-1"
+    },
+    {
+      "source": "R4",
+      "target": "G8"
+    },
+    {
+      "source": "R35",
+      "target": "G53"
+    },
+    {
+      "source": "R16",
+      "target": "G26"
+    },
+    {
+      "source": "R43",
+      "target": "G67"
+    },
+    {
+      "source": "G4",
+      "target": "R3"
+    },
+    {
+      "source": "R18",
+      "target": "G30"
+    },
+    {
+      "source": "R32",
+      "target": "G50"
+    },
+    {
+      "source": "R19",
+      "target": "G31"
+    },
+    {
+      "source": "G12",
+      "target": "R8"
+    },
+    {
+      "source": "R11",
+      "target": "G19"
+    },
+    {
+      "source": "R8",
+      "target": "G13"
+    },
+    {
+      "source": "R14",
+      "target": "G24"
+    },
+    {
+      "source": "R5",
+      "target": "G9"
+    },
+    {
+      "source": "G39",
+      "target": "R25"
+    },
+    {
+      "source": "G88",
+      "target": "R-2"
+    },
+    {
+      "source": "R15",
+      "target": "G25"
+    },
+    {
+      "source": "G27",
+      "target": "R52"
+    },
+    {
+      "source": "R36",
+      "target": "G56"
+    },
+    {
+      "source": "G22",
+      "target": "R14"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "G13",
+      "target": "R10"
+    },
+    {
+      "source": "R12",
+      "target": "G21"
+    },
+    {
+      "source": "G18",
+      "target": "R11"
+    },
+    {
+      "source": "G42",
+      "target": "R27"
+    },
+    {
+      "source": "R57",
+      "target": "G83"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R17",
+      "target": "G29"
+    },
+    {
+      "source": "G76",
+      "target": "R-3"
+    },
+    {
+      "source": "G11",
+      "target": "R31"
+    },
+    {
+      "source": "G44",
+      "target": "R28"
+    },
+    {
+      "source": "R26",
+      "target": "G43"
+    },
+    {
+      "source": "R10",
+      "target": "G17"
+    },
+    {
+      "source": "G15",
+      "target": "R24"
+    },
+    {
+      "source": "R46",
+      "target": "G71"
+    },
+    {
+      "source": "G5",
+      "target": "R5"
+    },
+    {
+      "source": "G38",
+      "target": "R48"
+    },
+    {
+      "source": "R58",
+      "target": "G85"
+    },
+    {
+      "source": "G16",
+      "target": "R21"
+    },
+    {
+      "source": "R51",
+      "target": "G77"
+    },
+    {
+      "source": "G10",
+      "target": "R17"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    },
+    {
+      "source": "R35",
+      "target": "G54"
+    },
+    {
+      "source": "R47",
+      "target": "G72"
+    },
+    {
+      "source": "R40",
+      "target": "G63"
+    },
+    {
+      "source": "G7",
+      "target": "R26"
+    },
+    {
+      "source": "R43",
+      "target": "G68"
+    },
+    {
+      "source": "R9",
+      "target": "G15"
+    },
+    {
+      "source": "R59",
+      "target": "G87"
+    },
+    {
+      "source": "R8",
+      "target": "G14"
+    },
+    {
+      "source": "R38",
+      "target": "G60"
+    },
+    {
+      "source": "R28",
+      "target": "G46"
+    },
+    {
+      "source": "G8",
+      "target": "R15"
+    },
+    {
+      "source": "G8",
+      "target": "R30"
+    },
+    {
+      "source": "G64",
+      "target": "R42"
+    },
+    {
+      "source": "R39",
+      "target": "G62"
+    },
+    {
+      "source": "G6",
+      "target": "R4"
+    },
+    {
+      "source": "G17",
+      "target": "R13"
+    },
+    {
+      "source": "R49",
+      "target": "G75"
+    },
+    {
+      "source": "R54",
+      "target": "G80"
+    },
+    {
+      "source": "G25",
+      "target": "R16"
+    },
+    {
+      "source": "R37",
+      "target": "G57"
+    },
+    {
+      "source": "G67",
+      "target": "R53"
+    },
+    {
+      "source": "G44",
+      "target": "R34"
+    },
+    {
+      "source": "G71",
+      "target": "R47"
+    },
+    {
+      "source": "R36",
+      "target": "G55"
+    },
+    {
+      "source": "R7",
+      "target": "G12"
+    },
+    {
+      "source": "G27",
+      "target": "R41"
+    },
+    {
+      "source": "G81",
+      "target": "R58"
+    },
+    {
+      "source": "R14",
+      "target": "G23"
+    },
+    {
+      "source": "R24",
+      "target": "G39"
+    },
+    {
+      "source": "G20",
+      "target": "R12"
+    },
+    {
+      "source": "G35",
+      "target": "R22"
+    },
+    {
+      "source": "G66",
+      "target": "R59"
+    },
+    {
+      "source": "G46",
+      "target": "R45"
+    },
+    {
+      "source": "G46",
+      "target": "R54"
+    },
+    {
+      "source": "R21",
+      "target": "G34"
+    },
+    {
+      "source": "G14",
+      "target": "R9"
+    },
+    {
+      "source": "R48",
+      "target": "G74"
+    },
+    {
+      "source": "G47",
+      "target": "R38"
+    },
+    {
+      "source": "R42",
+      "target": "G65"
+    }
+  ]
+}
+}

@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case fls_l\n\u03a6 : Type\n\u0393 \u0394 : List (Form \u03a6)\n\u03b4 : Form \u03a6\n\u0393\u271d \u0394\u271d : List (Form \u03a6)\n\u22a2 Proof (\u22a5 :: \u0393\u271d) (\u03b4 :: \u0394\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03a6 : Type\n\u0393 \u0394 : List (Form \u03a6)\n\u03b4 : Form \u03a6\n\u0393_1 \u0394_1 : List (Form \u03a6)\n\u22a2 Proof (\u22a5 :: \u0393_1) (\u03b4 :: \u0394_1)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[1/safe] safe|apply|global|Proof.fls_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    }
+  ]
+}
+}

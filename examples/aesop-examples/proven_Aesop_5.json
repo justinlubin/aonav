@@ -1,0 +1,206 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " Even : Nat \u2192 Prop\nzero : Even 0\nplusTwo : \u2200 (n : Nat), Even n \u2192 Even (n + 2)\n\u22a2 Even 20\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " Even : Nat \u2192 Prop\nzero : Even 0\nplusTwo : \u2200 (n : Nat), Even n \u2192 Even (n + 2)\n\u22a2 Even 20\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case a\nEven : Nat \u2192 Prop\nzero : Even 0\nplusTwo : \u2200 (n : Nat), Even n \u2192 Even (n + 2)\n\u22a2 Even 18\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case a.a\nEven : Nat \u2192 Prop\nzero : Even 0\nplusTwo : \u2200 (n : Nat), Even n \u2192 Even (n + 2)\n\u22a2 Even 16\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case a.a.a\nEven : Nat \u2192 Prop\nzero : Even 0\nplusTwo : \u2200 (n : Nat), Even n \u2192 Even (n + 2)\n\u22a2 Even 14\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case a.a.a.a\nEven : Nat \u2192 Prop\nzero : Even 0\nplusTwo : \u2200 (n : Nat), Even n \u2192 Even (n + 2)\n\u22a2 Even 12\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case a.a.a.a.a\nEven : Nat \u2192 Prop\nzero : Even 0\nplusTwo : \u2200 (n : Nat), Even n \u2192 Even (n + 2)\n\u22a2 Even 10\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case a.a.a.a.a.a\nEven : Nat \u2192 Prop\nzero : Even 0\nplusTwo : \u2200 (n : Nat), Even n \u2192 Even (n + 2)\n\u22a2 Even 8\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case a.a.a.a.a.a.a\nEven : Nat \u2192 Prop\nzero : Even 0\nplusTwo : \u2200 (n : Nat), Even n \u2192 Even (n + 2)\n\u22a2 Even 6\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case a.a.a.a.a.a.a.a\nEven : Nat \u2192 Prop\nzero : Even 0\nplusTwo : \u2200 (n : Nat), Even n \u2192 Even (n + 2)\n\u22a2 Even 4\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R7": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R8": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G8",
+      "target": "R8"
+    },
+    {
+      "source": "R5",
+      "target": "G6"
+    },
+    {
+      "source": "G7",
+      "target": "R7"
+    },
+    {
+      "source": "G3",
+      "target": "R3"
+    },
+    {
+      "source": "R3",
+      "target": "G4"
+    },
+    {
+      "source": "R7",
+      "target": "G8"
+    },
+    {
+      "source": "G6",
+      "target": "R6"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    },
+    {
+      "source": "R4",
+      "target": "G5"
+    },
+    {
+      "source": "G9",
+      "target": "R-1"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G4",
+      "target": "R4"
+    },
+    {
+      "source": "R8",
+      "target": "G9"
+    },
+    {
+      "source": "R6",
+      "target": "G7"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G5",
+      "target": "R5"
+    }
+  ]
+}
+}

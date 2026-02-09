@@ -1,0 +1,116 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type u_1\nxs ys : List \u03b1\nh : Common xs ys\nother : \u2203 a, a \u2208 ys \u2227 a \u2208 xs\n\u22a2 \u2203 a, a \u2208 xs \u2227 a \u2208 ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nxs ys : List \u03b1\nh : Common xs ys\nother : \u2203 a, a \u2208 ys \u2227 a \u2208 xs\n\u22a2 \u2203 a, a \u2208 xs \u2227 a \u2208 ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case h\n\u03b1 : Type u_1\nxs ys : List \u03b1\nh : Any (fun x => x \u2208 ys) xs\nw : \u03b1\nleft : w \u2208 ys\nright : w \u2208 xs\n\u22a2 ?w \u2208 xs \u2227 ?w \u2208 ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case h.left\n\u03b1 : Type u_1\nxs ys : List \u03b1\nh : Any (fun x => x \u2208 ys) xs\nw : \u03b1\nleft : w \u2208 ys\nright : w \u2208 xs\n\u22a2 ?w \u2208 xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case h.right\n\u03b1 : Type u_1\nxs ys : List \u03b1\nh : Any (fun x => x \u2208 ys) xs\nw : \u03b1\nleft : w \u2208 ys\nright : w \u2208 xs\n\u22a2 ?w \u2208 ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case h.left\n\u03b1 : Type u_1\nxs ys : List \u03b1\nh : Any (fun x => x \u2208 ys) xs\nw : \u03b1\nleft : w \u2208 ys\nright : w \u2208 xs\n\u22a2 w \u2208 xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[101/safe] safe|constructors|global|And",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G4",
+      "target": "R3"
+    },
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "G5",
+      "target": "R-1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

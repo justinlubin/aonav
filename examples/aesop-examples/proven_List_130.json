@@ -1,0 +1,66 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case succ\n\u03b1 : Type u_1\nn\u271d : Nat\na\u271d : n\u271d \u2260 0 \u2192 Injective fun a => replicate n\u271d a\nhn : n\u271d + 1 \u2260 0\n\u22a2 Injective fun a => replicate (n\u271d + 1) a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nn : Nat\na : n \u2260 0 \u2192 Injective fun a => replicate n a\nhn : n + 1 \u2260 0\n\u22a2 Injective fun a => replicate (n + 1) a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case h\n\u03b1 : Type u_1\nn : Nat\na : \u00acn = 0 \u2192 Injective fun a => replicate n a\n\u22a2 \u2200 (a b : \u03b1), a :: replicate n a = b :: replicate n b \u2192 a = b\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[99.0000%] unsafe|apply|global|injective_intro",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G2",
+      "target": "R-1"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    }
+  ]
+}
+}

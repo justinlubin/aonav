@@ -1,0 +1,126 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Sort u_1\nP Q Dead R : \u03b1 \u2192 Prop\nhPQ : \u2200 (a : \u03b1), P a \u2192 Q a\nhDeadR : \u2200 (a : \u03b1), Dead a \u2192 R a\nhQR : \u2200 (a : \u03b1), Q a \u2192 R a\na : \u03b1\nh : P a\n\u22a2 \u2203 a, R a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Sort u_1\nP Q Dead R : \u03b1 \u2192 Prop\nhPQ : \u2200 (a : \u03b1), P a \u2192 Q a\nhDeadR : \u2200 (a : \u03b1), Dead a \u2192 R a\nhQR : \u2200 (a : \u03b1), Q a \u2192 R a\na : \u03b1\nh : P a\n\u22a2 \u2203 a, R a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case h\n\u03b1 : Sort u_1\nP Q Dead R : \u03b1 \u2192 Prop\nhPQ : \u2200 (a : \u03b1), P a \u2192 Q a\nhDeadR : \u2200 (a : \u03b1), Dead a \u2192 R a\nhQR : \u2200 (a : \u03b1), Q a \u2192 R a\na : \u03b1\nh : P a\n\u22a2 R ?w\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case h.a\n\u03b1 : Sort u_1\nP Q Dead R : \u03b1 \u2192 Prop\nhPQ : \u2200 (a : \u03b1), P a \u2192 Q a\nhDeadR : \u2200 (a : \u03b1), Dead a \u2192 R a\nhQR : \u2200 (a : \u03b1), Q a \u2192 R a\na : \u03b1\nh : P a\n\u22a2 Dead ?w\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case h.a\n\u03b1 : Sort u_1\nP Q Dead R : \u03b1 \u2192 Prop\nhPQ : \u2200 (a : \u03b1), P a \u2192 Q a\nhDeadR : \u2200 (a : \u03b1), Dead a \u2192 R a\nhQR : \u2200 (a : \u03b1), Q a \u2192 R a\na : \u03b1\nh : P a\n\u22a2 Q ?w\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case h.a.a\n\u03b1 : Sort u_1\nP Q Dead R : \u03b1 \u2192 Prop\nhPQ : \u2200 (a : \u03b1), P a \u2192 Q a\nhDeadR : \u2200 (a : \u03b1), Dead a \u2192 R a\nhQR : \u2200 (a : \u03b1), Q a \u2192 R a\na : \u03b1\nh : P a\n\u22a2 P ?w\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R4",
+      "target": "G5"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G5",
+      "target": "R5"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "R3",
+      "target": "G4"
+    },
+    {
+      "source": "G4",
+      "target": "R4"
+    },
+    {
+      "source": "G2",
+      "target": "R3"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    }
+  ]
+}
+}

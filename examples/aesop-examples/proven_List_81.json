@@ -1,0 +1,346 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case cons.cons\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead\u271d\u00b9 : \u03b1\ntail\u271d\u00b9 : List \u03b1\nhead\u271d : \u03b1\ntail\u271d : List \u03b1\ntail_ih\u271d\u00b9 :\n(map f tail\u271d\u00b9 \u2286 map f tail\u271d \u2194 tail\u271d\u00b9 \u2286 tail\u271d) \u2192\n(map f (head\u271d\u00b9 :: tail\u271d\u00b9) \u2286 map f tail\u271d \u2194 head\u271d\u00b9 :: tail\u271d\u00b9 \u2286 tail\u271d)\ntail_ih\u271d : map f tail\u271d\u00b9 \u2286 map f (head\u271d :: tail\u271d) \u2194 tail\u271d\u00b9 \u2286 head\u271d :: tail\u271d\n\u22a2 map f (head\u271d\u00b9 :: tail\u271d\u00b9) \u2286 map f (head\u271d :: tail\u271d) \u2194 head\u271d\u00b9 :: tail\u271d\u00b9 \u2286 head\u271d :: tail\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\n(map f (head :: tail) \u2286 map f tail_1 \u2194 head :: tail \u2286 tail_1)\ntail_ih_1 : map f tail \u2286 map f (head_1 :: tail_1) \u2194 tail \u2286 head_1 :: tail_1\n\u22a2 map f (head :: tail) \u2286 map f (head_1 :: tail_1) \u2194 head :: tail \u2286 head_1 :: tail_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case mp\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 ((\u2203 a, a \u2208 tail_1 \u2227 f a = f head) \u2194 head \u2208 tail_1)\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\n\u22a2 (f head = f head_1 \u2228 \u2203 a, a \u2208 tail_1 \u2227 f a = f head) \u2192 head = head_1 \u2228 head \u2208 tail_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case mp.inl\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 ((\u2203 a, a \u2208 tail_1 \u2227 f a = f head) \u2194 head \u2208 tail_1)\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_1 : f head = f head_1\n\u22a2 head = head_1 \u2228 head \u2208 tail_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G11": {
+      "label": " case mp.inl\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 ((\u2203 a, a \u2208 tail_1 \u2227 f a = f head_1) \u2194 head \u2208 tail_1)\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_1 : f head = f head_1\nfwd : head = head_1\n\u22a2 head = head_1 \u2228 head \u2208 tail_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case mp.inr\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 ((\u2203 a, a \u2208 tail_1 \u2227 f a = f head) \u2194 head \u2208 tail_1)\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_2 : \u2203 a, a \u2208 tail_1 \u2227 f a = f head\n\u22a2 head = head_1 \u2228 head \u2208 tail_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G10": {
+      "label": " case mp.inr\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih : (map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192 tail \u2286 tail_1 \u2192 head \u2208 tail_1\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nw : \u03b1\nleft : w \u2208 tail_1\nright : f w = f head\nfwd : w = head\n\u22a2 head = head_1 \u2228 head \u2208 tail_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case mpr\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 ((\u2203 a, a \u2208 tail_1 \u2227 f a = f head) \u2194 head \u2208 tail_1)\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\n\u22a2 head = head_1 \u2228 head \u2208 tail_1 \u2192 f head = f head_1 \u2228 \u2203 a, a \u2208 tail_1 \u2227 f a = f head\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case mpr.inl\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 ((\u2203 a, a \u2208 tail_1 \u2227 f a = f head) \u2194 head \u2208 tail_1)\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_1 : head = head_1\n\u22a2 f head = f head_1 \u2228 \u2203 a, a \u2208 tail_1 \u2227 f a = f head\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case mpr.inr\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 ((\u2203 a, a \u2208 tail_1 \u2227 f a = f head) \u2194 head \u2208 tail_1)\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_2 : head \u2208 tail_1\n\u22a2 f head = f head_1 \u2228 \u2203 a, a \u2208 tail_1 \u2227 f a = f head\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case mpr.inr.h\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192 tail \u2286 tail_1 \u2192 \u2203 a, a \u2208 tail_1 \u2227 f a = f head\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_2 : head \u2208 tail_1\n\u22a2 f head = f head_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case mpr.inr.h\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192 tail \u2286 tail_1 \u2192 \u2203 a, a \u2208 tail_1 \u2227 f a = f head\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_2 : head \u2208 tail_1\n\u22a2 \u2203 a, a \u2208 tail_1 \u2227 f a = f head\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G12": {
+      "label": " case mpr.inr.h.tail_ih\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 \u2203 a, a \u2208 tail_1 \u2227 f a = f head\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_2 : head \u2208 tail_1\n\u22a2 map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G13": {
+      "label": " case mpr.inr.h.a\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 \u2203 a, a \u2208 tail_1 \u2227 f a = f head\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_2 : head \u2208 tail_1\n\u22a2 tail \u2286 tail_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G14": {
+      "label": " case mpr.inr.h.h\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 \u2203 a, a \u2208 tail_1 \u2227 f a = f head\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_2 : head \u2208 tail_1\n\u22a2 ?mpr.inr.h.w \u2208 tail_1 \u2227 f ?mpr.inr.h.w = f head\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G16": {
+      "label": " case mpr.inr.h.h.right\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 \u2203 a, a \u2208 tail_1 \u2227 f a = f head\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_2 : head \u2208 tail_1\n\u22a2 f ?mpr.inr.h.w = f head\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G15": {
+      "label": " case mpr.inr.h.h.left\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 \u2203 a, a \u2208 tail_1 \u2227 f a = f head\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_2 : head \u2208 tail_1\n\u22a2 ?mpr.inr.h.w \u2208 tail_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G17": {
+      "label": " case mpr.inr.h.h.right\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\nh : Injective f\nhead : \u03b1\ntail : List \u03b1\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih :\n(map f tail \u2286 map f tail_1 \u2194 tail \u2286 tail_1) \u2192\ntail \u2286 tail_1 \u2192 \u2203 a, a \u2208 tail_1 \u2227 f a = f head\ntail_ih_1 : map f tail \u2286 f head_1 :: map f tail_1\na : tail \u2286 head_1 :: tail_1\nh_2 : head \u2208 tail_1\n\u22a2 f head = f head\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100/safe] safe|constructors|global|Iff",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[100/safe] safe|cases|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R7": {
+      "label": "[1/safe] safe|forward|global|injective_elim",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[1/safe] safe|forward|global|injective_elim",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[100/safe] safe|cases|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-3": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[50.0000%] unsafe|constructors|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[50.0000%] unsafe|constructors|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R8": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R9": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R10": {
+      "label": "[101/safe] safe|constructors|global|And",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R11": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-4": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R6",
+      "target": "G10"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R8",
+      "target": "G13"
+    },
+    {
+      "source": "G10",
+      "target": "R-2"
+    },
+    {
+      "source": "R5",
+      "target": "G8"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R10",
+      "target": "G15"
+    },
+    {
+      "source": "G15",
+      "target": "R11"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G5",
+      "target": "R4"
+    },
+    {
+      "source": "G11",
+      "target": "R-1"
+    },
+    {
+      "source": "R2",
+      "target": "G5"
+    },
+    {
+      "source": "G17",
+      "target": "R-4"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G2",
+      "target": "R5"
+    },
+    {
+      "source": "G9",
+      "target": "R6"
+    },
+    {
+      "source": "R3",
+      "target": "G6"
+    },
+    {
+      "source": "G5",
+      "target": "R3"
+    },
+    {
+      "source": "R5",
+      "target": "G9"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R10",
+      "target": "G16"
+    },
+    {
+      "source": "G14",
+      "target": "R10"
+    },
+    {
+      "source": "R8",
+      "target": "G12"
+    },
+    {
+      "source": "R9",
+      "target": "G14"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G7",
+      "target": "R9"
+    },
+    {
+      "source": "G8",
+      "target": "R7"
+    },
+    {
+      "source": "G7",
+      "target": "R8"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "R11",
+      "target": "G17"
+    },
+    {
+      "source": "R7",
+      "target": "G11"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    },
+    {
+      "source": "G4",
+      "target": "R-3"
+    }
+  ]
+}
+}

@@ -1,0 +1,146 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03a6 : Type\ninst\u271d : DecidableEq \u03a6\nl r : List \u03a6\n\u0393\u271d \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\n\u0393 : List (Form \u03a6)\nh : Cal l r \u0393 [\u03c6] \u2227 Cal l r (\u03c8 :: \u0393) []\nih\u2081 : Proof' l r \u0393 [\u03c6]\nih\u2082 : Proof' l r (\u03c8 :: \u0393) []\n\u22a2 Proof' l r (\u03c6 \u21d2 \u03c8 :: \u0393) []\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\n\u0393 : List (Form \u03a6)\nh : Cal l r \u0393 [\u03c6] \u2227 Cal l r (\u03c8 :: \u0393) []\nih\u2081 : Proof' l r \u0393 [\u03c6]\nih\u2082 : Proof' l r (\u03c8 :: \u0393) []\n\u22a2 Proof' l r (\u03c6 \u21d2 \u03c8 :: \u0393) []\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\n\u0393 : List (Form \u03a6)\nih\u2081 : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u03c6 :: List.map (fun x => \u2669x) r)\nih\u2082 : Proof (\u03c8 :: (\u0393 ++ List.map (fun x => \u2669x) l)) (List.map (fun x => \u2669x) r)\nleft : Cal l r \u0393 [\u03c6]\nright : Cal l r (\u03c8 :: \u0393) []\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u03c6 :: List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\n\u0393 : List (Form \u03a6)\nih\u2081 : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u03c6 :: List.map (fun x => \u2669x) r)\nih\u2082 : Proof (\u03c8 :: (\u0393 ++ List.map (fun x => \u2669x) l)) (List.map (fun x => \u2669x) r)\nleft : Cal l r \u0393 [\u03c6]\nright : Cal l r (\u03c8 :: \u0393) []\n\u22a2 Proof (\u03c8 :: (\u0393 ++ List.map (fun x => \u2669x) l)) (List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\n\u0393 : List (Form \u03a6)\nih\u2081 : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u03c6 :: List.map (fun x => \u2669x) r)\nih\u2082 : Proof (\u03c8 :: (\u0393 ++ List.map (fun x => \u2669x) l)) (List.map (fun x => \u2669x) r)\nleft : Cal l r \u0393 [\u03c6]\nright : Cal l r (\u03c8 :: \u0393) []\n\u22a2 Proof ?\u0393 (List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\n\u0393 : List (Form \u03a6)\nih\u2081 : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u03c6 :: List.map (fun x => \u2669x) r)\nih\u2082 : Proof (\u03c8 :: (\u0393 ++ List.map (fun x => \u2669x) l)) (List.map (fun x => \u2669x) r)\nleft : Cal l r \u0393 [\u03c6]\nright : Cal l r (\u03c8 :: \u0393) []\n\u22a2 \u03c6 \u21d2 \u03c8 :: (\u0393 ++ List.map (fun x => \u2669x) l) \u21ad ?\u0393\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\n\u0393 : List (Form \u03a6)\nih\u2081 : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u03c6 :: List.map (fun x => \u2669x) r)\nih\u2082 : Proof (\u03c8 :: (\u0393 ++ List.map (fun x => \u2669x) l)) (List.map (fun x => \u2669x) r)\nleft : Cal l r \u0393 [\u03c6]\nright : Cal l r (\u03c8 :: \u0393) []\n\u22a2 Proof (\u03c6 \u21d2 \u03c8 :: (\u0393 ++ List.map (fun x => \u2669x) l)) ?\u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\n\u0393 : List (Form \u03a6)\nih\u2081 : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u03c6 :: List.map (fun x => \u2669x) r)\nih\u2082 : Proof (\u03c8 :: (\u0393 ++ List.map (fun x => \u2669x) l)) (List.map (fun x => \u2669x) r)\nleft : Cal l r \u0393 [\u03c6]\nright : Cal l r (\u03c8 :: \u0393) []\n\u22a2 ?\u0394 \u21ad List.map (fun x => \u2669x) r\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G2",
+      "target": "R-1"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G1",
+      "target": "R2"
+    },
+    {
+      "source": "R3",
+      "target": "G6"
+    },
+    {
+      "source": "R3",
+      "target": "G7"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G3",
+      "target": "R-2"
+    },
+    {
+      "source": "G1",
+      "target": "R3"
+    },
+    {
+      "source": "R2",
+      "target": "G5"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

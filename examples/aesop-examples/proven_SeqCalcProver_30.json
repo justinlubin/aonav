@@ -1,0 +1,96 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case nil\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\n\u22a2 [] ++ v :: ys \u21ad [v] ++ ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " case nil\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\n\u22a2 [] ++ v :: ys \u21ad [v] ++ ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case nil.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\n\u22a2 ys \u21ad ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case nil.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\n\u22a2 v :: ys \u21ad ?nil.ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case nil.a\n\u03b1 : Type u_1\nv : \u03b1\nys : List \u03b1\n\u22a2 ?nil.ys \u21ad v :: ys\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G1",
+      "target": "R2"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R2",
+      "target": "G2"
+    },
+    {
+      "source": "R3",
+      "target": "G3"
+    },
+    {
+      "source": "G1",
+      "target": "R3"
+    },
+    {
+      "source": "R3",
+      "target": "G4"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

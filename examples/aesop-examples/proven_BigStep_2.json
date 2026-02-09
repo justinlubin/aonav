@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case if_true\nB : State \u2192 Prop\nS T : Stmt\ns t : State\nhcond : \u00acB s\nhcond\u271d : B s\nhbody\u271d : (S,s) ==> t\n\u22a2 (T,s) ==> t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " B : State \u2192 Prop\nS T : Stmt\ns t : State\nhcond : \u00acB s\nhcond_1 : B s\nhbody : (S,s) ==> t\n\u22a2 (T,s) ==> t\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G1",
+      "target": "R-1"
+    }
+  ]
+}
+}

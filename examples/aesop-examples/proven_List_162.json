@@ -1,0 +1,106 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type u\n\u22a2 Surjective reverse\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u\n\u22a2 Surjective reverse\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case h\n\u03b1 : Type u\n\u22a2 \u2200 (b : List \u03b1), \u2203 a, a.reverse = b\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case h.h\n\u03b1 : Type u\nb : List \u03b1\n\u22a2 reverse ?h.w = b\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case a\n\u03b1 : Type u\n\u22a2 Involutive reverse\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[99.0000%] unsafe|apply|global|surjective_intro",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[25.0000%] unsafe|apply|global|Involutive.surjective",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G3",
+      "target": "R-1"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G2",
+      "target": "R3"
+    },
+    {
+      "source": "G1",
+      "target": "R2"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    },
+    {
+      "source": "R3",
+      "target": "G4"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    }
+  ]
+}
+}

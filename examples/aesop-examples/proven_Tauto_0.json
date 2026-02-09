@@ -1,0 +1,206 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type\ninst\u271d : LE \u03b1\na b c : \u03b1\nx\u2080 x\u2081 x\u2082 : Prop\nthis1 : x\u2080 \u2192 x\u2081 \u2192 a \u2264 c\nthis2 : x\u2081 \u2192 x\u2082 \u2192 b \u2264 a\nthis3 : x\u2082 \u2192 x\u2080 \u2192 c \u2264 b\n\u22a2 (x\u2080 \u2227 \u00acb \u2264 a) \u2227 x\u2081 \u2227 \u00acc \u2264 b \u2228 (x\u2081 \u2227 \u00acc \u2264 b) \u2227 x\u2082 \u2227 \u00aca \u2264 c \u2228 (x\u2082 \u2227 \u00aca \u2264 c) \u2227 x\u2080 \u2227 \u00acb \u2264 a \u2194\n(x\u2080 \u2227 x\u2081 \u2228 x\u2081 \u2227 x\u2082 \u2228 x\u2082 \u2227 x\u2080) \u2227 \u00ac(c \u2264 b \u2227 b \u2264 a \u2228 b \u2264 a \u2227 a \u2264 c \u2228 a \u2264 c \u2227 c \u2264 b)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type\ninst : LE \u03b1\na b c : \u03b1\nx\u2080 x\u2081 x\u2082 : Prop\nthis1 : x\u2080 \u2192 x\u2081 \u2192 a \u2264 c\nthis2 : x\u2081 \u2192 x\u2082 \u2192 b \u2264 a\nthis3 : x\u2082 \u2192 x\u2080 \u2192 c \u2264 b\n\u22a2 (x\u2080 \u2227 \u00acb \u2264 a) \u2227 x\u2081 \u2227 \u00acc \u2264 b \u2228 (x\u2081 \u2227 \u00acc \u2264 b) \u2227 x\u2082 \u2227 \u00aca \u2264 c \u2228 (x\u2082 \u2227 \u00aca \u2264 c) \u2227 x\u2080 \u2227 \u00acb \u2264 a \u2194\n(x\u2080 \u2227 x\u2081 \u2228 x\u2081 \u2227 x\u2082 \u2228 x\u2082 \u2227 x\u2080) \u2227 \u00ac(c \u2264 b \u2227 b \u2264 a \u2228 b \u2264 a \u2227 a \u2264 c \u2228 a \u2264 c \u2227 c \u2264 b)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case mp\n\u03b1 : Type\ninst : LE \u03b1\na b c : \u03b1\nx\u2080 x\u2081 x\u2082 : Prop\nthis1 : x\u2080 \u2192 x\u2081 \u2192 a \u2264 c\nthis2 : x\u2081 \u2192 x\u2082 \u2192 b \u2264 a\nthis3 : x\u2082 \u2192 x\u2080 \u2192 c \u2264 b\n\u22a2 (x\u2080 \u2227 \u00acb \u2264 a) \u2227 x\u2081 \u2227 \u00acc \u2264 b \u2228 (x\u2081 \u2227 \u00acc \u2264 b) \u2227 x\u2082 \u2227 \u00aca \u2264 c \u2228 (x\u2082 \u2227 \u00aca \u2264 c) \u2227 x\u2080 \u2227 \u00acb \u2264 a \u2192\n(x\u2080 \u2227 x\u2081 \u2228 x\u2081 \u2227 x\u2082 \u2228 x\u2082 \u2227 x\u2080) \u2227 (c \u2264 b \u2192 \u00acb \u2264 a) \u2227 (b \u2264 a \u2192 \u00aca \u2264 c) \u2227 (a \u2264 c \u2192 \u00acc \u2264 b)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case mp.inl\n\u03b1 : Type\ninst : LE \u03b1\na b c : \u03b1\nx\u2080 x\u2081 x\u2082 : Prop\nthis1 : x\u2080 \u2192 x\u2081 \u2192 a \u2264 c\nthis2 : x\u2081 \u2192 x\u2082 \u2192 b \u2264 a\nthis3 : x\u2082 \u2192 x\u2080 \u2192 c \u2264 b\nh : (x\u2080 \u2227 \u00acb \u2264 a) \u2227 x\u2081 \u2227 \u00acc \u2264 b\n\u22a2 (x\u2080 \u2227 x\u2081 \u2228 x\u2081 \u2227 x\u2082 \u2228 x\u2082 \u2227 x\u2080) \u2227 (c \u2264 b \u2192 \u00acb \u2264 a) \u2227 (b \u2264 a \u2192 \u00aca \u2264 c) \u2227 (a \u2264 c \u2192 \u00acc \u2264 b)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case mp.inr.inl\n\u03b1 : Type\ninst : LE \u03b1\na b c : \u03b1\nx\u2080 x\u2081 x\u2082 : Prop\nthis1 : x\u2080 \u2192 x\u2081 \u2192 a \u2264 c\nthis2 : x\u2081 \u2192 x\u2082 \u2192 b \u2264 a\nthis3 : x\u2082 \u2192 x\u2080 \u2192 c \u2264 b\nh : (x\u2081 \u2227 \u00acc \u2264 b) \u2227 x\u2082 \u2227 \u00aca \u2264 c\n\u22a2 (x\u2080 \u2227 x\u2081 \u2228 x\u2081 \u2227 x\u2082 \u2228 x\u2082 \u2227 x\u2080) \u2227 (c \u2264 b \u2192 \u00acb \u2264 a) \u2227 (b \u2264 a \u2192 \u00aca \u2264 c) \u2227 (a \u2264 c \u2192 \u00acc \u2264 b)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case mp.inr.inr\n\u03b1 : Type\ninst : LE \u03b1\na b c : \u03b1\nx\u2080 x\u2081 x\u2082 : Prop\nthis1 : x\u2080 \u2192 x\u2081 \u2192 a \u2264 c\nthis2 : x\u2081 \u2192 x\u2082 \u2192 b \u2264 a\nthis3 : x\u2082 \u2192 x\u2080 \u2192 c \u2264 b\nh_2 : (x\u2082 \u2227 \u00aca \u2264 c) \u2227 x\u2080 \u2227 \u00acb \u2264 a\n\u22a2 (x\u2080 \u2227 x\u2081 \u2228 x\u2081 \u2227 x\u2082 \u2228 x\u2082 \u2227 x\u2080) \u2227 (c \u2264 b \u2192 \u00acb \u2264 a) \u2227 (b \u2264 a \u2192 \u00aca \u2264 c) \u2227 (a \u2264 c \u2192 \u00acc \u2264 b)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case mpr\n\u03b1 : Type\ninst : LE \u03b1\na b c : \u03b1\nx\u2080 x\u2081 x\u2082 : Prop\nthis1 : x\u2080 \u2192 x\u2081 \u2192 a \u2264 c\nthis2 : x\u2081 \u2192 x\u2082 \u2192 b \u2264 a\nthis3 : x\u2082 \u2192 x\u2080 \u2192 c \u2264 b\n\u22a2 (x\u2080 \u2227 x\u2081 \u2228 x\u2081 \u2227 x\u2082 \u2228 x\u2082 \u2227 x\u2080) \u2227 (c \u2264 b \u2192 \u00acb \u2264 a) \u2227 (b \u2264 a \u2192 \u00aca \u2264 c) \u2227 (a \u2264 c \u2192 \u00acc \u2264 b) \u2192\n(x\u2080 \u2227 \u00acb \u2264 a) \u2227 x\u2081 \u2227 \u00acc \u2264 b \u2228 (x\u2081 \u2227 \u00acc \u2264 b) \u2227 x\u2082 \u2227 \u00aca \u2264 c \u2228 (x\u2082 \u2227 \u00aca \u2264 c) \u2227 x\u2080 \u2227 \u00acb \u2264 a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case mpr.inl\n\u03b1 : Type\ninst : LE \u03b1\na b c : \u03b1\nx\u2080 x\u2081 x\u2082 : Prop\nthis1 : x\u2080 \u2192 x\u2081 \u2192 a \u2264 c\nthis2 : x\u2081 \u2192 x\u2082 \u2192 b \u2264 a\nthis3 : x\u2082 \u2192 x\u2080 \u2192 c \u2264 b\nleft_1 : c \u2264 b \u2192 \u00acb \u2264 a\nleft_2 : b \u2264 a \u2192 \u00aca \u2264 c\nright : a \u2264 c \u2192 \u00acc \u2264 b\nh : x\u2080 \u2227 x\u2081\n\u22a2 (x\u2080 \u2227 \u00acb \u2264 a) \u2227 x\u2081 \u2227 \u00acc \u2264 b \u2228 (x\u2081 \u2227 \u00acc \u2264 b) \u2227 x\u2082 \u2227 \u00aca \u2264 c \u2228 (x\u2082 \u2227 \u00aca \u2264 c) \u2227 x\u2080 \u2227 \u00acb \u2264 a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case mpr.inr.inl\n\u03b1 : Type\ninst : LE \u03b1\na b c : \u03b1\nx\u2080 x\u2081 x\u2082 : Prop\nthis1 : x\u2080 \u2192 x\u2081 \u2192 a \u2264 c\nthis2 : x\u2081 \u2192 x\u2082 \u2192 b \u2264 a\nthis3 : x\u2082 \u2192 x\u2080 \u2192 c \u2264 b\nleft_1 : c \u2264 b \u2192 \u00acb \u2264 a\nleft_2 : b \u2264 a \u2192 \u00aca \u2264 c\nright : a \u2264 c \u2192 \u00acc \u2264 b\nh : x\u2081 \u2227 x\u2082\n\u22a2 (x\u2080 \u2227 \u00acb \u2264 a) \u2227 x\u2081 \u2227 \u00acc \u2264 b \u2228 (x\u2081 \u2227 \u00acc \u2264 b) \u2227 x\u2082 \u2227 \u00aca \u2264 c \u2228 (x\u2082 \u2227 \u00aca \u2264 c) \u2227 x\u2080 \u2227 \u00acb \u2264 a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case mpr.inr.inr\n\u03b1 : Type\ninst : LE \u03b1\na b c : \u03b1\nx\u2080 x\u2081 x\u2082 : Prop\nthis1 : x\u2080 \u2192 x\u2081 \u2192 a \u2264 c\nthis2 : x\u2081 \u2192 x\u2082 \u2192 b \u2264 a\nthis3 : x\u2082 \u2192 x\u2080 \u2192 c \u2264 b\nleft_1 : c \u2264 b \u2192 \u00acb \u2264 a\nleft_2 : b \u2264 a \u2192 \u00aca \u2264 c\nright : a \u2264 c \u2192 \u00acc \u2264 b\nh_2 : x\u2082 \u2227 x\u2080\n\u22a2 (x\u2080 \u2227 \u00acb \u2264 a) \u2227 x\u2081 \u2227 \u00acc \u2264 b \u2228 (x\u2081 \u2227 \u00acc \u2264 b) \u2227 x\u2082 \u2227 \u00aca \u2264 c \u2228 (x\u2082 \u2227 \u00aca \u2264 c) \u2227 x\u2080 \u2227 \u00acb \u2264 a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100/safe] safe|constructors|global|Iff",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[100/safe] safe|cases|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-3": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[100/safe] safe|cases|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-4": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-5": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-6": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R3",
+      "target": "G9"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G7",
+      "target": "R-1"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R3",
+      "target": "G8"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "G8",
+      "target": "R-2"
+    },
+    {
+      "source": "G2",
+      "target": "R3"
+    },
+    {
+      "source": "R3",
+      "target": "G7"
+    },
+    {
+      "source": "R2",
+      "target": "G6"
+    },
+    {
+      "source": "G6",
+      "target": "R-6"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "R2",
+      "target": "G5"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G4",
+      "target": "R-4"
+    },
+    {
+      "source": "G9",
+      "target": "R-3"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G5",
+      "target": "R-5"
+    }
+  ]
+}
+}

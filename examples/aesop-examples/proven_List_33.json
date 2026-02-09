@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case cons\n\u03b1 : Type u_1\na : \u03b1\nhead\u271d : List \u03b1\ntail\u271d : List (List \u03b1)\ntail_ih\u271d : a \u2208 tail\u271d.flatten \u2194 \u2203 l, l \u2208 tail\u271d \u2227 a \u2208 l\n\u22a2 a \u2208 (head\u271d :: tail\u271d).flatten \u2194 \u2203 l, l \u2208 head\u271d :: tail\u271d \u2227 a \u2208 l\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\na : \u03b1\nhead : List \u03b1\ntail : List (List \u03b1)\ntail_ih : a \u2208 tail.flatten \u2194 \u2203 l, l \u2208 tail \u2227 a \u2208 l\n\u22a2 a \u2208 (head :: tail).flatten \u2194 \u2203 l, l \u2208 head :: tail \u2227 a \u2208 l\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G1",
+      "target": "R-1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    }
+  ]
+}
+}

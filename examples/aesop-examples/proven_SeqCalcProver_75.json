@@ -1,0 +1,3686 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03a6 : Type\ninst\u271d : DecidableEq \u03a6\nl r : List \u03a6\n\u0393\u271d \u0394\u271d \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof' l (n :: r) \u0393 \u0394\n\u22a2 Proof' l r \u0393 (\u2669n :: \u0394)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof' l (n :: r) \u0393 \u0394\n\u22a2 Proof' l r \u0393 (\u2669n :: \u0394)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?\u0393 (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G17": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u2669n :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G37": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G71": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u2669n :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G72": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G73": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G38": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669n :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G135": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u2669n :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G136": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u2669n :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G137": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.xs\u271d \u21ad ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G138": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.a.x\u271d :: \u2669n :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G139": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G140": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G141": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad \u2669n :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G19": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u22a5 :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G35": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G68": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u22a5 :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G69": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G70": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G36": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u22a5 :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G149": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u22a5 :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G150": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u22a5 :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G151": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.xs\u271d \u21ad ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G152": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.a.x\u271d :: \u22a5 :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G153": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G154": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G155": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad \u22a5 :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G22": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 ?a.\u03c8\u271d :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G201": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G202": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.\u03c6\u271d \u21d2 ?a.\u03c8\u271d :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G23": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d (?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G80": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.\u03c8\u271d :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G223": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u2669?a.a.n\u271d \u21d2 \u2669n :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G224": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G225": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669?a.a.n\u271d \u21d2 \u2669n :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G226": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u2669?a.a.n\u271d \u21d2 \u22a5 :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G227": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G228": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669?a.a.n\u271d \u21d2 \u22a5 :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G229": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u2669?a.a.n\u271d \u21d2 ?a.a.\u03c6\u271d \u21d2 ?a.a.\u03c8\u271d :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G230": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u2669?a.a.n\u271d :: ?a.a.\u0393\u271d) (?a.a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G231": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.\u03c8\u271d :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G232": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.a.\u0393\u271d (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G233": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u03c8\u271d :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d \u21ad ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G234": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.\u03c8\u271d :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d) ?a.a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G235": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.\u0394\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G79": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u2669?a.a.n\u271d \u21d2 ?a.\u03c8\u271d :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G221": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G222": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669?a.a.n\u271d \u21d2 ?a.\u03c8\u271d :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G96": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.\u03c8\u271d :: \u22a5 :: ?a.a.\u0393\u271d) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G147": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 \u2669n :: \u22a5 :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G194": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G195": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.\u03c6\u271d \u21d2 \u2669n :: \u22a5 :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G157": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 \u22a5 :: \u22a5 :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G192": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G193": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.\u03c6\u271d \u21d2 \u22a5 :: \u22a5 :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G162": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 ?a.a.\u03c6\u271d \u21d2 ?a.a.\u03c8\u271d :: \u22a5 :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G163": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u22a5 :: ?a.a.\u0393\u271d) (?a.a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G164": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.\u03c8\u271d :: \u22a5 :: ?a.a.\u0393\u271d) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G170": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.a.\u0393\u271d (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G171": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u03c8\u271d :: \u22a5 :: ?a.a.\u0393\u271d \u21ad ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G176": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.\u03c8\u271d :: \u22a5 :: ?a.a.\u0393\u271d) ?a.a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G177": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.\u0394\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G95": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 ?a.\u03c8\u271d :: \u22a5 :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G219": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G220": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.\u03c6\u271d \u21d2 ?a.\u03c8\u271d :: \u22a5 :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G112": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.\u03c8\u271d :: ?a.a.\u0393\u271d) (?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G109": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 ?a.\u03c8\u271d :: ?a.a.\u03c6\u271d \u21d2 ?a.a.\u03c8\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G110": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.\u03c8\u271d :: ?a.a.\u03c6\u271d \u21d2 ?a.a.\u03c8\u271d :: ?a.a.\u0393\u271d) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G111": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.a.\u0393\u271d (?a.a.\u03c6\u271d :: ?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G116": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad (?a.a.\u03c6\u271d \u21d2 ?a.a.\u03c8\u271d) \u21d2 ?a.\u03c8\u271d :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G117": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.\u03c6\u271d :: ?a.\u0393\u271d) (?a.a.\u03c8\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G120": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.a.\u0393\u271d (?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G121": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u0393\u271d \u21ad ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G124": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d ?a.a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G125": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.\u0394\u271d \u21ad ?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G24": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.\u03c8\u271d :: ?a.\u0393\u271d) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G81": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 \u2669n :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G144": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.\u03c6\u271d \u21d2 \u2669n :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G143": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G82": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d (?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G142": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u2669?a.a.n\u271d \u21d2 \u2669n :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G190": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G191": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669?a.a.n\u271d \u21d2 \u2669n :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G156": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 \u2669n :: \u22a5 :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G188": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G189": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.\u03c6\u271d \u21d2 \u2669n :: \u22a5 :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G160": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.a.\u0393\u271d (?a.a.\u03c6\u271d :: ?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G161": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.\u03c8\u271d :: ?a.a.\u0393\u271d) (?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G159": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 \u2669n :: ?a.a.\u03c6\u271d \u21d2 ?a.a.\u03c8\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G168": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad (?a.a.\u03c6\u271d \u21d2 ?a.a.\u03c8\u271d) \u21d2 \u2669n :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G169": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.\u03c6\u271d :: ?a.\u0393\u271d) (?a.a.\u03c8\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G174": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.a.\u0393\u271d (?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G175": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u0393\u271d \u21ad ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G180": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d ?a.a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G181": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.\u0394\u271d \u21ad ?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G97": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 \u22a5 :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G145": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G146": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.\u03c6\u271d \u21d2 \u22a5 :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G98": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d (?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G148": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad \u2669?a.a.n\u271d \u21d2 \u22a5 :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G186": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G187": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669?a.a.n\u271d \u21d2 \u22a5 :: \u2669?a.a.n\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G158": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 \u22a5 :: \u22a5 :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G184": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G185": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.\u03c6\u271d \u21d2 \u22a5 :: \u22a5 :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G165": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 \u22a5 :: ?a.a.\u03c6\u271d \u21d2 ?a.a.\u03c8\u271d :: ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G166": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.a.\u0393\u271d (?a.a.\u03c6\u271d :: ?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G167": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.\u03c8\u271d :: ?a.a.\u0393\u271d) (?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G172": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad (?a.a.\u03c6\u271d \u21d2 ?a.a.\u03c8\u271d) \u21d2 \u22a5 :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G173": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.\u03c6\u271d :: ?a.\u0393\u271d) (?a.a.\u03c8\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G178": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.a.\u0393\u271d (?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G179": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u0393\u271d \u21ad ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G182": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d ?a.a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G183": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.\u0394\u271d \u21ad ?a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G113": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u03c6\u271d \u21d2 ?a.a.\u03c6\u271d \u21d2 ?a.a.\u03c8\u271d :: ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G114": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d (?a.a.\u03c6\u271d :: \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G115": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.\u03c8\u271d :: ?a.\u0393\u271d) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G118": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.a.\u0393\u271d (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G119": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u03c8\u271d :: ?a.\u0393\u271d \u21ad ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G122": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.\u03c8\u271d :: ?a.\u0393\u271d) ?a.a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G123": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.\u0394\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G27": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G28": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?\u0393 \u21ad ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G32": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u0394\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G31": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?\u0393 ?a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?\u0393\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G14": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G39": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G40": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G43": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) ?a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G44": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u0394\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G16": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?\u0393\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G77": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.a.xs\u271d ++ ?a.a.v\u271d :: ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G78": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.v\u271d :: ?a.a.xs\u271d ++ ?a.a.ys\u271d) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G85": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?\u0393\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G86": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?\u0393 (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G87": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.a.x\u271d :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G88": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.x\u271d :: ?a.a.ys\u271d) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G89": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G90": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.a.x\u271d :: ?a.a.y\u271d :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G91": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.y\u271d :: ?a.a.x\u271d :: ?a.a.ys\u271d) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G92": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G93": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G94": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad ?\u0393\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G15": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G52": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?\u0393\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G53": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G54": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) ?\u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G11": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ \u2669n :: List.map (fun x => \u2669x) r \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G12": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ \u2669n :: List.map (fun x => \u2669x) r \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G67": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u2669n :: \u0394 ++ List.map (fun x => \u2669x) r \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G236": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ List.map (fun x => \u2669x) r \u21ad \u0394 ++ List.map (fun x => \u2669x) r\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G237": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r) \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G238": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G74": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ \u2669n :: List.map (fun x => \u2669x) r \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G75": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ \u2669n :: List.map (fun x => \u2669x) r \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G76": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G13": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G62": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ \u2669n :: List.map (fun x => \u2669x) r \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G64": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.xs\u271d \u21ad \u0394 ++ List.map (fun x => \u2669x) r\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G63": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ \u2669n :: List.map (fun x => \u2669x) r \u21ad \u2669n :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G65": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G66": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G18": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ \u2669n :: List.map (fun x => \u2669x) r \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G33": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ \u2669n :: List.map (fun x => \u2669x) r \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G126": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u2669n :: \u0394 ++ List.map (fun x => \u2669x) r \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G132": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ \u2669n :: List.map (fun x => \u2669x) r \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G133": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ \u2669n :: List.map (fun x => \u2669x) r \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G134": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G34": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G127": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ \u2669n :: List.map (fun x => \u2669x) r \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G128": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0394 ++ \u2669n :: List.map (fun x => \u2669x) r \u21ad \u2669n :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G129": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.xs\u271d \u21ad \u0394 ++ List.map (fun x => \u2669x) r\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G130": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G131": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G20": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u03c6\u271d \u21d2 ?a.\u03c8\u271d :: ?a.\u0394\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G199": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u03c6\u271d \u21d2 ?a.\u03c8\u271d :: ?a.\u0394\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G200": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G21": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.\u03c6\u271d :: (\u0393 ++ List.map (fun x => \u2669x) l)) (?a.\u03c8\u271d :: ?a.\u0394\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G196": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u2669?a.a.n\u271d \u21d2 \u2669?a.a.n\u271d :: ?a.\u0394\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G197": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u2669?a.a.n\u271d \u21d2 \u2669?a.a.n\u271d :: ?a.\u0394\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G198": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G203": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u22a5 \u21d2 ?a.\u03c8\u271d :: ?a.\u0394\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G204": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u22a5 \u21d2 ?a.\u03c8\u271d :: ?a.\u0394\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G205": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G208": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.\u03c8\u271d :: (\u0393 ++ List.map (fun x => \u2669x) l)) (?a.\u03c8\u271d :: ?a.\u0394\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G206": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 (?a.a.\u03c6\u271d \u21d2 ?a.a.\u03c8\u271d) \u21d2 ?a.\u03c8\u271d :: ?a.\u0394\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G207": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) (?a.a.\u03c6\u271d :: ?a.\u03c8\u271d :: ?a.\u0394\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G209": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u03c6\u271d \u21d2 ?a.a.\u03c6\u271d \u21d2 ?a.a.\u03c8\u271d :: ?a.\u0394\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G210": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.a.\u03c6\u271d :: ?a.\u03c6\u271d :: (\u0393 ++ List.map (fun x => \u2669x) l)) (?a.a.\u03c8\u271d :: ?a.\u0394\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G211": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.a.\u0393\u271d (?a.\u03c8\u271d :: ?a.\u0394\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G212": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u03c6\u271d :: (\u0393 ++ List.map (fun x => \u2669x) l) \u21ad ?a.a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G213": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (?a.\u03c6\u271d :: (\u0393 ++ List.map (fun x => \u2669x) l)) ?a.a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G214": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.\u0394\u271d \u21ad ?a.\u03c8\u271d :: ?a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G25": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d ?\u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G26": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G29": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) ?a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G30": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u0394\u271d \u21ad ?\u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?\u0394 \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G41": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G42": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G45": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) ?a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G46": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u0394\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u2669n :: ?a.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G58": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d (\u2669n :: ?a.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G59": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G60": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) ?a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G61": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u0394\u271d \u21ad \u2669n :: ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.xs\u271d \u21ad \u0394 ++ List.map (fun x => \u2669x) r\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G55": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G215": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof ?a.\u0393\u271d (\u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G216": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 \u0393 ++ List.map (fun x => \u2669x) l \u21ad ?a.\u0393\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G217": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) ?a.\u0394\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G218": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.\u0394\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G56": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G57": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad \u0394 ++ List.map (fun x => \u2669x) r\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?\u0394 \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G83": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.v\u271d :: ?a.a.xs\u271d ++ ?a.a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G84": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) (?a.a.xs\u271d ++ ?a.a.v\u271d :: ?a.a.ys\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G99": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G100": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G101": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.x\u271d :: ?a.a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G102": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) (?a.a.x\u271d :: ?a.a.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G103": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G104": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.y\u271d :: ?a.a.x\u271d :: ?a.a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G105": {
+      "label": " case a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 Proof (\u0393 ++ List.map (fun x => \u2669x) l) (?a.a.x\u271d :: ?a.a.y\u271d :: ?a.a.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G106": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.xs\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G107": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?\u0394 \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G108": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad ?a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G10": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G47": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?\u0394 \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G48": {
+      "label": " case a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?\u0394 \u21ad \u2669n :: ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G49": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.xs\u271d \u21ad \u0394 ++ List.map (fun x => \u2669x) r\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G50": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.ys\u271d \u21ad ?a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G51": {
+      "label": " case a.a.a\n\u03a6 : Type\ninst : DecidableEq \u03a6\nl r : List \u03a6\n\u0393_1 \u0394_1 \u0393 : List (Form \u03a6)\nn : \u03a6\n\u0394 : List (Form \u03a6)\nh : Cal l (n :: r) \u0393 \u0394\nih : Proof (\u0393 ++ List.map (fun x => \u2669x) l) (\u0394 ++ \u2669n :: List.map (fun x => \u2669x) r)\n\u22a2 ?a.a.ys\u271d \u21ad \u2669n :: (\u0394 ++ List.map (fun x => \u2669x) r)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R10": {
+      "label": "[90.0000%] safe|apply|global|Proof.basic",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R21": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R41": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R42": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R72": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R73": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R74": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R75": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R12": {
+      "label": "[90.0000%] safe|apply|global|Proof.fls_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R20": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R39": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R40": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R81": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R82": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R83": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R84": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R14": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R108": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R46": {
+      "label": "[90.0000%] safe|apply|global|Proof.basic",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R119": {
+      "label": "[90.0000%] safe|apply|global|Proof.basic",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R120": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R121": {
+      "label": "[90.0000%] safe|apply|global|Proof.fls_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R122": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R123": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R124": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R125": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R118": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R53": {
+      "label": "[90.0000%] safe|apply|global|Proof.fls_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R79": {
+      "label": "[90.0000%] safe|apply|global|Proof.basic",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R104": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R86": {
+      "label": "[90.0000%] safe|apply|global|Proof.fls_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R103": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R89": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R92": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R95": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R117": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R59": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R61": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R63": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R65": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R47": {
+      "label": "[90.0000%] safe|apply|global|Proof.basic",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R77": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R76": {
+      "label": "[90.0000%] safe|apply|global|Proof.basic",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R102": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R85": {
+      "label": "[90.0000%] safe|apply|global|Proof.fls_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R101": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R88": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R91": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R94": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R97": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R54": {
+      "label": "[90.0000%] safe|apply|global|Proof.fls_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R78": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R80": {
+      "label": "[90.0000%] safe|apply|global|Proof.basic",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R100": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R87": {
+      "label": "[90.0000%] safe|apply|global|Proof.fls_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R99": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R90": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R93": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R96": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R98": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R60": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R62": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R64": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R16": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R18": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R8": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R22": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R24": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R9": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R45": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.shift",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R49": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R50": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R51": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R52": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R29": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R30": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R7": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R38": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.shift",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R126": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R127": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R128": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R43": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R44": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R35": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R36": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R37": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R11": {
+      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R19": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R66": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.shift",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R70": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R71": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R67": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R68": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R69": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R13": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R107": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R105": {
+      "label": "[90.0000%] safe|apply|global|Proof.basic",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R106": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R109": {
+      "label": "[90.0000%] safe|apply|global|Proof.fls_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R110": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R111": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R112": {
+      "label": "[50.0000%] unsafe|apply|global|Proof.imp_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R113": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R114": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R15": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R17": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R23": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R25": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R33": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R34": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R31": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R115": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_l",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R116": {
+      "label": "[20.0000%] unsafe|apply|global|Proof.per_r",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R32": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R48": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.shift",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R55": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R56": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R57": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R58": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R26": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R27": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R28": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R7",
+      "target": "G12"
+    },
+    {
+      "source": "G16",
+      "target": "R45"
+    },
+    {
+      "source": "R11",
+      "target": "G18"
+    },
+    {
+      "source": "R17",
+      "target": "G29"
+    },
+    {
+      "source": "R98",
+      "target": "G182"
+    },
+    {
+      "source": "R17",
+      "target": "G30"
+    },
+    {
+      "source": "G36",
+      "target": "R82"
+    },
+    {
+      "source": "R53",
+      "target": "G96"
+    },
+    {
+      "source": "R27",
+      "target": "G49"
+    },
+    {
+      "source": "R21",
+      "target": "G37"
+    },
+    {
+      "source": "G35",
+      "target": "R39"
+    },
+    {
+      "source": "G17",
+      "target": "R21"
+    },
+    {
+      "source": "G98",
+      "target": "R96"
+    },
+    {
+      "source": "R38",
+      "target": "G67"
+    },
+    {
+      "source": "G7",
+      "target": "R34"
+    },
+    {
+      "source": "G3",
+      "target": "R9"
+    },
+    {
+      "source": "G23",
+      "target": "R63"
+    },
+    {
+      "source": "G142",
+      "target": "R102"
+    },
+    {
+      "source": "R118",
+      "target": "G222"
+    },
+    {
+      "source": "R110",
+      "target": "G204"
+    },
+    {
+      "source": "G79",
+      "target": "R118"
+    },
+    {
+      "source": "R54",
+      "target": "G97"
+    },
+    {
+      "source": "R99",
+      "target": "G184"
+    },
+    {
+      "source": "R121",
+      "target": "G226"
+    },
+    {
+      "source": "R103",
+      "target": "G193"
+    },
+    {
+      "source": "R88",
+      "target": "G159"
+    },
+    {
+      "source": "R59",
+      "target": "G112"
+    },
+    {
+      "source": "G37",
+      "target": "R41"
+    },
+    {
+      "source": "R122",
+      "target": "G227"
+    },
+    {
+      "source": "G23",
+      "target": "R59"
+    },
+    {
+      "source": "R22",
+      "target": "G40"
+    },
+    {
+      "source": "G38",
+      "target": "R74"
+    },
+    {
+      "source": "G14",
+      "target": "R24"
+    },
+    {
+      "source": "G82",
+      "target": "R91"
+    },
+    {
+      "source": "R24",
+      "target": "G44"
+    },
+    {
+      "source": "G4",
+      "target": "R13"
+    },
+    {
+      "source": "R60",
+      "target": "G115"
+    },
+    {
+      "source": "R61",
+      "target": "G116"
+    },
+    {
+      "source": "R90",
+      "target": "G167"
+    },
+    {
+      "source": "G15",
+      "target": "R29"
+    },
+    {
+      "source": "R83",
+      "target": "G153"
+    },
+    {
+      "source": "R82",
+      "target": "G150"
+    },
+    {
+      "source": "G80",
+      "target": "R119"
+    },
+    {
+      "source": "R77",
+      "target": "G143"
+    },
+    {
+      "source": "R114",
+      "target": "G214"
+    },
+    {
+      "source": "G34",
+      "target": "R69"
+    },
+    {
+      "source": "G36",
+      "target": "R84"
+    },
+    {
+      "source": "G15",
+      "target": "R30"
+    },
+    {
+      "source": "G2",
+      "target": "R18"
+    },
+    {
+      "source": "R116",
+      "target": "G218"
+    },
+    {
+      "source": "R112",
+      "target": "G210"
+    },
+    {
+      "source": "R82",
+      "target": "G151"
+    },
+    {
+      "source": "R115",
+      "target": "G216"
+    },
+    {
+      "source": "R58",
+      "target": "G108"
+    },
+    {
+      "source": "R13",
+      "target": "G21"
+    },
+    {
+      "source": "R97",
+      "target": "G181"
+    },
+    {
+      "source": "G9",
+      "target": "R48"
+    },
+    {
+      "source": "R112",
+      "target": "G209"
+    },
+    {
+      "source": "R28",
+      "target": "G51"
+    },
+    {
+      "source": "R105",
+      "target": "G196"
+    },
+    {
+      "source": "R111",
+      "target": "G206"
+    },
+    {
+      "source": "R103",
+      "target": "G192"
+    },
+    {
+      "source": "R65",
+      "target": "G125"
+    },
+    {
+      "source": "R64",
+      "target": "G123"
+    },
+    {
+      "source": "R123",
+      "target": "G230"
+    },
+    {
+      "source": "G226",
+      "target": "R122"
+    },
+    {
+      "source": "G80",
+      "target": "R123"
+    },
+    {
+      "source": "R32",
+      "target": "G56"
+    },
+    {
+      "source": "G9",
+      "target": "R57"
+    },
+    {
+      "source": "R56",
+      "target": "G101"
+    },
+    {
+      "source": "R51",
+      "target": "G90"
+    },
+    {
+      "source": "R60",
+      "target": "G113"
+    },
+    {
+      "source": "R120",
+      "target": "G224"
+    },
+    {
+      "source": "R110",
+      "target": "G205"
+    },
+    {
+      "source": "R97",
+      "target": "G180"
+    },
+    {
+      "source": "G13",
+      "target": "R37"
+    },
+    {
+      "source": "G4",
+      "target": "R6"
+    },
+    {
+      "source": "G12",
+      "target": "R43"
+    },
+    {
+      "source": "R76",
+      "target": "G142"
+    },
+    {
+      "source": "R16",
+      "target": "G27"
+    },
+    {
+      "source": "R9",
+      "target": "G15"
+    },
+    {
+      "source": "G80",
+      "target": "R121"
+    },
+    {
+      "source": "R69",
+      "target": "G131"
+    },
+    {
+      "source": "G38",
+      "target": "R75"
+    },
+    {
+      "source": "G97",
+      "target": "R78"
+    },
+    {
+      "source": "R55",
+      "target": "G100"
+    },
+    {
+      "source": "R95",
+      "target": "G177"
+    },
+    {
+      "source": "R52",
+      "target": "G93"
+    },
+    {
+      "source": "G18",
+      "target": "R19"
+    },
+    {
+      "source": "R116",
+      "target": "G217"
+    },
+    {
+      "source": "R68",
+      "target": "G129"
+    },
+    {
+      "source": "R109",
+      "target": "G203"
+    },
+    {
+      "source": "R73",
+      "target": "G137"
+    },
+    {
+      "source": "R118",
+      "target": "G221"
+    },
+    {
+      "source": "R22",
+      "target": "G39"
+    },
+    {
+      "source": "R45",
+      "target": "G77"
+    },
+    {
+      "source": "G2",
+      "target": "R10"
+    },
+    {
+      "source": "R65",
+      "target": "G124"
+    },
+    {
+      "source": "R63",
+      "target": "G121"
+    },
+    {
+      "source": "R21",
+      "target": "G38"
+    },
+    {
+      "source": "R23",
+      "target": "G41"
+    },
+    {
+      "source": "R2",
+      "target": "G5"
+    },
+    {
+      "source": "G10",
+      "target": "R27"
+    },
+    {
+      "source": "R15",
+      "target": "G26"
+    },
+    {
+      "source": "G35",
+      "target": "R40"
+    },
+    {
+      "source": "G16",
+      "target": "R51"
+    },
+    {
+      "source": "R128",
+      "target": "G237"
+    },
+    {
+      "source": "G4",
+      "target": "R17"
+    },
+    {
+      "source": "G96",
+      "target": "R92"
+    },
+    {
+      "source": "G81",
+      "target": "R77"
+    },
+    {
+      "source": "G19",
+      "target": "R20"
+    },
+    {
+      "source": "R92",
+      "target": "G170"
+    },
+    {
+      "source": "R83",
+      "target": "G152"
+    },
+    {
+      "source": "G82",
+      "target": "R88"
+    },
+    {
+      "source": "R102",
+      "target": "G190"
+    },
+    {
+      "source": "G82",
+      "target": "R76"
+    },
+    {
+      "source": "G21",
+      "target": "R113"
+    },
+    {
+      "source": "G9",
+      "target": "R56"
+    },
+    {
+      "source": "R89",
+      "target": "G163"
+    },
+    {
+      "source": "R19",
+      "target": "G33"
+    },
+    {
+      "source": "R5",
+      "target": "G9"
+    },
+    {
+      "source": "G2",
+      "target": "R12"
+    },
+    {
+      "source": "R18",
+      "target": "G31"
+    },
+    {
+      "source": "R90",
+      "target": "G166"
+    },
+    {
+      "source": "G1",
+      "target": "R2"
+    },
+    {
+      "source": "G7",
+      "target": "R33"
+    },
+    {
+      "source": "R26",
+      "target": "G47"
+    },
+    {
+      "source": "G82",
+      "target": "R97"
+    },
+    {
+      "source": "R37",
+      "target": "G66"
+    },
+    {
+      "source": "G8",
+      "target": "R31"
+    },
+    {
+      "source": "R14",
+      "target": "G24"
+    },
+    {
+      "source": "G203",
+      "target": "R110"
+    },
+    {
+      "source": "G24",
+      "target": "R54"
+    },
+    {
+      "source": "R54",
+      "target": "G98"
+    },
+    {
+      "source": "R74",
+      "target": "G139"
+    },
+    {
+      "source": "R49",
+      "target": "G86"
+    },
+    {
+      "source": "R5",
+      "target": "G10"
+    },
+    {
+      "source": "R59",
+      "target": "G111"
+    },
+    {
+      "source": "G98",
+      "target": "R93"
+    },
+    {
+      "source": "R8",
+      "target": "G14"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G96",
+      "target": "R79"
+    },
+    {
+      "source": "G23",
+      "target": "R61"
+    },
+    {
+      "source": "G10",
+      "target": "R26"
+    },
+    {
+      "source": "R24",
+      "target": "G43"
+    },
+    {
+      "source": "G4",
+      "target": "R15"
+    },
+    {
+      "source": "G80",
+      "target": "R125"
+    },
+    {
+      "source": "R123",
+      "target": "G229"
+    },
+    {
+      "source": "G12",
+      "target": "R38"
+    },
+    {
+      "source": "G21",
+      "target": "R109"
+    },
+    {
+      "source": "G24",
+      "target": "R47"
+    },
+    {
+      "source": "R104",
+      "target": "G194"
+    },
+    {
+      "source": "R47",
+      "target": "G82"
+    },
+    {
+      "source": "R87",
+      "target": "G158"
+    },
+    {
+      "source": "G9",
+      "target": "R58"
+    },
+    {
+      "source": "R115",
+      "target": "G215"
+    },
+    {
+      "source": "G157",
+      "target": "R103"
+    },
+    {
+      "source": "R69",
+      "target": "G130"
+    },
+    {
+      "source": "R89",
+      "target": "G162"
+    },
+    {
+      "source": "R42",
+      "target": "G72"
+    },
+    {
+      "source": "R114",
+      "target": "G213"
+    },
+    {
+      "source": "R55",
+      "target": "G99"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R67",
+      "target": "G127"
+    },
+    {
+      "source": "R122",
+      "target": "G228"
+    },
+    {
+      "source": "R104",
+      "target": "G195"
+    },
+    {
+      "source": "R89",
+      "target": "G164"
+    },
+    {
+      "source": "G8",
+      "target": "R32"
+    },
+    {
+      "source": "G34",
+      "target": "R68"
+    },
+    {
+      "source": "G11",
+      "target": "R7"
+    },
+    {
+      "source": "R47",
+      "target": "G81"
+    },
+    {
+      "source": "R43",
+      "target": "G74"
+    },
+    {
+      "source": "R25",
+      "target": "G45"
+    },
+    {
+      "source": "R79",
+      "target": "G147"
+    },
+    {
+      "source": "G13",
+      "target": "R35"
+    },
+    {
+      "source": "R20",
+      "target": "G36"
+    },
+    {
+      "source": "R107",
+      "target": "G199"
+    },
+    {
+      "source": "G22",
+      "target": "R108"
+    },
+    {
+      "source": "G5",
+      "target": "R3"
+    },
+    {
+      "source": "R100",
+      "target": "G186"
+    },
+    {
+      "source": "R99",
+      "target": "G185"
+    },
+    {
+      "source": "R106",
+      "target": "G197"
+    },
+    {
+      "source": "R84",
+      "target": "G155"
+    },
+    {
+      "source": "G67",
+      "target": "R127"
+    },
+    {
+      "source": "G20",
+      "target": "R107"
+    },
+    {
+      "source": "G12",
+      "target": "R44"
+    },
+    {
+      "source": "R34",
+      "target": "G60"
+    },
+    {
+      "source": "R40",
+      "target": "G69"
+    },
+    {
+      "source": "R46",
+      "target": "G80"
+    },
+    {
+      "source": "G16",
+      "target": "R52"
+    },
+    {
+      "source": "G36",
+      "target": "R81"
+    },
+    {
+      "source": "G82",
+      "target": "R94"
+    },
+    {
+      "source": "G24",
+      "target": "R60"
+    },
+    {
+      "source": "R25",
+      "target": "G46"
+    },
+    {
+      "source": "R124",
+      "target": "G232"
+    },
+    {
+      "source": "R63",
+      "target": "G120"
+    },
+    {
+      "source": "R4",
+      "target": "G8"
+    },
+    {
+      "source": "R50",
+      "target": "G89"
+    },
+    {
+      "source": "R77",
+      "target": "G144"
+    },
+    {
+      "source": "R85",
+      "target": "G156"
+    },
+    {
+      "source": "R98",
+      "target": "G183"
+    },
+    {
+      "source": "G16",
+      "target": "R49"
+    },
+    {
+      "source": "G82",
+      "target": "R85"
+    },
+    {
+      "source": "R72",
+      "target": "G135"
+    },
+    {
+      "source": "R80",
+      "target": "G148"
+    },
+    {
+      "source": "R102",
+      "target": "G191"
+    },
+    {
+      "source": "R48",
+      "target": "G83"
+    },
+    {
+      "source": "R39",
+      "target": "G68"
+    },
+    {
+      "source": "G3",
+      "target": "R8"
+    },
+    {
+      "source": "G6",
+      "target": "R23"
+    },
+    {
+      "source": "R46",
+      "target": "G79"
+    },
+    {
+      "source": "R119",
+      "target": "G223"
+    },
+    {
+      "source": "R15",
+      "target": "G25"
+    },
+    {
+      "source": "R84",
+      "target": "G154"
+    },
+    {
+      "source": "G33",
+      "target": "R70"
+    },
+    {
+      "source": "R96",
+      "target": "G179"
+    },
+    {
+      "source": "R45",
+      "target": "G78"
+    },
+    {
+      "source": "R62",
+      "target": "G118"
+    },
+    {
+      "source": "G13",
+      "target": "R36"
+    },
+    {
+      "source": "R53",
+      "target": "G95"
+    },
+    {
+      "source": "G5",
+      "target": "R5"
+    },
+    {
+      "source": "R44",
+      "target": "G76"
+    },
+    {
+      "source": "R57",
+      "target": "G104"
+    },
+    {
+      "source": "R31",
+      "target": "G55"
+    },
+    {
+      "source": "G147",
+      "target": "R104"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R41",
+      "target": "G71"
+    },
+    {
+      "source": "G148",
+      "target": "R100"
+    },
+    {
+      "source": "R6",
+      "target": "G11"
+    },
+    {
+      "source": "G33",
+      "target": "R66"
+    },
+    {
+      "source": "G96",
+      "target": "R95"
+    },
+    {
+      "source": "R90",
+      "target": "G165"
+    },
+    {
+      "source": "R78",
+      "target": "G145"
+    },
+    {
+      "source": "R56",
+      "target": "G103"
+    },
+    {
+      "source": "R32",
+      "target": "G57"
+    },
+    {
+      "source": "R125",
+      "target": "G235"
+    },
+    {
+      "source": "R73",
+      "target": "G136"
+    },
+    {
+      "source": "R108",
+      "target": "G202"
+    },
+    {
+      "source": "R71",
+      "target": "G133"
+    },
+    {
+      "source": "R51",
+      "target": "G92"
+    },
+    {
+      "source": "R113",
+      "target": "G212"
+    },
+    {
+      "source": "R81",
+      "target": "G149"
+    },
+    {
+      "source": "R74",
+      "target": "G138"
+    },
+    {
+      "source": "R35",
+      "target": "G62"
+    },
+    {
+      "source": "R125",
+      "target": "G234"
+    },
+    {
+      "source": "R75",
+      "target": "G141"
+    },
+    {
+      "source": "R30",
+      "target": "G53"
+    },
+    {
+      "source": "G96",
+      "target": "R86"
+    },
+    {
+      "source": "R107",
+      "target": "G200"
+    },
+    {
+      "source": "G38",
+      "target": "R73"
+    },
+    {
+      "source": "R49",
+      "target": "G85"
+    },
+    {
+      "source": "R44",
+      "target": "G75"
+    },
+    {
+      "source": "R36",
+      "target": "G63"
+    },
+    {
+      "source": "R13",
+      "target": "G20"
+    },
+    {
+      "source": "R95",
+      "target": "G176"
+    },
+    {
+      "source": "R50",
+      "target": "G87"
+    },
+    {
+      "source": "G21",
+      "target": "R105"
+    },
+    {
+      "source": "G98",
+      "target": "R98"
+    },
+    {
+      "source": "R117",
+      "target": "G219"
+    },
+    {
+      "source": "G80",
+      "target": "R124"
+    },
+    {
+      "source": "R78",
+      "target": "G146"
+    },
+    {
+      "source": "R29",
+      "target": "G52"
+    },
+    {
+      "source": "G196",
+      "target": "R106"
+    },
+    {
+      "source": "R106",
+      "target": "G198"
+    },
+    {
+      "source": "G5",
+      "target": "R4"
+    },
+    {
+      "source": "R101",
+      "target": "G189"
+    },
+    {
+      "source": "R111",
+      "target": "G208"
+    },
+    {
+      "source": "R14",
+      "target": "G23"
+    },
+    {
+      "source": "R101",
+      "target": "G188"
+    },
+    {
+      "source": "G23",
+      "target": "R53"
+    },
+    {
+      "source": "R117",
+      "target": "G220"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G98",
+      "target": "R90"
+    },
+    {
+      "source": "R88",
+      "target": "G161"
+    },
+    {
+      "source": "G24",
+      "target": "R64"
+    },
+    {
+      "source": "R34",
+      "target": "G61"
+    },
+    {
+      "source": "R128",
+      "target": "G238"
+    },
+    {
+      "source": "R27",
+      "target": "G48"
+    },
+    {
+      "source": "R64",
+      "target": "G122"
+    },
+    {
+      "source": "R86",
+      "target": "G157"
+    },
+    {
+      "source": "R16",
+      "target": "G28"
+    },
+    {
+      "source": "R100",
+      "target": "G187"
+    },
+    {
+      "source": "R57",
+      "target": "G106"
+    },
+    {
+      "source": "R33",
+      "target": "G58"
+    },
+    {
+      "source": "R124",
+      "target": "G233"
+    },
+    {
+      "source": "R12",
+      "target": "G19"
+    },
+    {
+      "source": "G23",
+      "target": "R46"
+    },
+    {
+      "source": "R75",
+      "target": "G140"
+    },
+    {
+      "source": "R3",
+      "target": "G6"
+    },
+    {
+      "source": "R94",
+      "target": "G175"
+    },
+    {
+      "source": "G14",
+      "target": "R22"
+    },
+    {
+      "source": "G16",
+      "target": "R50"
+    },
+    {
+      "source": "R96",
+      "target": "G178"
+    },
+    {
+      "source": "G34",
+      "target": "R67"
+    },
+    {
+      "source": "G2",
+      "target": "R16"
+    },
+    {
+      "source": "R20",
+      "target": "G35"
+    },
+    {
+      "source": "R108",
+      "target": "G201"
+    },
+    {
+      "source": "R59",
+      "target": "G109"
+    },
+    {
+      "source": "R57",
+      "target": "G105"
+    },
+    {
+      "source": "G223",
+      "target": "R120"
+    },
+    {
+      "source": "R113",
+      "target": "G211"
+    },
+    {
+      "source": "G33",
+      "target": "R71"
+    },
+    {
+      "source": "G37",
+      "target": "R42"
+    },
+    {
+      "source": "R91",
+      "target": "G169"
+    },
+    {
+      "source": "R28",
+      "target": "G50"
+    },
+    {
+      "source": "R52",
+      "target": "G94"
+    },
+    {
+      "source": "G55",
+      "target": "R116"
+    },
+    {
+      "source": "R9",
+      "target": "G16"
+    },
+    {
+      "source": "R30",
+      "target": "G54"
+    },
+    {
+      "source": "G2",
+      "target": "R14"
+    },
+    {
+      "source": "R37",
+      "target": "G65"
+    },
+    {
+      "source": "R93",
+      "target": "G172"
+    },
+    {
+      "source": "G21",
+      "target": "R114"
+    },
+    {
+      "source": "G96",
+      "target": "R89"
+    },
+    {
+      "source": "R50",
+      "target": "G88"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R71",
+      "target": "G134"
+    },
+    {
+      "source": "R68",
+      "target": "G128"
+    },
+    {
+      "source": "R61",
+      "target": "G117"
+    },
+    {
+      "source": "G21",
+      "target": "R112"
+    },
+    {
+      "source": "G67",
+      "target": "R126"
+    },
+    {
+      "source": "G24",
+      "target": "R62"
+    },
+    {
+      "source": "R58",
+      "target": "G107"
+    },
+    {
+      "source": "R56",
+      "target": "G102"
+    },
+    {
+      "source": "R14",
+      "target": "G22"
+    },
+    {
+      "source": "G156",
+      "target": "R101"
+    },
+    {
+      "source": "G9",
+      "target": "R55"
+    },
+    {
+      "source": "G95",
+      "target": "R117"
+    },
+    {
+      "source": "R88",
+      "target": "G160"
+    },
+    {
+      "source": "G38",
+      "target": "R72"
+    },
+    {
+      "source": "R59",
+      "target": "G110"
+    },
+    {
+      "source": "G23",
+      "target": "R65"
+    },
+    {
+      "source": "R123",
+      "target": "G231"
+    },
+    {
+      "source": "G4",
+      "target": "R11"
+    },
+    {
+      "source": "G98",
+      "target": "R87"
+    },
+    {
+      "source": "R93",
+      "target": "G173"
+    },
+    {
+      "source": "R40",
+      "target": "G70"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "R23",
+      "target": "G42"
+    },
+    {
+      "source": "G6",
+      "target": "R25"
+    },
+    {
+      "source": "R19",
+      "target": "G34"
+    },
+    {
+      "source": "R111",
+      "target": "G207"
+    },
+    {
+      "source": "R94",
+      "target": "G174"
+    },
+    {
+      "source": "R36",
+      "target": "G64"
+    },
+    {
+      "source": "G10",
+      "target": "R28"
+    },
+    {
+      "source": "R120",
+      "target": "G225"
+    },
+    {
+      "source": "G67",
+      "target": "R128"
+    },
+    {
+      "source": "R91",
+      "target": "G168"
+    },
+    {
+      "source": "G21",
+      "target": "R111"
+    },
+    {
+      "source": "R51",
+      "target": "G91"
+    },
+    {
+      "source": "R33",
+      "target": "G59"
+    },
+    {
+      "source": "R70",
+      "target": "G132"
+    },
+    {
+      "source": "G36",
+      "target": "R83"
+    },
+    {
+      "source": "R66",
+      "target": "G126"
+    },
+    {
+      "source": "R62",
+      "target": "G119"
+    },
+    {
+      "source": "G158",
+      "target": "R99"
+    },
+    {
+      "source": "R127",
+      "target": "G236"
+    },
+    {
+      "source": "R18",
+      "target": "G32"
+    },
+    {
+      "source": "R7",
+      "target": "G13"
+    },
+    {
+      "source": "G55",
+      "target": "R115"
+    },
+    {
+      "source": "R10",
+      "target": "G17"
+    },
+    {
+      "source": "R48",
+      "target": "G84"
+    },
+    {
+      "source": "R42",
+      "target": "G73"
+    },
+    {
+      "source": "R92",
+      "target": "G171"
+    },
+    {
+      "source": "G98",
+      "target": "R80"
+    },
+    {
+      "source": "R60",
+      "target": "G114"
+    }
+  ]
+}
+}

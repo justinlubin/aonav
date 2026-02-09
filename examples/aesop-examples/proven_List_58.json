@@ -1,0 +1,316 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type u_1\nl : List \u03b1\n\u22a2 l.length = 3 \u2194 \u2203 a b c, l = [a, b, c]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nl : List \u03b1\n\u22a2 l.length = 3 \u2194 \u2203 a b c, l = [a, b, c]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case mp\n\u03b1 : Type u_1\nl : List \u03b1\n\u22a2 l.length = 3 \u2192 \u2203 a b c, l = [a, b, c]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case mp.nil\n\u03b1 : Type u_1\na : [].length = 3\n\u22a2 \u2203 a b c, [] = [a, b, c]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case mp.cons\n\u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\na : (head :: tail).length = 3\n\u22a2 \u2203 a b c, head :: tail = [a, b, c]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case mp.cons.nil\n\u03b1 : Type u_1\nhead : \u03b1\na : [].length = 2\n\u22a2 \u2203 x x_1, [] = [x, x_1]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case mp.cons.cons\n\u03b1 : Type u_1\nhead head_1 : \u03b1\ntail_1 : List \u03b1\na : (head_1 :: tail_1).length = 2\n\u22a2 \u2203 x x_1, head_1 :: tail_1 = [x, x_1]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G10": {
+      "label": " case mp.cons.cons.nil\n\u03b1 : Type u_1\nhead head_1 : \u03b1\na : [].length = 1\n\u22a2 \u2203 x, [] = [x]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G11": {
+      "label": " case mp.cons.cons.cons\n\u03b1 : Type u_1\nhead head_1 head_2 : \u03b1\ntail : List \u03b1\na : (head_2 :: tail).length = 1\n\u22a2 \u2203 x, head_2 :: tail = [x]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G12": {
+      "label": " case mp.cons.cons.h\n\u03b1 : Type u_1\nhead head_1 : \u03b1\ntail_1 : List \u03b1\na : tail_1.length = 1\n\u22a2 tail_1 = [?mp.cons.cons.w]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case mp.cons.h\n\u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\na : tail.length = 2\n\u22a2 \u2203 x, tail = [?mp.cons.w, x]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case mp.h\n\u03b1 : Type u_1\nl : List \u03b1\na : l.length = 3\n\u22a2 \u2203 b c, l = [?mp.w, b, c]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G13": {
+      "label": " case mp.h.nil\n\u03b1 : Type u_1\na : [].length = 3\n\u22a2 \u2203 b c, [] = [?m.33 a, b, c]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G14": {
+      "label": " case mp.h.cons\n\u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\na : (head :: tail).length = 3\n\u22a2 \u2203 b c, head :: tail = [?m.33 a, b, c]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G15": {
+      "label": " case mp.h.h\n\u03b1 : Type u_1\nl : List \u03b1\na : l.length = 3\n\u22a2 \u2203 c, l = [?mp.w, ?mp.h.w, c]\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case mpr\n\u03b1 : Type u_1\nl : List \u03b1\n\u22a2 (\u2203 a b c, l = [a, b, c]) \u2192 l.length = 3\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100/safe] safe|constructors|global|Iff",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[50.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[50.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-3": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-4": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R7": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R8": {
+      "label": "[50.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R9": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-5": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G4",
+      "target": "R-1"
+    },
+    {
+      "source": "R6",
+      "target": "G10"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G2",
+      "target": "R3"
+    },
+    {
+      "source": "R8",
+      "target": "G13"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R7",
+      "target": "G12"
+    },
+    {
+      "source": "R9",
+      "target": "G15"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G5",
+      "target": "R4"
+    },
+    {
+      "source": "R2",
+      "target": "G5"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G3",
+      "target": "R-5"
+    },
+    {
+      "source": "R3",
+      "target": "G6"
+    },
+    {
+      "source": "R6",
+      "target": "G11"
+    },
+    {
+      "source": "R8",
+      "target": "G14"
+    },
+    {
+      "source": "G11",
+      "target": "R-4"
+    },
+    {
+      "source": "G7",
+      "target": "R-2"
+    },
+    {
+      "source": "R5",
+      "target": "G9"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G10",
+      "target": "R-3"
+    },
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G6",
+      "target": "R9"
+    },
+    {
+      "source": "G8",
+      "target": "R7"
+    },
+    {
+      "source": "G8",
+      "target": "R6"
+    },
+    {
+      "source": "R4",
+      "target": "G8"
+    },
+    {
+      "source": "G5",
+      "target": "R5"
+    },
+    {
+      "source": "G6",
+      "target": "R8"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    }
+  ]
+}
+}

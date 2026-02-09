@@ -1,0 +1,126 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type u_1\ns t : List \u03b1\nx : \u03b1\nh : x \u2208 s.head'\n\u22a2 x \u2208 (s ++ t).head'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\ns t : List \u03b1\nx : \u03b1\nh : x \u2208 s.head'\n\u22a2 x \u2208 (s ++ t).head'\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " \u03b1 : Type u_1\ns t : List \u03b1\nx : \u03b1\nh :\n(match s with\n| [] => none\n| a :: tail => some a) =\nsome x\nx_1 : List \u03b1\nheq : s ++ t = []\n\u22a2 none = some x\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " \u03b1 : Type u_1\ns t : List \u03b1\nx : \u03b1\nh :\n(match s with\n| [] => none\n| a :: tail => some a) =\nsome x\nx_1 : List \u03b1\na : \u03b1\ntail : List \u03b1\nheq : s ++ t = a :: tail\n\u22a2 some a = some x\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " \u03b1 : Type u_1\nt : List \u03b1\nx : \u03b1\nx_1 : List \u03b1\na : \u03b1\ntail x_2 : List \u03b1\nheq : [] ++ t = a :: tail\nh : none = some x\n\u22a2 a = x\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " \u03b1 : Type u_1\nt : List \u03b1\nx : \u03b1\nx_1 : List \u03b1\na : \u03b1\ntail x_2 : List \u03b1\na_1 : \u03b1\ntail_1 : List \u03b1\nheq : a_1 :: tail_1 ++ t = a :: tail\nh : some a_1 = some x\n\u22a2 a = x\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[100/safe] safe|tactic|global|Aesop.BuiltinRules.splitTarget",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[1000/safe] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-3": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R2",
+      "target": "G5"
+    },
+    {
+      "source": "G2",
+      "target": "R-1"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G5",
+      "target": "R-3"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G4",
+      "target": "R-2"
+    }
+  ]
+}
+}

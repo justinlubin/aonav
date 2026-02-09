@@ -1,0 +1,96 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Type u_1\nx : \u03b1\nxs : List \u03b1\nih : All (fun x => x \u2208 xs) xs\nwk : \u2200 (a : \u03b1), a \u2208 xs \u2192 a \u2208 x :: xs\n\u22a2 All (fun a => a \u2208 x :: xs) xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nx : \u03b1\nxs : List \u03b1\nih : All (fun x => x \u2208 xs) xs\nwk : \u2200 (a : \u03b1), a \u2208 xs \u2192 a \u2208 x :: xs\n\u22a2 All (fun a => a \u2208 x :: xs) xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case wk\n\u03b1 : Type u_1\nx : \u03b1\nxs : List \u03b1\nih : All (fun x => x \u2208 xs) xs\n\u22a2 \u2200 (x_1 : \u03b1), ?P x_1 \u2192 x_1 = x \u2228 x_1 \u2208 xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case h\n\u03b1 : Type u_1\nx : \u03b1\nxs : List \u03b1\nih : All (fun x => x \u2208 xs) xs\n\u22a2 All ?P xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case wk\n\u03b1 : Type u_1\nx : \u03b1\nxs : List \u03b1\nih : All (fun x => x \u2208 xs) xs\n\u22a2 \u2200 (x_1 : \u03b1), x_1 \u2208 xs \u2192 x_1 = x \u2228 x_1 \u2208 xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[1.0000%] unsafe|apply|global|weaken",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "G4",
+      "target": "R-1"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    }
+  ]
+}
+}

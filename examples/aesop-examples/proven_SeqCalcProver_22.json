@@ -1,0 +1,116 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case isTrue\n\u03b1 : Type ?u.1215\nP : \u03b1 \u2192 Prop\nd : DecidablePred P\nxs\u271d : List \u03b1\nx : \u03b1\nxs : List \u03b1\nih : Decidable (Any P xs)\nh\u271d : P x\n\u22a2 Decidable (Any P (x :: xs))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type ?u.1215\nP : \u03b1 \u2192 Prop\nd : DecidablePred P\nxs_1 : List \u03b1\nx : \u03b1\nxs : List \u03b1\nih : Decidable (Any P xs)\nh : P x\n\u22a2 Decidable (Any P (x :: xs))\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case isFalse\n\u03b1 : Type ?u.1215\nP : \u03b1 \u2192 Prop\nd : DecidablePred P\nxs_1 : List \u03b1\nx : \u03b1\nxs : List \u03b1\nh : P x\nh_1 : \u00acAny P xs\n\u22a2 Decidable True\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case isTrue\n\u03b1 : Type ?u.1215\nP : \u03b1 \u2192 Prop\nd : DecidablePred P\nxs_1 : List \u03b1\nx : \u03b1\nxs : List \u03b1\nh : P x\nh_2 : Any P xs\n\u22a2 Decidable True\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case h\n\u03b1 : Type ?u.1215\nP : \u03b1 \u2192 Prop\nd : DecidablePred P\nxs_1 : List \u03b1\nx : \u03b1\nxs : List \u03b1\nih : Decidable (Any P xs)\nh : P x\n\u22a2 \u00acTrue\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case h\n\u03b1 : Type ?u.1215\nP : \u03b1 \u2192 Prop\nd : DecidablePred P\nxs_1 : List \u03b1\nx : \u03b1\nxs : List \u03b1\nih : Decidable (Any P xs)\nh : P x\n\u22a2 True\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|cases|global|Decidable",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|constructors|global|Decidable",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[50.0000%] unsafe|constructors|global|Decidable",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G1",
+      "target": "R2"
+    },
+    {
+      "source": "G5",
+      "target": "R-1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "G1",
+      "target": "R3"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    }
+  ]
+}
+}

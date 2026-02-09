@@ -1,0 +1,86 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " \u03b1 : Sort u_1\n\u03b2 : Sort u_2\nP : \u03b1 \u2192 \u03b2 \u2192 Prop\na : \u03b1\nb : \u03b2\nh : P a b\n\u22a2 \u2203 a b, P a b\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Sort u_1\n\u03b2 : Sort u_2\nP : \u03b1 \u2192 \u03b2 \u2192 Prop\na : \u03b1\nb : \u03b2\nh : P a b\n\u22a2 \u2203 a b, P a b\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case h\n\u03b1 : Sort u_1\n\u03b2 : Sort u_2\nP : \u03b1 \u2192 \u03b2 \u2192 Prop\na : \u03b1\nb : \u03b2\nh : P a b\n\u22a2 \u2203 b, P ?w b\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case h.h\n\u03b1 : Sort u_1\n\u03b2 : Sort u_2\nP : \u03b1 \u2192 \u03b2 \u2192 Prop\na : \u03b1\nb : \u03b2\nh : P a b\n\u22a2 P ?w ?h.w\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[30.0000%] unsafe|constructors|global|Exists",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[90.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G3",
+      "target": "R3"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    }
+  ]
+}
+}

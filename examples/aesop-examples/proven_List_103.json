@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case cons.cons\n\u03b1 : Type u_1\nt\u2081 t\u2082 : List \u03b1\nhl : t\u2081.length = t\u2082.length\nhead\u271d\u00b9 : \u03b1\ntail\u271d\u00b9 : List \u03b1\ntail_ih\u271d\u00b9 : \u2200 {s\u2082 : List \u03b1}, tail\u271d\u00b9 ++ t\u2081 = s\u2082 ++ t\u2082 \u2192 tail\u271d\u00b9 = s\u2082 \u2227 t\u2081 = t\u2082\nhead\u271d : \u03b1\ntail\u271d : List \u03b1\ntail_ih\u271d : head\u271d\u00b9 :: tail\u271d\u00b9 ++ t\u2081 = tail\u271d ++ t\u2082 \u2192 head\u271d\u00b9 :: tail\u271d\u00b9 = tail\u271d \u2227 t\u2081 = t\u2082\nh : head\u271d\u00b9 :: tail\u271d\u00b9 ++ t\u2081 = head\u271d :: tail\u271d ++ t\u2082\n\u22a2 head\u271d\u00b9 :: tail\u271d\u00b9 = head\u271d :: tail\u271d \u2227 t\u2081 = t\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nt\u2081 t\u2082 : List \u03b1\nhl : t\u2081.length = t\u2082.length\nhead : \u03b1\ntail : List \u03b1\ntail_ih : \u2200 {s\u2082 : List \u03b1}, tail ++ t\u2081 = s\u2082 ++ t\u2082 \u2192 tail = s\u2082 \u2227 t\u2081 = t\u2082\nhead_1 : \u03b1\ntail_1 : List \u03b1\ntail_ih_1 : head :: tail ++ t\u2081 = tail_1 ++ t\u2082 \u2192 head :: tail = tail_1 \u2227 t\u2081 = t\u2082\nh : head :: tail ++ t\u2081 = head_1 :: tail_1 ++ t\u2082\n\u22a2 head :: tail = head_1 :: tail_1 \u2227 t\u2081 = t\u2082\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G1",
+      "target": "R-1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    }
+  ]
+}
+}

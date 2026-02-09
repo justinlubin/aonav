@@ -1,0 +1,186 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case cons\n\u03b1 : Type u_1\nhead\u271d : \u03b1\ntail\u271d : List \u03b1\ntail_ih\u271d : \u2200 (h : tail\u271d \u2260 []), tail\u271d.last h \u2208 tail\u271d\n\u22a2 \u2200 (h : head\u271d :: tail\u271d \u2260 []), (head\u271d :: tail\u271d).last h \u2208 head\u271d :: tail\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\ntail_ih : \u2200 (h : tail \u2260 []), tail.last h \u2208 tail\n\u22a2 \u2200 (h : head :: tail \u2260 []), (head :: tail).last h \u2208 head :: tail\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case h\n\u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\nh : head :: tail \u2260 []\ntail_ih : \u2200 (h : \u00actail = []), tail.last h \u2208 tail\n\u22a2 (head :: tail).last h = head\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case h.nil\n\u03b1 : Type u_1\nhead : \u03b1\nh : [head] \u2260 []\ntail_ih : \u2200 (h : \u00ac[] = []), [].last h \u2208 []\n\u22a2 [head].last h = head\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case h.cons\n\u03b1 : Type u_1\nhead head_1 : \u03b1\ntail_1 : List \u03b1\nh : head :: head_1 :: tail_1 \u2260 []\ntail_ih : \u2200 (h : \u00achead_1 :: tail_1 = []), (head_1 :: tail_1).last h \u2208 head_1 :: tail_1\n\u22a2 (head :: head_1 :: tail_1).last h = head\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case h\n\u03b1 : Type u_1\nhead : \u03b1\ntail : List \u03b1\nh : head :: tail \u2260 []\ntail_ih : \u2200 (h : \u00actail = []), tail.last h \u2208 tail\n\u22a2 (head :: tail).last h \u2208 tail\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case h.nil\n\u03b1 : Type u_1\nhead : \u03b1\nh : [head] \u2260 []\ntail_ih : \u2200 (h : \u00ac[] = []), [].last h \u2208 []\n\u22a2 [head].last h \u2208 []\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case h.cons\n\u03b1 : Type u_1\nhead head_1 : \u03b1\ntail_1 : List \u03b1\nh : head :: head_1 :: tail_1 \u2260 []\ntail_ih : \u2200 (h : \u00achead_1 :: tail_1 = []), (head_1 :: tail_1).last h \u2208 head_1 :: tail_1\n\u22a2 (head :: head_1 :: tail_1).last h \u2208 head_1 :: tail_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case nil\n\u03b1 : Type u_1\nhead : \u03b1\nh : [head] \u2260 []\ntail_ih : \u2200 (h : \u00ac[] = []), [].last h \u2208 []\n\u22a2 [head].last h = head \u2228 [head].last h \u2208 []\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case cons\n\u03b1 : Type u_1\nhead head_1 : \u03b1\ntail_1 : List \u03b1\nh : head :: head_1 :: tail_1 \u2260 []\ntail_ih : \u2200 (h : \u00achead_1 :: tail_1 = []), (head_1 :: tail_1).last h \u2208 head_1 :: tail_1\n\u22a2 (head :: head_1 :: tail_1).last h = head \u2228 (head :: head_1 :: tail_1).last h \u2208 head_1 :: tail_1\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|constructors|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[1.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|constructors|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[1.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[1.0000%] unsafe|cases|global|List",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G4",
+      "target": "R-1"
+    },
+    {
+      "source": "G5",
+      "target": "R-2"
+    },
+    {
+      "source": "R5",
+      "target": "G9"
+    },
+    {
+      "source": "G1",
+      "target": "R3"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G1",
+      "target": "R2"
+    },
+    {
+      "source": "G3",
+      "target": "R4"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "R5",
+      "target": "G8"
+    },
+    {
+      "source": "G2",
+      "target": "R5"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    },
+    {
+      "source": "R3",
+      "target": "G4"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R4",
+      "target": "G6"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    }
+  ]
+}
+}

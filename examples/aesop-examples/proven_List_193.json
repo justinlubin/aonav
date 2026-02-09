@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case succ\na n\u271d : Nat\na\u271d : (replicate n\u271d.succ a).last \u22ef = a\n\u22a2 (replicate (n\u271d + 1).succ a).last \u22ef = a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " a n : Nat\na_1 : (replicate n.succ a).last \u22ef = a\n\u22a2 (replicate (n + 1).succ a).last \u22ef = a\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G1",
+      "target": "R-1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    }
+  ]
+}
+}

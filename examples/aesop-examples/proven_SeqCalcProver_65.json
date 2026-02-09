@@ -1,0 +1,226 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case imp_r\n\u03a6 : Type\n\u0393\u271d \u0394\u271d : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst\u271d : DecidablePred i\n\u0393 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na\u271d : Proof (\u03c6 :: \u0393) (\u03c8 :: \u0394)\nih : SC i (\u03c6 :: \u0393) (\u03c8 :: \u0394)\nd : Decidable (Val i \u03c6)\n\u22a2 SC i \u0393 (\u03c6 \u21d2 \u03c8 :: \u0394)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03a6 : Type\n\u0393_1 \u0394_1 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof (\u03c6 :: \u0393) (\u03c8 :: \u0394)\nih : SC i (\u03c6 :: \u0393) (\u03c8 :: \u0394)\nd : Decidable (Val i \u03c6)\n\u22a2 SC i \u0393 (\u03c6 \u21d2 \u03c8 :: \u0394)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case isFalse\n\u03a6 : Type\n\u0393_1 \u0394_1 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof (\u03c6 :: \u0393) (\u03c8 :: \u0394)\nih : Val i \u03c6 \u2192 Val i \u03c8 \u2228 Any (Val i) \u0394\na_1 : All (Val i) \u0393\nh : \u00acVal i \u03c6\n\u22a2 (Val i \u03c6 \u2192 Val i \u03c8) \u2228 Any (Val i) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case isTrue\n\u03a6 : Type\n\u0393_1 \u0394_1 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof (\u03c6 :: \u0393) (\u03c8 :: \u0394)\nih : Val i \u03c6 \u2192 Val i \u03c8 \u2228 Any (Val i) \u0394\na_1 : All (Val i) \u0393\nh_1 : Val i \u03c6\n\u22a2 (Val i \u03c6 \u2192 Val i \u03c8) \u2228 Any (Val i) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G4": {
+      "label": " case h\n\u03a6 : Type\n\u0393_1 \u0394_1 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof (\u03c6 :: \u0393) (\u03c8 :: \u0394)\nd : Decidable (Val i \u03c6)\nih : Val i \u03c6 \u2192 Val i \u03c8 \u2228 Any (Val i) \u0394\na_1 : All (Val i) \u0393\n\u22a2 Val i \u03c6 \u2192 Val i \u03c8\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case h.inl\n\u03a6 : Type\n\u0393_1 \u0394_1 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof (\u03c6 :: \u0393) (\u03c8 :: \u0394)\nd : Decidable (Val i \u03c6)\na_1 : All (Val i) \u0393\na_2 : Val i \u03c6\nh : Val i \u03c8\n\u22a2 Val i \u03c8\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G9": {
+      "label": " case h.inr\n\u03a6 : Type\n\u0393_1 \u0394_1 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof (\u03c6 :: \u0393) (\u03c8 :: \u0394)\nd : Decidable (Val i \u03c6)\na_1 : All (Val i) \u0393\na_2 : Val i \u03c6\nh_1 : Any (Val i) \u0394\n\u22a2 Val i \u03c8\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G10": {
+      "label": " case h.inr.isFalse\n\u03a6 : Type\n\u0393_1 \u0394_1 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof (\u03c6 :: \u0393) (\u03c8 :: \u0394)\na_1 : All (Val i) \u0393\na_2 : Val i \u03c6\nh_1 : Any (Val i) \u0394\nh : \u00acVal i \u03c6\n\u22a2 Val i \u03c8\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G11": {
+      "label": " case h.inr.isTrue\n\u03a6 : Type\n\u0393_1 \u0394_1 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof (\u03c6 :: \u0393) (\u03c8 :: \u0394)\na_1 : All (Val i) \u0393\na_2 : Val i \u03c6\nh_1 : Any (Val i) \u0394\nh_2 : Val i \u03c6\n\u22a2 Val i \u03c8\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case h\n\u03a6 : Type\n\u0393_1 \u0394_1 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof (\u03c6 :: \u0393) (\u03c8 :: \u0394)\nd : Decidable (Val i \u03c6)\nih : Val i \u03c6 \u2192 Val i \u03c8 \u2228 Any (Val i) \u0394\na_1 : All (Val i) \u0393\n\u22a2 Any (Val i) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case h.isFalse\n\u03a6 : Type\n\u0393_1 \u0394_1 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof (\u03c6 :: \u0393) (\u03c8 :: \u0394)\nih : Val i \u03c6 \u2192 Val i \u03c8 \u2228 Any (Val i) \u0394\na_1 : All (Val i) \u0393\nh : \u00acVal i \u03c6\n\u22a2 Any (Val i) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case h.isTrue\n\u03a6 : Type\n\u0393_1 \u0394_1 : List (Form \u03a6)\ni : \u03a6 \u2192 Prop\ninst : DecidablePred i\n\u0393 \u0394 : List (Form \u03a6)\n\u03c6 \u03c8 : Form \u03a6\na : Proof (\u03c6 :: \u0393) (\u03c8 :: \u0394)\nih : Val i \u03c6 \u2192 Val i \u03c8 \u2228 Any (Val i) \u0394\na_1 : All (Val i) \u0393\nh_1 : Val i \u03c6\n\u22a2 Any (Val i) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|cases|global|Decidable",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-2": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|constructors|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[100/safe] safe|cases|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-3": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[50.0000%] unsafe|cases|global|Decidable",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[50.0000%] unsafe|constructors|global|Or",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[50.0000%] unsafe|cases|global|Decidable",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R3",
+      "target": "G5"
+    },
+    {
+      "source": "R6",
+      "target": "G11"
+    },
+    {
+      "source": "R5",
+      "target": "G9"
+    },
+    {
+      "source": "G2",
+      "target": "R-1"
+    },
+    {
+      "source": "R6",
+      "target": "G10"
+    },
+    {
+      "source": "G1",
+      "target": "R2"
+    },
+    {
+      "source": "R4",
+      "target": "G6"
+    },
+    {
+      "source": "G1",
+      "target": "R3"
+    },
+    {
+      "source": "G4",
+      "target": "R5"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "G9",
+      "target": "R6"
+    },
+    {
+      "source": "R5",
+      "target": "G8"
+    },
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G5",
+      "target": "R4"
+    },
+    {
+      "source": "G8",
+      "target": "R-3"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    },
+    {
+      "source": "G3",
+      "target": "R-2"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    }
+  ]
+}
+}

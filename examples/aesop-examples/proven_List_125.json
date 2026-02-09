@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G0"
+  },
+  "nodes": {
+    "G0": {
+      "label": " case succ\n\u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\na : \u03b1\nn\u271d : Nat\na\u271d : map f (replicate n\u271d a) = replicate n\u271d (f a)\n\u22a2 map f (replicate (n\u271d + 1) a) = replicate (n\u271d + 1) (f a)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G1": {
+      "label": " \u03b1 : Type u_1\n\u03b2 : Type u_2\nf : \u03b1 \u2192 \u03b2\na : \u03b1\nn : Nat\na_1 : map f (replicate n a) = replicate n (f a)\n\u22a2 map f (replicate (n + 1) a) = replicate (n + 1) (f a)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R0": {
+      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R-1": {
+      "label": " provenByNormalization",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R0",
+      "target": "G1"
+    },
+    {
+      "source": "G1",
+      "target": "R-1"
+    },
+    {
+      "source": "G0",
+      "target": "R0"
+    }
+  ]
+}
+}
