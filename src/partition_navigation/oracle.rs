@@ -16,9 +16,75 @@ use std::collections::HashSet;
 
 // Helpers
 
-fn add_lit_eq_cube(instance: &mut SatInstance, a: Lit, b: &[Lit]) {
+fn add_lit_eq_cube(
+    instance: &mut SatInstance,
+    a: Lit,
+    b: &[Lit],
+    strict_partial_order_constraint: Option<(&Vec<Lit>, Vec<&Vec<Lit>>)>,
+) {
+    let b_additions = match strict_partial_order_constraint {
+        Some((grandparent, grandchildren)) => {
+            let mut constraint_lits = vec![];
+            for grandchild in grandchildren {
+                constraint_lits.push(make_lt_lit(
+                    instance,
+                    grandparent,
+                    grandchild,
+                ))
+            }
+            constraint_lits
+        }
+        None => vec![],
+    };
+    let b = &[b, &b_additions[..]].concat()[..];
     instance.add_lit_impl_cube(a, b);
     instance.add_cube_impl_lit(b, a);
+}
+
+fn make_lt_lit(instance: &mut SatInstance, a: &[Lit], b: &[Lit]) -> Lit {
+    let mut a_imp_b_lits = vec![];
+    let mut b_imp_a_lits = vec![];
+
+    for (a_bit, b_bit) in a.iter().zip(b) {
+        {
+            let a_imp_b = instance.new_lit();
+            a_imp_b_lits.push(a_imp_b);
+            add_lit_eq_clause(instance, a_imp_b, &[!*a_bit, *b_bit]);
+        }
+
+        {
+            let b_imp_a = instance.new_lit();
+            b_imp_a_lits.push(b_imp_a);
+            add_lit_eq_clause(instance, b_imp_a, &[!*b_bit, *a_bit]);
+        }
+    }
+
+    let mut possibility_lits = vec![];
+    for i in 0..a.len() {
+        let possibility_lit = instance.new_lit();
+        possibility_lits.push(possibility_lit);
+
+        let mut requirements = vec![];
+        for j in 0..i {
+            requirements.push(a_imp_b_lits[j]);
+            requirements.push(b_imp_a_lits[j]);
+        }
+        requirements.push(!a[i]);
+        requirements.push(b[i]);
+
+        add_lit_eq_cube(instance, possibility_lit, &requirements[..], None);
+    }
+
+    let ret = instance.new_lit();
+    add_lit_eq_clause(instance, ret, &possibility_lits[..]);
+    ret
+}
+
+fn add_lit_eq_clause(instance: &mut SatInstance, a: Lit, b: &[Lit]) {
+    instance.add_lit_impl_clause(a, b);
+    for bi in b {
+        instance.add_lit_impl_lit(*bi, a);
+    }
 }
 
 fn add_guarded_lit_eq_clause(
@@ -41,8 +107,13 @@ fn add_cube(instance: &mut SatInstance, a: &[Lit]) {
 
 // Compilation
 
+struct CyclicVars {
+    and: HashMap<ao::AIdx, Vec<Lit>>,
+}
+
 struct CompileContext {
     graph: ao::Graph,
+    cyclic: Option<CyclicVars>,
     instance: SatInstance,
     // Whether or not OR node should use assume semantics
     o_assume: HashMap<ao::OIdx, Lit>,
@@ -65,9 +136,31 @@ impl CompileContext {
     }
 
     fn compile_shared(graph: ao::Graph) -> Self {
+        let mut instance = SatInstance::new();
+
+        let and_indexes = graph.and_indexes().collect::<Vec<_>>();
+
+        let cyclic = if graph.is_cyclic() {
+            let bit_count = (and_indexes.len() as f32).log2().ceil() as usize;
+
+            let mut and = HashMap::new();
+            for aidx in &and_indexes {
+                let mut lits = vec![];
+                for _ in 0..bit_count {
+                    lits.push(instance.new_lit());
+                }
+                and.insert(*aidx, lits);
+            }
+
+            Some(CyclicVars { and })
+        } else {
+            None
+        };
+
         let mut ret = Self {
             graph,
-            instance: SatInstance::new(),
+            cyclic,
+            instance,
             o_assume: HashMap::new(),
             o_true: HashMap::new(),
             o_active: HashMap::new(),
@@ -81,7 +174,7 @@ impl CompileContext {
             ret.o_active.insert(oidx, ret.instance.new_lit());
         }
 
-        for aidx in ret.graph.and_indexes() {
+        for aidx in and_indexes {
             ret.a_true.insert(aidx, ret.instance.new_lit());
             ret.a_active.insert(aidx, ret.instance.new_lit());
         }
@@ -212,14 +305,31 @@ impl CompileContext {
     fn and_semantics(&mut self, aidx: ao::AIdx) {
         let is_true = *self.a_true.get(&aidx).unwrap();
 
+        let premises = self.graph.premises(aidx.clone()).collect::<Vec<_>>();
+
         add_lit_eq_cube(
             &mut self.instance,
             is_true,
-            &self
-                .graph
-                .premises(aidx)
+            &premises
+                .iter()
                 .map(|o| *self.o_true.get(&o).unwrap())
                 .collect::<Vec<_>>()[..],
+            self.cyclic.as_ref().map(|cv| {
+                (
+                    cv.and.get(&aidx).unwrap(),
+                    premises
+                        .iter()
+                        .flat_map(|oidx| {
+                            self.graph
+                                .providers(*oidx)
+                                .map(|grandchild| {
+                                    cv.and.get(&grandchild).unwrap()
+                                })
+                                .collect::<Vec<_>>()
+                        })
+                        .collect(),
+                )
+            }),
         );
     }
 
@@ -300,6 +410,21 @@ impl IncrementalContext {
                     e.graph().and_at(*aidx),
                     sol[lit.var()]
                 )
+            }
+            match &self.ctx.cyclic {
+                Some(cv) => {
+                    for (aidx, lits) in &cv.and {
+                        log::debug!(
+                            "{} partial order: {}",
+                            e.graph().and_at(*aidx),
+                            lits.iter()
+                                .map(|lit| sol[lit.var()].to_string())
+                                .collect::<Vec<_>>()
+                                .join("")
+                        )
+                    }
+                }
+                None => (),
             }
         }
 

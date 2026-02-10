@@ -47,6 +47,10 @@ enum Command {
         )]
         providers: Vec<menu::Provider>,
 
+        /// Reduce the input before interacting (perform unit propagation)
+        #[arg(long, action)]
+        reduce: bool,
+
         /// Use incrementality (if possible)
         #[arg(long, action)]
         incremental: bool,
@@ -114,7 +118,7 @@ enum Command {
         #[arg(long, action)]
         randomize: bool,
 
-        /// Reduce the output (unit-prop True)
+        /// Reduce the output (perform unit propagation)
         #[arg(long, action)]
         reduce: bool,
     },
@@ -133,8 +137,11 @@ impl Command {
             Self::Interact {
                 graph,
                 providers,
+                reduce,
                 incremental,
-            } => main_handler::interact(graph, providers, *incremental),
+            } => {
+                main_handler::interact(graph, providers, *reduce, *incremental)
+            }
             Self::Benchmark {
                 path,
                 providers,

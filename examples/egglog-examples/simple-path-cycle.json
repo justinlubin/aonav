@@ -1,0 +1,257 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "path(1, 2)"
+    },
+    "nodes": {
+      "path(1, 1)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "path(1, 2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "path(2, 1)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "path(2, 2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "edge(1, 1)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "edge(1, 2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "edge(2, 1)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "edge(2, 2)": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "rule2 @ x=1, y=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule2 @ x=1, y=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule2 @ x=2, y=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule2 @ x=2, y=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule3 @ x=1, y=1, z=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule3 @ x=1, y=1, z=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule3 @ x=1, y=2, z=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule3 @ x=1, y=2, z=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule3 @ x=2, y=1, z=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule3 @ x=2, y=1, z=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule3 @ x=2, y=2, z=1": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule3 @ x=2, y=2, z=2": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule4 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule5 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "rule2 @ x=1, y=1",
+        "target": "edge(1, 1)"
+      },
+      {
+        "source": "path(1, 1)",
+        "target": "rule2 @ x=1, y=1"
+      },
+      {
+        "source": "rule2 @ x=1, y=2",
+        "target": "edge(1, 2)"
+      },
+      {
+        "source": "path(1, 2)",
+        "target": "rule2 @ x=1, y=2"
+      },
+      {
+        "source": "rule2 @ x=2, y=1",
+        "target": "edge(2, 1)"
+      },
+      {
+        "source": "path(2, 1)",
+        "target": "rule2 @ x=2, y=1"
+      },
+      {
+        "source": "rule2 @ x=2, y=2",
+        "target": "edge(2, 2)"
+      },
+      {
+        "source": "path(2, 2)",
+        "target": "rule2 @ x=2, y=2"
+      },
+      {
+        "source": "rule3 @ x=1, y=1, z=1",
+        "target": "path(1, 1)"
+      },
+      {
+        "source": "rule3 @ x=1, y=1, z=1",
+        "target": "edge(1, 1)"
+      },
+      {
+        "source": "path(1, 1)",
+        "target": "rule3 @ x=1, y=1, z=1"
+      },
+      {
+        "source": "rule3 @ x=1, y=1, z=2",
+        "target": "path(1, 1)"
+      },
+      {
+        "source": "rule3 @ x=1, y=1, z=2",
+        "target": "edge(1, 2)"
+      },
+      {
+        "source": "path(1, 2)",
+        "target": "rule3 @ x=1, y=1, z=2"
+      },
+      {
+        "source": "rule3 @ x=1, y=2, z=1",
+        "target": "path(1, 2)"
+      },
+      {
+        "source": "rule3 @ x=1, y=2, z=1",
+        "target": "edge(2, 1)"
+      },
+      {
+        "source": "path(1, 1)",
+        "target": "rule3 @ x=1, y=2, z=1"
+      },
+      {
+        "source": "rule3 @ x=1, y=2, z=2",
+        "target": "path(1, 2)"
+      },
+      {
+        "source": "rule3 @ x=1, y=2, z=2",
+        "target": "edge(2, 2)"
+      },
+      {
+        "source": "path(1, 2)",
+        "target": "rule3 @ x=1, y=2, z=2"
+      },
+      {
+        "source": "rule3 @ x=2, y=1, z=1",
+        "target": "path(2, 1)"
+      },
+      {
+        "source": "rule3 @ x=2, y=1, z=1",
+        "target": "edge(1, 1)"
+      },
+      {
+        "source": "path(2, 1)",
+        "target": "rule3 @ x=2, y=1, z=1"
+      },
+      {
+        "source": "rule3 @ x=2, y=1, z=2",
+        "target": "path(2, 1)"
+      },
+      {
+        "source": "rule3 @ x=2, y=1, z=2",
+        "target": "edge(1, 2)"
+      },
+      {
+        "source": "path(2, 2)",
+        "target": "rule3 @ x=2, y=1, z=2"
+      },
+      {
+        "source": "rule3 @ x=2, y=2, z=1",
+        "target": "path(2, 2)"
+      },
+      {
+        "source": "rule3 @ x=2, y=2, z=1",
+        "target": "edge(2, 1)"
+      },
+      {
+        "source": "path(2, 1)",
+        "target": "rule3 @ x=2, y=2, z=1"
+      },
+      {
+        "source": "rule3 @ x=2, y=2, z=2",
+        "target": "path(2, 2)"
+      },
+      {
+        "source": "rule3 @ x=2, y=2, z=2",
+        "target": "edge(2, 2)"
+      },
+      {
+        "source": "path(2, 2)",
+        "target": "rule3 @ x=2, y=2, z=2"
+      },
+      {
+        "source": "edge(1, 1)",
+        "target": "rule4 @ "
+      },
+      {
+        "source": "edge(2, 2)",
+        "target": "rule5 @ "
+      }
+    ]
+  }
+}

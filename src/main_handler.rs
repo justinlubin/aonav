@@ -53,10 +53,14 @@ fn load_ao(path: &PathBuf) -> ao::Graph {
 pub fn interact(
     graph_path: &PathBuf,
     providers: &Vec<menu::Provider>,
+    reduce: bool,
     incremental_if_possible: bool,
 ) -> Result<(), String> {
     let mut graph = load_ao(graph_path);
-    ao::algo::reduce(&mut graph);
+
+    if reduce {
+        ao::algo::reduce(&mut graph);
+    }
 
     let msg1 = format!(
         "Set of provable OR nodes: {}",

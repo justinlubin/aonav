@@ -1,0 +1,47 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "A()"
+    },
+    "nodes": {
+      "A()": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "B()": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "rule2 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rule3 @ ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "rule2 @ ",
+        "target": "A()"
+      },
+      {
+        "source": "B()",
+        "target": "rule2 @ "
+      },
+      {
+        "source": "rule3 @ ",
+        "target": "B()"
+      },
+      {
+        "source": "A()",
+        "target": "rule3 @ "
+      }
+    ]
+  }
+}
