@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "Running on $RAYON_NUM_THREADS cores"
+
 cargo build
 
 run() {
