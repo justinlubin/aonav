@@ -3,6 +3,7 @@ use crate::menu;
 use crate::partition_navigation as pn;
 use crate::util::Timer;
 
+use indicatif::{ParallelProgressIterator, ProgressIterator};
 use instant::{Duration, Instant};
 use rayon::prelude::*;
 use serde::Serialize;
@@ -125,49 +126,57 @@ impl Runner {
     /// Run a benchmark suite
     pub fn suite(&self, problems: &Vec<Problem>) {
         if self.config.parallel {
-            problems.into_par_iter().for_each(|problem| {
-                self.config.providers.par_iter().for_each(|provider| {
-                    problem.chosen_solutions.par_iter().enumerate().for_each(
-                        |(chosen_solution, solution)| {
-                            (0..self.config.replicates)
-                                .into_par_iter()
-                                .for_each(|replicate| {
-                                    self.entry(
-                                        BenchmarkEntry {
-                                            provider: *provider,
-                                            name: problem.name.clone(),
-                                            chosen_solution,
-                                            replicate,
-                                        },
-                                        solution.clone(),
-                                    );
-                                });
-                        },
-                    )
-                })
-            });
+            problems
+                .into_par_iter()
+                .progress_count(problems.len() as u64)
+                .for_each(|problem| {
+                    self.config.providers.par_iter().for_each(|provider| {
+                        problem
+                            .chosen_solutions
+                            .par_iter()
+                            .enumerate()
+                            .for_each(|(chosen_solution, solution)| {
+                                (0..self.config.replicates)
+                                    .into_par_iter()
+                                    .for_each(|replicate| {
+                                        self.entry(
+                                            BenchmarkEntry {
+                                                provider: *provider,
+                                                name: problem.name.clone(),
+                                                chosen_solution,
+                                                replicate,
+                                            },
+                                            solution.clone(),
+                                        );
+                                    });
+                            })
+                    })
+                });
         } else {
-            problems.into_iter().for_each(|problem| {
-                self.config.providers.iter().for_each(|provider| {
-                    problem.chosen_solutions.iter().enumerate().for_each(
-                        |(chosen_solution, solution)| {
-                            (0..self.config.replicates).into_iter().for_each(
-                                |replicate| {
-                                    self.entry(
-                                        BenchmarkEntry {
-                                            provider: *provider,
-                                            name: problem.name.clone(),
-                                            chosen_solution,
-                                            replicate,
-                                        },
-                                        solution.clone(),
-                                    );
-                                },
-                            );
-                        },
-                    )
-                })
-            });
+            problems
+                .into_iter()
+                .progress_count(problems.len() as u64)
+                .for_each(|problem| {
+                    self.config.providers.iter().for_each(|provider| {
+                        problem.chosen_solutions.iter().enumerate().for_each(
+                            |(chosen_solution, solution)| {
+                                (0..self.config.replicates)
+                                    .into_iter()
+                                    .for_each(|replicate| {
+                                        self.entry(
+                                            BenchmarkEntry {
+                                                provider: *provider,
+                                                name: problem.name.clone(),
+                                                chosen_solution,
+                                                replicate,
+                                            },
+                                            solution.clone(),
+                                        );
+                                    });
+                            },
+                        )
+                    })
+                });
         }
     }
 }
