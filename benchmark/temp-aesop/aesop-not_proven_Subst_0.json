@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "BEENyWbJvXeKWGDIEtbkbidzfAdWnvwP"
+    },
+    "nodes": {
+      "BEENyWbJvXeKWGDIEtbkbidzfAdWnvwP": {
+        "label": " x y : Nat\nh₁ : x = 5\nh₂ : y = 5\n⊢ x = y\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "cGvErGlrRbLlEsnMmfYyaIiunnNdgTos": {
+        "label": " x y : Nat\nh₁ : x = 5\nh₂ : y = 5\n⊢ x = y\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "uEAipmwgXCrDSqJTMewxkBuxXXXIyTtu": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "BEENyWbJvXeKWGDIEtbkbidzfAdWnvwP",
+        "target": "uEAipmwgXCrDSqJTMewxkBuxXXXIyTtu"
+      },
+      {
+        "source": "uEAipmwgXCrDSqJTMewxkBuxXXXIyTtu",
+        "target": "cGvErGlrRbLlEsnMmfYyaIiunnNdgTos"
+      }
+    ]
+  }
+}

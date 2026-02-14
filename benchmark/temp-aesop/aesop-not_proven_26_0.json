@@ -1,0 +1,67 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "MuFPsAKdQAAOsCgSKcnNRWAJtVgdbRsb"
+    },
+    "nodes": {
+      "MuFPsAKdQAAOsCgSKcnNRWAJtVgdbRsb": {
+        "label": " α : Type u_1\nP : α → Bool\nx : α\nxs : List α\nh : (x :: xs).all P = true\n⊢ P x = true ∧ xs.all P = true\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "EfssuDNHGyWIMjNKtGdEOnJYIxgVIFVb": {
+        "label": " α : Type u_1\nP : α → Bool\nx : α\nxs : List α\nh : (x :: xs).all P = true\n⊢ P x = true ∧ xs.all P = true\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "hsEBVagfDxyKZgqwghlfTLbNuMqxFmPF": {
+        "label": " case left\nα : Type u_1\nP : α → Bool\nx : α\nxs : List α\nh : (x :: xs).all P = true\n⊢ P x = true\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "dkVeqpYfgSdvfcDRWBcdisweHmRWvMio": {
+        "label": " case right\nα : Type u_1\nP : α → Bool\nx : α\nxs : List α\nh : (x :: xs).all P = true\n⊢ xs.all P = true\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "RLLgWEmxCEIkipcVLgQpFsmQVhqmzZpD": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "SnDjmEOLpNEfNUCFzoZqBOAaSsvWNwzP": {
+        "label": "[101/safe] safe|constructors|global|And",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "MuFPsAKdQAAOsCgSKcnNRWAJtVgdbRsb",
+        "target": "RLLgWEmxCEIkipcVLgQpFsmQVhqmzZpD"
+      },
+      {
+        "source": "SnDjmEOLpNEfNUCFzoZqBOAaSsvWNwzP",
+        "target": "dkVeqpYfgSdvfcDRWBcdisweHmRWvMio"
+      },
+      {
+        "source": "EfssuDNHGyWIMjNKtGdEOnJYIxgVIFVb",
+        "target": "SnDjmEOLpNEfNUCFzoZqBOAaSsvWNwzP"
+      },
+      {
+        "source": "RLLgWEmxCEIkipcVLgQpFsmQVhqmzZpD",
+        "target": "EfssuDNHGyWIMjNKtGdEOnJYIxgVIFVb"
+      },
+      {
+        "source": "SnDjmEOLpNEfNUCFzoZqBOAaSsvWNwzP",
+        "target": "hsEBVagfDxyKZgqwghlfTLbNuMqxFmPF"
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "bNfVUiAPrszTTcpsLWqVxMRzxCMIZDCd"
+    },
+    "nodes": {
+      "bNfVUiAPrszTTcpsLWqVxMRzxCMIZDCd": {
+        "label": " m n : Nat\n⊢ n + m = m + n ∧ m + n = n + m\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "zSMROnpFoBkjidczAwIYKFgdmOPHdrwq": {
+        "label": " m n : Nat\n⊢ n + m = m + n ∧ m + n = n + m\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ANsCXCXvOLCVlfPnhSPbOzITcKiNPYFY": {
+        "label": " case left\nm n : Nat\n⊢ n + m = m + n\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "wJKAKLJBuKDawTsFmKfzrRSEHDOUCypp": {
+        "label": " case right\nm n : Nat\n⊢ m + n = n + m\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "dsTzGlKUhysTIjbZfQwwAVFXpocYcuhm": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "YfDTgYAkWHGpPqxaQhQLFwIchrHJIQhl": {
+        "label": "[101/safe] safe|constructors|global|And",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "YfDTgYAkWHGpPqxaQhQLFwIchrHJIQhl",
+        "target": "ANsCXCXvOLCVlfPnhSPbOzITcKiNPYFY"
+      },
+      {
+        "source": "dsTzGlKUhysTIjbZfQwwAVFXpocYcuhm",
+        "target": "zSMROnpFoBkjidczAwIYKFgdmOPHdrwq"
+      },
+      {
+        "source": "zSMROnpFoBkjidczAwIYKFgdmOPHdrwq",
+        "target": "YfDTgYAkWHGpPqxaQhQLFwIchrHJIQhl"
+      },
+      {
+        "source": "YfDTgYAkWHGpPqxaQhQLFwIchrHJIQhl",
+        "target": "wJKAKLJBuKDawTsFmKfzrRSEHDOUCypp"
+      },
+      {
+        "source": "bNfVUiAPrszTTcpsLWqVxMRzxCMIZDCd",
+        "target": "dsTzGlKUhysTIjbZfQwwAVFXpocYcuhm"
+      }
+    ]
+  }
+}

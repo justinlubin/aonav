@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "wYGHzUOOUBMFIbtdhgjhzedTWbhWQftp"
+    },
+    "nodes": {
+      "wYGHzUOOUBMFIbtdhgjhzedTWbhWQftp": {
+        "label": " ⊢ T\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "sLIJGHLOGdpyIxUgutOJiDWTmSCMPUxB": {
+        "label": " ⊢ T\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "XqSpBWkLozBxfekACRNSdFVJxGaoAqVj": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "wYGHzUOOUBMFIbtdhgjhzedTWbhWQftp",
+        "target": "XqSpBWkLozBxfekACRNSdFVJxGaoAqVj"
+      },
+      {
+        "source": "XqSpBWkLozBxfekACRNSdFVJxGaoAqVj",
+        "target": "sLIJGHLOGdpyIxUgutOJiDWTmSCMPUxB"
+      }
+    ]
+  }
+}

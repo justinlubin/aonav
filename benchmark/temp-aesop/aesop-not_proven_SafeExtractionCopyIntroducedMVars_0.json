@@ -1,0 +1,187 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "MwtYTaAGQKvFhDEyZDDtdoSCdmPzpmMy"
+    },
+    "nodes": {
+      "MwtYTaAGQKvFhDEyZDDtdoSCdmPzpmMy": {
+        "label": " ⊢ P\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ThGrUgCtsUHetiWVCYqupAJaDkQIVVTF": {
+        "label": " ⊢ P\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ABbBnDkHEjclypRiIFWSExeXNLXfWnZO": {
+        "label": " case a\n⊢ Q ?x\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "RiqVtKdtKlYSBOCPHIauKZUbIqJYaoCR": {
+        "label": " case a.a\n⊢ S ?a.y✝\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ydNaNVgVKkRQmHmuDPmdnmlaMEXefTMI": {
+        "label": " case a\n⊢ R ?x\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "YLELBLEgtVGbPKBtwrYqcOespuQDWzUV": {
+        "label": " case a.a\n⊢ S ?a.y✝\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "IeHeCZjIkmYrCKfcaNHtvnkmnSCguDZI": {
+        "label": " case x\n⊢ Nat\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "iOnBvxftPtvAhFrAkmGtApUfKtSXVVsX": {
+        "label": " case a\n⊢ R ?x\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "iLmAsLzdJLhFxUIPuMZeNWDoGjfMrhmF": {
+        "label": " case a.a\n⊢ S ?a.y✝\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "cRXjTnnUSGVeAYpNOMTiyPpRmMKbKqUm": {
+        "label": " case a\n⊢ Q ?x\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "sTvayrQfpAOPgADRgLjFOPUuvtyBODIn": {
+        "label": " case a.a\n⊢ S ?a.y✝\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "npvIWVmmEviBSdngdNDwGltdZWYSxeNh": {
+        "label": " case x\n⊢ Nat\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "VBFbICcIYjVZAoOQPyRSRaPdgNVAomtE": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "BQTTfSlctuSNueNNIwSGDSoJAIuOQpFp": {
+        "label": "[1/safe] safe|apply|global|q_r_p",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "UkHVtpjwxxzWKUAMnKBhPCqZlXmZKchY": {
+        "label": "[1/safe] safe|apply|global|s_q",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "oktGPwuUdZGkNcwfoNnvXbalwrTusCqd": {
+        "label": "[1/safe] safe|apply|global|s_r",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "jgpNSggSMxcuukrHADUMCwoSouIuhhIy": {
+        "label": "[1/safe] safe|apply|global|s_r",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "wycuRCBzNhFDjUuPeiTRprWXieStVfsn": {
+        "label": "[1/safe] safe|apply|global|s_q",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "ABbBnDkHEjclypRiIFWSExeXNLXfWnZO",
+        "target": "UkHVtpjwxxzWKUAMnKBhPCqZlXmZKchY"
+      },
+      {
+        "source": "wycuRCBzNhFDjUuPeiTRprWXieStVfsn",
+        "target": "npvIWVmmEviBSdngdNDwGltdZWYSxeNh"
+      },
+      {
+        "source": "jgpNSggSMxcuukrHADUMCwoSouIuhhIy",
+        "target": "cRXjTnnUSGVeAYpNOMTiyPpRmMKbKqUm"
+      },
+      {
+        "source": "UkHVtpjwxxzWKUAMnKBhPCqZlXmZKchY",
+        "target": "RiqVtKdtKlYSBOCPHIauKZUbIqJYaoCR"
+      },
+      {
+        "source": "wycuRCBzNhFDjUuPeiTRprWXieStVfsn",
+        "target": "sTvayrQfpAOPgADRgLjFOPUuvtyBODIn"
+      },
+      {
+        "source": "ydNaNVgVKkRQmHmuDPmdnmlaMEXefTMI",
+        "target": "oktGPwuUdZGkNcwfoNnvXbalwrTusCqd"
+      },
+      {
+        "source": "MwtYTaAGQKvFhDEyZDDtdoSCdmPzpmMy",
+        "target": "VBFbICcIYjVZAoOQPyRSRaPdgNVAomtE"
+      },
+      {
+        "source": "oktGPwuUdZGkNcwfoNnvXbalwrTusCqd",
+        "target": "YLELBLEgtVGbPKBtwrYqcOespuQDWzUV"
+      },
+      {
+        "source": "oktGPwuUdZGkNcwfoNnvXbalwrTusCqd",
+        "target": "IeHeCZjIkmYrCKfcaNHtvnkmnSCguDZI"
+      },
+      {
+        "source": "BQTTfSlctuSNueNNIwSGDSoJAIuOQpFp",
+        "target": "ABbBnDkHEjclypRiIFWSExeXNLXfWnZO"
+      },
+      {
+        "source": "jgpNSggSMxcuukrHADUMCwoSouIuhhIy",
+        "target": "iLmAsLzdJLhFxUIPuMZeNWDoGjfMrhmF"
+      },
+      {
+        "source": "UkHVtpjwxxzWKUAMnKBhPCqZlXmZKchY",
+        "target": "ydNaNVgVKkRQmHmuDPmdnmlaMEXefTMI"
+      },
+      {
+        "source": "ThGrUgCtsUHetiWVCYqupAJaDkQIVVTF",
+        "target": "BQTTfSlctuSNueNNIwSGDSoJAIuOQpFp"
+      },
+      {
+        "source": "iOnBvxftPtvAhFrAkmGtApUfKtSXVVsX",
+        "target": "jgpNSggSMxcuukrHADUMCwoSouIuhhIy"
+      },
+      {
+        "source": "cRXjTnnUSGVeAYpNOMTiyPpRmMKbKqUm",
+        "target": "wycuRCBzNhFDjUuPeiTRprWXieStVfsn"
+      },
+      {
+        "source": "VBFbICcIYjVZAoOQPyRSRaPdgNVAomtE",
+        "target": "ThGrUgCtsUHetiWVCYqupAJaDkQIVVTF"
+      },
+      {
+        "source": "BQTTfSlctuSNueNNIwSGDSoJAIuOQpFp",
+        "target": "iOnBvxftPtvAhFrAkmGtApUfKtSXVVsX"
+      }
+    ]
+  }
+}

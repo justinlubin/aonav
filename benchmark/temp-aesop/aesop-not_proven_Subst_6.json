@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "clGCwOXpvbhRCURttqPSXCjHFpJELvGp"
+    },
+    "nodes": {
+      "clGCwOXpvbhRCURttqPSXCjHFpJELvGp": {
+        "label": " α : Type\nP Q R : Prop\nh₁ : P ↔ Q\nh₂ : Q ↔ R\nh₃ : P\n⊢ R\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ARVAclauAHeLCsxFyREIEprpIENRLWWM": {
+        "label": " α : Type\nP Q R : Prop\nh₁ : P ↔ Q\nh₂ : Q ↔ R\nh₃ : P\n⊢ R\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "qSnguUIiaHvIkISHzrLidTlItJIobgXY": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "clGCwOXpvbhRCURttqPSXCjHFpJELvGp",
+        "target": "qSnguUIiaHvIkISHzrLidTlItJIobgXY"
+      },
+      {
+        "source": "qSnguUIiaHvIkISHzrLidTlItJIobgXY",
+        "target": "ARVAclauAHeLCsxFyREIEprpIENRLWWM"
+      }
+    ]
+  }
+}

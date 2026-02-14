@@ -1,0 +1,67 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "FisVYyEZWckOMtRNSejZRsXOLwulIAby"
+    },
+    "nodes": {
+      "FisVYyEZWckOMtRNSejZRsXOLwulIAby": {
+        "label": " α β γ δ : Prop\nh : U α β ∧ U γ δ\n⊢ Sig α fun x => γ\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "gPSJGTfWAGFPbvHtNpFgqxHaTvpGvhME": {
+        "label": " α β γ δ : Prop\nh : U α β ∧ U γ δ\n⊢ Sig α fun x => γ\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "GhSbAeNRbnbFrqaTOEjlajIxNOuzcRRh": {
+        "label": " case snd\nα β γ δ : Prop\nleft : U α β\nright : U γ δ\n⊢ γ\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "TIduaTkwkmYaRmXWxKnVUPiPoOVkJCTI": {
+        "label": " case fst\nα β γ δ : Prop\nleft : U α β\nright : U γ δ\n⊢ α\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "VqPSVyIEYrAhdahyrMXZqkWoYZDpgwBN": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "NSkpbdbyLScwXiRftjwJOUqottMYRqcG": {
+        "label": "[1/safe] safe|constructors|global|Sig",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "VqPSVyIEYrAhdahyrMXZqkWoYZDpgwBN",
+        "target": "gPSJGTfWAGFPbvHtNpFgqxHaTvpGvhME"
+      },
+      {
+        "source": "NSkpbdbyLScwXiRftjwJOUqottMYRqcG",
+        "target": "TIduaTkwkmYaRmXWxKnVUPiPoOVkJCTI"
+      },
+      {
+        "source": "NSkpbdbyLScwXiRftjwJOUqottMYRqcG",
+        "target": "GhSbAeNRbnbFrqaTOEjlajIxNOuzcRRh"
+      },
+      {
+        "source": "gPSJGTfWAGFPbvHtNpFgqxHaTvpGvhME",
+        "target": "NSkpbdbyLScwXiRftjwJOUqottMYRqcG"
+      },
+      {
+        "source": "FisVYyEZWckOMtRNSejZRsXOLwulIAby",
+        "target": "VqPSVyIEYrAhdahyrMXZqkWoYZDpgwBN"
+      }
+    ]
+  }
+}

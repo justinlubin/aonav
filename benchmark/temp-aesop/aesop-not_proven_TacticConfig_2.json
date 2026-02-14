@@ -1,0 +1,77 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "tNzSuthodbDAWEtvijvZCQCTnUpIQsbV"
+    },
+    "nodes": {
+      "tNzSuthodbDAWEtvijvZCQCTnUpIQsbV": {
+        "label": " ⊢ EvenOrOdd 2\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ysEHXDvRASnOiXWtQirbQnroopYUaKpM": {
+        "label": " ⊢ EvenOrOdd 2\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "tEpJuClqxIeyAsXEKVQUFuPLGVEPoQwr": {
+        "label": " case a\n⊢ Even 2\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "LMkLzbPgMuSZDWsFuGssAnDpqGrpZrGk": {
+        "label": " case a.a\n⊢ Even 0\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ihpRYObKSRJAEwgEamXOtuTwNSUemXZU": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "LtMHgmGWcIKASEVKldilZnlOUZNGDXwF": {
+        "label": "[1/safe] safe|apply|global|EvenOrOdd.even",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "EpxVSynHkbTbmqopedMGBGQwbIhgZvgQ": {
+        "label": "[50.0000%] unsafe|apply|global|Even.plus_two",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "LtMHgmGWcIKASEVKldilZnlOUZNGDXwF",
+        "target": "tEpJuClqxIeyAsXEKVQUFuPLGVEPoQwr"
+      },
+      {
+        "source": "tNzSuthodbDAWEtvijvZCQCTnUpIQsbV",
+        "target": "ihpRYObKSRJAEwgEamXOtuTwNSUemXZU"
+      },
+      {
+        "source": "EpxVSynHkbTbmqopedMGBGQwbIhgZvgQ",
+        "target": "LMkLzbPgMuSZDWsFuGssAnDpqGrpZrGk"
+      },
+      {
+        "source": "ihpRYObKSRJAEwgEamXOtuTwNSUemXZU",
+        "target": "ysEHXDvRASnOiXWtQirbQnroopYUaKpM"
+      },
+      {
+        "source": "ysEHXDvRASnOiXWtQirbQnroopYUaKpM",
+        "target": "LtMHgmGWcIKASEVKldilZnlOUZNGDXwF"
+      },
+      {
+        "source": "tEpJuClqxIeyAsXEKVQUFuPLGVEPoQwr",
+        "target": "EpxVSynHkbTbmqopedMGBGQwbIhgZvgQ"
+      }
+    ]
+  }
+}

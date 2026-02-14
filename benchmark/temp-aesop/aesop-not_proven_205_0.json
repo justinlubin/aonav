@@ -1,0 +1,77 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "TFnnqEuTRZWXaoEhoXOtFpRImWNpSaDT"
+    },
+    "nodes": {
+      "TFnnqEuTRZWXaoEhoXOtFpRImWNpSaDT": {
+        "label": " α : Type u_1\nx y a b : α\nh₂ : R x a\nh₃ : R y b\n⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "yrSKjLZFESknttkSUmbNNloAKuluXGaZ": {
+        "label": " α : Type u_1\nx y a b : α\nh₂ : R x a\nh₃ : R y b\n⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "oHgRuGAxHqClvedRIugdBSANKtbfplcg": {
+        "label": " α : Type u_1\nx y a b : α\nh₂ : R x a\nh₃ : R y b\nfwd : R b y\nfwd_1 : R a x\n⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "wLwAmakNwRLKwlBpVFjUyXVYaoePRElA": {
+        "label": " α : Type u_1\nx y a b : α\nh₂ : R x a\nh₃ : R y b\nfwd : R b y\nfwd_1 : R a x\nfwd_2 : R b b\nfwd_3 : R y y\nfwd_4 : R a a\nfwd_5 : R x x\n⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "YFAYcFxcYLFdruZhyfMdpZvfvuarTaKy": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "ZIEoZHtmEomMOyfyUltqVhhePIvkzXnW": {
+        "label": "[1/safe] safe|forward|global|sym",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "eTUXhhqYlSZFwjcflEDBOmTYaNWzZvCT": {
+        "label": "[1/safe] safe|forward|global|tran",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "eTUXhhqYlSZFwjcflEDBOmTYaNWzZvCT",
+        "target": "wLwAmakNwRLKwlBpVFjUyXVYaoePRElA"
+      },
+      {
+        "source": "TFnnqEuTRZWXaoEhoXOtFpRImWNpSaDT",
+        "target": "YFAYcFxcYLFdruZhyfMdpZvfvuarTaKy"
+      },
+      {
+        "source": "ZIEoZHtmEomMOyfyUltqVhhePIvkzXnW",
+        "target": "oHgRuGAxHqClvedRIugdBSANKtbfplcg"
+      },
+      {
+        "source": "oHgRuGAxHqClvedRIugdBSANKtbfplcg",
+        "target": "eTUXhhqYlSZFwjcflEDBOmTYaNWzZvCT"
+      },
+      {
+        "source": "yrSKjLZFESknttkSUmbNNloAKuluXGaZ",
+        "target": "ZIEoZHtmEomMOyfyUltqVhhePIvkzXnW"
+      },
+      {
+        "source": "YFAYcFxcYLFdruZhyfMdpZvfvuarTaKy",
+        "target": "yrSKjLZFESknttkSUmbNNloAKuluXGaZ"
+      }
+    ]
+  }
+}
