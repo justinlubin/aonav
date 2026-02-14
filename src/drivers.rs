@@ -226,8 +226,19 @@ impl Driver<pn::Step> for SolutionDriven {
                 return Some(controller.end());
             }
 
+            // println!("\nBEFORE! --------------------------------");
+
             let mut options = controller.provide().ok()?;
             let mut chosen_option = None;
+
+            // println!(
+            //     "{}",
+            //     options
+            //         .iter()
+            //         .map(|o| o.show(controller.working_expression()))
+            //         .collect::<Vec<_>>()
+            //         .join("\n")
+            // );
 
             for (i, option) in options.iter().enumerate() {
                 match option {
@@ -237,6 +248,7 @@ impl Driver<pn::Step> for SolutionDriven {
                         // "User oracle" call
                         if self.solution.class(*oidx) == *class {
                             chosen_option = Some(i);
+                            break;
                         }
                     }
                     pn::Step::Seq(..) => {
@@ -247,6 +259,8 @@ impl Driver<pn::Step> for SolutionDriven {
 
             let chosen_option = chosen_option?;
             // .expect("SolutionDriven driver could not find consistent step");
+
+            // println!("chosen option: {}", chosen_option);
 
             controller.decide(options.swap_remove(chosen_option))
         }
