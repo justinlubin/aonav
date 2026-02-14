@@ -47,9 +47,13 @@ pub struct Timer(TimerInner);
 impl Timer {
     /// A finite-duration timer.
     pub fn finite(duration: Duration) -> Self {
-        Timer(TimerInner::Finite {
-            end: Instant::now() + duration,
-        })
+        if duration == Duration::MAX {
+            Timer(TimerInner::Infinite)
+        } else {
+            Timer(TimerInner::Finite {
+                end: Instant::now() + duration,
+            })
+        }
     }
 
     /// An infinite-duration timer (will never cut off the computation).
