@@ -1,0 +1,55 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "uDVIzMKrYnLOFKIBlGvzpQyRRdRUSHYy"
+    },
+    "nodes": {
+      "xWRjHLMMPJpQXQujGycrYjCwxiqiMdzI": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "CxUxGNlxCzCMzPCXtviZkfBzYOvtjmuk": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "gxGwrjNwDOzqjTsLfxbHVGEjEezrcbuh": {
+        "label": "<S as Service<Request<Body>>>::Future == _",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "xmbNSvxhKiExBScFpfDjmbRTorYEgWCQ": {
+        "label": "<S as Service<Request<Body>>>::Future normalizes to _",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "uDVIzMKrYnLOFKIBlGvzpQyRRdRUSHYy": {
+        "label": "<S as Service<Request<Body>>>::Future: Send",
+        "metadata": {
+          "kind": "OR"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "uDVIzMKrYnLOFKIBlGvzpQyRRdRUSHYy",
+        "target": "xWRjHLMMPJpQXQujGycrYjCwxiqiMdzI"
+      },
+      {
+        "source": "xWRjHLMMPJpQXQujGycrYjCwxiqiMdzI",
+        "target": "gxGwrjNwDOzqjTsLfxbHVGEjEezrcbuh"
+      },
+      {
+        "source": "gxGwrjNwDOzqjTsLfxbHVGEjEezrcbuh",
+        "target": "CxUxGNlxCzCMzPCXtviZkfBzYOvtjmuk"
+      },
+      {
+        "source": "CxUxGNlxCzCMzPCXtviZkfBzYOvtjmuk",
+        "target": "xmbNSvxhKiExBScFpfDjmbRTorYEgWCQ"
+      }
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "sSrUxWqMcJMyQsuaDgwGnfBJyicVxRip"
+    },
+    "nodes": {
+      "mCvTsqFScIrqmOZPHZwKNQQwDHNSobmx": {
+        "label": "&str: ToString",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "sSrUxWqMcJMyQsuaDgwGnfBJyicVxRip": {
+        "label": "(&str, &str): ToString",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "NQJVCruNxpmiqIDzraNxwjMzFIjKcJKA": {
+        "label": "&str: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ojwlGzbKLKhfBwdsVZVkKSTruQrzXWya": {
+        "label": "impl<S, T> ToString for (S, T)where S: ToStringT: ToString",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "XJjNILAjuXqTxIBlEGsTpQOnGxnrFdUE": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "ojwlGzbKLKhfBwdsVZVkKSTruQrzXWya",
+        "target": "NQJVCruNxpmiqIDzraNxwjMzFIjKcJKA"
+      },
+      {
+        "source": "ojwlGzbKLKhfBwdsVZVkKSTruQrzXWya",
+        "target": "mCvTsqFScIrqmOZPHZwKNQQwDHNSobmx"
+      },
+      {
+        "source": "sSrUxWqMcJMyQsuaDgwGnfBJyicVxRip",
+        "target": "ojwlGzbKLKhfBwdsVZVkKSTruQrzXWya"
+      },
+      {
+        "source": "NQJVCruNxpmiqIDzraNxwjMzFIjKcJKA",
+        "target": "XJjNILAjuXqTxIBlEGsTpQOnGxnrFdUE"
+      }
+    ]
+  }
+}

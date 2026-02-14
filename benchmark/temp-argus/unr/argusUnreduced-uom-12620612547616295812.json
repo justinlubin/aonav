@@ -1,0 +1,75 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "GcCnXaMrPypreZIfLySVyERvQNTSTzcQ"
+    },
+    "nodes": {
+      "hupuzcotKCeFWkiahzvLfcmRGlLFWibh": {
+        "label": "Quantity<(dyn Dimension + ), (dyn Units + ), f32>: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "GcCnXaMrPypreZIfLySVyERvQNTSTzcQ": {
+        "label": "Quantity<(dyn Dimension + ), (dyn Units + ), f32>: Into<Quantity<(dyn Dimension + )+f32>>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "UckDMpqqdQDxMzxeoIHvTMHZzKCsLOmL": {
+        "label": "Quantity<(dyn Dimension + ), +, f32>: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "MZPPCabMsfkktDtJRWNYxJFIwpSdbAAR": {
+        "label": "Quantity<(dyn Dimension + ), +, f32>: From<Quantity<(dyn Dimension + )(dyn Units + )f32>>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "zxaGZZASmuaTTpoGVVQqWYqvElDVGUTL": {
+        "label": "impl<T, U> Into<U> for Twhere U: From<T>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "zEPXWeUdBnUmifTPMOfiJUfbIPKYgNPc": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "suuDnotwlcTIUWplCMItAEzWUTukhHzY": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "GcCnXaMrPypreZIfLySVyERvQNTSTzcQ",
+        "target": "zxaGZZASmuaTTpoGVVQqWYqvElDVGUTL"
+      },
+      {
+        "source": "zxaGZZASmuaTTpoGVVQqWYqvElDVGUTL",
+        "target": "MZPPCabMsfkktDtJRWNYxJFIwpSdbAAR"
+      },
+      {
+        "source": "zxaGZZASmuaTTpoGVVQqWYqvElDVGUTL",
+        "target": "hupuzcotKCeFWkiahzvLfcmRGlLFWibh"
+      },
+      {
+        "source": "zxaGZZASmuaTTpoGVVQqWYqvElDVGUTL",
+        "target": "UckDMpqqdQDxMzxeoIHvTMHZzKCsLOmL"
+      },
+      {
+        "source": "hupuzcotKCeFWkiahzvLfcmRGlLFWibh",
+        "target": "zEPXWeUdBnUmifTPMOfiJUfbIPKYgNPc"
+      },
+      {
+        "source": "UckDMpqqdQDxMzxeoIHvTMHZzKCsLOmL",
+        "target": "suuDnotwlcTIUWplCMItAEzWUTukhHzY"
+      }
+    ]
+  }
+}

@@ -1,0 +1,516 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "dchMGLGNXdsbpNGbfwICEfbYydGiddle"
+    },
+    "nodes": {
+      "bsUHwwXWqftDtalEjXTnAPMhsrIhHqDr": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "aMDrqXSeOmvohiOHKjPzBLmktlLViVoR": {
+        "label": "SelectStatement<FromClause<table>, SelectClause<(idname)>, NoDistinctClause, WhereClause<Grouped<Eq<idid>>>>: Table",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "AZEkGEmfYwcmwJKWnciPhIWtEQlcJXGE": {
+        "label": "SelectStatement<FromClause<table>, SelectClause<(idname)>, NoDistinctClause, WhereClause<Grouped<Eq<idid>>>>: Query",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "oUvtPtNKaFxjuCNyCPGJzHhFBUZqQIKl": {
+        "label": "Eq<id, id>: AppearsOnTable<table>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "utaytVsNChxcPnXLJkqdcHLxOGElXzps": {
+        "label": "(): IsContainedInGroupBy<name>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "wOMRIyJhrUjMrPUAbmIEtzwZvTyrMxof": {
+        "label": "String: Queryable<Untyped, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ggWHUbkqkCAxMJFNbTHpVigyvqcsLjWh": {
+        "label": "Conn: Connection",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "MDynBTrTeqemlJXDBfzoQXyZqnKyyOvB": {
+        "label": "_: Backend",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "uFZUWEXHVPdlpynHnrhnKmLmYXCQFGar": {
+        "label": "String: FromSqlRow<Untyped, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "LeeMWagYcwrBWBOgNDQtxvKWGRixVUGo": {
+        "label": "String: FromSql<Untyped, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "cnIjewbvqWtZxYIWmvUwNGOIZjsfSSDG": {
+        "label": "FromClause<table>: QuerySource",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "dpxmcQHNoOUOHYfuakHgrTmiNiLZPziO": {
+        "label": "(): IsContainedInGroupBy<id>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "mBZqUcbWAeSIMERzOAQWKTPyWZVwsKlo": {
+        "label": "_: QueryMetadata<_>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "SgthjtlVbdHejWIVwhljrrVTJzkxANEi": {
+        "label": "String: QueryableByName<_>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "qgqssBvqdVYPdtFjVJaVGZPTEyOGVqql": {
+        "label": "SelectStatement<FromClause<table>, SelectClause<(idname)>, NoDistinctClause, WhereClause<Grouped<Eq<idid>>>>: AsQuery",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "edxlQAQiGNytAQanHAZGIiNtzSbbzYzc": {
+        "label": "_: FromStaticSqlRow<Untyped, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "aVjeYNxNcJDVsCTKNyiTXaPxeWSRDjIX": {
+        "label": "WhereClause<Grouped<Eq<idid>>>: ValidWhereClause<FromClause<table>>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "vUIwiSHvVnZLtiCmYqpvCMabLPMMYnoy": {
+        "label": "_: QueryId",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "suTInMAWRstgCiSTvxOzCKSufwXqLkkU": {
+        "label": "Grouped<Eq<idid>>: AppearsOnTable<table>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "WPRWxQqqIsxTHHdkhnywvemRbImPBkZF": {
+        "label": "<table as AppearsInFromClause<table>>::Count == Once",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "aNyWgsaPkIbXNSWFdDFtXxayOXOFslGF": {
+        "label": "Conn: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "zqwTrnRzEfrIwroLIXILvJlibGlXgQGw": {
+        "label": "_: QueryFragment<_>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "dchMGLGNXdsbpNGbfwICEfbYydGiddle": {
+        "label": "SelectStatement<FromClause<table>, SelectClause<(idname)>, NoDistinctClause, WhereClause<Grouped<Eq<idid>>>>: LoadQuery<Conn, (i32String)>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "XBdXbKQAaYIXXkpwOdrjxKGLNqpGJIHJ": {
+        "label": "*const str: FromSql<Untyped, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "QRxicJhSEBswnrUDLngfnXzXCmWZrXep": {
+        "label": "(i32, String): FromSqlRow<_, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "pNGkmOPnWbriesxsBzUJWYqijHPDQWyk": {
+        "label": "Untyped: SingleValue",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "COsNATQtTGUsJUhJIOauDpiTfHIBRilI": {
+        "label": "SelectStatement<FromClause<table>, SelectClause<(idname)>, NoDistinctClause, WhereClause<Grouped<Eq<idid>>>>: RunQueryDsl<Conn>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "jEkImcqGtISdYBrBkqaQfTISxGlxnHjd": {
+        "label": "<table as AppearsInFromClause<table>>::Count == Once",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "mdzmffchifyAKPOZAwAyzAKFbjGiEEGW": {
+        "label": "Untyped: SqlTypeOrSelectable",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "hxJkdLrzBiGpaQLLhtLPFAoxhqhQGrOU": {
+        "label": "Untyped: SqlType",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "rGIKhjmAkKzAYaMzhDkkicvcXpfRHMQx": {
+        "label": "_: CompatibleType<(i32String), _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "MhsCqvZFBTjIKeHGMPrshPdFwSLwGGUs": {
+        "label": "id: AppearsOnTable<table>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "LEkBBjCKNokitzkGUbiAIIWijiLxZikH": {
+        "label": "impl<QS, Expr> ValidWhereClause<QS> for WhereClause<Expr>where Expr: AppearsOnTable<<..QS as AsQuerySource>::QuerySource>QS: AsQuerySource",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "CGyiDghhhKymdySqtLFikoWYjPzqoUGd": {
+        "label": "impl<'query, Conn, T, U, DB, B> LoadQuery<'query, Conn, U, B> for Twhere Conn: Connection + LoadConnection<B>T: AsQuery + RunQueryDsl<Conn><..T as AsQuery>::Query: QueryFragment<DB> + QueryId + 'query<..T as AsQuery>::SqlType: CompatibleType<UDB>DB: Backend + QueryMetadata<<..T as AsQuery>::SqlType> + 'staticU: FromSqlRow<<..<..T as AsQuery>::SqlType as CompatibleType<UDB>>::SqlTypeDB> + 'static<..<..T as AsQuery>::SqlType as CompatibleType<U, DB>>::SqlType: 'static<..Conn as Connection>::Backend == DB",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "egEALzGdEiRHJMMeLcYmIPSzHVLNsyCB": {
+        "label": "impl<T, QS> AppearsOnTable<QS> for Grouped<T>where Grouped<T>: ExpressionT: AppearsOnTable<QS>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "QRGdKupKLDiwhEeLenIQlzotwUzOeqis": {
+        "label": "impl<T, Conn> RunQueryDsl<Conn> for Twhere T: Table",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "lvFYOYZhtREbfselNDJSuEDbfSlepkmL": {
+        "label": "impl<ST> SqlTypeOrSelectable for STwhere ST: SqlType + SingleValue",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "lmrLrcSIqZfypVzcDgYiWdiYGUPgqdwf": {
+        "label": "impl<__DB, __ST> Queryable<__ST, __DB> for Stringwhere __DB: Backend__ST: SingleValueString: FromSql<__ST__DB>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "fAWBIAVUWiuZMgrAkncCidTecXcXsrfw": {
+        "label": "impl<ST, DB> FromSql<ST, DB> for Stringwhere DB: Backend*const str: FromSql<STDB>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "bITFiozkAOinZDbAxdhjQTvhzbDffKMQ": {
+        "label": "impl<T, T1, ST1, __DB> FromSqlRow<(ST1Untyped), __DB> for (T1, T)where __DB: BackendT: FromSqlRow<Untyped__DB>T1: FromSqlRow<ST1__DB> + StaticallySizedRow<ST1__DB>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "jsrrcOcnrnqOfzfSAbGKUrgtKpaNZoPQ": {
+        "label": "impl<T> AsQuery for Twhere T: Query",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "nAfGJKftvmVjdVHWqQJjpUOmEvljevdE": {
+        "label": "impl<F, S, D, W, O, LOf, G, H, LC> Query for SelectStatement<F, S, D, W, O, LOf, G, H, LC>where G: ValidGroupByClauseS: SelectClauseExpression<F><..S as SelectClauseExpression<F>>::Selection: ValidGrouping<<..G as ValidGroupByClause>::Expressions>W: ValidWhereClause<F>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "CqKBwtczrpyQTBfnRPskCypXlTqSThLh": {
+        "label": "impl<T, ST, DB> FromSqlRow<ST, DB> for Twhere T: Queryable<STDB>ST: SqlTypeOrSelectableDB: Backend<..T as Queryable<ST, DB>>::Row: FromStaticSqlRow<STDB>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "YfeumxcsEAgOfjkQFevTpKLKwbKbUbNk": {
+        "label": "impl<QS> AppearsOnTable<QS> for idwhere QS: AppearsInFromClause<table><..QS as AppearsInFromClause<table>>::Count == Once",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "RjrxPRDcUdOgOJhuxevslWMsWFIyrQwo": {
+        "label": "impl<T, U, QS> AppearsOnTable<QS> for Eq<T, U>where Eq<T, U>: ExpressionT: AppearsOnTable<QS>U: AppearsOnTable<QS>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "BdXDzKEuPvxcAwvnnrwFYyzvXZvwDoBM": {
+        "label": "impl<F, S, D, W, O, LOf, G, H, LC, Conn> RunQueryDsl<Conn> for SelectStatement<F, S, D, W, O, LOf, G, H, LC>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "BzVZJYUSwAawbKnzOFLeesdhIquojbMV": {
+        "label": "impl<DB, T> FromSqlRow<Untyped, DB> for Twhere DB: BackendT: QueryableByName<DB>",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "WPRWxQqqIsxTHHdkhnywvemRbImPBkZF",
+        "target": "bsUHwwXWqftDtalEjXTnAPMhsrIhHqDr"
+      },
+      {
+        "source": "bsUHwwXWqftDtalEjXTnAPMhsrIhHqDr",
+        "target": "jEkImcqGtISdYBrBkqaQfTISxGlxnHjd"
+      },
+      {
+        "source": "CGyiDghhhKymdySqtLFikoWYjPzqoUGd",
+        "target": "aNyWgsaPkIbXNSWFdDFtXxayOXOFslGF"
+      },
+      {
+        "source": "CGyiDghhhKymdySqtLFikoWYjPzqoUGd",
+        "target": "QRxicJhSEBswnrUDLngfnXzXCmWZrXep"
+      },
+      {
+        "source": "CGyiDghhhKymdySqtLFikoWYjPzqoUGd",
+        "target": "zqwTrnRzEfrIwroLIXILvJlibGlXgQGw"
+      },
+      {
+        "source": "CGyiDghhhKymdySqtLFikoWYjPzqoUGd",
+        "target": "mBZqUcbWAeSIMERzOAQWKTPyWZVwsKlo"
+      },
+      {
+        "source": "CGyiDghhhKymdySqtLFikoWYjPzqoUGd",
+        "target": "rGIKhjmAkKzAYaMzhDkkicvcXpfRHMQx"
+      },
+      {
+        "source": "CGyiDghhhKymdySqtLFikoWYjPzqoUGd",
+        "target": "qgqssBvqdVYPdtFjVJaVGZPTEyOGVqql"
+      },
+      {
+        "source": "CGyiDghhhKymdySqtLFikoWYjPzqoUGd",
+        "target": "vUIwiSHvVnZLtiCmYqpvCMabLPMMYnoy"
+      },
+      {
+        "source": "CGyiDghhhKymdySqtLFikoWYjPzqoUGd",
+        "target": "COsNATQtTGUsJUhJIOauDpiTfHIBRilI"
+      },
+      {
+        "source": "CGyiDghhhKymdySqtLFikoWYjPzqoUGd",
+        "target": "ggWHUbkqkCAxMJFNbTHpVigyvqcsLjWh"
+      },
+      {
+        "source": "CGyiDghhhKymdySqtLFikoWYjPzqoUGd",
+        "target": "MDynBTrTeqemlJXDBfzoQXyZqnKyyOvB"
+      },
+      {
+        "source": "oUvtPtNKaFxjuCNyCPGJzHhFBUZqQIKl",
+        "target": "RjrxPRDcUdOgOJhuxevslWMsWFIyrQwo"
+      },
+      {
+        "source": "lvFYOYZhtREbfselNDJSuEDbfSlepkmL",
+        "target": "pNGkmOPnWbriesxsBzUJWYqijHPDQWyk"
+      },
+      {
+        "source": "lvFYOYZhtREbfselNDJSuEDbfSlepkmL",
+        "target": "hxJkdLrzBiGpaQLLhtLPFAoxhqhQGrOU"
+      },
+      {
+        "source": "lmrLrcSIqZfypVzcDgYiWdiYGUPgqdwf",
+        "target": "MDynBTrTeqemlJXDBfzoQXyZqnKyyOvB"
+      },
+      {
+        "source": "lmrLrcSIqZfypVzcDgYiWdiYGUPgqdwf",
+        "target": "pNGkmOPnWbriesxsBzUJWYqijHPDQWyk"
+      },
+      {
+        "source": "lmrLrcSIqZfypVzcDgYiWdiYGUPgqdwf",
+        "target": "LeeMWagYcwrBWBOgNDQtxvKWGRixVUGo"
+      },
+      {
+        "source": "lmrLrcSIqZfypVzcDgYiWdiYGUPgqdwf",
+        "target": "aNyWgsaPkIbXNSWFdDFtXxayOXOFslGF"
+      },
+      {
+        "source": "YfeumxcsEAgOfjkQFevTpKLKwbKbUbNk",
+        "target": "WPRWxQqqIsxTHHdkhnywvemRbImPBkZF"
+      },
+      {
+        "source": "QRGdKupKLDiwhEeLenIQlzotwUzOeqis",
+        "target": "aNyWgsaPkIbXNSWFdDFtXxayOXOFslGF"
+      },
+      {
+        "source": "QRGdKupKLDiwhEeLenIQlzotwUzOeqis",
+        "target": "aMDrqXSeOmvohiOHKjPzBLmktlLViVoR"
+      },
+      {
+        "source": "jsrrcOcnrnqOfzfSAbGKUrgtKpaNZoPQ",
+        "target": "AZEkGEmfYwcmwJKWnciPhIWtEQlcJXGE"
+      },
+      {
+        "source": "uFZUWEXHVPdlpynHnrhnKmLmYXCQFGar",
+        "target": "CqKBwtczrpyQTBfnRPskCypXlTqSThLh"
+      },
+      {
+        "source": "uFZUWEXHVPdlpynHnrhnKmLmYXCQFGar",
+        "target": "BzVZJYUSwAawbKnzOFLeesdhIquojbMV"
+      },
+      {
+        "source": "AZEkGEmfYwcmwJKWnciPhIWtEQlcJXGE",
+        "target": "nAfGJKftvmVjdVHWqQJjpUOmEvljevdE"
+      },
+      {
+        "source": "LEkBBjCKNokitzkGUbiAIIWijiLxZikH",
+        "target": "suTInMAWRstgCiSTvxOzCKSufwXqLkkU"
+      },
+      {
+        "source": "BdXDzKEuPvxcAwvnnrwFYyzvXZvwDoBM",
+        "target": "aNyWgsaPkIbXNSWFdDFtXxayOXOFslGF"
+      },
+      {
+        "source": "CqKBwtczrpyQTBfnRPskCypXlTqSThLh",
+        "target": "edxlQAQiGNytAQanHAZGIiNtzSbbzYzc"
+      },
+      {
+        "source": "CqKBwtczrpyQTBfnRPskCypXlTqSThLh",
+        "target": "MDynBTrTeqemlJXDBfzoQXyZqnKyyOvB"
+      },
+      {
+        "source": "CqKBwtczrpyQTBfnRPskCypXlTqSThLh",
+        "target": "wOMRIyJhrUjMrPUAbmIEtzwZvTyrMxof"
+      },
+      {
+        "source": "CqKBwtczrpyQTBfnRPskCypXlTqSThLh",
+        "target": "aNyWgsaPkIbXNSWFdDFtXxayOXOFslGF"
+      },
+      {
+        "source": "CqKBwtczrpyQTBfnRPskCypXlTqSThLh",
+        "target": "mdzmffchifyAKPOZAwAyzAKFbjGiEEGW"
+      },
+      {
+        "source": "aVjeYNxNcJDVsCTKNyiTXaPxeWSRDjIX",
+        "target": "LEkBBjCKNokitzkGUbiAIIWijiLxZikH"
+      },
+      {
+        "source": "egEALzGdEiRHJMMeLcYmIPSzHVLNsyCB",
+        "target": "oUvtPtNKaFxjuCNyCPGJzHhFBUZqQIKl"
+      },
+      {
+        "source": "MhsCqvZFBTjIKeHGMPrshPdFwSLwGGUs",
+        "target": "YfeumxcsEAgOfjkQFevTpKLKwbKbUbNk"
+      },
+      {
+        "source": "LeeMWagYcwrBWBOgNDQtxvKWGRixVUGo",
+        "target": "fAWBIAVUWiuZMgrAkncCidTecXcXsrfw"
+      },
+      {
+        "source": "fAWBIAVUWiuZMgrAkncCidTecXcXsrfw",
+        "target": "XBdXbKQAaYIXXkpwOdrjxKGLNqpGJIHJ"
+      },
+      {
+        "source": "fAWBIAVUWiuZMgrAkncCidTecXcXsrfw",
+        "target": "MDynBTrTeqemlJXDBfzoQXyZqnKyyOvB"
+      },
+      {
+        "source": "fAWBIAVUWiuZMgrAkncCidTecXcXsrfw",
+        "target": "aNyWgsaPkIbXNSWFdDFtXxayOXOFslGF"
+      },
+      {
+        "source": "qgqssBvqdVYPdtFjVJaVGZPTEyOGVqql",
+        "target": "jsrrcOcnrnqOfzfSAbGKUrgtKpaNZoPQ"
+      },
+      {
+        "source": "mdzmffchifyAKPOZAwAyzAKFbjGiEEGW",
+        "target": "lvFYOYZhtREbfselNDJSuEDbfSlepkmL"
+      },
+      {
+        "source": "BzVZJYUSwAawbKnzOFLeesdhIquojbMV",
+        "target": "MDynBTrTeqemlJXDBfzoQXyZqnKyyOvB"
+      },
+      {
+        "source": "BzVZJYUSwAawbKnzOFLeesdhIquojbMV",
+        "target": "aNyWgsaPkIbXNSWFdDFtXxayOXOFslGF"
+      },
+      {
+        "source": "BzVZJYUSwAawbKnzOFLeesdhIquojbMV",
+        "target": "SgthjtlVbdHejWIVwhljrrVTJzkxANEi"
+      },
+      {
+        "source": "COsNATQtTGUsJUhJIOauDpiTfHIBRilI",
+        "target": "BdXDzKEuPvxcAwvnnrwFYyzvXZvwDoBM"
+      },
+      {
+        "source": "COsNATQtTGUsJUhJIOauDpiTfHIBRilI",
+        "target": "QRGdKupKLDiwhEeLenIQlzotwUzOeqis"
+      },
+      {
+        "source": "suTInMAWRstgCiSTvxOzCKSufwXqLkkU",
+        "target": "egEALzGdEiRHJMMeLcYmIPSzHVLNsyCB"
+      },
+      {
+        "source": "dchMGLGNXdsbpNGbfwICEfbYydGiddle",
+        "target": "CGyiDghhhKymdySqtLFikoWYjPzqoUGd"
+      },
+      {
+        "source": "QRxicJhSEBswnrUDLngfnXzXCmWZrXep",
+        "target": "bITFiozkAOinZDbAxdhjQTvhzbDffKMQ"
+      },
+      {
+        "source": "nAfGJKftvmVjdVHWqQJjpUOmEvljevdE",
+        "target": "aVjeYNxNcJDVsCTKNyiTXaPxeWSRDjIX"
+      },
+      {
+        "source": "RjrxPRDcUdOgOJhuxevslWMsWFIyrQwo",
+        "target": "MhsCqvZFBTjIKeHGMPrshPdFwSLwGGUs"
+      },
+      {
+        "source": "bITFiozkAOinZDbAxdhjQTvhzbDffKMQ",
+        "target": "uFZUWEXHVPdlpynHnrhnKmLmYXCQFGar"
+      },
+      {
+        "source": "bITFiozkAOinZDbAxdhjQTvhzbDffKMQ",
+        "target": "aNyWgsaPkIbXNSWFdDFtXxayOXOFslGF"
+      },
+      {
+        "source": "bITFiozkAOinZDbAxdhjQTvhzbDffKMQ",
+        "target": "MDynBTrTeqemlJXDBfzoQXyZqnKyyOvB"
+      },
+      {
+        "source": "wOMRIyJhrUjMrPUAbmIEtzwZvTyrMxof",
+        "target": "lmrLrcSIqZfypVzcDgYiWdiYGUPgqdwf"
+      }
+    ]
+  }
+}

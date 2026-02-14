@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "lDGHgZxzamFBUsFzfcwJohJIMCpKFJpv"
+    },
+    "nodes": {
+      "lDGHgZxzamFBUsFzfcwJohJIMCpKFJpv": {
+        "label": "Impl<()>: T3",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "sHotKhdJMIbPAGJxZVwlKrIjWqiMvKEI": {
+        "label": "Impl<()>: T4",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ICsZdAGsGGcHjRHZYofoOOpvRHNgYvPu": {
+        "label": "impl<EntraitT> T3 for Impl<EntraitT>where EntraitT: SyncImpl<EntraitT>: T4",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "ICsZdAGsGGcHjRHZYofoOOpvRHNgYvPu",
+        "target": "sHotKhdJMIbPAGJxZVwlKrIjWqiMvKEI"
+      },
+      {
+        "source": "lDGHgZxzamFBUsFzfcwJohJIMCpKFJpv",
+        "target": "ICsZdAGsGGcHjRHZYofoOOpvRHNgYvPu"
+      }
+    ]
+  }
+}

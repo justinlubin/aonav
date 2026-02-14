@@ -1,0 +1,77 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "UsfejAUVnUzgfRfjkwXKBUfmROIWXWbR"
+    },
+    "nodes": {
+      "DBicfLAbdSKfYwwxMtouzBvwilLsuQzQ": {
+        "label": "&'_ mut A: FromRequestParts<S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "SuZotvdNQGzqSbcuPCeXKvfJiGRjPwdM": {
+        "label": "&'_ mut A: FromRequest<S, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "UsfejAUVnUzgfRfjkwXKBUfmROIWXWbR": {
+        "label": "handler fn(&'_ mut A) -> impl Future<Output = ()>: Handler<T, S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "NEobcubbaWvfkktRBtkdGqQbLhQRyEAn": {
+        "label": "handler fn(&'_ mut A) -> impl Future<Output = ()>: IntoResponse",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "NapaAnISAPolQUIcvPJjsPdWSMqiqNIV": {
+        "label": "impl<F, Fut, S, Res, M, T1> Handler<(MT1), S> for Fwhere F: FnOnce<(T1)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "KeOkKIXJsSAlRqDYTQUTHDJIZRjGIXCY": {
+        "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "ytHBnnoswrkRZtPZgkAicxOjyPCCDqOA": {
+        "label": "impl<S, T> FromRequest<S, ViaParts> for Twhere S: Send + SyncT: FromRequestParts<S>",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "KeOkKIXJsSAlRqDYTQUTHDJIZRjGIXCY",
+        "target": "NEobcubbaWvfkktRBtkdGqQbLhQRyEAn"
+      },
+      {
+        "source": "UsfejAUVnUzgfRfjkwXKBUfmROIWXWbR",
+        "target": "NapaAnISAPolQUIcvPJjsPdWSMqiqNIV"
+      },
+      {
+        "source": "UsfejAUVnUzgfRfjkwXKBUfmROIWXWbR",
+        "target": "KeOkKIXJsSAlRqDYTQUTHDJIZRjGIXCY"
+      },
+      {
+        "source": "NapaAnISAPolQUIcvPJjsPdWSMqiqNIV",
+        "target": "SuZotvdNQGzqSbcuPCeXKvfJiGRjPwdM"
+      },
+      {
+        "source": "SuZotvdNQGzqSbcuPCeXKvfJiGRjPwdM",
+        "target": "ytHBnnoswrkRZtPZgkAicxOjyPCCDqOA"
+      },
+      {
+        "source": "ytHBnnoswrkRZtPZgkAicxOjyPCCDqOA",
+        "target": "DBicfLAbdSKfYwwxMtouzBvwilLsuQzQ"
+      }
+    ]
+  }
+}

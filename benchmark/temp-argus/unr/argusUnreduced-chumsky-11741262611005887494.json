@@ -1,0 +1,36 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "QRresvScoTZucRauftwlpbRzHfKWSaIl"
+    },
+    "nodes": {
+      "TeYbKvATNqhYSyffjEvLHLWJoMKXgoBk": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "QRresvScoTZucRauftwlpbRzHfKWSaIl": {
+        "label": "<closure as FnOnce<(Recursive<charJsonSimple<char_>>)>>::Output == {error}",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "dlWaVJOPWnBAzvgqkRAfTDJnHOwCahmw": {
+        "label": "<closure as FnOnce<(Recursive<charJsonSimple<char_>>)>>::Output == {error}",
+        "metadata": {
+          "kind": "OR"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "QRresvScoTZucRauftwlpbRzHfKWSaIl",
+        "target": "TeYbKvATNqhYSyffjEvLHLWJoMKXgoBk"
+      },
+      {
+        "source": "TeYbKvATNqhYSyffjEvLHLWJoMKXgoBk",
+        "target": "dlWaVJOPWnBAzvgqkRAfTDJnHOwCahmw"
+      }
+    ]
+  }
+}

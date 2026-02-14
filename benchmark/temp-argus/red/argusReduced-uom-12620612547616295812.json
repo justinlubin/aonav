@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "TKlIqoSqQCpQAiLhtDjQyouNCBWICvzS"
+    },
+    "nodes": {
+      "TKlIqoSqQCpQAiLhtDjQyouNCBWICvzS": {
+        "label": "Quantity<(dyn Dimension + ), (dyn Units + ), f32>: Into<Quantity<(dyn Dimension + )+f32>>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "YZVfwCccsBGqNBiuLKLNZfNMiDXOaQkJ": {
+        "label": "Quantity<(dyn Dimension + ), +, f32>: From<Quantity<(dyn Dimension + )(dyn Units + )f32>>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "BuhiKUReLLBRpweVDaOVPtkDWoKFTDzY": {
+        "label": "impl<T, U> Into<U> for Twhere U: From<T>",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "TKlIqoSqQCpQAiLhtDjQyouNCBWICvzS",
+        "target": "BuhiKUReLLBRpweVDaOVPtkDWoKFTDzY"
+      },
+      {
+        "source": "BuhiKUReLLBRpweVDaOVPtkDWoKFTDzY",
+        "target": "YZVfwCccsBGqNBiuLKLNZfNMiDXOaQkJ"
+      }
+    ]
+  }
+}

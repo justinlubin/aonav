@@ -1,0 +1,67 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "ZOOyjSKfNwbNdreioCBspdHDchfwIdYI"
+    },
+    "nodes": {
+      "cyDcLzqzXeEmBahUBeoEZJBAlsOwAOFY": {
+        "label": "handler fn() -> impl Future<Output = ()>: IntoResponse",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "fAHqugOEdADBUDWZGcqnovdWzFrMskrR": {
+        "label": "closure upvar_tys=(): Send",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ZOOyjSKfNwbNdreioCBspdHDchfwIdYI": {
+        "label": "handler fn() -> impl Future<Output = ()>: Handler<T, S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "NQxrRlpbxWjwTkbTTgFiTINdxCivMbHF": {
+        "label": "S: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "HlwbJBAoleYFUYLzJAnkMQmEmDgOCqjQ": {
+        "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "ckiBujsjYTvjBgcOJTbjMwWmvkNUVSQl": {
+        "label": "impl<F, Fut, Res, S> Handler<(()), S> for Fwhere F: FnOnce<()> -> Fut + Clone + Send + 'staticFut: Future + SendRes: IntoResponse<..Fut as Future>::Output == Res",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "ZOOyjSKfNwbNdreioCBspdHDchfwIdYI",
+        "target": "ckiBujsjYTvjBgcOJTbjMwWmvkNUVSQl"
+      },
+      {
+        "source": "ZOOyjSKfNwbNdreioCBspdHDchfwIdYI",
+        "target": "HlwbJBAoleYFUYLzJAnkMQmEmDgOCqjQ"
+      },
+      {
+        "source": "HlwbJBAoleYFUYLzJAnkMQmEmDgOCqjQ",
+        "target": "cyDcLzqzXeEmBahUBeoEZJBAlsOwAOFY"
+      },
+      {
+        "source": "HlwbJBAoleYFUYLzJAnkMQmEmDgOCqjQ",
+        "target": "NQxrRlpbxWjwTkbTTgFiTINdxCivMbHF"
+      },
+      {
+        "source": "ckiBujsjYTvjBgcOJTbjMwWmvkNUVSQl",
+        "target": "NQxrRlpbxWjwTkbTTgFiTINdxCivMbHF"
+      }
+    ]
+  }
+}

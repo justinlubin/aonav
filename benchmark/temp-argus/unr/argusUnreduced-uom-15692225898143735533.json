@@ -1,0 +1,56 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "dfKLzRIiKyulzOxZyQCvLrPECejRsMEH"
+    },
+    "nodes": {
+      "dfKLzRIiKyulzOxZyQCvLrPECejRsMEH": {
+        "label": "Impl<()>: IntoIterator",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "PnSnVsgYFzGQIWUYjwEeiYZwZpHSgxIG": {
+        "label": "Impl<()>: Iterator",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "nrVRmnIfhkyOHHQqmyeQfgFQxCnOJfFs": {
+        "label": "Impl<()>: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "yWyomsRLLHIkCVihKqBRRuBThQzAPIhY": {
+        "label": "impl<I> IntoIterator for Iwhere I: Iterator",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "GigzjLiDHznERCXSMUwAyfBmNAbZRyge": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "yWyomsRLLHIkCVihKqBRRuBThQzAPIhY",
+        "target": "nrVRmnIfhkyOHHQqmyeQfgFQxCnOJfFs"
+      },
+      {
+        "source": "yWyomsRLLHIkCVihKqBRRuBThQzAPIhY",
+        "target": "PnSnVsgYFzGQIWUYjwEeiYZwZpHSgxIG"
+      },
+      {
+        "source": "dfKLzRIiKyulzOxZyQCvLrPECejRsMEH",
+        "target": "yWyomsRLLHIkCVihKqBRRuBThQzAPIhY"
+      },
+      {
+        "source": "nrVRmnIfhkyOHHQqmyeQfgFQxCnOJfFs",
+        "target": "GigzjLiDHznERCXSMUwAyfBmNAbZRyge"
+      }
+    ]
+  }
+}

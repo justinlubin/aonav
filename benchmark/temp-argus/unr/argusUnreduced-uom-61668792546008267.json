@@ -1,0 +1,75 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "reQSYvyGweqVripdirgYAUgbEDpqneBr"
+    },
+    "nodes": {
+      "reQSYvyGweqVripdirgYAUgbEDpqneBr": {
+        "label": "Impl<()>: T3",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "VJNSvvbvqexRpOcoosxsLREboexIoWef": {
+        "label": "Impl<()>: T4",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "AMIwOsauwzKHtfnFTkiXoFgSZbGamabM": {
+        "label": "(): Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "cwLIWrWAAnloCjwUPMoCbdVcufoJNoZo": {
+        "label": "(): Sync",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "mGEbDeXljwzSDUfnAHjDzqqlEJRBLnVt": {
+        "label": "impl<EntraitT> T3 for Impl<EntraitT>where EntraitT: SyncImpl<EntraitT>: T4",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "oFGuYcHoOLKrFyQSdqXUEXmCZFccQwhJ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "njNLVjqZCuSpYgDikhLLnMOfhRPdkkCK": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "mGEbDeXljwzSDUfnAHjDzqqlEJRBLnVt",
+        "target": "VJNSvvbvqexRpOcoosxsLREboexIoWef"
+      },
+      {
+        "source": "mGEbDeXljwzSDUfnAHjDzqqlEJRBLnVt",
+        "target": "cwLIWrWAAnloCjwUPMoCbdVcufoJNoZo"
+      },
+      {
+        "source": "mGEbDeXljwzSDUfnAHjDzqqlEJRBLnVt",
+        "target": "AMIwOsauwzKHtfnFTkiXoFgSZbGamabM"
+      },
+      {
+        "source": "reQSYvyGweqVripdirgYAUgbEDpqneBr",
+        "target": "mGEbDeXljwzSDUfnAHjDzqqlEJRBLnVt"
+      },
+      {
+        "source": "AMIwOsauwzKHtfnFTkiXoFgSZbGamabM",
+        "target": "oFGuYcHoOLKrFyQSdqXUEXmCZFccQwhJ"
+      },
+      {
+        "source": "cwLIWrWAAnloCjwUPMoCbdVcufoJNoZo",
+        "target": "njNLVjqZCuSpYgDikhLLnMOfhRPdkkCK"
+      }
+    ]
+  }
+}

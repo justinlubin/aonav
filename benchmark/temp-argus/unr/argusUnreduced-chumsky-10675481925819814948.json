@@ -1,0 +1,36 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "PWeirEWLyPiilTApyAGlITJtZAlKbZtk"
+    },
+    "nodes": {
+      "rDwLKWWhLTmrkCxPqBctAmtSPLEyPruh": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "OXTUwFFoKVEnIwQNBTHOSJOAWviqVgvS": {
+        "label": "<Label<To<Just<char&str{error}>&strJson>, &str> as Parser<char, Json>>::Error == <Or<Label<To<Just<char&str{error}>&strJson>&str>, Label<To<Just<char&str{error}>&strJson>&str>> as Parser<char, Json>>::Error",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "PWeirEWLyPiilTApyAGlITJtZAlKbZtk": {
+        "label": "<Label<To<Just<char&str{error}>&strJson>, &str> as Parser<char, Json>>::Error == <Or<Label<To<Just<char&str{error}>&strJson>&str>, Label<To<Just<char&str{error}>&strJson>&str>> as Parser<char, Json>>::Error",
+        "metadata": {
+          "kind": "OR"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "PWeirEWLyPiilTApyAGlITJtZAlKbZtk",
+        "target": "rDwLKWWhLTmrkCxPqBctAmtSPLEyPruh"
+      },
+      {
+        "source": "rDwLKWWhLTmrkCxPqBctAmtSPLEyPruh",
+        "target": "OXTUwFFoKVEnIwQNBTHOSJOAWviqVgvS"
+      }
+    ]
+  }
+}

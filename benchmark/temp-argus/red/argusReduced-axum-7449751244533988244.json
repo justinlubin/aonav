@@ -1,0 +1,57 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "oaNgRVTbFEzOelMYyRHVNOBpGFillroV"
+    },
+    "nodes": {
+      "oaNgRVTbFEzOelMYyRHVNOBpGFillroV": {
+        "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: Handler<T, S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "pUEBaqPnbkFoAUVozLLybVDjZqZgBOMg": {
+        "label": "handler fn(Request<Body>, Extension<String>) -> impl Future<Output = ()>: IntoResponse",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "zDjhISvjXQuITnyDmVJhjiPTwAAIbLAH": {
+        "label": "Request<Body>: FromRequestParts<S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "RODhqtWEjTldMRJSZBBiGYuOsbMOvIvw": {
+        "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "BFqxEbmLOXDpigdYzwrVmRjfldseljDg": {
+        "label": "impl<F, Fut, S, Res, M, T1, T2> Handler<(MT1T2), S> for Fwhere F: FnOnce<(T1T2)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequestParts<S> + SendT2: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "BFqxEbmLOXDpigdYzwrVmRjfldseljDg",
+        "target": "zDjhISvjXQuITnyDmVJhjiPTwAAIbLAH"
+      },
+      {
+        "source": "oaNgRVTbFEzOelMYyRHVNOBpGFillroV",
+        "target": "RODhqtWEjTldMRJSZBBiGYuOsbMOvIvw"
+      },
+      {
+        "source": "oaNgRVTbFEzOelMYyRHVNOBpGFillroV",
+        "target": "BFqxEbmLOXDpigdYzwrVmRjfldseljDg"
+      },
+      {
+        "source": "RODhqtWEjTldMRJSZBBiGYuOsbMOvIvw",
+        "target": "pUEBaqPnbkFoAUVozLLybVDjZqZgBOMg"
+      }
+    ]
+  }
+}

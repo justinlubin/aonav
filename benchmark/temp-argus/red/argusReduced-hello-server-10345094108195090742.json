@@ -1,0 +1,87 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "FuJVmTuaPyPhuXHsSwSbBoiljcEFWQCY"
+    },
+    "nodes": {
+      "VCwtBRTgvYTGSmKyJmKaOhOjVZezLkFC": {
+        "label": "LoginAttempt: FromRequest<S, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "SiltlxrFjYslxpFuxQJvMxBfBxHSwoty": {
+        "label": "LoginAttempt: FromRequestParts<S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "qtlFJsKLkQJlZtGmeLUzoEefrgKwUvbd": {
+        "label": "login fn(LoginAttempt) -> bool: IntoResponse",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "FuJVmTuaPyPhuXHsSwSbBoiljcEFWQCY": {
+        "label": "login fn(LoginAttempt) -> bool: Handler<T, S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "eCMhJQseRbxiwpzzjcFzrHPAcoigWlAD": {
+        "label": "bool: Future",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "SqQWbiDEjqSsJqphhqlrBtNKProXAvVN": {
+        "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "LNIqMybGPuSlwYIBWacVVOnflRbGbUGB": {
+        "label": "impl<F, Fut, S, Res, M, T1> Handler<(MT1), S> for Fwhere F: FnOnce<(T1)> -> Fut + Clone + Send + 'staticFut: Future + SendS: Send + Sync + 'staticRes: IntoResponseT1: FromRequest<SM> + Send<..Fut as Future>::Output == Res",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "ntFtqGetTFRsoUavCanIxrxInBCwwtaU": {
+        "label": "impl<S, T> FromRequest<S, ViaParts> for Twhere S: Send + SyncT: FromRequestParts<S>",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "LNIqMybGPuSlwYIBWacVVOnflRbGbUGB",
+        "target": "VCwtBRTgvYTGSmKyJmKaOhOjVZezLkFC"
+      },
+      {
+        "source": "LNIqMybGPuSlwYIBWacVVOnflRbGbUGB",
+        "target": "eCMhJQseRbxiwpzzjcFzrHPAcoigWlAD"
+      },
+      {
+        "source": "ntFtqGetTFRsoUavCanIxrxInBCwwtaU",
+        "target": "SiltlxrFjYslxpFuxQJvMxBfBxHSwoty"
+      },
+      {
+        "source": "SqQWbiDEjqSsJqphhqlrBtNKProXAvVN",
+        "target": "qtlFJsKLkQJlZtGmeLUzoEefrgKwUvbd"
+      },
+      {
+        "source": "FuJVmTuaPyPhuXHsSwSbBoiljcEFWQCY",
+        "target": "LNIqMybGPuSlwYIBWacVVOnflRbGbUGB"
+      },
+      {
+        "source": "FuJVmTuaPyPhuXHsSwSbBoiljcEFWQCY",
+        "target": "SqQWbiDEjqSsJqphhqlrBtNKProXAvVN"
+      },
+      {
+        "source": "VCwtBRTgvYTGSmKyJmKaOhOjVZezLkFC",
+        "target": "ntFtqGetTFRsoUavCanIxrxInBCwwtaU"
+      }
+    ]
+  }
+}

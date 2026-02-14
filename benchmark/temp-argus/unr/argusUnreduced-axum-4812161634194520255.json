@@ -1,0 +1,394 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "wiUGdLdvToosnepCsaULoZKjgiIZumQO"
+    },
+    "nodes": {
+      "bWHUQBCOSwgCUNImiStRJnTvkKeeQveF": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "loMiRSVOzNnOmftMrnNlsJSYTtVxTibq": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "krAHvIOfDnTCJMXGIooScoqJXnqIJxKf": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "KjXchBGITWdCPPHTTRhznWLGsWoWUKnn": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "LTsbHKGTdDNhplDylUTZQhEpzMNMGKWi": {
+        "label": "<handler ..fn() -> impl Future<Output = ()> as FnOnce<()>>::Output == impl Future<Output = ()>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "tIRUeImTHtzzkYvYmruZnaFZtKifjqTm": {
+        "label": "handler fn() -> impl Future<Output = ()>: IntoResponse",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "LinSRfPmbxuGKSMFHBqbJWFLEXksjhTZ": {
+        "label": "<impl Future<Output = ()> as Future>::Output == ()",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ufBXOySZhwlpcGvmuKqMdnwzAFTtJFDD": {
+        "label": "closure upvar_tys=(): Send",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "wiUGdLdvToosnepCsaULoZKjgiIZumQO": {
+        "label": "handler fn() -> impl Future<Output = ()>: Handler<T, S>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "hZSfkGbqBdtPNgRkCcOFVfRAatVkveaZ": {
+        "label": "impl Future<Output = ()>: Send",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "DRcvpojLceJhjImZFrbdMVOXRdPdlzMz": {
+        "label": "impl Future<Output = ()>: Future",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "HupNOOGueOjZHxYCFpyyDjVzLEMPyWIt": {
+        "label": "handler fn() -> impl Future<Output = ()>: Clone",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "xPHBduPWsGYSkTdOiaPvRioTghweyOIo": {
+        "label": "handler fn() -> impl Future<Output = ()>: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "pITKLDCepDUDRbXpmFvVLPFaYlnWFkio": {
+        "label": "(): Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "aVtAXkFwPXAuKXsfPSHvRKBgsHkNcgor": {
+        "label": "impl Future<Output = ()> == impl Future<Output = ()>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "yDnzRJaNxJmyPGgzZccNhERMmekBIoSf": {
+        "label": "impl Future<Output = ()>: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "syeMbPOKwBKzZRumWYgxIjaLehZSftZg": {
+        "label": "S: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "YSeOACbDoOmrbQuuvqBigUdLtbujphSI": {
+        "label": "opaque normalizes to _",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "MOeUvBIbyvFJUIOKtFWOgjlrlzOoxKTj": {
+        "label": "handler fn() -> impl Future<Output = ()>: 'static",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "OWIUeIoOhfgrnmQibleplRExJhGlfcTM": {
+        "label": "handler fn() -> impl Future<Output = ()>: FnOnce<()>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ViNmPAUGOCjtKNjPWIzKAUhRFaqdVIur": {
+        "label": "handler fn() -> impl Future<Output = ()>: Send",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "IlloQXqxzcwkFrOyBwWWOFZnCXdAOXTR": {
+        "label": "(): IntoResponse",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "EPyylWZtZXqxLdqKnwFtCepqjYmufgeg": {
+        "label": "impl IntoResponse for ()",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "gcmEyxEIFDoRoBbQGpsRNhWnJRCjNnfd": {
+        "label": "impl<T, S> Handler<IntoResponseHandler, S> for Twhere T: IntoResponse + Clone + Send + 'static",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb": {
+        "label": "impl<F, Fut, Res, S> Handler<(()), S> for Fwhere F: FnOnce<()> -> Fut + Clone + Send + 'staticFut: Future + SendRes: IntoResponse<..Fut as Future>::Output == Res",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "WdzbyDRZNVfobEGyucJqhScySPsEXqpu": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "aVEcIErvXlYRVUCXARUqgjMnFKogOicV": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "DDcUrHuUtSKKrxCGXcZCArdUGsCHTQEW": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "EQYFvdfhhZiToKVKPNVtMeLpkxIPqZCp": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "fenfyInQpCuOdKcBfctzJuZlykLdwdrK": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "nzNNpidZZTEOESlCiXYPnVhTVlWzXUZn": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "tuZfJshZzLSXkdUUrOiufxScBHANlwJG": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "UBitwTmvceEOiqIMMzNHMEttWdMUaHQJ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "cSgqWnXSJoZWRuJnfhThdplCBubrjbYF": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "LLJBWWaKnlKSadoLuWtEAnnWRKTOXRiq": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "OJJbUBxpkrbvPmaGnxGdmWJpXNOzlZso": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "giRwLjhuZCpqjjWfemnuTyWvKMRYcppg": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "SluFlGfeWpepnYhCpxFXBJnyVtKCGJGE": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "aVtAXkFwPXAuKXsfPSHvRKBgsHkNcgor",
+        "target": "bWHUQBCOSwgCUNImiStRJnTvkKeeQveF"
+      },
+      {
+        "source": "bWHUQBCOSwgCUNImiStRJnTvkKeeQveF",
+        "target": "YSeOACbDoOmrbQuuvqBigUdLtbujphSI"
+      },
+      {
+        "source": "DRcvpojLceJhjImZFrbdMVOXRdPdlzMz",
+        "target": "loMiRSVOzNnOmftMrnNlsJSYTtVxTibq"
+      },
+      {
+        "source": "loMiRSVOzNnOmftMrnNlsJSYTtVxTibq",
+        "target": "aVtAXkFwPXAuKXsfPSHvRKBgsHkNcgor"
+      },
+      {
+        "source": "hZSfkGbqBdtPNgRkCcOFVfRAatVkveaZ",
+        "target": "krAHvIOfDnTCJMXGIooScoqJXnqIJxKf"
+      },
+      {
+        "source": "krAHvIOfDnTCJMXGIooScoqJXnqIJxKf",
+        "target": "ufBXOySZhwlpcGvmuKqMdnwzAFTtJFDD"
+      },
+      {
+        "source": "hZSfkGbqBdtPNgRkCcOFVfRAatVkveaZ",
+        "target": "KjXchBGITWdCPPHTTRhznWLGsWoWUKnn"
+      },
+      {
+        "source": "KjXchBGITWdCPPHTTRhznWLGsWoWUKnn",
+        "target": "aVtAXkFwPXAuKXsfPSHvRKBgsHkNcgor"
+      },
+      {
+        "source": "wiUGdLdvToosnepCsaULoZKjgiIZumQO",
+        "target": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb"
+      },
+      {
+        "source": "wiUGdLdvToosnepCsaULoZKjgiIZumQO",
+        "target": "gcmEyxEIFDoRoBbQGpsRNhWnJRCjNnfd"
+      },
+      {
+        "source": "IlloQXqxzcwkFrOyBwWWOFZnCXdAOXTR",
+        "target": "EPyylWZtZXqxLdqKnwFtCepqjYmufgeg"
+      },
+      {
+        "source": "gcmEyxEIFDoRoBbQGpsRNhWnJRCjNnfd",
+        "target": "tIRUeImTHtzzkYvYmruZnaFZtKifjqTm"
+      },
+      {
+        "source": "gcmEyxEIFDoRoBbQGpsRNhWnJRCjNnfd",
+        "target": "syeMbPOKwBKzZRumWYgxIjaLehZSftZg"
+      },
+      {
+        "source": "gcmEyxEIFDoRoBbQGpsRNhWnJRCjNnfd",
+        "target": "MOeUvBIbyvFJUIOKtFWOgjlrlzOoxKTj"
+      },
+      {
+        "source": "gcmEyxEIFDoRoBbQGpsRNhWnJRCjNnfd",
+        "target": "xPHBduPWsGYSkTdOiaPvRioTghweyOIo"
+      },
+      {
+        "source": "gcmEyxEIFDoRoBbQGpsRNhWnJRCjNnfd",
+        "target": "ViNmPAUGOCjtKNjPWIzKAUhRFaqdVIur"
+      },
+      {
+        "source": "gcmEyxEIFDoRoBbQGpsRNhWnJRCjNnfd",
+        "target": "HupNOOGueOjZHxYCFpyyDjVzLEMPyWIt"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "LTsbHKGTdDNhplDylUTZQhEpzMNMGKWi"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "hZSfkGbqBdtPNgRkCcOFVfRAatVkveaZ"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "ViNmPAUGOCjtKNjPWIzKAUhRFaqdVIur"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "MOeUvBIbyvFJUIOKtFWOgjlrlzOoxKTj"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "LinSRfPmbxuGKSMFHBqbJWFLEXksjhTZ"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "pITKLDCepDUDRbXpmFvVLPFaYlnWFkio"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "syeMbPOKwBKzZRumWYgxIjaLehZSftZg"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "xPHBduPWsGYSkTdOiaPvRioTghweyOIo"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "HupNOOGueOjZHxYCFpyyDjVzLEMPyWIt"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "DRcvpojLceJhjImZFrbdMVOXRdPdlzMz"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "yDnzRJaNxJmyPGgzZccNhERMmekBIoSf"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "IlloQXqxzcwkFrOyBwWWOFZnCXdAOXTR"
+      },
+      {
+        "source": "ZxVQkniyRDvrPYcJmljREHCFCrmVzIMb",
+        "target": "OWIUeIoOhfgrnmQibleplRExJhGlfcTM"
+      },
+      {
+        "source": "aVtAXkFwPXAuKXsfPSHvRKBgsHkNcgor",
+        "target": "WdzbyDRZNVfobEGyucJqhScySPsEXqpu"
+      },
+      {
+        "source": "YSeOACbDoOmrbQuuvqBigUdLtbujphSI",
+        "target": "aVEcIErvXlYRVUCXARUqgjMnFKogOicV"
+      },
+      {
+        "source": "LTsbHKGTdDNhplDylUTZQhEpzMNMGKWi",
+        "target": "DDcUrHuUtSKKrxCGXcZCArdUGsCHTQEW"
+      },
+      {
+        "source": "LinSRfPmbxuGKSMFHBqbJWFLEXksjhTZ",
+        "target": "EQYFvdfhhZiToKVKPNVtMeLpkxIPqZCp"
+      },
+      {
+        "source": "pITKLDCepDUDRbXpmFvVLPFaYlnWFkio",
+        "target": "fenfyInQpCuOdKcBfctzJuZlykLdwdrK"
+      },
+      {
+        "source": "MOeUvBIbyvFJUIOKtFWOgjlrlzOoxKTj",
+        "target": "nzNNpidZZTEOESlCiXYPnVhTVlWzXUZn"
+      },
+      {
+        "source": "OWIUeIoOhfgrnmQibleplRExJhGlfcTM",
+        "target": "tuZfJshZzLSXkdUUrOiufxScBHANlwJG"
+      },
+      {
+        "source": "xPHBduPWsGYSkTdOiaPvRioTghweyOIo",
+        "target": "UBitwTmvceEOiqIMMzNHMEttWdMUaHQJ"
+      },
+      {
+        "source": "HupNOOGueOjZHxYCFpyyDjVzLEMPyWIt",
+        "target": "cSgqWnXSJoZWRuJnfhThdplCBubrjbYF"
+      },
+      {
+        "source": "ViNmPAUGOCjtKNjPWIzKAUhRFaqdVIur",
+        "target": "LLJBWWaKnlKSadoLuWtEAnnWRKTOXRiq"
+      },
+      {
+        "source": "DRcvpojLceJhjImZFrbdMVOXRdPdlzMz",
+        "target": "OJJbUBxpkrbvPmaGnxGdmWJpXNOzlZso"
+      },
+      {
+        "source": "yDnzRJaNxJmyPGgzZccNhERMmekBIoSf",
+        "target": "giRwLjhuZCpqjjWfemnuTyWvKMRYcppg"
+      },
+      {
+        "source": "IlloQXqxzcwkFrOyBwWWOFZnCXdAOXTR",
+        "target": "SluFlGfeWpepnYhCpxFXBJnyVtKCGJGE"
+      }
+    ]
+  }
+}

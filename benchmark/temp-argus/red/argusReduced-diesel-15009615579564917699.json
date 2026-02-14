@@ -1,0 +1,215 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "VUqPlpaMvRVXYdgSwqNXtUcbgniDVoUh"
+    },
+    "nodes": {
+      "TpESMptbRHvAVsAzoeoOeBAuSKrmNbfM": {
+        "label": "_: FromStaticSqlRow<Untyped, Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ZvBYJhtuoHGnsZngRZvNhngMSZxwjfsa": {
+        "label": "User: Queryable<Untyped, Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "kzLNeKdlRhDFTsqzQpHTEsRFTPDWHPCN": {
+        "label": "_: SingleValue",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "obhOliLmnAvVcSsidNSfaOaJZPCPnjgD": {
+        "label": "Untyped: CompatibleType<User, Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "WekSTCfOlQdhecMHpEmiUHvkrVUdnUpr": {
+        "label": "User: QueryableByName<Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "dDZnmsItpPbllkvMplRRRuOLqdqPwegx": {
+        "label": "Untyped: SingleValue",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "eTixxytfOktCcqcvjcMuPoCDtBuCWWsg": {
+        "label": "User: FromSqlRow<Untyped, Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "NGQBytRsIBjsRNvVIpLSGsSExWdwkgce": {
+        "label": "_: SqlType",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "bhqZEsXZFATjBZWpzURrAJgMPfuOyZnR": {
+        "label": "_: Selectable<Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "pCYNLzFipDbWMYZeCXwueaTvKtETvCFM": {
+        "label": "<Untyped as CompatibleType<User, Pg>>::SqlType normalizes to _",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "KzVmALIVCNsrBgMaSTBAknPgWNgtcKrp": {
+        "label": "SqlQuery: Table",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "FMJWDghHtFDvOMDJTIeOZnIfLjudoyRU": {
+        "label": "_: Sized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "VUqPlpaMvRVXYdgSwqNXtUcbgniDVoUh": {
+        "label": "SqlQuery: LoadQuery<PgConnection, User>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "xbRURDwtXmqOjBKirwWhetGmSekGWDHj": {
+        "label": "User: FromSqlRow<_, Pg>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "pDDyJugncRVObZMSOkbMSUgPtYpKnoeH": {
+        "label": "Untyped: SqlType",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "pwzqIYAiGYcTImTGBhpTKXmmieJlIRmC": {
+        "label": "Untyped: SqlTypeOrSelectable",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "CHnuRcgLZZVoDAnMyJSKUeEJcljZBvCI": {
+        "label": "impl<ST, U, DB> CompatibleType<U, DB> for STwhere DB: BackendST: SqlType + SingleValueU: FromSqlRow<STDB>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "TTqczmOnhCCRBeEAfaNQnXifdZijigZJ": {
+        "label": "impl<U, DB> CompatibleType<U, DB> for Untypedwhere U: FromSqlRow<UntypedDB>DB: Backend",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "hhjMLEwiVOdznQdYlXMllENVNfdBdxdc": {
+        "label": "impl<'query, Conn, T, U, DB, B> LoadQuery<'query, Conn, U, B> for Twhere Conn: Connection + LoadConnection<B>T: AsQuery + RunQueryDsl<Conn><..T as AsQuery>::Query: QueryFragment<DB> + QueryId + 'query<..T as AsQuery>::SqlType: CompatibleType<UDB>DB: Backend + QueryMetadata<<..T as AsQuery>::SqlType> + 'staticU: FromSqlRow<<..<..T as AsQuery>::SqlType as CompatibleType<UDB>>::SqlTypeDB> + 'static<..<..T as AsQuery>::SqlType as CompatibleType<U, DB>>::SqlType: 'static<..Conn as Connection>::Backend == DB",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "fAuepThWBbygKKxScbjlrZGNOWUwsNkM": {
+        "label": "impl<ST> SqlTypeOrSelectable for STwhere ST: SqlType + SingleValue",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "xGqXNqvcjvWiqkXPqofSnfSBhwhAXRtW": {
+        "label": "impl<DB, T> FromSqlRow<Untyped, DB> for Twhere DB: BackendT: QueryableByName<DB>",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "QmsXLFjdutrsWRhYRNYaorrANRLvfYdP": {
+        "label": "impl<T, ST, DB> FromSqlRow<ST, DB> for Twhere T: Queryable<STDB>ST: SqlTypeOrSelectableDB: Backend<..T as Queryable<ST, DB>>::Row: FromStaticSqlRow<STDB>",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "hhjMLEwiVOdznQdYlXMllENVNfdBdxdc",
+        "target": "xbRURDwtXmqOjBKirwWhetGmSekGWDHj"
+      },
+      {
+        "source": "hhjMLEwiVOdznQdYlXMllENVNfdBdxdc",
+        "target": "obhOliLmnAvVcSsidNSfaOaJZPCPnjgD"
+      },
+      {
+        "source": "TTqczmOnhCCRBeEAfaNQnXifdZijigZJ",
+        "target": "eTixxytfOktCcqcvjcMuPoCDtBuCWWsg"
+      },
+      {
+        "source": "obhOliLmnAvVcSsidNSfaOaJZPCPnjgD",
+        "target": "CHnuRcgLZZVoDAnMyJSKUeEJcljZBvCI"
+      },
+      {
+        "source": "obhOliLmnAvVcSsidNSfaOaJZPCPnjgD",
+        "target": "TTqczmOnhCCRBeEAfaNQnXifdZijigZJ"
+      },
+      {
+        "source": "eTixxytfOktCcqcvjcMuPoCDtBuCWWsg",
+        "target": "xGqXNqvcjvWiqkXPqofSnfSBhwhAXRtW"
+      },
+      {
+        "source": "eTixxytfOktCcqcvjcMuPoCDtBuCWWsg",
+        "target": "QmsXLFjdutrsWRhYRNYaorrANRLvfYdP"
+      },
+      {
+        "source": "CHnuRcgLZZVoDAnMyJSKUeEJcljZBvCI",
+        "target": "dDZnmsItpPbllkvMplRRRuOLqdqPwegx"
+      },
+      {
+        "source": "CHnuRcgLZZVoDAnMyJSKUeEJcljZBvCI",
+        "target": "eTixxytfOktCcqcvjcMuPoCDtBuCWWsg"
+      },
+      {
+        "source": "CHnuRcgLZZVoDAnMyJSKUeEJcljZBvCI",
+        "target": "pDDyJugncRVObZMSOkbMSUgPtYpKnoeH"
+      },
+      {
+        "source": "fAuepThWBbygKKxScbjlrZGNOWUwsNkM",
+        "target": "dDZnmsItpPbllkvMplRRRuOLqdqPwegx"
+      },
+      {
+        "source": "fAuepThWBbygKKxScbjlrZGNOWUwsNkM",
+        "target": "pDDyJugncRVObZMSOkbMSUgPtYpKnoeH"
+      },
+      {
+        "source": "xGqXNqvcjvWiqkXPqofSnfSBhwhAXRtW",
+        "target": "WekSTCfOlQdhecMHpEmiUHvkrVUdnUpr"
+      },
+      {
+        "source": "QmsXLFjdutrsWRhYRNYaorrANRLvfYdP",
+        "target": "TpESMptbRHvAVsAzoeoOeBAuSKrmNbfM"
+      },
+      {
+        "source": "QmsXLFjdutrsWRhYRNYaorrANRLvfYdP",
+        "target": "pwzqIYAiGYcTImTGBhpTKXmmieJlIRmC"
+      },
+      {
+        "source": "QmsXLFjdutrsWRhYRNYaorrANRLvfYdP",
+        "target": "ZvBYJhtuoHGnsZngRZvNhngMSZxwjfsa"
+      },
+      {
+        "source": "VUqPlpaMvRVXYdgSwqNXtUcbgniDVoUh",
+        "target": "hhjMLEwiVOdznQdYlXMllENVNfdBdxdc"
+      },
+      {
+        "source": "pwzqIYAiGYcTImTGBhpTKXmmieJlIRmC",
+        "target": "fAuepThWBbygKKxScbjlrZGNOWUwsNkM"
+      }
+    ]
+  }
+}

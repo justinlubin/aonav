@@ -1,0 +1,75 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "UiJmwQImOLOgcMXizmjBjJQlAVzKAYLd"
+    },
+    "nodes": {
+      "vLZYJPzOudUxwsoigSjMcDpDNQabPWMR": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "occYLJvMaNFQjZPOEseupKwNsakAYRAi": {
+        "label": "Eq<name, _>: MetaSized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "wFOWPMpcUMkRvNSnVxWksaQIltdeKpws": {
+        "label": "Grouped<Eq<name_>>: Display",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ZzeHWMJPouoDkogOQcCaYqgBdAYvMRWZ": {
+        "label": "Grouped<Eq<name_>>: MetaSized",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "UiJmwQImOLOgcMXizmjBjJQlAVzKAYLd": {
+        "label": "Grouped<Eq<name_>>: ToString",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "KCsdopIhqKDrsblwhcOgZnNkEuKcViba": {
+        "label": "impl<T> ToString for Twhere T: MetaSized + Display",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "DUeElVIdDkvYJwyEGhiyGqlmJYyWktFQ": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "ZzeHWMJPouoDkogOQcCaYqgBdAYvMRWZ",
+        "target": "vLZYJPzOudUxwsoigSjMcDpDNQabPWMR"
+      },
+      {
+        "source": "vLZYJPzOudUxwsoigSjMcDpDNQabPWMR",
+        "target": "occYLJvMaNFQjZPOEseupKwNsakAYRAi"
+      },
+      {
+        "source": "KCsdopIhqKDrsblwhcOgZnNkEuKcViba",
+        "target": "wFOWPMpcUMkRvNSnVxWksaQIltdeKpws"
+      },
+      {
+        "source": "KCsdopIhqKDrsblwhcOgZnNkEuKcViba",
+        "target": "ZzeHWMJPouoDkogOQcCaYqgBdAYvMRWZ"
+      },
+      {
+        "source": "UiJmwQImOLOgcMXizmjBjJQlAVzKAYLd",
+        "target": "KCsdopIhqKDrsblwhcOgZnNkEuKcViba"
+      },
+      {
+        "source": "ZzeHWMJPouoDkogOQcCaYqgBdAYvMRWZ",
+        "target": "DUeElVIdDkvYJwyEGhiyGqlmJYyWktFQ"
+      }
+    ]
+  }
+}

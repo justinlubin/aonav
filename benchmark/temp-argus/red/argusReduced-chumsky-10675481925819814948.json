@@ -1,0 +1,36 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "iIlIwErwLaoRZMUgfUGbkZSnmEVNXHyV"
+    },
+    "nodes": {
+      "SQCccWrOYEagTIFBAjqykFNNEqFeRTvf": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "rBitmtglraOxhKzgjyDzzgztVvFGQpKv": {
+        "label": "<Label<To<Just<char&str{error}>&strJson>, &str> as Parser<char, Json>>::Error == <Or<Label<To<Just<char&str{error}>&strJson>&str>, Label<To<Just<char&str{error}>&strJson>&str>> as Parser<char, Json>>::Error",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "iIlIwErwLaoRZMUgfUGbkZSnmEVNXHyV": {
+        "label": "<Label<To<Just<char&str{error}>&strJson>, &str> as Parser<char, Json>>::Error == <Or<Label<To<Just<char&str{error}>&strJson>&str>, Label<To<Just<char&str{error}>&strJson>&str>> as Parser<char, Json>>::Error",
+        "metadata": {
+          "kind": "OR"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "iIlIwErwLaoRZMUgfUGbkZSnmEVNXHyV",
+        "target": "SQCccWrOYEagTIFBAjqykFNNEqFeRTvf"
+      },
+      {
+        "source": "SQCccWrOYEagTIFBAjqykFNNEqFeRTvf",
+        "target": "rBitmtglraOxhKzgjyDzzgztVvFGQpKv"
+      }
+    ]
+  }
+}

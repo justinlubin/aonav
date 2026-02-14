@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "THPjlWMbCMrQEdUeEuWeKmJeepphknjJ"
+    },
+    "nodes": {
+      "THPjlWMbCMrQEdUeEuWeKmJeepphknjJ": {
+        "label": "(&str, Vec<Play>): Summary",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "vMHqVPmOnHpaYpdhxtWyUspwZgILEopB": {
+        "label": "&str: Summary",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "IhAPVwsczZiRfBFQhaUyNFpQvgPrSxxS": {
+        "label": "impl<T, U> Summary for (T, U)where T: SummaryU: Summary",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "IhAPVwsczZiRfBFQhaUyNFpQvgPrSxxS",
+        "target": "vMHqVPmOnHpaYpdhxtWyUspwZgILEopB"
+      },
+      {
+        "source": "THPjlWMbCMrQEdUeEuWeKmJeepphknjJ",
+        "target": "IhAPVwsczZiRfBFQhaUyNFpQvgPrSxxS"
+      }
+    ]
+  }
+}

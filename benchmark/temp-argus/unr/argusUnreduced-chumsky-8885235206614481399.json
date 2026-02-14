@@ -1,0 +1,36 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "oMacXvIiUpMQCpmTyxPssTsxwnXQdlOm"
+    },
+    "nodes": {
+      "yDpkEyXfsUqSKnUvtSrrkGSMdBuSMDhI": {
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "oMacXvIiUpMQCpmTyxPssTsxwnXQdlOm": {
+        "label": "<{error} as Parser<char, Json>>::Error == Simple<char, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "zsjNnviHUuZujvgjJYZMLOoOdlGAbbfT": {
+        "label": "<{error} as Parser<char, Json>>::Error == Simple<char, _>",
+        "metadata": {
+          "kind": "OR"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "oMacXvIiUpMQCpmTyxPssTsxwnXQdlOm",
+        "target": "yDpkEyXfsUqSKnUvtSrrkGSMdBuSMDhI"
+      },
+      {
+        "source": "yDpkEyXfsUqSKnUvtSrrkGSMdBuSMDhI",
+        "target": "zsjNnviHUuZujvgjJYZMLOoOdlGAbbfT"
+      }
+    ]
+  }
+}

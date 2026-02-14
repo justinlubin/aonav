@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "gwwaTPXZBOQCdbivAaCoiUKDxOlJemjy"
+    },
+    "nodes": {
+      "BoVMKInxcgrHcNKWMDEROqxuxtVtjGvW": {
+        "label": "&str: ToString",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "gwwaTPXZBOQCdbivAaCoiUKDxOlJemjy": {
+        "label": "(&str, &str): ToString",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "MGugFHUxYjPpvKaSvmuBljkBuMKSJUkV": {
+        "label": "impl<S, T> ToString for (S, T)where S: ToStringT: ToString",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "MGugFHUxYjPpvKaSvmuBljkBuMKSJUkV",
+        "target": "BoVMKInxcgrHcNKWMDEROqxuxtVtjGvW"
+      },
+      {
+        "source": "gwwaTPXZBOQCdbivAaCoiUKDxOlJemjy",
+        "target": "MGugFHUxYjPpvKaSvmuBljkBuMKSJUkV"
+      }
+    ]
+  }
+}
