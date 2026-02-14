@@ -20,11 +20,13 @@ pub trait Driver<S: pbn::Step> {
 ////////////////////////////////////////////////////////////////////////////////
 // CLI Driver
 
-pub struct Cli;
+pub struct Cli {
+    valid_word: String,
+}
 
 impl Cli {
-    pub fn new() -> Self {
-        Self
+    pub fn new(valid_word: String) -> Self {
+        Self { valid_word }
     }
 }
 
@@ -134,7 +136,7 @@ impl Driver<pn::Step> for Cli {
             if valid {
                 println!(
                     "  f) Expression is {}, finish navigation",
-                    Green.bold().paint("valid")
+                    Green.bold().paint(&self.valid_word)
                 )
             }
 

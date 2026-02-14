@@ -87,9 +87,7 @@ impl Runner {
             None
         };
 
-        let checker = pn::oracle::Valid::new(
-            pn::oracle::OptInc::from_optional_start(optional_start),
-        );
+        let checker = pn::oracle::Sufficient::new();
 
         let controller = pbn::Controller::new(
             Timer::finite(self.config.timeout),

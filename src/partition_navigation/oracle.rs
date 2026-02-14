@@ -520,7 +520,7 @@ pub fn minimal_leaves(e: &Exp) -> Option<ao::OrSet> {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Validity checker
+// Validity checkers
 
 pub struct Valid {
     incremental: OptInc,
@@ -539,5 +539,23 @@ impl pbn::ValidityChecker for Valid {
         let mut e = e.clone();
         e.set_remaining_pessimistically(&HashSet::new());
         self.incremental.nonempty_completion(&e)
+    }
+}
+
+pub struct Sufficient;
+
+impl Sufficient {
+    pub fn new() -> Self {
+        Self
+    }
+}
+
+impl pbn::ValidityChecker for Sufficient {
+    type Exp = Exp;
+
+    fn check(&mut self, e: &Self::Exp) -> bool {
+        let mut g = e.graph().clone();
+        g.make_axioms(e.filter_class(|c| c.is_assume()).set.into_iter());
+        ao::algo::provable(&g, e.graph().goal())
     }
 }

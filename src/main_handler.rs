@@ -87,9 +87,7 @@ pub fn interact(
             .collect(),
     );
 
-    let checker = pn::oracle::Valid::new(
-        pn::oracle::OptInc::from_optional_start(optional_start),
-    );
+    let checker = pn::oracle::Sufficient::new();
 
     let controller = pbn::Controller::new(
         util::Timer::infinite(),
@@ -99,7 +97,7 @@ pub fn interact(
         true,
     );
 
-    let mut driver = drivers::Cli::new();
+    let mut driver = drivers::Cli::new("sufficient".to_owned());
     let _ = driver.drive(controller);
 
     Ok(())
