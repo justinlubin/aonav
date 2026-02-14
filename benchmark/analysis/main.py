@@ -26,6 +26,7 @@ nice_suite = {
     "manual": "Manual",
     "random": "Random",
     "argus": "Argus",
+    "aesop": "Aesop",
 }
 
 metadata = pl.read_csv("metadata.csv")
