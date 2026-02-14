@@ -5,7 +5,7 @@ use crate::util::{self, EarlyCutoff, Timer};
 use pn::oracle::OptInc;
 
 use indexmap::IndexSet;
-use pbn::Step;
+use pbn::{Step, Timer as _};
 use rand::prelude::*;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -26,7 +26,7 @@ impl pbn::StepProvider<util::Timer> for Commit {
 
     fn provide(
         &mut self,
-        _timer: &Timer,
+        timer: &Timer,
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut ret = vec![];
@@ -47,6 +47,8 @@ impl pbn::StepProvider<util::Timer> for Commit {
                         }
                     }
                 }
+
+                timer.tick()?;
             }
         }
 
@@ -72,7 +74,7 @@ impl pbn::StepProvider<util::Timer> for Remaining {
 
     fn provide(
         &mut self,
-        _timer: &Timer,
+        timer: &Timer,
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut ret = vec![];
@@ -87,6 +89,7 @@ impl pbn::StepProvider<util::Timer> for Remaining {
                         }
                     }
                 }
+                timer.tick()?;
             }
         }
         Ok(ret)
@@ -111,7 +114,7 @@ impl pbn::StepProvider<util::Timer> for Random {
 
     fn provide(
         &mut self,
-        _timer: &Timer,
+        timer: &Timer,
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let unseen = e.filter_class(|c| !c.is_committed()).set;
@@ -133,6 +136,7 @@ impl pbn::StepProvider<util::Timer> for Random {
                     }
                 }
             }
+            timer.tick()?;
         }
 
         Ok(ret)
@@ -157,7 +161,7 @@ impl pbn::StepProvider<util::Timer> for TopDownInversion {
 
     fn provide(
         &mut self,
-        _timer: &Timer,
+        timer: &Timer,
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut ret = vec![];
@@ -232,6 +236,8 @@ impl pbn::StepProvider<util::Timer> for TopDownInversion {
                         ret.push(step);
                     }
                 }
+
+                timer.tick()?;
             }
         }
 
@@ -257,7 +263,7 @@ impl pbn::StepProvider<util::Timer> for BottomUpInversion {
 
     fn provide(
         &mut self,
-        _timer: &Timer,
+        timer: &Timer,
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut ret = vec![];
@@ -275,6 +281,7 @@ impl pbn::StepProvider<util::Timer> for BottomUpInversion {
                             ret.push(step);
                         }
                     }
+                    timer.tick()?;
                 }
             }
         }
@@ -301,7 +308,7 @@ impl pbn::StepProvider<util::Timer> for Leaf {
 
     fn provide(
         &mut self,
-        _timer: &Timer,
+        timer: &Timer,
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut ret = vec![];
@@ -316,6 +323,7 @@ impl pbn::StepProvider<util::Timer> for Leaf {
                         }
                     }
                 }
+                timer.tick()?;
             }
         }
         Ok(ret)
@@ -344,7 +352,7 @@ impl pbn::StepProvider<util::Timer> for MaxInfoGain {
 
     fn provide(
         &mut self,
-        _timer: &Timer,
+        timer: &Timer,
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut ret = vec![];
@@ -396,6 +404,7 @@ impl pbn::StepProvider<util::Timer> for MaxInfoGain {
                         }
                     }
                 }
+                timer.tick()?;
             }
             if steps.is_empty() {
                 continue;
@@ -546,7 +555,7 @@ impl pbn::StepProvider<util::Timer> for Alphabetical {
 
     fn provide(
         &mut self,
-        _timer: &Timer,
+        timer: &Timer,
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
         let mut unseen: Vec<_> = e
@@ -626,6 +635,7 @@ impl pbn::StepProvider<util::Timer> for Alphabetical {
                         }
                     }
                 }
+                timer.tick()?;
             }
 
             return Ok(ret);

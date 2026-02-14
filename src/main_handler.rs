@@ -112,6 +112,7 @@ pub fn benchmark(
     parallel: bool,
     minimal: bool,
     incremental_if_possible: bool,
+    timeout: Duration,
 ) -> Result<(), String> {
     if !suite_path.exists() {
         panic!("Path '{}' does not exist", suite_path.display())
@@ -154,7 +155,7 @@ pub fn benchmark(
 
     let config = benchmark::Config {
         replicates,
-        timeout: Duration::from_secs(1000),
+        timeout,
         parallel,
         providers: providers.clone(),
         incremental_if_possible,

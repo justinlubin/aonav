@@ -4,6 +4,7 @@ use under::menu;
 use ansi_term::Color::*;
 use clap::{builder::styling::*, Parser, Subcommand};
 use std::path::PathBuf;
+use std::time::Duration;
 
 fn styles() -> Styles {
     Styles::styled()
@@ -87,6 +88,10 @@ enum Command {
         /// Use incrementality (if possible)
         #[arg(long, action)]
         incremental: bool,
+
+        /// Timeout (in seconds, omit for none)
+        #[arg(long)]
+        timeout: Option<u64>,
     },
 
     /// Generate solutions for a benchmark suite
@@ -149,6 +154,7 @@ impl Command {
                 parallel,
                 minimal,
                 incremental,
+                timeout,
             } => main_handler::benchmark(
                 path,
                 providers,
@@ -156,6 +162,7 @@ impl Command {
                 *parallel,
                 *minimal,
                 *incremental,
+                timeout.map(Duration::from_secs).unwrap_or(Duration::MAX),
             ),
             Self::GenerateSolutions {
                 path,

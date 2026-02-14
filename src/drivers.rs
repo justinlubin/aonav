@@ -100,7 +100,7 @@ impl Driver<pn::Step> for Cli {
             round += 1;
 
             let valid = controller.valid();
-            let mut options = controller.provide().unwrap();
+            let mut options = controller.provide().ok()?;
 
             let exp = controller.working_expression();
 
@@ -224,7 +224,7 @@ impl Driver<pn::Step> for SolutionDriven {
                 return Some(controller.end());
             }
 
-            let mut options = controller.provide().unwrap();
+            let mut options = controller.provide().ok()?;
             let mut chosen_option = None;
 
             for (i, option) in options.iter().enumerate() {
@@ -282,7 +282,7 @@ impl Driver<pn::Step> for Random {
                 return Some(controller.end());
             }
 
-            let mut options = controller.provide().unwrap();
+            let mut options = controller.provide().ok()?;
             let choice = rand::rng().random_range(0..options.len());
 
             controller.decide(options.swap_remove(choice))
