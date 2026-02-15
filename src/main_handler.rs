@@ -168,7 +168,7 @@ pub fn benchmark(
 fn generate_random_exp(graph: &ao::Graph) -> pn::Exp {
     let controller = pbn::Controller::new(
         util::Timer::infinite(),
-        pn::providers::Remaining::new(pn::oracle::OptInc::NonIncremental),
+        pn::providers::Random::new(pn::oracle::OptInc::NonIncremental),
         pn::oracle::Valid::new(pn::oracle::OptInc::NonIncremental),
         pn::Exp::new(graph.clone()),
         false,
