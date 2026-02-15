@@ -25,41 +25,68 @@ plt.rcParams.update(
 nice_suite = {
     "manual": "Manual",
     "random": "Random",
-    "argus": "Argus",
+    "argusReduced": "Argus",
     "aesop": "Aesop",
 }
 
 metadata = pl.read_csv("metadata.csv")
 
+
+def attach_metadata(df):
+    return df.join(metadata, on="provider").with_columns(
+        suite=pl.col("name").str.split_exact("-", 1).struct.field("field_0"),
+    )
+
+
 datas = []
 for path in glob.glob("../results/*.csv"):
     datas.append(pl.read_csv(path))
 
-data = pl.concat(datas).with_columns(
-    duration=pl.col("duration") / 1000,
+data = (
+    pl.concat(datas)
+    .with_columns(
+        duration=pl.when(pl.col("success"))
+        .then(pl.col("duration") / 1000)
+        .otherwise(None),
+        decisions=pl.when(pl.col("success"))
+        .then(pl.col("total_decisions"))
+        .otherwise(None),
+    )
+    .drop("success", "total_decisions", "unique_decisions")
+    .select(
+        "name",
+        "provider",
+        "chosen_solution",
+        "replicate",
+        "duration",
+        "decisions",
+    )
+    .sort(pl.col("*"))
 )
 
-summary = (
+agg = (
     data.group_by("provider", "name", "chosen_solution")
     .agg(
         pl.col("duration").mean(),
-        pl.col("total_decisions").mean(),
-        pl.col("unique_decisions").mean(),
+        pl.col("decisions").mean(),
     )
     .group_by("provider", "name")
     .agg(
         pl.col("duration").mean(),
-        pl.col("total_decisions").mean(),
-        pl.col("unique_decisions").mean(),
+        pl.col("decisions").mean(),
     )
+    .select("name", "provider", "duration", "decisions")
+    .sort(pl.col("*"))
 )
 
-# summary = summary.filter(
-#     pl.col("total_decisions") > 0,
-#     pl.col("provider") != "Remaining",
-# )
+comparisons = agg.join(agg, on="name", suffix="_baseline")
 
-# % %
+data = attach_metadata(data)
+agg = attach_metadata(agg)
+
+# TODO: make forest plot
+
+# %%
 
 baseline_provider = "AlphabeticalUnsound"
 
@@ -226,66 +253,9 @@ for (suite,), g in summary.group_by("suite"):
         f"out/01-total_decisions-{suite}.pdf",
     )
 
-# %%
-
-
-def compareplot(
-    df,
-    *,
-    x,
-    y,
-    figtitle,
-):
-    fig, ax = plt.subplots(1, 1, figsize=(5, 5))
-
-    ax.scatter(
-        df[x],
-        df[y],
-        c="k",
-        alpha=0.2,
-        zorder=10,
-    )
-
-    lim = max(df[x].max(), df[y].max())
-
-    ax.axline(xy1=(0, 0), slope=1, ls="--", c="lightgray", zorder=1)
-
-    ax.set_xlim(0, lim)
-    ax.set_ylim(0, lim)
-
-    ax.set_aspect("equal", adjustable="box")
-    ax.spines[["top", "right"]].set_visible(False)
-
-    fig.suptitle(figtitle, fontweight="bold", fontsize=14)
-    # fig.tight_layout()
-
-    return fig, ax
-
-
-for (suite, provider), g in comparison.group_by("suite", "provider"):
-    compareplot(
-        g,
-        x="duration_base",
-        y="duration",
-        figtitle=nice_suite[suite],
-    )[0].savefig(
-        f"out/02-cmp-duration-{suite}-{provider}.pdf",
-    )
-
-    compareplot(
-        g,
-        x="total_decisions_base",
-        y="total_decisions",
-        figtitle=nice_suite[suite],
-    )[0].savefig(
-        f"out/02-cmp-total_decisions-{suite}-{provider}.pdf",
-    )
-
-# %%
-
-for (suite, provider, short), g in comparison.group_by(
+for (suite, provider, short), g in comparison.sort(
     "suite", "provider", "short"
-):
+).group_by("suite", "provider", "short", maintain_order=True):
     dur_multiplier = (g["duration_base"] / g["duration"]).median()
     dec_multiplier = (g["total_decisions_base"] / g["total_decisions"]).median()
     print(
