@@ -15,6 +15,8 @@ pub fn log10_model_count(
     projected_vars: Option<Vec<Var>>,
 ) -> Result<Option<f64>, EarlyCutoff> {
     let mut child = Command::new("ganak")
+        .arg("--threads")
+        .arg("1")
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
         .spawn()
