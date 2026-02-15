@@ -2,14 +2,18 @@ use rustsat::{instances::Cnf, types::Var};
 use std::{
     io::{BufWriter, Write},
     process::{Command, Stdio},
+    time::Duration,
 };
+use wait_timeout::ChildExt;
+
+use crate::util::EarlyCutoff;
 
 // Returns None if unsat (0 models)
 pub fn log10_model_count(
     n_vars: u32,
     cnf: &Cnf,
     projected_vars: Option<Vec<Var>>,
-) -> Option<f64> {
+) -> Result<Option<f64>, EarlyCutoff> {
     let mut child = Command::new("ganak")
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
@@ -34,15 +38,23 @@ pub fn log10_model_count(
         }
     }
 
-    let child_output = child.wait_with_output().unwrap();
+    let child_output =
+        match child.wait_timeout(Duration::from_secs(30)).unwrap() {
+            Some(_) => child.wait_with_output().unwrap(),
+            None => {
+                child.kill().unwrap();
+                child.wait().unwrap();
+                return Err(EarlyCutoff::TimerExpired);
+            }
+        };
     let result_string = String::from_utf8(child_output.stdout).unwrap();
 
     for line in result_string.lines() {
         if line == "s UNSATISFIABLE" {
-            return None;
+            return Ok(None);
         }
         match line.strip_prefix("c s log10-estimate ") {
-            Some(n) => return Some(n.parse::<f64>().unwrap()),
+            Some(n) => return Ok(Some(n.parse::<f64>().unwrap())),
             None => (),
         }
     }

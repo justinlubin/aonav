@@ -395,7 +395,7 @@ impl pbn::StepProvider<util::Timer> for MaxInfoGain {
                     Some(child) => {
                         match pn::oracle::log10_assume_model_count(
                             &child, &projected,
-                        ) {
+                        )? {
                             Some(h) => {
                                 entropy_sum += h;
                                 steps.push(step);

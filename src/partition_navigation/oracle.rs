@@ -1,6 +1,7 @@
 use crate::min_ones;
 use crate::model_count;
 use crate::partition_navigation::*;
+use crate::util::EarlyCutoff;
 
 use aograph as ao;
 use indexmap::IndexMap;
@@ -458,7 +459,10 @@ impl OptInc {
 ////////////////////////////////////////////////////////////////////////////////
 // Entropy
 
-pub fn log10_assume_model_count(e: &Exp, projected: &ao::OrSet) -> Option<f64> {
+pub fn log10_assume_model_count(
+    e: &Exp,
+    projected: &ao::OrSet,
+) -> Result<Option<f64>, EarlyCutoff> {
     let ctx = CompileContext::compile(e);
     let (cnf, vm) = ctx.instance.into_cnf();
 
