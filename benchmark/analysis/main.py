@@ -207,6 +207,14 @@ forest_plot(
     comparisons, feature="duration", title="Duration", median_color="red"
 )[0].savefig("out/02-forest-duration.pdf")
 
+for (suite,), g in comparisons.group_by("suite"):
+    forest_plot(
+        g,
+        feature="decisions",
+        title=f"Decision count ({nice_suite[suite]})",
+        median_color="orange",
+    )[0].savefig(f"out/02-forest-decisions-{suite}.pdf")
+
 
 # %% Main
 
