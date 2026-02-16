@@ -4,8 +4,9 @@ use crate::partition_navigation as pn;
 use crate::util::{self, EarlyCutoff, Timer};
 use pn::oracle::OptInc;
 
+use aograph::OIdx;
 use indexmap::IndexSet;
-use pbn::{Step, Timer as _};
+use pbn::{Step, Timer as _, ValidityChecker};
 use rand::prelude::*;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -61,11 +62,15 @@ impl pbn::StepProvider<util::Timer> for Commit {
 
 pub struct Remaining {
     incremental: OptInc,
+    committed_only: bool,
 }
 
 impl Remaining {
-    pub fn new(incremental: OptInc) -> Self {
-        Self { incremental }
+    pub fn new(incremental: OptInc, committed_only: bool) -> Self {
+        Self {
+            incremental,
+            committed_only,
+        }
     }
 }
 
@@ -77,9 +82,15 @@ impl pbn::StepProvider<util::Timer> for Remaining {
         timer: &Timer,
         e: &pn::Exp,
     ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let choices = if self.committed_only {
+            pn::Class::committed()
+        } else {
+            pn::Class::all()
+        };
+
         let mut ret = vec![];
         for oidx in e.partition().keys() {
-            for new_class in pn::Class::all() {
+            for new_class in choices {
                 let step = pn::Step::SetClass(*oidx, *new_class, None);
                 match step.apply(e) {
                     None => continue,
@@ -641,5 +652,108 @@ impl pbn::StepProvider<util::Timer> for Alphabetical {
             return Ok(ret);
         }
         return Ok(vec![]);
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Sufficiency Seeker
+
+fn collate(steps: Vec<pn::Step>) -> HashMap<OIdx, Vec<pn::Step>> {
+    let mut ret = HashMap::new();
+
+    for step in steps {
+        match step {
+            pn::Step::SetClass(oidx, ..) => {
+                ret.entry(oidx).or_insert_with(Vec::new).push(step)
+            }
+            pn::Step::Seq(..) => {
+                panic!("collate does not support Seq steps")
+            }
+        }
+    }
+
+    ret
+}
+
+pub struct SufficiencySeeker {
+    provider: Box<dyn pbn::StepProvider<util::Timer, Step = pn::Step>>,
+    relevancy_prune: bool,
+}
+
+impl SufficiencySeeker {
+    pub fn new(
+        provider: Box<dyn pbn::StepProvider<util::Timer, Step = pn::Step>>,
+        relevancy_prune: bool,
+    ) -> Self {
+        Self {
+            provider,
+            relevancy_prune,
+        }
+    }
+}
+
+impl pbn::StepProvider<util::Timer> for SufficiencySeeker {
+    type Step = pn::Step;
+
+    fn provide(
+        &mut self,
+        timer: &Timer,
+        e: &pn::Exp,
+    ) -> Result<Vec<Self::Step>, EarlyCutoff> {
+        let mut collated_steps = collate(self.provider.provide(timer, e)?);
+        let mut scores: Vec<(bool, f32, OIdx)> = vec![];
+
+        for (oidx, steps) in &collated_steps {
+            let mut relevant = false;
+            let mut one_away = false;
+            let mut assume_count = 0;
+
+            for step in steps {
+                if let pn::Step::SetClass(_, class, _) = step {
+                    match class {
+                        pn::Class::True {
+                            assume: Some(true),
+                            force_use,
+                        } => {
+                            assume_count += 1;
+                            relevant |= force_use;
+                        }
+                        _ => (),
+                    }
+                    if class.is_assume() {
+                        assume_count += 1;
+                    }
+                }
+                if !one_away {
+                    match step.apply(e) {
+                        Some(result) => {
+                            if pn::oracle::Sufficient::new().check(&result) {
+                                one_away = true;
+                            }
+                        }
+                        None => (),
+                    }
+                }
+            }
+
+            if self.relevancy_prune && !relevant {
+                continue;
+            }
+
+            scores.push((
+                one_away,
+                assume_count as f32 / steps.len() as f32,
+                *oidx,
+            ));
+        }
+
+        match scores.iter().max_by(|a, b| {
+            a.0.cmp(&b.0)
+                .then(a.1.total_cmp(&b.1))
+                .then(e.graph().or_at(a.2).id().cmp(e.graph().or_at(b.2).id()))
+        }) {
+            Some((_, _, oidx)) => Ok(collated_steps.remove(oidx).unwrap()),
+            None => Ok(vec![]),
+        }
     }
 }

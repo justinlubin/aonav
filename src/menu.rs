@@ -17,6 +17,8 @@ pub enum Provider {
     AlphabeticalUnsound,
     AlphabeticalComplete,
     AlphabeticalRelevant,
+    SufficiencySeeker,
+    SufficiencySeekerRelevant,
 }
 
 impl Provider {
@@ -29,6 +31,7 @@ impl Provider {
                 pn::oracle::OptInc::from_optional_start(
                     incremental_if_possible,
                 ),
+                false,
             )),
             Provider::Random => Box::new(pn::providers::Random::new(
                 pn::oracle::OptInc::from_optional_start(
@@ -86,6 +89,7 @@ impl Provider {
                         pn::oracle::OptInc::from_optional_start(
                             incremental_if_possible,
                         ),
+                        false,
                     ),
                 )))
             }
@@ -111,6 +115,28 @@ impl Provider {
                         incremental_if_possible,
                     ),
                     pn::providers::AlphabeticalMode::Relevant,
+                ))
+            }
+            Provider::SufficiencySeeker => {
+                Box::new(pn::providers::SufficiencySeeker::new(
+                    Box::new(pn::providers::Remaining::new(
+                        pn::oracle::OptInc::from_optional_start(
+                            incremental_if_possible,
+                        ),
+                        true,
+                    )),
+                    false,
+                ))
+            }
+            Provider::SufficiencySeekerRelevant => {
+                Box::new(pn::providers::SufficiencySeeker::new(
+                    Box::new(pn::providers::Remaining::new(
+                        pn::oracle::OptInc::from_optional_start(
+                            incremental_if_possible,
+                        ),
+                        true,
+                    )),
+                    true,
                 ))
             }
         }
