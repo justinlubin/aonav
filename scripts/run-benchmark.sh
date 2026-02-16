@@ -28,4 +28,7 @@ for path in benchmark/entries/*; do
 
   run "$collection" "MaxInfoGainRelevant"
   run "$collection" "MaxInfoGain"
+
+  run "$collection" "SufficiencySeekerRelevant"
+  run "$collection" "SufficiencySeeker"
 done
