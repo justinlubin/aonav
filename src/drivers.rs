@@ -9,6 +9,7 @@ use std::collections::HashSet;
 use std::fs::File;
 use std::io::Write;
 use std::process::Command;
+use std::time::Instant;
 
 pub trait Driver<S: pbn::Step> {
     fn drive(
@@ -196,6 +197,7 @@ pub struct SolutionDriven {
     solution: pn::Exp,
     decisions: HashSet<(ao::OIdx, pn::Class)>,
     total_decisions: usize,
+    latencies: Vec<u128>,
 }
 
 impl SolutionDriven {
@@ -204,6 +206,7 @@ impl SolutionDriven {
             solution,
             decisions: HashSet::new(),
             total_decisions: 0,
+            latencies: vec![],
         }
     }
 
@@ -213,6 +216,10 @@ impl SolutionDriven {
 
     pub fn total_decisions(&self) -> usize {
         self.total_decisions
+    }
+
+    pub fn latencies(&self) -> &Vec<u128> {
+        &self.latencies
     }
 }
 
@@ -228,7 +235,11 @@ impl Driver<pn::Step> for SolutionDriven {
 
             // println!("\nBEFORE! --------------------------------");
 
+            let now = Instant::now();
             let mut options = controller.provide().ok()?;
+            let latency = now.elapsed().as_millis();
+            self.latencies.push(latency);
+
             let mut chosen_option = None;
 
             // println!(

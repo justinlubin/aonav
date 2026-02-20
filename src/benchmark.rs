@@ -38,6 +38,7 @@ pub struct BenchmarkResult {
     pub duration: u128,
     pub total_decisions: usize,
     pub unique_decisions: usize,
+    pub latencies: String,
 }
 
 /// Benchmark configuration
@@ -113,6 +114,12 @@ impl Runner {
             duration,
             total_decisions: driver.total_decisions(),
             unique_decisions: driver.unique_decisions(),
+            latencies: driver
+                .latencies()
+                .iter()
+                .map(|d| d.to_string())
+                .collect::<Vec<_>>()
+                .join(";"),
         };
 
         let wtr = Arc::clone(&self.wtr);
