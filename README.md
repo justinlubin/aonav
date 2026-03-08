@@ -17,3 +17,8 @@ For building Docker image:
 - podman
   https://podman.io/
 
+  On MacOS and Windows you will need to initialize a virtual machine:
+  ```
+  podman machine init
+  podman machine start
+  ```
