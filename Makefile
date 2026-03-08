@@ -1,5 +1,7 @@
-NAME = under
-OUT = out
+.PHONY: build image
 
-target/debug/$(NAME): $(wildcard src/*.rs) Cargo.toml
+build:
 	cargo build
+
+image:
+	podman build .
