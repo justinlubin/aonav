@@ -88,11 +88,11 @@ If you would like to use `aonav` interactively, run the following command:
 podman run -it aonav /bin/bash
 ```
 
-This will load a `bash` shell inside the Docker image. You can the run
+This will load a `bash` shell inside the Docker image. You can then run `aonav`
+on a file `FILENAME` by running the following command:
 ```bash
 aonav interact FILENAME
 ```
-to run `aonav` on `FILENAME`.
 
 There are many examples you can run in the `entries` folder in the Docker image.
 For example:
