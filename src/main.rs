@@ -44,7 +44,7 @@ enum Command {
             long,
             value_name = "PROVIDERS",
             value_delimiter = ',',
-            default_value = "Remaining"
+            default_value = "AlphabeticalRelevant"
         )]
         providers: Vec<menu::Provider>,
 
