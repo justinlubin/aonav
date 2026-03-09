@@ -9,6 +9,12 @@ letting the user interactively navigate to AND-OR graph modifications using
 Simply run `cargo r -- interact FILENAME`. For example, try out
 `cargo r -- interact examples/bio.json`!
 
+You can try out a different step provider, say `AlphabeticalRelevant`, like so:
+`cargo r -- interact -p AlphabeticalRelevant examples/bio.json`. For a full list
+of step providers, please see the `Provider` enum in [src/menu.rs](src/menu.rs).
+
+For more help, run `cargo r -- help`.
+
 ## Dependencies
 
 To run the basic version of `aonav`, all you need is [Rust](https://rustup.rs/)!
