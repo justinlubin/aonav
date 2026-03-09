@@ -55,6 +55,7 @@ pub fn interact(
     providers: &Vec<menu::Provider>,
     reduce: bool,
     incremental_if_possible: bool,
+    pdf: bool,
 ) -> Result<(), String> {
     let mut graph = load_ao(graph_path);
 
@@ -97,7 +98,7 @@ pub fn interact(
         true,
     );
 
-    let mut driver = drivers::Cli::new("sufficient".to_owned());
+    let mut driver = drivers::Cli::new("sufficient".to_owned(), pdf);
     let _ = driver.drive(controller);
 
     Ok(())

@@ -23,11 +23,12 @@ pub trait Driver<S: pbn::Step> {
 
 pub struct Cli {
     valid_word: String,
+    pdf: bool,
 }
 
 impl Cli {
-    pub fn new(valid_word: String) -> Self {
-        Self { valid_word }
+    pub fn new(valid_word: String, pdf: bool) -> Self {
+        Self { valid_word, pdf }
     }
 }
 
@@ -107,7 +108,9 @@ impl Driver<pn::Step> for Cli {
 
             let exp = controller.working_expression();
 
-            emit_graph("interactive", &exp);
+            if self.pdf {
+                emit_graph("INTERACTIVE", &exp);
+            }
 
             if !valid && options.is_empty() {
                 println!("{}", Red.bold().paint("Not possible!"));

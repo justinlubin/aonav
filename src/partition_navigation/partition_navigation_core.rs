@@ -331,7 +331,7 @@ impl std::fmt::Display for Exp {
                 f,
                 "    {:5}: {}\n",
                 class.shorthand(),
-                os.show(&self.graph)
+                os.show(&self.graph).replace('\n', "")
             )?;
         }
         Ok(())
@@ -380,7 +380,7 @@ impl Step {
             Step::SetClass(oid, class, _) => {
                 format!(
                     "set \"{}\" to {}",
-                    e.graph.or_at(*oid),
+                    e.graph.or_at(*oid).to_string().trim(),
                     class.shorthand()
                 )
             }

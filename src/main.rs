@@ -55,6 +55,10 @@ enum Command {
         /// Use incrementality (if possible)
         #[arg(long, action)]
         incremental: bool,
+
+        /// Additionally render a PDF in out/INTERACTIVE.pdf
+        #[arg(long, action)]
+        pdf: bool,
     },
 
     /// Run a benchmark suite
@@ -144,9 +148,14 @@ impl Command {
                 providers,
                 reduce,
                 incremental,
-            } => {
-                main_handler::interact(graph, providers, *reduce, *incremental)
-            }
+                pdf,
+            } => main_handler::interact(
+                graph,
+                providers,
+                *reduce,
+                *incremental,
+                *pdf,
+            ),
             Self::Benchmark {
                 path,
                 providers,
