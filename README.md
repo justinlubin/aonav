@@ -4,7 +4,7 @@
 letting the user interactively navigate to AND-OR graph modifications using
 [Programming by Navigation](https://doi.org/10.1145/3729264).
 
-## Running AONav
+## Running `aonav`
 
 Simply run `cargo r -- interact FILENAME`. For example, try out
 `cargo r -- interact examples/bio.json`!
