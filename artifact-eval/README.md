@@ -1,6 +1,6 @@
 # Getting Started Guide
 
-_Estimated time to complete this section: 30 minutes._
+_Estimated time to complete this section: 20 minutes._
 
 ## Step 1: Download Docker image and runner script
 
