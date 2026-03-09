@@ -4,6 +4,11 @@
 letting the user interactively navigate to AND-OR graph modifications using
 [Programming by Navigation](https://doi.org/10.1145/3729264).
 
+## Running `aonav`
+
+Simply run `cargo r -- interact FILENAME`. For example, try out
+`cargo r -- interact examples/bio.json`!
+
 ## Dependencies
 
 To run the basic version of `aonav`, all you need is [Rust](https://rustup.rs/)!
@@ -14,8 +19,6 @@ To run the basic version of `aonav`, all you need is [Rust](https://rustup.rs/)!
 - For running the evaluation: [uv](https://docs.astral.sh/uv/getting-started/installation/)
 - For building the Docker image for the artifact evaluation: [podman](https://podman.io)
 
-## Running `aonav`
+## About the codebase
 
-Simply run `cargo r -- interact FILENAME`. For example, try out
-`cargo r -- interact examples/bio.json`!
-
+For more information about the codebase, dive into [ARCHITECTURE.md](ARCHITECTURE.md)!
