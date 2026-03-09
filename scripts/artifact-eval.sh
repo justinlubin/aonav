@@ -1,8 +1,4 @@
-if [ -z "$1" ]; then
-  RAYON_NUM_THREADS="$(nproc)"
-else
-  RAYON_NUM_THREADS="$1"
-fi
+RAYON_NUM_THREADS="$(nproc)"
 
 echo "Running on ${RAYON_NUM_THREADS} cores (implementations are single-threaded)"
 
@@ -19,10 +15,3 @@ for path in entries/*; do
     "${path}" \
     > "results/${collection}.csv"
 done
-
-echo "Creating summaries and charts..."
-
-cd analysis
-uv run main.py > results/summary.txt
-
-echo "All done!"

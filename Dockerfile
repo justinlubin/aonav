@@ -1,24 +1,53 @@
-FROM alpine:latest
+FROM ubuntu:latest
 
-RUN apk add --no-cache uv
-RUN apk add --no-cache cargo
-RUN apk add --no-cache build-base
-RUN apk add --no-cache clang21-libclang
+###############################################################################
+# Install dependencies
 
-RUN wget -P /usr/local/bin https://github.com/meelgroup/ganak/releases/download/release%2F2.5.3/ganak-linux-amd64.zip
-RUN cd /usr/local/bin/ && unzip ganak-linux-amd64.zip && rm -rf ganak-linux-amd64.zip include/ lib/
+# Base
+RUN apt-get update
+RUN apt-get -y install build-essential
+RUN apt-get -y install curl
+RUN apt-get -y install unzip
+RUN apt-get -y install clang
+RUN apt-get -y install fonts-linuxlibertine
 
-WORKDIR /home/default
+# Rust
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 
+# uv
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Ganak
+RUN curl -L https://github.com/meelgroup/ganak/releases/download/release%2F2.5.3/ganak-linux-amd64.zip > /usr/local/bin/ganak.zip
+RUN cd /usr/local/bin/ && unzip ganak.zip && rm -rf ganak-linux-amd64.zip include/ lib/
+
+###############################################################################
+# Set up PATH
+
+ENV PATH="/root/.local/bin:/root/.cargo/bin:${PATH}"
+
+###############################################################################
+# Install aonav
+
+WORKDIR /root
+
+# Create aonav binary
 COPY Cargo.toml .
 COPY Cargo.lock .
 COPY src src
 RUN cargo install --root /usr/local --path .
-RUN rm -rf Cargo.toml Cargo.lock src/ target/ ~/.cargo
-RUN apk del cargo
+RUN rm -rf Cargo.toml Cargo.lock src/ target/ ~/.cargo ~/.rustup
 
-COPY benchmark benchmark
+# Set up benchmarking harness
+COPY scripts/artifact-eval.sh .
+COPY benchmark/entries entries
+COPY benchmark/analysis analysis
+RUN mkdir results
 
+# Pre-fetch Python dependencies
+RUN cd analysis && uv sync
+
+CMD ["/bin/sh", "/root/artifact-eval.sh"]
 
 # CMD ["/bin/sh", "/home/default/benchmark/artifact-eval.sh"]
 
@@ -49,3 +78,10 @@ COPY benchmark benchmark
 # 
 # # Copy over files
 # COPY . .
+# FROM alpine:latest
+# 
+# RUN apk add --no-cache uv
+# RUN apk add --no-cache cargo
+# RUN apk add --no-cache build-base
+# RUN apk add --no-cache clang21-libclang
+
