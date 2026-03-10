@@ -15,3 +15,8 @@ for path in entries/*; do
     "${path}" \
     > "results/${collection}.csv"
 done
+
+cd analysis
+uv run main.py
+
+echo "All done!"
