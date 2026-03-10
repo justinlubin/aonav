@@ -1,3 +1,7 @@
+//! # Top-Level Functions
+//!
+//! Top-level functions to interact with AONav functinality
+
 use crate::ao_adapters;
 use crate::benchmark;
 use crate::drivers::{self, Driver};
@@ -19,6 +23,7 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 use strum::EnumString;
 
+// Valid input formats for conversion
 #[derive(Debug, Clone, EnumString)]
 pub enum ConversionInputFormat {
     EGraphSerialize,
@@ -27,6 +32,7 @@ pub enum ConversionInputFormat {
     Egglog,
 }
 
+// Solutions to benchmark problems
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ChosenSolutions {
     pub nonminimal_solutions: Vec<IndexMap<String, pn::Class>>,
@@ -50,6 +56,7 @@ fn load_ao(path: &PathBuf) -> ao::Graph {
     graph.try_into().unwrap()
 }
 
+// Run interactively in the CLI
 pub fn interact(
     graph_path: &PathBuf,
     providers: &Vec<menu::Provider>,
@@ -104,6 +111,7 @@ pub fn interact(
     Ok(())
 }
 
+// Run a benchmark suite
 pub fn benchmark(
     suite_path: &PathBuf,
     providers: &Vec<menu::Provider>,
@@ -175,6 +183,7 @@ struct BenchmarkStat {
     pub premise_count: String,
 }
 
+// Emit graph statistics for a benchmark suite
 pub fn benchmark_stats(suite_path: &PathBuf) -> Result<(), String> {
     if !suite_path.exists() {
         panic!("Path '{}' does not exist", suite_path.display())
@@ -296,6 +305,7 @@ fn generate_solutions_helper(
     writeln!(file, "{}", serde_json::to_string_pretty(&cs).unwrap()).unwrap();
 }
 
+// Generate solutions for a benchmark suite
 pub fn generate_solutions(
     suite_path: &PathBuf,
     solution_count: usize,
@@ -317,6 +327,7 @@ pub fn generate_solutions(
     Ok(())
 }
 
+// Convert various representations to the AND/OR JSON Graph Format
 pub fn convert(
     path: &PathBuf,
     format: &ConversionInputFormat,
@@ -376,6 +387,7 @@ pub fn convert(
     Ok(())
 }
 
+//  Render an AND/OR graph in the AND/OR JSON Graph Format (stored in out/RENDERED.dot and out/RENDERED.pdf)
 pub fn render(path: &PathBuf) -> Result<(), String> {
     let outdir = Path::new("out/");
 

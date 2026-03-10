@@ -1,3 +1,7 @@
+//! # Model Counting
+//!
+//! Counts models of Sat formulas
+
 use rustsat::{instances::Cnf, types::Var};
 use std::{
     io::{BufWriter, Write},

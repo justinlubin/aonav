@@ -1,3 +1,9 @@
+//! # SAT Solving
+//!
+//! Finds SAT assignments with a minimal number of literals let to true
+
+// HELP! header?
+
 use rustsat::{
     instances::SatInstance,
     solvers::{Solve, SolverResult},

@@ -1,3 +1,7 @@
+//! # Program Entry Point
+//! 
+//! Defines acceptable CLI arguments and dispatches to main_handler.rs
+
 use aonav::main_handler;
 use aonav::menu;
 
