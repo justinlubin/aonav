@@ -166,6 +166,70 @@ pub fn benchmark(
     Ok(())
 }
 
+#[derive(Serialize)]
+struct BenchmarkStat {
+    pub name: String,
+    pub depth: Option<usize>,
+    pub consumer_count: String,
+    pub provider_count: String,
+    pub premise_count: String,
+}
+
+pub fn benchmark_stats(suite_path: &PathBuf) -> Result<(), String> {
+    if !suite_path.exists() {
+        panic!("Path '{}' does not exist", suite_path.display())
+    }
+
+    let mut wtr = csv::WriterBuilder::new()
+        .delimiter(b',')
+        .from_writer(Box::new(std::io::stdout()));
+
+    let mut paths = glob::glob(suite_path.join("*.json").to_str().unwrap())
+        .unwrap()
+        .filter_map(Result::ok)
+        .collect::<Vec<_>>();
+
+    paths.sort();
+
+    for path in paths {
+        let path_noext = path.with_extension("");
+
+        if path_noext.extension().and_then(|e| e.to_str()) == Some("solutions")
+        {
+            continue;
+        }
+
+        let graph = load_ao(&path);
+        let oidxs = graph.or_indexes().collect::<Vec<_>>();
+        let aidxs = graph.and_indexes().collect::<Vec<_>>();
+
+        let s = BenchmarkStat {
+            name: path_noext.file_name().unwrap().to_str().unwrap().to_owned(),
+            consumer_count: oidxs
+                .iter()
+                .map(|o| graph.consumers(*o).count().to_string())
+                .collect::<Vec<_>>()
+                .join(";"),
+            provider_count: oidxs
+                .iter()
+                .map(|o| graph.providers(*o).count().to_string())
+                .collect::<Vec<_>>()
+                .join(";"),
+            premise_count: aidxs
+                .iter()
+                .map(|a| graph.premises(*a).count().to_string())
+                .collect::<Vec<_>>()
+                .join(";"),
+            depth: graph.depth(),
+        };
+
+        wtr.serialize(s).unwrap();
+        wtr.flush().unwrap();
+    }
+
+    Ok(())
+}
+
 fn generate_random_exp(graph: &ao::Graph) -> pn::Exp {
     let controller = pbn::Controller::new(
         util::Timer::infinite(),

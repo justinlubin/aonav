@@ -98,6 +98,13 @@ enum Command {
         timeout: Option<u64>,
     },
 
+    /// Emit graph statistics for a benchmark suite
+    BenchmarkStats {
+        /// The path to the benchmark suite directory
+        #[arg(value_name = "DIRECTORY")]
+        path: PathBuf,
+    },
+
     /// Generate solutions for a benchmark suite
     GenerateSolutions {
         /// The number of solutions to generate per graph
@@ -173,6 +180,9 @@ impl Command {
                 *incremental,
                 timeout.map(Duration::from_secs).unwrap_or(Duration::MAX),
             ),
+            Self::BenchmarkStats { path } => {
+                main_handler::benchmark_stats(path)
+            }
             Self::GenerateSolutions {
                 path,
                 count,
