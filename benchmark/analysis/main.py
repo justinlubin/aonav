@@ -1,27 +1,33 @@
 # %% Imports
 
 import glob
+import os
 import sys
 
-from matplotlib import font_manager as fm
+import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import polars as pl
+from matplotlib import font_manager as fm
 
 MINIMAL = len(sys.argv) > 1 and sys.argv[1] == "MINIMAL"
 
-SERIF_FONT = "Arial"
-SANS_SERIF_FONT = "Arial"
-
-for f in fm.findSystemFonts():
-    try:
-        name = fm.FontProperties(fname=f).get_name()
-        if "Linux Libertine" in name:
-            SERIF_FONT = name
-        elif "Linux Biolinum" in name:
-            SANS_SERIF_FONT = name
-    except Exception:
-        continue
+if MINIMAL:
+    plt.rcParams["font.cursive"] = "DejaVu Sans"
+    for f in fm.findSystemFonts():
+        try:
+            name = fm.FontProperties(fname=f).get_name()
+            if "Keyboard" in name:
+                continue
+            if "Linux Libertine" in name:
+                SERIF_FONT = name
+            elif "Linux Biolinum" in name:
+                SANS_SERIF_FONT = name
+        except Exception:
+            continue
+else:
+    SERIF_FONT = "Linux Libertine"
+    SANS_SERIF_FONT = "Linux Biolinum"
 
 plt.rcParams.update(
     {
@@ -33,6 +39,30 @@ plt.rcParams.update(
         "mathtext.bf": SANS_SERIF_FONT + ":bold",
     }
 )
+
+
+def save(self, filename, exts=None, *args, **kwargs):
+    dirname = os.path.dirname(filename)
+    basename = os.path.basename(filename)
+
+    os.makedirs(dirname, exist_ok=True)
+
+    if exts is not None:
+        for ext in exts:
+            new_dirname = os.path.join(dirname, ext)
+            os.makedirs(new_dirname, exist_ok=True)
+            self.savefig(
+                os.path.join(new_dirname, basename + "." + ext),
+                *args,
+                **kwargs,
+            )
+    else:
+        self.savefig(filename, *args, **kwargs)
+
+    plt.close(self)
+
+
+matplotlib.figure.Figure.save = save  # ty:ignore[possibly-missing-attribute]
 
 # %% Load data
 
@@ -335,7 +365,7 @@ for (suite,), g in agg.group_by("suite"):
         figtitle=nice_suite[suite],
         prefix="ResDec",
         places=0,
-    )[0].savefig(
+    )[0].save(
         f"out/01-total_decisions-{suite}.pdf",
     )
 
@@ -347,7 +377,7 @@ for (suite,), g in agg.group_by("suite"):
         figtitle=nice_suite[suite],
         prefix="ResDur",
         places=2,
-    )[0].savefig(
+    )[0].save(
         f"out/02-duration-{suite}.pdf",
     )
 
@@ -360,7 +390,7 @@ for (suite,), g in agg.group_by("suite"):
             figtitle=nice_suite[suite],
             prefix="ResRou",
             places=0,
-        )[0].savefig(
+        )[0].save(
             f"out/06-rounds-{suite}.pdf",
         )
 
@@ -448,7 +478,7 @@ scalplot(
     scal,
     x="size",
     y="duration",
-)[0].savefig(
+)[0].save(
     "out/03-scal.pdf",
     bbox_inches="tight",
 )
@@ -571,11 +601,11 @@ if not MINIMAL:
         feature="decisions",
         title="Decision count",
         median_color="red",
-    )[0].savefig("out/03-forest-decisions.pdf")
+    )[0].save("out/03-forest-decisions.pdf")
 
     forest_plot(
         comparisons, feature="duration", title="Duration", median_color="red"
-    )[0].savefig("out/03-forest-duration.pdf")
+    )[0].save("out/03-forest-duration.pdf")
 
 for (suite,), g in comparisons.sort("suite").group_by(
     "suite", maintain_order=True
@@ -585,14 +615,14 @@ for (suite,), g in comparisons.sort("suite").group_by(
         feature="decisions",
         title=f"Decision count ({nice_suite[suite]})",
         median_color="orange",
-    )[0].savefig(f"out/04-forest-decisions-{suite}.pdf")
+    )[0].save(f"out/04-forest-decisions-{suite}.pdf")
 
     forest_plot(
         g,
         feature="duration",
         title=f"Duration ({nice_suite[suite]})",
         median_color="orange",
-    )[0].savefig(f"out/05-forest-duration-{suite}.pdf")
+    )[0].save(f"out/05-forest-duration-{suite}.pdf")
 
     if not MINIMAL:
         forest_plot(
@@ -600,4 +630,4 @@ for (suite,), g in comparisons.sort("suite").group_by(
             feature="rounds",
             title=f"Rounds ({nice_suite[suite]})",
             median_color="orange",
-        )[0].savefig(f"out/07-forest-rounds-{suite}.pdf")
+        )[0].save(f"out/07-forest-rounds-{suite}.pdf")

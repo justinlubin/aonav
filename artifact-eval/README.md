@@ -67,7 +67,8 @@ in the paper. This affects all conditions equally (all decision counts are
 approximately halved now compared to what they were in the original submission),
 so the relative comparisons between conditions should be approximately the same.
 To run our evaluation as it was when we submitted the paper, you can run Step 4
-with the command `bash run.sh --count-unordered`.
+with the command `bash run.sh --count-unordered`. We will notify reviewers of
+this small change in the cover letter for our revision.
 
 ## Step 1: Verify graphs match paper
 

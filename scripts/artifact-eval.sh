@@ -17,6 +17,8 @@ for path in entries/*/; do
     > "results/${collection}.csv"
 done
 
+echo "Benchmarking done. Creating graphs..."
+
 cd analysis
 uv run main.py MINIMAL > out/summary.txt
 
