@@ -96,6 +96,14 @@ enum Command {
         /// Timeout (in seconds, omit for none)
         #[arg(long)]
         timeout: Option<u64>,
+
+        /// Use validity stopping (instead of sufficiency)
+        #[arg(long, action)]
+        stop_on_valid: bool,
+
+        /// Count decisions as cardinality of options presented (unordered output)
+        #[arg(long, action)]
+        count_unordered: bool,
     },
 
     /// Emit graph statistics for a benchmark suite
@@ -171,6 +179,8 @@ impl Command {
                 minimal,
                 incremental,
                 timeout,
+                stop_on_valid,
+                count_unordered,
             } => main_handler::benchmark(
                 path,
                 providers,
@@ -179,6 +189,8 @@ impl Command {
                 *minimal,
                 *incremental,
                 timeout.map(Duration::from_secs).unwrap_or(Duration::MAX),
+                *stop_on_valid,
+                *count_unordered,
             ),
             Self::BenchmarkStats { path } => {
                 main_handler::benchmark_stats(path)

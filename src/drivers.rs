@@ -201,15 +201,17 @@ pub struct SolutionDriven {
     decisions: HashSet<(ao::OIdx, pn::Class)>,
     total_decisions: usize,
     latencies: Vec<u128>,
+    count_unordered: bool,
 }
 
 impl SolutionDriven {
-    pub fn new(solution: pn::Exp) -> Self {
+    pub fn new(solution: pn::Exp, count_unordered: bool) -> Self {
         Self {
             solution,
             decisions: HashSet::new(),
             total_decisions: 0,
             latencies: vec![],
+            count_unordered,
         }
     }
 
@@ -262,7 +264,9 @@ impl Driver<pn::Step> for SolutionDriven {
                         // "User oracle" call
                         if self.solution.class(*oidx) == *class {
                             chosen_option = Some(i);
-                            break;
+                            if !self.count_unordered {
+                                break;
+                            }
                         }
                     }
                     pn::Step::Seq(..) => {
