@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import polars as pl
 
-MINIMAL = True
+MINIMAL = len(sys.argv) > 1 and sys.argv[1] == "MINIMAL"
 
 SERIF_FONT = "Linux Libertine"
 SANS_SERIF_FONT = "Linux Biolinum"
@@ -275,6 +275,8 @@ for (suite, provider, short), g in (
     .sort("suite", "provider", "short")
     .group_by("suite", "provider", "short", maintain_order=True)
 ):
+    if MINIMAL:
+        continue
     # print(g[["provider", "provider_baseline"]])
     dur_multiplier = (g["duration_baseline"] / g["duration"]).median()
     dec_multiplier = (g["decisions_baseline"] / g["decisions"]).median()
@@ -327,7 +329,7 @@ def scalplot(
     ax.set_yticks(np.arange(0, 20.1, 2))
 
     ax.set_xlim(0, 200)
-    ax.set_ylim(0, 10)
+    ax.set_ylim(0, (int(df[y].max()) // 2) * 2 + 2)
 
     ax.spines[["top", "right"]].set_visible(False)
 
@@ -356,6 +358,9 @@ scalplot(
 
 
 def forest_plot(cmp, *, feature, title, median_color):
+    if MINIMAL:
+        print("###", title)
+
     rng = np.random.default_rng(seed=0)
 
     fig, ax = plt.subplots(1, 1)
@@ -395,8 +400,13 @@ def forest_plot(cmp, *, feature, title, median_color):
         )
 
         label_val = 2**median
+        label = f"{label_val:0.2f}× ({1 / label_val:0.2f}× better)"
+        if MINIMAL:
+            print(
+                "- ", provider, " vs. ", provider_baseline, ": ", label, sep=""
+            )
         ax.annotate(
-            f"{label_val:0.2f}× ({1 / label_val:0.2f}× better)",
+            label,
             xy=(median, y),
             xytext=(5, -2),
             textcoords="offset pixels",
@@ -411,6 +421,9 @@ def forest_plot(cmp, *, feature, title, median_color):
         )
 
         lim = max(lim, multiplier.abs().max())
+
+    if MINIMAL:
+        print()
 
     ax.axvline(0, color="0.5", ls="dashed")
 
@@ -455,18 +468,31 @@ def forest_plot(cmp, *, feature, title, median_color):
     return fig, ax
 
 
-forest_plot(
-    comparisons, feature="decisions", title="Decision count", median_color="red"
-)[0].savefig("out/03-forest-decisions.pdf")
+if not MINIMAL:
+    forest_plot(
+        comparisons,
+        feature="decisions",
+        title="Decision count",
+        median_color="red",
+    )[0].savefig("out/03-forest-decisions.pdf")
 
-forest_plot(
-    comparisons, feature="duration", title="Duration", median_color="red"
-)[0].savefig("out/03-forest-duration.pdf")
+    forest_plot(
+        comparisons, feature="duration", title="Duration", median_color="red"
+    )[0].savefig("out/03-forest-duration.pdf")
 
-for (suite,), g in comparisons.group_by("suite"):
+for (suite,), g in comparisons.sort("suite").group_by(
+    "suite", maintain_order=True
+):
     forest_plot(
         g,
         feature="decisions",
         title=f"Decision count ({nice_suite[suite]})",
         median_color="orange",
     )[0].savefig(f"out/03-forest-decisions-{suite}.pdf")
+
+    forest_plot(
+        g,
+        feature="duration",
+        title=f"Duration ({nice_suite[suite]})",
+        median_color="orange",
+    )[0].savefig(f"out/03-forest-duration-{suite}.pdf")

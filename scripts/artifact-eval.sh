@@ -18,6 +18,6 @@ for path in entries/*/; do
 done
 
 cd analysis
-uv run main.py
+uv run main.py MINIMAL > out/summary.txt
 
 echo "All done!"
