@@ -81,6 +81,10 @@ file `ARCHITECTURE.md` in the Zenodo code repository (or Github) for how to dive
 in! Each module in the codebase also has documentation that should help in
 understanding individual modules.
 
+For example, you will see where Sections 4, 5, and 6 of the paper are
+implemented in the codebase. Each of our step providers in the paper has a
+corresponding implementation in the Rust code.
+
 # Optional: Running more examples
 
 If you would like to use `aonav` interactively, run the following command:

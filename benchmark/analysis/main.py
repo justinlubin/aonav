@@ -1,13 +1,16 @@
 # %% Imports
 
 import glob
+import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
 import polars as pl
 
-SERIF_FONT = "Linux Libertine O"
-SANS_SERIF_FONT = "Linux Biolinum O"
+MINIMAL = True
+
+SERIF_FONT = "Linux Libertine"
+SANS_SERIF_FONT = "Linux Biolinum"
 
 plt.rcParams.update(
     {
@@ -31,16 +34,41 @@ nice_suite = {
 
 metadata = pl.read_csv("metadata.csv")
 
+suites = []
+for path in glob.glob("../entries/*.csv"):
+    suites.append(pl.read_csv(path))
+suite = pl.concat(suites)
+
 
 def attach_metadata(df):
-    return df.join(metadata, on="provider").with_columns(
+    df = df.join(metadata, on="provider").with_columns(
         suite=pl.col("name").str.split_exact("-", 1).struct.field("field_0"),
     )
+
+    if MINIMAL:
+        df = df.filter(
+            pl.col("suite").is_in(
+                [
+                    "manual",
+                    "random",
+                    "argusReduced",
+                ]
+            ),
+            pl.col("provider").is_in(
+                [
+                    "AlphabeticalUnsound",
+                    "AlphabeticalComplete",
+                    "AlphabeticalRelevant",
+                ]
+            ),
+        )
+
+    return df
 
 
 datas = []
 for path in glob.glob("../results/*.csv"):
-    datas.append(pl.read_csv(path))
+    datas.append(pl.read_csv(path, infer_schema_length=10_000))
 
 data = (
     pl.concat(datas)
@@ -51,8 +79,19 @@ data = (
         decisions=pl.when(pl.col("success"))
         .then(pl.col("total_decisions"))
         .otherwise(None),
+        latencies=pl.when(pl.col("success"))
+        .then(
+            pl.col("latencies")
+            .str.split(";")
+            .list.eval(pl.element().cast(pl.Float64) / 1000)
+        )
+        .otherwise(None),
     )
-    .drop("success", "total_decisions", "unique_decisions")
+    .with_columns(
+        latency_median=pl.col("latencies").list.median(),
+        latency_max=pl.col("latencies").list.max(),
+        rounds=pl.col("latencies").list.len(),
+    )
     .select(
         "name",
         "provider",
@@ -60,6 +99,9 @@ data = (
         "replicate",
         "duration",
         "decisions",
+        "latency_median",
+        "latency_max",
+        "rounds",
     )
     .sort(pl.col("*"))
 )
@@ -69,19 +111,30 @@ agg = (
     .agg(
         pl.col("duration").mean(),
         pl.col("decisions").mean(),
+        pl.col("latency_median").mean(),
+        pl.col("latency_max").mean(),
     )
     .group_by("provider", "name")
     .agg(
         pl.col("duration").mean(),
         pl.col("decisions").mean(),
+        pl.col("latency_median").mean(),
+        pl.col("latency_max").mean(),
     )
-    .select("name", "provider", "duration", "decisions")
+    .select(
+        "name",
+        "provider",
+        "duration",
+        "decisions",
+        "latency_median",
+        "latency_max",
+    )
     .sort(pl.col("*"))
 )
 
-
 data = attach_metadata(data)
 agg = attach_metadata(agg)
+
 
 comparisons = agg.join(agg, on="name", suffix="_baseline")
 
@@ -99,121 +152,6 @@ scal = (
     .agg(pl.col("duration").mean())
     .join(metadata, on="provider")
 )
-
-
-def forest_plot(cmp, *, feature, title, median_color):
-    rng = np.random.default_rng(seed=0)
-
-    fig, ax = plt.subplots(1, 1)
-
-    lim = 0
-
-    pairs = []
-    for (provider, provider_baseline), g in cmp.sort(
-        "order_baseline", "order"
-    ).group_by(
-        "label",
-        "label_baseline",
-        maintain_order=True,
-    ):
-        if provider == provider_baseline:
-            continue
-        if (provider, provider_baseline) in pairs:
-            continue
-        if (provider_baseline, provider) in pairs:
-            continue
-        pairs.append((provider, provider_baseline))
-
-        multiplier = (g[feature] + 0.001) / (g[f"{feature}_baseline"] + 0.001)
-        multiplier = multiplier.filter(multiplier.is_not_null()).log(base=2)
-        median = multiplier.median()
-
-        y = -len(pairs)
-        y_jitter = rng.uniform(low=y - 0.1, high=y + 0.1, size=len(multiplier))
-        ax.scatter(multiplier, y_jitter, color="0.2", alpha=0.05)
-        ax.vlines(
-            x=median,
-            ymin=y - 0.25,
-            ymax=y + 0.25,
-            color=median_color,
-            zorder=20,
-            alpha=1,
-        )
-        ax.annotate(
-            f"{2**median:0.1f}×",
-            xy=(median, y),
-            xytext=(5, -2),
-            textcoords="offset pixels",
-            va="top",
-            ha="left",
-            color=median_color,
-            bbox=dict(
-                boxstyle="square,pad=0",
-                facecolor="white",
-                edgecolor="none",
-            ),
-        )
-
-        lim = max(lim, multiplier.abs().max())
-
-    ax.axvline(0, color="0.5", ls="dashed")
-
-    lim = np.ceil(lim + 0.1)
-
-    ax.set_xlim(-lim, lim)
-    xticks = np.arange(-lim, lim + 1, 1)
-
-    def nice_xtick(xt):
-        if xt < 0:
-            prefix = "1/"
-        else:
-            prefix = ""
-        return prefix + str(int(2 ** abs(xt))) + "×"
-
-    ax.set_xticks(xticks, labels=map(nice_xtick, xticks))
-
-    ax.set_xlabel(f"{title} ratio", fontweight="bold")
-
-    def _bold(s):
-        return r"$\bf{" + s.replace(" ", r"\ ") + r"}$"
-
-    ax.set_yticks(
-        np.arange(-len(pairs), 0),
-        labels=[
-            _bold(trt) + " vs. " + _bold(ctrl)
-            for (trt, ctrl) in reversed(pairs)
-        ],
-    )
-    ax.set_ylim(-len(pairs) - 1, 0)
-    # ax2 = ax.twinx()
-    # ax2.set_yticks(
-    # np.arange(-len(pairs), 0),
-    # labels=[p[1] for p in reversed(pairs)],
-    # )
-    # ax2.set_ylim(-len(pairs) - 1, 0)
-
-    ax.spines[["top", "right", "left"]].set_visible(False)
-    ax.tick_params(axis="y", which="both", length=0)
-
-    fig.tight_layout()
-    return fig, ax
-
-
-forest_plot(
-    comparisons, feature="decisions", title="Decision count", median_color="red"
-)[0].savefig("out/02-forest-decisions.pdf")
-
-forest_plot(
-    comparisons, feature="duration", title="Duration", median_color="red"
-)[0].savefig("out/02-forest-duration.pdf")
-
-for (suite,), g in comparisons.group_by("suite"):
-    forest_plot(
-        g,
-        feature="decisions",
-        title=f"Decision count ({nice_suite[suite]})",
-        median_color="orange",
-    )[0].savefig(f"out/02-forest-decisions-{suite}.pdf")
 
 
 # %% Main
@@ -261,7 +199,7 @@ def catplot(
         )
 
         rhs = str(round(y.mean(), places) if places > 0 else round(y.mean()))
-        print("\\newcommand{\\" + prefix + figtitle + short + "}{" + rhs + "}")
+        # print("\\newcommand{\\" + prefix + figtitle + short + "}{" + rhs + "}")
 
         ax.hlines(
             y=y.mean(),
@@ -314,7 +252,7 @@ for (suite,), g in agg.group_by("suite"):
         prefix="ResDur",
         places=2,
     )[0].savefig(
-        f"out/01-MISLEADING-duration-{suite}.pdf",
+        f"out/01-duration-{suite}.pdf",
     )
 
     catplot(
@@ -326,12 +264,18 @@ for (suite,), g in agg.group_by("suite"):
         prefix="ResDec",
         places=0,
     )[0].savefig(
-        f"out/01-MISLEADING-total_decisions-{suite}.pdf",
+        f"out/01-total_decisions-{suite}.pdf",
     )
 
-for (suite, provider, short), g in comparisons.sort(
-    "suite", "provider", "short"
-).group_by("suite", "provider", "short", maintain_order=True):
+for (suite, provider, short), g in (
+    comparisons.filter(
+        pl.col("provider") != "AlphabeticalUnsound",
+        pl.col("provider_baseline") == "AlphabeticalUnsound",
+    )
+    .sort("suite", "provider", "short")
+    .group_by("suite", "provider", "short", maintain_order=True)
+):
+    # print(g[["provider", "provider_baseline"]])
     dur_multiplier = (g["duration_baseline"] / g["duration"]).median()
     dec_multiplier = (g["decisions_baseline"] / g["decisions"]).median()
     print(
@@ -406,6 +350,123 @@ scalplot(
     x="size",
     y="duration",
 )[0].savefig(
-    "out/03-scal.pdf",
+    "out/02-scal.pdf",
     bbox_inches="tight",
 )
+
+
+def forest_plot(cmp, *, feature, title, median_color):
+    rng = np.random.default_rng(seed=0)
+
+    fig, ax = plt.subplots(1, 1)
+
+    lim = 0
+
+    pairs = []
+    for (provider, provider_baseline), g in cmp.sort(
+        "order_baseline", "order"
+    ).group_by(
+        "label",
+        "label_baseline",
+        maintain_order=True,
+    ):
+        if provider == provider_baseline:
+            continue
+        if (provider, provider_baseline) in pairs:
+            continue
+        if (provider_baseline, provider) in pairs:
+            continue
+        pairs.append((provider, provider_baseline))
+
+        multiplier = (g[feature] + 0.001) / (g[f"{feature}_baseline"] + 0.001)
+        multiplier = multiplier.filter(multiplier.is_not_null()).log(base=2)
+        median = multiplier.median()
+
+        y = -len(pairs)
+        y_jitter = rng.uniform(low=y - 0.1, high=y + 0.1, size=len(multiplier))
+        ax.scatter(multiplier, y_jitter, color="0.2", alpha=0.05)
+        ax.vlines(
+            x=median,
+            ymin=y - 0.25,
+            ymax=y + 0.25,
+            color=median_color,
+            zorder=20,
+            alpha=1,
+        )
+
+        label_val = 2**median
+        ax.annotate(
+            f"{label_val:0.2f}× ({1 / label_val:0.2f}× better)",
+            xy=(median, y),
+            xytext=(5, -2),
+            textcoords="offset pixels",
+            va="top",
+            ha="left",
+            color=median_color,
+            bbox=dict(
+                boxstyle="square,pad=0",
+                facecolor="white",
+                edgecolor="none",
+            ),
+        )
+
+        lim = max(lim, multiplier.abs().max())
+
+    ax.axvline(0, color="0.5", ls="dashed")
+
+    lim = np.ceil(lim + 0.1)
+
+    ax.set_xlim(-lim, lim)
+    xticks = np.arange(-lim, lim + 1, 1)
+
+    def nice_xtick(xt):
+        if xt < 0:
+            prefix = "1/"
+        else:
+            prefix = ""
+        return prefix + str(int(2 ** abs(xt))) + "×"
+
+    ax.set_xticks(xticks, labels=map(nice_xtick, xticks))
+
+    ax.set_xlabel(f"{title} ratio", fontweight="bold")
+
+    def _bold(s):
+        return r"$\bf{" + s.replace(" ", r"\ ") + r"}$"
+
+    ax.set_yticks(
+        np.arange(-len(pairs), 0),
+        labels=[
+            _bold(trt) + " vs. " + _bold(ctrl)
+            for (trt, ctrl) in reversed(pairs)
+        ],
+    )
+    ax.set_ylim(-len(pairs) - 1, 0)
+    # ax2 = ax.twinx()
+    # ax2.set_yticks(
+    # np.arange(-len(pairs), 0),
+    # labels=[p[1] for p in reversed(pairs)],
+    # )
+    # ax2.set_ylim(-len(pairs) - 1, 0)
+
+    ax.spines[["top", "right", "left"]].set_visible(False)
+    ax.tick_params(axis="y", which="both", length=0)
+
+    fig.tight_layout()
+    return fig, ax
+
+
+forest_plot(
+    comparisons, feature="decisions", title="Decision count", median_color="red"
+)[0].savefig("out/03-forest-decisions.pdf")
+
+forest_plot(
+    comparisons, feature="duration", title="Duration", median_color="red"
+)[0].savefig("out/03-forest-duration.pdf")
+
+for (suite,), g in comparisons.group_by("suite"):
+    forest_plot(
+        g,
+        feature="decisions",
+        title=f"Decision count ({nice_suite[suite]})",
+        median_color="orange",
+    )[0].savefig(f"out/03-forest-decisions-{suite}.pdf")
