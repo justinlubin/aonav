@@ -61,15 +61,26 @@ The `run.sh` script from Step 4 creates a directory `mnt` that contains the CSVs
 of results in the `results/` subdirectory and summary graphs in the `graphs/`
 subdirectory.
 
+*Important note:* For the "decision count" metrics below, we changed the
+way decisions are counted in the implementation to better reflect the theory
+in the paper. This affects all conditions equally (all decision counts are
+approximately halved now compared to what they were in the original submission),
+so the relative comparisons between conditions should be approximately the same.
+To run our evaluation as it was when we submitted the paper, you can run Step 4
+with the command `bash run.sh --count-unordered`.
+
 ## Step 1: Verify graphs match paper
 
 Please ensure that the generated graphs all roughly match the correspoding
-graphs in the paper. (They will not match exactly but should demonstrate similar
-trends.)
+graphs in the paper. They will not match exactly but should demonstrate similar
+trends. For the decision counts, the graphs should be very similar but with
+approximately half the number of decisions for every condition and suite. For
+the durations, the specific timing values will heavily depend on your hardware,
+but the speedup/slowdown trends should be the same as in the paper.
 
 - **For Figure 2,** check the three `01-total_decisions-*.pdf` graphs.
-- **For Figure 3,** check the three `01-duration-*.pdf` graphs.
-- **For Figure 4,** check the `02-scal.pdf` graph.
+- **For Figure 3,** check the three `02-duration-*.pdf` graphs.
+- **For Figure 4,** check the `03-scal.pdf` graph.
 
 ## Step 2: Verify empirical claims
 
@@ -81,7 +92,9 @@ We make four main empirical claims in the paper:
 - **Section 8.4 (RQ4):** Strong Soundness and Relevancy Pruning are slower for large graphs
 
 To verify these claims, please inspect the `summary.txt` file in the `graphs/`
-subdirectory and ensure that the entries all follow the same trend as the paper.
+subdirectory and ensure that the entries all follow the same trend as the paper
+(they will likely not fall within the exact ranges, especially for durations
+due to hardware differences, but they should be close).
 
 This file contains a set of summary statistics, each of the following form:
 ```
@@ -98,7 +111,7 @@ paper). Looking at the "Str. Sound + Rel. vs. Str. Sound" entry will answer RQ2
 for the "Manual" suite (which we list as 1.54× in the paper).
 
 For a visual aid in this task, you can also take a look at the
-`03-forest-duration-*.pdf` graphs.
+`04-forest-decisions-*.pdf` and `05-forest-duration-*.pdf` graphs.
 
 Once you have verified RQ1 through RQ4 using `summary.txt`, that's it!
 
@@ -119,7 +132,7 @@ corresponding implementation in the Rust code.
 
 If you would like to use `aonav` interactively, run the following command:
 ```bash
-podman run -it aonav /bin/bash
+podman run -it --entrypoint /bin/bash aonav
 ```
 
 This will load a `bash` shell inside the Docker image. You can then run `aonav`

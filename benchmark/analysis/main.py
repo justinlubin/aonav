@@ -3,14 +3,25 @@
 import glob
 import sys
 
+from matplotlib import font_manager as fm
 import matplotlib.pyplot as plt
 import numpy as np
 import polars as pl
 
 MINIMAL = len(sys.argv) > 1 and sys.argv[1] == "MINIMAL"
 
-SERIF_FONT = "Linux Libertine"
-SANS_SERIF_FONT = "Linux Biolinum"
+SERIF_FONT = "Arial"
+SANS_SERIF_FONT = "Arial"
+
+for f in fm.findSystemFonts():
+    try:
+        name = fm.FontProperties(fname=f).get_name()
+        if "Linux Libertine" in name:
+            SERIF_FONT = name
+        elif "Linux Biolinum" in name:
+            SANS_SERIF_FONT = name
+    except Exception:
+        continue
 
 plt.rcParams.update(
     {
@@ -25,6 +36,13 @@ plt.rcParams.update(
 
 # %% Load data
 
+
+def attach_suite(df):
+    return df.with_columns(
+        suite=pl.col("name").str.split_exact("-", 1).struct.field("field_0"),
+    )
+
+
 nice_suite = {
     "manual": "Manual",
     "random": "Random",
@@ -37,13 +55,76 @@ metadata = pl.read_csv("metadata.csv")
 suites = []
 for path in glob.glob("../entries/*.csv"):
     suites.append(pl.read_csv(path))
-suite = pl.concat(suites)
+
+suite = (
+    attach_suite(pl.concat(suites))
+    .with_columns(
+        consumer_count=pl.col("consumer_count")
+        .str.split(";")
+        .list.eval(pl.element().cast(pl.Int64)),
+        provider_count=pl.col("provider_count")
+        .str.split(";")
+        .list.eval(pl.element().cast(pl.Int64)),
+        premise_count=pl.col("premise_count")
+        .str.split(";")
+        .list.eval(pl.element().cast(pl.Int64)),
+    )
+    .with_columns(
+        or_count=pl.col("consumer_count").list.len(),
+        and_count=pl.col("premise_count").list.len(),
+        consumer_count_median=pl.col("consumer_count").list.median(),
+        provider_count_median=pl.col("provider_count").list.median(),
+        premise_count_median=pl.col("premise_count").list.median(),
+    )
+    .select(
+        "name",
+        "suite",
+        "depth",
+        "or_count",
+        "and_count",
+        "consumer_count_median",
+        "provider_count_median",
+        "premise_count_median",
+    )
+)
+
+
+def summarize(xs):
+    mid = xs.median()
+    lo = xs.quantile(0.25)
+    hi = xs.quantile(0.75)
+    return f"{mid:0.2f} ({lo:0.2f}--{hi:0.2f})"
+
+
+if not MINIMAL:
+    print(
+        "\\textsc{\\textbf{Suite}}",
+        "\\textsc{\\textbf{Depth}}",
+        "\\textsc{\\textbf{\\# ORs}}",
+        "\\textsc{\\textbf{\\# ANDs}}",
+        "\\textsc{\\textbf{Median \\# consumers}}",
+        "\\textsc{\\textbf{Median \\# providers}}",
+        "\\textsc{\\textbf{Median \\# premises}} \\\\",
+        sep=" & ",
+    )
+    print("\\midrule")
+    for (s,), g in suite.sort("suite").group_by("suite", maintain_order=True):
+        print(
+            "\\textsc{" + nice_suite[s] + "}",
+            summarize(g["depth"]),
+            summarize(g["or_count"]),
+            summarize(g["and_count"]),
+            summarize(g["consumer_count_median"]),
+            summarize(g["provider_count_median"]),
+            summarize(g["premise_count_median"]) + " \\\\",
+            sep=" & ",
+        )
+
+# %%
 
 
 def attach_metadata(df):
-    df = df.join(metadata, on="provider").with_columns(
-        suite=pl.col("name").str.split_exact("-", 1).struct.field("field_0"),
-    )
+    df = attach_suite(df.join(metadata, on="provider"))
 
     if MINIMAL:
         df = df.filter(
@@ -113,6 +194,7 @@ agg = (
         pl.col("decisions").mean(),
         pl.col("latency_median").mean(),
         pl.col("latency_max").mean(),
+        pl.col("rounds").mean(),
     )
     .group_by("provider", "name")
     .agg(
@@ -120,6 +202,7 @@ agg = (
         pl.col("decisions").mean(),
         pl.col("latency_median").mean(),
         pl.col("latency_max").mean(),
+        pl.col("rounds").mean(),
     )
     .select(
         "name",
@@ -128,6 +211,7 @@ agg = (
         "decisions",
         "latency_median",
         "latency_max",
+        "rounds",
     )
     .sort(pl.col("*"))
 )
@@ -246,18 +330,6 @@ for (suite,), g in agg.group_by("suite"):
     catplot(
         g,
         by="provider",
-        val="duration",
-        val_label="Duration (s)",
-        figtitle=nice_suite[suite],
-        prefix="ResDur",
-        places=2,
-    )[0].savefig(
-        f"out/01-duration-{suite}.pdf",
-    )
-
-    catplot(
-        g,
-        by="provider",
         val="decisions",
         val_label="Total decisions",
         figtitle=nice_suite[suite],
@@ -266,6 +338,31 @@ for (suite,), g in agg.group_by("suite"):
     )[0].savefig(
         f"out/01-total_decisions-{suite}.pdf",
     )
+
+    catplot(
+        g,
+        by="provider",
+        val="duration",
+        val_label="Duration (s)",
+        figtitle=nice_suite[suite],
+        prefix="ResDur",
+        places=2,
+    )[0].savefig(
+        f"out/02-duration-{suite}.pdf",
+    )
+
+    if not MINIMAL:
+        catplot(
+            g,
+            by="provider",
+            val="rounds",
+            val_label="Total rounds",
+            figtitle=nice_suite[suite],
+            prefix="ResRou",
+            places=0,
+        )[0].savefig(
+            f"out/06-rounds-{suite}.pdf",
+        )
 
 for (suite, provider, short), g in (
     comparisons.filter(
@@ -352,7 +449,7 @@ scalplot(
     x="size",
     y="duration",
 )[0].savefig(
-    "out/02-scal.pdf",
+    "out/03-scal.pdf",
     bbox_inches="tight",
 )
 
@@ -488,11 +585,19 @@ for (suite,), g in comparisons.sort("suite").group_by(
         feature="decisions",
         title=f"Decision count ({nice_suite[suite]})",
         median_color="orange",
-    )[0].savefig(f"out/03-forest-decisions-{suite}.pdf")
+    )[0].savefig(f"out/04-forest-decisions-{suite}.pdf")
 
     forest_plot(
         g,
         feature="duration",
         title=f"Duration ({nice_suite[suite]})",
         median_color="orange",
-    )[0].savefig(f"out/03-forest-duration-{suite}.pdf")
+    )[0].savefig(f"out/05-forest-duration-{suite}.pdf")
+
+    if not MINIMAL:
+        forest_plot(
+            g,
+            feature="rounds",
+            title=f"Rounds ({nice_suite[suite]})",
+            median_color="orange",
+        )[0].savefig(f"out/07-forest-rounds-{suite}.pdf")

@@ -47,4 +47,4 @@ RUN mkdir results
 # Pre-fetch Python dependencies
 RUN cd analysis && uv sync
 
-CMD ["/bin/sh", "/root/artifact-eval.sh"]
+ENTRYPOINT ["/bin/sh", "/root/artifact-eval.sh"]
