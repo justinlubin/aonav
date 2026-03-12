@@ -82,12 +82,12 @@ nice_suite = {
 
 metadata = pl.read_csv("metadata.csv")
 
-suites = []
+suite_datas = []
 for path in glob.glob("../entries/*.csv"):
-    suites.append(pl.read_csv(path))
+    suite_datas.append(pl.read_csv(path))
 
-suite = (
-    attach_suite(pl.concat(suites))
+suite_data = (
+    attach_suite(pl.concat(suite_datas))
     .with_columns(
         consumer_count=pl.col("consumer_count")
         .str.split(";")
@@ -138,7 +138,9 @@ if not MINIMAL:
         sep=" & ",
     )
     print("\\midrule")
-    for (s,), g in suite.sort("suite").group_by("suite", maintain_order=True):
+    for (s,), g in suite_data.sort("suite").group_by(
+        "suite", maintain_order=True
+    ):
         print(
             "\\textsc{" + nice_suite[s] + "}",
             summarize(g["depth"]),
@@ -178,7 +180,7 @@ def attach_metadata(df):
 
 
 datas = []
-for path in glob.glob("../results/*.csv"):
+for path in glob.glob("../results/NON_INCR-*.csv"):
     datas.append(pl.read_csv(path, infer_schema_length=10_000))
 
 data = (
@@ -186,17 +188,17 @@ data = (
     .with_columns(
         duration=pl.when(pl.col("success"))
         .then(pl.col("duration") / 1000)
-        .otherwise(None),
+        .otherwise(np.nan),
         decisions=pl.when(pl.col("success"))
         .then(pl.col("total_decisions"))
-        .otherwise(None),
+        .otherwise(np.nan),
         latencies=pl.when(pl.col("success"))
         .then(
             pl.col("latencies")
             .str.split(";")
             .list.eval(pl.element().cast(pl.Float64) / 1000)
         )
-        .otherwise(None),
+        .otherwise([]),
     )
     .with_columns(
         latency_median=pl.col("latencies").list.median(),
@@ -208,6 +210,7 @@ data = (
         "provider",
         "chosen_solution",
         "replicate",
+        "success",
         "duration",
         "decisions",
         "latency_median",
@@ -220,6 +223,7 @@ data = (
 agg = (
     data.group_by("provider", "name", "chosen_solution")
     .agg(
+        pl.col("success").all(),
         pl.col("duration").mean(),
         pl.col("decisions").mean(),
         pl.col("latency_median").mean(),
@@ -228,6 +232,7 @@ agg = (
     )
     .group_by("provider", "name")
     .agg(
+        pl.col("success").all(),
         pl.col("duration").mean(),
         pl.col("decisions").mean(),
         pl.col("latency_median").mean(),
@@ -238,6 +243,7 @@ agg = (
         "name",
         "provider",
         "duration",
+        "success",
         "decisions",
         "latency_median",
         "latency_max",
@@ -246,7 +252,6 @@ agg = (
     .sort(pl.col("*"))
 )
 
-data = attach_metadata(data)
 agg = attach_metadata(agg)
 
 
@@ -270,29 +275,61 @@ scal = (
 
 # %% Main
 
+TOTAL_ENTRIES = {}
+SUCCESS_COUNT = {}
+
+for (s,), g in suite_data.group_by("suite"):
+    TOTAL_ENTRIES[s] = g.height
+
+for (p, s), g in agg.group_by(
+    "provider",
+    "suite",
+    maintain_order=True,
+):
+    SUCCESS_COUNT[(p, s)] = g.filter(pl.col("success")).height
+
+# %%
+
 
 def catplot(
     df,
     *,
-    by,
     val,
     val_label,
     figtitle,
     prefix,
     places,
+    suite,
+    provider="provider",
     short="short",
     order="order",
     label="label",
 ):
-    fig, ax = plt.subplots(1, 1, figsize=(5, 2.5))
+    fig, ax = plt.subplots(1, 1, figsize=(5.5, 4))
     ticks = []
     labels = []
 
     rng = np.random.default_rng(seed=0)
 
-    for x, ((_, title, short), g) in enumerate(
-        df.sort([order, by]).group_by(
-            [by, label, short],
+    m = max(df[val].filter(df[val].is_not_null()))
+    if m < 1:
+        ydelta = 0.05
+    elif m < 5:
+        ydelta = 0.5
+    elif m < 30:
+        ydelta = 5
+    elif m < 1000:
+        ydelta = 50
+    else:
+        ydelta = 100
+
+    ymax = int(2 + m / ydelta) * ydelta
+
+    divider_added = False
+
+    for x, ((provider, title, short), g) in enumerate(
+        df.sort([order, provider]).group_by(
+            [provider, label, short],
             maintain_order=True,
         )
     ):
@@ -312,17 +349,48 @@ def catplot(
             zorder=10,
         )
 
-        rhs = str(round(y.mean(), places) if places > 0 else round(y.mean()))
+        # rhs = str(round(y.mean(), places) if places > 0 else round(y.mean()))
         # print("\\newcommand{\\" + prefix + figtitle + short + "}{" + rhs + "}")
 
-        ax.hlines(
-            y=y.mean(),
-            xmin=x - 0.25,
-            xmax=x + 0.25,
-            color="r",
-            zorder=20,
-            alpha=1,
+        success_count = SUCCESS_COUNT[(provider, suite)]
+        total_entries = TOTAL_ENTRIES[suite]
+
+        if success_count == total_entries:
+            ax.hlines(
+                y=y.mean(),
+                xmin=x - 0.25,
+                xmax=x + 0.25,
+                color="r",
+                zorder=20,
+                alpha=1,
+            )
+
+        ax.annotate(
+            f"{success_count}/{total_entries}",
+            xy=(x, ymax),
+            xytext=(0, 0),
+            textcoords="offset pixels",
+            va="bottom",
+            ha="center",
+            fontsize=9,
+            color="#999999" if success_count == total_entries else "#bf4040",
+            # bbox=dict(
+            #     boxstyle="square,pad=0",
+            #     facecolor="white",
+            #     edgecolor="none",
+            # ),
         )
+
+        if success_count != total_entries and not divider_added:
+            # ax.vlines(
+            #     x=x - 0.5,
+            #     ymin=0,
+            #     ymax=ymax,
+            #     color="0.8",
+            #     linestyle="--",
+            #     lw=0.5,
+            # )
+            divider_added = True
 
         ticks.append(x)
         labels.append(title)
@@ -330,19 +398,6 @@ def catplot(
     ax.set_xticks(ticks, labels=labels, fontweight="bold")
     ax.set_xlim(min(ticks) - 0.5, max(ticks) + 0.5)
 
-    m = max(df[val].filter(df[val].is_not_null()))
-    if m < 1:
-        ydelta = 0.05
-    elif m < 5:
-        ydelta = 0.5
-    elif m < 30:
-        ydelta = 5
-    elif m < 1000:
-        ydelta = 50
-    else:
-        ydelta = 100
-
-    ymax = int(1 + m / ydelta) * ydelta
     ax.set_ylim(0, ymax)
     ax.set_yticks(np.arange(0, ymax + 0.000001, ydelta))
 
@@ -359,40 +414,41 @@ def catplot(
 for (suite,), g in agg.group_by("suite"):
     catplot(
         g,
-        by="provider",
         val="decisions",
         val_label="Total decisions",
         figtitle=nice_suite[suite],
         prefix="ResDec",
         places=0,
+        suite=suite,
     )[0].save(
         f"out/01-total_decisions-{suite}.pdf",
     )
 
     catplot(
         g,
-        by="provider",
         val="duration",
         val_label="Duration (s)",
         figtitle=nice_suite[suite],
         prefix="ResDur",
         places=2,
+        suite=suite,
     )[0].save(
         f"out/02-duration-{suite}.pdf",
     )
 
     if not MINIMAL:
-        catplot(
-            g,
-            by="provider",
-            val="rounds",
-            val_label="Total rounds",
-            figtitle=nice_suite[suite],
-            prefix="ResRou",
-            places=0,
-        )[0].save(
-            f"out/06-rounds-{suite}.pdf",
-        )
+        pass
+        # catplot(
+        #     g,
+        #     val="rounds",
+        #     val_label="Total rounds",
+        #     figtitle=nice_suite[suite],
+        #     prefix="ResRou",
+        #     places=0,
+        #     suite=suite,
+        # )[0].save(
+        #     f"out/08-rounds-{suite}.pdf",
+        # )
 
 for (suite, provider, short), g in (
     comparisons.filter(
@@ -467,8 +523,8 @@ def scalplot(
     fig.tight_layout()
     # fig.legend(loc='center left', bbox_to_anchor=(1, 0))
     fig.legend(
-        loc="upper left",
-        bbox_to_anchor=(0.12, 1),
+        loc="upper right",
+        bbox_to_anchor=(0.98, 1),
     )
 
     return fig, ax
@@ -495,6 +551,10 @@ def forest_plot(cmp, *, feature, title, median_color):
     lim = 0
 
     pairs = []
+
+    separator_rendered = False
+    previous_baseline = None
+
     for (provider, provider_baseline), g in cmp.sort(
         "order_baseline", "order"
     ).group_by(
@@ -510,11 +570,27 @@ def forest_plot(cmp, *, feature, title, median_color):
             continue
         pairs.append((provider, provider_baseline))
 
+        y = -len(pairs)
+
+        if (
+            not separator_rendered
+            and previous_baseline is not None
+            and provider_baseline != previous_baseline
+        ):
+            # ax.axhline(
+            #     y=y + 0.5,
+            #     color="0.8",
+            #     linestyle="--",
+            #     lw=0.5,
+            # )
+            separator_rendered = True
+
+        previous_baseline = provider_baseline
+
         multiplier = (g[feature] + 0.001) / (g[f"{feature}_baseline"] + 0.001)
         multiplier = multiplier.filter(multiplier.is_not_null()).log(base=2)
         median = multiplier.median()
 
-        y = -len(pairs)
         y_jitter = rng.uniform(low=y - 0.1, high=y + 0.1, size=len(multiplier))
         ax.scatter(multiplier, y_jitter, color="0.2", alpha=0.05)
         ax.vlines(
@@ -601,15 +677,20 @@ if not MINIMAL:
         feature="decisions",
         title="Decision count",
         median_color="red",
-    )[0].save("out/03-forest-decisions.pdf")
+    )[0].save("out/06-forest-decisions.pdf")
 
     forest_plot(
         comparisons, feature="duration", title="Duration", median_color="red"
-    )[0].save("out/03-forest-duration.pdf")
+    )[0].save("out/07-forest-duration.pdf")
 
-for (suite,), g in comparisons.sort("suite").group_by(
-    "suite", maintain_order=True
-):
+cmp = comparisons
+
+if not MINIMAL:
+    cmp = comparisons.filter(
+        pl.col("provider_baseline") == "AlphabeticalUnsound"
+    )
+
+for (suite,), g in cmp.sort("suite").group_by("suite", maintain_order=True):
     forest_plot(
         g,
         feature="decisions",
@@ -624,10 +705,12 @@ for (suite,), g in comparisons.sort("suite").group_by(
         median_color="orange",
     )[0].save(f"out/05-forest-duration-{suite}.pdf")
 
-    if not MINIMAL:
-        forest_plot(
-            g,
-            feature="rounds",
-            title=f"Rounds ({nice_suite[suite]})",
-            median_color="orange",
-        )[0].save(f"out/07-forest-rounds-{suite}.pdf")
+    # if not MINIMAL:
+    #     forest_plot(
+    #         g,
+    #         feature="rounds",
+    #         title=f"Rounds ({nice_suite[suite]})",
+    #         median_color="orange",
+    #     )[0].save(f"out/09-forest-rounds-{suite}.pdf")
+
+# %%

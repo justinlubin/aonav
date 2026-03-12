@@ -14,7 +14,7 @@ for path in entries/*/; do
     --minimal \
     --providers AlphabeticalUnsound,AlphabeticalComplete,AlphabeticalRelevant \
     "${path}" \
-    > "results/${collection}.csv"
+    > "results/NON_INCR-${collection}.csv"
 done
 
 echo "Benchmarking done. Creating graphs..."
