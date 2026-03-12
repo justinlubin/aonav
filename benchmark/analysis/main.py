@@ -80,6 +80,8 @@ nice_suite = {
     "aesop": "Aesop",
 }
 
+suite_order = ["manual", "random", "argusReduced", "aesop"]
+
 metadata = pl.read_csv("metadata.csv")
 
 suite_datas = []
@@ -412,6 +414,8 @@ def catplot(
 
 
 for (suite,), g in agg.group_by("suite"):
+    sn = suite_order.index(suite)
+
     catplot(
         g,
         val="decisions",
@@ -421,7 +425,7 @@ for (suite,), g in agg.group_by("suite"):
         places=0,
         suite=suite,
     )[0].save(
-        f"out/01-total_decisions-{suite}.pdf",
+        f"out/01-total_decisions-{sn}-{suite}.pdf",
     )
 
     catplot(
@@ -433,7 +437,7 @@ for (suite,), g in agg.group_by("suite"):
         places=2,
         suite=suite,
     )[0].save(
-        f"out/02-duration-{suite}.pdf",
+        f"out/02-duration-{sn}-{suite}.pdf",
     )
 
     if not MINIMAL:

@@ -1,6 +1,6 @@
 # Getting Started Guide
 
-_Estimated time to complete this section: 20 minutes._
+_Estimated time to complete this section: 10 minutes._
 
 ## Step 1: Download Docker image and runner script
 
@@ -53,9 +53,10 @@ _Estimated hands-off time to complete this section (if you have not fully
 completed Step 4 above): 2 minutes to 1 hour._
 
 Please ensure the `run.sh` script from Step 4 above has run to completion. We
-estimate this script should take no longer than 1 hour to run (and potentially
-be _much_ quicker depending on your hardware). The final line of output should
-say "All done!" when the evaluation is complete.
+estimate this script should take no longer than 1 hour to run, and potentially
+take _much_ less time depending on your hardware (it takes about 2 minutes on
+an M-series MacBook Pro). The final line of output should say "All done!" when
+the evaluation is complete.
 
 The `run.sh` script from Step 4 creates a directory `mnt` that contains the CSVs
 of results in the `results/` subdirectory and summary graphs in the `graphs/`
