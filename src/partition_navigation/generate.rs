@@ -45,7 +45,7 @@ fn minimize_one_step(e: &Exp) -> Option<Exp> {
     None
 }
 
-// Minimize "Assumes" in the given solution
+/// Minimize "Assumes" in the given solution
 // HELP! is this true?
 pub fn assumption_minimized(e: &Exp) -> Exp {
     let mut ret = e.clone();
