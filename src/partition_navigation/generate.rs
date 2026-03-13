@@ -1,3 +1,8 @@
+//! # Solution Generator
+//!
+//! Randomly generates solutions to synthesis problems.
+//! Used to generate the solutions for our benchmark suite.
+
 use crate::partition_navigation::*;
 
 use pbn::ValidityChecker;
@@ -40,6 +45,8 @@ fn minimize_one_step(e: &Exp) -> Option<Exp> {
     None
 }
 
+/// Minimize "Assumes" in the given solution
+// HELP! is this true?
 pub fn assumption_minimized(e: &Exp) -> Exp {
     let mut ret = e.clone();
     while let Some(m) = minimize_one_step(&ret) {

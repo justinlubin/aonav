@@ -1,3 +1,9 @@
+//! # Nonempty-Completion Oracle
+//!
+//! Defines a nonempty-completion oracle for our notion of expressions
+
+// HELP! I'm not so confident on this one
+
 use crate::min_ones;
 use crate::model_count;
 use crate::partition_navigation::*;
@@ -358,12 +364,14 @@ impl CompileContext {
     }
 }
 
+// HELP!
 pub struct IncrementalContext {
     solver: rustsat_cadical::CaDiCaL<'static, 'static>,
     ctx: CompileContext,
 }
 
 impl IncrementalContext {
+    // HELP!
     pub fn new(e: &Exp) -> Self {
         let mut ctx = CompileContext::compile_shared(e.graph().clone());
         let instance = std::mem::take(&mut ctx.instance);
@@ -375,6 +383,7 @@ impl IncrementalContext {
         Self { solver, ctx }
     }
 
+    // HELP!
     pub fn nonempty_completion(&mut self, e: &Exp) -> bool {
         let assumptions = self.ctx.or_consistency_lits(e.partition());
 
@@ -433,12 +442,14 @@ impl IncrementalContext {
     }
 }
 
+// HELP!
 pub enum OptInc {
     Incremental(IncrementalContext),
     NonIncremental,
 }
 
 impl OptInc {
+    // HELP!
     pub fn from_optional_start(start: Option<&Exp>) -> Self {
         match start {
             Some(e) => Self::Incremental(IncrementalContext::new(e)),
@@ -446,6 +457,7 @@ impl OptInc {
         }
     }
 
+    // HELP!
     pub fn nonempty_completion(&mut self, e: &Exp) -> bool {
         match self {
             Self::Incremental(inc) => inc.nonempty_completion(e),
@@ -459,6 +471,7 @@ impl OptInc {
 ////////////////////////////////////////////////////////////////////////////////
 // Entropy
 
+// HELP!
 pub fn log10_assume_model_count(
     e: &Exp,
     projected: &ao::OrSet,
@@ -487,6 +500,7 @@ pub fn log10_assume_model_count(
 ////////////////////////////////////////////////////////////////////////////////
 // Minimal leaves
 
+// HELP!
 pub fn minimal_leaves(e: &Exp) -> Option<ao::OrSet> {
     let mut e = e.clone();
 
@@ -526,11 +540,13 @@ pub fn minimal_leaves(e: &Exp) -> Option<ao::OrSet> {
 ////////////////////////////////////////////////////////////////////////////////
 // Validity checkers
 
+// HELP!
 pub struct Valid {
     incremental: OptInc,
 }
 
 impl Valid {
+    // HELP!
     pub fn new(incremental: OptInc) -> Self {
         Self { incremental }
     }
@@ -546,9 +562,11 @@ impl pbn::ValidityChecker for Valid {
     }
 }
 
+// HELP!
 pub struct Sufficient;
 
 impl Sufficient {
+    // HELP!
     pub fn new() -> Self {
         Self
     }

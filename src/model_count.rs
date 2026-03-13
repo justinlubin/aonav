@@ -1,3 +1,7 @@
+//! # Model Counting
+//!
+//! Counts models of Sat formulas
+
 use rustsat::{instances::Cnf, types::Var};
 use std::{
     io::{BufWriter, Write},
@@ -8,7 +12,7 @@ use wait_timeout::ChildExt;
 
 use crate::util::EarlyCutoff;
 
-// Returns None if unsat (0 models)
+/// Returns None if unsat (0 models)
 pub fn log10_model_count(
     n_vars: u32,
     cnf: &Cnf,

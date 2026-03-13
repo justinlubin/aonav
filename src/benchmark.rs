@@ -1,3 +1,8 @@
+//! # Benchmarking
+//!
+//! This module defines everything necessary to benchmark the step providers in
+//! this project.
+
 use crate::drivers::{self, Driver};
 use crate::menu;
 use crate::partition_navigation as pn;
@@ -10,6 +15,7 @@ use serde::Serialize;
 use std::io;
 use std::sync::{Arc, Mutex};
 
+/// Describes name and solution of a single benchmark problem
 #[derive(Debug)]
 pub struct Problem {
     pub name: String,
@@ -17,6 +23,7 @@ pub struct Problem {
     pub chosen_solutions: Vec<pn::Exp>,
 }
 
+/// Description of a single benchmark problem
 #[derive(Debug)]
 pub struct BenchmarkEntry {
     pub provider: menu::Provider,
@@ -25,6 +32,7 @@ pub struct BenchmarkEntry {
     pub replicate: usize,
 }
 
+/// Data for a single benchmark problem
 #[derive(Debug, Clone, Serialize)]
 pub struct BenchmarkResult {
     // Key
