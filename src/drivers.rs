@@ -15,6 +15,7 @@ use std::io::Write;
 use std::process::Command;
 use std::time::Instant;
 
+/// Strategy to drive a Programming by Navigation step provider
 pub trait Driver<S: pbn::Step> {
     fn drive(
         &mut self,
