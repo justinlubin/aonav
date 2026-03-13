@@ -61,6 +61,10 @@ pub struct Config {
     pub providers: Vec<menu::Provider>,
     /// Whether or not to use incrementality (if possible)
     pub incremental_if_possible: bool,
+    /// Whether or not to stop on validity (or just sufficiency)
+    pub stop_on_valid: bool,
+    /// Count decisions as cardinality of options presented (unordered output)
+    pub count_unordered: bool,
 }
 
 /// The core data structure for running benchmarks
@@ -96,19 +100,30 @@ impl Runner {
             None
         };
 
-        let checker = pn::oracle::Sufficient::new();
+        let controller = if self.config.stop_on_valid {
+            pbn::Controller::new(
+                Timer::finite(self.config.timeout),
+                pbn::CompoundProvider::new(vec![entry
+                    .provider
+                    .provider(optional_start)]),
+                pn::oracle::Valid::new(pn::oracle::OptInc::NonIncremental),
+                start,
+                false,
+            )
+        } else {
+            pbn::Controller::new(
+                Timer::finite(self.config.timeout),
+                pbn::CompoundProvider::new(vec![entry
+                    .provider
+                    .provider(optional_start)]),
+                pn::oracle::Sufficient::new(),
+                start,
+                false,
+            )
+        };
 
-        let controller = pbn::Controller::new(
-            Timer::finite(self.config.timeout),
-            pbn::CompoundProvider::new(vec![entry
-                .provider
-                .provider(optional_start)]),
-            checker,
-            start,
-            false,
-        );
-
-        let mut driver = drivers::SolutionDriven::new(solution);
+        let mut driver =
+            drivers::SolutionDriven::new(solution, self.config.count_unordered);
         let success = driver.drive(controller).is_some();
 
         let duration = now.elapsed().as_millis();
