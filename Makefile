@@ -8,7 +8,8 @@ image:
 	mkdir -p target
 
 image-export: image
-	podman save aonav:latest | gzip > target/aonav-image.tar.gz
+	podman save aonav:latest | gzip > artifact-eval/aonav-image.tar.gz
 
 clean:
 	cargo clean
+	rm -f -- artifact-eval/aonav-image.tar.gz
