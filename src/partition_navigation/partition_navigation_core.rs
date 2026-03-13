@@ -12,15 +12,15 @@ use std::hash::Hash;
 ////////////////////////////////////////////////////////////////////////////////
 // Expressions
 
-// Possible labels for OR nodes
-//
-// U: unseen
-// O: don't know if should be true or false
-// F: should be false
-// T: should be true
-// T!: should be true; only consider solutions with it in dependencies
-// T*: T + user will provide an impl
-// T!*: T! + user will provide an impl
+/// Possible labels for OR nodes
+///
+/// U: unseen
+/// O: don't know if should be true or false
+/// F: should be false
+/// T: should be true
+/// T!: should be true; only consider solutions with it in dependencies
+/// T*: T + user will provide an impl
+/// T!*: T! + user will provide an impl
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(try_from = "String", into = "String")]
 pub enum Class {
@@ -41,7 +41,7 @@ pub enum Class {
 }
 
 impl Class {
-    // Return all valid labels
+    /// Return all valid labels
     pub fn all() -> &'static [Class] {
         &[
             Self::Unseen,
@@ -74,8 +74,8 @@ impl Class {
         ]
     }
 
-    // Return all valid labels that indicate decisive committment to a single label
-    // Excludes "Unseen", "T/A" and "T/A!"
+    /// Return all valid labels that indicate decisive committment to a single label
+    /// Excludes "Unseen", "T/A" and "T/A!"
     pub fn committed() -> &'static [Class] {
         &[
             Self::Unknown,
@@ -103,7 +103,7 @@ impl Class {
         ]
     }
 
-    // Return true if label 'self' is less than label 'other'
+    /// Return true if label 'self' is less than label 'other'
     pub fn lattice_lt(&self, other: &Self) -> bool {
         match (self, other) {
             // Unseen < everything other than self
@@ -136,7 +136,7 @@ impl Class {
         }
     }
 
-    // Return shorthand notation of label
+    /// Return shorthand notation of label
     pub fn shorthand(&self) -> &str {
         match self {
             Self::Unseen => "⊥",
@@ -169,7 +169,7 @@ impl Class {
         }
     }
 
-    // Return true if label is "True"
+    /// Return true if label is "True"
     pub fn is_true(&self) -> bool {
         match self {
             Self::True { .. } => true,
@@ -177,7 +177,7 @@ impl Class {
         }
     }
 
-    // Return true if label is "True" and assumed
+    /// Return true if label is "True" and assumed
     pub fn is_assume(&self) -> bool {
         match self {
             Self::True {
@@ -187,8 +187,8 @@ impl Class {
         }
     }
 
-    // Return label "True" with assume status "assume" if self is "True"
-    // with no assume status
+    /// Return label "True" with assume status "assume" if self is "True"
+    /// with no assume status
     pub fn commit_true(&self, assume: bool) -> Option<Self> {
         match self {
             Self::True {
@@ -202,8 +202,8 @@ impl Class {
         }
     }
 
-    // Return true if label indicates committment to a single label
-    // "Unseen", "T/A" and "T/A!" => false
+    /// Return true if label indicates committment to a single label
+    /// "Unseen", "T/A" and "T/A!" => false
     pub fn is_committed(&self) -> bool {
         match self {
             Class::Unseen => false,
@@ -240,7 +240,7 @@ impl From<Class> for String {
     }
 }
 
-// AND-OR graph and its partition
+/// AND-OR graph and its partition
 #[derive(Debug, Clone)]
 pub struct Exp {
     graph: ao::Graph,
@@ -248,7 +248,7 @@ pub struct Exp {
 }
 
 impl Exp {
-    // Create a new Exp from an AND-OR graph and label every OR node "unseen"
+    /// Create a new Exp from an AND-OR graph and label every OR node "unseen"
     pub fn new(graph: ao::Graph) -> Self {
         let mut partition: IndexMap<_, _> = graph
             .or_indexes()
@@ -261,8 +261,8 @@ impl Exp {
         Self { graph, partition }
     }
 
-    // Create a new Exp from an AND-OR graph and mapping of OR-node Id to label
-    // Label each OR node in partition as specified in "labels"
+    /// Create a new Exp from an AND-OR graph and mapping of OR-node Id to label
+    /// Label each OR node in partition as specified in "labels"
     pub fn from_labels(
         graph: ao::Graph,
         labels: IndexMap<ao::NodeId, Class>,
@@ -280,7 +280,7 @@ impl Exp {
         Ok(Self { graph, partition })
     }
 
-    // Returns mapping from each OR-node Id to its label in this Exp's partition
+    /// Returns mapping from each OR-node Id to its label in this Exp's partition
     pub fn make_labels(&self) -> IndexMap<ao::NodeId, Class> {
         self.partition()
             .iter()
@@ -290,22 +290,22 @@ impl Exp {
             .collect()
     }
 
-    // Returns this Exp's graph
+    /// Returns this Exp's graph
     pub fn graph(&self) -> &ao::Graph {
         &self.graph
     }
 
-    // Return this Exp's partition
+    /// Return this Exp's partition
     pub fn partition(&self) -> &IndexMap<ao::OIdx, Class> {
         &self.partition
     }
 
-    // Returns label of OR-node with given index
+    /// Returns label of OR-node with given index
     pub fn class(&self, oidx: ao::OIdx) -> Class {
         *self.partition().get(&oidx).unwrap()
     }
 
-    // Filter OR-nodes in partition with "f"
+    /// Filter OR-nodes in partition with "f"
     pub fn filter_class<F>(&self, f: F) -> ao::OrSet
     where
         F: Fn(Class) -> bool,
@@ -321,8 +321,8 @@ impl Exp {
         }
     }
 
-    // For nodes not in "exceptions", re-label non-committed 
-    // nodes ("Unseen", "T/A", "T/A!") pessimistically
+    /// For nodes not in "exceptions", re-label non-committed 
+    /// nodes ("Unseen", "T/A", "T/A!") pessimistically
     pub fn set_remaining_pessimistically(
         &mut self,
         exceptions: &HashSet<ao::OIdx>,
@@ -347,12 +347,12 @@ impl Exp {
         }
     }
 
-    // Return true if all nodes in partition are committed
+    /// Return true if all nodes in partition are committed
     pub fn maximal(&self) -> bool {
         self.partition.values().all(|c| c.is_committed())
     }
 
-    // Set OR-node at given index to label ("class") in this Exp's partition
+    /// Set OR-node at given index to label ("class") in this Exp's partition
     pub fn unsafe_set_class(&mut self, oidx: ao::OIdx, class: Class) {
         let _ = self.partition.insert(oidx, class);
     }
@@ -376,7 +376,7 @@ impl std::fmt::Display for Exp {
 ////////////////////////////////////////////////////////////////////////////////
 // Steps
 
-// Step for Programming by Navigation
+/// Step for Programming by Navigation
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Step {
     /// Set a node's partition class
@@ -387,7 +387,7 @@ pub enum Step {
 }
 
 impl Step {
-    // Update label
+    /// Update label
     pub fn set_label(&mut self, label: Option<String>) {
         match self {
             Self::SetClass(_, _, old_label) => *old_label = label,
@@ -395,7 +395,7 @@ impl Step {
         }
     }
 
-    // Return label
+    /// Return label
     pub fn label(&self) -> Option<&str> {
         match self {
             Self::SetClass(_, _, label) => label.as_ref().map(|x| x.as_str()),
@@ -403,7 +403,7 @@ impl Step {
         }
     }
 
-    // Return step sequence
+    /// Return step sequence
     pub fn sequence(mut steps: impl Iterator<Item = Step>) -> Option<Step> {
         let mut step = steps.next()?;
 
@@ -414,7 +414,7 @@ impl Step {
         Some(step)
     }
 
-    // Return string representation of this step
+    /// Return string representation of this step
     pub fn show(&self, e: &Exp) -> String {
         let default = match self {
             Step::SetClass(oid, class, _) => {
