@@ -11,7 +11,7 @@ use partition_navigation as pn;
 use serde::Serialize;
 use strum::EnumString;
 
-// Menu of providers
+/// Menu of providers
 #[derive(Debug, Clone, Copy, EnumString, Serialize)]
 pub enum Provider {
     Remaining,
