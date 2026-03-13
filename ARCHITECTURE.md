@@ -54,7 +54,7 @@ problems. We used this file to generate the solutions for our benchmark suite.
 - `ao_adapters.rs`: glue code for importing other AND-OR graph-like formats
 - `benchmark.rs`: code to benchmark step providers (generates a CSV)
 - `drivers.rs`: code to drive Programming by Navigation step providers (we use
-the "solutionr-driven" driver for our benchmarking)
+the "solution-driven" driver for our benchmarking)
 - `lib.rs`: Rust boilerplate
 - `main.rs`: program entry point; defines acceptable CLI arguments and
 dispatches to `main_handler.rs`
