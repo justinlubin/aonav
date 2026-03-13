@@ -18,13 +18,13 @@ use rand::prelude::*;
 ////////////////////////////////////////////////////////////////////////////////
 // Commit
 
-// Provides steps to commit non-committed nodes
+/// Provides steps to commit non-committed nodes
 pub struct Commit {
     incremental: OptInc,
 }
 
 impl Commit {
-    // Create an instance of the "Commit" Step Provider
+    /// Create an instance of the "Commit" Step Provider
     pub fn new(incremental: OptInc) -> Self {
         Self { incremental }
     }
@@ -68,14 +68,14 @@ impl pbn::StepProvider<util::Timer> for Commit {
 ////////////////////////////////////////////////////////////////////////////////
 // Remaining
 
-// Shows all valid labels for all remaining (not-labeled) nodes
+/// Shows all valid labels for all remaining (not-labeled) nodes
 pub struct Remaining {
     incremental: OptInc,
     committed_only: bool,
 }
 
 impl Remaining {
-    // Create an instance of the "Remaining" Step Provider
+    /// Create an instance of the "Remaining" Step Provider
     pub fn new(incremental: OptInc, committed_only: bool) -> Self {
         Self {
             incremental,
@@ -120,13 +120,13 @@ impl pbn::StepProvider<util::Timer> for Remaining {
 ////////////////////////////////////////////////////////////////////////////////
 // Random
 
-// Selects a node at random and provides all valid labels for that node
+/// Selects a node at random and provides all valid labels for that node
 pub struct Random {
     incremental: OptInc,
 }
 
 impl Random {
-    // Create an instance of the "Random" Step Provider
+    /// Create an instance of the "Random" Step Provider
     pub fn new(incremental: OptInc) -> Self {
         Self { incremental }
     }
@@ -169,13 +169,13 @@ impl pbn::StepProvider<util::Timer> for Random {
 ////////////////////////////////////////////////////////////////////////////////
 // Top-down inversion
 
-// Provides steps to iteratively traverse the graph using a top-down strategy
+/// Provides steps to iteratively traverse the graph using a top-down strategy
 pub struct TopDownInversion {
     incremental: OptInc,
 }
 
 impl TopDownInversion {
-    // Create an instance of the "TopDownInversion" Step Provider
+    /// Create an instance of the "TopDownInversion" Step Provider
     pub fn new(incremental: OptInc) -> Self {
         Self { incremental }
     }
@@ -273,13 +273,13 @@ impl pbn::StepProvider<util::Timer> for TopDownInversion {
 ////////////////////////////////////////////////////////////////////////////////
 // Bottom-up inversion
 
-// Provides steps to iteratively travese the graph using a bottom-up strategy
+/// Provides steps to iteratively travese the graph using a bottom-up strategy
 pub struct BottomUpInversion {
     incremental: OptInc,
 }
 
 impl BottomUpInversion {
-    // Create an instance of the "BottomUpInversion" Step Provider
+    /// Create an instance of the "BottomUpInversion" Step Provider
     pub fn new(incremental: OptInc) -> Self {
         Self { incremental }
     }
@@ -320,13 +320,13 @@ impl pbn::StepProvider<util::Timer> for BottomUpInversion {
 ////////////////////////////////////////////////////////////////////////////////
 // Leaf
 
-// Provides valid possible labels for leaf nodes
+/// Provides valid possible labels for leaf nodes
 pub struct Leaf {
     incremental: OptInc,
 }
 
 impl Leaf {
-    // Create an instance of the "Leaf" Step Provider
+    /// Create an instance of the "Leaf" Step Provider
     pub fn new(incremental: OptInc) -> Self {
         Self { incremental }
     }
@@ -362,15 +362,15 @@ impl pbn::StepProvider<util::Timer> for Leaf {
 ////////////////////////////////////////////////////////////////////////////////
 // Maximum information gain
 
-// Selects a node whose labelling is most likely to minimize the number of
-// possible solutions and provides all valid labels for that ndoe
+/// Selects a node whose labelling is most likely to minimize the number of
+/// possible solutions and provides all valid labels for that ndoe
 pub struct MaxInfoGain {
     incremental: OptInc,
     relevancy_prune: bool,
 }
 
 impl MaxInfoGain {
-    // Create an instance of the "MaxInfoGain" Step Provider
+    /// Create an instance of the "MaxInfoGain" Step Provider
     pub fn new(incremental: OptInc, relevancy_prune: bool) -> Self {
         Self {
             incremental,
@@ -503,7 +503,7 @@ pub struct ForcedAssumptions {
 }
 
 impl ForcedAssumptions {
-    // Create an instance of the "ForcedAssumptions" Step Provider
+    /// Create an instance of the "ForcedAssumptions" Step Provider
     pub fn new(
         provider: Box<dyn pbn::StepProvider<util::Timer, Step = pn::Step>>,
     ) -> Self {
@@ -563,7 +563,7 @@ impl pbn::StepProvider<util::Timer> for ForcedAssumptions {
 ////////////////////////////////////////////////////////////////////////////////
 // Alphabetical
 
-// Variations of the "Alphabetical" Step Provider
+/// Variations of the "Alphabetical" Step Provider
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum AlphabeticalMode {
     Unsound,
@@ -571,7 +571,7 @@ pub enum AlphabeticalMode {
     Relevant,
 }
 
-// Provide all valid labels for the unseen OR-node that comes first alphabetically
+/// Provide all valid labels for the unseen OR-node that comes first alphabetically
 pub struct Alphabetical {
     incremental: OptInc,
     mode: AlphabeticalMode,
@@ -579,7 +579,7 @@ pub struct Alphabetical {
 }
 
 impl Alphabetical {
-    // Create an instance of the "Alphabetical" Step Provider
+    /// Create an instance of the "Alphabetical" Step Provider
     pub fn new(incremental: OptInc, mode: AlphabeticalMode) -> Self {
         Self {
             incremental,
@@ -710,7 +710,7 @@ pub struct SufficiencySeeker {
 }
 
 impl SufficiencySeeker {
-    // Create an instance of the "SufficiencySeeker" Step Provider
+    /// Create an instance of the "SufficiencySeeker" Step Provider
     pub fn new(
         provider: Box<dyn pbn::StepProvider<util::Timer, Step = pn::Step>>,
         relevancy_prune: bool,
