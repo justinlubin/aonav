@@ -1,7 +1,7 @@
 //! # Partition Navigation core syntax
 //!
 //! This module instantiates Programming by Navigation for the AND-OR graph
-//! modifications we define in our paper.
+//! modifications we define in the paper
 
 use aograph as ao;
 use indexmap::IndexMap;
@@ -321,7 +321,7 @@ impl Exp {
         }
     }
 
-    /// For nodes not in "exceptions", re-label non-committed 
+    /// For nodes not in "exceptions", re-label non-committed
     /// nodes ("Unseen", "T/A", "T/A!") pessimistically
     pub fn set_remaining_pessimistically(
         &mut self,

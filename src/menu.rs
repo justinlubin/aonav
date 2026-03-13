@@ -3,7 +3,7 @@
 //! This module hooks together all the components (ingredients) of this project
 //! into a set of items on a menu of possible choices. To the extent possible,
 //! these menu items all share the same interface and can be used in the same
-//! way (e.g. as step providers for AONav).
+//! way (e.g. as step providers for aonav).
 
 use crate::*;
 use partition_navigation as pn;
@@ -30,7 +30,8 @@ pub enum Provider {
 }
 
 impl Provider {
-    // HELP! what exactly is happening? is a provider being returned?
+    /// Returns the provider for the selected menu item (optionally with an
+    /// incremental starting expression)
     pub fn provider(
         &self,
         incremental_if_possible: Option<&pn::Exp>,

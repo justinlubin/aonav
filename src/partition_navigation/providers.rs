@@ -1,8 +1,6 @@
 //! # Step Providers for Programming by Navigation
 //!
-//! Defined in Section 5 and Appendix B of our paper
-
-// HELP! Can you double-check my provider comments? Especially maxinfogain
+//! Defined in Section 5 and Appendix B of the paper
 
 use std::collections::HashMap;
 
@@ -362,8 +360,8 @@ impl pbn::StepProvider<util::Timer> for Leaf {
 ////////////////////////////////////////////////////////////////////////////////
 // Maximum information gain
 
-/// Selects a node whose labelling is most likely to minimize the number of
-/// possible solutions and provides all valid labels for that ndoe
+/// Selects a node whose labelling has the highest expected information gain and
+/// provides all valid labels for that node
 pub struct MaxInfoGain {
     incremental: OptInc,
     relevancy_prune: bool,
@@ -425,7 +423,7 @@ impl pbn::StepProvider<util::Timer> for MaxInfoGain {
                 match step.apply(e) {
                     None => continue,
                     Some(child) => {
-                        match pn::oracle::log10_assume_model_count(
+                        match pn::oracle::log10_projected_model_count(
                             &child, &projected,
                         )? {
                             Some(h) => {
@@ -454,7 +452,8 @@ impl pbn::StepProvider<util::Timer> for MaxInfoGain {
 ////////////////////////////////////////////////////////////////////////////////
 // MinLeafHeuristic
 
-// HELP!
+/// One-shot assigns an arbitrary set of leaf nodes to "assume" labels that
+/// makes the goal provable
 pub struct MinLeafHeuristic;
 
 impl MinLeafHeuristic {
@@ -497,7 +496,7 @@ impl pbn::StepProvider<util::Timer> for MinLeafHeuristic {
 ////////////////////////////////////////////////////////////////////////////////
 // Forced assumptions
 
-// HELP!
+/// Shows only the OR nodes that must be assumed
 pub struct ForcedAssumptions {
     provider: Box<dyn pbn::StepProvider<util::Timer, Step = pn::Step>>,
 }
@@ -571,7 +570,11 @@ pub enum AlphabeticalMode {
     Relevant,
 }
 
-/// Provide all valid labels for the unseen OR-node that comes first alphabetically
+/// Provide all valid labels for the unseen OR-node that comes first
+/// alphabetically; the Unsound mode also shows unsound labelings (violating
+/// Strong Soundness, and the Relevant mode performs relevancy pruning,
+/// satisfying only Strong Completeness Modulo Observability instead of full
+/// Strong Completeness)
 pub struct Alphabetical {
     incremental: OptInc,
     mode: AlphabeticalMode,
@@ -703,7 +706,8 @@ fn collate(steps: Vec<pn::Step>) -> HashMap<OIdx, Vec<pn::Step>> {
     ret
 }
 
-// HELP!
+/// Identifies cut points in the graph and preferentially shows those OR nodes
+/// to label
 pub struct SufficiencySeeker {
     provider: Box<dyn pbn::StepProvider<util::Timer, Step = pn::Step>>,
     relevancy_prune: bool,

@@ -2,8 +2,6 @@
 //!
 //! This module contains code to drive Programming by Navigation step providers
 
-// HELP! can you check this one?
-
 use crate::partition_navigation as pn;
 use crate::util;
 
@@ -34,7 +32,7 @@ pub struct Cli {
 }
 
 impl Cli {
-    /// Creates a new instance of the "Cli" driver
+    /// Creates a new Cli driver
     pub fn new(valid_word: String, pdf: bool) -> Self {
         Self { valid_word, pdf }
     }
@@ -214,6 +212,7 @@ pub struct SolutionDriven {
 }
 
 impl SolutionDriven {
+    /// Creates a new SolutionDriven driver
     pub fn new(solution: pn::Exp, count_unordered: bool) -> Self {
         Self {
             solution,
@@ -234,7 +233,7 @@ impl SolutionDriven {
         self.total_decisions
     }
 
-    /// Returns latencies
+    /// Returns latencies (the length of this vector is the number of rounds)
     pub fn latencies(&self) -> &Vec<u128> {
         &self.latencies
     }

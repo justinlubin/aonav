@@ -1,6 +1,6 @@
 //! # Top-Level Functions
 //!
-//! Top-level functions to interact with AONav functinality
+//! Top-level functions to interact with aonav functinality
 
 use crate::ao_adapters;
 use crate::benchmark;

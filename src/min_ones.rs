@@ -1,8 +1,6 @@
 //! # SAT Solving
 //!
-//! Finds SAT assignments with a minimal number of literals let to true
-
-// HELP! header?
+//! Finds SAT assignments with a minimal number of literals set to true
 
 use rustsat::{
     instances::SatInstance,
@@ -11,11 +9,14 @@ use rustsat::{
 };
 use std::collections::HashSet;
 
-// TODO make incremental
+/// Solve a SAT instance, minimizing the number of literals set to "true" in
+/// the given set of literals
 pub fn solve(
     instance: SatInstance,
     lits_to_minimize: &HashSet<Lit>,
 ) -> Option<Assignment> {
+    // TODO would be nice to make more incrementhal
+
     let mut original_solver = rustsat_cadical::CaDiCaL::default();
     original_solver.add_cnf_ref(instance.cnf()).unwrap();
 

@@ -2,8 +2,6 @@
 //!
 //! Defines a nonempty-completion oracle for our notion of expressions
 
-// HELP! I'm not so confident on this one
-
 use crate::min_ones;
 use crate::model_count;
 use crate::partition_navigation::*;
@@ -364,14 +362,14 @@ impl CompileContext {
     }
 }
 
-// HELP!
+/// Context to incrementally solve the generated SAT formulas
 pub struct IncrementalContext {
     solver: rustsat_cadical::CaDiCaL<'static, 'static>,
     ctx: CompileContext,
 }
 
 impl IncrementalContext {
-    // HELP!
+    /// Create a new context
     pub fn new(e: &Exp) -> Self {
         let mut ctx = CompileContext::compile_shared(e.graph().clone());
         let instance = std::mem::take(&mut ctx.instance);
@@ -383,7 +381,7 @@ impl IncrementalContext {
         Self { solver, ctx }
     }
 
-    // HELP!
+    /// Solve the nonempty-completion query
     pub fn nonempty_completion(&mut self, e: &Exp) -> bool {
         let assumptions = self.ctx.or_consistency_lits(e.partition());
 
@@ -442,14 +440,14 @@ impl IncrementalContext {
     }
 }
 
-// HELP!
+/// Configuration whether the oracle should be incremental or not
 pub enum OptInc {
     Incremental(IncrementalContext),
     NonIncremental,
 }
 
 impl OptInc {
-    // HELP!
+    /// Creates a new oracle; incremental if an starting point is provided
     pub fn from_optional_start(start: Option<&Exp>) -> Self {
         match start {
             Some(e) => Self::Incremental(IncrementalContext::new(e)),
@@ -457,7 +455,7 @@ impl OptInc {
         }
     }
 
-    // HELP!
+    /// Solves the non-empty completion query
     pub fn nonempty_completion(&mut self, e: &Exp) -> bool {
         match self {
             Self::Incremental(inc) => inc.nonempty_completion(e),
@@ -471,8 +469,8 @@ impl OptInc {
 ////////////////////////////////////////////////////////////////////////////////
 // Entropy
 
-// HELP!
-pub fn log10_assume_model_count(
+/// Returns the log10 projected model count of the non-completion formulas
+pub fn log10_projected_model_count(
     e: &Exp,
     projected: &ao::OrSet,
 ) -> Result<Option<f64>, EarlyCutoff> {
@@ -500,7 +498,7 @@ pub fn log10_assume_model_count(
 ////////////////////////////////////////////////////////////////////////////////
 // Minimal leaves
 
-// HELP!
+/// Returns a set of minimal leaf OR nodes that would make the goal true
 pub fn minimal_leaves(e: &Exp) -> Option<ao::OrSet> {
     let mut e = e.clone();
 
@@ -540,13 +538,12 @@ pub fn minimal_leaves(e: &Exp) -> Option<ao::OrSet> {
 ////////////////////////////////////////////////////////////////////////////////
 // Validity checkers
 
-// HELP!
+/// Checks whether an expression (partition) is valid
 pub struct Valid {
     incremental: OptInc,
 }
 
 impl Valid {
-    // HELP!
     pub fn new(incremental: OptInc) -> Self {
         Self { incremental }
     }
@@ -562,11 +559,13 @@ impl pbn::ValidityChecker for Valid {
     }
 }
 
-// HELP!
+/// Checks whether an expression (partition) is sufficient to prove the goal;
+/// if used as part of a Programming by Navigation interactive process, then it
+/// is equivalent to using the Valid struct above, but more computationally
+/// efficient
 pub struct Sufficient;
 
 impl Sufficient {
-    // HELP!
     pub fn new() -> Self {
         Self
     }
