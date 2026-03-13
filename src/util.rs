@@ -108,7 +108,7 @@ pub fn cartesian_product<K: Clone + Eq + std::hash::Hash, V: Clone>(
 ////////////////////////////////////////////////////////////////////////////////
 // JSON Graph Format helpers
 
-// generate random nodes ids for benchmrking
+/// Generate random nodes ids for benchmrking
 pub fn jgf_randomize_node_ids(data: &mut jgf::Data) -> HashMap<String, String> {
     match data {
         jgf::Data::Single { graph } => jgf_graph_randomize_node_ids(graph),
