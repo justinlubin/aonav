@@ -27,14 +27,14 @@ pub trait Driver<S: pbn::Step> {
 ////////////////////////////////////////////////////////////////////////////////
 // CLI Driver
 
-// Drives step providers for command-line interaction
+/// Drives step providers for command-line interaction
 pub struct Cli {
     valid_word: String,
     pdf: bool,
 }
 
 impl Cli {
-    // Creates a new instance of the "Cli" driver
+    /// Creates a new instance of the "Cli" driver
     pub fn new(valid_word: String, pdf: bool) -> Self {
         Self { valid_word, pdf }
     }
@@ -204,7 +204,7 @@ impl Driver<pn::Step> for Cli {
 ////////////////////////////////////////////////////////////////////////////////
 // Solution-driven driver
 
-// Driver used for benchmarking
+/// Driver used for benchmarking
 pub struct SolutionDriven {
     solution: pn::Exp,
     decisions: HashSet<(ao::OIdx, pn::Class)>,
@@ -224,17 +224,17 @@ impl SolutionDriven {
         }
     }
 
-    // Returns number of uniquie decisions made
+    /// Returns number of uniquie decisions made
     pub fn unique_decisions(&self) -> usize {
         self.decisions.len()
     }
 
-    // Returns number of total decistions made
+    /// Returns number of total decistions made
     pub fn total_decisions(&self) -> usize {
         self.total_decisions
     }
 
-    // Returns latencies
+    /// Returns latencies
     pub fn latencies(&self) -> &Vec<u128> {
         &self.latencies
     }
@@ -300,13 +300,13 @@ impl Driver<pn::Step> for SolutionDriven {
 ////////////////////////////////////////////////////////////////////////////////
 // Random driver
 
-// Makes decisions at each step randomly
+/// Makes decisions at each step randomly
 pub struct Random {
     go_until_maximal: bool,
 }
 
 impl Random {
-    // Creates a new instance of the "Random" driver
+    /// Creates a new instance of the "Random" driver
     pub fn new(go_until_maximal: bool) -> Self {
         Self { go_until_maximal }
     }
