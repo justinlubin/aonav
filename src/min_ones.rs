@@ -15,7 +15,7 @@ pub fn solve(
     instance: SatInstance,
     lits_to_minimize: &HashSet<Lit>,
 ) -> Option<Assignment> {
-    // TODO would be nice to make more incrementhal
+    // TODO would be nice to make more incremental
 
     let mut original_solver = rustsat_cadical::CaDiCaL::default();
     original_solver.add_cnf_ref(instance.cnf()).unwrap();

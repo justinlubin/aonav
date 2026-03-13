@@ -251,8 +251,8 @@ impl pbn::StepProvider<util::Timer> for TopDownInversion {
                     e.graph().and_at(aidx)
                 )));
 
-                // TODO this should always apply and does NOT need oracle call
-                // Although oracle call is necessary if want to combine with
+                // Intuitively this should always apply and does NOT need oracle
+                // call, but oracle call is necessary if want to combine with
                 // other strategies
                 if let Some(result) = step.apply(e) {
                     if self.incremental.nonempty_completion(&result) {
