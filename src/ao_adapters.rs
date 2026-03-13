@@ -105,7 +105,7 @@ fn ground_fact(
     }
 }
 
-// Convert an Egglog program to our AND-OR format
+/// Convert an Egglog program to our AND-OR format
 pub fn try_from_egglog(
     egglog_program: Vec<egglog::ast::Command>,
 ) -> Result<Graph, String> {
@@ -312,7 +312,7 @@ pub fn try_from_egglog(
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// Create new Graph from args and write to json
+/// Create new Graph from args and write to json
 pub fn new_ao(
     id_arg: Option<String>,
     label_arg: Option<String>,
@@ -350,7 +350,7 @@ pub fn get_simple_egraph(eg: &mut EGraph<egg::SymbolLang, ()>) {
     eg.rebuild();
 }
 
-// Copy-paste from egraph-serialize: https://github.com/egraphs-good/egraph-serialize
+/// Copy-paste from egraph-serialize: https://github.com/egraphs-good/egraph-serialize
 #[allow(dead_code)]
 pub fn egraph_to_serialized_egraph<L, A>(
     egraph: &EGraph<L, A>,
@@ -400,8 +400,8 @@ fn insert_node(
     );
 }
 
-// Strongly inspired by egraph-serialize: https://github.com/egraphs-good/egraph-serialize
-// Serializes egraph into and/or format in ao-examples/name.json
+/// Strongly inspired by egraph-serialize: https://github.com/egraphs-good/egraph-serialize
+/// Serializes egraph into and/or format in ao-examples/name.json
 #[allow(dead_code)]
 pub fn egraph_to_and_or<L, A>(egraph: &EGraph<L, A>, name: String)
 where
@@ -493,7 +493,7 @@ struct ArgusAO {
     yesGoals: Vec<String>,
 }
 
-// Convert data exctracted from Argus into our AND-OR format
+/// Convert data exctracted from Argus into our AND-OR format
 #[allow(unused_mut, unused_variables, dead_code)]
 pub fn argus_to_and_or<A, O>(path: &PathBuf)
 where
