@@ -2,16 +2,32 @@
 
 import glob
 import os
+import sys
 
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import polars as pl
+from matplotlib import font_manager as fm
 
-# % % Matplotlib settings and patching
+MINIMAL = len(sys.argv) > 1 and sys.argv[1] == "MINIMAL"
 
-SERIF_FONT = "Linux Libertine"
-SANS_SERIF_FONT = "Linux Biolinum"
+if MINIMAL:
+    plt.rcParams["font.cursive"] = "DejaVu Sans"
+    for f in fm.findSystemFonts():
+        try:
+            name = fm.FontProperties(fname=f).get_name()
+            if "Keyboard" in name:
+                continue
+            if "Linux Libertine" in name:
+                SERIF_FONT = name
+            elif "Linux Biolinum" in name:
+                SANS_SERIF_FONT = name
+        except Exception:
+            continue
+else:
+    SERIF_FONT = "Linux Libertine"
+    SANS_SERIF_FONT = "Linux Biolinum"
 
 plt.rcParams.update(
     {
@@ -48,7 +64,7 @@ def save(self, filename, exts=None, *args, **kwargs):
 
 matplotlib.figure.Figure.save = save  # ty:ignore[possibly-missing-attribute]
 
-# % % Load suite data
+# %% Load data
 
 
 def attach_suite(df):
@@ -65,12 +81,6 @@ nice_suite = {
 }
 
 suite_order = ["manual", "random", "argusReduced", "aesop"]
-metrics = [
-    ("decisions", "Decision count"),
-    ("rounds", "Round count"),
-    ("duration", "Duration, sec."),
-    ("latency_median", "Latency (median), sec."),
-]
 
 metadata = pl.read_csv("metadata.csv")
 
@@ -118,39 +128,55 @@ def summarize(xs):
     return f"{mid:0.2f} ({lo:0.2f}--{hi:0.2f})"
 
 
-# % % Make summary table of suite data
-
-print(
-    "\\textsc{\\textbf{Suite}}",
-    "\\textsc{\\textbf{Depth}}",
-    "\\textsc{\\textbf{\\# ORs}}",
-    "\\textsc{\\textbf{\\# ANDs}}",
-    "\\textsc{\\textbf{Median \\# consumers}}",
-    "\\textsc{\\textbf{Median \\# providers}}",
-    "\\textsc{\\textbf{Median \\# premises}} \\\\",
-    sep=" & ",
-)
-print("\\midrule")
-for (s,), g in suite_data.sort("suite").group_by(
-    "suite",
-    maintain_order=True,
-):
+if not MINIMAL:
     print(
-        "\\textsc{" + nice_suite[s] + "}",
-        summarize(g["depth"]),
-        summarize(g["or_count"]),
-        summarize(g["and_count"]),
-        summarize(g["consumer_count_median"]),
-        summarize(g["provider_count_median"]),
-        summarize(g["premise_count_median"]) + " \\\\",
+        "\\textsc{\\textbf{Suite}}",
+        "\\textsc{\\textbf{Depth}}",
+        "\\textsc{\\textbf{\\# ORs}}",
+        "\\textsc{\\textbf{\\# ANDs}}",
+        "\\textsc{\\textbf{Median \\# consumers}}",
+        "\\textsc{\\textbf{Median \\# providers}}",
+        "\\textsc{\\textbf{Median \\# premises}} \\\\",
         sep=" & ",
     )
+    print("\\midrule")
+    for (s,), g in suite_data.sort("suite").group_by(
+        "suite", maintain_order=True
+    ):
+        print(
+            "\\textsc{" + nice_suite[s] + "}",
+            summarize(g["depth"]),
+            summarize(g["or_count"]),
+            summarize(g["and_count"]),
+            summarize(g["consumer_count_median"]),
+            summarize(g["provider_count_median"]),
+            summarize(g["premise_count_median"]) + " \\\\",
+            sep=" & ",
+        )
 
-# % % Load benchmark data
+# %%
 
 
 def attach_metadata(df):
     df = attach_suite(df.join(metadata, on="provider"))
+
+    if MINIMAL:
+        df = df.filter(
+            pl.col("suite").is_in(
+                [
+                    "manual",
+                    "random",
+                    "argusReduced",
+                ]
+            ),
+            pl.col("provider").is_in(
+                [
+                    "AlphabeticalUnsound",
+                    "AlphabeticalComplete",
+                    "AlphabeticalRelevant",
+                ]
+            ),
+        )
 
     return df
 
@@ -158,7 +184,7 @@ def attach_metadata(df):
 datas = []
 for incr in [False, True]:
     if incr:
-        prefix = "INCR"
+        prefix = "INCR_"
     else:
         prefix = "NON_INCR"
     for path in glob.glob(f"../results/{prefix}-*.csv"):
@@ -186,18 +212,11 @@ data = (
         .otherwise([]),
     )
     .with_columns(
-        latency_median=pl.when(pl.col("success"))
-        .then(pl.col("latencies").list.median())
-        .otherwise(np.nan),
-        latency_max=pl.when(pl.col("success"))
-        .then(pl.col("latencies").list.max())
-        .otherwise(np.nan),
-        rounds=pl.when(pl.col("success"))
-        .then(pl.col("latencies").list.len())
-        .otherwise(np.nan),
+        latency_median=pl.col("latencies").list.median(),
+        latency_max=pl.col("latencies").list.max(),
+        rounds=pl.col("latencies").list.len(),
     )
     .select(
-        "incremental",
         "name",
         "provider",
         "chosen_solution",
@@ -266,7 +285,7 @@ scal = (
 )
 
 
-# % % Compute success / total benchmark counts
+# %% Main
 
 TOTAL_ENTRIES = {}
 SUCCESS_COUNT = {}
@@ -282,7 +301,7 @@ for (i, p, s), g in agg.group_by(
 ):
     SUCCESS_COUNT[(i, p, s)] = g.filter(pl.col("success")).height
 
-# %% Make catplots
+# %%
 
 
 def catplot(
@@ -290,17 +309,16 @@ def catplot(
     *,
     val,
     val_label,
+    figtitle,
+    prefix,
+    places,
     suite,
-    incremental,
-    show_title,
     provider="provider",
     short="short",
     order="order",
     label="label",
-    prefix=None,
-    places=0,
 ):
-    fig, ax = plt.subplots(1, 1, figsize=(3, 3))
+    fig, ax = plt.subplots(1, 1, figsize=(5.5, 4))
     ticks = []
     labels = []
 
@@ -308,19 +326,17 @@ def catplot(
 
     m = max(df[val].filter(df[val].is_not_null()))
     if m < 1:
-        ydelta = 0.2
+        ydelta = 0.05
     elif m < 5:
-        ydelta = 0.2
+        ydelta = 0.5
     elif m < 30:
         ydelta = 5
-    elif m < 150:
-        ydelta = 10
     elif m < 1000:
         ydelta = 50
     else:
         ydelta = 100
 
-    ymax = int(1 + m / ydelta) * ydelta
+    ymax = int(2 + m / ydelta) * ydelta
 
     divider_added = False
 
@@ -349,40 +365,17 @@ def catplot(
         # rhs = str(round(y.mean(), places) if places > 0 else round(y.mean()))
         # print("\\newcommand{\\" + prefix + figtitle + short + "}{" + rhs + "}")
 
-        success_count = SUCCESS_COUNT[(incremental, provider, suite)]
+        success_count = SUCCESS_COUNT[(provider, suite)]
         total_entries = TOTAL_ENTRIES[suite]
 
-        if success_count > total_entries / 2:
-            median = y.median()
-            if median < 1:
-                median_text = f"{median:0.2f}"
-            else:
-                median_text = f"{median:0.1f}"
-
+        if success_count == total_entries:
             ax.hlines(
-                y=median,
-                xmin=x - 0.35,
-                xmax=x + 0.35,
+                y=y.mean(),
+                xmin=x - 0.25,
+                xmax=x + 0.25,
                 color="r",
                 zorder=20,
                 alpha=1,
-            )
-
-            ax.annotate(
-                median_text,
-                xy=(x, median),
-                xytext=(0, 2),
-                fontsize=8,
-                textcoords="offset pixels",
-                va="bottom",
-                ha="center",
-                color="r",
-                bbox=dict(
-                    boxstyle="square,pad=0",
-                    facecolor="white",
-                    edgecolor="none",
-                ),
-                zorder=30,
             )
 
         ax.annotate(
@@ -392,7 +385,7 @@ def catplot(
             textcoords="offset pixels",
             va="bottom",
             ha="center",
-            fontsize=7,
+            fontsize=9,
             color="#999999" if success_count == total_entries else "#bf4040",
             # bbox=dict(
             #     boxstyle="square,pad=0",
@@ -413,15 +406,9 @@ def catplot(
             divider_added = True
 
         ticks.append(x)
-        labels.append(short)
+        labels.append(title)
 
-    ax.set_xticks(
-        ticks,
-        labels=labels,
-        fontsize=8,
-        # rotation=90,
-        # ha="right",
-    )
+    ax.set_xticks(ticks, labels=labels, fontweight="bold")
     ax.set_xlim(min(ticks) - 0.5, max(ticks) + 0.5)
 
     ax.set_ylim(0, ymax)
@@ -431,194 +418,82 @@ def catplot(
 
     ax.spines[["top", "right"]].set_visible(False)
 
-    if show_title:
-        # figtitle = f"{nice_suite[suite]}: {val_label}"
-        figtitle = nice_suite[suite]
-        fig.suptitle(figtitle, fontweight="bold", fontsize=14)
-
+    fig.suptitle(figtitle, fontweight="bold", fontsize=14)
     fig.tight_layout()
 
     return fig, ax
 
 
-for (
-    incremental,
-    suite,
-), g in agg.group_by("incremental", "suite"):
+for (suite,), g in agg.group_by("suite"):
     sn = suite_order.index(suite)
-    if incremental:
-        prefix = "Fig"
-    else:
-        prefix = "Sup"
-    for mn, (metric, metric_name) in enumerate(metrics):
-        catplot(
-            g,
-            val=metric,
-            val_label=metric_name,
-            suite=suite,
-            incremental=incremental,
-            show_title=True,
-        )[0].save(
-            f"out/{prefix}1-descriptive/incr{incremental}-{mn}{sn}-{suite}-{metric}-descriptive.pdf",
-        )
 
-
-# %% Make forest plots
-
-
-def forest_plot(cmp, *, feature, title, feature_label, median_color):
-    rng = np.random.default_rng(seed=0)
-
-    fig, ax = plt.subplots(1, 1, figsize=(6, 4))
-
-    lim = 0
-
-    pairs = []
-
-    separator_rendered = False
-    previous_baseline = None
-
-    for (provider, provider_baseline), g in cmp.sort(
-        "order_baseline", "order"
-    ).group_by(
-        "short",
-        "short_baseline",
-        maintain_order=True,
-    ):
-        if provider == provider_baseline:
-            continue
-        if (provider, provider_baseline) in pairs:
-            continue
-        if (provider_baseline, provider) in pairs:
-            continue
-        pairs.append((provider, provider_baseline))
-
-        y = -len(pairs)
-
-        if (
-            not separator_rendered
-            and previous_baseline is not None
-            and provider_baseline != previous_baseline
-        ):
-            # ax.axhline(
-            #     y=y + 0.5,
-            #     color="0.8",
-            #     linestyle="--",
-            #     lw=0.5,
-            # )
-            separator_rendered = True
-
-        previous_baseline = provider_baseline
-
-        multiplier = (g[feature] + 0.001) / (g[f"{feature}_baseline"] + 0.001)
-        multiplier = multiplier.filter(multiplier.is_not_null()).log(base=2)
-        median = multiplier.median()
-
-        y_jitter = rng.uniform(low=y - 0.1, high=y + 0.1, size=len(multiplier))
-        ax.scatter(multiplier, y_jitter, color="0.2", alpha=0.05)
-        ax.vlines(
-            x=median,
-            ymin=y - 0.25,
-            ymax=y + 0.25,
-            color=median_color,
-            zorder=20,
-            alpha=1,
-        )
-
-        label_val = 2**median
-        label = f"{label_val:0.2f}× ({1 / label_val:0.2f}× better)"
-
-        ax.annotate(
-            label,
-            xy=(median, y),
-            xytext=(5, -2),
-            textcoords="offset pixels",
-            va="top",
-            ha="left",
-            color=median_color,
-            fontsize=8,
-            bbox=dict(
-                boxstyle="square,pad=0",
-                facecolor="white",
-                edgecolor="none",
-            ),
-        )
-
-        lim = max(lim, multiplier.abs().max())
-
-    ax.axvline(0, color="0.5", ls="dashed")
-
-    lim = ((3 + np.ceil(lim + 0.1)) // 4) * 4
-
-    ax.set_xlim(-lim, lim)
-    if lim > 7:
-        xticks = np.arange(-lim, lim + 1, 4)
-    else:
-        xticks = np.arange(-lim, lim + 1, 1)
-
-    def nice_xtick(xt):
-        if xt < 0:
-            prefix = "1/"
-        else:
-            prefix = ""
-        return prefix + str(int(2 ** abs(xt))) + "×"
-
-    ax.set_xticks(xticks, labels=map(nice_xtick, xticks))
-
-    ax.set_xlabel(f"{feature_label} ratio", fontweight="bold")
-
-    def _bold(s):
-        return r"$\bf{" + s.replace(" ", r"\ ") + r"}$"
-
-    ax.set_yticks(
-        np.arange(-len(pairs), 0),
-        labels=[
-            _bold(trt) + " vs. " + _bold(ctrl) + f"({n + 1:02})"
-            for n, (trt, ctrl) in enumerate(reversed(pairs))
-        ],
+    catplot(
+        g,
+        val="decisions",
+        val_label="Total decisions",
+        figtitle=nice_suite[suite],
+        prefix="ResDec",
+        places=0,
+        suite=suite,
+    )[0].save(
+        f"out/01-total_decisions-{sn}-{suite}.pdf",
     )
-    ax.set_ylim(-len(pairs) - 1, 0)
-    # ax2 = ax.twinx()
-    # ax2.set_yticks(
-    # np.arange(-len(pairs), 0),
-    # labels=[p[1] for p in reversed(pairs)],
-    # )
-    # ax2.set_ylim(-len(pairs) - 1, 0)
 
-    ax.spines[["top", "right", "left"]].set_visible(False)
-    ax.tick_params(axis="y", which="both", length=0)
+    catplot(
+        g,
+        val="duration",
+        val_label="Duration (s)",
+        figtitle=nice_suite[suite],
+        prefix="ResDur",
+        places=2,
+        suite=suite,
+    )[0].save(
+        f"out/02-duration-{sn}-{suite}.pdf",
+    )
 
-    fig.suptitle(title)
+    if not MINIMAL:
+        pass
+        # catplot(
+        #     g,
+        #     val="rounds",
+        #     val_label="Total rounds",
+        #     figtitle=nice_suite[suite],
+        #     prefix="ResRou",
+        #     places=0,
+        #     suite=suite,
+        # )[0].save(
+        #     f"out/08-rounds-{suite}.pdf",
+        # )
 
-    fig.tight_layout()
-    return fig, ax
-
-
-# Comparisons among incremental step providers (4 suites x 4 metrics)
-
-for (
-    incremental,
-    suite,
-), g in comparisons.group_by("incremental", "suite"):
-    sn = suite_order.index(suite)
-    if incremental:
-        prefix = "Fig"
-    else:
-        prefix = "Sup"
-    for mn, (metric, metric_name) in enumerate(metrics):
-        forest_plot(
-            g,
-            feature=metric,
-            title=nice_suite[suite],
-            feature_label=metric_name.replace(", sec.", ""),
-            median_color="r",
-        )[0].save(
-            f"out/{prefix}2-comparison/incr{incremental}-{mn}{sn}-{suite}-{metric}-comparison.pdf"
-        )
-
-
-# Comparison of timing information against non-incremental (all suites
-# aggregated, so 1 x 2 timing metrics)
+for (suite, provider, short), g in (
+    comparisons.filter(
+        pl.col("provider") != "AlphabeticalUnsound",
+        pl.col("provider_baseline") == "AlphabeticalUnsound",
+    )
+    .sort("suite", "provider", "short")
+    .group_by("suite", "provider", "short", maintain_order=True)
+):
+    if MINIMAL:
+        continue
+    # print(g[["provider", "provider_baseline"]])
+    dur_multiplier = (g["duration_baseline"] / g["duration"]).median()
+    dec_multiplier = (g["decisions_baseline"] / g["decisions"]).median()
+    print(
+        "\\newcommand{\\MultDur"
+        + nice_suite[suite]
+        + short
+        + "}{"
+        + str(round(dur_multiplier, 2))
+        + "}"
+    )
+    print(
+        "\\newcommand{\\MultDec"
+        + nice_suite[suite]
+        + short
+        + "}{"
+        + str(round(dec_multiplier, 2))
+        + "}"
+    )
 
 # %%
 
@@ -630,7 +505,7 @@ def scalplot(
     y,
     order="order",
 ):
-    fig, ax = plt.subplots(1, 1, figsize=(8, 3))
+    fig, ax = plt.subplots(1, 1, figsize=(7, 3))
 
     for (label, color, marker), g in df.sort(order).group_by(
         "label",
@@ -678,6 +553,137 @@ scalplot(
     "out/03-scal.pdf",
     bbox_inches="tight",
 )
+
+
+def forest_plot(cmp, *, feature, title, median_color):
+    if MINIMAL:
+        print("###", title)
+
+    rng = np.random.default_rng(seed=0)
+
+    fig, ax = plt.subplots(1, 1)
+
+    lim = 0
+
+    pairs = []
+
+    separator_rendered = False
+    previous_baseline = None
+
+    for (provider, provider_baseline), g in cmp.sort(
+        "order_baseline", "order"
+    ).group_by(
+        "label",
+        "label_baseline",
+        maintain_order=True,
+    ):
+        if provider == provider_baseline:
+            continue
+        if (provider, provider_baseline) in pairs:
+            continue
+        if (provider_baseline, provider) in pairs:
+            continue
+        pairs.append((provider, provider_baseline))
+
+        y = -len(pairs)
+
+        if (
+            not separator_rendered
+            and previous_baseline is not None
+            and provider_baseline != previous_baseline
+        ):
+            # ax.axhline(
+            #     y=y + 0.5,
+            #     color="0.8",
+            #     linestyle="--",
+            #     lw=0.5,
+            # )
+            separator_rendered = True
+
+        previous_baseline = provider_baseline
+
+        multiplier = (g[feature] + 0.001) / (g[f"{feature}_baseline"] + 0.001)
+        multiplier = multiplier.filter(multiplier.is_not_null()).log(base=2)
+        median = multiplier.median()
+
+        y_jitter = rng.uniform(low=y - 0.1, high=y + 0.1, size=len(multiplier))
+        ax.scatter(multiplier, y_jitter, color="0.2", alpha=0.05)
+        ax.vlines(
+            x=median,
+            ymin=y - 0.25,
+            ymax=y + 0.25,
+            color=median_color,
+            zorder=20,
+            alpha=1,
+        )
+
+        label_val = 2**median
+        label = f"{label_val:0.2f}× ({1 / label_val:0.2f}× better)"
+        if MINIMAL:
+            print(
+                "- ", provider, " vs. ", provider_baseline, ": ", label, sep=""
+            )
+        ax.annotate(
+            label,
+            xy=(median, y),
+            xytext=(5, -2),
+            textcoords="offset pixels",
+            va="top",
+            ha="left",
+            color=median_color,
+            bbox=dict(
+                boxstyle="square,pad=0",
+                facecolor="white",
+                edgecolor="none",
+            ),
+        )
+
+        lim = max(lim, multiplier.abs().max())
+
+    if MINIMAL:
+        print()
+
+    ax.axvline(0, color="0.5", ls="dashed")
+
+    lim = np.ceil(lim + 0.1)
+
+    ax.set_xlim(-lim, lim)
+    xticks = np.arange(-lim, lim + 1, 1)
+
+    def nice_xtick(xt):
+        if xt < 0:
+            prefix = "1/"
+        else:
+            prefix = ""
+        return prefix + str(int(2 ** abs(xt))) + "×"
+
+    ax.set_xticks(xticks, labels=map(nice_xtick, xticks))
+
+    ax.set_xlabel(f"{title} ratio", fontweight="bold")
+
+    def _bold(s):
+        return r"$\bf{" + s.replace(" ", r"\ ") + r"}$"
+
+    ax.set_yticks(
+        np.arange(-len(pairs), 0),
+        labels=[
+            _bold(trt) + " vs. " + _bold(ctrl)
+            for (trt, ctrl) in reversed(pairs)
+        ],
+    )
+    ax.set_ylim(-len(pairs) - 1, 0)
+    # ax2 = ax.twinx()
+    # ax2.set_yticks(
+    # np.arange(-len(pairs), 0),
+    # labels=[p[1] for p in reversed(pairs)],
+    # )
+    # ax2.set_ylim(-len(pairs) - 1, 0)
+
+    ax.spines[["top", "right", "left"]].set_visible(False)
+    ax.tick_params(axis="y", which="both", length=0)
+
+    fig.tight_layout()
+    return fig, ax
 
 
 if not MINIMAL:
