@@ -65,12 +65,16 @@ nice_suite = {
 }
 
 suite_order = ["manual", "random", "argusReduced", "aesop"]
+
+SECONDS_SUFFIX = " (s)"
 metrics = [
     ("decisions", "Decision count"),
     ("rounds", "Round count"),
-    ("duration", "Duration, sec."),
-    ("latency_median", "Latency (median), sec."),
+    ("duration", "Duration" + SECONDS_SUFFIX),
+    ("latency_median", "Median latency" + SECONDS_SUFFIX),
 ]
+
+timing_metrics = {"duration", "latency_median"}
 
 metadata = pl.read_csv("metadata.csv")
 
@@ -282,7 +286,7 @@ for (i, p, s), g in agg.group_by(
 ):
     SUCCESS_COUNT[(i, p, s)] = g.filter(pl.col("success")).height
 
-# %% Make catplots
+# % % Make catplots
 
 
 def catplot(
@@ -466,10 +470,22 @@ for (
 # %% Make forest plots
 
 
-def forest_plot(cmp, *, feature, title, feature_label, median_color):
+def forest_plot(
+    cmp,
+    *,
+    feature,
+    title,
+    feature_label,
+    median_color,
+    print_key=False,
+    ablation=False,
+):
     rng = np.random.default_rng(seed=0)
 
-    fig, ax = plt.subplots(1, 1, figsize=(6, 4))
+    if ablation:
+        fig, ax = plt.subplots(1, 1, figsize=(4, 2.5))
+    else:
+        fig, ax = plt.subplots(1, 1, figsize=(6, 4))
 
     lim = 0
 
@@ -485,12 +501,16 @@ def forest_plot(cmp, *, feature, title, feature_label, median_color):
         "short_baseline",
         maintain_order=True,
     ):
-        if provider == provider_baseline:
-            continue
-        if (provider, provider_baseline) in pairs:
-            continue
-        if (provider_baseline, provider) in pairs:
-            continue
+        if ablation:
+            if provider != provider_baseline:
+                continue
+        else:
+            if provider == provider_baseline:
+                continue
+            if (provider, provider_baseline) in pairs:
+                continue
+            if (provider_baseline, provider) in pairs:
+                continue
         pairs.append((provider, provider_baseline))
 
         y = -len(pairs)
@@ -518,28 +538,44 @@ def forest_plot(cmp, *, feature, title, feature_label, median_color):
         ax.scatter(multiplier, y_jitter, color="0.2", alpha=0.05)
         ax.vlines(
             x=median,
-            ymin=y - 0.25,
-            ymax=y + 0.25,
+            ymin=y - 0.35,
+            ymax=y + 0.35,
             color=median_color,
             zorder=20,
             alpha=1,
         )
 
         label_val = 2**median
-        label = f"{label_val:0.2f}× ({1 / label_val:0.2f}× better)"
+        print(
+            r"\newcommand{\Cmp",
+            title,
+            "X",
+            feature.replace("_", ""),
+            "X",
+            provider.replace("+", ""),
+            "v",
+            provider_baseline.replace("+", ""),
+            "}{",
+            label_val,
+            "}",
+            sep="",
+        )
+        # label = f"{label_val:0.2f}× ({1 / label_val:0.2f}× better)"
+        label = f"{label_val:0.2f}×"
 
         ax.annotate(
             label,
             xy=(median, y),
-            xytext=(5, -2),
+            xytext=(5, 0),
             textcoords="offset pixels",
-            va="top",
+            va="center",
             ha="left",
             color=median_color,
-            fontsize=8,
+            fontsize=7,
             bbox=dict(
-                boxstyle="square,pad=0",
+                boxstyle="square,pad=0.1",
                 facecolor="white",
+                alpha=0.8,
                 edgecolor="none",
             ),
         )
@@ -570,12 +606,29 @@ def forest_plot(cmp, *, feature, title, feature_label, median_color):
     def _bold(s):
         return r"$\bf{" + s.replace(" ", r"\ ") + r"}$"
 
+    ylabels = []
+    for n, (trt, ctrl) in reversed(list(enumerate(pairs))):
+        if print_key:
+            print(
+                r"\newcommand{\CmpKey",
+                trt.replace("+", ""),
+                "v",
+                ctrl.replace("+", ""),
+                "}{",
+                n,
+                "}",
+                sep="",
+            )
+        if ablation:
+            ylabels.append(_bold(trt))
+        else:
+            ylabels.append(
+                _bold(trt) + " vs. " + _bold(ctrl) + f" ({n + 1:02})"
+            )
+
     ax.set_yticks(
         np.arange(-len(pairs), 0),
-        labels=[
-            _bold(trt) + " vs. " + _bold(ctrl) + f"({n + 1:02})"
-            for n, (trt, ctrl) in enumerate(reversed(pairs))
-        ],
+        labels=ylabels,
     )
     ax.set_ylim(-len(pairs) - 1, 0)
     # ax2 = ax.twinx()
@@ -588,14 +641,35 @@ def forest_plot(cmp, *, feature, title, feature_label, median_color):
     ax.spines[["top", "right", "left"]].set_visible(False)
     ax.tick_params(axis="y", which="both", length=0)
 
-    fig.suptitle(title)
+    fig.suptitle(title, fontweight="bold")
 
     fig.tight_layout()
     return fig, ax
 
 
+# % %
+# Comparison of timing information against non-incremental (all suites
+# aggregated, so 1 x 2 timing metrics)
+
+for metric, metric_name in metrics:
+    if metric not in timing_metrics:
+        continue
+    forest_plot(
+        comparisons.filter(
+            pl.col("incremental"),
+            ~pl.col("incremental_baseline"),
+        ),
+        feature=metric,
+        title="All suites",
+        feature_label=metric_name.replace(SECONDS_SUFFIX, ""),
+        median_color="orange",
+        ablation=True,
+    )[0].save(f"out/Fig3-incablation/{metric}-incablation.pdf")
+
+# %%
 # Comparisons among incremental step providers (4 suites x 4 metrics)
 
+print_key = True
 for (
     incremental,
     suite,
@@ -610,17 +684,16 @@ for (
             g,
             feature=metric,
             title=nice_suite[suite],
-            feature_label=metric_name.replace(", sec.", ""),
+            feature_label=metric_name.replace(SECONDS_SUFFIX, ""),
             median_color="r",
+            print_key=print_key,
         )[0].save(
             f"out/{prefix}2-comparison/incr{incremental}-{mn}{sn}-{suite}-{metric}-comparison.pdf"
         )
 
+        print_key = False
 
-# Comparison of timing information against non-incremental (all suites
-# aggregated, so 1 x 2 timing metrics)
-
-# %%
+# %% Make scalability analysis plot
 
 
 def scalplot(
@@ -630,10 +703,10 @@ def scalplot(
     y,
     order="order",
 ):
-    fig, ax = plt.subplots(1, 1, figsize=(8, 3))
+    fig, ax = plt.subplots(1, 1, figsize=(5, 3))
 
     for (label, color, marker), g in df.sort(order).group_by(
-        "label",
+        "short",
         "color",
         "marker",
         maintain_order=True,
@@ -657,7 +730,7 @@ def scalplot(
     ax.spines[["top", "right"]].set_visible(False)
 
     ax.set_xlabel("Size (OR nodes)", fontweight="bold")
-    ax.set_ylabel("Duration (s)", fontweight="bold")
+    ax.set_ylabel("Duration" + SECONDS_SUFFIX, fontweight="bold")
 
     # fig.suptitle(figtitle, fontweight="bold", fontsize=14)
     fig.tight_layout()
@@ -675,51 +748,6 @@ scalplot(
     x="size",
     y="duration",
 )[0].save(
-    "out/03-scal.pdf",
+    "out/Fig4-scal/scal.pdf",
     bbox_inches="tight",
 )
-
-
-if not MINIMAL:
-    forest_plot(
-        comparisons,
-        feature="decisions",
-        title="Decision count",
-        median_color="red",
-    )[0].save("out/06-forest-decisions.pdf")
-
-    forest_plot(
-        comparisons, feature="duration", title="Duration", median_color="red"
-    )[0].save("out/07-forest-duration.pdf")
-
-cmp = comparisons
-
-if not MINIMAL:
-    cmp = comparisons.filter(
-        pl.col("provider_baseline") == "AlphabeticalUnsound"
-    )
-
-for (suite,), g in cmp.sort("suite").group_by("suite", maintain_order=True):
-    forest_plot(
-        g,
-        feature="decisions",
-        title=f"Decision count ({nice_suite[suite]})",
-        median_color="orange",
-    )[0].save(f"out/04-forest-decisions-{suite}.pdf")
-
-    forest_plot(
-        g,
-        feature="duration",
-        title=f"Duration ({nice_suite[suite]})",
-        median_color="orange",
-    )[0].save(f"out/05-forest-duration-{suite}.pdf")
-
-    # if not MINIMAL:
-    #     forest_plot(
-    #         g,
-    #         feature="rounds",
-    #         title=f"Rounds ({nice_suite[suite]})",
-    #         median_color="orange",
-    #     )[0].save(f"out/09-forest-rounds-{suite}.pdf")
-
-# %%
