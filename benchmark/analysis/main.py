@@ -114,6 +114,11 @@ suite_data = (
     )
 )
 
+# TODO figure out filtering?
+# suite_data = suite_data.filter(
+#     (pl.col("depth") > 2),
+# )
+
 
 def summarize(xs):
     mid = xs.median()
@@ -216,6 +221,7 @@ data = (
     .sort(pl.col("*"))
 )
 
+
 agg = (
     data.group_by("incremental", "provider", "name", "chosen_solution")
     .agg(
@@ -251,6 +257,7 @@ agg = (
 
 agg = attach_metadata(agg)
 
+agg = agg.join(suite_data, on="name").drop(pl.col("^.*_right$"))
 
 comparisons = agg.join(agg, on="name", suffix="_baseline")
 
@@ -286,6 +293,44 @@ for (i, p, s), g in agg.group_by(
 ):
     SUCCESS_COUNT[(i, p, s)] = g.filter(pl.col("success")).height
 
+# % % Make max latency plots
+
+print("", *[nice_suite[s] for s in suite_order], sep=" & ")
+print("\\midrule")
+
+overall_worst_latency = 0
+for (p,), g in (
+    agg.filter(pl.col("incremental"))
+    .sort("order")
+    .group_by("short", maintain_order=True)
+):
+    if not g["success"].all():
+        continue
+    overall_worst_latency = max(
+        overall_worst_latency,
+        round(g["latency_max"].max() * 1000),
+    )
+
+for (p,), g1 in (
+    agg.filter(pl.col("incremental"))
+    .sort("order")
+    .group_by("short", maintain_order=True)
+):
+    if not g1["success"].all():
+        break
+    vals = []
+    for s in suite_order:
+        g2 = g1.filter(pl.col("suite") == s)
+        worst_latency = round(g2["latency_max"].max() * 1000)
+        if worst_latency == overall_worst_latency:
+            v = r"\textbf{" + str(worst_latency) + " ms}"
+        elif worst_latency == 0:
+            v = "<1 ms"
+        else:
+            v = str(worst_latency) + " ms"
+        vals.append(v)
+    print(p, *vals, sep=" & ")
+
 # % % Make catplots
 
 
@@ -300,13 +345,13 @@ def catplot(
     provider="provider",
     short="short",
     order="order",
-    label="label",
     prefix=None,
     places=0,
 ):
     fig, ax = plt.subplots(1, 1, figsize=(3, 3))
     ticks = []
     labels = []
+    colors = []
 
     rng = np.random.default_rng(seed=0)
 
@@ -328,9 +373,9 @@ def catplot(
 
     divider_added = False
 
-    for x, ((provider, title, short), g) in enumerate(
+    for x, ((provider, short, color, marker), g) in enumerate(
         df.sort([order, provider]).group_by(
-            [provider, label, short],
+            [provider, short, "color", "marker"],
             maintain_order=True,
         )
     ):
@@ -345,7 +390,8 @@ def catplot(
         ax.scatter(
             x + jitter,
             y,
-            c="k",
+            c=color,
+            # marker=marker,
             alpha=0.2,
             zorder=10,
         )
@@ -367,7 +413,7 @@ def catplot(
                 y=median,
                 xmin=x - 0.35,
                 xmax=x + 0.35,
-                color="r",
+                color="k",
                 zorder=20,
                 alpha=1,
             )
@@ -380,10 +426,11 @@ def catplot(
                 textcoords="offset pixels",
                 va="bottom",
                 ha="center",
-                color="r",
+                color="k",
                 bbox=dict(
-                    boxstyle="square,pad=0",
+                    boxstyle="square,pad=0.1",
                     facecolor="white",
+                    alpha=0.8,
                     edgecolor="none",
                 ),
                 zorder=30,
@@ -418,6 +465,7 @@ def catplot(
 
         ticks.append(x)
         labels.append(short)
+        colors.append(color)
 
     ax.set_xticks(
         ticks,
@@ -426,6 +474,10 @@ def catplot(
         # rotation=90,
         # ha="right",
     )
+
+    # for t, c in zip(ax.get_xticklabels(), colors):
+    #     t.set_color(c)
+
     ax.set_xlim(min(ticks) - 0.5, max(ticks) + 0.5)
 
     ax.set_ylim(0, ymax)
@@ -479,6 +531,7 @@ def forest_plot(
     median_color,
     print_key=False,
     ablation=False,
+    jitter_amount=0,
 ):
     rng = np.random.default_rng(seed=0)
 
@@ -534,8 +587,29 @@ def forest_plot(
         multiplier = multiplier.filter(multiplier.is_not_null()).log(base=2)
         median = multiplier.median()
 
-        y_jitter = rng.uniform(low=y - 0.1, high=y + 0.1, size=len(multiplier))
-        ax.scatter(multiplier, y_jitter, color="0.2", alpha=0.05)
+        y_jitter = rng.uniform(
+            low=y - jitter_amount,
+            high=y + jitter_amount,
+            size=len(multiplier),
+        )
+
+        ax.scatter(
+            multiplier,
+            y_jitter,
+            color="0.2",
+            alpha=0.05,
+        )
+
+        # ax.boxplot(
+        #     multiplier,
+        #     positions=[y],
+        #     orientation="horizontal",
+        #     widths=0.7,
+        #     showfliers=False,
+        #     whis=0,
+        #     boxprops=dict(color="red"),
+        # )
+
         ax.vlines(
             x=median,
             ymin=y - 0.35,
@@ -545,10 +619,19 @@ def forest_plot(
             alpha=1,
         )
 
+        # ax.vlines(
+        #     x=[multiplier.quantile(0.25), multiplier.quantile(0.75)],
+        #     ymin=y - 0.15,
+        #     ymax=y + 0.15,
+        #     color=median_color,
+        #     zorder=20,
+        #     alpha=1,
+        # )
+
         label_val = 2**median
         print(
             r"\newcommand{\Cmp",
-            title,
+            title.replace(" ", ""),
             "X",
             feature.replace("_", ""),
             "X",
@@ -566,7 +649,7 @@ def forest_plot(
         ax.annotate(
             label,
             xy=(median, y),
-            xytext=(5, 0),
+            xytext=(3, -3),
             textcoords="offset pixels",
             va="center",
             ha="left",
@@ -582,7 +665,7 @@ def forest_plot(
 
         lim = max(lim, multiplier.abs().max())
 
-    ax.axvline(0, color="0.5", ls="dashed")
+    ax.axvline(0, color="0.5", ls="dashed", lw=0.5)
 
     lim = ((3 + np.ceil(lim + 0.1)) // 4) * 4
 
@@ -622,9 +705,7 @@ def forest_plot(
         if ablation:
             ylabels.append(_bold(trt))
         else:
-            ylabels.append(
-                _bold(trt) + " vs. " + _bold(ctrl) + f" ({n + 1:02})"
-            )
+            ylabels.append(_bold(trt) + " / " + _bold(ctrl) + f" ({n + 1:02})")
 
     ax.set_yticks(
         np.arange(-len(pairs), 0),
@@ -647,26 +728,6 @@ def forest_plot(
     return fig, ax
 
 
-# % %
-# Comparison of timing information against non-incremental (all suites
-# aggregated, so 1 x 2 timing metrics)
-
-for metric, metric_name in metrics:
-    if metric not in timing_metrics:
-        continue
-    forest_plot(
-        comparisons.filter(
-            pl.col("incremental"),
-            ~pl.col("incremental_baseline"),
-        ),
-        feature=metric,
-        title="All suites",
-        feature_label=metric_name.replace(SECONDS_SUFFIX, ""),
-        median_color="orange",
-        ablation=True,
-    )[0].save(f"out/Fig3-incablation/{metric}-incablation.pdf")
-
-# %%
 # Comparisons among incremental step providers (4 suites x 4 metrics)
 
 print_key = True
@@ -693,7 +754,25 @@ for (
 
         print_key = False
 
-# %% Make scalability analysis plot
+# Comparison of timing information against non-incremental (all suites
+# aggregated, so 1 x 2 timing metrics)
+
+for metric, metric_name in metrics:
+    if metric not in timing_metrics:
+        continue
+    forest_plot(
+        comparisons.filter(
+            pl.col("incremental"),
+            ~pl.col("incremental_baseline"),
+        ),
+        feature=metric,
+        title="All suites",
+        feature_label=metric_name.replace(SECONDS_SUFFIX, ""),
+        median_color="r",
+        ablation=True,
+    )[0].save(f"out/Fig3-incablation/{metric}-incablation.pdf")
+
+# % % Make scalability analysis plot
 
 
 def scalplot(
