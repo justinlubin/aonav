@@ -119,24 +119,51 @@ suite_data = (
 #     (pl.col("depth") > 2),
 # )
 
+# % % Make summary table of suite data
+
 
 def summarize(xs):
     mid = xs.median()
     lo = xs.quantile(0.25)
     hi = xs.quantile(0.75)
-    return f"{mid:0.2f} ({lo:0.2f}--{hi:0.2f})"
+    if mid == round(mid):
+        mid = round(mid)
+    if lo == round(lo):
+        lo = round(lo)
+    if hi == round(hi):
+        hi = round(hi)
+    return f"{mid} ({lo}--{hi})"
 
 
-# % % Make summary table of suite data
+print(
+    r"\newcommand{\NumBenchmarkTotal}{",
+    suite_data.height,
+    "}",
+    sep="",
+)
 
+for s in suite_order:
+    g = suite_data.filter(pl.col("suite") == s)
+    print(
+        r"\newcommand{\NumBenchmark",
+        nice_suite[s],
+        "}{",
+        g.height,
+        "}",
+        sep="",
+    )
+
+# %%
+
+print()
 print(
     "\\textsc{\\textbf{Suite}}",
     "\\textsc{\\textbf{Depth}}",
-    "\\textsc{\\textbf{\\# ORs}}",
-    "\\textsc{\\textbf{\\# ANDs}}",
-    "\\textsc{\\textbf{Median \\# consumers}}",
-    "\\textsc{\\textbf{Median \\# providers}}",
-    "\\textsc{\\textbf{Median \\# premises}} \\\\",
+    "\\textsc{\\textbf{ORs}}",
+    "\\textsc{\\textbf{ANDs}}",
+    "\\textsc{\\textbf{Consumers}}",
+    "\\textsc{\\textbf{Providers}}",
+    "\\textsc{\\textbf{Premises}} \\\\",
     sep=" & ",
 )
 print("\\midrule")
@@ -154,6 +181,7 @@ for (s,), g in suite_data.sort("suite").group_by(
         summarize(g["premise_count_median"]) + " \\\\",
         sep=" & ",
     )
+print()
 
 # % % Load benchmark data
 
@@ -348,7 +376,7 @@ def catplot(
     prefix=None,
     places=0,
 ):
-    fig, ax = plt.subplots(1, 1, figsize=(3, 3))
+    fig, ax = plt.subplots(1, 1, figsize=(3, 1.5))
     ticks = []
     labels = []
     colors = []
@@ -356,20 +384,24 @@ def catplot(
     rng = np.random.default_rng(seed=0)
 
     m = max(df[val].filter(df[val].is_not_null()))
-    if m < 1:
-        ydelta = 0.2
-    elif m < 5:
-        ydelta = 0.2
-    elif m < 30:
+    if m < 1.5:
+        ydelta = 0.3
+        ymax = 1.5
+    elif m < 25:
         ydelta = 5
-    elif m < 150:
+        ymax = 25
+    elif m < 40:
         ydelta = 10
-    elif m < 1000:
+        ymax = 40
+    elif m < 100:
+        ydelta = 20
+        ymax = 100
+    elif m < 200:
         ydelta = 50
+        ymax = 200
     else:
         ydelta = 100
-
-    ymax = int(1 + m / ydelta) * ydelta
+        ymax = m
 
     divider_added = False
 
@@ -513,7 +545,7 @@ for (
             val_label=metric_name,
             suite=suite,
             incremental=incremental,
-            show_title=True,
+            show_title=False,
         )[0].save(
             f"out/{prefix}1-descriptive/incr{incremental}-{mn}{sn}-{suite}-{metric}-descriptive.pdf",
         )
@@ -529,14 +561,18 @@ def forest_plot(
     title,
     feature_label,
     median_color,
+    prefix,
     print_key=False,
     ablation=False,
     jitter_amount=0,
+    include=None,
 ):
     rng = np.random.default_rng(seed=0)
 
     if ablation:
         fig, ax = plt.subplots(1, 1, figsize=(4, 2.5))
+    elif include is not None:
+        fig, ax = plt.subplots(1, 1, figsize=(5, 2.5))
     else:
         fig, ax = plt.subplots(1, 1, figsize=(6, 4))
 
@@ -554,6 +590,8 @@ def forest_plot(
         "short_baseline",
         maintain_order=True,
     ):
+        if include is not None and (provider, provider_baseline) not in include:
+            continue
         if ablation:
             if provider != provider_baseline:
                 continue
@@ -629,8 +667,19 @@ def forest_plot(
         # )
 
         label_val = 2**median
+        label = f"{label_val:0.2f}×"
+
+        try:
+            if label_val == int(label_val):
+                print_label = str(int(label_val))
+            else:
+                print_label = f"{label_val:0.2f}"
+        except ValueError:
+            print_label = f"{label_val:0.2f}"
+
         print(
             r"\newcommand{\Cmp",
+            prefix,
             title.replace(" ", ""),
             "X",
             feature.replace("_", ""),
@@ -639,12 +688,11 @@ def forest_plot(
             "v",
             provider_baseline.replace("+", ""),
             "}{",
-            label_val,
+            print_label,
             "}",
             sep="",
         )
         # label = f"{label_val:0.2f}× ({1 / label_val:0.2f}× better)"
-        label = f"{label_val:0.2f}×"
 
         ax.annotate(
             label,
@@ -684,7 +732,16 @@ def forest_plot(
 
     ax.set_xticks(xticks, labels=map(nice_xtick, xticks))
 
-    ax.set_xlabel(f"{feature_label} ratio", fontweight="bold")
+    # ax.set_xlabel(f"{feature_label} ratio", fontweight="bold")
+    ax.annotate(
+        feature_label.replace(" ", "\n"),
+        xy=(1, 1),
+        xycoords="axes fraction",
+        ha="right",
+        va="top",
+        fontweight="bold",
+        fontsize=14,
+    )
 
     def _bold(s):
         return r"$\bf{" + s.replace(" ", r"\ ") + r"}$"
@@ -705,7 +762,7 @@ def forest_plot(
         if ablation:
             ylabels.append(_bold(trt))
         else:
-            ylabels.append(_bold(trt) + " / " + _bold(ctrl) + f" ({n + 1:02})")
+            ylabels.append(_bold(trt) + " / " + _bold(ctrl))
 
     ax.set_yticks(
         np.arange(-len(pairs), 0),
@@ -722,7 +779,7 @@ def forest_plot(
     ax.spines[["top", "right", "left"]].set_visible(False)
     ax.tick_params(axis="y", which="both", length=0)
 
-    fig.suptitle(title, fontweight="bold")
+    # fig.suptitle(title, fontweight="bold")
 
     fig.tight_layout()
     return fig, ax
@@ -748,9 +805,30 @@ for (
             feature_label=metric_name.replace(SECONDS_SUFFIX, ""),
             median_color="r",
             print_key=print_key,
+            include={
+                ("S", "U"),
+                ("S+R", "U"),
+                ("Cut", "U"),
+                ("Cut+R", "U"),
+                ("MIG", "U"),
+                ("MIG+R", "U"),
+                ("S+R", "S"),
+            },
+            prefix=f"incr{incremental}",
         )[0].save(
-            f"out/{prefix}2-comparison/incr{incremental}-{mn}{sn}-{suite}-{metric}-comparison.pdf"
+            f"out/{prefix}2-comparison/SHORT-incr{incremental}-{mn}{sn}-{suite}-{metric}-comparison.pdf"
         )
+
+        # forest_plot(
+        #     g,
+        #     feature=metric,
+        #     title=nice_suite[suite],
+        #     feature_label=metric_name.replace(SECONDS_SUFFIX, ""),
+        #     median_color="r",
+        #     print_key=print_key,
+        # )[0].save(
+        #     f"out/{prefix}2-comparison/LONG-incr{incremental}-{mn}{sn}-{suite}-{metric}-comparison.pdf"
+        # )
 
         print_key = False
 
@@ -770,6 +848,7 @@ for metric, metric_name in metrics:
         feature_label=metric_name.replace(SECONDS_SUFFIX, ""),
         median_color="r",
         ablation=True,
+        prefix=f"incablation",
     )[0].save(f"out/Fig3-incablation/{metric}-incablation.pdf")
 
 # % % Make scalability analysis plot
