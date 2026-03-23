@@ -848,7 +848,7 @@ for metric, metric_name in metrics:
         feature_label=metric_name.replace(SECONDS_SUFFIX, ""),
         median_color="r",
         ablation=True,
-        prefix=f"incablation",
+        prefix="incablation",
     )[0].save(f"out/Fig3-incablation/{metric}-incablation.pdf")
 
 # % % Make scalability analysis plot
@@ -909,3 +909,76 @@ scalplot(
     "out/Fig4-scal/scal.pdf",
     bbox_inches="tight",
 )
+
+# %% Size-controlled analysis
+
+size_controlled = (
+    comparisons.filter(
+        pl.col("provider") == "AlphabeticalRelevant",
+        pl.col("provider_baseline") == "AlphabeticalComplete",
+        pl.col("incremental"),
+    )
+    .with_columns(multiplier=pl.col("decisions") / pl.col("decisions_baseline"))
+    .select("multiplier", "or_count", "suite")
+)
+
+fig, ax = plt.subplots(1, 1, figsize=(4, 3))
+
+suite_styles = {
+    "manual": ("#44AA99", "s"),
+    "random": ("#117733", "o"),
+    "argusReduced": ("#999933", "^"),
+    "aesop": ("#882255", "+"),
+}
+
+
+for s in suite_order:
+    g = size_controlled.filter(pl.col("suite") == s)
+    c, m = suite_styles[s]
+    ax.scatter(
+        g["or_count"],
+        g["multiplier"],
+        c=c,
+        marker=m,
+        label=nice_suite[s],
+        alpha=0.3,
+        clip_on=False,
+        s=10,
+    )
+
+rho = size_controlled.select(
+    pl.corr("or_count", "multiplier", method="spearman")
+).item()
+
+ax.annotate(
+    r"Spearman’s $ \rho = " + f"{rho:.2f}$",
+    xy=(0.05, 0.05),
+    xycoords="axes fraction",
+    ha="left",
+    va="bottom",
+)
+
+ax.spines[["top", "right"]].set_visible(False)
+
+ax.set_xlabel("Size (OR nodes)", fontweight="bold")
+ax.set_ylabel("Decision count ratio", fontweight="bold")
+
+ax.set_xlim(0, 220)
+ax.set_xticks(np.arange(0, 221, 20))
+
+ax.set_ylim(0, 1)
+ax.set_yticks(np.arange(0, 1.01, 0.1))
+
+fig.legend(
+    # loc="upper center",
+    # bbox_to_anchor=(0.5, 0.05),
+    # ncol=len(suite_order),
+)
+
+fig.tight_layout()
+fig.save(
+    "out/Sup3-size-controlled/size-controlled.pdf",
+    # bbox_inches="tight",
+)
+
+print(r"\newcommand{\SizeControlCorr}{" + f"{rho:.2f}" + r"}")
