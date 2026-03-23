@@ -376,7 +376,7 @@ def catplot(
     prefix=None,
     places=0,
 ):
-    fig, ax = plt.subplots(1, 1, figsize=(3, 1.5))
+    fig, ax = plt.subplots(1, 1, figsize=(3, 1.3))
     ticks = []
     labels = []
     colors = []
