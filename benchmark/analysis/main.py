@@ -172,7 +172,11 @@ for (s,), g in suite_data.sort("suite").group_by(
     maintain_order=True,
 ):
     print(
-        "\\textsc{" + nice_suite[s] + "}",
+        r"\textsc{"
+        + nice_suite[s]
+        + r"} {\footnotesize (\NumBenchmark"
+        + nice_suite[s]
+        + r"{} entries)}",
         summarize(g["depth"]),
         summarize(g["or_count"]),
         summarize(g["and_count"]),
