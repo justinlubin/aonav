@@ -34,12 +34,17 @@ def print_tree():
             + '"\n  },\n  "nodes": {'
         )
 
+        labels_to_goals = {}
         for goal in goals:
+            labels_to_goals[goals[goal]] = goal
+
+        for label in labels_to_goals:
+            goal = labels_to_goals[label]
             file.write(
                 '\n    "'
                 + goal
                 + '": {\n      "label": '
-                + json.dumps(goals[goal])
+                + json.dumps(label)
                 + ',\n      "metadata": {\n        "kind": "OR"\n      }\n    },'
             )
 
@@ -62,8 +67,16 @@ def print_tree():
 
         count = 1
         for edge in edges:
-            source = edge[0]
-            target = edge[1]
+            if edge[0].startswith("R"):
+                source = edge[0]
+            else:
+                source = labels_to_goals[goals[edge[0]]]
+
+            if edge[1].startswith("R"):
+                target = edge[1]
+            else:
+                target = labels_to_goals[goals[edge[1]]]
+
             file.write("\n    {")
             file.write('\n      "source": "' + source + '",')
             file.write('\n      "target": "' + target + '"')
@@ -159,7 +172,6 @@ with open(infile, "r", encoding="utf-8") as file:
                 continue
 
             if line[:26] == "[aesop.tree] Parent goal: ":
-                print(tree_num, i + 1, line)
                 parent = line[26:]
                 if "Aesop.BuiltinRule.preprocess" in rules["R" + str(id_num)]:
                     del goals["G" + parent]
