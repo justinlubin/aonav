@@ -1,66 +1,67 @@
-{ "graph": {
-  "metadata": {
-    "goal": "G0"
-  },
-  "nodes": {
-    "G0": {
-      "label": " \u22a2 \u2203 n, n ^ 2 = 4 \u2227 \u2203 n, n ^ 2 = 9 \u2227 True\n",
-      "metadata": {
-        "kind": "OR"
+{
+  "graph": {
+    "metadata": {
+      "goal": "G0"
+    },
+    "nodes": {
+      "G0": {
+        "label": " ⊢ ∃ n, n ^ 2 = 4 ∧ ∃ n, n ^ 2 = 9 ∧ True\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G1": {
+        "label": " ⊢ ∃ n, n ^ 2 = 4 ∧ ∃ n, n ^ 2 = 9 ∧ True\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G2": {
+        "label": " case left\n⊢ ∃ x, x ^ 2 = 4\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G3": {
+        "label": " case right\n⊢ ∃ n, n ^ 2 = 9\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "R0": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "R1": {
+        "label": "[101/safe] safe|constructors|global|And",
+        "metadata": {
+          "kind": "AND"
+        }
       }
     },
-    "G1": {
-      "label": " \u22a2 \u2203 n, n ^ 2 = 4 \u2227 \u2203 n, n ^ 2 = 9 \u2227 True\n",
-      "metadata": {
-        "kind": "OR"
+    "edges": [
+      {
+        "source": "G0",
+        "target": "R0"
+      },
+      {
+        "source": "R0",
+        "target": "G1"
+      },
+      {
+        "source": "R1",
+        "target": "G3"
+      },
+      {
+        "source": "G1",
+        "target": "R1"
+      },
+      {
+        "source": "R1",
+        "target": "G2"
       }
-    },
-    "G2": {
-      "label": " case left\n\u22a2 \u2203 x, x ^ 2 = 4\n",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "G3": {
-      "label": " case right\n\u22a2 \u2203 n, n ^ 2 = 9\n",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "R0": {
-      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "R1": {
-      "label": "[101/safe] safe|constructors|global|And",
-      "metadata": {
-        "kind": "AND"
-      }
-    }
-  },
-  "edges": [
-    {
-      "source": "G0",
-      "target": "R0"
-    },
-    {
-      "source": "R0",
-      "target": "G1"
-    },
-    {
-      "source": "R1",
-      "target": "G3"
-    },
-    {
-      "source": "G1",
-      "target": "R1"
-    },
-    {
-      "source": "R1",
-      "target": "G2"
-    }
-  ]
-}
+    ]
+  }
 }

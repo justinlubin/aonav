@@ -1,36 +1,37 @@
-{ "graph": {
-  "metadata": {
-    "goal": "G0"
-  },
-  "nodes": {
-    "G0": {
-      "label": " \u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\n\u0394 : List \u03b1\n\u22a2 Any P \u0394\n",
-      "metadata": {
-        "kind": "OR"
+{
+  "graph": {
+    "metadata": {
+      "goal": "G0"
+    },
+    "nodes": {
+      "G0": {
+        "label": " α : Type u_1\nP : α → Prop\nΔ : List α\n⊢ Any P Δ\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G1": {
+        "label": " α : Type u_1\nP : α → Prop\nΔ : List α\n⊢ Any P Δ\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "R0": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
       }
     },
-    "G1": {
-      "label": " \u03b1 : Type u_1\nP : \u03b1 \u2192 Prop\n\u0394 : List \u03b1\n\u22a2 Any P \u0394\n",
-      "metadata": {
-        "kind": "OR"
+    "edges": [
+      {
+        "source": "R0",
+        "target": "G1"
+      },
+      {
+        "source": "G0",
+        "target": "R0"
       }
-    },
-    "R0": {
-      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-      "metadata": {
-        "kind": "AND"
-      }
-    }
-  },
-  "edges": [
-    {
-      "source": "R0",
-      "target": "G1"
-    },
-    {
-      "source": "G0",
-      "target": "R0"
-    }
-  ]
-}
+    ]
+  }
 }

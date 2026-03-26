@@ -1,36 +1,37 @@
-{ "graph": {
-  "metadata": {
-    "goal": "G0"
-  },
-  "nodes": {
-    "G0": {
-      "label": " \u03b1 : Sort ?u.5\n\u22a2 \u03b1\n",
-      "metadata": {
-        "kind": "OR"
+{
+  "graph": {
+    "metadata": {
+      "goal": "G0"
+    },
+    "nodes": {
+      "G0": {
+        "label": " α : Sort ?u.5\n⊢ α\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G1": {
+        "label": " α : Sort ?u.5\n⊢ α\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "R0": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
       }
     },
-    "G1": {
-      "label": " \u03b1 : Sort ?u.5\n\u22a2 \u03b1\n",
-      "metadata": {
-        "kind": "OR"
+    "edges": [
+      {
+        "source": "G0",
+        "target": "R0"
+      },
+      {
+        "source": "R0",
+        "target": "G1"
       }
-    },
-    "R0": {
-      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-      "metadata": {
-        "kind": "AND"
-      }
-    }
-  },
-  "edges": [
-    {
-      "source": "G0",
-      "target": "R0"
-    },
-    {
-      "source": "R0",
-      "target": "G1"
-    }
-  ]
-}
+    ]
+  }
 }

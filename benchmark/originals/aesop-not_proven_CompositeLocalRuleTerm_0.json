@@ -1,76 +1,77 @@
-{ "graph": {
-  "metadata": {
-    "goal": "G0"
-  },
-  "nodes": {
-    "G0": {
-      "label": " \u03b2 : Sort ?u.61\n\u03b3 : Sort ?u.62\nh : A \u2192 \u03b2 \u2192 \u03b3\nb : \u03b2\n\u22a2 \u03b3\n",
-      "metadata": {
-        "kind": "OR"
+{
+  "graph": {
+    "metadata": {
+      "goal": "G0"
+    },
+    "nodes": {
+      "G0": {
+        "label": " β : Sort ?u.61\nγ : Sort ?u.62\nh : A → β → γ\nb : β\n⊢ γ\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G1": {
+        "label": " β : Sort ?u.61\nγ : Sort ?u.62\nh : A → β → γ\nb : β\n⊢ γ\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G2": {
+        "label": " case a\nβ : Sort ?u.61\nγ : Sort ?u.62\nh : A → β → γ\nb : β\n⊢ A\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G3": {
+        "label": " case a\nβ : Sort ?u.61\nγ : Sort ?u.62\nh : A → β → γ\nb : β\n⊢ β\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "R0": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "R1": {
+        "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "R2": {
+        "label": "[-50/safe] safe|tactic|global|Aesop.BuiltinRules.assumption",
+        "metadata": {
+          "kind": "AND"
+        }
       }
     },
-    "G1": {
-      "label": " \u03b2 : Sort ?u.61\n\u03b3 : Sort ?u.62\nh : A \u2192 \u03b2 \u2192 \u03b3\nb : \u03b2\n\u22a2 \u03b3\n",
-      "metadata": {
-        "kind": "OR"
+    "edges": [
+      {
+        "source": "R1",
+        "target": "G2"
+      },
+      {
+        "source": "R1",
+        "target": "G3"
+      },
+      {
+        "source": "G0",
+        "target": "R0"
+      },
+      {
+        "source": "G3",
+        "target": "R2"
+      },
+      {
+        "source": "R0",
+        "target": "G1"
+      },
+      {
+        "source": "G1",
+        "target": "R1"
       }
-    },
-    "G2": {
-      "label": " case a\n\u03b2 : Sort ?u.61\n\u03b3 : Sort ?u.62\nh : A \u2192 \u03b2 \u2192 \u03b3\nb : \u03b2\n\u22a2 A\n",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "G3": {
-      "label": " case a\n\u03b2 : Sort ?u.61\n\u03b3 : Sort ?u.62\nh : A \u2192 \u03b2 \u2192 \u03b3\nb : \u03b2\n\u22a2 \u03b2\n",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "R0": {
-      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "R1": {
-      "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "R2": {
-      "label": "[-50/safe] safe|tactic|global|Aesop.BuiltinRules.assumption",
-      "metadata": {
-        "kind": "AND"
-      }
-    }
-  },
-  "edges": [
-    {
-      "source": "R1",
-      "target": "G2"
-    },
-    {
-      "source": "R1",
-      "target": "G3"
-    },
-    {
-      "source": "G0",
-      "target": "R0"
-    },
-    {
-      "source": "G3",
-      "target": "R2"
-    },
-    {
-      "source": "R0",
-      "target": "G1"
-    },
-    {
-      "source": "G1",
-      "target": "R1"
-    }
-  ]
-}
+    ]
+  }
 }

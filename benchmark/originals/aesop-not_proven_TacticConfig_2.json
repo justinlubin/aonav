@@ -1,76 +1,77 @@
-{ "graph": {
-  "metadata": {
-    "goal": "G0"
-  },
-  "nodes": {
-    "G0": {
-      "label": " \u22a2 EvenOrOdd 2\n",
-      "metadata": {
-        "kind": "OR"
+{
+  "graph": {
+    "metadata": {
+      "goal": "G0"
+    },
+    "nodes": {
+      "G0": {
+        "label": " ⊢ EvenOrOdd 2\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G1": {
+        "label": " ⊢ EvenOrOdd 2\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G2": {
+        "label": " case a\n⊢ Even 2\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "G3": {
+        "label": " case a.a\n⊢ Even 0\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "R0": {
+        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "R1": {
+        "label": "[1/safe] safe|apply|global|EvenOrOdd.even",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "R2": {
+        "label": "[50.0000%] unsafe|apply|global|Even.plus_two",
+        "metadata": {
+          "kind": "AND"
+        }
       }
     },
-    "G1": {
-      "label": " \u22a2 EvenOrOdd 2\n",
-      "metadata": {
-        "kind": "OR"
+    "edges": [
+      {
+        "source": "R1",
+        "target": "G2"
+      },
+      {
+        "source": "G0",
+        "target": "R0"
+      },
+      {
+        "source": "R2",
+        "target": "G3"
+      },
+      {
+        "source": "R0",
+        "target": "G1"
+      },
+      {
+        "source": "G1",
+        "target": "R1"
+      },
+      {
+        "source": "G2",
+        "target": "R2"
       }
-    },
-    "G2": {
-      "label": " case a\n\u22a2 Even 2\n",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "G3": {
-      "label": " case a.a\n\u22a2 Even 0\n",
-      "metadata": {
-        "kind": "OR"
-      }
-    },
-    "R0": {
-      "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "R1": {
-      "label": "[1/safe] safe|apply|global|EvenOrOdd.even",
-      "metadata": {
-        "kind": "AND"
-      }
-    },
-    "R2": {
-      "label": "[50.0000%] unsafe|apply|global|Even.plus_two",
-      "metadata": {
-        "kind": "AND"
-      }
-    }
-  },
-  "edges": [
-    {
-      "source": "R1",
-      "target": "G2"
-    },
-    {
-      "source": "G0",
-      "target": "R0"
-    },
-    {
-      "source": "R2",
-      "target": "G3"
-    },
-    {
-      "source": "R0",
-      "target": "G1"
-    },
-    {
-      "source": "G1",
-      "target": "R1"
-    },
-    {
-      "source": "G2",
-      "target": "R2"
-    }
-  ]
-}
+    ]
+  }
 }
