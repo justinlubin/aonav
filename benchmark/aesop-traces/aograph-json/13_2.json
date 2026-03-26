@@ -1,0 +1,2350 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G1"
+  },
+  "nodes": {
+    "G1": {
+      "label": " P : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G105": {
+      "label": " case perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?xs \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G6": {
+      "label": " case a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G110": {
+      "label": " case a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.xs\u271d \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G23": {
+      "label": " case a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G55": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.xs\u271d \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G140": {
+      "label": " case a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G12": {
+      "label": " case a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G24": {
+      "label": " case a.a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.a.xs\u271d ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G25": {
+      "label": " case a.a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P ?a.a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G193": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.x\u271d :: ?a.a.a.xs\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G31": {
+      "label": " case a.a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 P ?a.a.a.x\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G5": {
+      "label": " case a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G78": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.xs\u271d ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G34": {
+      "label": " case a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G63": {
+      "label": " case a.a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.a.xs\u271d ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G187": {
+      "label": " case a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.x\u271d :: ?a.a.a.xs\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G112": {
+      "label": " case a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.perm.x\u271d :: ?a.a.perm.ys\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G38": {
+      "label": " case a.a.perm.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.perm.xs\u271d ?a.a.perm.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G121": {
+      "label": " case a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P (?a.a.perm.x\u271d :: ?a.a.perm.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G57": {
+      "label": " case a.a.a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.a.a.xs\u271d ?a.a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G58": {
+      "label": " case a.a.a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P ?a.a.a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G67": {
+      "label": " case a.a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.a.x\u271d :: ?a.a.a.a.xs\u271d) ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G68": {
+      "label": " case a.a.a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 P ?a.a.a.a.x\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G30": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.x\u271d :: ?a.a.a.xs\u271d) ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G28": {
+      "label": " case a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.x\u271d :: ?a.a.xs\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G14": {
+      "label": " case a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 P ?a.a.x\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G35": {
+      "label": " case a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.xs\u271d ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G15": {
+      "label": " case a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G26": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.xs\u271d ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G104": {
+      "label": " case a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G141": {
+      "label": " case a.a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.a.xs\u271d ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G173": {
+      "label": " case perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.x\u271d :: ?a.a.a.xs\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G120": {
+      "label": " case perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.perm.x\u271d :: ?a.a.perm.ys\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G71": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.x\u271d :: ?a.a.a.xs\u271d) ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G49": {
+      "label": " case perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.x\u271d :: ?a.a.xs\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G17": {
+      "label": " case a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P (?a.perm.x\u271d :: ?a.perm.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G44": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.xs\u271d (?a.perm.x\u271d :: ?a.perm.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G106": {
+      "label": " case a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P (?a.perm.x\u271d :: ?a.perm.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G107": {
+      "label": " case perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.perm.x\u271d :: ?a.perm.ys\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G108": {
+      "label": " case a.perm.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.perm.xs\u271d ?a.perm.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G129": {
+      "label": " case a.a.perm.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.perm.xs\u271d ?a.perm.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G127": {
+      "label": " case a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P (?a.perm.x\u271d :: ?a.a.perm.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G75": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.x\u271d :: ?a.a.a.xs\u271d) (?a.perm.x\u271d :: ?a.perm.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G139": {
+      "label": " case a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 P ?a.perm.x\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G39": {
+      "label": " case a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P (?a.perm.x\u271d :: ?a.perm.ys\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G90": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.xs\u271d (?a.perm.x\u271d :: ?a.perm.ys\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G177": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.x\u271d :: ?a.a.a.xs\u271d) (?a.perm.x\u271d :: ?a.perm.ys\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G41": {
+      "label": " case a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P (?a.perm.x\u271d :: ?a.perm.a.x\u271d :: ?a.perm.a.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G130": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.xs\u271d (?a.perm.x\u271d :: ?a.perm.a.x\u271d :: ?a.perm.a.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G175": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.x\u271d :: ?a.a.a.xs\u271d) (?a.perm.x\u271d :: ?a.perm.a.x\u271d :: ?a.perm.a.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G98": {
+      "label": " case perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.perm.x\u271d :: ?a.perm.a.x\u271d :: ?a.perm.a.ys\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G84": {
+      "label": " case a.perm.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.perm.a.xs\u271d ?a.perm.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G100": {
+      "label": " case perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.perm.x\u271d :: ?a.perm.a.x\u271d :: ?a.perm.a.a.x\u271d :: ?a.perm.a.a.ys\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G101": {
+      "label": " case a.perm.a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.perm.a.a.xs\u271d ?a.perm.a.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G97": {
+      "label": " case a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P (?a.perm.x\u271d :: ?a.perm.a.x\u271d :: ?a.perm.a.ys\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G99": {
+      "label": " case a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P (?a.perm.x\u271d :: ?a.perm.a.x\u271d :: ?a.perm.a.a.x\u271d :: ?a.perm.a.a.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G179": {
+      "label": " case a.a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.a.x\u271d :: ?a.a.a.a.xs\u271d) ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G133": {
+      "label": " case a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.x\u271d :: ?a.a.a.xs\u271d) ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G201": {
+      "label": " case a.a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.a.xs\u271d (?a.perm.x\u271d :: ?a.perm.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G102": {
+      "label": " case a.a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.a.xs\u271d (?a.a.perm.x\u271d :: ?a.a.perm.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G199": {
+      "label": " case a.a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.a.x\u271d :: ?a.a.a.a.xs\u271d) (?a.a.perm.x\u271d :: ?a.a.perm.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G117": {
+      "label": " case a.a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 P ?a.a.perm.x\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G93": {
+      "label": " case a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.perm.x\u271d :: ?a.a.perm.ys\u271d) ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G122": {
+      "label": " case perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.perm.x\u271d :: ?a.perm.ys\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G123": {
+      "label": " case a.perm.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.perm.ys\u271d ?a.perm.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G92": {
+      "label": " case a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P (?a.a.perm.x\u271d :: ?a.a.perm.ys\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G96": {
+      "label": " case a.a.perm.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.perm.a.xs\u271d ?a.a.perm.a.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G94": {
+      "label": " case a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P (?a.a.perm.x\u271d :: ?a.a.perm.a.x\u271d :: ?a.a.perm.a.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G95": {
+      "label": " case a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.perm.x\u271d :: ?a.a.perm.a.x\u271d :: ?a.a.perm.a.ys\u271d) ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G77": {
+      "label": " case a.a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G166": {
+      "label": " case a.a.a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.a.a.xs\u271d ?a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G195": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.a.x\u271d :: ?a.a.a.a.xs\u271d) ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G80": {
+      "label": " case a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.perm.x\u271d :: ?a.a.a.perm.ys\u271d) ?a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G81": {
+      "label": " case a.a.a.perm.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.a.perm.xs\u271d ?a.a.a.perm.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G79": {
+      "label": " case a.a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P (?a.a.a.perm.x\u271d :: ?a.a.a.perm.xs\u271d)\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G150": {
+      "label": " case a.a.a.a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.a.a.a.xs\u271d ?a.a.a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G151": {
+      "label": " case a.a.a.a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Any P ?a.a.a.a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G181": {
+      "label": " case a.a.a.a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.a.a.x\u271d :: ?a.a.a.a.a.xs\u271d) ?a.a.a.xs\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G182": {
+      "label": " case a.a.a.a.a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 P ?a.a.a.a.a.x\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G135": {
+      "label": " case a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.a.x\u271d :: ?a.a.perm.ys\u271d) ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G136": {
+      "label": " case a.a.perm.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.a.xs\u271d ?a.a.perm.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G13": {
+      "label": " case a.perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.x\u271d :: ?a.a.xs\u271d) ?xs\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G82": {
+      "label": " case perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.x\u271d :: ?a.perm.ys\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G52": {
+      "label": " case a.perm.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm ?a.a.xs\u271d ?a.perm.ys\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G83": {
+      "label": " case perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.a.x\u271d :: ?a.perm.a.x\u271d :: ?a.perm.a.ys\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G7": {
+      "label": " case perm\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 Perm (?a.x\u271d :: ?a.xs\u271d) \u0394\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G8": {
+      "label": " case a.a\nP : Nat \u2192 Prop\n\u0394 : List Nat\n\u22a2 P ?a.x\u271d\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R1": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R3": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R5": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R11": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R26": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R81": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R80": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R95": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R10": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R52": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R74": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R90": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R73": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R53": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R29": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R72": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R89": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R34": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R15": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R8": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R12": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R27": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R69": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R77": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R93": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R14": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R42": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R76": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R92": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R78": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R43": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R30": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R75": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R91": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R35": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R17": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R9": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R22": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R58": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R59": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R32": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R71": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R88": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R37": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R23": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R20": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R44": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R67": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R85": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R54": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R21": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R60": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R66": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R84": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R63": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R98": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R99": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R47": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R48": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R6": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R18": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R31": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R68": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R86": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R36": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R50": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R65": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R83": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R64": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R51": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R97": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R19": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R49": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R82": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R96": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R55": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R56": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R57": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R45": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R46": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R13": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R38": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R79": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R94": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R39": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R28": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R70": {
+      "label": "[50.0000%] unsafe|apply|global|Perm.any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R87": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R33": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R16": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R61": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R62": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R7": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R24": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R25": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R40": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R41": {
+      "label": "[50.0000%] unsafe|constructors|global|Perm",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R4": {
+      "label": "[50.0000%] unsafe|constructors|global|Any",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R46",
+      "target": "G96"
+    },
+    {
+      "source": "R33",
+      "target": "G67"
+    },
+    {
+      "source": "R37",
+      "target": "G31"
+    },
+    {
+      "source": "R86",
+      "target": "G179"
+    },
+    {
+      "source": "G104",
+      "target": "R83"
+    },
+    {
+      "source": "G35",
+      "target": "R50"
+    },
+    {
+      "source": "G12",
+      "target": "R29"
+    },
+    {
+      "source": "R60",
+      "target": "G12"
+    },
+    {
+      "source": "R72",
+      "target": "G58"
+    },
+    {
+      "source": "R12",
+      "target": "G23"
+    },
+    {
+      "source": "R51",
+      "target": "G108"
+    },
+    {
+      "source": "R84",
+      "target": "G31"
+    },
+    {
+      "source": "G78",
+      "target": "R52"
+    },
+    {
+      "source": "R24",
+      "target": "G49"
+    },
+    {
+      "source": "G104",
+      "target": "R65"
+    },
+    {
+      "source": "G25",
+      "target": "R91"
+    },
+    {
+      "source": "G12",
+      "target": "R66"
+    },
+    {
+      "source": "G12",
+      "target": "R30"
+    },
+    {
+      "source": "G30",
+      "target": "R61"
+    },
+    {
+      "source": "R14",
+      "target": "G26"
+    },
+    {
+      "source": "R84",
+      "target": "G175"
+    },
+    {
+      "source": "R81",
+      "target": "G140"
+    },
+    {
+      "source": "G78",
+      "target": "R19"
+    },
+    {
+      "source": "R61",
+      "target": "G31"
+    },
+    {
+      "source": "R62",
+      "target": "G31"
+    },
+    {
+      "source": "G105",
+      "target": "R78"
+    },
+    {
+      "source": "R44",
+      "target": "G12"
+    },
+    {
+      "source": "G13",
+      "target": "R24"
+    },
+    {
+      "source": "R9",
+      "target": "G17"
+    },
+    {
+      "source": "R46",
+      "target": "G94"
+    },
+    {
+      "source": "G17",
+      "target": "R23"
+    },
+    {
+      "source": "R56",
+      "target": "G120"
+    },
+    {
+      "source": "R6",
+      "target": "G12"
+    },
+    {
+      "source": "G39",
+      "target": "R54"
+    },
+    {
+      "source": "R38",
+      "target": "G78"
+    },
+    {
+      "source": "G12",
+      "target": "R77"
+    },
+    {
+      "source": "G5",
+      "target": "R15"
+    },
+    {
+      "source": "R69",
+      "target": "G140"
+    },
+    {
+      "source": "R2",
+      "target": "G35"
+    },
+    {
+      "source": "G12",
+      "target": "R16"
+    },
+    {
+      "source": "R48",
+      "target": "G100"
+    },
+    {
+      "source": "R86",
+      "target": "G68"
+    },
+    {
+      "source": "R59",
+      "target": "G127"
+    },
+    {
+      "source": "R83",
+      "target": "G31"
+    },
+    {
+      "source": "R71",
+      "target": "G57"
+    },
+    {
+      "source": "G12",
+      "target": "R13"
+    },
+    {
+      "source": "G13",
+      "target": "R25"
+    },
+    {
+      "source": "R27",
+      "target": "G55"
+    },
+    {
+      "source": "G44",
+      "target": "R58"
+    },
+    {
+      "source": "G41",
+      "target": "R63"
+    },
+    {
+      "source": "R23",
+      "target": "G108"
+    },
+    {
+      "source": "R6",
+      "target": "G78"
+    },
+    {
+      "source": "G44",
+      "target": "R59"
+    },
+    {
+      "source": "R75",
+      "target": "G57"
+    },
+    {
+      "source": "R27",
+      "target": "G12"
+    },
+    {
+      "source": "R74",
+      "target": "G63"
+    },
+    {
+      "source": "R93",
+      "target": "G31"
+    },
+    {
+      "source": "R99",
+      "target": "G101"
+    },
+    {
+      "source": "G58",
+      "target": "R70"
+    },
+    {
+      "source": "R52",
+      "target": "G34"
+    },
+    {
+      "source": "G30",
+      "target": "R62"
+    },
+    {
+      "source": "R22",
+      "target": "G12"
+    },
+    {
+      "source": "R89",
+      "target": "G68"
+    },
+    {
+      "source": "R83",
+      "target": "G173"
+    },
+    {
+      "source": "R63",
+      "target": "G84"
+    },
+    {
+      "source": "R21",
+      "target": "G41"
+    },
+    {
+      "source": "G84",
+      "target": "R47"
+    },
+    {
+      "source": "G121",
+      "target": "R49"
+    },
+    {
+      "source": "R19",
+      "target": "G38"
+    },
+    {
+      "source": "R67",
+      "target": "G25"
+    },
+    {
+      "source": "R9",
+      "target": "G108"
+    },
+    {
+      "source": "R8",
+      "target": "G105"
+    },
+    {
+      "source": "R42",
+      "target": "G105"
+    },
+    {
+      "source": "R17",
+      "target": "G14"
+    },
+    {
+      "source": "R98",
+      "target": "G98"
+    },
+    {
+      "source": "R5",
+      "target": "G110"
+    },
+    {
+      "source": "R97",
+      "target": "G25"
+    },
+    {
+      "source": "R95",
+      "target": "G193"
+    },
+    {
+      "source": "R37",
+      "target": "G75"
+    },
+    {
+      "source": "G12",
+      "target": "R67"
+    },
+    {
+      "source": "G24",
+      "target": "R38"
+    },
+    {
+      "source": "R78",
+      "target": "G140"
+    },
+    {
+      "source": "R28",
+      "target": "G58"
+    },
+    {
+      "source": "R4",
+      "target": "G8"
+    },
+    {
+      "source": "G25",
+      "target": "R71"
+    },
+    {
+      "source": "G34",
+      "target": "R74"
+    },
+    {
+      "source": "R71",
+      "target": "G58"
+    },
+    {
+      "source": "G5",
+      "target": "R7"
+    },
+    {
+      "source": "G34",
+      "target": "R90"
+    },
+    {
+      "source": "R32",
+      "target": "G25"
+    },
+    {
+      "source": "G25",
+      "target": "R72"
+    },
+    {
+      "source": "R3",
+      "target": "G6"
+    },
+    {
+      "source": "R65",
+      "target": "G25"
+    },
+    {
+      "source": "R92",
+      "target": "G31"
+    },
+    {
+      "source": "R19",
+      "target": "G93"
+    },
+    {
+      "source": "G105",
+      "target": "R3"
+    },
+    {
+      "source": "G26",
+      "target": "R43"
+    },
+    {
+      "source": "G25",
+      "target": "R89"
+    },
+    {
+      "source": "G41",
+      "target": "R60"
+    },
+    {
+      "source": "R53",
+      "target": "G121"
+    },
+    {
+      "source": "R51",
+      "target": "G107"
+    },
+    {
+      "source": "R58",
+      "target": "G107"
+    },
+    {
+      "source": "R25",
+      "target": "G52"
+    },
+    {
+      "source": "G5",
+      "target": "R6"
+    },
+    {
+      "source": "G34",
+      "target": "R36"
+    },
+    {
+      "source": "R26",
+      "target": "G12"
+    },
+    {
+      "source": "R65",
+      "target": "G141"
+    },
+    {
+      "source": "G25",
+      "target": "R28"
+    },
+    {
+      "source": "G84",
+      "target": "R98"
+    },
+    {
+      "source": "G12",
+      "target": "R85"
+    },
+    {
+      "source": "R90",
+      "target": "G31"
+    },
+    {
+      "source": "G12",
+      "target": "R95"
+    },
+    {
+      "source": "R89",
+      "target": "G67"
+    },
+    {
+      "source": "R63",
+      "target": "G98"
+    },
+    {
+      "source": "G12",
+      "target": "R32"
+    },
+    {
+      "source": "G25",
+      "target": "R86"
+    },
+    {
+      "source": "R97",
+      "target": "G201"
+    },
+    {
+      "source": "R57",
+      "target": "G123"
+    },
+    {
+      "source": "G12",
+      "target": "R35"
+    },
+    {
+      "source": "R62",
+      "target": "G135"
+    },
+    {
+      "source": "R79",
+      "target": "G166"
+    },
+    {
+      "source": "R51",
+      "target": "G106"
+    },
+    {
+      "source": "R53",
+      "target": "G38"
+    },
+    {
+      "source": "G5",
+      "target": "R10"
+    },
+    {
+      "source": "R34",
+      "target": "G31"
+    },
+    {
+      "source": "G24",
+      "target": "R39"
+    },
+    {
+      "source": "R30",
+      "target": "G24"
+    },
+    {
+      "source": "R76",
+      "target": "G141"
+    },
+    {
+      "source": "R49",
+      "target": "G102"
+    },
+    {
+      "source": "R94",
+      "target": "G195"
+    },
+    {
+      "source": "R55",
+      "target": "G38"
+    },
+    {
+      "source": "R87",
+      "target": "G182"
+    },
+    {
+      "source": "G105",
+      "target": "R12"
+    },
+    {
+      "source": "R15",
+      "target": "G14"
+    },
+    {
+      "source": "R58",
+      "target": "G106"
+    },
+    {
+      "source": "R47",
+      "target": "G97"
+    },
+    {
+      "source": "R42",
+      "target": "G104"
+    },
+    {
+      "source": "R54",
+      "target": "G107"
+    },
+    {
+      "source": "R80",
+      "target": "G25"
+    },
+    {
+      "source": "R35",
+      "target": "G31"
+    },
+    {
+      "source": "G25",
+      "target": "R68"
+    },
+    {
+      "source": "R25",
+      "target": "G14"
+    },
+    {
+      "source": "G104",
+      "target": "R76"
+    },
+    {
+      "source": "R85",
+      "target": "G31"
+    },
+    {
+      "source": "G23",
+      "target": "R26"
+    },
+    {
+      "source": "R59",
+      "target": "G107"
+    },
+    {
+      "source": "G108",
+      "target": "R20"
+    },
+    {
+      "source": "R50",
+      "target": "G104"
+    },
+    {
+      "source": "R2",
+      "target": "G5"
+    },
+    {
+      "source": "R1",
+      "target": "G105"
+    },
+    {
+      "source": "R39",
+      "target": "G79"
+    },
+    {
+      "source": "G12",
+      "target": "R80"
+    },
+    {
+      "source": "R90",
+      "target": "G187"
+    },
+    {
+      "source": "R38",
+      "target": "G77"
+    },
+    {
+      "source": "G12",
+      "target": "R37"
+    },
+    {
+      "source": "G23",
+      "target": "R27"
+    },
+    {
+      "source": "R9",
+      "target": "G107"
+    },
+    {
+      "source": "R44",
+      "target": "G90"
+    },
+    {
+      "source": "R22",
+      "target": "G44"
+    },
+    {
+      "source": "R10",
+      "target": "G12"
+    },
+    {
+      "source": "G6",
+      "target": "R5"
+    },
+    {
+      "source": "R20",
+      "target": "G39"
+    },
+    {
+      "source": "R67",
+      "target": "G24"
+    },
+    {
+      "source": "G84",
+      "target": "R48"
+    },
+    {
+      "source": "R49",
+      "target": "G25"
+    },
+    {
+      "source": "R13",
+      "target": "G24"
+    },
+    {
+      "source": "R25",
+      "target": "G82"
+    },
+    {
+      "source": "R40",
+      "target": "G82"
+    },
+    {
+      "source": "R41",
+      "target": "G84"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R61",
+      "target": "G133"
+    },
+    {
+      "source": "R75",
+      "target": "G58"
+    },
+    {
+      "source": "R15",
+      "target": "G28"
+    },
+    {
+      "source": "R76",
+      "target": "G25"
+    },
+    {
+      "source": "R5",
+      "target": "G5"
+    },
+    {
+      "source": "G12",
+      "target": "R34"
+    },
+    {
+      "source": "G35",
+      "target": "R8"
+    },
+    {
+      "source": "R53",
+      "target": "G112"
+    },
+    {
+      "source": "R47",
+      "target": "G98"
+    },
+    {
+      "source": "G93",
+      "target": "R56"
+    },
+    {
+      "source": "R14",
+      "target": "G12"
+    },
+    {
+      "source": "G38",
+      "target": "R45"
+    },
+    {
+      "source": "G93",
+      "target": "R57"
+    },
+    {
+      "source": "R68",
+      "target": "G57"
+    },
+    {
+      "source": "G39",
+      "target": "R44"
+    },
+    {
+      "source": "G52",
+      "target": "R41"
+    },
+    {
+      "source": "R70",
+      "target": "G150"
+    },
+    {
+      "source": "R10",
+      "target": "G78"
+    },
+    {
+      "source": "R55",
+      "target": "G117"
+    },
+    {
+      "source": "R50",
+      "target": "G105"
+    },
+    {
+      "source": "R68",
+      "target": "G58"
+    },
+    {
+      "source": "R33",
+      "target": "G68"
+    },
+    {
+      "source": "G55",
+      "target": "R69"
+    },
+    {
+      "source": "R26",
+      "target": "G55"
+    },
+    {
+      "source": "R66",
+      "target": "G25"
+    },
+    {
+      "source": "R21",
+      "target": "G98"
+    },
+    {
+      "source": "R31",
+      "target": "G25"
+    },
+    {
+      "source": "G35",
+      "target": "R51"
+    },
+    {
+      "source": "R46",
+      "target": "G95"
+    },
+    {
+      "source": "R72",
+      "target": "G57"
+    },
+    {
+      "source": "R92",
+      "target": "G173"
+    },
+    {
+      "source": "R80",
+      "target": "G24"
+    },
+    {
+      "source": "R91",
+      "target": "G68"
+    },
+    {
+      "source": "R66",
+      "target": "G24"
+    },
+    {
+      "source": "R96",
+      "target": "G68"
+    },
+    {
+      "source": "R18",
+      "target": "G34"
+    },
+    {
+      "source": "R43",
+      "target": "G38"
+    },
+    {
+      "source": "G25",
+      "target": "R96"
+    },
+    {
+      "source": "G110",
+      "target": "R73"
+    },
+    {
+      "source": "R8",
+      "target": "G15"
+    },
+    {
+      "source": "R41",
+      "target": "G83"
+    },
+    {
+      "source": "R70",
+      "target": "G151"
+    },
+    {
+      "source": "R24",
+      "target": "G14"
+    },
+    {
+      "source": "G17",
+      "target": "R22"
+    },
+    {
+      "source": "G84",
+      "target": "R99"
+    },
+    {
+      "source": "G105",
+      "target": "R64"
+    },
+    {
+      "source": "R56",
+      "target": "G121"
+    },
+    {
+      "source": "R64",
+      "target": "G140"
+    },
+    {
+      "source": "R60",
+      "target": "G130"
+    },
+    {
+      "source": "R19",
+      "target": "G121"
+    },
+    {
+      "source": "R18",
+      "target": "G35"
+    },
+    {
+      "source": "G52",
+      "target": "R40"
+    },
+    {
+      "source": "G15",
+      "target": "R17"
+    },
+    {
+      "source": "R16",
+      "target": "G31"
+    },
+    {
+      "source": "R11",
+      "target": "G23"
+    },
+    {
+      "source": "R43",
+      "target": "G121"
+    },
+    {
+      "source": "R16",
+      "target": "G30"
+    },
+    {
+      "source": "R20",
+      "target": "G107"
+    },
+    {
+      "source": "G110",
+      "target": "R11"
+    },
+    {
+      "source": "G15",
+      "target": "R14"
+    },
+    {
+      "source": "G108",
+      "target": "R21"
+    },
+    {
+      "source": "G34",
+      "target": "R31"
+    },
+    {
+      "source": "R31",
+      "target": "G63"
+    },
+    {
+      "source": "G12",
+      "target": "R93"
+    },
+    {
+      "source": "R77",
+      "target": "G24"
+    },
+    {
+      "source": "G106",
+      "target": "R97"
+    },
+    {
+      "source": "R82",
+      "target": "G57"
+    },
+    {
+      "source": "R56",
+      "target": "G38"
+    },
+    {
+      "source": "R39",
+      "target": "G80"
+    },
+    {
+      "source": "R7",
+      "target": "G13"
+    },
+    {
+      "source": "R77",
+      "target": "G25"
+    },
+    {
+      "source": "R30",
+      "target": "G25"
+    },
+    {
+      "source": "G104",
+      "target": "R92"
+    },
+    {
+      "source": "R54",
+      "target": "G139"
+    },
+    {
+      "source": "G12",
+      "target": "R84"
+    },
+    {
+      "source": "R79",
+      "target": "G58"
+    },
+    {
+      "source": "R85",
+      "target": "G177"
+    },
+    {
+      "source": "R45",
+      "target": "G92"
+    },
+    {
+      "source": "R48",
+      "target": "G99"
+    },
+    {
+      "source": "G58",
+      "target": "R87"
+    },
+    {
+      "source": "R62",
+      "target": "G136"
+    },
+    {
+      "source": "R73",
+      "target": "G140"
+    },
+    {
+      "source": "G25",
+      "target": "R88"
+    },
+    {
+      "source": "R34",
+      "target": "G30"
+    },
+    {
+      "source": "G3",
+      "target": "R2"
+    },
+    {
+      "source": "G25",
+      "target": "R75"
+    },
+    {
+      "source": "R63",
+      "target": "G139"
+    },
+    {
+      "source": "G35",
+      "target": "R9"
+    },
+    {
+      "source": "R82",
+      "target": "G58"
+    },
+    {
+      "source": "R87",
+      "target": "G181"
+    },
+    {
+      "source": "R17",
+      "target": "G49"
+    },
+    {
+      "source": "R91",
+      "target": "G67"
+    },
+    {
+      "source": "R45",
+      "target": "G93"
+    },
+    {
+      "source": "R59",
+      "target": "G129"
+    },
+    {
+      "source": "R94",
+      "target": "G68"
+    },
+    {
+      "source": "G78",
+      "target": "R18"
+    },
+    {
+      "source": "G77",
+      "target": "R79"
+    },
+    {
+      "source": "R28",
+      "target": "G57"
+    },
+    {
+      "source": "G3",
+      "target": "R4"
+    },
+    {
+      "source": "G25",
+      "target": "R82"
+    },
+    {
+      "source": "G55",
+      "target": "R81"
+    },
+    {
+      "source": "R52",
+      "target": "G110"
+    },
+    {
+      "source": "R57",
+      "target": "G121"
+    },
+    {
+      "source": "G77",
+      "target": "R94"
+    },
+    {
+      "source": "R32",
+      "target": "G24"
+    },
+    {
+      "source": "R36",
+      "target": "G133"
+    },
+    {
+      "source": "R39",
+      "target": "G81"
+    },
+    {
+      "source": "R88",
+      "target": "G67"
+    },
+    {
+      "source": "R4",
+      "target": "G7"
+    },
+    {
+      "source": "R99",
+      "target": "G100"
+    },
+    {
+      "source": "R48",
+      "target": "G101"
+    },
+    {
+      "source": "R13",
+      "target": "G25"
+    },
+    {
+      "source": "R95",
+      "target": "G31"
+    },
+    {
+      "source": "R29",
+      "target": "G24"
+    },
+    {
+      "source": "R35",
+      "target": "G71"
+    },
+    {
+      "source": "R58",
+      "target": "G108"
+    },
+    {
+      "source": "R43",
+      "target": "G120"
+    },
+    {
+      "source": "R88",
+      "target": "G68"
+    },
+    {
+      "source": "R21",
+      "target": "G84"
+    },
+    {
+      "source": "R96",
+      "target": "G199"
+    },
+    {
+      "source": "R93",
+      "target": "G193"
+    },
+    {
+      "source": "G121",
+      "target": "R55"
+    },
+    {
+      "source": "R29",
+      "target": "G25"
+    },
+    {
+      "source": "G26",
+      "target": "R42"
+    },
+    {
+      "source": "G25",
+      "target": "R33"
+    },
+    {
+      "source": "R7",
+      "target": "G14"
+    },
+    {
+      "source": "R23",
+      "target": "G139"
+    },
+    {
+      "source": "G78",
+      "target": "R53"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    },
+    {
+      "source": "G38",
+      "target": "R46"
+    },
+    {
+      "source": "R74",
+      "target": "G25"
+    },
+    {
+      "source": "R57",
+      "target": "G122"
+    },
+    {
+      "source": "R36",
+      "target": "G31"
+    }
+  ]
+}
+}

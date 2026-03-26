@@ -1,0 +1,56 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G1"
+  },
+  "nodes": {
+    "G1": {
+      "label": " \u22a2 EvenOrOdd 2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case a\n\u22a2 Even 2\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case a.a\n\u22a2 Even 0\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R1": {
+      "label": "[1/safe] safe|apply|global|EvenOrOdd.even",
+      "metadata": {
+        "kind": "AND"
+      }
+    },
+    "R2": {
+      "label": "[50.0000%] unsafe|apply|global|Even.plus_two",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "G2",
+      "target": "R2"
+    },
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R2",
+      "target": "G3"
+    }
+  ]
+}
+}

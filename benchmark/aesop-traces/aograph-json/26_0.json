@@ -1,0 +1,46 @@
+{ "graph": {
+  "metadata": {
+    "goal": "G1"
+  },
+  "nodes": {
+    "G1": {
+      "label": " \u03b1 : Type u_1\nP : \u03b1 \u2192 Bool\nx : \u03b1\nxs : List \u03b1\nh : (x :: xs).all P = true\n\u22a2 P x = true \u2227 xs.all P = true\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G2": {
+      "label": " case left\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Bool\nx : \u03b1\nxs : List \u03b1\nh : (x :: xs).all P = true\n\u22a2 P x = true\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "G3": {
+      "label": " case right\n\u03b1 : Type u_1\nP : \u03b1 \u2192 Bool\nx : \u03b1\nxs : List \u03b1\nh : (x :: xs).all P = true\n\u22a2 xs.all P = true\n",
+      "metadata": {
+        "kind": "OR"
+      }
+    },
+    "R1": {
+      "label": "[101/safe] safe|constructors|global|And",
+      "metadata": {
+        "kind": "AND"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "R1",
+      "target": "G2"
+    },
+    {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
+      "source": "R1",
+      "target": "G3"
+    }
+  ]
+}
+}
