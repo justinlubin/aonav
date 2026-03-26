@@ -6,6 +6,7 @@
 
 import sys
 import json
+from pathlib import Path
 
 from contextlib import nullcontext
 
@@ -20,8 +21,8 @@ def print_tree():
     outfile = (
         "and_or_filter_unproven/"
         + proven
-        + "_"
-        + infile[13:-4]
+        + "/"
+        + Path(infile).stem
         + "_"
         + str(tree_num)
         + ".json"
@@ -96,10 +97,12 @@ tree_num = 0
 
 infile = sys.argv[1]
 with open(infile, "r", encoding="utf-8") as file:
-    for line in file:
+    for i, line in enumerate(file):
+        line = line.replace("✅️ ", "")
         # if start of line is "info: ", write working tree to a file and start new tree
-        if line[0] != " " and len(goals) > 0 and len(rules) > 0 and len(edges) > 0:
-            print_tree()
+        if line[0] != " " and (len(goals) > 0 or len(rules) > 0 or len(edges) > 0):
+            if len(goals) > 0 and len(rules) > 0 and len(edges) > 0:
+                print_tree()
 
             goals = {}
             rules = {}
@@ -156,6 +159,7 @@ with open(infile, "r", encoding="utf-8") as file:
                 continue
 
             if line[:26] == "[aesop.tree] Parent goal: ":
+                print(tree_num, i + 1, line)
                 parent = line[26:]
                 if "Aesop.BuiltinRule.preprocess" in rules["R" + str(id_num)]:
                     del goals["G" + parent]
