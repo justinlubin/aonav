@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " P A B : Prop\n⊢ if P then A else B\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " P A B : Prop\n⊢ if P then A else B\n",
         "metadata": {
@@ -26,12 +20,6 @@
         "label": " P A B : Prop\nh : ¬P\n⊢ B\n",
         "metadata": {
           "kind": "OR"
-        }
-      },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
         }
       },
       "R1": {
@@ -53,14 +41,6 @@
       {
         "source": "R1",
         "target": "G3"
-      },
-      {
-        "source": "G0",
-        "target": "R0"
-      },
-      {
-        "source": "R0",
-        "target": "G1"
       }
     ]
   }

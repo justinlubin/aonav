@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " ⊢ EvenOrOdd 2\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " ⊢ EvenOrOdd 2\n",
         "metadata": {
@@ -26,12 +20,6 @@
         "label": " case a.a\n⊢ Even 0\n",
         "metadata": {
           "kind": "OR"
-        }
-      },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
         }
       },
       "R1": {
@@ -53,16 +41,8 @@
         "target": "G2"
       },
       {
-        "source": "G0",
-        "target": "R0"
-      },
-      {
         "source": "R2",
         "target": "G3"
-      },
-      {
-        "source": "R0",
-        "target": "G1"
       },
       {
         "source": "G1",

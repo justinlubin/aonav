@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " α : Type u_1\nP : α → Bool\nx : α\nxs : List α\nh : (x :: xs).all P = true\n⊢ P x = true ∧ xs.all P = true\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " α : Type u_1\nP : α → Bool\nx : α\nxs : List α\nh : (x :: xs).all P = true\n⊢ P x = true ∧ xs.all P = true\n",
         "metadata": {
@@ -28,12 +22,6 @@
           "kind": "OR"
         }
       },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
-        }
-      },
       "R1": {
         "label": "[101/safe] safe|constructors|global|And",
         "metadata": {
@@ -43,20 +31,12 @@
     },
     "edges": [
       {
-        "source": "G0",
-        "target": "R0"
-      },
-      {
         "source": "R1",
         "target": "G3"
       },
       {
         "source": "G1",
         "target": "R1"
-      },
-      {
-        "source": "R0",
-        "target": "G1"
       },
       {
         "source": "R1",

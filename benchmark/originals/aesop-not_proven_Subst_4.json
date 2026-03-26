@@ -1,37 +1,16 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " α : Type\nx y : α\nP : (x y : α) → x = y → Prop\nh₁ : x = y\nh₂ : P x y h₁\n⊢ x = y\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " α : Type\nx y : α\nP : (x y : α) → x = y → Prop\nh₁ : x = y\nh₂ : P x y h₁\n⊢ x = y\n",
         "metadata": {
           "kind": "OR"
         }
-      },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
-        }
       }
     },
-    "edges": [
-      {
-        "source": "G0",
-        "target": "R0"
-      },
-      {
-        "source": "R0",
-        "target": "G1"
-      }
-    ]
+    "edges": []
   }
 }

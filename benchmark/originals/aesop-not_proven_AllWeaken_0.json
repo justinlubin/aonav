@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " α : Type u_1\n⊢ All (fun x => x ∈ []) []\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " α : Type u_1\n⊢ All (fun x => x ∈ []) []\n",
         "metadata": {
@@ -574,12 +568,6 @@
           "kind": "OR"
         }
       },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
-        }
-      },
       "R1": {
         "label": "[50.0000%] unsafe|apply|global|weaken",
         "metadata": {
@@ -1007,10 +995,6 @@
         "target": "G65"
       },
       {
-        "source": "G0",
-        "target": "R0"
-      },
-      {
         "source": "G4",
         "target": "R15"
       },
@@ -1285,10 +1269,6 @@
       {
         "source": "R7",
         "target": "G12"
-      },
-      {
-        "source": "R0",
-        "target": "G1"
       },
       {
         "source": "R38",

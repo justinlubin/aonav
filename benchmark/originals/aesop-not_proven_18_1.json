@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " α : Type u_1\ninst✝ : DecidableEq α\nv x : α\nxs : List α\nih : v ∈ xs → ∃ l r, xs = l ++ v :: r\nh : v ∈ x :: xs\nno : ¬x = v\n⊢ ∃ l r, x :: xs = l ++ v :: r\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " α : Type u_1\ninst : DecidableEq α\nv x : α\nxs : List α\nih : v ∈ xs → ∃ l r, xs = l ++ v :: r\nh : v ∈ x :: xs\nno : ¬x = v\n⊢ ∃ l r, x :: xs = l ++ v :: r\n",
         "metadata": {
@@ -38,12 +32,6 @@
         "label": " case inr.h.h\nα : Type u_1\ninst : DecidableEq α\nv x : α\nno : ¬x = v\nw w_1 : List α\n⊢ x :: (w ++ v :: w_1) = ?inr.w ++ v :: ?inr.h.w\n",
         "metadata": {
           "kind": "OR"
-        }
-      },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
         }
       },
       "R1": {
@@ -87,14 +75,6 @@
       {
         "source": "G4",
         "target": "R3"
-      },
-      {
-        "source": "R0",
-        "target": "G1"
-      },
-      {
-        "source": "G0",
-        "target": "R0"
       },
       {
         "source": "G2",

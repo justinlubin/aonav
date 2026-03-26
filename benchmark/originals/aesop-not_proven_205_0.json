@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " α : Type u_1\nx y a b : α\nh₂ : R x a\nh₃ : R y b\n⊢ False\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " α : Type u_1\nx y a b : α\nh₂ : R x a\nh₃ : R y b\n⊢ False\n",
         "metadata": {
@@ -26,12 +20,6 @@
         "label": " α : Type u_1\nx y a b : α\nh₂ : R x a\nh₃ : R y b\nfwd : R b y\nfwd_1 : R a x\nfwd_2 : R b b\nfwd_3 : R y y\nfwd_4 : R a a\nfwd_5 : R x x\n⊢ False\n",
         "metadata": {
           "kind": "OR"
-        }
-      },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
         }
       },
       "R1": {
@@ -53,10 +41,6 @@
         "target": "G3"
       },
       {
-        "source": "G0",
-        "target": "R0"
-      },
-      {
         "source": "R1",
         "target": "G2"
       },
@@ -67,10 +51,6 @@
       {
         "source": "G1",
         "target": "R1"
-      },
-      {
-        "source": "R0",
-        "target": "G1"
       }
     ]
   }

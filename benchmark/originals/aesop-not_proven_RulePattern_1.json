@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " x y z : Nat\nhx : 0 < x\nhy : 0 < y\nx✝ : min x y < z\n⊢ False\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " x y z : Nat\nhx : 0 < x\nhy : 0 < y\nx_1 : min x y < z\n⊢ False\n",
         "metadata": {
@@ -22,12 +16,6 @@
           "kind": "OR"
         }
       },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
-        }
-      },
       "R1": {
         "label": "[1/safe] safe|forward|global|foo",
         "metadata": {
@@ -37,20 +25,12 @@
     },
     "edges": [
       {
-        "source": "R0",
-        "target": "G1"
-      },
-      {
         "source": "R1",
         "target": "G2"
       },
       {
         "source": "G1",
         "target": "R1"
-      },
-      {
-        "source": "G0",
-        "target": "R0"
       }
     ]
   }

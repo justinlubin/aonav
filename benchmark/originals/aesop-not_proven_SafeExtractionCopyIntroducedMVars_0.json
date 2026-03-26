@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " ⊢ P\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " ⊢ P\n",
         "metadata": {
@@ -76,12 +70,6 @@
           "kind": "OR"
         }
       },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
-        }
-      },
       "R1": {
         "label": "[1/safe] safe|apply|global|q_r_p",
         "metadata": {
@@ -139,10 +127,6 @@
         "target": "R5"
       },
       {
-        "source": "G0",
-        "target": "R0"
-      },
-      {
         "source": "R5",
         "target": "G10"
       },
@@ -173,10 +157,6 @@
       {
         "source": "G4",
         "target": "R3"
-      },
-      {
-        "source": "R0",
-        "target": "G1"
       },
       {
         "source": "R1",

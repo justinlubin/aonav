@@ -1,37 +1,16 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " α : Sort u_1\nx y z : α\nP : α → Prop\nh₁ : ∀ (a : A), x = y\nh₂ : ∀ (a : A), y = z\np : P x\n⊢ P z\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " α : Sort u_1\nx y z : α\nP : α → Prop\nh₁ : ∀ (a : A), x = y\nh₂ : ∀ (a : A), y = z\np : P x\n⊢ P z\n",
         "metadata": {
           "kind": "OR"
         }
-      },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
-        }
       }
     },
-    "edges": [
-      {
-        "source": "R0",
-        "target": "G1"
-      },
-      {
-        "source": "G0",
-        "target": "R0"
-      }
-    ]
+    "edges": []
   }
 }

@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " P : Nat → Prop\nΔ : List Nat\n⊢ Any P Δ\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " P : Nat → Prop\nΔ : List Nat\n⊢ Any P Δ\n",
         "metadata": {
@@ -1240,12 +1234,6 @@
           "kind": "OR"
         }
       },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
-        }
-      },
       "R1": {
         "label": "[50.0000%] unsafe|apply|global|Perm.any",
         "metadata": {
@@ -2175,10 +2163,6 @@
         "target": "G203"
       },
       {
-        "source": "G0",
-        "target": "R0"
-      },
-      {
         "source": "R46",
         "target": "G94"
       },
@@ -2997,10 +2981,6 @@
       {
         "source": "R74",
         "target": "G158"
-      },
-      {
-        "source": "R0",
-        "target": "G1"
       },
       {
         "source": "R72",

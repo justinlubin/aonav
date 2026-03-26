@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " α : Sort ?u.1926\nh : α → α\nh' : Wrap α\n⊢ α\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " α : Sort ?u.1926\nh : α → α\nh' : Wrap α\n⊢ α\n",
         "metadata": {
@@ -428,12 +422,6 @@
         "label": " α :\nSort\n?u.1926\nh :\nα →\nα\nh' :\nWrap\nα\n⊢ α\n",
         "metadata": {
           "kind": "OR"
-        }
-      },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
         }
       },
       "R1": {
@@ -1137,10 +1125,6 @@
         "target": "G10"
       },
       {
-        "source": "R0",
-        "target": "G1"
-      },
-      {
         "source": "R19",
         "target": "G20"
       },
@@ -1283,10 +1267,6 @@
       {
         "source": "G12",
         "target": "R12"
-      },
-      {
-        "source": "G0",
-        "target": "R0"
       },
       {
         "source": "R26",

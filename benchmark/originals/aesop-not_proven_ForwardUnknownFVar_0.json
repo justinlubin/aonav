@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " a b c d e f : Nat\nh₃ : c ≤ d\nh₄ : d ≤ e\nh₅ : e ≤ f\nh : a = f\n⊢ False\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " a b c d e f : Nat\nh₃ : c ≤ d\nh₄ : d ≤ e\nh₅ : e ≤ f\nh : a = f\n⊢ False\n",
         "metadata": {
@@ -26,12 +20,6 @@
         "label": " a b c d e : Nat\nh₃ : c ≤ d\nh₄ : d ≤ e\nh₅ : e ≤ a\nfwd : c ≤ e\nfwd_1 : d ≤ a\nfwd_2 : c ≤ a\n⊢ False\n",
         "metadata": {
           "kind": "OR"
-        }
-      },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
         }
       },
       "R1": {
@@ -61,16 +49,8 @@
         "target": "R1"
       },
       {
-        "source": "R0",
-        "target": "G1"
-      },
-      {
         "source": "R1",
         "target": "G2"
-      },
-      {
-        "source": "G0",
-        "target": "R0"
       }
     ]
   }

@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " β : Sort u_1\nγ δ α : Prop\na : α\nb : β\nr₁ : α → ∀ (b : β), γ\nr₂ : α → δ\n⊢ γ ∧ δ\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " β : Sort u_1\nγ δ α : Prop\na : α\nb : β\nr₁ : α → ∀ (b : β), γ\nr₂ : α → δ\n⊢ γ ∧ δ\n",
         "metadata": {
@@ -38,12 +32,6 @@
         "label": " case right\nβ : Sort u_1\nγ δ α : Prop\nb : β\nr₁ : α → ∀ (b : β), γ\nr₂ : α → δ\nfwd : γ\n⊢ α\n",
         "metadata": {
           "kind": "OR"
-        }
-      },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
         }
       },
       "R1": {
@@ -97,16 +85,8 @@
         "target": "R3"
       },
       {
-        "source": "R0",
-        "target": "G1"
-      },
-      {
         "source": "G3",
         "target": "R4"
-      },
-      {
-        "source": "G0",
-        "target": "R0"
       },
       {
         "source": "G1",

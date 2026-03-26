@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " ⊢ False\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " ⊢ False\n",
         "metadata": {
@@ -494,12 +488,6 @@
         "label": " case a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a\n⊢ False ∨\nFalse\n",
         "metadata": {
           "kind": "OR"
-        }
-      },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
         }
       },
       "R1": {
@@ -1297,10 +1285,6 @@
         "target": "G32"
       },
       {
-        "source": "G0",
-        "target": "R0"
-      },
-      {
         "source": "G57",
         "target": "R57"
       },
@@ -1459,10 +1443,6 @@
       {
         "source": "R36",
         "target": "G37"
-      },
-      {
-        "source": "R0",
-        "target": "G1"
       },
       {
         "source": "G37",

@@ -1,15 +1,9 @@
 {
   "graph": {
     "metadata": {
-      "goal": "G0"
+      "goal": "G1"
     },
     "nodes": {
-      "G0": {
-        "label": " ⊢ ∃ n, n ^ 2 = 4 ∧ ∃ n, n ^ 2 = 9 ∧ True\n",
-        "metadata": {
-          "kind": "OR"
-        }
-      },
       "G1": {
         "label": " ⊢ ∃ n, n ^ 2 = 4 ∧ ∃ n, n ^ 2 = 9 ∧ True\n",
         "metadata": {
@@ -28,12 +22,6 @@
           "kind": "OR"
         }
       },
-      "R0": {
-        "label": "[0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess",
-        "metadata": {
-          "kind": "AND"
-        }
-      },
       "R1": {
         "label": "[101/safe] safe|constructors|global|And",
         "metadata": {
@@ -42,14 +30,6 @@
       }
     },
     "edges": [
-      {
-        "source": "G0",
-        "target": "R0"
-      },
-      {
-        "source": "R0",
-        "target": "G1"
-      },
       {
         "source": "R1",
         "target": "G3"
