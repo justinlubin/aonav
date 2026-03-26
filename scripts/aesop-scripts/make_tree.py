@@ -130,9 +130,9 @@ with open(infile, "r", encoding="utf-8") as file:
                 if line[:36] == "[aesop.tree] Post-normalisation goal":
                     goals["G" + str(id_num)] = label
                     getting_goal_label = False
-                    if not goalgoal_found:
-                        goalgoal_found = True
-                        goalgoal = "G" + str(id_num)
+                    # if not goalgoal_found:
+                    #     goalgoal_found = True
+                    #     goalgoal = "G" + str(id_num)
                 else:
                     line = line.replace("[aesop.tree]", "")
                     label = label + line + "\n"
@@ -157,12 +157,24 @@ with open(infile, "r", encoding="utf-8") as file:
 
             if line[:26] == "[aesop.tree] Parent goal: ":
                 parent = line[26:]
-                edges.add(("G" + parent, "R" + str(id_num)))
+                if "Aesop.BuiltinRule.preprocess" in rules["R" + str(id_num)]:
+                    del goals["G" + parent]
+                    assert goals == {}
+                    assert len(rules) == 1
+                    pass
+                else:
+                    edges.add(("G" + parent, "R" + str(id_num)))
                 continue
 
             if line[:33] == "[aesop.tree] Parent rapp:  some (":
                 parent = line[33:-1]
-                edges.add(("R" + parent, "G" + str(id_num)))
+                if "Aesop.BuiltinRule.preprocess" in rules["R" + parent]:
+                    del rules["R" + parent]
+                    assert len(goals) == 1
+                    assert rules == {}
+                    goalgoal = "G" + str(id_num)
+                else:
+                    edges.add(("R" + parent, "G" + str(id_num)))
                 continue
 
             # if does not have child rapps, make note
