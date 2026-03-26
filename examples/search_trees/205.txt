@@ -1,0 +1,752 @@
+✔ [422/423] Built AesopTest.«203» (823ms)
+✖ [423/423] Building AesopTest.«205» (875ms)
+trace: .> LEAN_PATH=/Users/mpreigh/aesop-1/.lake/packages/batteries/.lake/build/lib/lean:/Users/mpreigh/aesop-1/.lake/build/lib/lean /Users/mpreigh/.elan/toolchains/leanprover--lean4---v4.29.0-rc8/bin/lean /Users/mpreigh/aesop-1/AesopTest/205.lean -o /Users/mpreigh/aesop-1/.lake/build/lib/lean/AesopTest/205.olean -i /Users/mpreigh/aesop-1/.lake/build/lib/lean/AesopTest/205.ilean -c /Users/mpreigh/aesop-1/.lake/build/ir/AesopTest/205.c --setup /Users/mpreigh/aesop-1/.lake/build/ir/AesopTest/205.setup.json --json
+info: AesopTest/205.lean:32:2: Try this:
+
+  [apply]     have fwd : R a x := sym h₂
+    have fwd_1 : R b y := sym h₃
+    have fwd_2 : R y y := tran h₃ fwd_1
+    have fwd_3 : R b b := tran fwd_1 h₃
+    have fwd_4 : R x x := tran h₂ fwd
+    have fwd_5 : R a a := tran fwd h₂
+    sorry
+info: AesopTest/205.lean:32:2: [aesop.tree] ✅️ ❌️ G0 [100.0000%] ⋯ ⊢ False
+  [aesop.tree] α : Type u_1
+      x y a b : α
+      h₂ : R x a
+      h₃ : R y b
+      ⊢ False
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.166):
+      [aesop.tree] α : Type u_1
+          x y a b : α
+          h₂ : R x a
+          h₃ : R y b
+          ⊢ False
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.166):
+      [aesop.tree] α : Type u_1
+          x y a b : α
+          h₂ : R x a
+          h₃ : R y b
+          ⊢ False
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: ❌️ unprovable
+    [aesop.tree] Forward rule matches: 2
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] safe|forward|global|tran:
+            cluster 0:
+              variables:
+                2 =>
+                  0 =>
+                    x => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}], [])
+                    y => ([{0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}], [])
+                  1 =>
+                    a => ([], [h₂])
+                    b => ([], [h₃])
+                0 =>
+                  0 =>
+                    α => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}, {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}], [])
+                  1 =>
+                    α => ([], [h₂, h₃])
+              slot queues:
+                slot 0: []
+                slot 1: []
+              complete matches:
+                
+          safe|forward|global|sym:
+            cluster 0:
+              variables:
+                
+              slot queues:
+                slot 0: []
+              complete matches:
+                {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}
+                {0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ ❌️ R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: unprovable
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ ❌️ G1 [100.0000%] ⋯ ⊢ False
+      [aesop.tree] α : Type u_1
+          x y a b : α
+          h₂ : R x a
+          h₃ : R y b
+          ⊢ False
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.166):
+          [aesop.tree] α : Type u_1
+              x y a b : α
+              h₂ : R x a
+              h₃ : R y b
+              ⊢ False
+        [aesop.tree] ✅️ Post-normalisation goal (_uniq.166):
+          [aesop.tree] α : Type u_1
+              x y a b : α
+              h₂ : R x a
+              h₃ : R y b
+              ⊢ False
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  [1]
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: ❌️ unprovable
+        [aesop.tree] Forward rule matches: 2
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] safe|forward|global|tran:
+                cluster 0:
+                  variables:
+                    2 =>
+                      0 =>
+                        x => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}], [])
+                        y => ([{0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}], [])
+                      1 =>
+                        a => ([], [h₂])
+                        b => ([], [h₃])
+                    0 =>
+                      0 =>
+                        α => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}, {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}],
+                         [])
+                      1 =>
+                        α => ([], [h₂, h₃])
+                  slot queues:
+                    slot 0: []
+                    slot 1: []
+                  complete matches:
+                    
+              safe|forward|global|sym:
+                cluster 0:
+                  variables:
+                    
+                  slot queues:
+                    slot 0: []
+                  complete matches:
+                    {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}
+                    {0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+      [aesop.tree] ✅️ ❌️ R1 [100.0000%] safe|forward|global|sym
+        [aesop.tree] ✅️ Metadata
+          [aesop.tree] ID: 1
+          [aesop.tree] Rule: [1/safe] safe|forward|global|sym
+          [aesop.tree] Success probability: 100.0000%
+          [aesop.tree] Parent goal: 1
+          [aesop.tree] Child goals: [2]
+          [aesop.tree] State: unprovable
+          [aesop.tree] Irrelevant: true
+          [aesop.tree] Introduced metavariables: []
+          [aesop.tree] Assigned   metavariables: []
+        [aesop.tree] ✅️ ❌️ G2 [100.0000%] ⋯ ⊢ False
+          [aesop.tree] α : Type u_1
+              x y a b : α
+              h₂ : R x a
+              h₃ : R y b
+              fwd : R a x
+              fwd_1 : R b y
+              ⊢ False
+          [aesop.tree] ✅️ Metadata
+            [aesop.tree] ID: 2
+            [aesop.tree] ✅️ Pre-normalisation goal (_uniq.399):
+              [aesop.tree] α : Type u_1
+                  x y a b : α
+                  h₂ : R x a
+                  h₃ : R y b
+                  fwd : R a x
+                  fwd_1 : R b y
+                  ⊢ False
+            [aesop.tree] ✅️ Post-normalisation goal (_uniq.399):
+              [aesop.tree] α : Type u_1
+                  x y a b : α
+                  h₂ : R x a
+                  h₃ : R y b
+                  fwd : R a x
+                  fwd_1 : R b y
+                  ⊢ False
+            [aesop.tree] Metavariables: []
+            [aesop.tree] Parent rapp:  some (1)
+            [aesop.tree] Child rapps:  [2]
+            [aesop.tree] Origin: subgoal
+            [aesop.tree] Depth: 2
+            [aesop.tree] State: ❌️ unprovable
+            [aesop.tree] Forward rule matches: 6
+            [aesop.tree] Irrelevant: yes
+            [aesop.tree] Forced unprovable: no
+            [aesop.tree] Added in iteration: 2
+            [aesop.tree] Last expanded in iteration: 3
+            [aesop.tree] ✅️ Forward state
+              [aesop.tree] safe|forward|global|tran:
+                    cluster 0:
+                      variables:
+                        2 =>
+                          0 =>
+                            x => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}], [])
+                            y => ([{0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}], [])
+                            a => ([{0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ fwd | 0 ↦ u_1+1}], [])
+                            b => ([{0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ fwd_1 | 0 ↦ u_1+1}], [])
+                          1 =>
+                            a => ([], [h₂])
+                            b => ([], [h₃])
+                            x => ([], [fwd])
+                            y => ([], [fwd_1])
+                        0 =>
+                          0 =>
+                            α => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1},
+                              {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ fwd | 0 ↦ u_1+1},
+                              {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ fwd_1 | 0 ↦ u_1+1},
+                              {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}],
+                             [])
+                          1 =>
+                            α => ([], [h₂, h₃, fwd_1, fwd])
+                      slot queues:
+                        slot 0: []
+                        slot 1: []
+                      complete matches:
+                        {0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ x, 4 ↦ h₂, 5 ↦ fwd | 0 ↦ u_1+1}
+                        {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ a, 4 ↦ fwd, 5 ↦ h₂ | 0 ↦ u_1+1}
+                        {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ y, 4 ↦ h₃, 5 ↦ fwd_1 | 0 ↦ u_1+1}
+                        {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ b, 4 ↦ fwd_1, 5 ↦ h₃ | 0 ↦ u_1+1}
+                  safe|forward|global|sym:
+                    cluster 0:
+                      variables:
+                        
+                      slot queues:
+                        slot 0: []
+                      complete matches:
+                        {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ fwd_1 | 0 ↦ u_1+1}
+                        {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}
+                        {0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}
+                        {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ fwd | 0 ↦ u_1+1}
+            [aesop.tree] Unsafe rule queue: <not selected>
+            [aesop.tree] ✅️ Failed rules:
+              [aesop.tree] [100.0000%] safe|forward|global|sym
+          [aesop.tree] ✅️ ❌️ R2 [100.0000%] safe|forward|global|tran
+            [aesop.tree] ✅️ Metadata
+              [aesop.tree] ID: 2
+              [aesop.tree] Rule: [1/safe] safe|forward|global|tran
+              [aesop.tree] Success probability: 100.0000%
+              [aesop.tree] Parent goal: 2
+              [aesop.tree] Child goals: [3]
+              [aesop.tree] State: unprovable
+              [aesop.tree] Irrelevant: true
+              [aesop.tree] Introduced metavariables: []
+              [aesop.tree] Assigned   metavariables: []
+            [aesop.tree] ✅️ ❌️ G3 [100.0000%] ⋯ ⊢ False
+              [aesop.tree] α : Type u_1
+                  x y a b : α
+                  h₂ : R x a
+                  h₃ : R y b
+                  fwd : R a x
+                  fwd_1 : R b y
+                  fwd_2 : R y y
+                  fwd_3 : R b b
+                  fwd_4 : R x x
+                  fwd_5 : R a a
+                  ⊢ False
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 3
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.471):
+                  [aesop.tree] α : Type u_1
+                      x y a b : α
+                      h₂ : R x a
+                      h₃ : R y b
+                      fwd : R a x
+                      fwd_1 : R b y
+                      fwd_2 : R y y
+                      fwd_3 : R b b
+                      fwd_4 : R x x
+                      fwd_5 : R a a
+                      ⊢ False
+                [aesop.tree] ✅️ Post-normalisation goal (_uniq.471):
+                  [aesop.tree] α : Type u_1
+                      x y a b : α
+                      h₂ : R x a
+                      h₃ : R y b
+                      fwd : R a x
+                      fwd_1 : R b y
+                      fwd_2 : R y y
+                      fwd_3 : R b b
+                      fwd_4 : R x x
+                      fwd_5 : R a a
+                      ⊢ False
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (2)
+                [aesop.tree] Child rapps:  []
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: ❌️ unprovable
+                [aesop.tree] Forward rule matches: 10
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 3
+                [aesop.tree] Last expanded in iteration: 4
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] safe|forward|global|tran:
+                        cluster 0:
+                          variables:
+                            2 =>
+                              0 =>
+                                x => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1},
+                                  {0 ↦ α, 1 ↦ x, 2 ↦ x, 3 ↦ fwd_4 | 0 ↦ u_1+1}],
+                                 [])
+                                y => ([{0 ↦ α, 1 ↦ y, 2 ↦ y, 3 ↦ fwd_2 | 0 ↦ u_1+1},
+                                  {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}],
+                                 [])
+                                a => ([{0 ↦ α, 1 ↦ a, 2 ↦ a, 3 ↦ fwd_5 | 0 ↦ u_1+1},
+                                  {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ fwd | 0 ↦ u_1+1}],
+                                 [])
+                                b => ([{0 ↦ α, 1 ↦ b, 2 ↦ b, 3 ↦ fwd_3 | 0 ↦ u_1+1},
+                                  {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ fwd_1 | 0 ↦ u_1+1}],
+                                 [])
+                              1 =>
+                                a => ([], [h₂, fwd_5])
+                                b => ([], [fwd_3, h₃])
+                                x => ([], [fwd_4, fwd])
+                                y => ([], [fwd_1, fwd_2])
+                            0 =>
+                              0 =>
+                                α => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1},
+                                  {0 ↦ α, 1 ↦ a, 2 ↦ a, 3 ↦ fwd_5 | 0 ↦ u_1+1},
+                                  {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ fwd | 0 ↦ u_1+1},
+                                  {0 ↦ α, 1 ↦ b, 2 ↦ b, 3 ↦ fwd_3 | 0 ↦ u_1+1},
+                                  {0 ↦ α, 1 ↦ y, 2 ↦ y, 3 ↦ fwd_2 | 0 ↦ u_1+1},
+                                  {0 ↦ α, 1 ↦ x, 2 ↦ x, 3 ↦ fwd_4 | 0 ↦ u_1+1},
+                                  {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ fwd_1 | 0 ↦ u_1+1},
+                                  {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}],
+                                 [])
+                              1 =>
+                                α => ([], [h₂, fwd_3, h₃, fwd_1, fwd_5, fwd_4, fwd, fwd_2])
+                          slot queues:
+                            slot 0: []
+                            slot 1: []
+                          complete matches:
+                            {0 ↦ α, 1 ↦ b, 2 ↦ b, 3 ↦ y, 4 ↦ fwd_3, 5 ↦ fwd_1 | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ y, 2 ↦ y, 3 ↦ b, 4 ↦ fwd_2, 5 ↦ h₃ | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ x, 4 ↦ h₂, 5 ↦ fwd | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ a, 4 ↦ fwd, 5 ↦ h₂ | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ x, 2 ↦ x, 3 ↦ a, 4 ↦ fwd_4, 5 ↦ h₂ | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ a, 2 ↦ a, 3 ↦ x, 4 ↦ fwd_5, 5 ↦ fwd | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ y, 4 ↦ h₃, 5 ↦ fwd_1 | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ b, 4 ↦ fwd_1, 5 ↦ h₃ | 0 ↦ u_1+1}
+                      safe|forward|global|sym:
+                        cluster 0:
+                          variables:
+                            
+                          slot queues:
+                            slot 0: []
+                          complete matches:
+                            {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ fwd_1 | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ b, 2 ↦ b, 3 ↦ fwd_3 | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ y, 2 ↦ y, 3 ↦ fwd_2 | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ x, 2 ↦ x, 3 ↦ fwd_4 | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ fwd | 0 ↦ u_1+1}
+                            {0 ↦ α, 1 ↦ a, 2 ↦ a, 3 ↦ fwd_5 | 0 ↦ u_1+1}
+                [aesop.tree] Unsafe rule queue: <empty>
+                [aesop.tree] ✅️ Failed rules:
+                  [aesop.tree] [100.0000%] safe|forward|global|sym
+                  [aesop.tree] [100.0000%] safe|forward|global|tran
+warning: AesopTest/205.lean:31:0: declaration uses `sorry`
+error: AesopTest/205.lean:30:0: ❌️ Docstring on `#guard_msgs` does not match generated message:
+
+  info: Try this:
+ 
+    [apply]     have fwd : R a x := sym h₂
+      have fwd_1 : R b y := sym h₃
+-     have fwd_2 : R a a := tran fwd h₂
+-     have fwd_3 : R y y := tran h₃ fwd_1
+-     have fwd_4 : R b b := tran fwd_1 h₃
+-     have fwd_5 : R x x := tran h₂ fwd
++     have fwd_2 : R y y := tran h₃ fwd_1
++     have fwd_3 : R b b := tran fwd_1 h₃
++     have fwd_4 : R x x := tran h₂ fwd
++     have fwd_5 : R a a := tran fwd h₂
+      sorry
+  ---
++ trace: [aesop.tree] ✅️ ❌️ G0 [100.0000%] ⋯ ⊢ False
++   [aesop.tree] α : Type u_1
++       x y a b : α
++       h₂ : R x a
++       h₃ : R y b
++       ⊢ False
++   [aesop.tree] ✅️ Metadata
++     [aesop.tree] ID: 0
++     [aesop.tree] ✅️ Pre-normalisation goal (_uniq.166):
++       [aesop.tree] α : Type u_1
++           x y a b : α
++           h₂ : R x a
++           h₃ : R y b
++           ⊢ False
++     [aesop.tree] ✅️ Post-normalisation goal (_uniq.166):
++       [aesop.tree] α : Type u_1
++           x y a b : α
++           h₂ : R x a
++           h₃ : R y b
++           ⊢ False
++     [aesop.tree] Metavariables: []
++     [aesop.tree] Parent rapp:  none
++     [aesop.tree] Child rapps:  [0]
++     [aesop.tree] Origin: subgoal
++     [aesop.tree] Depth: 0
++     [aesop.tree] State: ❌️ unprovable
++     [aesop.tree] Forward rule matches: 2
++     [aesop.tree] Irrelevant: yes
++     [aesop.tree] Forced unprovable: no
++     [aesop.tree] Added in iteration: 1
++     [aesop.tree] Last expanded in iteration: 1
++     [aesop.tree] ✅️ Forward state
++       [aesop.tree] safe|forward|global|tran:
++             cluster 0:
++               variables:
++                 2 =>
++                   0 =>
++                     x => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}], [])
++                     y => ([{0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}], [])
++                   1 =>
++                     a => ([], [h₂])
++                     b => ([], [h₃])
++                 0 =>
++                   0 =>
++                     α => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}, {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}], [])
++                   1 =>
++                     α => ([], [h₂, h₃])
++               slot queues:
++                 slot 0: []
++                 slot 1: []
++               complete matches:
++                 
++           safe|forward|global|sym:
++             cluster 0:
++               variables:
++                 
++               slot queues:
++                 slot 0: []
++               complete matches:
++                 {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}
++                 {0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}
++     [aesop.tree] Unsafe rule queue: <not selected>
++     [aesop.tree] Failed rules: <none>
++   [aesop.tree] ✅️ ❌️ R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
++     [aesop.tree] ✅️ Metadata
++       [aesop.tree] ID: 0
++       [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
++       [aesop.tree] Success probability: 100.0000%
++       [aesop.tree] Parent goal: 0
++       [aesop.tree] Child goals: [1]
++       [aesop.tree] State: unprovable
++       [aesop.tree] Irrelevant: true
++       [aesop.tree] Introduced metavariables: []
++       [aesop.tree] Assigned   metavariables: []
++     [aesop.tree] ✅️ ❌️ G1 [100.0000%] ⋯ ⊢ False
++       [aesop.tree] α : Type u_1
++           x y a b : α
++           h₂ : R x a
++           h₃ : R y b
++           ⊢ False
++       [aesop.tree] ✅️ Metadata
++         [aesop.tree] ID: 1
++         [aesop.tree] ✅️ Pre-normalisation goal (_uniq.166):
++           [aesop.tree] α : Type u_1
++               x y a b : α
++               h₂ : R x a
++               h₃ : R y b
++               ⊢ False
++         [aesop.tree] ✅️ Post-normalisation goal (_uniq.166):
++           [aesop.tree] α : Type u_1
++               x y a b : α
++               h₂ : R x a
++               h₃ : R y b
++               ⊢ False
++         [aesop.tree] Metavariables: []
++         [aesop.tree] Parent rapp:  some (0)
++         [aesop.tree] Child rapps:  [1]
++         [aesop.tree] Origin: subgoal
++         [aesop.tree] Depth: 1
++         [aesop.tree] State: ❌️ unprovable
++         [aesop.tree] Forward rule matches: 2
++         [aesop.tree] Irrelevant: yes
++         [aesop.tree] Forced unprovable: no
++         [aesop.tree] Added in iteration: 1
++         [aesop.tree] Last expanded in iteration: 2
++         [aesop.tree] ✅️ Forward state
++           [aesop.tree] safe|forward|global|tran:
++                 cluster 0:
++                   variables:
++                     2 =>
++                       0 =>
++                         x => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}], [])
++                         y => ([{0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}], [])
++                       1 =>
++                         a => ([], [h₂])
++                         b => ([], [h₃])
++                     0 =>
++                       0 =>
++                         α => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}, {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}],
++                          [])
++                       1 =>
++                         α => ([], [h₂, h₃])
++                   slot queues:
++                     slot 0: []
++                     slot 1: []
++                   complete matches:
++                     
++               safe|forward|global|sym:
++                 cluster 0:
++                   variables:
++                     
++                   slot queues:
++                     slot 0: []
++                   complete matches:
++                     {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}
++                     {0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}
++         [aesop.tree] Unsafe rule queue: <not selected>
++         [aesop.tree] Failed rules: <none>
++       [aesop.tree] ✅️ ❌️ R1 [100.0000%] safe|forward|global|sym
++         [aesop.tree] ✅️ Metadata
++           [aesop.tree] ID: 1
++           [aesop.tree] Rule: [1/safe] safe|forward|global|sym
++           [aesop.tree] Success probability: 100.0000%
++           [aesop.tree] Parent goal: 1
++           [aesop.tree] Child goals: [2]
++           [aesop.tree] State: unprovable
++           [aesop.tree] Irrelevant: true
++           [aesop.tree] Introduced metavariables: []
++           [aesop.tree] Assigned   metavariables: []
++         [aesop.tree] ✅️ ❌️ G2 [100.0000%] ⋯ ⊢ False
++           [aesop.tree] α : Type u_1
++               x y a b : α
++               h₂ : R x a
++               h₃ : R y b
++               fwd : R a x
++               fwd_1 : R b y
++               ⊢ False
++           [aesop.tree] ✅️ Metadata
++             [aesop.tree] ID: 2
++             [aesop.tree] ✅️ Pre-normalisation goal (_uniq.399):
++               [aesop.tree] α : Type u_1
++                   x y a b : α
++                   h₂ : R x a
++                   h₃ : R y b
++                   fwd : R a x
++                   fwd_1 : R b y
++                   ⊢ False
++             [aesop.tree] ✅️ Post-normalisation goal (_uniq.399):
++               [aesop.tree] α : Type u_1
++                   x y a b : α
++                   h₂ : R x a
++                   h₃ : R y b
++                   fwd : R a x
++                   fwd_1 : R b y
++                   ⊢ False
++             [aesop.tree] Metavariables: []
++             [aesop.tree] Parent rapp:  some (1)
++             [aesop.tree] Child rapps:  [2]
++             [aesop.tree] Origin: subgoal
++             [aesop.tree] Depth: 2
++             [aesop.tree] State: ❌️ unprovable
++             [aesop.tree] Forward rule matches: 6
++             [aesop.tree] Irrelevant: yes
++             [aesop.tree] Forced unprovable: no
++             [aesop.tree] Added in iteration: 2
++             [aesop.tree] Last expanded in iteration: 3
++             [aesop.tree] ✅️ Forward state
++               [aesop.tree] safe|forward|global|tran:
++                     cluster 0:
++                       variables:
++                         2 =>
++                           0 =>
++                             x => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}], [])
++                             y => ([{0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}], [])
++                             a => ([{0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ fwd | 0 ↦ u_1+1}], [])
++                             b => ([{0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ fwd_1 | 0 ↦ u_1+1}], [])
++                           1 =>
++                             a => ([], [h₂])
++                             b => ([], [h₃])
++                             x => ([], [fwd])
++                             y => ([], [fwd_1])
++                         0 =>
++                           0 =>
++                             α => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1},
++                               {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ fwd | 0 ↦ u_1+1},
++                               {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ fwd_1 | 0 ↦ u_1+1},
++                               {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}],
++                              [])
++                           1 =>
++                             α => ([], [h₂, h₃, fwd_1, fwd])
++                       slot queues:
++                         slot 0: []
++                         slot 1: []
++                       complete matches:
++                         {0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ x, 4 ↦ h₂, 5 ↦ fwd | 0 ↦ u_1+1}
++                         {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ a, 4 ↦ fwd, 5 ↦ h₂ | 0 ↦ u_1+1}
++                         {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ y, 4 ↦ h₃, 5 ↦ fwd_1 | 0 ↦ u_1+1}
++                         {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ b, 4 ↦ fwd_1, 5 ↦ h₃ | 0 ↦ u_1+1}
++                   safe|forward|global|sym:
++                     cluster 0:
++                       variables:
++                         
++                       slot queues:
++                         slot 0: []
++                       complete matches:
++                         {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ fwd_1 | 0 ↦ u_1+1}
++                         {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}
++                         {0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}
++                         {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ fwd | 0 ↦ u_1+1}
++             [aesop.tree] Unsafe rule queue: <not selected>
++             [aesop.tree] ✅️ Failed rules:
++               [aesop.tree] [100.0000%] safe|forward|global|sym
++           [aesop.tree] ✅️ ❌️ R2 [100.0000%] safe|forward|global|tran
++             [aesop.tree] ✅️ Metadata
++               [aesop.tree] ID: 2
++               [aesop.tree] Rule: [1/safe] safe|forward|global|tran
++               [aesop.tree] Success probability: 100.0000%
++               [aesop.tree] Parent goal: 2
++               [aesop.tree] Child goals: [3]
++               [aesop.tree] State: unprovable
++               [aesop.tree] Irrelevant: true
++               [aesop.tree] Introduced metavariables: []
++               [aesop.tree] Assigned   metavariables: []
++             [aesop.tree] ✅️ ❌️ G3 [100.0000%] ⋯ ⊢ False
++               [aesop.tree] α : Type u_1
++                   x y a b : α
++                   h₂ : R x a
++                   h₃ : R y b
++                   fwd : R a x
++                   fwd_1 : R b y
++                   fwd_2 : R y y
++                   fwd_3 : R b b
++                   fwd_4 : R x x
++                   fwd_5 : R a a
++                   ⊢ False
++               [aesop.tree] ✅️ Metadata
++                 [aesop.tree] ID: 3
++                 [aesop.tree] ✅️ Pre-normalisation goal (_uniq.471):
++                   [aesop.tree] α : Type u_1
++                       x y a b : α
++                       h₂ : R x a
++                       h₃ : R y b
++                       fwd : R a x
++                       fwd_1 : R b y
++                       fwd_2 : R y y
++                       fwd_3 : R b b
++                       fwd_4 : R x x
++                       fwd_5 : R a a
++                       ⊢ False
++                 [aesop.tree] ✅️ Post-normalisation goal (_uniq.471):
++                   [aesop.tree] α : Type u_1
++                       x y a b : α
++                       h₂ : R x a
++                       h₃ : R y b
++                       fwd : R a x
++                       fwd_1 : R b y
++                       fwd_2 : R y y
++                       fwd_3 : R b b
++                       fwd_4 : R x x
++                       fwd_5 : R a a
++                       ⊢ False
++                 [aesop.tree] Metavariables: []
++                 [aesop.tree] Parent rapp:  some (2)
++                 [aesop.tree] Child rapps:  []
++                 [aesop.tree] Origin: subgoal
++                 [aesop.tree] Depth: 3
++                 [aesop.tree] State: ❌️ unprovable
++                 [aesop.tree] Forward rule matches: 10
++                 [aesop.tree] Irrelevant: yes
++                 [aesop.tree] Forced unprovable: no
++                 [aesop.tree] Added in iteration: 3
++                 [aesop.tree] Last expanded in iteration: 4
++                 [aesop.tree] ✅️ Forward state
++                   [aesop.tree] safe|forward|global|tran:
++                         cluster 0:
++                           variables:
++                             2 =>
++                               0 =>
++                                 x => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1},
++                                   {0 ↦ α, 1 ↦ x, 2 ↦ x, 3 ↦ fwd_4 | 0 ↦ u_1+1}],
++                                  [])
++                                 y => ([{0 ↦ α, 1 ↦ y, 2 ↦ y, 3 ↦ fwd_2 | 0 ↦ u_1+1},
++                                   {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}],
++                                  [])
++                                 a => ([{0 ↦ α, 1 ↦ a, 2 ↦ a, 3 ↦ fwd_5 | 0 ↦ u_1+1},
++                                   {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ fwd | 0 ↦ u_1+1}],
++                                  [])
++                                 b => ([{0 ↦ α, 1 ↦ b, 2 ↦ b, 3 ↦ fwd_3 | 0 ↦ u_1+1},
++                                   {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ fwd_1 | 0 ↦ u_1+1}],
++                                  [])
++                               1 =>
++                                 a => ([], [h₂, fwd_5])
++                                 b => ([], [fwd_3, h₃])
++                                 x => ([], [fwd_4, fwd])
++                                 y => ([], [fwd_1, fwd_2])
++                             0 =>
++                               0 =>
++                                 α => ([{0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1},
++                                   {0 ↦ α, 1 ↦ a, 2 ↦ a, 3 ↦ fwd_5 | 0 ↦ u_1+1},
++                                   {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ fwd | 0 ↦ u_1+1},
++                                   {0 ↦ α, 1 ↦ b, 2 ↦ b, 3 ↦ fwd_3 | 0 ↦ u_1+1},
++                                   {0 ↦ α, 1 ↦ y, 2 ↦ y, 3 ↦ fwd_2 | 0 ↦ u_1+1},
++                                   {0 ↦ α, 1 ↦ x, 2 ↦ x, 3 ↦ fwd_4 | 0 ↦ u_1+1},
++                                   {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ fwd_1 | 0 ↦ u_1+1},
++                                   {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}],
++                                  [])
++                               1 =>
++                                 α => ([], [h₂, fwd_3, h₃, fwd_1, fwd_5, fwd_4, fwd, fwd_2])
++                           slot queues:
++                             slot 0: []
++                             slot 1: []
++                           complete matches:
++                             {0 ↦ α, 1 ↦ b, 2 ↦ b, 3 ↦ y, 4 ↦ fwd_3, 5 ↦ fwd_1 | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ y, 2 ↦ y, 3 ↦ b, 4 ↦ fwd_2, 5 ↦ h₃ | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ x, 4 ↦ h₂, 5 ↦ fwd | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ a, 4 ↦ fwd, 5 ↦ h₂ | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ x, 2 ↦ x, 3 ↦ a, 4 ↦ fwd_4, 5 ↦ h₂ | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ a, 2 ↦ a, 3 ↦ x, 4 ↦ fwd_5, 5 ↦ fwd | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ y, 4 ↦ h₃, 5 ↦ fwd_1 | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ b, 4 ↦ fwd_1, 5 ↦ h₃ | 0 ↦ u_1+1}
++                       safe|forward|global|sym:
++                         cluster 0:
++                           variables:
++                             
++                           slot queues:
++                             slot 0: []
++                           complete matches:
++                             {0 ↦ α, 1 ↦ b, 2 ↦ y, 3 ↦ fwd_1 | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ y, 2 ↦ b, 3 ↦ h₃ | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ x, 2 ↦ a, 3 ↦ h₂ | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ b, 2 ↦ b, 3 ↦ fwd_3 | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ y, 2 ↦ y, 3 ↦ fwd_2 | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ x, 2 ↦ x, 3 ↦ fwd_4 | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ a, 2 ↦ x, 3 ↦ fwd | 0 ↦ u_1+1}
++                             {0 ↦ α, 1 ↦ a, 2 ↦ a, 3 ↦ fwd_5 | 0 ↦ u_1+1}
++                 [aesop.tree] Unsafe rule queue: <empty>
++                 [aesop.tree] ✅️ Failed rules:
++                   [aesop.tree] [100.0000%] safe|forward|global|sym
++                   [aesop.tree] [100.0000%] safe|forward|global|tran
++ ---
+  warning: declaration uses `sorry`
+error: Lean exited with code 1
+Some required targets logged failures:
+- AesopTest.«205»

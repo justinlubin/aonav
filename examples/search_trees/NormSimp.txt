@@ -1,0 +1,1143 @@
+✔ [422/423] Built AesopTest.NoProgress (891ms)
+✖ [423/423] Building AesopTest.NormSimp (946ms)
+trace: .> LEAN_PATH=/Users/mpreigh/aesop-1/.lake/packages/batteries/.lake/build/lib/lean:/Users/mpreigh/aesop-1/.lake/build/lib/lean /Users/mpreigh/.elan/toolchains/leanprover--lean4---v4.29.0-rc8/bin/lean /Users/mpreigh/aesop-1/AesopTest/NormSimp.lean -o /Users/mpreigh/aesop-1/.lake/build/lib/lean/AesopTest/NormSimp.olean -i /Users/mpreigh/aesop-1/.lake/build/lib/lean/AesopTest/NormSimp.ilean -c /Users/mpreigh/aesop-1/.lake/build/ir/AesopTest/NormSimp.c --setup /Users/mpreigh/aesop-1/.lake/build/ir/AesopTest/NormSimp.setup.json --json
+info: AesopTest/NormSimp.lean:15:2: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ α
+  [aesop.tree] α : Prop
+      h : α
+      ⊢ α
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.14):
+      [aesop.tree] α : Prop
+          h : α
+          ⊢ α
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.14):
+      [aesop.tree] α : Prop
+          h : α
+          ⊢ α
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ α
+      [aesop.tree] α : Prop
+          h : α
+          ⊢ α
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.14):
+          [aesop.tree] α : Prop
+              h : α
+              ⊢ α
+        [aesop.tree] Post-normalisation goal: <goal not normalised>
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByNormalization
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+info: AesopTest/NormSimp.lean:20:2: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ α ∨ γ
+  [aesop.tree] α β γ : Prop
+      h : α ∧ β ∨ γ
+      ⊢ α ∨ γ
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.59):
+      [aesop.tree] α β γ : Prop
+          h : α ∧ β ∨ γ
+          ⊢ α ∨ γ
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.59):
+      [aesop.tree] α β γ : Prop
+          h : α ∧ β ∨ γ
+          ⊢ α ∨ γ
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ α ∨ γ
+      [aesop.tree] α β γ : Prop
+          h : α ∧ β ∨ γ
+          ⊢ α ∨ γ
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.59):
+          [aesop.tree] α β γ : Prop
+              h : α ∧ β ∨ γ
+              ⊢ α ∨ γ
+        [aesop.tree] ✅️ Post-normalisation goal (_uniq.59):
+          [aesop.tree] α β γ : Prop
+              h : α ∧ β ∨ γ
+              ⊢ α ∨ γ
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  [1]
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByRuleApplication
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] ✅️ Failed rules:
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+      [aesop.tree] ✅️ 🏁 R1 [100.0000%] safe|cases|global|Or
+        [aesop.tree] ✅️ Metadata
+          [aesop.tree] ID: 1
+          [aesop.tree] Rule: [100/safe] safe|cases|global|Or
+          [aesop.tree] Success probability: 100.0000%
+          [aesop.tree] Parent goal: 1
+          [aesop.tree] Child goals: [2, 3]
+          [aesop.tree] State: proven
+          [aesop.tree] Irrelevant: true
+          [aesop.tree] Introduced metavariables: []
+          [aesop.tree] Assigned   metavariables: []
+        [aesop.tree] ✅️ 🏁 G2 [100.0000%] ⋯ ⊢ α ∨ γ
+          [aesop.tree] case inl
+              α β γ : Prop
+              h_1 : α ∧ β
+              ⊢ α ∨ γ
+          [aesop.tree] ✅️ Metadata
+            [aesop.tree] ID: 2
+            [aesop.tree] ✅️ Pre-normalisation goal (_uniq.94):
+              [aesop.tree] case inl
+                  α β γ : Prop
+                  h_1 : α ∧ β
+                  ⊢ α ∨ γ
+            [aesop.tree] Post-normalisation goal: <goal not normalised>
+            [aesop.tree] Metavariables: []
+            [aesop.tree] Parent rapp:  some (1)
+            [aesop.tree] Child rapps:  []
+            [aesop.tree] Origin: subgoal
+            [aesop.tree] Depth: 2
+            [aesop.tree] State: 🏁 provenByNormalization
+            [aesop.tree] Forward rule matches: 0
+            [aesop.tree] Irrelevant: yes
+            [aesop.tree] Forced unprovable: no
+            [aesop.tree] Added in iteration: 2
+            [aesop.tree] Last expanded in iteration: 4
+            [aesop.tree] ✅️ Forward state
+              [aesop.tree] 
+            [aesop.tree] Unsafe rule queue: <not selected>
+            [aesop.tree] Failed rules: <none>
+        [aesop.tree] ✅️ 🏁 G3 [100.0000%] ⋯ ⊢ α ∨ γ
+          [aesop.tree] case inr
+              α β γ : Prop
+              h_2 : γ
+              ⊢ α ∨ γ
+          [aesop.tree] ✅️ Metadata
+            [aesop.tree] ID: 3
+            [aesop.tree] ✅️ Pre-normalisation goal (_uniq.99):
+              [aesop.tree] case inr
+                  α β γ : Prop
+                  h_2 : γ
+                  ⊢ α ∨ γ
+            [aesop.tree] Post-normalisation goal: <goal not normalised>
+            [aesop.tree] Metavariables: []
+            [aesop.tree] Parent rapp:  some (1)
+            [aesop.tree] Child rapps:  []
+            [aesop.tree] Origin: subgoal
+            [aesop.tree] Depth: 2
+            [aesop.tree] State: 🏁 provenByNormalization
+            [aesop.tree] Forward rule matches: 0
+            [aesop.tree] Irrelevant: yes
+            [aesop.tree] Forced unprovable: no
+            [aesop.tree] Added in iteration: 2
+            [aesop.tree] Last expanded in iteration: 3
+            [aesop.tree] ✅️ Forward state
+              [aesop.tree] 
+            [aesop.tree] Unsafe rule queue: <not selected>
+            [aesop.tree] Failed rules: <none>
+info: AesopTest/NormSimp.lean:24:2: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ α ∨ γ
+  [aesop.tree] α β γ : Prop
+      h : α ∧ β ∨ γ
+      ⊢ α ∨ γ
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.297):
+      [aesop.tree] α β γ : Prop
+          h : α ∧ β ∨ γ
+          ⊢ α ∨ γ
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.297):
+      [aesop.tree] α β γ : Prop
+          h : α ∧ β ∨ γ
+          ⊢ α ∨ γ
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ α ∨ γ
+      [aesop.tree] α β γ : Prop
+          h : α ∧ β ∨ γ
+          ⊢ α ∨ γ
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.297):
+          [aesop.tree] α β γ : Prop
+              h : α ∧ β ∨ γ
+              ⊢ α ∨ γ
+        [aesop.tree] ✅️ Post-normalisation goal (_uniq.297):
+          [aesop.tree] α β γ : Prop
+              h : α ∧ β ∨ γ
+              ⊢ α ∨ γ
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  [1]
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByRuleApplication
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] ✅️ Failed rules:
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+      [aesop.tree] ✅️ 🏁 R1 [100.0000%] safe|cases|global|Or
+        [aesop.tree] ✅️ Metadata
+          [aesop.tree] ID: 1
+          [aesop.tree] Rule: [100/safe] safe|cases|global|Or
+          [aesop.tree] Success probability: 100.0000%
+          [aesop.tree] Parent goal: 1
+          [aesop.tree] Child goals: [2, 3]
+          [aesop.tree] State: proven
+          [aesop.tree] Irrelevant: true
+          [aesop.tree] Introduced metavariables: []
+          [aesop.tree] Assigned   metavariables: []
+        [aesop.tree] ✅️ 🏁 G2 [100.0000%] ⋯ ⊢ α ∨ γ
+          [aesop.tree] case inl
+              α β γ : Prop
+              h_1 : α ∧ β
+              ⊢ α ∨ γ
+          [aesop.tree] ✅️ Metadata
+            [aesop.tree] ID: 2
+            [aesop.tree] ✅️ Pre-normalisation goal (_uniq.332):
+              [aesop.tree] case inl
+                  α β γ : Prop
+                  h_1 : α ∧ β
+                  ⊢ α ∨ γ
+            [aesop.tree] Post-normalisation goal: <goal not normalised>
+            [aesop.tree] Metavariables: []
+            [aesop.tree] Parent rapp:  some (1)
+            [aesop.tree] Child rapps:  []
+            [aesop.tree] Origin: subgoal
+            [aesop.tree] Depth: 2
+            [aesop.tree] State: 🏁 provenByNormalization
+            [aesop.tree] Forward rule matches: 0
+            [aesop.tree] Irrelevant: yes
+            [aesop.tree] Forced unprovable: no
+            [aesop.tree] Added in iteration: 2
+            [aesop.tree] Last expanded in iteration: 4
+            [aesop.tree] ✅️ Forward state
+              [aesop.tree] 
+            [aesop.tree] Unsafe rule queue: <not selected>
+            [aesop.tree] Failed rules: <none>
+        [aesop.tree] ✅️ 🏁 G3 [100.0000%] ⋯ ⊢ α ∨ γ
+          [aesop.tree] case inr
+              α β γ : Prop
+              h_2 : γ
+              ⊢ α ∨ γ
+          [aesop.tree] ✅️ Metadata
+            [aesop.tree] ID: 3
+            [aesop.tree] ✅️ Pre-normalisation goal (_uniq.337):
+              [aesop.tree] case inr
+                  α β γ : Prop
+                  h_2 : γ
+                  ⊢ α ∨ γ
+            [aesop.tree] Post-normalisation goal: <goal not normalised>
+            [aesop.tree] Metavariables: []
+            [aesop.tree] Parent rapp:  some (1)
+            [aesop.tree] Child rapps:  []
+            [aesop.tree] Origin: subgoal
+            [aesop.tree] Depth: 2
+            [aesop.tree] State: 🏁 provenByNormalization
+            [aesop.tree] Forward rule matches: 0
+            [aesop.tree] Irrelevant: yes
+            [aesop.tree] Forced unprovable: no
+            [aesop.tree] Added in iteration: 2
+            [aesop.tree] Last expanded in iteration: 3
+            [aesop.tree] ✅️ Forward state
+              [aesop.tree] 
+            [aesop.tree] Unsafe rule queue: <not selected>
+            [aesop.tree] Failed rules: <none>
+error: AesopTest/NormSimp.lean:33:2: tactic 'aesop' failed, failed to prove the goal after exhaustive search.
+info: AesopTest/NormSimp.lean:33:2: [aesop.tree] ✅️ ❌️ G0 [100.0000%] ⋯ ⊢ β
+  [aesop.tree] α β : Prop
+      ha : α
+      h : α → β
+      ⊢ β
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.536):
+      [aesop.tree] α β : Prop
+          ha : α
+          h : α → β
+          ⊢ β
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.536):
+      [aesop.tree] α β : Prop
+          ha : α
+          h : α → β
+          ⊢ β
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: ❌️ unprovable
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ ❌️ R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: unprovable
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ ❌️ G1 [100.0000%] ⋯ ⊢ β
+      [aesop.tree] α β : Prop
+          ha : α
+          h : α → β
+          ⊢ β
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.536):
+          [aesop.tree] α β : Prop
+              ha : α
+              h : α → β
+              ⊢ β
+        [aesop.tree] ✅️ Post-normalisation goal (_uniq.1051):
+          [aesop.tree] α β : Prop
+              ha : α
+              h : True → β
+              ⊢ β
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: ❌️ unprovable
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <empty>
+        [aesop.tree] Failed rules: <none>
+error: AesopTest/NormSimp.lean:31:0: ❌️ Docstring on `#guard_msgs` does not match generated message:
+
+  error: tactic 'aesop' failed, failed to prove the goal after exhaustive search.
++ ---
++ trace: [aesop.tree] ✅️ ❌️ G0 [100.0000%] ⋯ ⊢ β
++   [aesop.tree] α β : Prop
++       ha : α
++       h : α → β
++       ⊢ β
++   [aesop.tree] ✅️ Metadata
++     [aesop.tree] ID: 0
++     [aesop.tree] ✅️ Pre-normalisation goal (_uniq.536):
++       [aesop.tree] α β : Prop
++           ha : α
++           h : α → β
++           ⊢ β
++     [aesop.tree] ✅️ Post-normalisation goal (_uniq.536):
++       [aesop.tree] α β : Prop
++           ha : α
++           h : α → β
++           ⊢ β
++     [aesop.tree] Metavariables: []
++     [aesop.tree] Parent rapp:  none
++     [aesop.tree] Child rapps:  [0]
++     [aesop.tree] Origin: subgoal
++     [aesop.tree] Depth: 0
++     [aesop.tree] State: ❌️ unprovable
++     [aesop.tree] Forward rule matches: 0
++     [aesop.tree] Irrelevant: yes
++     [aesop.tree] Forced unprovable: no
++     [aesop.tree] Added in iteration: 1
++     [aesop.tree] Last expanded in iteration: 1
++     [aesop.tree] ✅️ Forward state
++       [aesop.tree] 
++     [aesop.tree] Unsafe rule queue: <not selected>
++     [aesop.tree] Failed rules: <none>
++   [aesop.tree] ✅️ ❌️ R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
++     [aesop.tree] ✅️ Metadata
++       [aesop.tree] ID: 0
++       [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
++       [aesop.tree] Success probability: 100.0000%
++       [aesop.tree] Parent goal: 0
++       [aesop.tree] Child goals: [1]
++       [aesop.tree] State: unprovable
++       [aesop.tree] Irrelevant: true
++       [aesop.tree] Introduced metavariables: []
++       [aesop.tree] Assigned   metavariables: []
++     [aesop.tree] ✅️ ❌️ G1 [100.0000%] ⋯ ⊢ β
++       [aesop.tree] α β : Prop
++           ha : α
++           h : α → β
++           ⊢ β
++       [aesop.tree] ✅️ Metadata
++         [aesop.tree] ID: 1
++         [aesop.tree] ✅️ Pre-normalisation goal (_uniq.536):
++           [aesop.tree] α β : Prop
++               ha : α
++               h : α → β
++               ⊢ β
++         [aesop.tree] ✅️ Post-normalisation goal (_uniq.1051):
++           [aesop.tree] α β : Prop
++               ha : α
++               h : True → β
++               ⊢ β
++         [aesop.tree] Metavariables: []
++         [aesop.tree] Parent rapp:  some (0)
++         [aesop.tree] Child rapps:  []
++         [aesop.tree] Origin: subgoal
++         [aesop.tree] Depth: 1
++         [aesop.tree] State: ❌️ unprovable
++         [aesop.tree] Forward rule matches: 0
++         [aesop.tree] Irrelevant: yes
++         [aesop.tree] Forced unprovable: no
++         [aesop.tree] Added in iteration: 1
++         [aesop.tree] Last expanded in iteration: 2
++         [aesop.tree] ✅️ Forward state
++           [aesop.tree] 
++         [aesop.tree] Unsafe rule queue: <empty>
++         [aesop.tree] Failed rules: <none>
+info: AesopTest/NormSimp.lean:38:2: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ β
+  [aesop.tree] α β : Prop
+      ha : α
+      h : α → β
+      ⊢ β
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.1783):
+      [aesop.tree] α β : Prop
+          ha : α
+          h : α → β
+          ⊢ β
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.1783):
+      [aesop.tree] α β : Prop
+          ha : α
+          h : α → β
+          ⊢ β
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ β
+      [aesop.tree] α β : Prop
+          ha : α
+          h : α → β
+          ⊢ β
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.1783):
+          [aesop.tree] α β : Prop
+              ha : α
+              h : α → β
+              ⊢ β
+        [aesop.tree] Post-normalisation goal: <goal not normalised>
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByNormalization
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+error: AesopTest/NormSimp.lean:47:2: tactic 'aesop' failed, failed to prove the goal after exhaustive search.
+info: AesopTest/NormSimp.lean:47:2: [aesop.tree] ✅️ ❌️ G0 [100.0000%] ⋯ ⊢ (true && decide (false = false)) = true
+  [aesop.tree] ⊢ (true && decide (false = false)) = true
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.2038):
+      [aesop.tree] ⊢ (true && decide (false = false)) = true
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.2038):
+      [aesop.tree] ⊢ (true && decide (false = false)) = true
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: ❌️ unprovable
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ ❌️ R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: unprovable
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ ❌️ G1 [100.0000%] ⋯ ⊢ (true && decide (false = false)) = true
+      [aesop.tree] ⊢ (true && decide (false = false)) = true
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.2038):
+          [aesop.tree] ⊢ (true && decide (false = false)) = true
+        [aesop.tree] ✅️ Post-normalisation goal (_uniq.2038):
+          [aesop.tree] ⊢ (true && decide (false = false)) = true
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: ❌️ unprovable
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <empty>
+        [aesop.tree] Failed rules: <none>
+error: AesopTest/NormSimp.lean:45:0: ❌️ Docstring on `#guard_msgs` does not match generated message:
+
+  error: tactic 'aesop' failed, failed to prove the goal after exhaustive search.
++ ---
++ trace: [aesop.tree] ✅️ ❌️ G0 [100.0000%] ⋯ ⊢ (true && decide (false = false)) = true
++   [aesop.tree] ⊢ (true && decide (false = false)) = true
++   [aesop.tree] ✅️ Metadata
++     [aesop.tree] ID: 0
++     [aesop.tree] ✅️ Pre-normalisation goal (_uniq.2038):
++       [aesop.tree] ⊢ (true && decide (false = false)) = true
++     [aesop.tree] ✅️ Post-normalisation goal (_uniq.2038):
++       [aesop.tree] ⊢ (true && decide (false = false)) = true
++     [aesop.tree] Metavariables: []
++     [aesop.tree] Parent rapp:  none
++     [aesop.tree] Child rapps:  [0]
++     [aesop.tree] Origin: subgoal
++     [aesop.tree] Depth: 0
++     [aesop.tree] State: ❌️ unprovable
++     [aesop.tree] Forward rule matches: 0
++     [aesop.tree] Irrelevant: yes
++     [aesop.tree] Forced unprovable: no
++     [aesop.tree] Added in iteration: 1
++     [aesop.tree] Last expanded in iteration: 1
++     [aesop.tree] ✅️ Forward state
++       [aesop.tree] 
++     [aesop.tree] Unsafe rule queue: <not selected>
++     [aesop.tree] Failed rules: <none>
++   [aesop.tree] ✅️ ❌️ R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
++     [aesop.tree] ✅️ Metadata
++       [aesop.tree] ID: 0
++       [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
++       [aesop.tree] Success probability: 100.0000%
++       [aesop.tree] Parent goal: 0
++       [aesop.tree] Child goals: [1]
++       [aesop.tree] State: unprovable
++       [aesop.tree] Irrelevant: true
++       [aesop.tree] Introduced metavariables: []
++       [aesop.tree] Assigned   metavariables: []
++     [aesop.tree] ✅️ ❌️ G1 [100.0000%] ⋯ ⊢ (true && decide (false = false)) = true
++       [aesop.tree] ⊢ (true && decide (false = false)) = true
++       [aesop.tree] ✅️ Metadata
++         [aesop.tree] ID: 1
++         [aesop.tree] ✅️ Pre-normalisation goal (_uniq.2038):
++           [aesop.tree] ⊢ (true && decide (false = false)) = true
++         [aesop.tree] ✅️ Post-normalisation goal (_uniq.2038):
++           [aesop.tree] ⊢ (true && decide (false = false)) = true
++         [aesop.tree] Metavariables: []
++         [aesop.tree] Parent rapp:  some (0)
++         [aesop.tree] Child rapps:  []
++         [aesop.tree] Origin: subgoal
++         [aesop.tree] Depth: 1
++         [aesop.tree] State: ❌️ unprovable
++         [aesop.tree] Forward rule matches: 0
++         [aesop.tree] Irrelevant: yes
++         [aesop.tree] Forced unprovable: no
++         [aesop.tree] Added in iteration: 1
++         [aesop.tree] Last expanded in iteration: 2
++         [aesop.tree] ✅️ Forward state
++           [aesop.tree] 
++         [aesop.tree] Unsafe rule queue: <empty>
++         [aesop.tree] Failed rules: <none>
+info: AesopTest/NormSimp.lean:52:2: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ (true && decide (false = false)) = true
+  [aesop.tree] ⊢ (true && decide (false = false)) = true
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.2548):
+      [aesop.tree] ⊢ (true && decide (false = false)) = true
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.2548):
+      [aesop.tree] ⊢ (true && decide (false = false)) = true
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ (true && decide (false = false)) = true
+      [aesop.tree] ⊢ (true && decide (false = false)) = true
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.2548):
+          [aesop.tree] ⊢ (true && decide (false = false)) = true
+        [aesop.tree] Post-normalisation goal: <goal not normalised>
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByNormalization
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+error: AesopTest/NormSimp.lean:62:2: tactic 'aesop' failed, failed to prove the goal after exhaustive search.
+info: AesopTest/NormSimp.lean:62:2: [aesop.tree] ✅️ ❌️ G0 [100.0000%] ⋯ ⊢ α
+  [aesop.tree] α : Prop
+      ha : α
+      ⊢ α
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.3869):
+      [aesop.tree] α : Prop
+          ha : α
+          ⊢ α
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.3869):
+      [aesop.tree] α : Prop
+          ha : α
+          ⊢ α
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: ❌️ unprovable
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ ❌️ R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: unprovable
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ ❌️ G1 [100.0000%] ⋯ ⊢ α
+      [aesop.tree] α : Prop
+          ha : α
+          ⊢ α
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.3869):
+          [aesop.tree] α : Prop
+              ha : α
+              ⊢ α
+        [aesop.tree] ✅️ Post-normalisation goal (_uniq.3869):
+          [aesop.tree] α : Prop
+              ha : α
+              ⊢ α
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: ❌️ unprovable
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <empty>
+        [aesop.tree] Failed rules: <none>
+error: AesopTest/NormSimp.lean:60:0: ❌️ Docstring on `#guard_msgs` does not match generated message:
+
+  error: tactic 'aesop' failed, failed to prove the goal after exhaustive search.
++ ---
++ trace: [aesop.tree] ✅️ ❌️ G0 [100.0000%] ⋯ ⊢ α
++   [aesop.tree] α : Prop
++       ha : α
++       ⊢ α
++   [aesop.tree] ✅️ Metadata
++     [aesop.tree] ID: 0
++     [aesop.tree] ✅️ Pre-normalisation goal (_uniq.3869):
++       [aesop.tree] α : Prop
++           ha : α
++           ⊢ α
++     [aesop.tree] ✅️ Post-normalisation goal (_uniq.3869):
++       [aesop.tree] α : Prop
++           ha : α
++           ⊢ α
++     [aesop.tree] Metavariables: []
++     [aesop.tree] Parent rapp:  none
++     [aesop.tree] Child rapps:  [0]
++     [aesop.tree] Origin: subgoal
++     [aesop.tree] Depth: 0
++     [aesop.tree] State: ❌️ unprovable
++     [aesop.tree] Forward rule matches: 0
++     [aesop.tree] Irrelevant: yes
++     [aesop.tree] Forced unprovable: no
++     [aesop.tree] Added in iteration: 1
++     [aesop.tree] Last expanded in iteration: 1
++     [aesop.tree] ✅️ Forward state
++       [aesop.tree] 
++     [aesop.tree] Unsafe rule queue: <not selected>
++     [aesop.tree] Failed rules: <none>
++   [aesop.tree] ✅️ ❌️ R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
++     [aesop.tree] ✅️ Metadata
++       [aesop.tree] ID: 0
++       [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
++       [aesop.tree] Success probability: 100.0000%
++       [aesop.tree] Parent goal: 0
++       [aesop.tree] Child goals: [1]
++       [aesop.tree] State: unprovable
++       [aesop.tree] Irrelevant: true
++       [aesop.tree] Introduced metavariables: []
++       [aesop.tree] Assigned   metavariables: []
++     [aesop.tree] ✅️ ❌️ G1 [100.0000%] ⋯ ⊢ α
++       [aesop.tree] α : Prop
++           ha : α
++           ⊢ α
++       [aesop.tree] ✅️ Metadata
++         [aesop.tree] ID: 1
++         [aesop.tree] ✅️ Pre-normalisation goal (_uniq.3869):
++           [aesop.tree] α : Prop
++               ha : α
++               ⊢ α
++         [aesop.tree] ✅️ Post-normalisation goal (_uniq.3869):
++           [aesop.tree] α : Prop
++               ha : α
++               ⊢ α
++         [aesop.tree] Metavariables: []
++         [aesop.tree] Parent rapp:  some (0)
++         [aesop.tree] Child rapps:  []
++         [aesop.tree] Origin: subgoal
++         [aesop.tree] Depth: 1
++         [aesop.tree] State: ❌️ unprovable
++         [aesop.tree] Forward rule matches: 0
++         [aesop.tree] Irrelevant: yes
++         [aesop.tree] Forced unprovable: no
++         [aesop.tree] Added in iteration: 1
++         [aesop.tree] Last expanded in iteration: 2
++         [aesop.tree] ✅️ Forward state
++           [aesop.tree] 
++         [aesop.tree] Unsafe rule queue: <empty>
++         [aesop.tree] Failed rules: <none>
+info: AesopTest/NormSimp.lean:66:2: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ α
+  [aesop.tree] α : Prop
+      ha : α
+      ⊢ α
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.4071):
+      [aesop.tree] α : Prop
+          ha : α
+          ⊢ α
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.4071):
+      [aesop.tree] α : Prop
+          ha : α
+          ⊢ α
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ α
+      [aesop.tree] α : Prop
+          ha : α
+          ⊢ α
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.4071):
+          [aesop.tree] α : Prop
+              ha : α
+              ⊢ α
+        [aesop.tree] Post-normalisation goal: <goal not normalised>
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByNormalization
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+info: AesopTest/NormSimp.lean:79:18: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ T
+  [aesop.tree] ⊢ T
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.4122):
+      [aesop.tree] ⊢ T
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.4122):
+      [aesop.tree] ⊢ T
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ T
+      [aesop.tree] ⊢ T
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.4122):
+          [aesop.tree] ⊢ T
+        [aesop.tree] Post-normalisation goal: <goal not normalised>
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByNormalization
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+error: AesopTest/NormSimp.lean:89:2: tactic 'aesop' failed, failed to prove the goal after exhaustive search.
+info: AesopTest/NormSimp.lean:89:2: [aesop.tree] ✅️ ❌️ G0 [100.0000%] ⋯ ⊢ T
+  [aesop.tree] ⊢ T
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.4165):
+      [aesop.tree] ⊢ T
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.4165):
+      [aesop.tree] ⊢ T
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: ❌️ unprovable
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ ❌️ R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: unprovable
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ ❌️ G1 [100.0000%] ⋯ ⊢ T
+      [aesop.tree] ⊢ T
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.4165):
+          [aesop.tree] ⊢ T
+        [aesop.tree] ✅️ Post-normalisation goal (_uniq.4352):
+          [aesop.tree] ⊢ False
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: ❌️ unprovable
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <empty>
+        [aesop.tree] ✅️ Failed rules:
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses
+          [aesop.tree] [75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps
+error: AesopTest/NormSimp.lean:87:0: ❌️ Docstring on `#guard_msgs` does not match generated message:
+
+  error: tactic 'aesop' failed, failed to prove the goal after exhaustive search.
++ ---
++ trace: [aesop.tree] ✅️ ❌️ G0 [100.0000%] ⋯ ⊢ T
++   [aesop.tree] ⊢ T
++   [aesop.tree] ✅️ Metadata
++     [aesop.tree] ID: 0
++     [aesop.tree] ✅️ Pre-normalisation goal (_uniq.4165):
++       [aesop.tree] ⊢ T
++     [aesop.tree] ✅️ Post-normalisation goal (_uniq.4165):
++       [aesop.tree] ⊢ T
++     [aesop.tree] Metavariables: []
++     [aesop.tree] Parent rapp:  none
++     [aesop.tree] Child rapps:  [0]
++     [aesop.tree] Origin: subgoal
++     [aesop.tree] Depth: 0
++     [aesop.tree] State: ❌️ unprovable
++     [aesop.tree] Forward rule matches: 0
++     [aesop.tree] Irrelevant: yes
++     [aesop.tree] Forced unprovable: no
++     [aesop.tree] Added in iteration: 1
++     [aesop.tree] Last expanded in iteration: 1
++     [aesop.tree] ✅️ Forward state
++       [aesop.tree] 
++     [aesop.tree] Unsafe rule queue: <not selected>
++     [aesop.tree] Failed rules: <none>
++   [aesop.tree] ✅️ ❌️ R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
++     [aesop.tree] ✅️ Metadata
++       [aesop.tree] ID: 0
++       [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
++       [aesop.tree] Success probability: 100.0000%
++       [aesop.tree] Parent goal: 0
++       [aesop.tree] Child goals: [1]
++       [aesop.tree] State: unprovable
++       [aesop.tree] Irrelevant: true
++       [aesop.tree] Introduced metavariables: []
++       [aesop.tree] Assigned   metavariables: []
++     [aesop.tree] ✅️ ❌️ G1 [100.0000%] ⋯ ⊢ T
++       [aesop.tree] ⊢ T
++       [aesop.tree] ✅️ Metadata
++         [aesop.tree] ID: 1
++         [aesop.tree] ✅️ Pre-normalisation goal (_uniq.4165):
++           [aesop.tree] ⊢ T
++         [aesop.tree] ✅️ Post-normalisation goal (_uniq.4352):
++           [aesop.tree] ⊢ False
++         [aesop.tree] Metavariables: []
++         [aesop.tree] Parent rapp:  some (0)
++         [aesop.tree] Child rapps:  []
++         [aesop.tree] Origin: subgoal
++         [aesop.tree] Depth: 1
++         [aesop.tree] State: ❌️ unprovable
++         [aesop.tree] Forward rule matches: 0
++         [aesop.tree] Irrelevant: yes
++         [aesop.tree] Forced unprovable: no
++         [aesop.tree] Added in iteration: 1
++         [aesop.tree] Last expanded in iteration: 2
++         [aesop.tree] ✅️ Forward state
++           [aesop.tree] 
++         [aesop.tree] Unsafe rule queue: <empty>
++         [aesop.tree] ✅️ Failed rules:
++           [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
++           [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
++           [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
++           [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses
++           [aesop.tree] [75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps
+error: Lean exited with code 1
+Some required targets logged failures:
+- AesopTest.NormSimp

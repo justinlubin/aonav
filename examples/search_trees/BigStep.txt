@@ -1,0 +1,1701 @@
+ℹ [422/423] Built AesopTest.BigStep (1.1s)
+info: AesopTest/BigStep.lean:56:23: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ (S,s) ==> t
+  [aesop.tree] case if_true
+      B : State → Prop
+      S T : Stmt
+      s t : State
+      hcond hcond✝ : B s
+      hbody✝ : (S,s) ==> t
+      ⊢ (S,s) ==> t
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5703.233):
+      [aesop.tree] case if_true
+          B : State → Prop
+          S T : Stmt
+          s t : State
+          hcond hcond✝ : B s
+          hbody✝ : (S,s) ==> t
+          ⊢ (S,s) ==> t
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.5703.233):
+      [aesop.tree] case if_true
+          B : State → Prop
+          S T : Stmt
+          s t : State
+          hcond hcond✝ : B s
+          hbody✝ : (S,s) ==> t
+          ⊢ (S,s) ==> t
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ (S,s) ==> t
+      [aesop.tree] B : State → Prop
+          S T : Stmt
+          s t : State
+          hcond hcond_1 : B s
+          hbody : (S,s) ==> t
+          ⊢ (S,s) ==> t
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5703.390):
+          [aesop.tree] B : State → Prop
+              S T : Stmt
+              s t : State
+              hcond hcond_1 : B s
+              hbody : (S,s) ==> t
+              ⊢ (S,s) ==> t
+        [aesop.tree] Post-normalisation goal: <goal not normalised>
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByNormalization
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+[aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ (S,s) ==> t
+  [aesop.tree] case if_false
+      B : State → Prop
+      S T : Stmt
+      s t : State
+      hcond : B s
+      hcond✝ : ¬B s
+      hbody✝ : (T,s) ==> t
+      ⊢ (S,s) ==> t
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5703.361):
+      [aesop.tree] case if_false
+          B : State → Prop
+          S T : Stmt
+          s t : State
+          hcond : B s
+          hcond✝ : ¬B s
+          hbody✝ : (T,s) ==> t
+          ⊢ (S,s) ==> t
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.5703.361):
+      [aesop.tree] case if_false
+          B : State → Prop
+          S T : Stmt
+          s t : State
+          hcond : B s
+          hcond✝ : ¬B s
+          hbody✝ : (T,s) ==> t
+          ⊢ (S,s) ==> t
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ (S,s) ==> t
+      [aesop.tree] B : State → Prop
+          S T : Stmt
+          s t : State
+          hcond : B s
+          hcond_1 : ¬B s
+          hbody : (T,s) ==> t
+          ⊢ (S,s) ==> t
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5703.466):
+          [aesop.tree] B : State → Prop
+              S T : Stmt
+              s t : State
+              hcond : B s
+              hcond_1 : ¬B s
+              hbody : (T,s) ==> t
+              ⊢ (S,s) ==> t
+        [aesop.tree] Post-normalisation goal: <goal not normalised>
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByNormalization
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+info: AesopTest/BigStep.lean:60:23: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ (T,s) ==> t
+  [aesop.tree] case if_true
+      B : State → Prop
+      S T : Stmt
+      s t : State
+      hcond : ¬B s
+      hcond✝ : B s
+      hbody✝ : (S,s) ==> t
+      ⊢ (T,s) ==> t
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5761.233):
+      [aesop.tree] case if_true
+          B : State → Prop
+          S T : Stmt
+          s t : State
+          hcond : ¬B s
+          hcond✝ : B s
+          hbody✝ : (S,s) ==> t
+          ⊢ (T,s) ==> t
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.5761.233):
+      [aesop.tree] case if_true
+          B : State → Prop
+          S T : Stmt
+          s t : State
+          hcond : ¬B s
+          hcond✝ : B s
+          hbody✝ : (S,s) ==> t
+          ⊢ (T,s) ==> t
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] safe|destruct|global|BigStep.cases_if_of_true:
+            cluster 0:
+              variables:
+                
+              slot queues:
+                slot 0: []
+                slot 1: [B, S, T, s, t, hcond, hcond✝, hbody✝]
+              complete matches:
+                
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ (T,s) ==> t
+      [aesop.tree] B : State → Prop
+          S T : Stmt
+          s t : State
+          hcond : ¬B s
+          hcond_1 : B s
+          hbody : (S,s) ==> t
+          ⊢ (T,s) ==> t
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5761.390):
+          [aesop.tree] B : State → Prop
+              S T : Stmt
+              s t : State
+              hcond : ¬B s
+              hcond_1 : B s
+              hbody : (S,s) ==> t
+              ⊢ (T,s) ==> t
+        [aesop.tree] Post-normalisation goal: <goal not normalised>
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByNormalization
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] safe|destruct|global|BigStep.cases_if_of_true:
+                cluster 0:
+                  variables:
+                    
+                  slot queues:
+                    slot 0: []
+                    slot 1: [B, S, T, s, t, hcond, hcond_1, hbody]
+                  complete matches:
+                    
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+[aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ (T,s) ==> t
+  [aesop.tree] case if_false
+      B : State → Prop
+      S T : Stmt
+      s t : State
+      hcond hcond✝ : ¬B s
+      hbody✝ : (T,s) ==> t
+      ⊢ (T,s) ==> t
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5761.361):
+      [aesop.tree] case if_false
+          B : State → Prop
+          S T : Stmt
+          s t : State
+          hcond hcond✝ : ¬B s
+          hbody✝ : (T,s) ==> t
+          ⊢ (T,s) ==> t
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.5761.361):
+      [aesop.tree] case if_false
+          B : State → Prop
+          S T : Stmt
+          s t : State
+          hcond hcond✝ : ¬B s
+          hbody✝ : (T,s) ==> t
+          ⊢ (T,s) ==> t
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] safe|destruct|global|BigStep.cases_if_of_true:
+            cluster 0:
+              variables:
+                
+              slot queues:
+                slot 0: []
+                slot 1: [B, S, T, s, t, hcond, hcond✝, hbody✝]
+              complete matches:
+                
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ (T,s) ==> t
+      [aesop.tree] B : State → Prop
+          S T : Stmt
+          s t : State
+          hcond hcond_1 : ¬B s
+          hbody : (T,s) ==> t
+          ⊢ (T,s) ==> t
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5761.453):
+          [aesop.tree] B : State → Prop
+              S T : Stmt
+              s t : State
+              hcond hcond_1 : ¬B s
+              hbody : (T,s) ==> t
+              ⊢ (T,s) ==> t
+        [aesop.tree] Post-normalisation goal: <goal not normalised>
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByNormalization
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] safe|destruct|global|BigStep.cases_if_of_true:
+                cluster 0:
+                  variables:
+                    
+                  slot queues:
+                    slot 0: []
+                    slot 1: [B, S, T, s, t, hcond, hcond_1, hbody]
+                  complete matches:
+                    
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+info: AesopTest/BigStep.lean:64:21: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ P ∧ Q ∨ ¬P ∧ R
+  [aesop.tree] case pos
+      P Q R : Prop
+      hQ : P → Q
+      hR : ¬P → R
+      h : P
+      ⊢ P ∧ Q ∨ ¬P ∧ R
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5809.17):
+      [aesop.tree] case pos
+          P Q R : Prop
+          hQ : P → Q
+          hR : ¬P → R
+          h : P
+          ⊢ P ∧ Q ∨ ¬P ∧ R
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.5809.17):
+      [aesop.tree] case pos
+          P Q R : Prop
+          hQ : P → Q
+          hR : ¬P → R
+          h : P
+          ⊢ P ∧ Q ∨ ¬P ∧ R
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] safe|destruct|global|BigStep.cases_if_of_true:
+            cluster 0:
+              variables:
+                
+              slot queues:
+                slot 0: []
+                slot 1: [P, Q, R, hQ, hR, h]
+              complete matches:
+                
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ P ∧ Q ∨ ¬P ∧ R
+      [aesop.tree] case pos
+          P Q R : Prop
+          hQ : P → Q
+          hR : ¬P → R
+          h : P
+          ⊢ P ∧ Q ∨ ¬P ∧ R
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5809.17):
+          [aesop.tree] case pos
+              P Q R : Prop
+              hQ : P → Q
+              hR : ¬P → R
+              h : P
+              ⊢ P ∧ Q ∨ ¬P ∧ R
+        [aesop.tree] Post-normalisation goal: <goal not normalised>
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByNormalization
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] safe|destruct|global|BigStep.cases_if_of_true:
+                cluster 0:
+                  variables:
+                    
+                  slot queues:
+                    slot 0: []
+                    slot 1: [P, Q, R, hQ, hR, h]
+                  complete matches:
+                    
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+[aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ P ∧ Q ∨ ¬P ∧ R
+  [aesop.tree] case neg
+      P Q R : Prop
+      hQ : P → Q
+      hR : ¬P → R
+      h : ¬P
+      ⊢ P ∧ Q ∨ ¬P ∧ R
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5809.24):
+      [aesop.tree] case neg
+          P Q R : Prop
+          hQ : P → Q
+          hR : ¬P → R
+          h : ¬P
+          ⊢ P ∧ Q ∨ ¬P ∧ R
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.5809.24):
+      [aesop.tree] case neg
+          P Q R : Prop
+          hQ : P → Q
+          hR : ¬P → R
+          h : ¬P
+          ⊢ P ∧ Q ∨ ¬P ∧ R
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+            cluster 0:
+              variables:
+                
+              slot queues:
+                slot 0: []
+                slot 1: [h]
+              complete matches:
+                
+          safe|destruct|global|BigStep.cases_if_of_true:
+            cluster 0:
+              variables:
+                
+              slot queues:
+                slot 0: []
+                slot 1: [P, Q, R, hQ, hR, h]
+              complete matches:
+                
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ P ∧ Q ∨ ¬P ∧ R
+      [aesop.tree] case neg
+          P Q R : Prop
+          hQ : P → Q
+          hR : ¬P → R
+          h : ¬P
+          ⊢ P ∧ Q ∨ ¬P ∧ R
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5809.24):
+          [aesop.tree] case neg
+              P Q R : Prop
+              hQ : P → Q
+              hR : ¬P → R
+              h : ¬P
+              ⊢ P ∧ Q ∨ ¬P ∧ R
+        [aesop.tree] Post-normalisation goal: <goal not normalised>
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByNormalization
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                cluster 0:
+                  variables:
+                    
+                  slot queues:
+                    slot 0: []
+                    slot 1: [h]
+                  complete matches:
+                    
+              safe|destruct|global|BigStep.cases_if_of_true:
+                cluster 0:
+                  variables:
+                    
+                  slot queues:
+                    slot 0: []
+                    slot 1: [P, Q, R, hQ, hR, h]
+                  complete matches:
+                    
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+info: AesopTest/BigStep.lean:68:2: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ (ifThenElse B S T,s) ==> t ↔ B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+  [aesop.tree] B : State → Prop
+      S T : Stmt
+      s t : State
+      ⊢ (ifThenElse B S T,s) ==> t ↔ B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.7):
+      [aesop.tree] B : State → Prop
+          S T : Stmt
+          s t : State
+          ⊢ (ifThenElse B S T,s) ==> t ↔ B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.5856.7):
+      [aesop.tree] B : State → Prop
+          S T : Stmt
+          s t : State
+          ⊢ (ifThenElse B S T,s) ==> t ↔ B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] safe|destruct|global|BigStep.cases_if_of_true:
+            cluster 0:
+              variables:
+                
+              slot queues:
+                slot 0: []
+                slot 1: [B, S, T, s, t]
+              complete matches:
+                
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ (ifThenElse B S T,s) ==> t ↔ B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+      [aesop.tree] B : State → Prop
+          S T : Stmt
+          s t : State
+          ⊢ (ifThenElse B S T,s) ==> t ↔ B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.7):
+          [aesop.tree] B : State → Prop
+              S T : Stmt
+              s t : State
+              ⊢ (ifThenElse B S T,s) ==> t ↔ B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+        [aesop.tree] ✅️ Post-normalisation goal (_uniq.5856.7):
+          [aesop.tree] B : State → Prop
+              S T : Stmt
+              s t : State
+              ⊢ (ifThenElse B S T,s) ==> t ↔ B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  [1]
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByRuleApplication
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] safe|destruct|global|BigStep.cases_if_of_true:
+                cluster 0:
+                  variables:
+                    
+                  slot queues:
+                    slot 0: []
+                    slot 1: [B, S, T, s, t]
+                  complete matches:
+                    
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] ✅️ Failed rules:
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+          [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5673
+          [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5674
+      [aesop.tree] ✅️ 🏁 R1 [100.0000%] safe|constructors|global|Iff
+        [aesop.tree] ✅️ Metadata
+          [aesop.tree] ID: 1
+          [aesop.tree] Rule: [100/safe] safe|constructors|global|Iff
+          [aesop.tree] Success probability: 100.0000%
+          [aesop.tree] Parent goal: 1
+          [aesop.tree] Child goals: [2, 3]
+          [aesop.tree] State: proven
+          [aesop.tree] Irrelevant: true
+          [aesop.tree] Introduced metavariables: []
+          [aesop.tree] Assigned   metavariables: []
+        [aesop.tree] ✅️ 🏁 G2 [100.0000%] ⋯ ⊢ (ifThenElse B S T,s) ==> t → B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+          [aesop.tree] case mp
+              B : State → Prop
+              S T : Stmt
+              s t : State
+              ⊢ (ifThenElse B S T,s) ==> t → B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+          [aesop.tree] ✅️ Metadata
+            [aesop.tree] ID: 2
+            [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.75):
+              [aesop.tree] case mp
+                  B : State → Prop
+                  S T : Stmt
+                  s t : State
+                  ⊢ (ifThenElse B S T,s) ==> t → B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+            [aesop.tree] ✅️ Post-normalisation goal (_uniq.5856.339):
+              [aesop.tree] case mp
+                  B : State → Prop
+                  S T : Stmt
+                  s t : State
+                  a : (ifThenElse B S T,s) ==> t
+                  ⊢ B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+            [aesop.tree] Metavariables: []
+            [aesop.tree] Parent rapp:  some (1)
+            [aesop.tree] Child rapps:  [5, 6, 7]
+            [aesop.tree] Origin: subgoal
+            [aesop.tree] Depth: 2
+            [aesop.tree] State: 🏁 provenByRuleApplication
+            [aesop.tree] Forward rule matches: 0
+            [aesop.tree] Irrelevant: yes
+            [aesop.tree] Forced unprovable: no
+            [aesop.tree] Added in iteration: 2
+            [aesop.tree] Last expanded in iteration: 7
+            [aesop.tree] ✅️ Forward state
+              [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                    cluster 0:
+                      variables:
+                        
+                      slot queues:
+                        slot 0: [a]
+                        slot 1: []
+                      complete matches:
+                        
+                  safe|destruct|global|BigStep.cases_if_of_true:
+                    cluster 0:
+                      variables:
+                        3 =>
+                          0 =>
+                            s => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                          1 =>
+                            t => ([], [a])
+                        0 =>
+                          0 =>
+                            B => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                          1 =>
+                            BigStep (ifThenElse B S T) s => ([], [a])
+                      slot queues:
+                        slot 0: []
+                        slot 1: []
+                      complete matches:
+                        
+            [aesop.tree] Unsafe rule queue: <empty>
+            [aesop.tree] ✅️ Failed rules:
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+              [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5673
+              [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5674
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses
+              [aesop.tree] [75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps
+          [aesop.tree] ✅️ ❌️ R5 [50.0000%] unsafe|constructors|global|Or
+            [aesop.tree] ✅️ Metadata
+              [aesop.tree] ID: 5
+              [aesop.tree] Rule: [50.0000%] unsafe|constructors|global|Or
+              [aesop.tree] Success probability: 50.0000%
+              [aesop.tree] Parent goal: 2
+              [aesop.tree] Child goals: [6]
+              [aesop.tree] State: unprovable
+              [aesop.tree] Irrelevant: true
+              [aesop.tree] Introduced metavariables: []
+              [aesop.tree] Assigned   metavariables: []
+            [aesop.tree] ✅️ ❌️ G6 [50.0000%] ⋯ ⊢ B s ∧ (S,s) ==> t
+              [aesop.tree] case mp.h
+                  B : State → Prop
+                  S T : Stmt
+                  s t : State
+                  a : (ifThenElse B S T,s) ==> t
+                  ⊢ B s ∧ (S,s) ==> t
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 6
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.425):
+                  [aesop.tree] case mp.h
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      a : (ifThenElse B S T,s) ==> t
+                      ⊢ B s ∧ (S,s) ==> t
+                [aesop.tree] ✅️ Post-normalisation goal (_uniq.5856.425):
+                  [aesop.tree] case mp.h
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      a : (ifThenElse B S T,s) ==> t
+                      ⊢ B s ∧ (S,s) ==> t
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (5)
+                [aesop.tree] Child rapps:  [9]
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: ❌️ unprovable
+                [aesop.tree] Forward rule matches: 0
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 6
+                [aesop.tree] Last expanded in iteration: 10
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                        cluster 0:
+                          variables:
+                            
+                          slot queues:
+                            slot 0: [a]
+                            slot 1: []
+                          complete matches:
+                            
+                      safe|destruct|global|BigStep.cases_if_of_true:
+                        cluster 0:
+                          variables:
+                            3 =>
+                              0 =>
+                                s => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                              1 =>
+                                t => ([], [a])
+                            0 =>
+                              0 =>
+                                B => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                              1 =>
+                                BigStep (ifThenElse B S T) s => ([], [a])
+                          slot queues:
+                            slot 0: []
+                            slot 1: []
+                          complete matches:
+                            
+                [aesop.tree] Unsafe rule queue: <not selected>
+                [aesop.tree] ✅️ Failed rules:
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+                  [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5673
+                  [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5674
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
+              [aesop.tree] ✅️ ❌️ R9 [50.0000%] safe|constructors|global|And
+                [aesop.tree] ✅️ Metadata
+                  [aesop.tree] ID: 9
+                  [aesop.tree] Rule: [101/safe] safe|constructors|global|And
+                  [aesop.tree] Success probability: 50.0000%
+                  [aesop.tree] Parent goal: 6
+                  [aesop.tree] Child goals: [12, 13]
+                  [aesop.tree] State: unprovable
+                  [aesop.tree] Irrelevant: true
+                  [aesop.tree] Introduced metavariables: []
+                  [aesop.tree] Assigned   metavariables: []
+                [aesop.tree] ✅️ ❓️ G12 [50.0000%] ⋯ ⊢ B s
+                  [aesop.tree] case mp.h.left
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      a : (ifThenElse B S T,s) ==> t
+                      ⊢ B s
+                  [aesop.tree] ✅️ Metadata
+                    [aesop.tree] ID: 12
+                    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.642):
+                      [aesop.tree] case mp.h.left
+                          B : State → Prop
+                          S T : Stmt
+                          s t : State
+                          a : (ifThenElse B S T,s) ==> t
+                          ⊢ B s
+                    [aesop.tree] Post-normalisation goal: <goal not normalised>
+                    [aesop.tree] Metavariables: []
+                    [aesop.tree] Parent rapp:  some (9)
+                    [aesop.tree] Child rapps:  []
+                    [aesop.tree] Origin: subgoal
+                    [aesop.tree] Depth: 4
+                    [aesop.tree] State: ❓️ unknown
+                    [aesop.tree] Forward rule matches: 0
+                    [aesop.tree] Irrelevant: yes
+                    [aesop.tree] Forced unprovable: no
+                    [aesop.tree] Added in iteration: 10
+                    [aesop.tree] Last expanded in iteration: never
+                    [aesop.tree] ✅️ Forward state
+                      [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                            cluster 0:
+                              variables:
+                                
+                              slot queues:
+                                slot 0: [a]
+                                slot 1: []
+                              complete matches:
+                                
+                          safe|destruct|global|BigStep.cases_if_of_true:
+                            cluster 0:
+                              variables:
+                                3 =>
+                                  0 =>
+                                    s => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                                  1 =>
+                                    t => ([], [a])
+                                0 =>
+                                  0 =>
+                                    B => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                                  1 =>
+                                    BigStep (ifThenElse B S T) s => ([], [a])
+                              slot queues:
+                                slot 0: []
+                                slot 1: []
+                              complete matches:
+                                
+                    [aesop.tree] Unsafe rule queue: <not selected>
+                    [aesop.tree] Failed rules: <none>
+                [aesop.tree] ✅️ ❌️ G13 [50.0000%] ⋯ ⊢ (S,s) ==> t
+                  [aesop.tree] case mp.h.right
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      a : (ifThenElse B S T,s) ==> t
+                      ⊢ (S,s) ==> t
+                  [aesop.tree] ✅️ Metadata
+                    [aesop.tree] ID: 13
+                    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.643):
+                      [aesop.tree] case mp.h.right
+                          B : State → Prop
+                          S T : Stmt
+                          s t : State
+                          a : (ifThenElse B S T,s) ==> t
+                          ⊢ (S,s) ==> t
+                    [aesop.tree] ✅️ Post-normalisation goal (_uniq.5856.643):
+                      [aesop.tree] case mp.h.right
+                          B : State → Prop
+                          S T : Stmt
+                          s t : State
+                          a : (ifThenElse B S T,s) ==> t
+                          ⊢ (S,s) ==> t
+                    [aesop.tree] Metavariables: []
+                    [aesop.tree] Parent rapp:  some (9)
+                    [aesop.tree] Child rapps:  []
+                    [aesop.tree] Origin: subgoal
+                    [aesop.tree] Depth: 4
+                    [aesop.tree] State: ❌️ unprovable
+                    [aesop.tree] Forward rule matches: 0
+                    [aesop.tree] Irrelevant: yes
+                    [aesop.tree] Forced unprovable: no
+                    [aesop.tree] Added in iteration: 10
+                    [aesop.tree] Last expanded in iteration: 11
+                    [aesop.tree] ✅️ Forward state
+                      [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                            cluster 0:
+                              variables:
+                                
+                              slot queues:
+                                slot 0: [a]
+                                slot 1: []
+                              complete matches:
+                                
+                          safe|destruct|global|BigStep.cases_if_of_true:
+                            cluster 0:
+                              variables:
+                                3 =>
+                                  0 =>
+                                    s => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                                  1 =>
+                                    t => ([], [a])
+                                0 =>
+                                  0 =>
+                                    B => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                                  1 =>
+                                    BigStep (ifThenElse B S T) s => ([], [a])
+                              slot queues:
+                                slot 0: []
+                                slot 1: []
+                              complete matches:
+                                
+                    [aesop.tree] Unsafe rule queue: <empty>
+                    [aesop.tree] ✅️ Failed rules:
+                      [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+                      [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+                      [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5673
+                      [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5674
+                      [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
+                      [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses
+                      [aesop.tree] [75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps
+          [aesop.tree] ✅️ ❌️ R6 [50.0000%] unsafe|constructors|global|Or
+            [aesop.tree] ✅️ Metadata
+              [aesop.tree] ID: 6
+              [aesop.tree] Rule: [50.0000%] unsafe|constructors|global|Or
+              [aesop.tree] Success probability: 50.0000%
+              [aesop.tree] Parent goal: 2
+              [aesop.tree] Child goals: [7]
+              [aesop.tree] State: unprovable
+              [aesop.tree] Irrelevant: true
+              [aesop.tree] Introduced metavariables: []
+              [aesop.tree] Assigned   metavariables: []
+            [aesop.tree] ✅️ ❌️ G7 [50.0000%] ⋯ ⊢ ¬B s ∧ (T,s) ==> t
+              [aesop.tree] case mp.h
+                  B : State → Prop
+                  S T : Stmt
+                  s t : State
+                  a : (ifThenElse B S T,s) ==> t
+                  ⊢ ¬B s ∧ (T,s) ==> t
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 7
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.431):
+                  [aesop.tree] case mp.h
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      a : (ifThenElse B S T,s) ==> t
+                      ⊢ ¬B s ∧ (T,s) ==> t
+                [aesop.tree] ✅️ Post-normalisation goal (_uniq.5856.431):
+                  [aesop.tree] case mp.h
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      a : (ifThenElse B S T,s) ==> t
+                      ⊢ ¬B s ∧ (T,s) ==> t
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (6)
+                [aesop.tree] Child rapps:  [8]
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: ❌️ unprovable
+                [aesop.tree] Forward rule matches: 0
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 6
+                [aesop.tree] Last expanded in iteration: 8
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                        cluster 0:
+                          variables:
+                            
+                          slot queues:
+                            slot 0: [a]
+                            slot 1: []
+                          complete matches:
+                            
+                      safe|destruct|global|BigStep.cases_if_of_true:
+                        cluster 0:
+                          variables:
+                            3 =>
+                              0 =>
+                                s => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                              1 =>
+                                t => ([], [a])
+                            0 =>
+                              0 =>
+                                B => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                              1 =>
+                                BigStep (ifThenElse B S T) s => ([], [a])
+                          slot queues:
+                            slot 0: []
+                            slot 1: []
+                          complete matches:
+                            
+                [aesop.tree] Unsafe rule queue: <not selected>
+                [aesop.tree] ✅️ Failed rules:
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+                  [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5673
+                  [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5674
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
+              [aesop.tree] ✅️ ❌️ R8 [50.0000%] safe|constructors|global|And
+                [aesop.tree] ✅️ Metadata
+                  [aesop.tree] ID: 8
+                  [aesop.tree] Rule: [101/safe] safe|constructors|global|And
+                  [aesop.tree] Success probability: 50.0000%
+                  [aesop.tree] Parent goal: 7
+                  [aesop.tree] Child goals: [10, 11]
+                  [aesop.tree] State: unprovable
+                  [aesop.tree] Irrelevant: true
+                  [aesop.tree] Introduced metavariables: []
+                  [aesop.tree] Assigned   metavariables: []
+                [aesop.tree] ✅️ ❓️ G10 [50.0000%] ⋯ ⊢ ¬B s
+                  [aesop.tree] case mp.h.left
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      a : (ifThenElse B S T,s) ==> t
+                      ⊢ ¬B s
+                  [aesop.tree] ✅️ Metadata
+                    [aesop.tree] ID: 10
+                    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.510):
+                      [aesop.tree] case mp.h.left
+                          B : State → Prop
+                          S T : Stmt
+                          s t : State
+                          a : (ifThenElse B S T,s) ==> t
+                          ⊢ ¬B s
+                    [aesop.tree] Post-normalisation goal: <goal not normalised>
+                    [aesop.tree] Metavariables: []
+                    [aesop.tree] Parent rapp:  some (8)
+                    [aesop.tree] Child rapps:  []
+                    [aesop.tree] Origin: subgoal
+                    [aesop.tree] Depth: 4
+                    [aesop.tree] State: ❓️ unknown
+                    [aesop.tree] Forward rule matches: 0
+                    [aesop.tree] Irrelevant: yes
+                    [aesop.tree] Forced unprovable: no
+                    [aesop.tree] Added in iteration: 8
+                    [aesop.tree] Last expanded in iteration: never
+                    [aesop.tree] ✅️ Forward state
+                      [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                            cluster 0:
+                              variables:
+                                
+                              slot queues:
+                                slot 0: [a]
+                                slot 1: []
+                              complete matches:
+                                
+                          safe|destruct|global|BigStep.cases_if_of_true:
+                            cluster 0:
+                              variables:
+                                3 =>
+                                  0 =>
+                                    s => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                                  1 =>
+                                    t => ([], [a])
+                                0 =>
+                                  0 =>
+                                    B => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                                  1 =>
+                                    BigStep (ifThenElse B S T) s => ([], [a])
+                              slot queues:
+                                slot 0: []
+                                slot 1: []
+                              complete matches:
+                                
+                    [aesop.tree] Unsafe rule queue: <not selected>
+                    [aesop.tree] Failed rules: <none>
+                [aesop.tree] ✅️ ❌️ G11 [50.0000%] ⋯ ⊢ (T,s) ==> t
+                  [aesop.tree] case mp.h.right
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      a : (ifThenElse B S T,s) ==> t
+                      ⊢ (T,s) ==> t
+                  [aesop.tree] ✅️ Metadata
+                    [aesop.tree] ID: 11
+                    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.511):
+                      [aesop.tree] case mp.h.right
+                          B : State → Prop
+                          S T : Stmt
+                          s t : State
+                          a : (ifThenElse B S T,s) ==> t
+                          ⊢ (T,s) ==> t
+                    [aesop.tree] ✅️ Post-normalisation goal (_uniq.5856.511):
+                      [aesop.tree] case mp.h.right
+                          B : State → Prop
+                          S T : Stmt
+                          s t : State
+                          a : (ifThenElse B S T,s) ==> t
+                          ⊢ (T,s) ==> t
+                    [aesop.tree] Metavariables: []
+                    [aesop.tree] Parent rapp:  some (8)
+                    [aesop.tree] Child rapps:  []
+                    [aesop.tree] Origin: subgoal
+                    [aesop.tree] Depth: 4
+                    [aesop.tree] State: ❌️ unprovable
+                    [aesop.tree] Forward rule matches: 0
+                    [aesop.tree] Irrelevant: yes
+                    [aesop.tree] Forced unprovable: no
+                    [aesop.tree] Added in iteration: 8
+                    [aesop.tree] Last expanded in iteration: 9
+                    [aesop.tree] ✅️ Forward state
+                      [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                            cluster 0:
+                              variables:
+                                
+                              slot queues:
+                                slot 0: [a]
+                                slot 1: []
+                              complete matches:
+                                
+                          safe|destruct|global|BigStep.cases_if_of_true:
+                            cluster 0:
+                              variables:
+                                3 =>
+                                  0 =>
+                                    s => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                                  1 =>
+                                    t => ([], [a])
+                                0 =>
+                                  0 =>
+                                    B => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                                  1 =>
+                                    BigStep (ifThenElse B S T) s => ([], [a])
+                              slot queues:
+                                slot 0: []
+                                slot 1: []
+                              complete matches:
+                                
+                    [aesop.tree] Unsafe rule queue: <empty>
+                    [aesop.tree] ✅️ Failed rules:
+                      [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+                      [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+                      [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5673
+                      [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5674
+                      [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
+                      [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses
+                      [aesop.tree] [75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps
+          [aesop.tree] ✅️ 🏁 R7 [30.0000%] unsafe|apply|global|BigStep.and_excluded
+            [aesop.tree] ✅️ Metadata
+              [aesop.tree] ID: 7
+              [aesop.tree] Rule: [30.0000%] unsafe|apply|global|BigStep.and_excluded
+              [aesop.tree] Success probability: 30.0000%
+              [aesop.tree] Parent goal: 2
+              [aesop.tree] Child goals: [8, 9]
+              [aesop.tree] State: proven
+              [aesop.tree] Irrelevant: true
+              [aesop.tree] Introduced metavariables: []
+              [aesop.tree] Assigned   metavariables: []
+            [aesop.tree] ✅️ 🏁 G8 [30.0000%] ⋯ ⊢ B s → (S,s) ==> t
+              [aesop.tree] case mp.hQ
+                  B : State → Prop
+                  S T : Stmt
+                  s t : State
+                  a : (ifThenElse B S T,s) ==> t
+                  ⊢ B s → (S,s) ==> t
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 8
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.440):
+                  [aesop.tree] case mp.hQ
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      a : (ifThenElse B S T,s) ==> t
+                      ⊢ B s → (S,s) ==> t
+                [aesop.tree] ✅️ Post-normalisation goal (_uniq.5856.756):
+                  [aesop.tree] case mp.hQ
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      a : (ifThenElse B S T,s) ==> t
+                      a_1 : B s
+                      ⊢ (S,s) ==> t
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (7)
+                [aesop.tree] Child rapps:  [11]
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: 🏁 provenByRuleApplication
+                [aesop.tree] Forward rule matches: 1
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 7
+                [aesop.tree] Last expanded in iteration: 14
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                        cluster 0:
+                          variables:
+                            
+                          slot queues:
+                            slot 0: [a]
+                            slot 1: []
+                          complete matches:
+                            
+                      safe|destruct|global|BigStep.cases_if_of_true:
+                        cluster 0:
+                          variables:
+                            3 =>
+                              0 =>
+                                s => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                              1 =>
+                                t => ([], [a])
+                                s => ([], [a_1])
+                            0 =>
+                              0 =>
+                                B => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                              1 =>
+                                BigStep (ifThenElse B S T) s => ([], [a])
+                                B => ([], [a_1])
+                          slot queues:
+                            slot 0: []
+                            slot 1: []
+                          complete matches:
+                            {0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a_1, 6 ↦ a | }
+                [aesop.tree] Unsafe rule queue: <not selected>
+                [aesop.tree] ✅️ Failed rules:
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+              [aesop.tree] ✅️ 🏁 R11 [30.0000%] safe|destruct|global|BigStep.cases_if_of_true
+                [aesop.tree] ✅️ Metadata
+                  [aesop.tree] ID: 11
+                  [aesop.tree] Rule: [1/safe] safe|destruct|global|BigStep.cases_if_of_true
+                  [aesop.tree] Success probability: 30.0000%
+                  [aesop.tree] Parent goal: 8
+                  [aesop.tree] Child goals: [15]
+                  [aesop.tree] State: proven
+                  [aesop.tree] Irrelevant: true
+                  [aesop.tree] Introduced metavariables: []
+                  [aesop.tree] Assigned   metavariables: []
+                [aesop.tree] ✅️ 🏁 G15 [30.0000%] ⋯ ⊢ (S,s) ==> t
+                  [aesop.tree] case mp.hQ
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      fwd : (S,s) ==> t
+                      ⊢ (S,s) ==> t
+                  [aesop.tree] ✅️ Metadata
+                    [aesop.tree] ID: 15
+                    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.794):
+                      [aesop.tree] case mp.hQ
+                          B : State → Prop
+                          S T : Stmt
+                          s t : State
+                          fwd : (S,s) ==> t
+                          ⊢ (S,s) ==> t
+                    [aesop.tree] Post-normalisation goal: <goal not normalised>
+                    [aesop.tree] Metavariables: []
+                    [aesop.tree] Parent rapp:  some (11)
+                    [aesop.tree] Child rapps:  []
+                    [aesop.tree] Origin: subgoal
+                    [aesop.tree] Depth: 4
+                    [aesop.tree] State: 🏁 provenByNormalization
+                    [aesop.tree] Forward rule matches: 0
+                    [aesop.tree] Irrelevant: yes
+                    [aesop.tree] Forced unprovable: no
+                    [aesop.tree] Added in iteration: 14
+                    [aesop.tree] Last expanded in iteration: 15
+                    [aesop.tree] ✅️ Forward state
+                      [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                            cluster 0:
+                              variables:
+                                
+                              slot queues:
+                                slot 0: []
+                                slot 1: []
+                              complete matches:
+                                
+                          safe|destruct|global|BigStep.cases_if_of_true:
+                            cluster 0:
+                              variables:
+                                3 =>
+                                  0 =>
+                                    s => ([], [])
+                                  1 =>
+                                    t => ([], [])
+                                    s => ([], [])
+                                0 =>
+                                  0 =>
+                                    B => ([], [])
+                                  1 =>
+                                    BigStep (ifThenElse B S T) s => ([], [])
+                                    B => ([], [])
+                              slot queues:
+                                slot 0: []
+                                slot 1: [fwd]
+                              complete matches:
+                                
+                    [aesop.tree] Unsafe rule queue: <not selected>
+                    [aesop.tree] Failed rules: <none>
+            [aesop.tree] ✅️ 🏁 G9 [30.0000%] ⋯ ⊢ ¬B s → (T,s) ==> t
+              [aesop.tree] case mp.hR
+                  B : State → Prop
+                  S T : Stmt
+                  s t : State
+                  a : (ifThenElse B S T,s) ==> t
+                  ⊢ ¬B s → (T,s) ==> t
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 9
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.441):
+                  [aesop.tree] case mp.hR
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      a : (ifThenElse B S T,s) ==> t
+                      ⊢ ¬B s → (T,s) ==> t
+                [aesop.tree] ✅️ Post-normalisation goal (_uniq.5856.704):
+                  [aesop.tree] case mp.hR
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      a : (ifThenElse B S T,s) ==> t
+                      a_1 : ¬B s
+                      ⊢ (T,s) ==> t
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (7)
+                [aesop.tree] Child rapps:  [10]
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: 🏁 provenByRuleApplication
+                [aesop.tree] Forward rule matches: 1
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 7
+                [aesop.tree] Last expanded in iteration: 12
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                        cluster 0:
+                          variables:
+                            3 =>
+                              0 =>
+                                s => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                              1 =>
+                                s => ([], [a_1])
+                            0 =>
+                              0 =>
+                                B => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                              1 =>
+                                B => ([], [a_1])
+                          slot queues:
+                            slot 0: []
+                            slot 1: []
+                          complete matches:
+                            {0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a_1, 6 ↦ a | }
+                      safe|destruct|global|BigStep.cases_if_of_true:
+                        cluster 0:
+                          variables:
+                            3 =>
+                              0 =>
+                                s => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                              1 =>
+                                t => ([], [a])
+                            0 =>
+                              0 =>
+                                B => ([{0 ↦ B, 1 ↦ S, 2 ↦ T, 3 ↦ s, 4 ↦ t, 5 ↦ a | }], [])
+                              1 =>
+                                BigStep (ifThenElse B S T) s => ([], [a])
+                          slot queues:
+                            slot 0: []
+                            slot 1: []
+                          complete matches:
+                            
+                [aesop.tree] Unsafe rule queue: <not selected>
+                [aesop.tree] ✅️ Failed rules:
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+              [aesop.tree] ✅️ 🏁 R10 [30.0000%] safe|destruct|global|BigStep.cases_if_of_false
+                [aesop.tree] ✅️ Metadata
+                  [aesop.tree] ID: 10
+                  [aesop.tree] Rule: [1/safe] safe|destruct|global|BigStep.cases_if_of_false
+                  [aesop.tree] Success probability: 30.0000%
+                  [aesop.tree] Parent goal: 9
+                  [aesop.tree] Child goals: [14]
+                  [aesop.tree] State: proven
+                  [aesop.tree] Irrelevant: true
+                  [aesop.tree] Introduced metavariables: []
+                  [aesop.tree] Assigned   metavariables: []
+                [aesop.tree] ✅️ 🏁 G14 [30.0000%] ⋯ ⊢ (T,s) ==> t
+                  [aesop.tree] case mp.hR
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      fwd : (T,s) ==> t
+                      ⊢ (T,s) ==> t
+                  [aesop.tree] ✅️ Metadata
+                    [aesop.tree] ID: 14
+                    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.754):
+                      [aesop.tree] case mp.hR
+                          B : State → Prop
+                          S T : Stmt
+                          s t : State
+                          fwd : (T,s) ==> t
+                          ⊢ (T,s) ==> t
+                    [aesop.tree] Post-normalisation goal: <goal not normalised>
+                    [aesop.tree] Metavariables: []
+                    [aesop.tree] Parent rapp:  some (10)
+                    [aesop.tree] Child rapps:  []
+                    [aesop.tree] Origin: subgoal
+                    [aesop.tree] Depth: 4
+                    [aesop.tree] State: 🏁 provenByNormalization
+                    [aesop.tree] Forward rule matches: 0
+                    [aesop.tree] Irrelevant: yes
+                    [aesop.tree] Forced unprovable: no
+                    [aesop.tree] Added in iteration: 12
+                    [aesop.tree] Last expanded in iteration: 13
+                    [aesop.tree] ✅️ Forward state
+                      [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                            cluster 0:
+                              variables:
+                                3 =>
+                                  0 =>
+                                    s => ([], [])
+                                  1 =>
+                                    s => ([], [])
+                                0 =>
+                                  0 =>
+                                    B => ([], [])
+                                  1 =>
+                                    B => ([], [])
+                              slot queues:
+                                slot 0: []
+                                slot 1: []
+                              complete matches:
+                                
+                          safe|destruct|global|BigStep.cases_if_of_true:
+                            cluster 0:
+                              variables:
+                                3 =>
+                                  0 =>
+                                    s => ([], [])
+                                  1 =>
+                                    t => ([], [])
+                                0 =>
+                                  0 =>
+                                    B => ([], [])
+                                  1 =>
+                                    BigStep (ifThenElse B S T) s => ([], [])
+                              slot queues:
+                                slot 0: []
+                                slot 1: [fwd]
+                              complete matches:
+                                
+                    [aesop.tree] Unsafe rule queue: <not selected>
+                    [aesop.tree] Failed rules: <none>
+        [aesop.tree] ✅️ 🏁 G3 [100.0000%] ⋯ ⊢ B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t → (ifThenElse B S T,s) ==> t
+          [aesop.tree] case mpr
+              B : State → Prop
+              S T : Stmt
+              s t : State
+              ⊢ B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t → (ifThenElse B S T,s) ==> t
+          [aesop.tree] ✅️ Metadata
+            [aesop.tree] ID: 3
+            [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.76):
+              [aesop.tree] case mpr
+                  B : State → Prop
+                  S T : Stmt
+                  s t : State
+                  ⊢ B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t → (ifThenElse B S T,s) ==> t
+            [aesop.tree] ✅️ Post-normalisation goal (_uniq.5856.78):
+              [aesop.tree] case mpr
+                  B : State → Prop
+                  S T : Stmt
+                  s t : State
+                  a : B s ∧ (S,s) ==> t ∨ ¬B s ∧ (T,s) ==> t
+                  ⊢ (ifThenElse B S T,s) ==> t
+            [aesop.tree] Metavariables: []
+            [aesop.tree] Parent rapp:  some (1)
+            [aesop.tree] Child rapps:  [2]
+            [aesop.tree] Origin: subgoal
+            [aesop.tree] Depth: 2
+            [aesop.tree] State: 🏁 provenByRuleApplication
+            [aesop.tree] Forward rule matches: 0
+            [aesop.tree] Irrelevant: yes
+            [aesop.tree] Forced unprovable: no
+            [aesop.tree] Added in iteration: 2
+            [aesop.tree] Last expanded in iteration: 3
+            [aesop.tree] ✅️ Forward state
+              [aesop.tree] safe|destruct|global|BigStep.cases_if_of_true:
+                    cluster 0:
+                      variables:
+                        
+                      slot queues:
+                        slot 0: []
+                        slot 1: [B, S, T, s, t, a]
+                      complete matches:
+                        
+            [aesop.tree] Unsafe rule queue: <not selected>
+            [aesop.tree] ✅️ Failed rules:
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+              [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5673
+              [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5674
+          [aesop.tree] ✅️ 🏁 R2 [100.0000%] safe|cases|global|Or
+            [aesop.tree] ✅️ Metadata
+              [aesop.tree] ID: 2
+              [aesop.tree] Rule: [100/safe] safe|cases|global|Or
+              [aesop.tree] Success probability: 100.0000%
+              [aesop.tree] Parent goal: 3
+              [aesop.tree] Child goals: [4, 5]
+              [aesop.tree] State: proven
+              [aesop.tree] Irrelevant: true
+              [aesop.tree] Introduced metavariables: []
+              [aesop.tree] Assigned   metavariables: []
+            [aesop.tree] ✅️ 🏁 G4 [100.0000%] ⋯ ⊢ (ifThenElse B S T,s) ==> t
+              [aesop.tree] case mpr.inl
+                  B : State → Prop
+                  S T : Stmt
+                  s t : State
+                  h : B s ∧ (S,s) ==> t
+                  ⊢ (ifThenElse B S T,s) ==> t
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 4
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.169):
+                  [aesop.tree] case mpr.inl
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      h : B s ∧ (S,s) ==> t
+                      ⊢ (ifThenElse B S T,s) ==> t
+                [aesop.tree] ✅️ Post-normalisation goal (_uniq.5856.307):
+                  [aesop.tree] case mpr.inl
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      left : B s
+                      right : (S,s) ==> t
+                      ⊢ (ifThenElse B S T,s) ==> t
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (2)
+                [aesop.tree] Child rapps:  [4]
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: 🏁 provenByRuleApplication
+                [aesop.tree] Forward rule matches: 0
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 3
+                [aesop.tree] Last expanded in iteration: 5
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] safe|destruct|global|BigStep.cases_if_of_true:
+                        cluster 0:
+                          variables:
+                            
+                          slot queues:
+                            slot 0: []
+                            slot 1: [B, S, T, s, t, left, right]
+                          complete matches:
+                            
+                [aesop.tree] Unsafe rule queue: <not selected>
+                [aesop.tree] ✅️ Failed rules:
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+              [aesop.tree] ✅️ 🏁 R4 [100.0000%] safe|tactic|global|_uniq.5673
+                [aesop.tree] ✅️ Metadata
+                  [aesop.tree] ID: 4
+                  [aesop.tree] Rule: [1/safe] safe|tactic|global|_uniq.5673
+                  [aesop.tree] Success probability: 100.0000%
+                  [aesop.tree] Parent goal: 4
+                  [aesop.tree] Child goals: []
+                  [aesop.tree] State: proven
+                  [aesop.tree] Irrelevant: true
+                  [aesop.tree] Introduced metavariables: []
+                  [aesop.tree] Assigned   metavariables: []
+            [aesop.tree] ✅️ 🏁 G5 [100.0000%] ⋯ ⊢ (ifThenElse B S T,s) ==> t
+              [aesop.tree] case mpr.inr
+                  B : State → Prop
+                  S T : Stmt
+                  s t : State
+                  h_1 : ¬B s ∧ (T,s) ==> t
+                  ⊢ (ifThenElse B S T,s) ==> t
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 5
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.5856.174):
+                  [aesop.tree] case mpr.inr
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      h_1 : ¬B s ∧ (T,s) ==> t
+                      ⊢ (ifThenElse B S T,s) ==> t
+                [aesop.tree] ✅️ Post-normalisation goal (_uniq.5856.229):
+                  [aesop.tree] case mpr.inr
+                      B : State → Prop
+                      S T : Stmt
+                      s t : State
+                      left : ¬B s
+                      right : (T,s) ==> t
+                      ⊢ (ifThenElse B S T,s) ==> t
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (2)
+                [aesop.tree] Child rapps:  [3]
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: 🏁 provenByRuleApplication
+                [aesop.tree] Forward rule matches: 0
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 3
+                [aesop.tree] Last expanded in iteration: 4
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] safe|destruct|global|BigStep.cases_if_of_false:
+                        cluster 0:
+                          variables:
+                            
+                          slot queues:
+                            slot 0: []
+                            slot 1: [left]
+                          complete matches:
+                            
+                      safe|destruct|global|BigStep.cases_if_of_true:
+                        cluster 0:
+                          variables:
+                            
+                          slot queues:
+                            slot 0: []
+                            slot 1: [B, S, T, s, t, right, left]
+                          complete matches:
+                            
+                [aesop.tree] Unsafe rule queue: <not selected>
+                [aesop.tree] ✅️ Failed rules:
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+                  [aesop.tree] [100.0000%] safe|tactic|global|_uniq.5673
+              [aesop.tree] ✅️ 🏁 R3 [100.0000%] safe|tactic|global|_uniq.5674
+                [aesop.tree] ✅️ Metadata
+                  [aesop.tree] ID: 3
+                  [aesop.tree] Rule: [1/safe] safe|tactic|global|_uniq.5674
+                  [aesop.tree] Success probability: 100.0000%
+                  [aesop.tree] Parent goal: 5
+                  [aesop.tree] Child goals: []
+                  [aesop.tree] State: proven
+                  [aesop.tree] Irrelevant: true
+                  [aesop.tree] Introduced metavariables: []
+                  [aesop.tree] Assigned   metavariables: []
+✔ [423/423] Built AesopTest.AuxDecl (1.7s)

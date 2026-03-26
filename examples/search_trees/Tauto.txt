@@ -1,0 +1,521 @@
+✔ [422/423] Built AesopTest.TacticConfig (896ms)
+ℹ [423/423] Built AesopTest.Tauto (1.1s)
+info: AesopTest/Tauto.lean:21:3: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨
+        (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a ↔
+      (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ ¬(c ≤ b ∧ b ≤ a ∨ b ≤ a ∧ a ≤ c ∨ a ≤ c ∧ c ≤ b)
+  [aesop.tree] α : Type
+      inst✝ : LE α
+      a b c : α
+      x₀ x₁ x₂ : Prop
+      this1 : x₀ → x₁ → a ≤ c
+      this2 : x₁ → x₂ → b ≤ a
+      this3 : x₂ → x₀ → c ≤ b
+      ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a ↔
+          (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ ¬(c ≤ b ∧ b ≤ a ∨ b ≤ a ∧ a ≤ c ∨ a ≤ c ∧ c ≤ b)
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.112):
+      [aesop.tree] α : Type
+          inst✝ : LE α
+          a b c : α
+          x₀ x₁ x₂ : Prop
+          this1 : x₀ → x₁ → a ≤ c
+          this2 : x₁ → x₂ → b ≤ a
+          this3 : x₂ → x₀ → c ≤ b
+          ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a ↔
+              (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ ¬(c ≤ b ∧ b ≤ a ∨ b ≤ a ∧ a ≤ c ∨ a ≤ c ∧ c ≤ b)
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.112):
+      [aesop.tree] α : Type
+          inst✝ : LE α
+          a b c : α
+          x₀ x₁ x₂ : Prop
+          this1 : x₀ → x₁ → a ≤ c
+          this2 : x₁ → x₂ → b ≤ a
+          this3 : x₂ → x₀ → c ≤ b
+          ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a ↔
+              (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ ¬(c ≤ b ∧ b ≤ a ∨ b ≤ a ∧ a ≤ c ∨ a ≤ c ∧ c ≤ b)
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨
+            (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a ↔
+          (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ ¬(c ≤ b ∧ b ≤ a ∨ b ≤ a ∧ a ≤ c ∨ a ≤ c ∧ c ≤ b)
+      [aesop.tree] α : Type
+          inst : LE α
+          a b c : α
+          x₀ x₁ x₂ : Prop
+          this1 : x₀ → x₁ → a ≤ c
+          this2 : x₁ → x₂ → b ≤ a
+          this3 : x₂ → x₀ → c ≤ b
+          ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a ↔
+              (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ ¬(c ≤ b ∧ b ≤ a ∨ b ≤ a ∧ a ≤ c ∨ a ≤ c ∧ c ≤ b)
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.113):
+          [aesop.tree] α : Type
+              inst : LE α
+              a b c : α
+              x₀ x₁ x₂ : Prop
+              this1 : x₀ → x₁ → a ≤ c
+              this2 : x₁ → x₂ → b ≤ a
+              this3 : x₂ → x₀ → c ≤ b
+              ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a ↔
+                  (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ ¬(c ≤ b ∧ b ≤ a ∨ b ≤ a ∧ a ≤ c ∨ a ≤ c ∧ c ≤ b)
+        [aesop.tree] ✅️ Post-normalisation goal (_uniq.1548):
+          [aesop.tree] α : Type
+              inst : LE α
+              a b c : α
+              x₀ x₁ x₂ : Prop
+              this1 : x₀ → x₁ → a ≤ c
+              this2 : x₁ → x₂ → b ≤ a
+              this3 : x₂ → x₀ → c ≤ b
+              ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a ↔
+                  (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  [1]
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByRuleApplication
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] ✅️ Failed rules:
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+      [aesop.tree] ✅️ 🏁 R1 [100.0000%] safe|constructors|global|Iff
+        [aesop.tree] ✅️ Metadata
+          [aesop.tree] ID: 1
+          [aesop.tree] Rule: [100/safe] safe|constructors|global|Iff
+          [aesop.tree] Success probability: 100.0000%
+          [aesop.tree] Parent goal: 1
+          [aesop.tree] Child goals: [2, 3]
+          [aesop.tree] State: proven
+          [aesop.tree] Irrelevant: true
+          [aesop.tree] Introduced metavariables: []
+          [aesop.tree] Assigned   metavariables: []
+        [aesop.tree] ✅️ 🏁 G2 [100.0000%] ⋯ ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨
+                (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a →
+              (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+          [aesop.tree] case mp
+              α : Type
+              inst : LE α
+              a b c : α
+              x₀ x₁ x₂ : Prop
+              this1 : x₀ → x₁ → a ≤ c
+              this2 : x₁ → x₂ → b ≤ a
+              this3 : x₂ → x₀ → c ≤ b
+              ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a →
+                  (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+          [aesop.tree] ✅️ Metadata
+            [aesop.tree] ID: 2
+            [aesop.tree] ✅️ Pre-normalisation goal (_uniq.4338):
+              [aesop.tree] case mp
+                  α : Type
+                  inst : LE α
+                  a b c : α
+                  x₀ x₁ x₂ : Prop
+                  this1 : x₀ → x₁ → a ≤ c
+                  this2 : x₁ → x₂ → b ≤ a
+                  this3 : x₂ → x₀ → c ≤ b
+                  ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a →
+                      (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+            [aesop.tree] ✅️ Post-normalisation goal (_uniq.13240):
+              [aesop.tree] case mp
+                  α : Type
+                  inst : LE α
+                  a b c : α
+                  x₀ x₁ x₂ : Prop
+                  this1 : x₀ → x₁ → a ≤ c
+                  this2 : x₁ → x₂ → b ≤ a
+                  this3 : x₂ → x₀ → c ≤ b
+                  a_1 : (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+                  ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+            [aesop.tree] Metavariables: []
+            [aesop.tree] Parent rapp:  some (1)
+            [aesop.tree] Child rapps:  [3]
+            [aesop.tree] Origin: subgoal
+            [aesop.tree] Depth: 2
+            [aesop.tree] State: 🏁 provenByRuleApplication
+            [aesop.tree] Forward rule matches: 0
+            [aesop.tree] Irrelevant: yes
+            [aesop.tree] Forced unprovable: no
+            [aesop.tree] Added in iteration: 2
+            [aesop.tree] Last expanded in iteration: 7
+            [aesop.tree] ✅️ Forward state
+              [aesop.tree] 
+            [aesop.tree] Unsafe rule queue: <not selected>
+            [aesop.tree] ✅️ Failed rules:
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+          [aesop.tree] ✅️ 🏁 R3 [100.0000%] safe|cases|global|Or
+            [aesop.tree] ✅️ Metadata
+              [aesop.tree] ID: 3
+              [aesop.tree] Rule: [100/safe] safe|cases|global|Or
+              [aesop.tree] Success probability: 100.0000%
+              [aesop.tree] Parent goal: 2
+              [aesop.tree] Child goals: [7, 8, 9]
+              [aesop.tree] State: proven
+              [aesop.tree] Irrelevant: true
+              [aesop.tree] Introduced metavariables: []
+              [aesop.tree] Assigned   metavariables: []
+            [aesop.tree] ✅️ 🏁 G7 [100.0000%] ⋯ ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧
+                  (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+              [aesop.tree] case mp.inl
+                  α : Type
+                  inst : LE α
+                  a b c : α
+                  x₀ x₁ x₂ : Prop
+                  this1 : x₀ → x₁ → a ≤ c
+                  this2 : x₁ → x₂ → b ≤ a
+                  this3 : x₂ → x₀ → c ≤ b
+                  h : (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b
+                  ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 7
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.14816):
+                  [aesop.tree] case mp.inl
+                      α : Type
+                      inst : LE α
+                      a b c : α
+                      x₀ x₁ x₂ : Prop
+                      this1 : x₀ → x₁ → a ≤ c
+                      this2 : x₁ → x₂ → b ≤ a
+                      this3 : x₂ → x₀ → c ≤ b
+                      h : (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b
+                      ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+                [aesop.tree] Post-normalisation goal: <goal not normalised>
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (3)
+                [aesop.tree] Child rapps:  []
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: 🏁 provenByNormalization
+                [aesop.tree] Forward rule matches: 0
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 7
+                [aesop.tree] Last expanded in iteration: 10
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] 
+                [aesop.tree] Unsafe rule queue: <not selected>
+                [aesop.tree] Failed rules: <none>
+            [aesop.tree] ✅️ 🏁 G8 [100.0000%] ⋯ ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧
+                  (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+              [aesop.tree] case mp.inr.inl
+                  α : Type
+                  inst : LE α
+                  a b c : α
+                  x₀ x₁ x₂ : Prop
+                  this1 : x₀ → x₁ → a ≤ c
+                  this2 : x₁ → x₂ → b ≤ a
+                  this3 : x₂ → x₀ → c ≤ b
+                  h : (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c
+                  ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 8
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.14887):
+                  [aesop.tree] case mp.inr.inl
+                      α : Type
+                      inst : LE α
+                      a b c : α
+                      x₀ x₁ x₂ : Prop
+                      this1 : x₀ → x₁ → a ≤ c
+                      this2 : x₁ → x₂ → b ≤ a
+                      this3 : x₂ → x₀ → c ≤ b
+                      h : (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c
+                      ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+                [aesop.tree] Post-normalisation goal: <goal not normalised>
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (3)
+                [aesop.tree] Child rapps:  []
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: 🏁 provenByNormalization
+                [aesop.tree] Forward rule matches: 0
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 7
+                [aesop.tree] Last expanded in iteration: 9
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] 
+                [aesop.tree] Unsafe rule queue: <not selected>
+                [aesop.tree] Failed rules: <none>
+            [aesop.tree] ✅️ 🏁 G9 [100.0000%] ⋯ ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧
+                  (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+              [aesop.tree] case mp.inr.inr
+                  α : Type
+                  inst : LE α
+                  a b c : α
+                  x₀ x₁ x₂ : Prop
+                  this1 : x₀ → x₁ → a ≤ c
+                  this2 : x₁ → x₂ → b ≤ a
+                  this3 : x₂ → x₀ → c ≤ b
+                  h_2 : (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+                  ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 9
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.14892):
+                  [aesop.tree] case mp.inr.inr
+                      α : Type
+                      inst : LE α
+                      a b c : α
+                      x₀ x₁ x₂ : Prop
+                      this1 : x₀ → x₁ → a ≤ c
+                      this2 : x₁ → x₂ → b ≤ a
+                      this3 : x₂ → x₀ → c ≤ b
+                      h_2 : (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+                      ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b)
+                [aesop.tree] Post-normalisation goal: <goal not normalised>
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (3)
+                [aesop.tree] Child rapps:  []
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: 🏁 provenByNormalization
+                [aesop.tree] Forward rule matches: 0
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 7
+                [aesop.tree] Last expanded in iteration: 8
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] 
+                [aesop.tree] Unsafe rule queue: <not selected>
+                [aesop.tree] Failed rules: <none>
+        [aesop.tree] ✅️ 🏁 G3 [100.0000%] ⋯ ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧
+                (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b) →
+              (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+          [aesop.tree] case mpr
+              α : Type
+              inst : LE α
+              a b c : α
+              x₀ x₁ x₂ : Prop
+              this1 : x₀ → x₁ → a ≤ c
+              this2 : x₁ → x₂ → b ≤ a
+              this3 : x₂ → x₀ → c ≤ b
+              ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b) →
+                  (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+          [aesop.tree] ✅️ Metadata
+            [aesop.tree] ID: 3
+            [aesop.tree] ✅️ Pre-normalisation goal (_uniq.4339):
+              [aesop.tree] case mpr
+                  α : Type
+                  inst : LE α
+                  a b c : α
+                  x₀ x₁ x₂ : Prop
+                  this1 : x₀ → x₁ → a ≤ c
+                  this2 : x₁ → x₂ → b ≤ a
+                  this3 : x₂ → x₀ → c ≤ b
+                  ⊢ (x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀) ∧ (c ≤ b → ¬b ≤ a) ∧ (b ≤ a → ¬a ≤ c) ∧ (a ≤ c → ¬c ≤ b) →
+                      (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+            [aesop.tree] ✅️ Post-normalisation goal (_uniq.6388):
+              [aesop.tree] case mpr
+                  α : Type
+                  inst : LE α
+                  a b c : α
+                  x₀ x₁ x₂ : Prop
+                  this1 : x₀ → x₁ → a ≤ c
+                  this2 : x₁ → x₂ → b ≤ a
+                  this3 : x₂ → x₀ → c ≤ b
+                  left : x₀ ∧ x₁ ∨ x₁ ∧ x₂ ∨ x₂ ∧ x₀
+                  left_1 : c ≤ b → ¬b ≤ a
+                  left_2 : b ≤ a → ¬a ≤ c
+                  right : a ≤ c → ¬c ≤ b
+                  ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+            [aesop.tree] Metavariables: []
+            [aesop.tree] Parent rapp:  some (1)
+            [aesop.tree] Child rapps:  [2]
+            [aesop.tree] Origin: subgoal
+            [aesop.tree] Depth: 2
+            [aesop.tree] State: 🏁 provenByRuleApplication
+            [aesop.tree] Forward rule matches: 0
+            [aesop.tree] Irrelevant: yes
+            [aesop.tree] Forced unprovable: no
+            [aesop.tree] Added in iteration: 2
+            [aesop.tree] Last expanded in iteration: 3
+            [aesop.tree] ✅️ Forward state
+              [aesop.tree] 
+            [aesop.tree] Unsafe rule queue: <not selected>
+            [aesop.tree] ✅️ Failed rules:
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+          [aesop.tree] ✅️ 🏁 R2 [100.0000%] safe|cases|global|Or
+            [aesop.tree] ✅️ Metadata
+              [aesop.tree] ID: 2
+              [aesop.tree] Rule: [100/safe] safe|cases|global|Or
+              [aesop.tree] Success probability: 100.0000%
+              [aesop.tree] Parent goal: 3
+              [aesop.tree] Child goals: [4, 5, 6]
+              [aesop.tree] State: proven
+              [aesop.tree] Irrelevant: true
+              [aesop.tree] Introduced metavariables: []
+              [aesop.tree] Assigned   metavariables: []
+            [aesop.tree] ✅️ 🏁 G4 [100.0000%] ⋯ ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨
+                  (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+              [aesop.tree] case mpr.inl
+                  α : Type
+                  inst : LE α
+                  a b c : α
+                  x₀ x₁ x₂ : Prop
+                  this1 : x₀ → x₁ → a ≤ c
+                  this2 : x₁ → x₂ → b ≤ a
+                  this3 : x₂ → x₀ → c ≤ b
+                  left_1 : c ≤ b → ¬b ≤ a
+                  left_2 : b ≤ a → ¬a ≤ c
+                  right : a ≤ c → ¬c ≤ b
+                  h : x₀ ∧ x₁
+                  ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 4
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.8719):
+                  [aesop.tree] case mpr.inl
+                      α : Type
+                      inst : LE α
+                      a b c : α
+                      x₀ x₁ x₂ : Prop
+                      this1 : x₀ → x₁ → a ≤ c
+                      this2 : x₁ → x₂ → b ≤ a
+                      this3 : x₂ → x₀ → c ≤ b
+                      left_1 : c ≤ b → ¬b ≤ a
+                      left_2 : b ≤ a → ¬a ≤ c
+                      right : a ≤ c → ¬c ≤ b
+                      h : x₀ ∧ x₁
+                      ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+                [aesop.tree] Post-normalisation goal: <goal not normalised>
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (2)
+                [aesop.tree] Child rapps:  []
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: 🏁 provenByNormalization
+                [aesop.tree] Forward rule matches: 0
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 3
+                [aesop.tree] Last expanded in iteration: 6
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] 
+                [aesop.tree] Unsafe rule queue: <not selected>
+                [aesop.tree] Failed rules: <none>
+            [aesop.tree] ✅️ 🏁 G5 [100.0000%] ⋯ ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨
+                  (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+              [aesop.tree] case mpr.inr.inl
+                  α : Type
+                  inst : LE α
+                  a b c : α
+                  x₀ x₁ x₂ : Prop
+                  this1 : x₀ → x₁ → a ≤ c
+                  this2 : x₁ → x₂ → b ≤ a
+                  this3 : x₂ → x₀ → c ≤ b
+                  left_1 : c ≤ b → ¬b ≤ a
+                  left_2 : b ≤ a → ¬a ≤ c
+                  right : a ≤ c → ¬c ≤ b
+                  h : x₁ ∧ x₂
+                  ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 5
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.8802):
+                  [aesop.tree] case mpr.inr.inl
+                      α : Type
+                      inst : LE α
+                      a b c : α
+                      x₀ x₁ x₂ : Prop
+                      this1 : x₀ → x₁ → a ≤ c
+                      this2 : x₁ → x₂ → b ≤ a
+                      this3 : x₂ → x₀ → c ≤ b
+                      left_1 : c ≤ b → ¬b ≤ a
+                      left_2 : b ≤ a → ¬a ≤ c
+                      right : a ≤ c → ¬c ≤ b
+                      h : x₁ ∧ x₂
+                      ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+                [aesop.tree] Post-normalisation goal: <goal not normalised>
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (2)
+                [aesop.tree] Child rapps:  []
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: 🏁 provenByNormalization
+                [aesop.tree] Forward rule matches: 0
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 3
+                [aesop.tree] Last expanded in iteration: 5
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] 
+                [aesop.tree] Unsafe rule queue: <not selected>
+                [aesop.tree] Failed rules: <none>
+            [aesop.tree] ✅️ 🏁 G6 [100.0000%] ⋯ ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨
+                  (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+              [aesop.tree] case mpr.inr.inr
+                  α : Type
+                  inst : LE α
+                  a b c : α
+                  x₀ x₁ x₂ : Prop
+                  this1 : x₀ → x₁ → a ≤ c
+                  this2 : x₁ → x₂ → b ≤ a
+                  this3 : x₂ → x₀ → c ≤ b
+                  left_1 : c ≤ b → ¬b ≤ a
+                  left_2 : b ≤ a → ¬a ≤ c
+                  right : a ≤ c → ¬c ≤ b
+                  h_2 : x₂ ∧ x₀
+                  ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 6
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.8807):
+                  [aesop.tree] case mpr.inr.inr
+                      α : Type
+                      inst : LE α
+                      a b c : α
+                      x₀ x₁ x₂ : Prop
+                      this1 : x₀ → x₁ → a ≤ c
+                      this2 : x₁ → x₂ → b ≤ a
+                      this3 : x₂ → x₀ → c ≤ b
+                      left_1 : c ≤ b → ¬b ≤ a
+                      left_2 : b ≤ a → ¬a ≤ c
+                      right : a ≤ c → ¬c ≤ b
+                      h_2 : x₂ ∧ x₀
+                      ⊢ (x₀ ∧ ¬b ≤ a) ∧ x₁ ∧ ¬c ≤ b ∨ (x₁ ∧ ¬c ≤ b) ∧ x₂ ∧ ¬a ≤ c ∨ (x₂ ∧ ¬a ≤ c) ∧ x₀ ∧ ¬b ≤ a
+                [aesop.tree] Post-normalisation goal: <goal not normalised>
+                [aesop.tree] Metavariables: []
+                [aesop.tree] Parent rapp:  some (2)
+                [aesop.tree] Child rapps:  []
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: 🏁 provenByNormalization
+                [aesop.tree] Forward rule matches: 0
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 3
+                [aesop.tree] Last expanded in iteration: 4
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] 
+                [aesop.tree] Unsafe rule queue: <not selected>
+                [aesop.tree] Failed rules: <none>

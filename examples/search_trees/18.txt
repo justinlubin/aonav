@@ -1,0 +1,792 @@
+✖ [422/423] Building AesopTest.«18» (991ms)
+trace: .> LEAN_PATH=/Users/mpreigh/aesop-1/.lake/packages/batteries/.lake/build/lib/lean:/Users/mpreigh/aesop-1/.lake/build/lib/lean /Users/mpreigh/.elan/toolchains/leanprover--lean4---v4.29.0-rc8/bin/lean /Users/mpreigh/aesop-1/AesopTest/18.lean -o /Users/mpreigh/aesop-1/.lake/build/lib/lean/AesopTest/18.olean -i /Users/mpreigh/aesop-1/.lake/build/lib/lean/AesopTest/18.ilean -c /Users/mpreigh/aesop-1/.lake/build/ir/AesopTest/18.c --setup /Users/mpreigh/aesop-1/.lake/build/ir/AesopTest/18.setup.json --json
+error: AesopTest/18.lean:28:6: tactic 'aesop' failed, failed to prove the goal after exhaustive search.
+info: AesopTest/18.lean:23:4: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ ∃ l r, [] = l ++ v :: r
+  [aesop.tree] α : Type u_1
+      inst✝ : DecidableEq α
+      v : α
+      h : v ∈ []
+      ⊢ ∃ l r, [] = l ++ v :: r
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.34):
+      [aesop.tree] α : Type u_1
+          inst✝ : DecidableEq α
+          v : α
+          h : v ∈ []
+          ⊢ ∃ l r, [] = l ++ v :: r
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.220.34):
+      [aesop.tree] α : Type u_1
+          inst✝ : DecidableEq α
+          v : α
+          h : v ∈ []
+          ⊢ ∃ l r, [] = l ++ v :: r
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: 🏁 provenByRuleApplication
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: proven
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ ∃ l r, [] = l ++ v :: r
+      [aesop.tree] α : Type u_1
+          inst : DecidableEq α
+          v : α
+          h : v ∈ []
+          ⊢ ∃ l r, [] = l ++ v :: r
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.45):
+          [aesop.tree] α : Type u_1
+              inst : DecidableEq α
+              v : α
+              h : v ∈ []
+              ⊢ ∃ l r, [] = l ++ v :: r
+        [aesop.tree] Post-normalisation goal: <goal not normalised>
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  []
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: 🏁 provenByNormalization
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] Failed rules: <none>
+info: AesopTest/18.lean:28:6: [aesop.tree] ✅️ ❌️ G0 [100.0000%] ⋯ ⊢ ∃ l r, x :: xs = l ++ v :: r
+  [aesop.tree] α : Type u_1
+      inst✝ : DecidableEq α
+      v x : α
+      xs : List α
+      ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
+      h : v ∈ x :: xs
+      no : ¬x = v
+      ⊢ ∃ l r, x :: xs = l ++ v :: r
+  [aesop.tree] ✅️ Metadata
+    [aesop.tree] ID: 0
+    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.216):
+      [aesop.tree] α : Type u_1
+          inst✝ : DecidableEq α
+          v x : α
+          xs : List α
+          ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
+          h : v ∈ x :: xs
+          no : ¬x = v
+          ⊢ ∃ l r, x :: xs = l ++ v :: r
+    [aesop.tree] ✅️ Post-normalisation goal (_uniq.220.216):
+      [aesop.tree] α : Type u_1
+          inst✝ : DecidableEq α
+          v x : α
+          xs : List α
+          ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
+          h : v ∈ x :: xs
+          no : ¬x = v
+          ⊢ ∃ l r, x :: xs = l ++ v :: r
+    [aesop.tree] Metavariables: []
+    [aesop.tree] Parent rapp:  none
+    [aesop.tree] Child rapps:  [0]
+    [aesop.tree] Origin: subgoal
+    [aesop.tree] Depth: 0
+    [aesop.tree] State: ❌️ unprovable
+    [aesop.tree] Forward rule matches: 0
+    [aesop.tree] Irrelevant: yes
+    [aesop.tree] Forced unprovable: no
+    [aesop.tree] Added in iteration: 1
+    [aesop.tree] Last expanded in iteration: 1
+    [aesop.tree] ✅️ Forward state
+      [aesop.tree] 
+    [aesop.tree] Unsafe rule queue: <not selected>
+    [aesop.tree] Failed rules: <none>
+  [aesop.tree] ✅️ ❌️ R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
+    [aesop.tree] ✅️ Metadata
+      [aesop.tree] ID: 0
+      [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
+      [aesop.tree] Success probability: 100.0000%
+      [aesop.tree] Parent goal: 0
+      [aesop.tree] Child goals: [1]
+      [aesop.tree] State: unprovable
+      [aesop.tree] Irrelevant: true
+      [aesop.tree] Introduced metavariables: []
+      [aesop.tree] Assigned   metavariables: []
+    [aesop.tree] ✅️ ❌️ G1 [100.0000%] ⋯ ⊢ ∃ l r, x :: xs = l ++ v :: r
+      [aesop.tree] α : Type u_1
+          inst : DecidableEq α
+          v x : α
+          xs : List α
+          ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
+          h : v ∈ x :: xs
+          no : ¬x = v
+          ⊢ ∃ l r, x :: xs = l ++ v :: r
+      [aesop.tree] ✅️ Metadata
+        [aesop.tree] ID: 1
+        [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.403):
+          [aesop.tree] α : Type u_1
+              inst : DecidableEq α
+              v x : α
+              xs : List α
+              ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
+              h : v ∈ x :: xs
+              no : ¬x = v
+              ⊢ ∃ l r, x :: xs = l ++ v :: r
+        [aesop.tree] ✅️ Post-normalisation goal (_uniq.220.2490):
+          [aesop.tree] α : Type u_1
+              inst : DecidableEq α
+              v x : α
+              xs : List α
+              ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
+              h : v = x ∨ v ∈ xs
+              no : ¬x = v
+              ⊢ ∃ l r, x :: xs = l ++ v :: r
+        [aesop.tree] Metavariables: []
+        [aesop.tree] Parent rapp:  some (0)
+        [aesop.tree] Child rapps:  [1]
+        [aesop.tree] Origin: subgoal
+        [aesop.tree] Depth: 1
+        [aesop.tree] State: ❌️ unprovable
+        [aesop.tree] Forward rule matches: 0
+        [aesop.tree] Irrelevant: yes
+        [aesop.tree] Forced unprovable: no
+        [aesop.tree] Added in iteration: 1
+        [aesop.tree] Last expanded in iteration: 2
+        [aesop.tree] ✅️ Forward state
+          [aesop.tree] 
+        [aesop.tree] Unsafe rule queue: <not selected>
+        [aesop.tree] ✅️ Failed rules:
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+          [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+      [aesop.tree] ✅️ ❌️ R1 [100.0000%] safe|cases|global|Or
+        [aesop.tree] ✅️ Metadata
+          [aesop.tree] ID: 1
+          [aesop.tree] Rule: [100/safe] safe|cases|global|Or
+          [aesop.tree] Success probability: 100.0000%
+          [aesop.tree] Parent goal: 1
+          [aesop.tree] Child goals: [2, 3]
+          [aesop.tree] State: unprovable
+          [aesop.tree] Irrelevant: true
+          [aesop.tree] Introduced metavariables: []
+          [aesop.tree] Assigned   metavariables: []
+        [aesop.tree] ✅️ 🏁 G2 [100.0000%] ⋯ ⊢ ∃ l r, x :: xs = l ++ v :: r
+          [aesop.tree] case inl
+              α : Type u_1
+              inst : DecidableEq α
+              v x : α
+              xs : List α
+              ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
+              no : ¬x = v
+              h_1 : v = x
+              ⊢ ∃ l r, x :: xs = l ++ v :: r
+          [aesop.tree] ✅️ Metadata
+            [aesop.tree] ID: 2
+            [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.3574):
+              [aesop.tree] case inl
+                  α : Type u_1
+                  inst : DecidableEq α
+                  v x : α
+                  xs : List α
+                  ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
+                  no : ¬x = v
+                  h_1 : v = x
+                  ⊢ ∃ l r, x :: xs = l ++ v :: r
+            [aesop.tree] Post-normalisation goal: <goal not normalised>
+            [aesop.tree] Metavariables: []
+            [aesop.tree] Parent rapp:  some (1)
+            [aesop.tree] Child rapps:  []
+            [aesop.tree] Origin: subgoal
+            [aesop.tree] Depth: 2
+            [aesop.tree] State: 🏁 provenByNormalization
+            [aesop.tree] Forward rule matches: 0
+            [aesop.tree] Irrelevant: yes
+            [aesop.tree] Forced unprovable: no
+            [aesop.tree] Added in iteration: 2
+            [aesop.tree] Last expanded in iteration: 4
+            [aesop.tree] ✅️ Forward state
+              [aesop.tree] 
+            [aesop.tree] Unsafe rule queue: <not selected>
+            [aesop.tree] Failed rules: <none>
+        [aesop.tree] ✅️ ❌️ G3 [100.0000%] ⋯ ⊢ ∃ l r, x :: xs = l ++ v :: r
+          [aesop.tree] case inr
+              α : Type u_1
+              inst : DecidableEq α
+              v x : α
+              xs : List α
+              ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
+              no : ¬x = v
+              h_2 : v ∈ xs
+              ⊢ ∃ l r, x :: xs = l ++ v :: r
+          [aesop.tree] ✅️ Metadata
+            [aesop.tree] ID: 3
+            [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.3579):
+              [aesop.tree] case inr
+                  α : Type u_1
+                  inst : DecidableEq α
+                  v x : α
+                  xs : List α
+                  ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
+                  no : ¬x = v
+                  h_2 : v ∈ xs
+                  ⊢ ∃ l r, x :: xs = l ++ v :: r
+            [aesop.tree] ✅️ Post-normalisation goal (_uniq.220.8034):
+              [aesop.tree] case inr
+                  α : Type u_1
+                  inst : DecidableEq α
+                  v x : α
+                  no : ¬x = v
+                  w w_1 : List α
+                  ⊢ ∃ l r, x :: (w ++ v :: w_1) = l ++ v :: r
+            [aesop.tree] Metavariables: []
+            [aesop.tree] Parent rapp:  some (1)
+            [aesop.tree] Child rapps:  [2]
+            [aesop.tree] Origin: subgoal
+            [aesop.tree] Depth: 2
+            [aesop.tree] State: ❌️ unprovable
+            [aesop.tree] Forward rule matches: 0
+            [aesop.tree] Irrelevant: yes
+            [aesop.tree] Forced unprovable: no
+            [aesop.tree] Added in iteration: 2
+            [aesop.tree] Last expanded in iteration: 3
+            [aesop.tree] ✅️ Forward state
+              [aesop.tree] 
+            [aesop.tree] Unsafe rule queue: <empty>
+            [aesop.tree] ✅️ Failed rules:
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
+              [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses
+              [aesop.tree] [75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps
+          [aesop.tree] ✅️ ❌️ R2 [30.0000%] unsafe|constructors|global|Exists
+            [aesop.tree] ✅️ Metadata
+              [aesop.tree] ID: 2
+              [aesop.tree] Rule: [30.0000%] unsafe|constructors|global|Exists
+              [aesop.tree] Success probability: 30.0000%
+              [aesop.tree] Parent goal: 3
+              [aesop.tree] Child goals: [4]
+              [aesop.tree] State: unprovable
+              [aesop.tree] Irrelevant: true
+              [aesop.tree] Introduced metavariables: [_uniq.220.8627]
+              [aesop.tree] Assigned   metavariables: []
+            [aesop.tree] ✅️ ❌️ G4 [24.0000%] ⋯ ⊢ ∃ r, x :: (w ++ v :: w_1) = ?inr.w ++ v :: r
+              [aesop.tree] case inr.h
+                  α : Type u_1
+                  inst : DecidableEq α
+                  v x : α
+                  no : ¬x = v
+                  w w_1 : List α
+                  ⊢ ∃ r, x :: (w ++ v :: w_1) = ?inr.w ++ v :: r
+              [aesop.tree] ✅️ Metadata
+                [aesop.tree] ID: 4
+                [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.8628):
+                  [aesop.tree] case inr.h
+                      α : Type u_1
+                      inst : DecidableEq α
+                      v x : α
+                      no : ¬x = v
+                      w w_1 : List α
+                      ⊢ ∃ r, x :: (w ++ v :: w_1) = ?inr.w ++ v :: r
+                [aesop.tree] ✅️ Post-normalisation goal (_uniq.220.8628):
+                  [aesop.tree] case inr.h
+                      α : Type u_1
+                      inst : DecidableEq α
+                      v x : α
+                      no : ¬x = v
+                      w w_1 : List α
+                      ⊢ ∃ r, x :: (w ++ v :: w_1) = ?inr.w ++ v :: r
+                [aesop.tree] Metavariables: [_uniq.220.8627]
+                [aesop.tree] Parent rapp:  some (2)
+                [aesop.tree] Child rapps:  [3]
+                [aesop.tree] Origin: subgoal
+                [aesop.tree] Depth: 3
+                [aesop.tree] State: ❌️ unprovable
+                [aesop.tree] Forward rule matches: 0
+                [aesop.tree] Irrelevant: yes
+                [aesop.tree] Forced unprovable: no
+                [aesop.tree] Added in iteration: 3
+                [aesop.tree] Last expanded in iteration: 5
+                [aesop.tree] ✅️ Forward state
+                  [aesop.tree] 
+                [aesop.tree] Unsafe rule queue: <empty>
+                [aesop.tree] ✅️ Failed rules:
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
+                  [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses
+                  [aesop.tree] [75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps
+              [aesop.tree] ✅️ ❌️ R3 [9.0000%] unsafe|constructors|global|Exists
+                [aesop.tree] ✅️ Metadata
+                  [aesop.tree] ID: 3
+                  [aesop.tree] Rule: [30.0000%] unsafe|constructors|global|Exists
+                  [aesop.tree] Success probability: 9.0000%
+                  [aesop.tree] Parent goal: 4
+                  [aesop.tree] Child goals: [5]
+                  [aesop.tree] State: unprovable
+                  [aesop.tree] Irrelevant: true
+                  [aesop.tree] Introduced metavariables: [_uniq.220.9406]
+                  [aesop.tree] Assigned   metavariables: []
+                [aesop.tree] ✅️ ❌️ G5 [5.7600%] ⋯ ⊢ x :: (w ++ v :: w_1) = ?inr.w ++ v :: ?inr.h.w
+                  [aesop.tree] case inr.h.h
+                      α : Type u_1
+                      inst : DecidableEq α
+                      v x : α
+                      no : ¬x = v
+                      w w_1 : List α
+                      ⊢ x :: (w ++ v :: w_1) = ?inr.w ++ v :: ?inr.h.w
+                  [aesop.tree] ✅️ Metadata
+                    [aesop.tree] ID: 5
+                    [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.9407):
+                      [aesop.tree] case inr.h.h
+                          α : Type u_1
+                          inst : DecidableEq α
+                          v x : α
+                          no : ¬x = v
+                          w w_1 : List α
+                          ⊢ x :: (w ++ v :: w_1) = ?inr.w ++ v :: ?inr.h.w
+                    [aesop.tree] ✅️ Post-normalisation goal (_uniq.220.9407):
+                      [aesop.tree] case inr.h.h
+                          α : Type u_1
+                          inst : DecidableEq α
+                          v x : α
+                          no : ¬x = v
+                          w w_1 : List α
+                          ⊢ x :: (w ++ v :: w_1) = ?inr.w ++ v :: ?inr.h.w
+                    [aesop.tree] Metavariables: [_uniq.220.9406, _uniq.220.8627]
+                    [aesop.tree] Parent rapp:  some (3)
+                    [aesop.tree] Child rapps:  []
+                    [aesop.tree] Origin: subgoal
+                    [aesop.tree] Depth: 4
+                    [aesop.tree] State: ❌️ unprovable
+                    [aesop.tree] Forward rule matches: 0
+                    [aesop.tree] Irrelevant: yes
+                    [aesop.tree] Forced unprovable: no
+                    [aesop.tree] Added in iteration: 5
+                    [aesop.tree] Last expanded in iteration: 6
+                    [aesop.tree] ✅️ Forward state
+                      [aesop.tree] 
+                    [aesop.tree] Unsafe rule queue: <empty>
+                    [aesop.tree] ✅️ Failed rules:
+                      [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
+                      [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
+                      [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
+                      [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses
+                      [aesop.tree] [75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps
+error: AesopTest/18.lean:18:0: ❌️ Docstring on `#guard_msgs` does not match generated message:
+
+  error: tactic 'aesop' failed, failed to prove the goal after exhaustive search.
++ ---
++ trace: [aesop.tree] ✅️ 🏁 G0 [100.0000%] ⋯ ⊢ ∃ l r, [] = l ++ v :: r
++   [aesop.tree] α : Type u_1
++       inst✝ : DecidableEq α
++       v : α
++       h : v ∈ []
++       ⊢ ∃ l r, [] = l ++ v :: r
++   [aesop.tree] ✅️ Metadata
++     [aesop.tree] ID: 0
++     [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.34):
++       [aesop.tree] α : Type u_1
++           inst✝ : DecidableEq α
++           v : α
++           h : v ∈ []
++           ⊢ ∃ l r, [] = l ++ v :: r
++     [aesop.tree] ✅️ Post-normalisation goal (_uniq.220.34):
++       [aesop.tree] α : Type u_1
++           inst✝ : DecidableEq α
++           v : α
++           h : v ∈ []
++           ⊢ ∃ l r, [] = l ++ v :: r
++     [aesop.tree] Metavariables: []
++     [aesop.tree] Parent rapp:  none
++     [aesop.tree] Child rapps:  [0]
++     [aesop.tree] Origin: subgoal
++     [aesop.tree] Depth: 0
++     [aesop.tree] State: 🏁 provenByRuleApplication
++     [aesop.tree] Forward rule matches: 0
++     [aesop.tree] Irrelevant: yes
++     [aesop.tree] Forced unprovable: no
++     [aesop.tree] Added in iteration: 1
++     [aesop.tree] Last expanded in iteration: 1
++     [aesop.tree] ✅️ Forward state
++       [aesop.tree] 
++     [aesop.tree] Unsafe rule queue: <not selected>
++     [aesop.tree] Failed rules: <none>
++   [aesop.tree] ✅️ 🏁 R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
++     [aesop.tree] ✅️ Metadata
++       [aesop.tree] ID: 0
++       [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
++       [aesop.tree] Success probability: 100.0000%
++       [aesop.tree] Parent goal: 0
++       [aesop.tree] Child goals: [1]
++       [aesop.tree] State: proven
++       [aesop.tree] Irrelevant: true
++       [aesop.tree] Introduced metavariables: []
++       [aesop.tree] Assigned   metavariables: []
++     [aesop.tree] ✅️ 🏁 G1 [100.0000%] ⋯ ⊢ ∃ l r, [] = l ++ v :: r
++       [aesop.tree] α : Type u_1
++           inst : DecidableEq α
++           v : α
++           h : v ∈ []
++           ⊢ ∃ l r, [] = l ++ v :: r
++       [aesop.tree] ✅️ Metadata
++         [aesop.tree] ID: 1
++         [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.45):
++           [aesop.tree] α : Type u_1
++               inst : DecidableEq α
++               v : α
++               h : v ∈ []
++               ⊢ ∃ l r, [] = l ++ v :: r
++         [aesop.tree] Post-normalisation goal: <goal not normalised>
++         [aesop.tree] Metavariables: []
++         [aesop.tree] Parent rapp:  some (0)
++         [aesop.tree] Child rapps:  []
++         [aesop.tree] Origin: subgoal
++         [aesop.tree] Depth: 1
++         [aesop.tree] State: 🏁 provenByNormalization
++         [aesop.tree] Forward rule matches: 0
++         [aesop.tree] Irrelevant: yes
++         [aesop.tree] Forced unprovable: no
++         [aesop.tree] Added in iteration: 1
++         [aesop.tree] Last expanded in iteration: 2
++         [aesop.tree] ✅️ Forward state
++           [aesop.tree] 
++         [aesop.tree] Unsafe rule queue: <not selected>
++         [aesop.tree] Failed rules: <none>
++ ---
++ trace: [aesop.tree] ✅️ ❌️ G0 [100.0000%] ⋯ ⊢ ∃ l r, x :: xs = l ++ v :: r
++   [aesop.tree] α : Type u_1
++       inst✝ : DecidableEq α
++       v x : α
++       xs : List α
++       ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
++       h : v ∈ x :: xs
++       no : ¬x = v
++       ⊢ ∃ l r, x :: xs = l ++ v :: r
++   [aesop.tree] ✅️ Metadata
++     [aesop.tree] ID: 0
++     [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.216):
++       [aesop.tree] α : Type u_1
++           inst✝ : DecidableEq α
++           v x : α
++           xs : List α
++           ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
++           h : v ∈ x :: xs
++           no : ¬x = v
++           ⊢ ∃ l r, x :: xs = l ++ v :: r
++     [aesop.tree] ✅️ Post-normalisation goal (_uniq.220.216):
++       [aesop.tree] α : Type u_1
++           inst✝ : DecidableEq α
++           v x : α
++           xs : List α
++           ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
++           h : v ∈ x :: xs
++           no : ¬x = v
++           ⊢ ∃ l r, x :: xs = l ++ v :: r
++     [aesop.tree] Metavariables: []
++     [aesop.tree] Parent rapp:  none
++     [aesop.tree] Child rapps:  [0]
++     [aesop.tree] Origin: subgoal
++     [aesop.tree] Depth: 0
++     [aesop.tree] State: ❌️ unprovable
++     [aesop.tree] Forward rule matches: 0
++     [aesop.tree] Irrelevant: yes
++     [aesop.tree] Forced unprovable: no
++     [aesop.tree] Added in iteration: 1
++     [aesop.tree] Last expanded in iteration: 1
++     [aesop.tree] ✅️ Forward state
++       [aesop.tree] 
++     [aesop.tree] Unsafe rule queue: <not selected>
++     [aesop.tree] Failed rules: <none>
++   [aesop.tree] ✅️ ❌️ R0 [100.0000%] safe|tactic|global|Aesop.BuiltinRule.preprocess
++     [aesop.tree] ✅️ Metadata
++       [aesop.tree] ID: 0
++       [aesop.tree] Rule: [0/safe] safe|tactic|global|Aesop.BuiltinRule.preprocess
++       [aesop.tree] Success probability: 100.0000%
++       [aesop.tree] Parent goal: 0
++       [aesop.tree] Child goals: [1]
++       [aesop.tree] State: unprovable
++       [aesop.tree] Irrelevant: true
++       [aesop.tree] Introduced metavariables: []
++       [aesop.tree] Assigned   metavariables: []
++     [aesop.tree] ✅️ ❌️ G1 [100.0000%] ⋯ ⊢ ∃ l r, x :: xs = l ++ v :: r
++       [aesop.tree] α : Type u_1
++           inst : DecidableEq α
++           v x : α
++           xs : List α
++           ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
++           h : v ∈ x :: xs
++           no : ¬x = v
++           ⊢ ∃ l r, x :: xs = l ++ v :: r
++       [aesop.tree] ✅️ Metadata
++         [aesop.tree] ID: 1
++         [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.403):
++           [aesop.tree] α : Type u_1
++               inst : DecidableEq α
++               v x : α
++               xs : List α
++               ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
++               h : v ∈ x :: xs
++               no : ¬x = v
++               ⊢ ∃ l r, x :: xs = l ++ v :: r
++         [aesop.tree] ✅️ Post-normalisation goal (_uniq.220.2490):
++           [aesop.tree] α : Type u_1
++               inst : DecidableEq α
++               v x : α
++               xs : List α
++               ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
++               h : v = x ∨ v ∈ xs
++               no : ¬x = v
++               ⊢ ∃ l r, x :: xs = l ++ v :: r
++         [aesop.tree] Metavariables: []
++         [aesop.tree] Parent rapp:  some (0)
++         [aesop.tree] Child rapps:  [1]
++         [aesop.tree] Origin: subgoal
++         [aesop.tree] Depth: 1
++         [aesop.tree] State: ❌️ unprovable
++         [aesop.tree] Forward rule matches: 0
++         [aesop.tree] Irrelevant: yes
++         [aesop.tree] Forced unprovable: no
++         [aesop.tree] Added in iteration: 1
++         [aesop.tree] Last expanded in iteration: 2
++         [aesop.tree] ✅️ Forward state
++           [aesop.tree] 
++         [aesop.tree] Unsafe rule queue: <not selected>
++         [aesop.tree] ✅️ Failed rules:
++           [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
++           [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
++       [aesop.tree] ✅️ ❌️ R1 [100.0000%] safe|cases|global|Or
++         [aesop.tree] ✅️ Metadata
++           [aesop.tree] ID: 1
++           [aesop.tree] Rule: [100/safe] safe|cases|global|Or
++           [aesop.tree] Success probability: 100.0000%
++           [aesop.tree] Parent goal: 1
++           [aesop.tree] Child goals: [2, 3]
++           [aesop.tree] State: unprovable
++           [aesop.tree] Irrelevant: true
++           [aesop.tree] Introduced metavariables: []
++           [aesop.tree] Assigned   metavariables: []
++         [aesop.tree] ✅️ 🏁 G2 [100.0000%] ⋯ ⊢ ∃ l r, x :: xs = l ++ v :: r
++           [aesop.tree] case inl
++               α : Type u_1
++               inst : DecidableEq α
++               v x : α
++               xs : List α
++               ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
++               no : ¬x = v
++               h_1 : v = x
++               ⊢ ∃ l r, x :: xs = l ++ v :: r
++           [aesop.tree] ✅️ Metadata
++             [aesop.tree] ID: 2
++             [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.3574):
++               [aesop.tree] case inl
++                   α : Type u_1
++                   inst : DecidableEq α
++                   v x : α
++                   xs : List α
++                   ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
++                   no : ¬x = v
++                   h_1 : v = x
++                   ⊢ ∃ l r, x :: xs = l ++ v :: r
++             [aesop.tree] Post-normalisation goal: <goal not normalised>
++             [aesop.tree] Metavariables: []
++             [aesop.tree] Parent rapp:  some (1)
++             [aesop.tree] Child rapps:  []
++             [aesop.tree] Origin: subgoal
++             [aesop.tree] Depth: 2
++             [aesop.tree] State: 🏁 provenByNormalization
++             [aesop.tree] Forward rule matches: 0
++             [aesop.tree] Irrelevant: yes
++             [aesop.tree] Forced unprovable: no
++             [aesop.tree] Added in iteration: 2
++             [aesop.tree] Last expanded in iteration: 4
++             [aesop.tree] ✅️ Forward state
++               [aesop.tree] 
++             [aesop.tree] Unsafe rule queue: <not selected>
++             [aesop.tree] Failed rules: <none>
++         [aesop.tree] ✅️ ❌️ G3 [100.0000%] ⋯ ⊢ ∃ l r, x :: xs = l ++ v :: r
++           [aesop.tree] case inr
++               α : Type u_1
++               inst : DecidableEq α
++               v x : α
++               xs : List α
++               ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
++               no : ¬x = v
++               h_2 : v ∈ xs
++               ⊢ ∃ l r, x :: xs = l ++ v :: r
++           [aesop.tree] ✅️ Metadata
++             [aesop.tree] ID: 3
++             [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.3579):
++               [aesop.tree] case inr
++                   α : Type u_1
++                   inst : DecidableEq α
++                   v x : α
++                   xs : List α
++                   ih : v ∈ xs → ∃ l r, xs = l ++ v :: r
++                   no : ¬x = v
++                   h_2 : v ∈ xs
++                   ⊢ ∃ l r, x :: xs = l ++ v :: r
++             [aesop.tree] ✅️ Post-normalisation goal (_uniq.220.8034):
++               [aesop.tree] case inr
++                   α : Type u_1
++                   inst : DecidableEq α
++                   v x : α
++                   no : ¬x = v
++                   w w_1 : List α
++                   ⊢ ∃ l r, x :: (w ++ v :: w_1) = l ++ v :: r
++             [aesop.tree] Metavariables: []
++             [aesop.tree] Parent rapp:  some (1)
++             [aesop.tree] Child rapps:  [2]
++             [aesop.tree] Origin: subgoal
++             [aesop.tree] Depth: 2
++             [aesop.tree] State: ❌️ unprovable
++             [aesop.tree] Forward rule matches: 0
++             [aesop.tree] Irrelevant: yes
++             [aesop.tree] Forced unprovable: no
++             [aesop.tree] Added in iteration: 2
++             [aesop.tree] Last expanded in iteration: 3
++             [aesop.tree] ✅️ Forward state
++               [aesop.tree] 
++             [aesop.tree] Unsafe rule queue: <empty>
++             [aesop.tree] ✅️ Failed rules:
++               [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
++               [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
++               [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
++               [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses
++               [aesop.tree] [75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps
++           [aesop.tree] ✅️ ❌️ R2 [30.0000%] unsafe|constructors|global|Exists
++             [aesop.tree] ✅️ Metadata
++               [aesop.tree] ID: 2
++               [aesop.tree] Rule: [30.0000%] unsafe|constructors|global|Exists
++               [aesop.tree] Success probability: 30.0000%
++               [aesop.tree] Parent goal: 3
++               [aesop.tree] Child goals: [4]
++               [aesop.tree] State: unprovable
++               [aesop.tree] Irrelevant: true
++               [aesop.tree] Introduced metavariables: [_uniq.220.8627]
++               [aesop.tree] Assigned   metavariables: []
++             [aesop.tree] ✅️ ❌️ G4 [24.0000%] ⋯ ⊢ ∃ r, x :: (w ++ v :: w_1) = ?inr.w ++ v :: r
++               [aesop.tree] case inr.h
++                   α : Type u_1
++                   inst : DecidableEq α
++                   v x : α
++                   no : ¬x = v
++                   w w_1 : List α
++                   ⊢ ∃ r, x :: (w ++ v :: w_1) = ?inr.w ++ v :: r
++               [aesop.tree] ✅️ Metadata
++                 [aesop.tree] ID: 4
++                 [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.8628):
++                   [aesop.tree] case inr.h
++                       α : Type u_1
++                       inst : DecidableEq α
++                       v x : α
++                       no : ¬x = v
++                       w w_1 : List α
++                       ⊢ ∃ r, x :: (w ++ v :: w_1) = ?inr.w ++ v :: r
++                 [aesop.tree] ✅️ Post-normalisation goal (_uniq.220.8628):
++                   [aesop.tree] case inr.h
++                       α : Type u_1
++                       inst : DecidableEq α
++                       v x : α
++                       no : ¬x = v
++                       w w_1 : List α
++                       ⊢ ∃ r, x :: (w ++ v :: w_1) = ?inr.w ++ v :: r
++                 [aesop.tree] Metavariables: [_uniq.220.8627]
++                 [aesop.tree] Parent rapp:  some (2)
++                 [aesop.tree] Child rapps:  [3]
++                 [aesop.tree] Origin: subgoal
++                 [aesop.tree] Depth: 3
++                 [aesop.tree] State: ❌️ unprovable
++                 [aesop.tree] Forward rule matches: 0
++                 [aesop.tree] Irrelevant: yes
++                 [aesop.tree] Forced unprovable: no
++                 [aesop.tree] Added in iteration: 3
++                 [aesop.tree] Last expanded in iteration: 5
++                 [aesop.tree] ✅️ Forward state
++                   [aesop.tree] 
++                 [aesop.tree] Unsafe rule queue: <empty>
++                 [aesop.tree] ✅️ Failed rules:
++                   [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
++                   [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
++                   [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
++                   [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses
++                   [aesop.tree] [75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps
++               [aesop.tree] ✅️ ❌️ R3 [9.0000%] unsafe|constructors|global|Exists
++                 [aesop.tree] ✅️ Metadata
++                   [aesop.tree] ID: 3
++                   [aesop.tree] Rule: [30.0000%] unsafe|constructors|global|Exists
++                   [aesop.tree] Success probability: 9.0000%
++                   [aesop.tree] Parent goal: 4
++                   [aesop.tree] Child goals: [5]
++                   [aesop.tree] State: unprovable
++                   [aesop.tree] Irrelevant: true
++                   [aesop.tree] Introduced metavariables: [_uniq.220.9406]
++                   [aesop.tree] Assigned   metavariables: []
++                 [aesop.tree] ✅️ ❌️ G5 [5.7600%] ⋯ ⊢ x :: (w ++ v :: w_1) = ?inr.w ++ v :: ?inr.h.w
++                   [aesop.tree] case inr.h.h
++                       α : Type u_1
++                       inst : DecidableEq α
++                       v x : α
++                       no : ¬x = v
++                       w w_1 : List α
++                       ⊢ x :: (w ++ v :: w_1) = ?inr.w ++ v :: ?inr.h.w
++                   [aesop.tree] ✅️ Metadata
++                     [aesop.tree] ID: 5
++                     [aesop.tree] ✅️ Pre-normalisation goal (_uniq.220.9407):
++                       [aesop.tree] case inr.h.h
++                           α : Type u_1
++                           inst : DecidableEq α
++                           v x : α
++                           no : ¬x = v
++                           w w_1 : List α
++                           ⊢ x :: (w ++ v :: w_1) = ?inr.w ++ v :: ?inr.h.w
++                     [aesop.tree] ✅️ Post-normalisation goal (_uniq.220.9407):
++                       [aesop.tree] case inr.h.h
++                           α : Type u_1
++                           inst : DecidableEq α
++                           v x : α
++                           no : ¬x = v
++                           w w_1 : List α
++                           ⊢ x :: (w ++ v :: w_1) = ?inr.w ++ v :: ?inr.h.w
++                     [aesop.tree] Metavariables: [_uniq.220.9406, _uniq.220.8627]
++                     [aesop.tree] Parent rapp:  some (3)
++                     [aesop.tree] Child rapps:  []
++                     [aesop.tree] Origin: subgoal
++                     [aesop.tree] Depth: 4
++                     [aesop.tree] State: ❌️ unprovable
++                     [aesop.tree] Forward rule matches: 0
++                     [aesop.tree] Irrelevant: yes
++                     [aesop.tree] Forced unprovable: no
++                     [aesop.tree] Added in iteration: 5
++                     [aesop.tree] Last expanded in iteration: 6
++                     [aesop.tree] ✅️ Forward state
++                       [aesop.tree] 
++                     [aesop.tree] Unsafe rule queue: <empty>
++                     [aesop.tree] ✅️ Failed rules:
++                       [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.assumption
++                       [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.rfl
++                       [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitTarget
++                       [aesop.tree] [100.0000%] safe|tactic|global|Aesop.BuiltinRules.splitHypotheses
++                       [aesop.tree] [75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps
+error: Lean exited with code 1
+✔ [423/423] Built AesopTest.«13» (2.2s)
+Some required targets logged failures:
+- AesopTest.«18»

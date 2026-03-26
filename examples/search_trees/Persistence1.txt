@@ -1,0 +1,10 @@
+✔ [421/423] Built AesopTest.Persistence1 (833ms)
+✔ [422/423] Built AesopTest.Persistence0 (829ms)
+✖ [423/423] Building AesopTest.Persistence3 (747ms)
+trace: .> LEAN_PATH=/Users/mpreigh/aesop-1/.lake/packages/batteries/.lake/build/lib/lean:/Users/mpreigh/aesop-1/.lake/build/lib/lean /Users/mpreigh/.elan/toolchains/leanprover--lean4---v4.29.0-rc8/bin/lean /Users/mpreigh/aesop-1/AesopTest/Persistence3.lean -o /Users/mpreigh/aesop-1/.lake/build/lib/lean/AesopTest/Persistence3.olean -i /Users/mpreigh/aesop-1/.lake/build/lib/lean/AesopTest/Persistence3.ilean -c /Users/mpreigh/aesop-1/.lake/build/ir/AesopTest/Persistence3.c --setup /Users/mpreigh/aesop-1/.lake/build/ir/AesopTest/Persistence3.setup.json --json
+error: AesopTest/Persistence3.lean:16:2: no such rule set: 'test_persistence1'
+  (Use 'declare_aesop_rule_set' to declare rule sets.
+   Declared rule sets are not visible in the current file; they only become visible once you import the declaring file.)
+error: Lean exited with code 1
+Some required targets logged failures:
+- AesopTest.Persistence3
