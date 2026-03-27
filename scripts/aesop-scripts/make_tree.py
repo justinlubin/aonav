@@ -38,6 +38,14 @@ def print_tree():
         for goal in goals:
             labels_to_goals[goals[goal]] = goal
 
+        new_edges = set(edges)
+        for edge in edges:
+            if edge[0] in provable_rules and edge[1] not in provable_goals:
+                ax = "RprovenByMetavariables:" + edge[1]
+                if ax not in rules:
+                    rules[ax] = ax[1:]
+                    new_edges.add((edge[1], ax))
+
         for label in labels_to_goals:
             goal = labels_to_goals[label]
             file.write(
@@ -66,7 +74,7 @@ def print_tree():
         file.write('\n  "edges": [')
 
         count = 1
-        for edge in edges:
+        for edge in new_edges:
             if edge[0].startswith("R"):
                 source = edge[0]
             else:
@@ -81,7 +89,7 @@ def print_tree():
             file.write('\n      "source": "' + source + '",')
             file.write('\n      "target": "' + target + '"')
             file.write("\n    }")
-            if count < len(edges):
+            if count < len(new_edges):
                 file.write(",")
             count += 1
 
@@ -105,6 +113,8 @@ goalgoal_found = False
 extra_rapps_id = -1
 note_childless_goal = False
 root_proven = False
+provable_goals = set()
+provable_rules = set()
 
 tree_num = 0
 
@@ -129,6 +139,8 @@ with open(infile, "r", encoding="utf-8") as file:
             extra_rapps_id = -1
             note_childless_goal = False
             root_proven = False
+            provable_rules = set()
+            provable_goals = set()
 
             if "🏁" in line:
                 root_proven = True
@@ -153,6 +165,16 @@ with open(infile, "r", encoding="utf-8") as file:
                     line = line.replace("[aesop.tree]", "")
                     label = label + line + "\n"
                 continue
+
+            g = line.find("🏁 G")
+            if g != -1:
+                end = line.index(" ", g + 2)
+                provable_goals.add(line[g + 2 : end])
+
+            r = line.find("🏁 R")
+            if r != -1:
+                end = line.index(" ", r + 2)
+                provable_rules.add(line[r + 2 : end])
 
             # goals and rules both have ID
             if line[:17] == "[aesop.tree] ID: ":
