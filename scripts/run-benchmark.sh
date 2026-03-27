@@ -29,7 +29,7 @@ run() {
   echo "Done!"
 }
 
-for path in benchmark/entries/*; do
+for path in benchmark/entries/*/; do
   collection=$(basename $path)
 
   run "$collection" "AlphabeticalUnsound"
