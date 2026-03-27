@@ -4,25 +4,25 @@
   },
   "nodes": {
     "G1": {
-      "label": " P A B : Prop\n\u22a2 if P then A else B\n",
+      "label": " \u03b1 \u03b2 : Prop\nh : T \u03b1 \u03b2\n\u22a2 Sig \u03b1 fun x => \u03b2\n",
       "metadata": {
         "kind": "OR"
       }
     },
     "G2": {
-      "label": " P A B : Prop\nh : P\n\u22a2 A\n",
+      "label": " case snd\n\u03b1 \u03b2 : Prop\nh : T \u03b1 \u03b2\n\u22a2 \u03b2\n",
       "metadata": {
         "kind": "OR"
       }
     },
     "G3": {
-      "label": " P A B : Prop\nh : \u00acP\n\u22a2 B\n",
+      "label": " case fst\n\u03b1 \u03b2 : Prop\nh : T \u03b1 \u03b2\n\u22a2 \u03b1\n",
       "metadata": {
         "kind": "OR"
       }
     },
     "R1": {
-      "label": "[100/safe] safe|tactic|global|Aesop.BuiltinRules.splitTarget",
+      "label": "[1/safe] safe|constructors|global|Sig",
       "metadata": {
         "kind": "AND"
       }
@@ -35,11 +35,11 @@
     },
     {
       "source": "R1",
-      "target": "G2"
+      "target": "G3"
     },
     {
       "source": "R1",
-      "target": "G3"
+      "target": "G2"
     }
   ]
 }

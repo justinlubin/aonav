@@ -41,7 +41,7 @@ def print_tree():
         new_edges = set(edges)
         for edge in edges:
             if edge[0] in provable_rules and edge[1] not in provable_goals:
-                ax = "RprovenByMetavariables:" + edge[1]
+                ax = "Raxiom:" + edge[1]
                 if ax not in rules:
                     rules[ax] = ax[1:]
                     new_edges.add((edge[1], ax))
