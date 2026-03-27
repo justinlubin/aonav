@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "aOFwVLWWnmfWpWDMNfZVzFcLRjlkpjIA"
+    },
+    "nodes": {
+      "aOFwVLWWnmfWpWDMNfZVzFcLRjlkpjIA": {
+        "label": " ⊢ Even' 2\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "lZUbOKacKcOYaYIlngBEaMiXfEFYMAEa": {
+        "label": " case a\n⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "jHXEyIHpwtuPIxMOjqABTlGChxzoUKaU": {
+        "label": "[0/safe] safe|apply|global|even'_of_false",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "jHXEyIHpwtuPIxMOjqABTlGChxzoUKaU",
+        "target": "lZUbOKacKcOYaYIlngBEaMiXfEFYMAEa"
+      },
+      {
+        "source": "aOFwVLWWnmfWpWDMNfZVzFcLRjlkpjIA",
+        "target": "jHXEyIHpwtuPIxMOjqABTlGChxzoUKaU"
+      }
+    ]
+  }
+}

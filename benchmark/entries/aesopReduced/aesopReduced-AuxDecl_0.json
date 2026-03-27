@@ -1,0 +1,47 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "MNCLoCdwJaHAUEFHWDrFOJPRSQmkoPRN"
+    },
+    "nodes": {
+      "MNCLoCdwJaHAUEFHWDrFOJPRSQmkoPRN": {
+        "label": " m n : Nat\n⊢ n + m = m + n ∧ m + n = n + m\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "hUDLqSmZeCiWTEuBEmHLrRslNesfySiP": {
+        "label": " case left\nm n : Nat\n⊢ n + m = m + n\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ANKsdpRoqUGYzUnYKdQucmNpFQmqWGcx": {
+        "label": " case right\nm n : Nat\n⊢ m + n = n + m\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "qHObOSSLVQlANtepapZPxQpJiPWxdqyr": {
+        "label": "[101/safe] safe|constructors|global|And",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "qHObOSSLVQlANtepapZPxQpJiPWxdqyr",
+        "target": "ANKsdpRoqUGYzUnYKdQucmNpFQmqWGcx"
+      },
+      {
+        "source": "MNCLoCdwJaHAUEFHWDrFOJPRSQmkoPRN",
+        "target": "qHObOSSLVQlANtepapZPxQpJiPWxdqyr"
+      },
+      {
+        "source": "qHObOSSLVQlANtepapZPxQpJiPWxdqyr",
+        "target": "hUDLqSmZeCiWTEuBEmHLrRslNesfySiP"
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 { "graph": {
   "metadata": {
-    "goal": "G1"
+    "goal": "G10"
   },
   "nodes": {
     "G10": {
@@ -78,28 +78,48 @@
   },
   "edges": [
     {
-      "source": "R1",
-      "target": "G10"
-    },
-    {
       "source": "G10",
-      "target": "R10"
-    },
-    {
-      "source": "R2",
-      "target": "G3"
+      "target": "R6"
     },
     {
       "source": "R6",
       "target": "G3"
     },
     {
+      "source": "R4",
+      "target": "G3"
+    },
+    {
+      "source": "G10",
+      "target": "R3"
+    },
+    {
       "source": "R7",
       "target": "G10"
     },
     {
+      "source": "R5",
+      "target": "G10"
+    },
+    {
+      "source": "R1",
+      "target": "G10"
+    },
+    {
+      "source": "R3",
+      "target": "G10"
+    },
+    {
+      "source": "R8",
+      "target": "G3"
+    },
+    {
       "source": "G10",
-      "target": "R4"
+      "target": "R5"
+    },
+    {
+      "source": "R10",
+      "target": "G3"
     },
     {
       "source": "R9",
@@ -107,11 +127,15 @@
     },
     {
       "source": "G10",
+      "target": "R10"
+    },
+    {
+      "source": "G10",
       "target": "R8"
     },
     {
-      "source": "R4",
-      "target": "G3"
+      "source": "G10",
+      "target": "R4"
     },
     {
       "source": "G10",
@@ -123,39 +147,15 @@
     },
     {
       "source": "G10",
-      "target": "R1"
-    },
-    {
-      "source": "R5",
-      "target": "G10"
-    },
-    {
-      "source": "R10",
-      "target": "G3"
-    },
-    {
-      "source": "G10",
-      "target": "R3"
-    },
-    {
-      "source": "G10",
-      "target": "R5"
-    },
-    {
-      "source": "R8",
-      "target": "G3"
-    },
-    {
-      "source": "G10",
       "target": "R2"
     },
     {
-      "source": "G10",
-      "target": "R6"
+      "source": "R2",
+      "target": "G3"
     },
     {
-      "source": "R3",
-      "target": "G10"
+      "source": "G10",
+      "target": "R1"
     }
   ]
 }

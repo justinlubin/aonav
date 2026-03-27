@@ -1,0 +1,47 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "cGVMVNOYAYKUardNPTRVABXUVrBnNqcB"
+    },
+    "nodes": {
+      "cGVMVNOYAYKUardNPTRVABXUVrBnNqcB": {
+        "label": " P A B : Prop\n⊢ if P then A else B\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ImkgcvZegOZwUwIflwihwQLizexMVgVH": {
+        "label": " P A B : Prop\nh : P\n⊢ A\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "fUNrlhFcnRrEWyHJnNcNPAvditWIEyzs": {
+        "label": " P A B : Prop\nh : ¬P\n⊢ B\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "wtCWjwQQRubAAvZlTUVusGltyukebBrE": {
+        "label": "[100/safe] safe|tactic|global|Aesop.BuiltinRules.splitTarget",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "wtCWjwQQRubAAvZlTUVusGltyukebBrE",
+        "target": "fUNrlhFcnRrEWyHJnNcNPAvditWIEyzs"
+      },
+      {
+        "source": "cGVMVNOYAYKUardNPTRVABXUVrBnNqcB",
+        "target": "wtCWjwQQRubAAvZlTUVusGltyukebBrE"
+      },
+      {
+        "source": "wtCWjwQQRubAAvZlTUVusGltyukebBrE",
+        "target": "ImkgcvZegOZwUwIflwihwQLizexMVgVH"
+      }
+    ]
+  }
+}

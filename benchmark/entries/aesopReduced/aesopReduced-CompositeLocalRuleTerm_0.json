@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "fhDZOGnCOUFAkijLUzpPDFMgYhHqrioP"
+    },
+    "nodes": {
+      "fhDZOGnCOUFAkijLUzpPDFMgYhHqrioP": {
+        "label": " β : Sort ?u.80\nγ : Sort ?u.81\nh : A → β → γ\nb : β\n⊢ γ\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "GlnHlsuiDsTAIyBWubRWjtYbELsaQMrC": {
+        "label": " case a\nβ : Sort ?u.80\nγ : Sort ?u.81\nh : A → β → γ\nb : β\n⊢ A\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "YgTHhAtlandjtcoeIpyPgjEUULxFGbEG": {
+        "label": "[75.0000%] unsafe|tactic|global|Aesop.BuiltinRules.applyHyps",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "fhDZOGnCOUFAkijLUzpPDFMgYhHqrioP",
+        "target": "YgTHhAtlandjtcoeIpyPgjEUULxFGbEG"
+      },
+      {
+        "source": "YgTHhAtlandjtcoeIpyPgjEUULxFGbEG",
+        "target": "GlnHlsuiDsTAIyBWubRWjtYbELsaQMrC"
+      }
+    ]
+  }
+}

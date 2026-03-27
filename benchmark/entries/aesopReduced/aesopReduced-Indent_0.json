@@ -1,0 +1,47 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "GQeDJKAREiEkIErEQSZBZyYitDyoLjUj"
+    },
+    "nodes": {
+      "GQeDJKAREiEkIErEQSZBZyYitDyoLjUj": {
+        "label": " ⊢ ∃ n, n ^ 2 = 4 ∧ ∃ n, n ^ 2 = 9 ∧ True\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "WvBLicAErheQXDwNbvXhudZiaKeqpuQn": {
+        "label": " case left\n⊢ ∃ x, x ^ 2 = 4\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "fEWFtcPzSbvoLMTZYhXifjrAyIoktmxr": {
+        "label": " case right\n⊢ ∃ n, n ^ 2 = 9\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "dGsjMarxKoGItgdZFuHjzZBbadjCyGuf": {
+        "label": "[101/safe] safe|constructors|global|And",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "dGsjMarxKoGItgdZFuHjzZBbadjCyGuf",
+        "target": "fEWFtcPzSbvoLMTZYhXifjrAyIoktmxr"
+      },
+      {
+        "source": "dGsjMarxKoGItgdZFuHjzZBbadjCyGuf",
+        "target": "WvBLicAErheQXDwNbvXhudZiaKeqpuQn"
+      },
+      {
+        "source": "GQeDJKAREiEkIErEQSZBZyYitDyoLjUj",
+        "target": "dGsjMarxKoGItgdZFuHjzZBbadjCyGuf"
+      }
+    ]
+  }
+}

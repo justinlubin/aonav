@@ -1,0 +1,57 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "vaNnEcAjZuznHSdkwqHpxCFeKRmBUCah"
+    },
+    "nodes": {
+      "vaNnEcAjZuznHSdkwqHpxCFeKRmBUCah": {
+        "label": " a b c d e f : Nat\nh₃ : c ≤ d\nh₄ : d ≤ e\nh₅ : e ≤ f\nh : a = f\n⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "KaddRWzQQkXqZJLYdyLbypwNpVbkFceZ": {
+        "label": " a b c d e : Nat\nh₃ : c ≤ d\nh₄ : d ≤ e\nh₅ : e ≤ a\nfwd : d ≤ a\nfwd_1 : c ≤ e\n⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ogCYcoVrtGXJeBLNWlWtFaUisbtDCkKf": {
+        "label": " a b c d e : Nat\nh₃ : c ≤ d\nh₄ : d ≤ e\nh₅ : e ≤ a\nfwd : d ≤ a\nfwd_1 : c ≤ e\nfwd_2 : c ≤ a\n⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "QHYIPwNwLNvREfBvkplWXlwJeqoYhuMQ": {
+        "label": "[1/safe] safe|forward|global|Nat.le_trans",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "YTlZkIDxEqidYNejjdNYLayLTEsPMldp": {
+        "label": "[1/safe] safe|forward|global|Nat.le_trans",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "vaNnEcAjZuznHSdkwqHpxCFeKRmBUCah",
+        "target": "QHYIPwNwLNvREfBvkplWXlwJeqoYhuMQ"
+      },
+      {
+        "source": "QHYIPwNwLNvREfBvkplWXlwJeqoYhuMQ",
+        "target": "KaddRWzQQkXqZJLYdyLbypwNpVbkFceZ"
+      },
+      {
+        "source": "KaddRWzQQkXqZJLYdyLbypwNpVbkFceZ",
+        "target": "YTlZkIDxEqidYNejjdNYLayLTEsPMldp"
+      },
+      {
+        "source": "YTlZkIDxEqidYNejjdNYLayLTEsPMldp",
+        "target": "ogCYcoVrtGXJeBLNWlWtFaUisbtDCkKf"
+      }
+    ]
+  }
+}

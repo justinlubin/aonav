@@ -1,0 +1,47 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "kOfqUWkGhOOVynWrDZQAxmisPcworIyI"
+    },
+    "nodes": {
+      "kOfqUWkGhOOVynWrDZQAxmisPcworIyI": {
+        "label": " α : Type u_1\nP : α → Bool\nx : α\nxs : List α\nh : (x :: xs).all P = true\n⊢ P x = true ∧ xs.all P = true\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "LiDDDdSvIfQWmWoQKGLtNDzHDhsNpthJ": {
+        "label": " case left\nα : Type u_1\nP : α → Bool\nx : α\nxs : List α\nh : (x :: xs).all P = true\n⊢ P x = true\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ruiaXqCXZbASpizVdgSCKhyklWoMfbXU": {
+        "label": " case right\nα : Type u_1\nP : α → Bool\nx : α\nxs : List α\nh : (x :: xs).all P = true\n⊢ xs.all P = true\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "iZCyqFFaUvVUorztQPCJIHydjkmJNdhk": {
+        "label": "[101/safe] safe|constructors|global|And",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "iZCyqFFaUvVUorztQPCJIHydjkmJNdhk",
+        "target": "LiDDDdSvIfQWmWoQKGLtNDzHDhsNpthJ"
+      },
+      {
+        "source": "kOfqUWkGhOOVynWrDZQAxmisPcworIyI",
+        "target": "iZCyqFFaUvVUorztQPCJIHydjkmJNdhk"
+      },
+      {
+        "source": "iZCyqFFaUvVUorztQPCJIHydjkmJNdhk",
+        "target": "ruiaXqCXZbASpizVdgSCKhyklWoMfbXU"
+      }
+    ]
+  }
+}

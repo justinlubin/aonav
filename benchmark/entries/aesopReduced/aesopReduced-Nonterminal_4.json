@@ -1,0 +1,67 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "wNPbQonMnkDVkHYlGbNoQPnplgFZJYIk"
+    },
+    "nodes": {
+      "wNPbQonMnkDVkHYlGbNoQPnplgFZJYIk": {
+        "label": " ⊢ MyFalse₂\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "YZAhXMaUjFFakjxVBIuaxFOqZVHyqQKf": {
+        "label": " case falso\n⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "FlWFZKlAgsIChrWMwltSxNqCuQGRWqds": {
+        "label": " case tt\n⊢ MyTrue₃\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "RMPBUpnSxunqxwixELTmaMgFcaQwdJVR": {
+        "label": " case tt\n⊢ MyTrue₁\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "yjePeccjtYTshxPWggrLwAtKgGEUtBmQ": {
+        "label": "[1/safe] safe|constructors|global|MyFalse₂",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "tGssPwyCxkxIAHytVgUfvYekYppIHeMv": {
+        "label": "[1/safe] safe|constructors|global|MyTrue₃",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "tGssPwyCxkxIAHytVgUfvYekYppIHeMv",
+        "target": "RMPBUpnSxunqxwixELTmaMgFcaQwdJVR"
+      },
+      {
+        "source": "FlWFZKlAgsIChrWMwltSxNqCuQGRWqds",
+        "target": "tGssPwyCxkxIAHytVgUfvYekYppIHeMv"
+      },
+      {
+        "source": "wNPbQonMnkDVkHYlGbNoQPnplgFZJYIk",
+        "target": "yjePeccjtYTshxPWggrLwAtKgGEUtBmQ"
+      },
+      {
+        "source": "yjePeccjtYTshxPWggrLwAtKgGEUtBmQ",
+        "target": "FlWFZKlAgsIChrWMwltSxNqCuQGRWqds"
+      },
+      {
+        "source": "yjePeccjtYTshxPWggrLwAtKgGEUtBmQ",
+        "target": "YZAhXMaUjFFakjxVBIuaxFOqZVHyqQKf"
+      }
+    ]
+  }
+}

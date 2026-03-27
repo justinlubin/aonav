@@ -1,0 +1,57 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "RxLAngMbmdmCIAqaOQHGvpCoIWyYkxXY"
+    },
+    "nodes": {
+      "RxLAngMbmdmCIAqaOQHGvpCoIWyYkxXY": {
+        "label": " ⊢ Even 5\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "aPBnzsMkDdFgguVmNzaDlHEHvawIoflQ": {
+        "label": " case a\n⊢ Even 3\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "jwrLQomibqfKdYkhhMGrFXaIFNWSOwlv": {
+        "label": " case a.a\n⊢ Even 1\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "UEbmKaHrwEswevUQvETxSxGYEQLwNYbT": {
+        "label": "[1/safe] safe|constructors|global|Even",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "OYNJUBonQznkyccWOuQoEgarrSRzxDEi": {
+        "label": "[1/safe] safe|constructors|global|Even",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "RxLAngMbmdmCIAqaOQHGvpCoIWyYkxXY",
+        "target": "UEbmKaHrwEswevUQvETxSxGYEQLwNYbT"
+      },
+      {
+        "source": "OYNJUBonQznkyccWOuQoEgarrSRzxDEi",
+        "target": "jwrLQomibqfKdYkhhMGrFXaIFNWSOwlv"
+      },
+      {
+        "source": "aPBnzsMkDdFgguVmNzaDlHEHvawIoflQ",
+        "target": "OYNJUBonQznkyccWOuQoEgarrSRzxDEi"
+      },
+      {
+        "source": "UEbmKaHrwEswevUQvETxSxGYEQLwNYbT",
+        "target": "aPBnzsMkDdFgguVmNzaDlHEHvawIoflQ"
+      }
+    ]
+  }
+}

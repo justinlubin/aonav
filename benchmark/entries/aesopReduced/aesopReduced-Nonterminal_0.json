@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "hwjtANcPJWfZkMsKhyNXLBKelPcFBzSY"
+    },
+    "nodes": {
+      "hwjtANcPJWfZkMsKhyNXLBKelPcFBzSY": {
+        "label": " ⊢ MyTrue₃\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "GmuCoQNVzAkxGWMxStaPwyNWIZeMZIhf": {
+        "label": " ⊢ MyTrue₁\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "WBnHKZeanUnYWjsuElHqiVHTlAYuMssp": {
+        "label": "[1/safe] safe|constructors|global|MyTrue₃",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "hwjtANcPJWfZkMsKhyNXLBKelPcFBzSY",
+        "target": "WBnHKZeanUnYWjsuElHqiVHTlAYuMssp"
+      },
+      {
+        "source": "WBnHKZeanUnYWjsuElHqiVHTlAYuMssp",
+        "target": "GmuCoQNVzAkxGWMxStaPwyNWIZeMZIhf"
+      }
+    ]
+  }
+}

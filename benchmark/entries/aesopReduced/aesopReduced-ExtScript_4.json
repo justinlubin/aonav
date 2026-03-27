@@ -1,0 +1,47 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "xCprJAqSrfKQiDhiFSPKIHPUjkKhldmR"
+    },
+    "nodes": {
+      "xCprJAqSrfKQiDhiFSPKIHPUjkKhldmR": {
+        "label": " α β γ δ ι : Type\nx y : T\n⊢ x = y\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "wQoqVubMDcTdCwvxrSgqUPZNUjjcdwFa": {
+        "label": " case a\nα β γ δ ι : Type\nx y : T\n⊢ u = v\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "xwHzTkRuvyFprZTKeIIIpBfmVjRbKzqK": {
+        "label": " case a\nα β γ δ ι : Type\nx y : T\nu v : U\n⊢ u = v\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "GzvryoxJaYRpIEIZxQRGlpwtTNbAXbbu": {
+        "label": "[1/safe] safe|tactic|global|Aesop.BuiltinRules.ext",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "GzvryoxJaYRpIEIZxQRGlpwtTNbAXbbu",
+        "target": "xwHzTkRuvyFprZTKeIIIpBfmVjRbKzqK"
+      },
+      {
+        "source": "xCprJAqSrfKQiDhiFSPKIHPUjkKhldmR",
+        "target": "GzvryoxJaYRpIEIZxQRGlpwtTNbAXbbu"
+      },
+      {
+        "source": "GzvryoxJaYRpIEIZxQRGlpwtTNbAXbbu",
+        "target": "wQoqVubMDcTdCwvxrSgqUPZNUjjcdwFa"
+      }
+    ]
+  }
+}

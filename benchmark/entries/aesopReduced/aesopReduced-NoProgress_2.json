@@ -1,0 +1,37 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "eQELyiQkXaKkgSIabaBFhlVsYkEFwrcn"
+    },
+    "nodes": {
+      "eQELyiQkXaKkgSIabaBFhlVsYkEFwrcn": {
+        "label": " ⊢ F'\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "FwhQmoXPxzCAhyxvxMTPGBnQcpiMxTMA": {
+        "label": " ⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "bQNbfleduzySxPKKEDsSfTkUaUBIwhsK": {
+        "label": "[1/safe] safe|apply|global|F'_def",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "bQNbfleduzySxPKKEDsSfTkUaUBIwhsK",
+        "target": "FwhQmoXPxzCAhyxvxMTPGBnQcpiMxTMA"
+      },
+      {
+        "source": "eQELyiQkXaKkgSIabaBFhlVsYkEFwrcn",
+        "target": "bQNbfleduzySxPKKEDsSfTkUaUBIwhsK"
+      }
+    ]
+  }
+}

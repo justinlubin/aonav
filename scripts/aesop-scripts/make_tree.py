@@ -28,15 +28,15 @@ def print_tree():
         + ".json"
     )
     with open(outfile, "w") if not use_stdout else nullcontext(sys.stdout) as file:
-        file.write(
-            '{ "graph": {\n  "metadata": {\n    "goal": "'
-            + goalgoal
-            + '"\n  },\n  "nodes": {'
-        )
-
         labels_to_goals = {}
         for goal in goals:
             labels_to_goals[goals[goal]] = goal
+
+        file.write(
+            '{ "graph": {\n  "metadata": {\n    "goal": "'
+            + labels_to_goals[goals[goalgoal]]
+            + '"\n  },\n  "nodes": {'
+        )
 
         new_edges = set(edges)
         for edge in edges:

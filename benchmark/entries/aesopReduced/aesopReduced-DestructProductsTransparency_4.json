@@ -1,0 +1,47 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "jfeZJopNjWQPRXAJmFoXxTlWivYxjKXR"
+    },
+    "nodes": {
+      "jfeZJopNjWQPRXAJmFoXxTlWivYxjKXR": {
+        "label": " α β γ δ : Prop\nh : U α β ∧ U γ δ\n⊢ Sig α fun x => γ\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "yIyxCdfRmmxZtdHIFESHMeJwBDicbxcF": {
+        "label": " case snd\nα β γ δ : Prop\nleft : U α β\nright : U γ δ\n⊢ γ\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "LmCfAmgdJszWRuPBmLnfEcgjEOHvhOil": {
+        "label": " case fst\nα β γ δ : Prop\nleft : U α β\nright : U γ δ\n⊢ α\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "uwSrAWJAiVHRCwOoYJCcrmegDhBOkyYZ": {
+        "label": "[1/safe] safe|constructors|global|Sig",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "jfeZJopNjWQPRXAJmFoXxTlWivYxjKXR",
+        "target": "uwSrAWJAiVHRCwOoYJCcrmegDhBOkyYZ"
+      },
+      {
+        "source": "uwSrAWJAiVHRCwOoYJCcrmegDhBOkyYZ",
+        "target": "yIyxCdfRmmxZtdHIFESHMeJwBDicbxcF"
+      },
+      {
+        "source": "uwSrAWJAiVHRCwOoYJCcrmegDhBOkyYZ",
+        "target": "LmCfAmgdJszWRuPBmLnfEcgjEOHvhOil"
+      }
+    ]
+  }
+}

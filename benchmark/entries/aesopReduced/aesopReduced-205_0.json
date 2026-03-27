@@ -1,0 +1,57 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "sVfFIFtEOUSMxcSAZEviTWzUNqFjLcNK"
+    },
+    "nodes": {
+      "sVfFIFtEOUSMxcSAZEviTWzUNqFjLcNK": {
+        "label": " α : Type u_1\nx y a b : α\nh₂ : R x a\nh₃ : R y b\n⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "MScpgATUAnfizlhPddyPzJNscJfCczpO": {
+        "label": " α : Type u_1\nx y a b : α\nh₂ : R x a\nh₃ : R y b\nfwd : R a x\nfwd_1 : R b y\n⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "jQjwSJmiROJadtEVssqMMPYkKhqQcvLC": {
+        "label": " α : Type u_1\nx y a b : α\nh₂ : R x a\nh₃ : R y b\nfwd : R a x\nfwd_1 : R b y\nfwd_2 : R y y\nfwd_3 : R b b\nfwd_4 : R x x\nfwd_5 : R a a\n⊢ False\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "AkadkgHAokPzqynQoqGwtQOSMGpuXbzf": {
+        "label": "[1/safe] safe|forward|global|sym",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "WbpggmljJiMVVnDJvBXmpBIfBSgmyyoV": {
+        "label": "[1/safe] safe|forward|global|tran",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "MScpgATUAnfizlhPddyPzJNscJfCczpO",
+        "target": "WbpggmljJiMVVnDJvBXmpBIfBSgmyyoV"
+      },
+      {
+        "source": "AkadkgHAokPzqynQoqGwtQOSMGpuXbzf",
+        "target": "MScpgATUAnfizlhPddyPzJNscJfCczpO"
+      },
+      {
+        "source": "WbpggmljJiMVVnDJvBXmpBIfBSgmyyoV",
+        "target": "jQjwSJmiROJadtEVssqMMPYkKhqQcvLC"
+      },
+      {
+        "source": "sVfFIFtEOUSMxcSAZEviTWzUNqFjLcNK",
+        "target": "AkadkgHAokPzqynQoqGwtQOSMGpuXbzf"
+      }
+    ]
+  }
+}

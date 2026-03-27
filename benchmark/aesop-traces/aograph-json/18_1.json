@@ -60,8 +60,20 @@
   },
   "edges": [
     {
+      "source": "G1",
+      "target": "R1"
+    },
+    {
       "source": "R1",
-      "target": "G3"
+      "target": "G2"
+    },
+    {
+      "source": "R2",
+      "target": "G4"
+    },
+    {
+      "source": "G2",
+      "target": "R-1"
     },
     {
       "source": "R3",
@@ -72,24 +84,12 @@
       "target": "R2"
     },
     {
-      "source": "G2",
-      "target": "R-1"
-    },
-    {
-      "source": "R2",
-      "target": "G4"
+      "source": "G4",
+      "target": "R3"
     },
     {
       "source": "R1",
-      "target": "G2"
-    },
-    {
-      "source": "G1",
-      "target": "R1"
-    },
-    {
-      "source": "G4",
-      "target": "R3"
+      "target": "G3"
     }
   ]
 }

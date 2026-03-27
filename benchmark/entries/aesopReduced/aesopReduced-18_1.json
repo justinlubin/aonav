@@ -1,0 +1,77 @@
+{
+  "graph": {
+    "metadata": {
+      "goal": "fGPHLbvNNvoHrlvUGvFWEleYqjHZkdFT"
+    },
+    "nodes": {
+      "fGPHLbvNNvoHrlvUGvFWEleYqjHZkdFT": {
+        "label": " α : Type u_1\ninst : DecidableEq α\nv x : α\nxs : List α\nih : v ∈ xs → ∃ l r, xs = l ++ v :: r\nh : v ∈ x :: xs\nno : ¬x = v\n⊢ ∃ l r, x :: xs = l ++ v :: r\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "mxZOUYiyvDHQiFosMpohiTRyVlxwlvBX": {
+        "label": " case inr\nα : Type u_1\ninst : DecidableEq α\nv x : α\nxs : List α\nih : v ∈ xs → ∃ l r, xs = l ++ v :: r\nno : ¬x = v\nh_2 : v ∈ xs\n⊢ ∃ l r, x :: xs = l ++ v :: r\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "VQsyXkPozOWLDiChPIVFcbEKqKkREgAL": {
+        "label": " case inr.h\nα : Type u_1\ninst : DecidableEq α\nv x : α\nno : ¬x = v\nw w_1 : List α\n⊢ ∃ r, x :: (w ++ v :: w_1) = ?inr.w ++ v :: r\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "nWHaFnIWfBCZwtSHXSUYnnnleOZnjpcQ": {
+        "label": " case inr.h.h\nα : Type u_1\ninst : DecidableEq α\nv x : α\nno : ¬x = v\nw w_1 : List α\n⊢ x :: (w ++ v :: w_1) = ?inr.w ++ v :: ?inr.h.w\n",
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "ATkODAREQqYYMnQFbmXAqVERqEfldOCJ": {
+        "label": "[100/safe] safe|cases|global|Or",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "IHEsPTrDcrlBstzinfpGyWkQqpQZuNlZ": {
+        "label": "[30.0000%] unsafe|constructors|global|Exists",
+        "metadata": {
+          "kind": "AND"
+        }
+      },
+      "odqEOUazzCVfRAkYEgiVXfBosfZsuEMv": {
+        "label": "[30.0000%] unsafe|constructors|global|Exists",
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "fGPHLbvNNvoHrlvUGvFWEleYqjHZkdFT",
+        "target": "ATkODAREQqYYMnQFbmXAqVERqEfldOCJ"
+      },
+      {
+        "source": "IHEsPTrDcrlBstzinfpGyWkQqpQZuNlZ",
+        "target": "VQsyXkPozOWLDiChPIVFcbEKqKkREgAL"
+      },
+      {
+        "source": "odqEOUazzCVfRAkYEgiVXfBosfZsuEMv",
+        "target": "nWHaFnIWfBCZwtSHXSUYnnnleOZnjpcQ"
+      },
+      {
+        "source": "mxZOUYiyvDHQiFosMpohiTRyVlxwlvBX",
+        "target": "IHEsPTrDcrlBstzinfpGyWkQqpQZuNlZ"
+      },
+      {
+        "source": "VQsyXkPozOWLDiChPIVFcbEKqKkREgAL",
+        "target": "odqEOUazzCVfRAkYEgiVXfBosfZsuEMv"
+      },
+      {
+        "source": "ATkODAREQqYYMnQFbmXAqVERqEfldOCJ",
+        "target": "mxZOUYiyvDHQiFosMpohiTRyVlxwlvBX"
+      }
+    ]
+  }
+}
