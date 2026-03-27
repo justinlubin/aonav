@@ -61,10 +61,10 @@ nice_suite = {
     "manual": "Manual",
     "random": "Random",
     "argusReduced": "Argus",
-    "aesop": "Aesop",
+    "aesopReduced": "Aesop",
 }
 
-suite_order = ["manual", "random", "argusReduced", "aesop"]
+suite_order = ["manual", "random", "argusReduced", "aesopReduced"]
 
 SECONDS_SUFFIX = " (s)"
 metrics = [
@@ -932,7 +932,7 @@ suite_styles = {
     "manual": ("#44AA99", "s"),
     "random": ("#117733", "o"),
     "argusReduced": ("#999933", "^"),
-    "aesop": ("#882255", "+"),
+    "aesopReduced": ("#882255", "+"),
 }
 
 
