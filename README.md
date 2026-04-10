@@ -84,7 +84,7 @@ below) will have only _outgoing_ edges.
 The "goal" subfield of the "metadata" field must be a node identifier that is
 present in the keys of the "nodes" field, and the kind of the node must be "OR".
 
-### Example AO-JGF file
+## Example AO-JGF file
 
 ```
 {
