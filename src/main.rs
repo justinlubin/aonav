@@ -1,5 +1,5 @@
 //! # Program Entry Point
-//! 
+//!
 //! Defines acceptable CLI arguments and dispatches to main_handler.rs
 
 use aonav::main_handler;
@@ -56,9 +56,9 @@ enum Command {
         #[arg(long, action)]
         reduce: bool,
 
-        /// Use incrementality (if possible)
+        /// Do not use incrementality
         #[arg(long, action)]
-        incremental: bool,
+        no_incremental: bool,
 
         /// Additionally render a PDF in out/INTERACTIVE.pdf
         #[arg(long, action)]
@@ -166,13 +166,13 @@ impl Command {
                 graph,
                 providers,
                 reduce,
-                incremental,
+                no_incremental,
                 pdf,
             } => main_handler::interact(
                 graph,
                 providers,
                 *reduce,
-                *incremental,
+                !no_incremental,
                 *pdf,
             ),
             Self::Benchmark {
