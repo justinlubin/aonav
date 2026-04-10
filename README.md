@@ -29,7 +29,7 @@ To run the basic version of `aonav`, all you need is [Rust](https://rustup.rs/)!
 
 For more information about the codebase, dive into [ARCHITECTURE.md](ARCHITECTURE.md)!
 
-## The AND-OR JSON Graph Format v1
+# The AND-OR JSON Graph Format v1
 
 `aonav` works with a standardized file format for AND-OR graphs that we call the
 _AND-OR JSON Graph Format (AO-JGF) v1_, which is a refinement of the
