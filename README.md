@@ -28,3 +28,97 @@ To run the basic version of `aonav`, all you need is [Rust](https://rustup.rs/)!
 ## About the codebase
 
 For more information about the codebase, dive into [ARCHITECTURE.md](ARCHITECTURE.md)!
+
+## The AND-OR JSON Graph Format v1
+
+`aonav` works with a standardized file format for AND-OR graphs that we call the
+_AND-OR JSON Graph Format (AO-JGF) v1_, which is a refinement of the
+[JSON Graph Format (JGF) v2](https://jsongraphformat.info/).
+It is a refinement in the sense that any tooling that works with the JGF (and,
+consequently, any tooling that works with JSON) should work with the AO-JGF
+format.
+
+```
+{
+  "graph": {
+    "nodes": { <NODE_ID>: <NODE_VAL> },
+    "edges": [<EDGE>],
+    "metadata": { "goal": <NODE_ID> }
+  }
+}
+```
+
+### The "nodes" field
+
+The "nodes" field is an object whose keys we call _node identifiers_ and whose
+values are objects of the following form:
+
+```
+{ "label": <OPTIONAL STRING>, "metadata": { "kind": <KIND> }}
+```
+
+The "label" field is an optional string for display purposes only (there is no
+uniqueness requirement).
+
+The "kind" metadata field must be either "AND" (for AND nodes) or "OR" (for OR
+nodes).
+
+### The "edges" field
+
+The "edges" field is a list of objects of the following form:
+
+```
+{ "source": <NODE_ID>, "target": <NODE_ID> }
+```
+
+The node identifiers must be present as keys in the "nodes" field. Additionally
+the kind of the source must be different from the kind of the target (AND-OR
+graphs are bipartite).
+
+An edge from a node `A` to a node `f` means that `A` _depends on_ `f` (i.e.,
+that `f` is a subgoal of `A`). Thus, it is likely that the "goal" node (see
+below) will have only _outgoing_ edges.
+
+### The "goal" field
+
+The "goal" subfield of the "metadata" field must be a node identifier that is
+present in the keys of the "nodes" field, and the kind of the node must be "OR".
+
+### Example AO-JGF file
+
+```
+{
+  "graph": {
+    "nodes": {
+      "A": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "B": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
+      "f": {
+        "metadata": {
+          "kind": "AND"
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "A",
+        "target": "f"
+      },
+      {
+        "source": "f",
+        "target": "B"
+      }
+    ],
+    "metadata": {
+      "goal": "A"
+    }
+  }
+}
+```
