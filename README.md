@@ -100,6 +100,11 @@ present in the keys of the "nodes" field, and the kind of the node must be "OR".
           "kind": "OR"
         }
       },
+      "C": {
+        "metadata": {
+          "kind": "OR"
+        }
+      },
       "f": {
         "metadata": {
           "kind": "AND"
@@ -114,6 +119,10 @@ present in the keys of the "nodes" field, and the kind of the node must be "OR".
       {
         "source": "f",
         "target": "B"
+      },
+      {
+        "source": "f",
+        "target": "C"
       }
     ],
     "metadata": {
