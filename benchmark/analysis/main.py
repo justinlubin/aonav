@@ -380,7 +380,7 @@ def catplot(
     prefix=None,
     places=0,
 ):
-    fig, ax = plt.subplots(1, 1, figsize=(3, 1.3))
+    fig, ax = plt.subplots(1, 1, figsize=(2.1, 2))
     ticks = []
     labels = []
     colors = []
@@ -403,14 +403,17 @@ def catplot(
     elif m < 200:
         ydelta = 50
         ymax = 200
+    elif m < 600:
+        ydelta = 150
+        ymax = 600
     else:
-        ydelta = 100
+        ydelta = 200
         ymax = m
 
     divider_added = False
 
     for x, ((provider, short, color, marker), g) in enumerate(
-        df.sort([order, provider]).group_by(
+        df.sort([order, provider], descending=True).group_by(
             [provider, short, "color", "marker"],
             maintain_order=True,
         )
@@ -424,8 +427,8 @@ def catplot(
         )
 
         ax.scatter(
-            x + jitter,
             y,
+            x + jitter,
             c=color,
             # marker=marker,
             alpha=0.2,
@@ -445,10 +448,10 @@ def catplot(
             else:
                 median_text = f"{median:0.1f}"
 
-            ax.hlines(
-                y=median,
-                xmin=x - 0.35,
-                xmax=x + 0.35,
+            ax.vlines(
+                x=median,
+                ymin=x - 0.35,
+                ymax=x + 0.35,
                 color="k",
                 zorder=20,
                 alpha=1,
@@ -456,12 +459,12 @@ def catplot(
 
             ax.annotate(
                 median_text,
-                xy=(x, median),
-                xytext=(0, 2),
+                xy=(median, x),
+                xytext=(2, 0),
                 fontsize=8,
                 textcoords="offset pixels",
-                va="bottom",
-                ha="center",
+                va="center",
+                ha="left",
                 color="k",
                 bbox=dict(
                     boxstyle="square,pad=0.1",
@@ -473,19 +476,21 @@ def catplot(
             )
 
         ax.annotate(
-            f"{success_count}/{total_entries}",
-            xy=(x, ymax),
+            f"({success_count}/{total_entries})",
+            xy=(ymax, x),
             xytext=(0, 0),
             textcoords="offset pixels",
-            va="bottom",
-            ha="center",
+            va="center",
+            ha="right",
             fontsize=7,
             color="#999999" if success_count == total_entries else "#bf4040",
-            # bbox=dict(
-            #     boxstyle="square,pad=0",
-            #     facecolor="white",
-            #     edgecolor="none",
-            # ),
+            bbox=dict(
+                boxstyle="square,pad=0.1",
+                facecolor="white",
+                alpha=0.8,
+                edgecolor="none",
+            ),
+            zorder=30,
         )
 
         if success_count != total_entries and not divider_added:
@@ -503,7 +508,7 @@ def catplot(
         labels.append(short)
         colors.append(color)
 
-    ax.set_xticks(
+    ax.set_yticks(
         ticks,
         labels=labels,
         fontsize=8,
@@ -514,12 +519,12 @@ def catplot(
     # for t, c in zip(ax.get_xticklabels(), colors):
     #     t.set_color(c)
 
-    ax.set_xlim(min(ticks) - 0.5, max(ticks) + 0.5)
+    ax.set_ylim(min(ticks) - 0.5, max(ticks) + 0.5)
 
-    ax.set_ylim(0, ymax)
-    ax.set_yticks(np.arange(0, ymax + 0.000001, ydelta))
+    ax.set_xlim(0, ymax)
+    ax.set_xticks(np.arange(0, ymax + 0.000001, ydelta))
 
-    ax.set_ylabel(val_label, fontweight="bold")
+    ax.set_xlabel(val_label, fontweight="bold")
 
     ax.spines[["top", "right"]].set_visible(False)
 
@@ -568,7 +573,7 @@ def forest_plot(
     prefix,
     print_key=False,
     ablation=False,
-    jitter_amount=0,
+    jitter_amount=0.1,
     include=None,
 ):
     rng = np.random.default_rng(seed=0)
@@ -576,7 +581,7 @@ def forest_plot(
     if ablation:
         fig, ax = plt.subplots(1, 1, figsize=(4, 2.5))
     elif include is not None:
-        fig, ax = plt.subplots(1, 1, figsize=(5, 2.5))
+        fig, ax = plt.subplots(1, 1, figsize=(2.75, 2.25))
     else:
         fig, ax = plt.subplots(1, 1, figsize=(6, 4))
 
@@ -628,6 +633,8 @@ def forest_plot(
         multiplier = (g[feature] + 0.001) / (g[f"{feature}_baseline"] + 0.001)
         multiplier = multiplier.filter(multiplier.is_not_null()).log(base=2)
         median = multiplier.median()
+        lo = multiplier.quantile(0.25)
+        hi = multiplier.quantile(0.75)
 
         y_jitter = rng.uniform(
             low=y - jitter_amount,
@@ -671,7 +678,10 @@ def forest_plot(
         # )
 
         label_val = 2**median
-        label = f"{label_val:0.2f}×"
+        label = f"{label_val:0,.2f}×"
+
+        lo_label_val = 2**lo
+        hi_label_val = 2**hi
 
         try:
             if label_val == int(label_val):
@@ -680,6 +690,22 @@ def forest_plot(
                 print_label = f"{label_val:0.2f}"
         except ValueError:
             print_label = f"{label_val:0.2f}"
+
+        try:
+            if lo_label_val == int(lo_label_val):
+                lo_print_label = str(int(lo_label_val))
+            else:
+                lo_print_label = f"{lo_label_val:0.2f}"
+        except ValueError:
+            lo_print_label = f"{lo_label_val:0.2f}"
+
+        try:
+            if hi_label_val == int(hi_label_val):
+                hi_print_label = str(int(hi_label_val))
+            else:
+                hi_print_label = f"{hi_label_val:0.2f}"
+        except ValueError:
+            hi_print_label = f"{hi_label_val:0.2f}"
 
         print(
             r"\newcommand{\Cmp",
@@ -691,9 +717,13 @@ def forest_plot(
             provider.replace("+", ""),
             "v",
             provider_baseline.replace("+", ""),
-            "}{",
+            "}{$",
             print_label,
-            "}",
+            "\\times$~($",
+            lo_print_label,
+            "\\times$--$",
+            hi_print_label,
+            "\\times$)}",
             sep="",
         )
         # label = f"{label_val:0.2f}× ({1 / label_val:0.2f}× better)"
@@ -701,12 +731,12 @@ def forest_plot(
         ax.annotate(
             label,
             xy=(median, y),
-            xytext=(3, -3),
+            xytext=(-3, -5),
             textcoords="offset pixels",
             va="center",
-            ha="left",
+            ha="right",
             color=median_color,
-            fontsize=7,
+            fontsize=9,
             bbox=dict(
                 boxstyle="square,pad=0.1",
                 facecolor="white",
@@ -719,13 +749,17 @@ def forest_plot(
 
     ax.axvline(0, color="0.5", ls="dashed", lw=0.5)
 
-    lim = ((3 + np.ceil(lim + 0.1)) // 4) * 4
+    if lim < 4:
+        lim = 4
+        xticks = np.arange(-lim, lim + 1, 1)
+    elif lim < 10:
+        lim = 10
+        xticks = np.arange(-lim, lim + 1, 4)
+    elif lim < 16:
+        lim = 16
+        xticks = np.arange(-lim, lim + 1, 8)
 
     ax.set_xlim(-lim, lim)
-    if lim > 7:
-        xticks = np.arange(-lim, lim + 1, 4)
-    else:
-        xticks = np.arange(-lim, lim + 1, 1)
 
     def nice_xtick(xt):
         if xt < 0:
@@ -734,7 +768,11 @@ def forest_plot(
             prefix = ""
         return prefix + str(int(2 ** abs(xt))) + "×"
 
-    ax.set_xticks(xticks, labels=map(nice_xtick, xticks))
+    ax.set_xticks(
+        xticks,
+        labels=map(nice_xtick, xticks),
+        fontsize=7,
+    )
 
     # ax.set_xlabel(f"{feature_label} ratio", fontweight="bold")
     ax.annotate(
@@ -744,7 +782,7 @@ def forest_plot(
         ha="right",
         va="top",
         fontweight="bold",
-        fontsize=14,
+        fontsize=12,
     )
 
     def _bold(s):
@@ -807,7 +845,7 @@ for (
             feature=metric,
             title=nice_suite[suite],
             feature_label=metric_name.replace(SECONDS_SUFFIX, ""),
-            median_color="r",
+            median_color="k",
             print_key=print_key,
             include={
                 ("S", "U"),
@@ -850,7 +888,7 @@ for metric, metric_name in metrics:
         feature=metric,
         title="All suites",
         feature_label=metric_name.replace(SECONDS_SUFFIX, ""),
-        median_color="r",
+        median_color="k",
         ablation=True,
         prefix="incablation",
     )[0].save(f"out/Fig3-incablation/{metric}-incablation.pdf")
@@ -865,7 +903,7 @@ def scalplot(
     y,
     order="order",
 ):
-    fig, ax = plt.subplots(1, 1, figsize=(5, 3))
+    fig, ax = plt.subplots(1, 1, figsize=(3.25, 2.5))
 
     for (label, color, marker), g in df.sort(order).group_by(
         "short",
@@ -880,6 +918,8 @@ def scalplot(
             c=color,
             marker=marker,
             clip_on=False,
+            markersize=4,
+            lw=0.75,
             label=label,
         )
 
@@ -900,6 +940,7 @@ def scalplot(
     fig.legend(
         loc="upper right",
         bbox_to_anchor=(0.98, 1),
+        fontsize=7,
     )
 
     return fig, ax
