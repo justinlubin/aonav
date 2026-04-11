@@ -380,7 +380,7 @@ def catplot(
     prefix=None,
     places=0,
 ):
-    fig, ax = plt.subplots(1, 1, figsize=(2.1, 2))
+    fig, ax = plt.subplots(1, 1, figsize=(2.1, 1.75))
     ticks = []
     labels = []
     colors = []
@@ -421,8 +421,8 @@ def catplot(
         y = g[val].filter(g[val].is_not_null())
 
         jitter = rng.uniform(
-            low=-0.25,
-            high=0.25,
+            low=-0.2,
+            high=0.2,
             size=len(y),
         )
 
@@ -581,7 +581,7 @@ def forest_plot(
     if ablation:
         fig, ax = plt.subplots(1, 1, figsize=(4, 2.5))
     elif include is not None:
-        fig, ax = plt.subplots(1, 1, figsize=(2.75, 2.25))
+        fig, ax = plt.subplots(1, 1, figsize=(2.75, 1.8))
     else:
         fig, ax = plt.subplots(1, 1, figsize=(6, 4))
 
@@ -903,7 +903,7 @@ def scalplot(
     y,
     order="order",
 ):
-    fig, ax = plt.subplots(1, 1, figsize=(3.25, 2.5))
+    fig, ax = plt.subplots(1, 1, figsize=(3.25, 2))
 
     for (label, color, marker), g in df.sort(order).group_by(
         "short",
