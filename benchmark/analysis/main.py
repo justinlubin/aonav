@@ -663,7 +663,7 @@ def forest_plot(
             x=median,
             ymin=y - 0.35,
             ymax=y + 0.35,
-            color=median_color,
+            color="r",
             zorder=20,
             alpha=1,
         )
@@ -683,29 +683,9 @@ def forest_plot(
         lo_label_val = 2**lo
         hi_label_val = 2**hi
 
-        try:
-            if label_val == int(label_val):
-                print_label = str(int(label_val))
-            else:
-                print_label = f"{label_val:0.2f}"
-        except ValueError:
-            print_label = f"{label_val:0.2f}"
-
-        try:
-            if lo_label_val == int(lo_label_val):
-                lo_print_label = str(int(lo_label_val))
-            else:
-                lo_print_label = f"{lo_label_val:0.2f}"
-        except ValueError:
-            lo_print_label = f"{lo_label_val:0.2f}"
-
-        try:
-            if hi_label_val == int(hi_label_val):
-                hi_print_label = str(int(hi_label_val))
-            else:
-                hi_print_label = f"{hi_label_val:0.2f}"
-        except ValueError:
-            hi_print_label = f"{hi_label_val:0.2f}"
+        print_label = f"{label_val:0.2f}"
+        lo_print_label = f"{lo_label_val:0.2f}"
+        hi_print_label = f"{hi_label_val:0.2f}"
 
         print(
             r"\newcommand{\Cmp",
