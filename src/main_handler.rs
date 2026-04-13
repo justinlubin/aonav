@@ -105,7 +105,7 @@ pub fn interact(
         true,
     );
 
-    let mut driver = drivers::Cli::new("sufficient".to_owned(), pdf);
+    let mut driver = drivers::Cli::new("sufficient".to_owned(), true, pdf);
     let _ = driver.drive(controller);
 
     Ok(())

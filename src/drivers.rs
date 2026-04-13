@@ -29,13 +29,18 @@ pub trait Driver<S: pbn::Step> {
 /// Drives step providers for command-line interaction
 pub struct Cli {
     valid_word: String,
+    immediately_stop: bool,
     pdf: bool,
 }
 
 impl Cli {
     /// Creates a new Cli driver
-    pub fn new(valid_word: String, pdf: bool) -> Self {
-        Self { valid_word, pdf }
+    pub fn new(valid_word: String, immediately_stop: bool, pdf: bool) -> Self {
+        Self {
+            valid_word,
+            immediately_stop,
+            pdf,
+        }
     }
 }
 
@@ -110,14 +115,19 @@ impl Driver<pn::Step> for Cli {
         'main_loop: loop {
             round += 1;
 
+            if self.pdf {
+                emit_graph("INTERACTIVE", controller.working_expression());
+            }
+
             let valid = controller.valid();
+
+            if self.immediately_stop && valid {
+                break;
+            }
+
             let mut options = controller.provide().ok()?;
 
             let exp = controller.working_expression();
-
-            if self.pdf {
-                emit_graph("INTERACTIVE", &exp);
-            }
 
             if !valid && options.is_empty() {
                 println!("{}", Red.bold().paint("Not possible!"));
