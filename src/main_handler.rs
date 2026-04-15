@@ -392,19 +392,36 @@ pub fn convert(
 }
 
 /// Render an AND/OR graph in the AND/OR JSON Graph Format
-pub fn render(path: &PathBuf) -> Result<(), String> {
+pub fn render(
+    path: &PathBuf,
+    tempfile: &Option<PathBuf>,
+) -> Result<(), String> {
     let ao = load_ao(path);
 
     let mut dot_file = tempfile::NamedTempFile::new().unwrap();
-    write!(&mut dot_file, "{}", ao.dot(&HashMap::new())).unwrap();
+    write!(
+        &mut dot_file,
+        "{}",
+        ao.dot(&HashMap::new()).replace(",margin=0", "")
+    )
+    .unwrap();
 
     let dot_path = dot_file.path();
 
     let _ = Command::new("dot")
         .arg("-Tpdf")
+        .arg("-Nfontname=Linux Biolinum")
+        .arg("-Nfontsize=16")
+        .arg("-Efontname=Linux Biolinum")
+        .arg("-Efontsize=16")
+        // .arg("-Granksep=0.25") // compact layout
         .arg(dot_path)
         .status()
         .unwrap();
+
+    if let Some(tempfile) = tempfile {
+        std::fs::copy(dot_path, tempfile).unwrap();
+    }
 
     Ok(())
 }

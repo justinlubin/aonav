@@ -156,6 +156,10 @@ enum Command {
         /// The path to the graph to render
         #[arg(value_name = "FILE")]
         path: PathBuf,
+
+        /// The path to save the temporary .dot file
+        #[arg(long, value_name = "FILE")]
+        tempfile: Option<PathBuf>,
     },
 }
 
@@ -210,7 +214,9 @@ impl Command {
                 randomize,
                 reduce,
             } => main_handler::convert(path, format, *randomize, *reduce),
-            Self::Render { path } => main_handler::render(path),
+            Self::Render { path, tempfile } => {
+                main_handler::render(path, tempfile)
+            }
         }
     }
 }
