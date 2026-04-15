@@ -19,7 +19,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::Write;
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 use std::process::Command;
 use strum::EnumString;
 
@@ -391,21 +391,18 @@ pub fn convert(
     Ok(())
 }
 
-///  Render an AND/OR graph in the AND/OR JSON Graph Format (stored in out/RENDERED.dot and out/RENDERED.pdf)
+/// Render an AND/OR graph in the AND/OR JSON Graph Format
 pub fn render(path: &PathBuf) -> Result<(), String> {
-    let outdir = Path::new("out/");
-
     let ao = load_ao(path);
 
-    let dot_path = outdir.join("RENDERED.dot");
-    let mut dot_file = File::create(dot_path.clone()).unwrap();
+    let mut dot_file = tempfile::NamedTempFile::new().unwrap();
     write!(&mut dot_file, "{}", ao.dot(&HashMap::new())).unwrap();
 
-    let pdf_file = File::create(outdir.join("RENDERED.pdf")).unwrap();
+    let dot_path = dot_file.path();
+
     let _ = Command::new("dot")
         .arg("-Tpdf")
         .arg(dot_path)
-        .stdout(std::process::Stdio::from(pdf_file))
         .status()
         .unwrap();
 

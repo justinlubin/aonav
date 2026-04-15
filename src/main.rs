@@ -151,7 +151,7 @@ enum Command {
         reduce: bool,
     },
 
-    /// Render an AND/OR graph in the AND/OR JSON Graph Format (stored in out/RENDERED.dot and out/RENDERED.pdf)
+    /// Render an AND/OR graph in the AND/OR JSON Graph Format to PDF
     Render {
         /// The path to the graph to render
         #[arg(value_name = "FILE")]
