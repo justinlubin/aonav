@@ -6,25 +6,32 @@ _Estimated time to complete this section: 10 minutes._
 
 Download the following files from the Zenodo archive to a new directory on your
 computer:
-- `aonav-image.tar.gz`: Docker image of software used for the paper
+- `aonav-amd64.tar.gz`: Docker image of software used for the paper (for x86-64
+  host machines)
+- `aonav-arm64.tar.gz`: Docker image of software used for the paper (for ARM64
+  host machines)
 - `run.sh`: Script to run the Docker image
 
-## Step 2: Install and set up Podman
+## Step 2: Install and set up Docker
 
-Install the lightweight Docker alternative [Podman](https://podman.io/).
-If this is your first time ever using Podman, you will need to set up a virtual
-machine by running the following commands:
-```bash
-podman machine init
-podman machine start
-```
+First, install [Docker](https://www.docker.com/), for example, via Docker
+Desktop.
+
+Then, ensure that Docker is running for the following steps.
 
 ## Step 3: Load Docker image
 
-Load the Docker image by running the following command from the directory
-you created in Step 1:
+Load the Docker image by running _one_ of the following two commands from the
+directory you created in Step 1.
+
+For x86-64 host machines:
 ```bash
-podman load -i aonav-image.tar.gz
+docker load -i aonav-amd64.tar.gz
+```
+
+For ARM64 host machines:
+```bash
+docker load -i aonav-arm64.tar.gz
 ```
 
 ## Step 4: Run the evaluation
@@ -134,7 +141,7 @@ corresponding implementation in the Rust code.
 
 If you would like to use `aonav` interactively, run the following command:
 ```bash
-podman run -it --entrypoint /bin/bash aonav
+docker run -it --entrypoint /bin/bash aonav
 ```
 
 This will load a `bash` shell inside the Docker image. You can then run `aonav`
