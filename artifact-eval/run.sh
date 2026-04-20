@@ -4,4 +4,4 @@ mkdir -p mnt/graphs
 docker run -it \
     --mount type=bind,source="$(pwd)/mnt/results",target="/root/results" \
     --mount type=bind,source="$(pwd)/mnt/graphs",target="/root/analysis/out" \
-    localhost/aonav:latest $1
+    aonav $1
