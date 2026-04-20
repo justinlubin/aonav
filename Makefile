@@ -19,4 +19,5 @@ image:
 
 clean:
 	cargo clean
-	rm -f -- artifact-eval/aonav-image.tar.gz
+	rm -f -- artifact-eval/aonav-amd64.tar.gz
+	rm -f -- artifact-eval/aonav-arm64.tar.gz
