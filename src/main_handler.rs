@@ -122,6 +122,7 @@ pub fn benchmark(
     timeout: Duration,
     stop_on_valid: bool,
     count_unordered: bool,
+    dimacs_log: &Option<PathBuf>,
 ) -> Result<(), String> {
     if !suite_path.exists() {
         panic!("Path '{}' does not exist", suite_path.display())
@@ -170,6 +171,7 @@ pub fn benchmark(
         incremental_if_possible,
         stop_on_valid,
         count_unordered,
+        dimacs_log: dimacs_log.clone(),
     };
 
     let runner = benchmark::Runner::new(config, std::io::stdout());

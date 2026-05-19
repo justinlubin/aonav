@@ -15,6 +15,7 @@ use rustsat::solvers::{Solve, SolveIncremental};
 use rustsat::types::{constraints::CardConstraint, Lit};
 use std::collections::HashMap;
 use std::collections::HashSet;
+use std::path::PathBuf;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Main oracle implementation
@@ -469,7 +470,7 @@ impl OptInc {
 ////////////////////////////////////////////////////////////////////////////////
 // Entropy
 
-/// Returns the log10 projected model count of the non-completion formulas
+/// Returns the log10 projected model count of the nonetmpy-completion formulas
 pub fn log10_projected_model_count(
     e: &Exp,
     projected: &ao::OrSet,
@@ -492,6 +493,20 @@ pub fn log10_projected_model_count(
                 })
                 .collect(),
         ),
+    )
+}
+
+/// Emits the DIMACS-like format for the log10 model count of the
+/// nonempty-completion formulas
+pub fn emit_dimacs(path: &PathBuf, e: &Exp) {
+    let ctx = CompileContext::compile(e);
+    let (cnf, vm) = ctx.instance.into_cnf();
+
+    model_count::emit_log10_model_count(
+        path,
+        vm.n_used(),
+        &cnf,
+        Some(ctx.o_assume.iter().map(|(_, lit)| lit.var()).collect()),
     )
 }
 

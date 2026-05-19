@@ -13,6 +13,7 @@ use instant::{Duration, Instant};
 use rayon::prelude::*;
 use serde::Serialize;
 use std::io;
+use std::path::PathBuf;
 use std::sync::{Arc, Mutex};
 
 /// Describes name and solution of a single benchmark problem
@@ -65,6 +66,8 @@ pub struct Config {
     pub stop_on_valid: bool,
     /// Count decisions as cardinality of options presented (unordered output)
     pub count_unordered: bool,
+    /// Location to save the DIMACS-like files that would be used to model count
+    pub dimacs_log: Option<PathBuf>,
 }
 
 /// The core data structure for running benchmarks
@@ -122,8 +125,16 @@ impl Runner {
             )
         };
 
-        let mut driver =
-            drivers::SolutionDriven::new(solution, self.config.count_unordered);
+        let mut driver = drivers::SolutionDriven::new(
+            solution,
+            self.config.count_unordered,
+            self.config.dimacs_log.clone().map(|p| {
+                p.with_file_name(&format!(
+                    "{}.{}",
+                    entry.name, entry.chosen_solution
+                ))
+            }),
+        );
         let success = driver.drive(controller).is_some();
 
         let duration = now.elapsed().as_millis();

@@ -7,11 +7,13 @@ use crate::util;
 
 use ansi_term::Color::*;
 use aograph as ao;
+use pbn::Step as _;
 use rand::Rng;
 use std::collections::HashMap;
 use std::collections::HashSet;
 use std::fs::File;
 use std::io::Write;
+use std::path::PathBuf;
 use std::process::Command;
 use std::time::Instant;
 
@@ -220,21 +222,27 @@ pub struct SolutionDriven {
     total_decisions: usize,
     latencies: Vec<u128>,
     count_unordered: bool,
+    dimacs_log: Option<PathBuf>,
 }
 
 impl SolutionDriven {
     /// Creates a new SolutionDriven driver
-    pub fn new(solution: pn::Exp, count_unordered: bool) -> Self {
+    pub fn new(
+        solution: pn::Exp,
+        count_unordered: bool,
+        dimacs_log: Option<PathBuf>,
+    ) -> Self {
         Self {
             solution,
             decisions: HashSet::new(),
             total_decisions: 0,
             latencies: vec![],
             count_unordered,
+            dimacs_log,
         }
     }
 
-    /// Returns number of uniquie decisions made
+    /// Returns number of unique decisions made
     pub fn unique_decisions(&self) -> usize {
         self.decisions.len()
     }
@@ -289,6 +297,23 @@ impl Driver<pn::Step> for SolutionDriven {
                             if !self.count_unordered {
                                 break;
                             }
+                        }
+
+                        match &self.dimacs_log {
+                            Some(p) => {
+                                let new_e = option
+                                    .apply(controller.working_expression())
+                                    .unwrap();
+                                pn::oracle::emit_dimacs(
+                                    &p.with_added_extension(format!(
+                                        "{:05}.{:05}.dimacs",
+                                        self.latencies().len(),
+                                        self.total_decisions()
+                                    )),
+                                    &new_e,
+                                )
+                            }
+                            None => (),
                         }
                     }
                     pn::Step::Seq(..) => {

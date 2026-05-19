@@ -4,7 +4,9 @@
 
 use rustsat::{instances::Cnf, types::Var};
 use std::{
+    fs::File,
     io::{BufWriter, Write},
+    path::PathBuf,
     process::{Command, Stdio},
     time::Duration,
 };
@@ -66,4 +68,25 @@ pub fn log10_model_count(
     }
 
     panic!("Unexpected Ganak output format");
+}
+
+pub fn emit_log10_model_count(
+    path: &PathBuf,
+    n_vars: u32,
+    cnf: &Cnf,
+    projected_vars: Option<Vec<Var>>,
+) {
+    let mut file = File::create(path).unwrap();
+
+    write!(file, "c t pmc\n").unwrap();
+
+    cnf.write_dimacs(&mut file, n_vars).unwrap();
+
+    if let Some(pvs) = projected_vars {
+        write!(file, "c p show ").unwrap();
+        for var in pvs {
+            write!(file, "{} ", var.to_ipasir()).unwrap();
+        }
+        write!(file, "0\n").unwrap();
+    }
 }

@@ -97,7 +97,7 @@ enum Command {
         #[arg(long, action)]
         incremental: bool,
 
-        /// Timeout (in seconds, omit for none)
+        /// Timeout (in seconds, omit for none); model counting always times out at 30
         #[arg(long)]
         timeout: Option<u64>,
 
@@ -108,6 +108,10 @@ enum Command {
         /// Count decisions as cardinality of options presented (unordered output)
         #[arg(long, action)]
         count_unordered: bool,
+
+        /// Location to save the DIMACS-like files that would be used to model count
+        #[arg(long)]
+        dimacs_log: Option<PathBuf>,
     },
 
     /// Emit graph statistics for a benchmark suite
@@ -189,6 +193,7 @@ impl Command {
                 timeout,
                 stop_on_valid,
                 count_unordered,
+                dimacs_log,
             } => main_handler::benchmark(
                 path,
                 providers,
@@ -199,6 +204,7 @@ impl Command {
                 timeout.map(Duration::from_secs).unwrap_or(Duration::MAX),
                 *stop_on_valid,
                 *count_unordered,
+                dimacs_log,
             ),
             Self::BenchmarkStats { path } => {
                 main_handler::benchmark_stats(path)

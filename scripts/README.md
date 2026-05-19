@@ -8,4 +8,10 @@
 - `aesop-scripts/`: Helper scripts used to create the Aesop benchmarks
 - `argus-scripts/`: Helper scripts used to create the Argus benchmarks
 - `random-scripts/`: Helper scripts used to create the Random benchmarks 
-- `collect-benchmark-stats.sh`: generate benchmark statistics CSVs
+- `collect-benchmark-stats.sh`: Generate benchmark statistics CSVs
+
+## Miscellaneous
+
+- `collect-dimacs.sh`: Collect DIMACS-like format for model counters that
+  would be generated in the course of a synthesis run (for model counting
+  competition)
